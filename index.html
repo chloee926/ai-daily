@@ -3,172 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日AI简报 | 2026-04-15</title>
+<title>每日AI简报 | 目录归档</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0a0e17;color:#c8d6e5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.7;padding:20px;max-width:820px;margin:0 auto}
 .header{text-align:center;padding:40px 0 30px;border-bottom:1px solid rgba(99,179,237,.2)}
 .header h1{font-size:28px;color:#63b3ed;margin-bottom:8px;letter-spacing:2px}
-.header .date{color:#718096;font-size:15px}
-.summary{background:linear-gradient(135deg,rgba(99,179,237,.12),rgba(129,140,248,.10));border:1px solid rgba(99,179,237,.2);border-radius:12px;padding:24px;margin:28px 0}
-.summary h3{color:#63b3ed;margin-bottom:12px;font-size:16px}
-.summary ol{padding-left:20px;margin-bottom:14px}
-.summary ol li{margin-bottom:6px;font-size:14px}
-.summary .verdict{font-size:13px;color:#a0aec0;line-height:1.8;border-top:1px solid rgba(99,179,237,.15);padding-top:12px;margin-top:10px}
-.section{margin:36px 0}
-.section-title{display:flex;align-items:center;gap:10px;font-size:20px;color:#f6e05e;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(246,224,94,.15)}
-.card{background:rgba(26,32,44,.7);border:1px solid rgba(99,179,237,.12);border-radius:10px;padding:22px;margin-bottom:18px;transition:border-color .3s}
-.card:hover{border-color:rgba(99,179,237,.35)}
-.card h4{color:#e2e8f0;font-size:16px;margin-bottom:8px}
-.card .source{color:#718096;font-size:12px;margin-bottom:10px}
-.card .source a{color:#63b3ed;text-decoration:none}
-.card .source a:hover{text-decoration:underline}
-.card .body{font-size:14px;color:#a0aec0;margin-bottom:12px}
-.card .why{background:rgba(99,179,237,.06);border-left:3px solid #63b3ed;padding:10px 14px;font-size:13px;color:#90cdf4;border-radius:0 6px 6px 0;margin-top:10px}
-.new-term{background:linear-gradient(135deg,rgba(246,224,94,.08),rgba(237,137,54,.06));border:1px solid rgba(246,224,94,.15);border-radius:10px;padding:22px;margin-bottom:18px}
-.new-term h4{color:#f6e05e;font-size:16px;margin-bottom:6px}
-.new-term .explain{font-size:14px;color:#e2e8f0;margin-bottom:8px}
-.new-term .detail{font-size:13px;color:#a0aec0}
-.think{background:linear-gradient(135deg,rgba(72,187,120,.08),rgba(56,178,172,.06));border:1px solid rgba(72,187,120,.15);border-radius:10px;padding:22px;margin-bottom:18px}
-.think h4{color:#68d391;font-size:16px;margin-bottom:10px}
-.think .body{font-size:14px;color:#b2dfdb;line-height:1.9}
-.think .question{background:rgba(72,187,120,.08);border-left:3px solid #68d391;padding:12px 16px;border-radius:0 6px 6px 0;margin-top:16px}
-.think .question h5{color:#68d391;margin-bottom:8px;font-size:14px}
-.think .question ol{padding-left:18px;font-size:13px;color:#a0aec0}
-.think .question ol li{margin-bottom:4px}
+.header .subtitle{color:#718096;font-size:15px}
+.intro{background:linear-gradient(135deg,rgba(99,179,237,.12),rgba(129,140,248,.10));border:1px solid rgba(99,179,237,.2);border-radius:12px;padding:24px;margin:28px 0;font-size:14px;color:#a0aec0;line-height:1.9}
+.intro strong{color:#63b3ed}
+.month-group{margin:32px 0}
+.month-title{font-size:18px;color:#f6e05e;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(246,224,94,.15);display:flex;align-items:center;gap:8px}
+.issue-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.issue-card{background:rgba(26,32,44,.7);border:1px solid rgba(99,179,237,.12);border-radius:10px;padding:18px 20px;text-decoration:none;color:#e2e8f0;transition:all .3s;display:flex;flex-direction:column;gap:6px}
+.issue-card:hover{border-color:rgba(99,179,237,.45);transform:translateY(-2px);box-shadow:0 4px 20px rgba(99,179,237,.1)}
+.issue-card .date-num{font-size:28px;font-weight:700;color:#63b3ed;letter-spacing:1px}
+.issue-card .weekday{font-size:13px;color:#718096}
+.issue-card .label{font-size:12px;color:#4a5568;margin-top:4px}
+.stats{display:flex;gap:24px;justify-content:center;margin:20px 0 10px;font-size:13px;color:#718096}
+.stats span{display:flex;align-items:center;gap:6px}
+.stats .num{color:#63b3ed;font-weight:600;font-size:15px}
 .footer{text-align:center;padding:30px 0;color:#4a5568;font-size:12px;border-top:1px solid rgba(99,179,237,.1);margin-top:40px}
-@media(max-width:600px){body{padding:12px}.header h1{font-size:22px}.card{padding:16px}}
+@media(max-width:600px){body{padding:12px}.header h1{font-size:22px}.issue-list{grid-template-columns:1fr 1fr}.issue-card .date-num{font-size:22px}}
 </style>
 </head>
 <body>
 <div class="header">
 <h1>每日AI简报</h1>
-<div class="date">2026年4月15日 星期二 | TME HR·AI情报站</div>
+<div class="subtitle">TME HR AI情报站 | 历史归档</div>
 </div>
 
-<div class="summary">
-<h3>今日最重要的3点</h3>
-<ol>
-<li>GPT-6 正式发布：200万 Token 上下文、Symphony 全模态架构、性能提升40%——OpenAI 为此关停 Sora，"破釜沉舟"押注 AGI</li>
-<li>Stanford 2026 AI Index 报告发布：中美模型差距缩至2.7%、25岁以下工程师就业下滑近20%、AI 透明度指数骤降</li>
-<li>AI 首次成为单月裁员第一大原因，Q1全球科技裁员近8万人、47.9%归因AI——但专家警告"AI焦虑驱动裁员"可能是更大的真相</li>
-</ol>
-<div class="verdict"><strong>总判断：</strong>4月14日是2026年AI领域的分水岭日。GPT-6的200万Token上下文和Symphony架构让AI正式从"问答助手"进化为"任务执行者"，但这把双刃剑的另一面同样锋利——Stanford报告显示25岁以下工程师就业已下滑20%，Challenger数据确认AI首次登顶裁员首因。值得警惕的是，Cognizant首席AI官指出当前裁员更多是"对AI能力的预期"驱动，而非实际生产力变化。这意味着企业决策中存在"AI焦虑溢价"，HR需要建立基于真实数据的岗位评估框架，而非跟风缩编。</div>
+<div class="intro">
+<strong>每日AI简报</strong>聚焦 AI 行业动态，从 HR 视角解读 AI 新名词、产品平台动态、公司组织人才变化，并提供思考延展。点击下方日期卡片查看对应日期的完整简报。
 </div>
 
-<div class="section">
-<div class="section-title">📘 新名词解释</div>
-
-<div class="new-term">
-<h4>Symphony 架构（Symphony Architecture）</h4>
-<div class="explain">OpenAI 在 GPT-6 中引入的全新多模态统一架构。与以往文本、图像、音频分模块拼接不同，Symphony 将所有模态在同一架构内原生融合处理，赋予模型类似人类的"通感"能力——例如手绘草图可直接生成前端代码，产品演示视频可自动生成测试用例。</div>
-<div class="detail"><strong>来源：</strong><a href="https://www.sohu.com/a/1009429532_122725837" style="color:#63b3ed">搜狐IT</a>、<a href="https://blog.csdn.net/bq990914/article/details/160133891" style="color:#63b3ed">CSDN</a><br><strong>为什么重要：</strong>标志着AI从"内容生成"正式转向"任务执行"。对企业而言，多模态能力意味着更多工作流可以被AI端到端接管，产品经理和测试工程师的工作方式将被重塑。</div>
+<div class="stats">
+<span>共 <span class="num">13</span> 期</span>
+<span>更新至 <span class="num">2026-04-15</span></span>
 </div>
 
-<div class="new-term">
-<h4>Engram 条件记忆（Engram Conditional Memory）</h4>
-<div class="explain">DeepSeek V4 即将引入的长期记忆架构，名称借鉴神经科学中"记忆痕迹"（engram）的概念。允许模型在多轮对话和长周期任务中维持并调用条件性记忆，从"无状态对话"迈向"持续协作智能体"。</div>
-<div class="detail"><strong>来源：</strong><a href="https://technews.tw/2026/04/10/deepseek-v4/" style="color:#63b3ed">TechNews</a>、<a href="https://tech.ifeng.com/c/8sCrTSZhbCw" style="color:#63b3ed">凤凰科技</a><br><strong>为什么重要：</strong>长期记忆是AI从"工具"变成"同事"的关键能力。当AI能记住你的工作偏好和项目上下文，人机协作的效率将发生质变。</div>
-</div>
-</div>
-
-<div class="section">
-<div class="section-title">🚀 议题一｜AI产品、平台与技术动态</div>
-
-<div class="card">
-<h4>1. GPT-6 正式发布：200万 Token 上下文、Symphony 全模态架构</h4>
-<div class="source">来源：<a href="https://www.sohu.com/a/1009429532_122725837">搜狐IT</a>、<a href="https://blog.csdn.net/bq990914/article/details/160133891">CSDN</a>、<a href="https://news.qq.com/rain/a/20260409A021OB00">腾讯新闻</a> | 2026-04-14</div>
-<div class="body">2026年4月14日，OpenAI正式发布代号"土豆"（Spud）的GPT-6。核心突破：200万Token上下文窗口（相当于两部《三体》全集）、Symphony原生多模态架构、综合性能较GPT-5提升40%。为集中资源，OpenAI此前已关停Sora视频生成服务，CEO奥尔特曼将此比作"GPT-3发布前的资源聚焦"。</div>
-<div class="why"><strong>HR视角：</strong>200万Token意味着AI可以"读完"一个完整的大型项目代码库或一整套法律文件。对内容、法务、研发等岗位的工作效率影响最为直接。</div>
-</div>
-
-<div class="card">
-<h4>2. DeepSeek V4 确认4月下旬发布：万亿参数 + 国产芯片适配</h4>
-<div class="source">来源：<a href="https://tech.ifeng.com/c/8sCrTSZhbCw">凤凰科技</a>、<a href="https://www.chinaz.com/ainews/27011.shtml">站长之家</a>、<a href="https://technews.tw/2026/04/10/deepseek-v4/">TechNews</a> | 2026-04-10</div>
-<div class="body">DeepSeek创始人梁文锋在内部沟通中确认，新一代旗舰大模型DeepSeek V4将于4月下旬正式发布。参数规模达万亿级，引入Engram条件记忆架构和LTM长期记忆能力，首次深度适配华为昇腾等国产AI芯片。定价每百万token仅0.3美元，比GPT旗舰模型便宜十倍以上。</div>
-<div class="why"><strong>HR视角：</strong>国产大模型价格仅为海外十分之一，意味着中小企业AI应用门槛大幅降低。企业"是否用AI"的讨论正转变为"如何更好地用AI"，相关岗位需求将加速增长。</div>
-</div>
-
-<div class="card">
-<h4>3. 小红书开源 RL 训练引擎 RELAX</h4>
-<div class="source">来源：<a href="https://www.aitntnews.com/ainews/zh-CN">AITntNews</a> | 2026-04-15</div>
-<div class="body">小红书正式开源强化学习训练引擎RELAX，实测全异步Off-Policy模式较共卡On-Policy吞吐提升76%，较veRL同模式提升20%，可显著提升全模态智能体强化学习训练的效率与稳定性。</div>
-<div class="why"><strong>HR视角：</strong>内容平台开始开源核心AI训练引擎，表明AI人才竞争已从"挖人"转向"建生态"。开源策略既是技术影响力建设，也是人才吸引的长期投资。</div>
-</div>
-
-<div class="card">
-<h4>4. Stanford 2026 AI Index 报告：超400页全景扫描</h4>
-<div class="source">来源：<a href="https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report">Stanford HAI</a>、<a href="https://spectrum.ieee.org/state-of-ai-index-2026">IEEE Spectrum</a> | 2026-04-13</div>
-<div class="body">斯坦福HAI研究所发布年度AI Index报告。核心发现：生成式AI全球普及率3年内达53%，普及速度超越互联网和PC；中美顶尖模型差距缩小至2.7%；中国AI论文和专利数量全球领先；韩国人均AI专利申请数跃居全球第一；模型透明度指数从58分骤降至40分；2025年记录362起AI安全事件，较上年增55%。</div>
-<div class="why"><strong>HR视角：</strong>中美AI差距仅剩2.7%意味着国内AI人才的国际竞争力已显著提升。韩国跃居人均AI专利第一提醒我们关注东亚人才市场的新格局。</div>
+<div class="month-group">
+<div class="month-title">2026 年 4 月</div>
+<div class="issue-list">
+<a class="issue-card" href="2026-04-15.html"><span class="date-num">04-15</span><span class="weekday">星期二</span><span class="label">第13期</span></a>
+<a class="issue-card" href="2026-04-14.html"><span class="date-num">04-14</span><span class="weekday">星期一</span><span class="label">第12期</span></a>
+<a class="issue-card" href="2026-04-13.html"><span class="date-num">04-13</span><span class="weekday">星期日</span><span class="label">第11期</span></a>
+<a class="issue-card" href="2026-04-10.html"><span class="date-num">04-10</span><span class="weekday">星期四</span><span class="label">第10期</span></a>
+<a class="issue-card" href="2026-04-09.html"><span class="date-num">04-09</span><span class="weekday">星期三</span><span class="label">第9期</span></a>
+<a class="issue-card" href="2026-04-08.html"><span class="date-num">04-08</span><span class="weekday">星期二</span><span class="label">第8期</span></a>
+<a class="issue-card" href="2026-04-07.html"><span class="date-num">04-07</span><span class="weekday">星期一</span><span class="label">第7期</span></a>
+<a class="issue-card" href="2026-04-03.html"><span class="date-num">04-03</span><span class="weekday">星期四</span><span class="label">第6期</span></a>
+<a class="issue-card" href="2026-04-02.html"><span class="date-num">04-02</span><span class="weekday">星期三</span><span class="label">第5期</span></a>
+<a class="issue-card" href="2026-04-01.html"><span class="date-num">04-01</span><span class="weekday">星期二</span><span class="label">第4期</span></a>
 </div>
 </div>
 
-<div class="section">
-<div class="section-title">👥 议题二｜AI公司组织 & 人才</div>
-
-<div class="card">
-<h4>1. Q1全球科技裁员近8万人，47.9%归因AI</h4>
-<div class="source">来源：<a href="https://finance.sina.com.cn/tech/digi/2026-04-09/doc-inhtwhrc8940932.shtml">新浪科技/IT之家</a> | 2026-04-09</div>
-<div class="body">据RationalFX报告，2026年Q1全球科技行业裁员78,557人，美国占比76.7%。约37,638人的岗位削减直接或间接归因于AI技术实施和工作流自动化。Cognizant首席AI官Babak Hodjat指出，当前裁员更多源于企业对AI能力的"预期"而非实际生产力提升，真正的实质性冲击预计在未来6-12个月内显现。</div>
-<div class="why"><strong>HR视角：</strong>"AI焦虑驱动裁员"是一个重要信号。HR需要区分"AI真正替代的岗位"和"被AI焦虑误伤的岗位"，建立基于实际生产力数据的岗位评估框架。</div>
-</div>
-
-<div class="card">
-<h4>2. AI首次成为单月裁员第一大原因</h4>
-<div class="source">来源：<a href="https://aichanging.work/zh/blog/challenger-march-2026-ai-leads-job-cuts">Challenger报告</a> | 2026-04-04</div>
-<div class="body">Challenger, Gray & Christmas报告显示，2026年3月AI相关裁员达15,341人，占当月总裁员60,620人的25%，首次超越重组、关闭等所有其他原因成为裁员首因。自2023年追踪以来，AI累计影响岗位107,094个。同时3月招聘公告达32,826人，新岗位越来越要求AI和数据技能。</div>
-<div class="why"><strong>HR视角：</strong>裁员和招聘同时激增，说明劳动力市场正在经历"结构性置换"而非简单缩减。HR的核心工作是帮助组织完成这次"换血"——让被释放的人才能力得到转化，让新技能需求得到填补。</div>
-</div>
-
-<div class="card">
-<h4>3. 25岁以下软件工程师就业下滑近20%</h4>
-<div class="source">来源：<a href="https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report">Stanford HAI</a>、<a href="https://www.aiposthub.com/stanford-2026-ai-index-china-us-gap-generative-ai-adoption/">AIPostHub</a> | 2026-04-13</div>
-<div class="body">Stanford 2026 AI Index报告显示，美国22-25岁软件工程师就业人数自2022年以来下滑近20%。报告指出无法将此单独归因于AI，但AI对"初阶、可重复性高的编码任务"影响最为直接。同时AI在软件开发领域带来26%的生产力提升，在客服领域带来14%的提升。麦肯锡调查显示1/3企业预期AI将在未来一年内缩减人力。</div>
-<div class="why"><strong>HR视角：</strong>初级岗位的萎缩直接冲击校招逻辑。传统"大量招聘应届生→从基础任务培养"的路径需要重新设计，校招人才画像应向"AI协作能力""系统性思维"方向调整。</div>
-</div>
-
-<div class="card">
-<h4>4. 移居美国AI研究人员数量自2017年以来下滑89%</h4>
-<div class="source">来源：<a href="https://www.aiposthub.com/stanford-2026-ai-index-china-us-gap-generative-ai-adoption/">AIPostHub</a>、<a href="https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report">Stanford HAI</a> | 2026-04-13</div>
-<div class="body">Stanford报告揭示，选择移居美国的AI研究人员数量自2017年以来累计下滑89%，仅去年单年就下滑80%。与此同时，韩国在AI创新密度（人均AI专利申请数）上跃居全球第一，美国对全球AI人才的吸引力正在快速衰退。</div>
-<div class="why"><strong>HR视角：</strong>全球AI人才流动格局正在重构。对中国企业而言，这既是吸引海外华人AI研究人员回流的窗口期，也提醒我们关注韩国作为新兴AI人才高地的竞争。</div>
-</div>
-</div>
-
-<div class="section">
-<div class="section-title">💡 HR视角的思考延展</div>
-
-<div class="think">
-<h4>当AI首次成为裁员第一大原因，HR的角色是什么？</h4>
-<div class="body">Challenger报告显示AI已经不是裁员的"背景噪音"，而是排名第一的直接诱因。但Cognizant首席AI官的观察值得深思——"很多裁员更多是对AI能力的预期，而非AI已经带来的实际生产力提升"。这意味着当前企业决策中存在"AI焦虑驱动裁员"的成分。HR需要做的不是简单执行缩编指令，而是建立一套基于实际生产力变化的岗位评估框架，区分"AI真正替代的岗位"和"被AI焦虑误伤的岗位"。</div>
-<div class="question">
-<h5>延伸思考</h5>
-<ol>
-<li>你所在的组织中，有哪些岗位的裁减决策是基于AI的实际替代能力，哪些更多是基于"别人都在裁"的焦虑？</li>
-<li>如果要建立一套"AI替代度评估模型"，应该包含哪些维度？任务复杂度、决策权重、人际互动占比？</li>
-<li>当裁员和招聘同时激增，HR如何帮助组织完成"技能换血"而非简单"人头置换"？</li>
-</ol>
-</div>
-</div>
-
-<div class="think">
-<h4>25岁以下工程师就业下滑20%，校招策略需要怎样的结构性调整？</h4>
-<div class="body">当初阶编码任务被AI大量替代，传统的"大量招聘应届生→从基础任务培养"的校招逻辑正面临挑战。Stanford报告建议"能用AI做开发的人比被AI取代的人更有竞争力"——校招的选拔标准需要跟上这个变化。企业需要重新思考：校招的核心价值是什么？如果不再是"廉价初级劳动力"，那校招人才画像应该向"AI协作能力""系统性思维""跨领域整合"等方向调整。</div>
-<div class="question">
-<h5>延伸思考</h5>
-<ol>
-<li>你的校招面试中是否已经加入"AI工具使用能力"的评估环节？如果没有，阻碍是什么？</li>
-<li>当初级岗位减少，校招的"培养周期"和"投产比"如何重新计算？</li>
-<li>是否需要为"AI原生一代"（从大学就广泛使用AI工具的毕业生）设计全新的入职培训体系？</li>
-</ol>
-</div>
+<div class="month-group">
+<div class="month-title">2026 年 3 月</div>
+<div class="issue-list">
+<a class="issue-card" href="2026-03-31.html"><span class="date-num">03-31</span><span class="weekday">星期一</span><span class="label">第3期</span></a>
+<a class="issue-card" href="2026-03-30.html"><span class="date-num">03-30</span><span class="weekday">星期日</span><span class="label">第2期</span></a>
+<a class="issue-card" href="2026-03-27.html"><span class="date-num">03-27</span><span class="weekday">星期四</span><span class="label">第1期</span></a>
 </div>
 </div>
 
 <div class="footer">
-每日AI简报 | TME HR·AI情报站 | 2026-04-15<br>
-数据来源：OpenAI官方、Stanford HAI 2026 AI Index、Challenger Gray & Christmas、RationalFX、IT之家、AITntNews、DeepSeek官方等
+每日AI简报 | TME HR AI情报站<br>
+持续更新中 &mdash; 关注 AI 行业动态，从 HR 视角看世界
 </div>
 </body>
 </html>

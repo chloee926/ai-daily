@@ -38,9 +38,14 @@ body{background:#0a0e17;color:#c8d6e5;font-family:-apple-system,BlinkMacSystemFo
 .think .question ol li{margin-bottom:4px}
 .footer{text-align:center;padding:30px 0;color:#4a5568;font-size:12px;border-top:1px solid rgba(99,179,237,.1);margin-top:40px}
 @media(max-width:600px){body{padding:12px}.header h1{font-size:22px}.card{padding:16px}}
+.back-nav{position:fixed;top:16px;left:16px;z-index:100}
+.back-nav a{display:inline-flex;align-items:center;gap:6px;background:rgba(26,32,44,.85);border:1px solid rgba(99,179,237,.25);color:#63b3ed;text-decoration:none;padding:8px 16px;border-radius:8px;font-size:13px;backdrop-filter:blur(8px);transition:all .3s}
+.back-nav a:hover{border-color:rgba(99,179,237,.5);background:rgba(26,32,44,.95)}
+@media(max-width:600px){.back-nav{position:relative;top:0;left:0;text-align:center;margin-bottom:10px}}
 </style>
 </head>
 <body>
+<div class="back-nav"><a href="index.html">&#9664; &#x8FD4;&#x56DE;&#x76EE;&#x5F55;</a></div>
 <div class="header">
 <h1>每日AI简报</h1>
 <div class="date">2026年4月15日 星期二 | TME HR·AI情报站</div>
