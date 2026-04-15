@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日AI速报 | 2026-04-16</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: #0a0e17;
+    color: #e0e6ed;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+  .back-nav {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 1000;
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(8px);
+    color: #60a5fa;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    transition: all 0.2s;
+  }
+  .back-nav:hover { background: rgba(96, 165, 250, 0.15); }
+  @media (max-width: 768px) {
+    .back-nav {
+      position: relative;
+      top: 0; left: 0;
+      display: block;
+      text-align: center;
+      margin: 12px 16px;
+      border-radius: 10px;
+    }
+  }
+  .container { max-width: 780px; margin: 0 auto; padding: 40px 20px 60px; }
+  @media (max-width: 768px) { .container { padding: 20px 16px 40px; } }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .date-line { color: #64748b; font-size: 14px; margin-bottom: 28px; }
+  .top3 {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(96, 165, 250, 0.15);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+  .top3 h2 { font-size: 16px; color: #94a3b8; margin-bottom: 14px; font-weight: 600; }
+  .top3 ol { padding-left: 20px; }
+  .top3 li { color: #e2e8f0; font-size: 15px; margin-bottom: 8px; line-height: 1.6; }
+  .verdict {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(96, 165, 250, 0.1);
+    color: #cbd5e1;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .verdict strong { color: #60a5fa; }
+  .section { margin-bottom: 36px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(96, 165, 250, 0.2);
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .tag-term { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+  .tag-product { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+  .tag-org { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+  .tag-think { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+  .card {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: rgba(96, 165, 250, 0.25); }
+  .card h3 { font-size: 17px; color: #f1f5f9; margin-bottom: 10px; font-weight: 600; }
+  .card .source { font-size: 13px; color: #64748b; margin-bottom: 8px; }
+  .card .source a { color: #60a5fa; text-decoration: none; }
+  .card .source a:hover { text-decoration: underline; }
+  .card .summary { font-size: 14px; color: #cbd5e1; margin-bottom: 10px; line-height: 1.7; }
+  .card .impact {
+    font-size: 13px;
+    color: #94a3b8;
+    padding: 10px 14px;
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 8px;
+    border-left: 3px solid;
+  }
+  .impact-product { border-color: #34d399; }
+  .impact-org { border-color: #fbbf24; }
+  .think-section {
+    background: linear-gradient(135deg, rgba(88, 28, 135, 0.1), rgba(30, 41, 59, 0.5));
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .think-section h3 { color: #c084fc; font-size: 17px; margin-bottom: 12px; }
+  .think-section p { font-size: 14px; color: #cbd5e1; margin-bottom: 12px; line-height: 1.8; }
+  .question-box {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    border-radius: 10px;
+    padding: 18px;
+    margin-top: 16px;
+  }
+  .question-box h4 { color: #a78bfa; font-size: 15px; margin-bottom: 10px; }
+  .question-box ol { padding-left: 18px; }
+  .question-box li { font-size: 13px; color: #94a3b8; margin-bottom: 6px; line-height: 1.6; }
+  .term-card {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(59, 130, 246, 0.12);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .term-card h3 { color: #60a5fa; font-size: 17px; margin-bottom: 8px; }
+  .term-card .def { font-size: 14px; color: #e2e8f0; margin-bottom: 8px; }
+  .term-card .why { font-size: 13px; color: #94a3b8; line-height: 1.6; }
+  .watermark {
+    text-align: center;
+    padding: 40px 0 20px;
+    color: #334155;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
+<div class="container">
+  <h1>今日AI速报</h1>
+  <div class="date-line">2026-04-16 · 周三 · AI行业每日精选</div>
+
+  <div class="top3">
+    <h2>今日最重要的3点</h2>
+    <ol>
+      <li>大模型竞争正式进入「架构范式」而非参数规模的下半场</li>
+      <li>AI能力与治理的鸿沟已成为全球最紧迫的系统性风险</li>
+      <li>AI对就业市场的结构性冲击从预测阶段进入实证阶段</li>
+    </ol>
+    <div class="verdict">
+      <strong>总判断：</strong>GPT-6发布与斯坦福AI指数报告同日落地，一个证明AI能力仍在指数级跃升，一个揭示治理体系严重滞后——这两件事叠加在一起，预示2026下半年AI行业将面临更密集的监管介入和商业模式重估。
+    </div>
+  </div>
+
+  <!-- 新名词 -->
+  <div class="section">
+    <div class="section-title"><span class="tag tag-term">📘</span> AI新名词</div>
+
+    <div class="term-card">
+      <h3>Symphony架构（Symphony Dual-System Architecture）</h3>
+      <div class="def"><strong>一句话解释：</strong>OpenAI为GPT-6设计的双系统推理架构，融合快速响应引擎与深度推理引擎，实现「快思考+慢思考」协同。</div>
+      <div class="source">来源：<a href="https://openai.com/index/gpt-6/" target="_blank">OpenAI GPT-6 官方发布</a></div>
+      <div class="why">这是首个在商用大模型中落地的双系统认知架构，标志着大模型从「单一推理路径」向「多模态认知协同」的范式迁移。</div>
+    </div>
+
+    <div class="term-card">
+      <h3>锯齿状前沿（Jagged Frontier）</h3>
+      <div class="def"><strong>一句话解释：</strong>斯坦福AI指数报告提出的概念，指当前AI能力呈现极不均匀的发展形态——在某些任务上超越人类，在另一些看似简单的任务上却表现拙劣。</div>
+      <div class="source">来源：<a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank">斯坦福大学2026年AI指数报告</a></div>
+      <div class="why">AI在数学奥赛中获金牌，却在读取模拟时钟时只有50%准确率。企业AI应用不可盲目信赖单一维度表现。</div>
+    </div>
+  </div>
+
+  <!-- 议题一 -->
+  <div class="section">
+    <div class="section-title"><span class="tag tag-product">🚀</span> AI产品、平台与流媒体</div>
+
+    <div class="card">
+      <h3>GPT-6正式发布：200万Token上下文、性能暴涨40%</h3>
+      <div class="source">来源：<a href="https://openai.com/index/gpt-6/" target="_blank">OpenAI官方博客</a></div>
+      <div class="summary">4月14日，OpenAI正式发布代号「Spud（土豆）」的GPT-6。该模型历经18个月研发，采用全新Symphony双系统推理架构，综合基准得分较GPT-5.4提升约40%，支持200万Token超长上下文窗口。Sam Altman表示「AGI已完成70%-80%」。</div>
+      <div class="impact impact-product">TME视角：GPT-6的多模态能力和超长上下文将直接影响AI编程工具格局。候选人对AI工具链的熟练度正在成为硬指标。</div>
+    </div>
+
+    <div class="card">
+      <h3>斯坦福2026 AI指数报告：中美差距缩至2.7%，生成式AI普及率超PC</h3>
+      <div class="source">来源：<a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank">斯坦福大学HAI研究院</a> · <a href="https://news.qq.com/rain/a/20260414A03PKT00" target="_blank">腾讯新闻</a></div>
+      <div class="summary">斯坦福大学4月14日发布第九年AI指数报告（423页）。核心发现：中美AI模型差距缩至2.7%；生成式AI三年内达53%使用率，超PC和互联网普及速度；SWE-bench编程测试AI一年内从60%飙升至接近100%；25岁以下年轻开发者就业下降近20%。</div>
+      <div class="impact impact-product">TME视角：年轻开发者就业下降20%是重要信号——校招技术岗需求结构可能正在根本性变化。</div>
+    </div>
+
+    <div class="card">
+      <h3>Broadcom与Meta达成2nm AI芯片扩展合作</h3>
+      <div class="source">来源：<a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-announces-extended-partnership-meta-deploy-technology" target="_blank">Broadcom投资者关系公告</a></div>
+      <div class="summary">4月14日，Broadcom宣布与Meta扩展合作至2029年，将共同部署业界首款2nm AI计算加速器。以Meta自研MTIA芯片为核心，通过Broadcom的XPU平台整合运算逻辑与存储，规模达「吉瓦级」。</div>
+      <div class="impact impact-product">TME视角：科技巨头纷纷自研AI芯片意味着AI硬件人才争夺加剧，芯片设计和ASIC架构方向值得关注。</div>
+    </div>
+  </div>
+
+  <!-- 议题二 -->
+  <div class="section">
+    <div class="section-title"><span class="tag tag-org">👥</span> AI公司组织与人才</div>
+
+    <div class="card">
+      <h3>Claude Mythos安全争议发酵：英国FCA紧急介入</h3>
+      <div class="source">来源：<a href="https://aiflashreport.com/" target="_blank">AI Flash Report</a> · <a href="https://duoke360.com/post/46152" target="_blank">多课网AI日报</a></div>
+      <div class="summary">Anthropic于4月7日发布的Claude Mythos Preview因具备自主发现零日漏洞的能力（准确率97.6%），4月15日英国FCA紧急召集磋商，美联储评估其对金融基础设施影响。美股网络安全板块单日市值蒸发超1000亿美元。Anthropic仅向40余家机构有限开放。</div>
+      <div class="impact impact-org">HR启发：「能力太强不敢公开」策略开创先例。AI安全审计、红队测试类人才市场价值将持续走高。</div>
+    </div>
+
+    <div class="card">
+      <h3>扎克伯格构建AI克隆体，计划替代本人参加会议</h3>
+      <div class="source">来源：<a href="https://www.ibtimes.co.uk/mark-zuckerberg-reportedly-building-ai-clone-himself-watch-meta-employees-1791689" target="_blank">IBTimes UK</a> · <a href="https://gigazine.net/gsc_news/en/20260414-meta-mark-zuckerberg-ai-clone/" target="_blank">Gigazine</a></div>
+      <div class="summary">据多家媒体4月14-15日报道，Meta CEO扎克伯格正在开发外形逼真的AI克隆体，计划替代本人参加部分内部会议并与员工互动。这与他近期重新亲自写代码的动向相互独立。</div>
+      <div class="impact impact-org">HR启发：CEO级别的AI替身实验意味着AI Agent从工具升级为「数字分身」，将催生数字人和企业智能助理新岗位。</div>
+    </div>
+
+    <div class="card">
+      <h3>斯坦福报告揭示AI专家与公众认知鸿沟</h3>
+      <div class="source">来源：<a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank">斯坦福大学HAI研究院</a></div>
+      <div class="summary">斯坦福AI指数报告显示73%的AI专家看好AI对工作的积极影响，而公众仅23%持同样看法。AI安全事故从2024年233起增至2025年362起（增长55%）。美国公众对政府监管AI信任度仅31%。</div>
+      <div class="impact impact-org">HR启发：非AI专业优秀候选人可能对AI岗位持观望态度，employer branding需在「AI安全治理」维度加码。</div>
+    </div>
+  </div>
+
+  <!-- 思考延展 -->
+  <div class="section">
+    <div class="section-title"><span class="tag tag-think">💡</span> HR视角的思考延展</div>
+
+    <div class="think-section">
+      <h3>今日关注点</h3>
+      <p>GPT-6的发布和斯坦福AI指数报告同日出炉，为HR工作提供了一个难得的「全景参照系」。报告中「25岁以下开发者就业下降近20%」直接挑战了传统校招中「技术岗批量招聘」的逻辑——如果AI编程能力一年内从60%飙升到接近100%，那么对初级工程师的需求结构将面临根本性调整。</p>
+      <p>Claude Mythos的「太强不敢开放」和GPT-6的「全量发布」形成两种截然不同的策略，共同点是：AI安全与治理正在成为比AI能力本身更稀缺的核心竞争力。对TME招聘来说，「AI安全」「AI伦理审计」「AI风险评估」正从加分项变为刚性需求。</p>
+      <p>扎克伯格构建AI克隆体释放的信号很严肃：当企业高管用AI替身参加会议，「数字员工」概念将不再停留在客服场景，逐步渗透到企业核心管理层。这对HR的组织设计和人才管理提出全新命题。</p>
+    </div>
+
+    <div class="question-box">
+      <h4>💬 今日思考题：如果AI编程能力已接近100%，校招技术岗评估标准如何调整？</h4>
+      <ol>
+        <li><strong>从「能写代码」转向「能定义问题和架构系统」</strong>——评估候选人将模糊需求转化为清晰技术方案的能力</li>
+        <li><strong>从「独立完成」转向「人机协作能力」</strong>——考察AI工具链熟练度、prompt engineering和AI输出审查纠错能力</li>
+        <li><strong>落地建议</strong>——在面试题库中增加「AI辅助编程实操环节」，观察候选人如何与AI协作解决复杂问题</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="watermark">Made by ChloeCao</div>
+</div>
+</body>
+</html>
