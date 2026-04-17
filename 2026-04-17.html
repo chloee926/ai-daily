@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日AI速报 | 2026-04-17</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: #0a0e17;
+    color: #e0e6ed;
+    line-height: 1.7;
+    padding: 0;
+  }
+  .back-nav {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 100;
+    background: rgba(30,40,60,0.85);
+    color: #7ecfff;
+    border: 1px solid rgba(126,207,255,0.25);
+    border-radius: 8px;
+    padding: 6px 16px;
+    font-size: 14px;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    transition: background 0.2s;
+  }
+  .back-nav:hover { background: rgba(50,70,100,0.95); }
+  @media (max-width: 600px) {
+    .back-nav {
+      position: relative;
+      top: 0; left: 0;
+      display: block;
+      text-align: center;
+      margin: 12px auto;
+      width: fit-content;
+    }
+  }
+  .container { max-width: 780px; margin: 0 auto; padding: 32px 18px 60px; }
+  h1 {
+    font-size: 1.7em;
+    background: linear-gradient(90deg, #7ecfff 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .date-line { color: #8892a4; font-size: 0.92em; margin-bottom: 22px; }
+  .top3 {
+    background: linear-gradient(135deg, #141c2e 0%, #1a2540 100%);
+    border: 1px solid rgba(126,207,255,0.15);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 22px;
+  }
+  .top3 h2 { font-size: 1.05em; color: #7ecfff; margin-bottom: 12px; }
+  .top3 ol { padding-left: 22px; }
+  .top3 li { margin-bottom: 6px; color: #c8d6e5; font-size: 0.97em; }
+  .verdict {
+    background: rgba(167,139,250,0.08);
+    border-left: 3px solid #a78bfa;
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 32px;
+    font-size: 0.95em;
+    color: #c8d6e5;
+  }
+  .verdict strong { color: #a78bfa; }
+  .section-title {
+    font-size: 1.2em;
+    margin: 32px 0 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(126,207,255,0.12);
+  }
+  .emoji-title { margin-right: 8px; }
+  .card {
+    background: linear-gradient(135deg, #141c2e 0%, #1a2540 100%);
+    border: 1px solid rgba(126,207,255,0.1);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: rgba(126,207,255,0.3); }
+  .card h3 { font-size: 1.05em; color: #e0e6ed; margin-bottom: 8px; }
+  .card .source { font-size: 0.85em; color: #6b7a8d; margin-bottom: 8px; }
+  .card .source a { color: #7ecfff; text-decoration: none; }
+  .card .source a:hover { text-decoration: underline; }
+  .card .summary { font-size: 0.93em; color: #b0bec5; margin-bottom: 8px; }
+  .card .impact { font-size: 0.9em; color: #a78bfa; font-style: italic; }
+  .tag {
+    display: inline-block;
+    font-size: 0.75em;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+  .tag-term { background: rgba(126,207,255,0.12); color: #7ecfff; }
+  .tag-product { background: rgba(255,170,100,0.12); color: #ffaa64; }
+  .tag-org { background: rgba(167,139,250,0.12); color: #a78bfa; }
+  .tag-think { background: rgba(100,220,150,0.12); color: #64dc96; }
+  .think-section {
+    background: linear-gradient(135deg, #141c2e 0%, #1c2a3e 100%);
+    border: 1px solid rgba(100,220,150,0.15);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+  .think-section h3 { color: #64dc96; font-size: 1.05em; margin-bottom: 12px; }
+  .think-section p { font-size: 0.93em; color: #b0bec5; margin-bottom: 10px; }
+  .think-question {
+    background: rgba(100,220,150,0.06);
+    border-left: 3px solid #64dc96;
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    margin-top: 14px;
+  }
+  .think-question strong { color: #64dc96; }
+  .think-question ol { padding-left: 20px; margin-top: 8px; }
+  .think-question li { margin-bottom: 4px; font-size: 0.92em; color: #b0bec5; }
+  .divider { border: none; border-top: 1px solid rgba(126,207,255,0.08); margin: 28px 0; }
+  .watermark {
+    text-align: center;
+    color: #2a3548;
+    font-size: 0.8em;
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(126,207,255,0.06);
+  }
+</style>
+</head>
+<body>
+<a class="back-nav" href="https://chloee926.github.io/ai-daily/index.html">◀ 返回目录</a>
+<div class="container">
+
+<h1>今日AI速报</h1>
+<div class="date-line">2026-04-17 · 星期四 · 第15期</div>
+
+<div class="top3">
+  <h2>今日最重要的3点</h2>
+  <ol>
+    <li>AI编码工具竞争从"写代码"升级到"接管桌面工作流"</li>
+    <li>量子计算首次获得专属AI基础设施层，加速从实验走向工程化</li>
+    <li>"AI裁员"正式成为上市公司追逐利润率的标准叙事</li>
+  </ol>
+</div>
+
+<div class="verdict">
+  <strong>总判断：</strong>OpenAI Codex和Google Gemini同时向操作系统层渗透，标志着AI助手从云端对话框迁移到本地桌面的拐点已至。与此同时，Snap以"AI生成65%代码"为由大规模裁员，预示AI效率叙事将在Q2财报季成为更多公司的裁员理由——HR需要开始区分"真正的AI替代"和"借AI之名的成本优化"。
+</div>
+
+<hr class="divider">
+
+<!-- 📘 新名词解释 -->
+<div class="section-title"><span class="emoji-title">📘</span>新名词解释</div>
+
+<div class="card">
+  <span class="tag tag-term">新术语</span>
+  <h3>Desktop Background Agent（桌面后台代理）</h3>
+  <div class="source">来源：<a href="https://techcrunch.com/2026/04/16/openai-takes-aim-at-anthropic-with-beefed-up-codex-that-gives-it-more-power-over-your-desktop/" target="_blank">TechCrunch</a></div>
+  <div class="summary"><strong>一句话解释：</strong>OpenAI为Codex新增的能力——AI代理可在用户电脑后台自主运行，模拟光标点击和键盘输入操作任意应用程序，多个代理可并行工作。</div>
+  <div class="impact">为什么重要：这是AI编码助手首次获得操作系统级的自主操控能力，意味着AI工具的竞争维度从"代码生成质量"扩展到"对整个开发工作流的接管程度"。</div>
+</div>
+
+<div class="card">
+  <span class="tag tag-term">新术语</span>
+  <h3>NVIDIA Ising（英伟达 Ising 模型系列）</h3>
+  <div class="source">来源：<a href="https://nvidianews.nvidia.com/news" target="_blank">NVIDIA Newsroom</a></div>
+  <div class="summary"><strong>一句话解释：</strong>NVIDIA于世界量子日发布的全球首个开源量子AI模型系列，专为量子处理器校准和纠错优化，可实现2.5倍处理速度提升。</div>
+  <div class="impact">为什么重要：量子计算长期面临"硬件不稳定"难题，Ising用AI模型为量子处理器提供校准和纠错的基础设施层，是量子-AI融合的关键一步。</div>
+</div>
+
+<hr class="divider">
+
+<!-- 🚀 议题一 -->
+<div class="section-title"><span class="emoji-title">🚀</span>AI产品&平台动态</div>
+
+<div class="card">
+  <span class="tag tag-product">产品</span>
+  <h3>OpenAI Codex 重大升级：桌面后台代理 + 111插件 + 企业按量付费</h3>
+  <div class="source">来源：<a href="https://techcrunch.com/2026/04/16/openai-takes-aim-at-anthropic-with-beefed-up-codex-that-gives-it-more-power-over-your-desktop/" target="_blank">TechCrunch</a></div>
+  <div class="summary">OpenAI于4月16日发布Codex重大升级，核心新增：桌面后台代理——可在Mac后台自主操控任意应用，多代理并行；内置浏览器用于前端开发测试；记忆功能回忆历史工作会话；图像生成能力；111个第三方插件（含CodeRabbit、GitLab Issues等）；企业版按量付费新定价。此举被视为直接回应Anthropic Claude Code在企业编码市场的领先地位。</div>
+  <div class="impact">AI编码工具的"桌面接管"能力意味着研发工效比将出现阶跃式变化。Codex与Claude Code的激烈竞争也预示编码类AI岗位技能要求正在快速迭代。</div>
+</div>
+
+<div class="card">
+  <span class="tag tag-product">产品</span>
+  <h3>Google Gemini 发布 Mac 原生桌面应用</h3>
+  <div class="source">来源：<a href="https://www.macrumors.com/2026/04/15/google-gemini-mac-app/" target="_blank">MacRumors</a></div>
+  <div class="summary">Google于4月15日正式发布Gemini Mac原生桌面应用。用户可通过键盘快捷键唤起浮动聊天窗口，支持窗口内容共享、文件拖拽分析等功能。此举将AI助手从浏览器带到操作系统层面，与Apple此前宣布的Gemini深度集成计划相呼应。</div>
+  <div class="impact">AI助手竞争阵地从浏览器扩展到桌面操作系统，Google和Apple的联动可能重塑Mac生态下的AI工作流。</div>
+</div>
+
+<div class="card">
+  <span class="tag tag-product">产品</span>
+  <h3>智元机器人召开2026合作伙伴大会：4款本体新品 + 4个AI大模型</h3>
+  <div class="source">来源：<a href="https://www.ithome.com/0/938/317.htm" target="_blank">IT之家</a></div>
+  <div class="summary">智元机器人于4月17日在上海举办2026合作伙伴大会，来自34个国家的2500位合作伙伴参会。大会发布4款机器人本体新品、4个AI大模型和7个行业解决方案，创始人邓磊分享"一体三智"全栈架构最新进展，聚焦"具身生产力"落地。</div>
+  <div class="impact">具身智能是2026年AI应用落地的核心赛道之一。34国合作伙伴参会表明中国具身智能企业的国际化已进入实质阶段。</div>
+</div>
+
+<hr class="divider">
+
+<!-- 👥 议题二 -->
+<div class="section-title"><span class="emoji-title">👥</span>AI公司组织&人才</div>
+
+<div class="card">
+  <span class="tag tag-org">组织</span>
+  <h3>Snap裁员1000人（16%），CEO称AI已生成65%新代码</h3>
+  <div class="source">来源：<a href="https://techcrunch.com/2026/04/15/snap-is-cutting-1000-jobs-16-of-its-workforce/" target="_blank">TechCrunch</a> · <a href="https://www.cnbc.com/2026/04/15/snap-stock-layoffs-16-percent-workforce.html" target="_blank">CNBC</a></div>
+  <div class="summary">Snap于4月15日宣布裁员约1000人（占全球员工的16%），同时关闭300多个空缺岗位。CEO Evan Spiegel在内部信中明确表示，AI的快速进步使更小的团队能完成更多工作——AI目前已生成公司65%的新代码。此次裁员预计为公司2026下半年节省超5亿美元，目标实现净利润盈利。消息公布后Snap股价大涨。</div>
+  <div class="impact">"AI生成65%代码"是迄今为止上市公司给出的最具体的AI替代数据。这一数字将成为其他公司效仿的标杆。</div>
+</div>
+
+<div class="card">
+  <span class="tag tag-org">组织</span>
+  <h3>2026年AI驱动裁员累计超5万人，Snap、Oracle、Meta领衔</h3>
+  <div class="source">来源：<a href="https://www.cityam.com/ai-job-cuts-top-50000-in-2026-as-snap-oracle-meta-slash-roles/" target="_blank">City A.M.</a> · <a href="https://www.techspot.com/news/112006-tech-layoffs-hit-80000-early-2026-ai-blamed.html" target="_blank">TechSpot</a></div>
+  <div class="summary">截至2026年4月中旬，全球科技行业因AI效率提升而裁员的累计人数已超过5万。除Snap外，Oracle此前以AI基础设施转型为由裁员3万人，Meta也持续以AI驱动效率优化为理由缩减编制。专家指出，"AI裁员"中既有真实的AI替代效应，也有企业借AI叙事进行的常规重组。</div>
+  <div class="impact">AI裁员浪潮既是招聘市场的"供给释放"（大量有经验技术人才进入市场），也是甲方HR与业务沟通headcount时的新变量。</div>
+</div>
+
+<div class="card">
+  <span class="tag tag-org">组织</span>
+  <h3>CNBC深度：AI焦虑为何席卷职场？</h3>
+  <div class="source">来源：<a href="https://www.cnbc.com/2026/04/15/ai-work-jobs-layoffs-unemployment-fears.html" target="_blank">CNBC</a></div>
+  <div class="summary">CNBC于4月15日发表深度报道，梳理了科技领袖关于AI对就业影响的最新表态。报道指出，工人对AI替代工作的焦虑是真实且复杂的——虽然某些岗位确实在被自动化取代，但AI同时创造了大量新型岗位。关键问题在于过渡期的速度和工人再培训的可及性。</div>
+  <div class="impact">候选人的"AI焦虑"已成为影响雇主品牌和人才吸引力的真实因素。在招聘中传达"AI增强人"定位可能成为差异化信息点。</div>
+</div>
+
+<hr class="divider">
+
+<!-- 💡 思考延展 -->
+<div class="section-title"><span class="emoji-title">💡</span>HR视角的思考延展</div>
+
+<div class="think-section">
+  <h3>今日关注点</h3>
+  <p>今天最值得HR注意的是一个正在形成的"叙事链"：Snap给出了"AI生成65%代码"的硬数据 → 裁员16% → 股价大涨 → 其他公司高管看到了"裁员+AI叙事=市场奖励"的因果关系。这个链条一旦形成正反馈，Q2财报季可能出现密集的"AI效率裁员"潮。</p>
+  <p>与此同时，OpenAI和Google同时在桌面端发力，意味着AI工具的能力边界正从"辅助编码"扩展到"接管工作流"。这种变化对开发者岗位的技能要求影响深远——未来的研发人才画像中，"与AI Agent协同工作"的能力可能比"独立写代码"更重要。</p>
+</div>
+
+<div class="think-section">
+  <div class="think-question">
+    <strong>今日思考题：</strong>当越来越多公司把"AI生成X%代码/内容"作为裁员理由时，TME的HR应该如何建立一套自己的"AI替代率评估框架"？
+    <ol>
+      <li><strong>从岗位任务分解入手</strong>——将每个岗位拆分为具体任务，评估每项任务的AI可替代程度</li>
+      <li><strong>建立对标数据库</strong>——跟踪同行业公司的AI替代率声明（如Snap的65%），分析数字背后的统计口径</li>
+      <li><strong>落地建议</strong>——与技术团队合作开展"AI工效审计"，量化AI工具实际贡献的工时占比，形成自己的数据基线</li>
+    </ol>
+  </div>
+</div>
+
+<div class="watermark">Made by ChloeCao</div>
+
+</div>
+</body>
+</html>
