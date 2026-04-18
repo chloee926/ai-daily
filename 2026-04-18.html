@@ -7,16 +7,14 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0a0e17;color:#c8d6e5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.7;padding:20px;max-width:820px;margin:0 auto}
-.back-nav{position:fixed;top:16px;left:16px;z-index:100;background:rgba(10,14,23,.85);border:1px solid rgba(99,179,237,.25);border-radius:8px;padding:6px 14px;font-size:13px;color:#63b3ed;text-decoration:none;backdrop-filter:blur(8px);transition:all .3s}
-.back-nav:hover{background:rgba(99,179,237,.15);border-color:#63b3ed}
+.back-nav{position:fixed;top:16px;left:16px;z-index:999;background:rgba(10,14,23,.85);border:1px solid rgba(99,179,237,.25);border-radius:8px;padding:6px 14px;font-size:13px;color:#63b3ed;text-decoration:none;backdrop-filter:blur(8px);transition:all .3s}
+.back-nav:hover{background:rgba(99,179,237,.15);border-color:rgba(99,179,237,.5)}
 .header{text-align:center;padding:40px 0 30px;border-bottom:1px solid rgba(99,179,237,.2)}
 .header h1{font-size:28px;color:#63b3ed;margin-bottom:8px;letter-spacing:2px}
 .header .date{color:#718096;font-size:15px}
 .summary{background:linear-gradient(135deg,rgba(99,179,237,.12),rgba(129,140,248,.10));border:1px solid rgba(99,179,237,.2);border-radius:12px;padding:24px;margin:28px 0}
 .summary h3{color:#63b3ed;margin-bottom:12px;font-size:16px}
-.summary ol{padding-left:20px;margin-bottom:14px}
-.summary ol li{margin-bottom:6px;font-size:14px}
-.summary .verdict{font-size:13px;color:#a0aec0;line-height:1.8;border-top:1px solid rgba(99,179,237,.15);padding-top:12px;margin-top:10px}
+.summary .guide{font-size:14px;color:#e2e8f0;line-height:1.9}
 .section{margin:36px 0}
 .section-title{display:flex;align-items:center;gap:10px;font-size:20px;color:#f6e05e;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(246,224,94,.15)}
 .card{background:rgba(26,32,44,.7);border:1px solid rgba(99,179,237,.12);border-radius:10px;padding:22px;margin-bottom:18px;transition:border-color .3s}
@@ -25,137 +23,133 @@ body{background:#0a0e17;color:#c8d6e5;font-family:-apple-system,BlinkMacSystemFo
 .card .source{color:#718096;font-size:12px;margin-bottom:10px}
 .card .source a{color:#63b3ed;text-decoration:none}
 .card .source a:hover{text-decoration:underline}
-.card .body{font-size:14px;color:#a0aec0;margin-bottom:12px}
+.card .body{font-size:14px;color:#a0aec0;margin-bottom:12px;line-height:1.8}
 .card .why{background:rgba(99,179,237,.06);border-left:3px solid #63b3ed;padding:10px 14px;font-size:13px;color:#90cdf4;border-radius:0 6px 6px 0;margin-top:10px}
 .new-term{background:linear-gradient(135deg,rgba(246,224,94,.08),rgba(237,137,54,.06));border:1px solid rgba(246,224,94,.15);border-radius:10px;padding:22px;margin-bottom:18px}
 .new-term h4{color:#f6e05e;font-size:16px;margin-bottom:6px}
-.new-term .explain{font-size:14px;color:#e2e8f0;margin-bottom:8px}
+.new-term .explain{font-size:14px;color:#e2e8f0;margin-bottom:8px;line-height:1.8}
 .new-term .detail{font-size:13px;color:#a0aec0}
 .new-term .detail a{color:#63b3ed;text-decoration:none}
 .new-term .detail a:hover{text-decoration:underline}
 .think{background:linear-gradient(135deg,rgba(72,187,120,.08),rgba(56,178,172,.06));border:1px solid rgba(72,187,120,.15);border-radius:10px;padding:22px;margin-bottom:18px}
 .think h4{color:#68d391;font-size:16px;margin-bottom:10px}
 .think .body{font-size:14px;color:#b2dfdb;line-height:1.9}
-.think .question{background:rgba(72,187,120,.08);border-left:3px solid #68d391;padding:12px 16px;border-radius:0 6px 6px 0;margin-top:16px}
-.think .question h5{color:#68d391;margin-bottom:8px;font-size:14px}
-.think .question ol{padding-left:18px;font-size:13px;color:#a0aec0}
-.think .question ol li{margin-bottom:4px}
 .footer{text-align:center;padding:30px 0;color:#4a5568;font-size:12px;border-top:1px solid rgba(99,179,237,.1);margin-top:40px}
-.watermark{text-align:center;color:#2d3748;font-size:11px;padding:10px 0 20px}
-@media(max-width:600px){body{padding:12px}.header h1{font-size:22px}.card{padding:16px}.back-nav{position:relative;top:0;left:0;display:block;text-align:center;margin-bottom:12px}}
+.footer .watermark{color:#2d3748;font-size:11px;margin-top:8px;letter-spacing:1px}
+@media(max-width:600px){body{padding:12px}.back-nav{position:relative;top:0;left:0;display:block;text-align:center;margin-bottom:16px}.header h1{font-size:22px}.card{padding:16px}}
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
+<a class="back-nav" href="index.html">&#9664; 返回目录</a>
 
 <div class="header">
 <h1>每日AI简报</h1>
-<div class="date">2026年4月18日 星期六 | TME HR·AI情报站</div>
+<div class="date">2026年4月18日 星期六 | 第16期 | TME HR·AI情报站</div>
 </div>
 
 <div class="summary">
-<h3>今日最重要的3点</h3>
-<ol>
-<li>AI编程助手正从"写代码"升级为"操作整台电脑"——智能体桌面控制能力成为新竞争焦点</li>
-<li>国内具身智能赛道进入"量产冲刺"阶段，本体+模型+方案的全栈生态正在成型</li>
-<li>中国三大云厂商AI算力集体涨价今日正式生效，云计算20年降价史宣告终结</li>
-</ol>
-<div class="verdict"><strong>总判断：</strong>本周的两条主线正在交汇：一边是AI能力从"对话框"溢出到"桌面操作+物理世界"（Codex控制电脑、智元机器人量产），另一边是AI算力成本从"越用越便宜"转向"越用越贵"。当AI能做的事越来越多、但算力却越来越贵时，"谁掌握算力、谁就掌握生产力"的逻辑将深刻改变企业的IT预算和人才投入方向。</div>
+<h3>今日导读</h3>
+<div class="guide">Anthropic 一天放出两张牌——Claude Opus 4.7 登顶编程基准 + Claude Design 让 AI 直接输出视觉设计稿；Snap 裁员 1000 人明确归因"AI 已接管 65% 的代码编写"，AI 替代人力从隐喻变成 CEO 公开信里的数字。这周的信号很清晰：AI 能力边界在扩张，而人类工作边界在收缩。</div>
 </div>
 
 <div class="section">
 <div class="section-title">📘 新名词解释</div>
 
 <div class="new-term">
-<h4>Computer Use（桌面操控能力）</h4>
-<div class="explain">AI智能体不再局限于对话窗口，而是能像人一样用鼠标和键盘直接操作电脑上的任何应用程序，完成跨软件的复杂工作流。</div>
-<div class="detail"><strong>来源：</strong><a href="https://openai.com/index/codex-for-almost-everything/">OpenAI官方博客</a>、<a href="https://techcrunch.com/2026/04/16/openai-takes-aim-at-anthropic-with-beefed-up-codex-that-gives-it-more-power-over-your-desktop/">TechCrunch</a><br><strong>为什么重要：</strong>Computer Use标志着AI从"工具"向"数字员工"的关键跃迁。当AI能自主操作Figma、Excel、终端和浏览器时，大量依赖"在多个软件间搬运数据"的岗位将首先受到冲击。Anthropic的Claude Code已率先支持，OpenAI Codex紧随跟进，预计下半年将成为所有主流AI平台的标配。</div>
+<h4>Claude Design（AI 设计工具）</h4>
+<div class="explain">Anthropic Labs 于 4 月 17 日发布的新产品，让用户用自然语言与 Claude 协作，直接生成原型设计、演示文稿、线框图、社交媒体素材等视觉输出。不是"AI 帮你画个图"，而是具备设计系统感知能力的协作工具——它理解布局、排版、品牌一致性，可以从对话直接产出可交付的视觉作品，并支持一键导出到 Claude Code 变成可运行代码。</div>
+<div class="detail"><strong>来源：</strong><a href="https://www.anthropic.com/news/claude-design-anthropic-labs">Anthropic 官方公告</a>、<a href="https://www.macrumors.com/2026/04/17/anthropic-claude-design/">MacRumors</a></div>
 </div>
 
 <div class="new-term">
-<h4>AIMA（AI Machine Architecture，AI机器架构）</h4>
-<div class="explain">智元机器人首次公开的全栈生态技术体系，涵盖"一体三智"（本体+运动智能+交互智能+作业智能），旨在让机器人像人一样既能灵活运动、又能自然交互、还能高效作业。</div>
-<div class="detail"><strong>来源：</strong><a href="https://finance.sina.com.cn/jjxw/2026-04-18/doc-inhuwwya1536748.shtml">新浪财经</a><br><strong>为什么重要：</strong>AIMA是国内具身智能领域首个明确提出的全栈架构标准，覆盖从硬件本体到AI模型再到行业解决方案的完整链条。具身智能赛道正在从"造机器人"走向"造平台"，相关人才需求将从机械工程扩展到多模态AI、场景方案等复合方向。</div>
+<h4>Effort Control xhigh（推理力度控制）</h4>
+<div class="explain">Claude Opus 4.7 新增的第四档推理力度选项。此前 Claude 只有 low/medium/high 三档，xhigh 让模型在复杂编码和数学问题上投入更多推理步骤。实测 SWE-bench Verified 得分从 high 档的 84.2% 提升到 xhigh 的 87.6%，代价是延迟增加约 40%——本质上是"用时间换精度"的可选开关。</div>
+<div class="detail"><strong>来源：</strong><a href="https://www.anthropic.com/news/claude-opus-4-7">Anthropic 官方发布</a>、<a href="https://www.oflight.co.jp/en/columns/claude-opus-4-7-release-swe-bench-vision-agentic-2026">oflight 深度分析</a></div>
 </div>
 </div>
 
 <div class="section">
-<div class="section-title">🚀 议题一｜AI产品、平台与技术动态</div>
+<div class="section-title">🚀 议题一｜Anthropic 双重发布：模型 + 设计工具</div>
 
 <div class="card">
-<h4>1. OpenAI Codex重大升级：从编程助手进化为桌面操控智能体</h4>
-<div class="source">来源：<a href="https://openai.com/index/codex-for-almost-everything/">OpenAI官方博客</a>、<a href="https://techcrunch.com/2026/04/16/openai-takes-aim-at-anthropic-with-beefed-up-codex-that-gives-it-more-power-over-your-desktop/">TechCrunch</a>、<a href="https://www.macrumors.com/2026/04/16/openai-codex-mac-update/">MacRumors</a> | 2026-04-16</div>
-<div class="body">OpenAI于4月16日发布Codex重大更新，核心变化是新增Computer Use（桌面操控）能力——Codex现在可以用自己的鼠标光标在Mac上查看屏幕、点击、输入，直接操作任何桌面应用。同步上线的还有：内置浏览器、图片生成、90+第三方插件（含Figma、Notion、Linear等）、多智能体并行运行、长期后台任务执行、以及记忆预览功能。这是OpenAI对Anthropic Claude Code的直接回应——后者近期在开发者工具市场以54%份额领先。</div>
-<div class="why"><strong>TME关注点：</strong>AI编程工具的竞争已从"谁写代码更好"升级到"谁能替代更多人类操作"。当Codex能直接操作设计软件、项目管理工具和浏览器时，它影响的不再只是程序员，而是所有依赖电脑工作的岗位。</div>
+<h4>🔵 Claude Opus 4.7 正式发布，编程能力登顶</h4>
+<div class="source">来源：<a href="https://www.anthropic.com/news/claude-opus-4-7">Anthropic 官方</a>、<a href="https://zhuanlan.zhihu.com/p/2028266502390857728">知乎技术解读</a>、<a href="https://www.ithome.com/0/940/099.htm">IT之家</a> | 2026-04-16/17</div>
+<div class="body">Anthropic 旗舰模型 Claude Opus 4.7 正式上线。SWE-bench Verified 达到 87.6%（xhigh 模式），在高难度编程任务上登顶。视觉理解准确率 98.5%，可解析技术图纸和 UI 界面。新增多 Agent 协调能力和自适应工具选择。定价与 Opus 4.6 相同（$15/M 输入、$75/M 输出），已在 Claude API、Amazon Bedrock、Google Vertex AI、Microsoft Foundry 四大平台同步上线。Cursor 团队反馈："编码任务的人工监督需求明显减少。"</div>
+<div class="why"><strong>为什么重要：</strong>这是目前公开可用的最强编程 AI。"人工监督减少"这句话翻译过来就是：同样的工作，以前需要 5 个工程师，现在 3 个就够了。对 HR 来说，技术岗位的"生产力红线"正在被 AI 重新定义。</div>
 </div>
 
 <div class="card">
-<h4>2. 智元机器人2026合作伙伴大会：4款新品+6大AI模型，2025年营收破10亿</h4>
-<div class="source">来源：<a href="https://finance.sina.com.cn/jjxw/2026-04-18/doc-inhuwwya1536748.shtml">新浪财经</a>、<a href="https://www.donews.com/news/detail/8/6515566.html">DoNews</a> | 2026-04-17</div>
-<div class="body">4月17日，智元2026合作伙伴大会在上海举行，2500位来自34个国家的合作伙伴参会。智元宣布2025年营收达10.5亿元，成为国内最快达成该里程碑的机器人企业。大会发布4款本体新品（远征A3全尺寸人形机器人已上市、灵犀X3年底上市、精灵G2 Air/Max、酷拓D2四足机器人）、6大AI模型（覆盖运动/交互/作业三大智能）、7个行业解决方案及开放数据集。今年3月第10000台机器人下线，较5000台仅用一个季度。</div>
-<div class="why"><strong>TME关注点：</strong>具身智能是AI落地物理世界的关键赛道，智元的"量产+生态"策略意味着大量AI算法、机器人工程、行业方案等复合人才需求即将释放。34国合作伙伴参会也说明这是全球化的人才竞争。</div>
+<h4>🔵 Claude Design 上线：AI 正式进入视觉设计领域</h4>
+<div class="source">来源：<a href="https://www.anthropic.com/news/claude-design-anthropic-labs">Anthropic Labs</a>、<a href="https://www.macrumors.com/2026/04/17/anthropic-claude-design/">MacRumors</a>、<a href="https://lushbinary.com/blog/claude-design-developer-guide-features-workflow-pricing/">LushBinary</a> | 2026-04-17</div>
+<div class="body">Anthropic Labs 发布全新产品 Claude Design。支持原型设计、线框图、演示文稿、营销素材、品牌视觉等多种输出。核心特点：理解设计系统和品牌规范、支持实时协作迭代、可一键导出到 Claude Code 转化为前端代码。定位是"AI 原生设计工具"，直接挑战 Figma + Canva 的传统工作流。团队内部已使用它做用户访谈原型、投资人 pitch deck 和社媒素材。</div>
+<div class="why"><strong>为什么重要：</strong>设计师是继程序员之后第二个被 AI 正面冲击的创意岗位。当一个工具能从"帮我做个落地页"直接产出可用设计稿并导出代码，"初级设计师"和"外包设计"的需求会被重新评估。</div>
 </div>
 
 <div class="card">
-<h4>3. 阿里云AI算力涨价今日正式生效，云计算20年降价史终结</h4>
-<div class="source">来源：<a href="https://www.aliyun.com/notice/118086">阿里云官网</a>、<a href="https://m.36kr.com/p/3728101970246790">36氪</a>、<a href="https://www.thepaper.cn/newsDetail_forward_32787960">澎湃新闻</a> | 2026-04-18生效</div>
-<div class="body">阿里云3月18日公告的AI算力涨价于今日（4月18日）正式生效，AI算力产品最高涨幅34%。此前百度智能云、腾讯云已分别跟进涨价，三大云厂商集体终结了云计算近20年的降价历史。涨价原因是全球AI需求爆发导致GPU等核心硬件采购成本飙升。同一周内，阿里云还对MU（Model Unit）模型单元服务和部分DataWorks产品进行了多轮价格调整，显示算力定价正在进入"频繁波动"新常态。</div>
-<div class="why"><strong>TME关注点：</strong>算力涨价直接影响所有使用AI的企业的IT成本预算。"用AI提效省下的人力成本"可能被"算力成本上涨"部分抵消。"AI成本优化"相关岗位（如MLOps、FinOps）的需求将上升。</div>
+<h4>🔵 Claude Mythos Preview 向 50 家企业开放受限访问</h4>
+<div class="source">来源：<a href="https://www.cnbc.com/2026/04/16/anthropic-claude-opus-4-7-model-mythos.html">CNBC</a>、<a href="https://whatllm.org/blog/new-ai-models-april-2026">WhatLLM</a> | 2026-04-16</div>
+<div class="body">Anthropic 此前宣布"太危险不能公开发布"的超强模型 Claude Mythos Preview，现向约 50 家企业开放受限 API 访问，主要用于安全审计和漏洞猎杀。该模型在代码安全分析方面远超 Opus 4.7，曾自主发现 OpenBSD 中 27 年历史的远程崩溃漏洞。因潜在攻击能力过强，不会面向公众开放。</div>
+<div class="why"><strong>为什么重要：</strong>"受控发布"模式正在成为前沿 AI 的新常态——网络安全人才需求将持续爆发，而"AI 安全工程师"正在成为新的高薪岗位。</div>
+</div>
+
+<div class="card">
+<h4>🛠️ MiniMax 开源 M2.7 模型 + Agent 桌面端接入飞书微信</h4>
+<div class="source">来源：<a href="https://www.aibars.net/zh/library/ai-news/list">AIBars</a>、<a href="https://m.jiemian.com/lists/48_18.html">界面新闻</a> | 2026-04-14/17</div>
+<div class="body">MiniMax 发布开源模型 M2.7，核心亮点是具备自我代码优化能力（可重写自身代码）。同期 MiniMax Agent 桌面端更新 Pocket 功能（Beta），支持接入飞书、微信等国内主流办公平台，定位企业级 AI 助手。智谱 AI 也在同日开源新模型，中国 AI 开源力量持续加速。</div>
+<div class="why"><strong>为什么重要：</strong>当 Anthropic 选择闭源"太危险"的模型时，中国 AI 公司反其道行之押注开源——两种路径的竞争正在白热化。Agent 接入飞书微信意味着国内企业级 AI 助手正加速落地。</div>
 </div>
 </div>
 
 <div class="section">
-<div class="section-title">👥 议题二｜组织、人才与治理变化</div>
+<div class="section-title">👥 议题二｜AI 驱动裁员潮：从暗流到明牌</div>
 
 <div class="card">
-<h4>1. Snap裁员1000人：CEO明确表示AI已替代65%编码工作</h4>
-<div class="source">来源：<a href="https://techcrunch.com/2026/04/15/snap-is-cutting-1000-jobs-16-of-its-workforce/">TechCrunch</a>、<a href="https://www.cnbc.com/2026/04/15/snap-stock-layoffs-16-percent-workforce.html">CNBC</a>、<a href="https://variety.com/2026/digital/news/snap-layoffs-snapchat-ceo-evan-spiegel-cites-ai-1236722228/">Variety</a> | 2026-04-15</div>
-<div class="body">Snap于4月15日宣布裁员约1000人（占全职员工16%），同时关闭300个开放职位。CEO Evan Spiegel在内部备忘录中明确表示，裁员的直接原因是"AI的快速进步"——AI已接管Snap 65%的编码工作，使得更小的团队能完成同样甚至更多的工作。裁员公告后股价上涨，市场将此解读为向盈利能力靠拢的积极信号。Layoffs.fyi数据显示，2026年已有超过80家科技公司以AI为由裁员。</div>
-<div class="why"><strong>招聘启发：</strong>"AI完成65%编码工作"是目前CEO公开声明中最具体的AI替代比例。HR需要关注的不仅是哪些岗位在减少，更要关注留下来的岗位对AI协作能力的要求发生了怎样的变化。</div>
+<h4>📉 Snap 裁员 1000 人，CEO 公开信直接归因 AI</h4>
+<div class="source">来源：<a href="https://techcrunch.com/2026/04/15/snap-is-cutting-1000-jobs-16-of-its-workforce/">TechCrunch</a>、<a href="https://techstartups.com/2026/04/15/snap-lays-off-1000-employees-or-16-of-workforce-as-ai-takes-over-65-of-coding-work/">TechStartups</a>、<a href="https://www.usatoday.com/story/money/2026/04/15/snap-layoffs-ai/89625545007/">USA Today</a> | 2026-04-15</div>
+<div class="body">Snap 宣布裁员约 1000 人，占全职员工的 16%。CEO Evan Spiegel 在内部信中明确写道："AI 的快速进步让更小的团队能完成更多工作。" 关键数据点：AI 已生成 Snap 65% 的新代码；公司同时关闭 300 个空缺岗位；预计年省 5 亿美元。裁员消息发布后 Snap 股价逆势上涨——华尔街用钱投了票。</div>
+<div class="why"><strong>为什么重要：</strong>这是 2026 年最清晰的"AI 替代人力 → 裁员 → 股价涨"闭环案例。65% 的代码由 AI 生成不再是技术博客的炫技指标，而是 CEO 用来论证裁员合理性的商业数据。HR 需要正视：当 CEO 开始用这些数字说话时，"编制优化"的压力会层层传导。</div>
 </div>
 
 <div class="card">
-<h4>2. 特斯拉AI5芯片流片成功：自研算力开启"去英伟达化"新阶段</h4>
-<div class="source">来源：<a href="https://www.nbd.com.cn/articles/2026-04-16/4341642.html">每日经济新闻</a>、<a href="https://www.esmchina.com/news/14110.html">ESM China</a>、<a href="https://www.chinaflashmarket.com/newsflash/37282">芯片闪存市场</a> | 2026-04-15/17</div>
-<div class="body">马斯克4月15日宣布特斯拉AI5芯片完成流片，性能相比AI4提升约40倍，双芯配置性能对标英伟达Blackwell架构。芯片采用台积电3nm+三星双代工模式，集成12颗SK海力士DRAM模块，2027年启动量产。AI5将用于自动驾驶训练和Optimus人形机器人控制。同时AI6、Dojo3芯片也在同步研发中。</div>
-<div class="why"><strong>招聘启发：</strong>科技巨头自研AI芯片趋势加速（特斯拉AI5、Google TPU、亚马逊Trainium、微软Maia），"定制AI芯片设计"人才需求将快速增长，芯片人才争夺将更加激烈。</div>
+<h4>📉 2026 年科技业 AI 裁员持续加速</h4>
+<div class="source">来源：<a href="https://www.techspot.com/news/112006-tech-layoffs-hit-80000-early-2026-ai-blamed.html">TechSpot</a>、<a href="https://creati.ai/ai-news/2026-04-16/ai-driven-layoffs-surge-2026-companies-automation-efficiency/">CreatiAI</a>、<a href="https://www.interviewpal.com/blog/april-2026-layoffs-the-full-list-of-companies-that-cut-jobs-this-month">InterviewPal</a> | 2026-04-16/17</div>
+<div class="body">Layoffs.fyi 数据显示，2026 年至今已有超 500 家科技公司裁员，累计影响超过 15 万人。4 月以来 Snap（1000 人）、此前的 Oracle（3 万人）等大规模裁员均将 AI 效率提升列为核心原因。TechSpot 分析指出，重组和过度招聘仍是底层驱动因素——AI 更像是给管理层提供了一个"体面的裁员理由"。</div>
+<div class="why"><strong>为什么重要：</strong>"AI 裁员"是不是真的因为 AI？不完全是。但这个叙事本身已经足够强大——当企业发现"因 AI 裁员"比"因业绩裁员"在资本市场更受欢迎时，这个趋势只会加速，不会逆转。</div>
 </div>
 
 <div class="card">
-<h4>3. KPMG报告：2026年Q1全球VC投资破3309亿美元历史纪录</h4>
-<div class="source">来源：<a href="https://kpmg.com/xx/en/media/press-releases/2026/04/global-vc-investment-surges-to-record-330-9-billion-dollar-in-q1-26.html">KPMG官方</a> | 2026-04-15</div>
-<div class="body">KPMG最新报告显示，2026年Q1全球VC投资从上季度的1286亿美元翻倍至3309亿美元，创历史纪录。增长几乎完全由AI驱动——OpenAI 1220亿美元融资、Anthropic、CoreWeave等AI公司的超大轮次占据绝大部分份额。Series B平均轮次达1.05亿美元。SpaceX秘密提交IPO申请也被视为高增长科技企业上市窗口重新打开的信号。</div>
-<div class="why"><strong>招聘启发：</strong>创纪录融资意味着AI公司将大举招人。但资本高度集中在头部公司（前5家占总额60%+），顶尖人才薪资还将继续上涨，中小公司人才获取难度进一步加大。</div>
+<h4>🔄 红帽裁撤中国区研发团队，补偿最高 N+6</h4>
+<div class="source">来源：<a href="https://www.infoq.cn/article/pp8VUCpuJENbkWr169ec">InfoQ</a> | 2026-04-12</div>
+<div class="body">Red Hat 正在裁撤中国区研发团队，团队迁至成本更低地区。补偿方案最高 N+6。同期京东被曝全面拦截员工使用外部 AI 工具——大厂对 AI 工具的态度正在从"鼓励使用"转向"控制边界"。</div>
+<div class="why"><strong>为什么重要：</strong>全球科技企业在 AI 投资加大的背景下，正在进行研发团队的地理再配置。中国区的研发中心面临"要么升级为 AI 核心，要么被迁移"的二选一。</div>
+</div>
+
+<div class="card">
+<h4>👤 阿里通义实验室升级事业部，李飞飞出任阿里云 CTO</h4>
+<div class="source">来源：<a href="https://www.xinfinite.net/t/topic/18771">XinFinite</a>、综合报道 | 2026-04 月</div>
+<div class="body">阿里调整 AI 组织架构，将通义实验室从研究院升级为独立事业部，大幅提升 AI 在集团战略中的权重。同时从斯坦福招揽李飞飞担任阿里云 CTO。脉脉发布 80 家隐形大厂名单显示，高薪岗位向 AI、智能驾驶等热门领域集中转移。</div>
+<div class="why"><strong>为什么重要：</strong>研究院升级为事业部 = 从"花钱探索"变成"必须赚钱"。对 HR 来说，这意味着 AI 团队的 headcount、薪资带、绩效体系都需要重新设计。李飞飞加入也释放了信号：顶尖学术人才正在加速流入产业。</div>
 </div>
 </div>
 
 <div class="section">
-<div class="section-title">💡 思考延展｜HR视角</div>
+<div class="section-title">💡 HR 视角的启示 & 思考</div>
 
 <div class="think">
-<h4>今日关注点</h4>
+<h4>每日思考题</h4>
 <div class="body">
-<p>本周最值得HR关注的变化是"AI能力外溢"——AI不再只是写代码或聊天的工具，而是开始直接操控电脑桌面（OpenAI Codex）、进入物理世界（智元机器人量产），以及被CEO们用精确百分比来量化对人力的替代效果（Snap的"65%"）。这三个信号叠加在一起，意味着"AI对岗位的影响"已经从模糊的趋势变成了可计算的现实。</p>
-<br>
-<p>另一个不容忽视的信号是算力成本拐点的到来。阿里云、百度云、腾讯云集体涨价终结了云计算20年的降价惯性，当算力成为像石油一样的稀缺战略资源时，企业的AI部署决策将更加审慎。这对HR意味着：未来不仅要评估"一个AI岗位能创造多少价值"，还要计算"这个AI应用消耗的算力成本是否划算"——FinOps（算力财务管理）和MLOps将成为新的热门岗位方向。</p>
-<br>
-<p>全球VC创纪录涌入AI赛道（Q1达3309亿美元），但资本高度集中在头部几家公司。这种"赢家通吃"格局对招聘的影响是：顶尖AI人才的身价还将继续上涨，而中腰部公司可能需要转向"AI技能内训+内部转型"策略来应对人才短缺。</p>
-</div>
-
-<div class="question">
-<h5>今日思考题：当CEO们开始用"AI替代了X%的工作"来解释裁员时，HR应如何建立"岗位AI替代风险评估"机制？</h5>
-<ol>
-<li><strong>量化维度：</strong>按岗位拆解工作任务，标注每项任务的"AI可替代程度"（完全可替代/AI辅助/不可替代），计算综合替代率</li>
-<li><strong>动态监测：</strong>建立季度更新机制，跟踪AI工具能力进展与内部实际使用率的差距，而非仅依赖外部报告</li>
-<li><strong>落地建议：</strong>对替代率超过50%的岗位启动"转型路径设计"——提前6个月规划内部转岗、技能升级或岗位合并方案，将"被动裁员"转化为"主动优化"</li>
-</ol>
+<p>Snap 的 CEO 在裁员公开信中写了一句很直白的话："AI 让更小的团队能完成更多工作。" 同时，Anthropic 发布了 Claude Design——一个能直接输出设计稿的 AI 工具，以及 Opus 4.7 让 Cursor 的工程师们"不再需要那么多人工监督"。</p>
+<p style="margin-top:14px">问题来了：<strong>当企业的 CEO 开始在公开场合用具体数字（65% 的代码由 AI 编写）来论证"AI 替代人力"时，HR 的角色是什么？</strong></p>
+<p style="margin-top:10px">是帮管理层更"体面"地执行裁员，还是提前一步，主动回答"哪些岗位在未来 12 个月会被 AI 工具改变产出方式"这个问题？</p>
+<p style="margin-top:14px">Snap 裁完人股价涨了。这意味着市场已经开始奖励"用 AI 替代人力"的决策。作为 HR，你准备好了应对"老板拿着 Snap 的案例来找你谈编制优化"的那个对话了吗？</p>
 </div>
 </div>
 </div>
 
 <div class="footer">
-信息来源截止：2026年4月18日 08:00 CST
-</div>
+每日AI简报 | TME HR·AI情报站<br>
+持续更新中 &mdash; 关注 AI 行业动态，从 HR 视角看世界
 <div class="watermark">Made by ChloeCao</div>
+</div>
 </body>
 </html>
