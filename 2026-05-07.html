@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日AI简报 | 2026-05-07</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #0a0e1a;
+  color: #e0e6ed;
+  line-height: 1.7;
+  padding: 0 0 60px 0;
+  min-height: 100vh;
+}
+.back-nav {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+  background: rgba(30, 41, 59, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 8px;
+  padding: 8px 14px;
+  color: #a5b4fc;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.back-nav:hover { background: rgba(99, 102, 241, 0.2); color: #c7d2fe; }
+@media (max-width: 768px) {
+  .back-nav { position: relative; top: auto; left: auto; display: block; text-align: center; margin: 12px 16px; }
+}
+.container { max-width: 720px; margin: 0 auto; padding: 20px 16px; }
+.header {
+  text-align: center;
+  padding: 48px 20px 32px;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+  margin-bottom: 32px;
+}
+.header h1 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.header .date { font-size: 15px; color: #8b95a5; margin-bottom: 20px; }
+.header .link {
+  display: inline-block;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 13px;
+  margin-top: 12px;
+}
+.导读 {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #c7d2fe;
+}
+.导读 strong { color: #a5b4fc; }
+.new-word {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+.new-word .label {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.new-word h3 { color: #6ee7b7; font-size: 18px; margin-bottom: 8px; }
+.new-word p { color: #a7c4b8; font-size: 14px; }
+.section { margin-bottom: 36px; }
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+}
+.section-title .emoji { margin-right: 8px; }
+.card {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(71, 85, 105, 0.4);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: rgba(99, 102, 241, 0.4); }
+.card .card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 8px;
+}
+.card .card-title .card-emoji { margin-right: 6px; }
+.card .card-body { font-size: 14px; color: #94a3b8; line-height: 1.7; }
+.card .card-source { font-size: 12px; color: #64748b; margin-top: 8px; }
+.card .card-source a { color: #818cf8; text-decoration: none; }
+.card .card-source a:hover { text-decoration: underline; }
+.thinking {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(251, 191, 36, 0.05));
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 36px;
+}
+.thinking .label {
+  display: inline-block;
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.thinking h3 { color: #fbbf24; font-size: 17px; margin-bottom: 12px; }
+.thinking p { color: #c9a961; font-size: 14px; line-height: 1.8; margin-bottom: 8px; }
+.watermark {
+  text-align: center;
+  padding: 32px 16px 16px;
+  color: #334155;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
+<div class="container">
+  <div class="header">
+    <h1>每日AI简报</h1>
+    <div class="date">2026年5月7日 · 星期四</div>
+  </div>
+
+  <div class="导读">
+    <strong>今日导读：</strong>Anthropic 一天之内锁定两条算力生命线——向谷歌承诺 2000 亿美元买 TPU，同时租下 SpaceX 22 万颗英伟达 GPU；与此同时，PayPal、Coinbase、Freshworks 在同一周宣布以"AI 替代人力"为由裁员，金融科技和 SaaS 行业正在经历 AI 驱动的组织重构集中爆发期。
+  </div>
+
+  <div class="new-word">
+    <span class="label">🆕 今日AI新名词</span>
+    <h3>Colossus 1</h3>
+    <p>SpaceX 旗下的超级计算机集群，由 xAI 主导建设。Anthropic 于 5 月 6 日宣布租下该集群，接入超过 22 万颗英伟达 GPU 用于推理任务。这意味着 AI 公司获取算力的渠道已从传统云厂商延伸到了"太空公司"——算力正在成为跨行业流通的基础资源。</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="emoji">📌</span> 议题一 · AI 巨头的算力军备与企业部署竞赛</div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-emoji">🔵</span>Anthropic — 2000 亿美元锁定谷歌 TPU</div>
+      <div class="card-body">承诺未来五年向谷歌云支付约 2000 亿美元，获取 5GW 规模的 TPU 算力——相当于 5 座大型核电站满负荷运转。这笔交易占谷歌云待交付订单 40% 以上。交易结构：谷歌先投资 100 亿美元（估值 3500 亿），达标后追加至 400 亿；Anthropic 承诺 2000 亿采购，双方深度绑定形成闭环。</div>
+      <div class="card-source">来源：<a href="https://tech.ifeng.com/c/8suWyxTxJi4" target="_blank">智东西 / The Information</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-emoji">🔵</span>Anthropic — 租下 SpaceX Colossus 1 超算</div>
+      <div class="card-body">同日宣布接入 SpaceX 的 Colossus 1 超级计算机，22 万颗英伟达 GPU 专用于推理。Anthropic 正在构建"双轨算力"架构：训练用谷歌 TPU，推理用英伟达 GPU，将训练和推理的算力供应链分开管理。</div>
+      <div class="card-source">来源：<a href="https://news.qq.com/rain/a/20260507A02L6R00" target="_blank">腾讯新闻</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-emoji">🔵</span>OpenAI — 100 亿美元 "The Deployment Company" 关闭融资</div>
+      <div class="card-body">由 TPG、Brookfield、Bain Capital、SoftBank 等 19 家投资方出资，5 年保底年化回报 17.5%。核心策略：将私募基金的投资组合公司变成 AI 工具的"被动分销渠道"，是 2026 年最大的企业 AI 分发交易。</div>
+      <div class="card-source">来源：<a href="https://thenextweb.com/news/openai-deployco-finalized-10-billion-joint-venture" target="_blank">The Next Web</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-emoji">🔵</span>Anthropic — 发布 10 个金融服务 AI 代理</div>
+      <div class="card-body">预构建代理覆盖投行 Pitchbook 制作、KYC 筛查、月末结账等场景。Claude Opus 4.7 同步在 Microsoft 365 Copilot 上线（Excel、PowerPoint 可直接调用）。CEO Dario Amodei 警告：无法适应 AI 的软件公司"可能会破产"。Anthropic 前 50 大客户中 40% 为金融机构。</div>
+      <div class="card-source">来源：<a href="https://www.anthropic.com/news/finance-agents" target="_blank">Anthropic 官网</a></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="emoji">📌</span> 议题二 · "以AI之名"裁员潮：从金融科技蔓延到 SaaS</div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-emoji">📉</span>PayPal — 裁员 20%，约 4760 人</div>
+      <div class="card-body">新任 CEO 洛雷斯（3 月空降）推进两大改革：裁员降本（年化节省 15 亿美元）+ 业务重组为三大板块。坦言"公司在 AI 方面落后于同行"，将资金转投 AI 研发和云原生架构转型。Q1 营收 83.5 亿美元超预期，但净利润下滑。</div>
+      <div class="card-source">来源：<a href="https://news.qq.com/rain/a/20260506A05LH700" target="_blank">腾讯新闻 / Bloomberg</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-emoji">📉</span>Coinbase — 裁员 14%，取消纯管理岗</div>
+      <div class="card-body">CEO Armstrong 发全员信称 AI 带来"运营方式的深刻变革"。核心举措：取消纯管理岗、管理者须做 player-coach、组织限 5 级、每人直管可达 15 人。遣散费预计 5000-6000 万美元。Business Insider 称这是"2026 裁员信标准模板：AI + 扁平化 + 小团队"。</div>
+      <div class="card-source">来源：<a href="https://fortune.com/2026/05/05/coinbase-layoffs-14-of-employees-ai-tech-ai-job-anxiety-crypto/" target="_blank">Fortune</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-emoji">📉</span>Freshworks — 裁减 11%（约 500 人）</div>
+      <div class="card-body">CEO 直言"超过一半的代码由 AI 编写"，自动化减少了机械性工作。节省资金转投员工体验产品线。同行 Atlassian 上月也裁了 10%。SaaS 行业正经历 AI 对工程和产品团队编制的系统性压缩。</div>
+      <div class="card-source">来源：<a href="https://enterpriseai.economictimes.indiatimes.com/news/industry/freshworks-to-lay-off-11-of-workforce-as-ai-revolutionizes-software-industry/130850736" target="_blank">Reuters / Economic Times</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-emoji">📉</span>Meta — 5 月 20 日启动裁员 8000 人</div>
+      <div class="card-body">约占员工总数 10%，覆盖元宇宙实验室、招聘、销售、全球运营等多部门。扎克伯格坦言：AI 赛道竞争白热化，资金向算力和大模型倾斜后"人力成本只能同步压缩，缩减人员规模是必然选择"。</div>
+      <div class="card-source">来源：<a href="https://news.qq.com/rain/a/20260502A02PS500" target="_blank">腾讯新闻 / Bloomberg</a></div>
+    </div>
+  </div>
+
+  <div class="thinking">
+    <span class="label">💡 每日思考题</span>
+    <h3>三种"AI裁员叙事"，你怎么辨别真伪？</h3>
+    <p>本周，PayPal 说"我们 AI 落后了所以要裁员追赶"，Coinbase 说"AI 让我们不需要纯管理岗了"，Freshworks 说"AI 写了一半的代码所以工程师可以少一些"——</p>
+    <p>三家公司给出了三种不同的叙事，但投资者对这三种叙事的反应截然不同（PayPal 跌 10%、Coinbase 持平、Freshworks 跌 8%）。</p>
+    <p>作为 HRBP，当你的业务负责人拿着"AI 提效"的理由来找你讨论缩编时，你怎么判断这是真正的组织进化，还是换了一个更好听的故事来做成本削减？你有没有一套自己的验证框架？</p>
+  </div>
+
+  <div class="watermark">Made by ChloeCao</div>
+</div>
+</body>
+</html>
