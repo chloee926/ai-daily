@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日AI简报 | 2026-05-08</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0e1a; color: #e0e6ed; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; line-height: 1.7; padding: 0 0 60px 0; }
+.back-nav { position: fixed; top: 16px; left: 16px; z-index: 999; background: rgba(30,40,70,0.85); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 20px; font-size: 14px; color: #7ecfff; text-decoration: none; border: 1px solid rgba(126,207,255,0.2); transition: all 0.2s; }
+.back-nav:hover { background: rgba(50,70,120,0.9); border-color: rgba(126,207,255,0.5); }
+@media (max-width: 768px) { .back-nav { position: relative; display: block; width: fit-content; margin: 16px auto; top: auto; left: auto; } }
+.container { max-width: 680px; margin: 0 auto; padding: 20px 16px; }
+.header { text-align: center; padding: 40px 0 30px; border-bottom: 1px solid rgba(126,207,255,0.1); margin-bottom: 30px; }
+.header h1 { font-size: 22px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+.header .date { font-size: 14px; color: #7a8ba5; margin-bottom: 16px; }
+.header .preview-link { display: inline-block; font-size: 13px; color: #7ecfff; background: rgba(126,207,255,0.08); padding: 6px 14px; border-radius: 16px; text-decoration: none; border: 1px solid rgba(126,207,255,0.15); }
+.导读 { background: linear-gradient(135deg, rgba(126,207,255,0.08), rgba(100,180,255,0.03)); border: 1px solid rgba(126,207,255,0.12); border-radius: 12px; padding: 20px; margin-bottom: 28px; }
+.导读 p { font-size: 15px; color: #b8c9dc; line-height: 1.8; }
+.section { margin-bottom: 32px; }
+.section-title { font-size: 16px; font-weight: 700; color: #7ecfff; margin-bottom: 16px; padding-left: 12px; border-left: 3px solid #7ecfff; }
+.section-title.green { color: #6fe8a0; border-color: #6fe8a0; }
+.section-title.orange { color: #ffb347; border-color: #ffb347; }
+.section-title.purple { color: #b794f6; border-color: #b794f6; }
+.section-title.red { color: #ff7b7b; border-color: #ff7b7b; }
+.new-word { background: linear-gradient(135deg, rgba(183,148,246,0.1), rgba(183,148,246,0.03)); border: 1px solid rgba(183,148,246,0.15); border-radius: 12px; padding: 18px; margin-bottom: 28px; }
+.new-word h3 { font-size: 15px; color: #b794f6; margin-bottom: 10px; }
+.new-word p { font-size: 14px; color: #a0b4c8; line-height: 1.8; }
+.card { background: rgba(20,28,50,0.6); border: 1px solid rgba(126,207,255,0.08); border-radius: 10px; padding: 16px; margin-bottom: 12px; transition: border-color 0.2s; }
+.card:hover { border-color: rgba(126,207,255,0.25); }
+.card .emoji { font-size: 16px; margin-right: 6px; }
+.card .company { font-weight: 600; color: #ffffff; }
+.card .title { color: #c8d8e8; font-size: 14px; margin-top: 6px; line-height: 1.7; }
+.card a { color: #7ecfff; text-decoration: none; font-size: 13px; }
+.card a:hover { text-decoration: underline; }
+.思考题 { background: linear-gradient(135deg, rgba(255,179,71,0.08), rgba(255,179,71,0.02)); border: 1px solid rgba(255,179,71,0.15); border-radius: 12px; padding: 20px; margin-top: 28px; }
+.思考题 h3 { font-size: 15px; color: #ffb347; margin-bottom: 12px; }
+.思考题 p { font-size: 14px; color: #b8c0cc; line-height: 1.9; }
+.watermark { text-align: center; padding: 40px 0 20px; font-size: 12px; color: #3a4560; }
+</style>
+</head>
+<body>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
+<div class="container">
+<div class="header">
+<h1>每日AI简报</h1>
+<div class="date">2026年5月8日 · 星期五 · 第23期</div>
+<a href="https://chloee926.github.io/ai-daily/2026-05-08.html" class="preview-link">🔗 在线阅读</a>
+</div>
+
+<div class="导读">
+<p>Cloudflare 和 Coinbase 同周宣布大裁员，理由几乎一致——为"AI 时代"重组；与此同时，xAI 正式解散并入 SpaceX，Anthropic 则一口气拿下 300 兆瓦算力并推出 10 款金融 AI 智能体。本周信号很明确：AI 不再只是产品功能的增量，它正在重写公司的组织架构图。</p>
+</div>
+
+<div class="new-word">
+<h3>🆕 今日AI新名词：MRC（Multipath Reliable Connection）</h3>
+<p>OpenAI 联合英伟达、AMD、英特尔、微软、博通发布的开源网络协议。核心解决大规模 AI 训练中 GPU 集群的通信瓶颈——通过多路径传输和微秒级故障恢复，让 10 万块以上 GPU 能稳定协作训练。已通过 OCP 开放计算项目向全行业开源。</p>
+</div>
+
+<div class="section">
+<div class="section-title">📌 议题一 · AI 算力竞赛与平台扩张</div>
+
+<div class="card">
+<span class="emoji">🔄</span><span class="company">xAI 正式解散，整合为 SpaceXAI</span>
+<div class="title">马斯克 5 月 6 日宣布 xAI 不再作为独立公司运营，整体并入 SpaceX 旗下新设 AI 子部门。Grok 模型及 X 平台 AI 业务一并纳入。此前 xAI 11 位联合创始人已全部离职。SpaceX 借此将火箭、卫星、AI 算力纳入统一治理框架，并计划开发轨道太阳能 AI 数据中心。</div>
+</div>
+
+<div class="card">
+<span class="emoji">💰</span><span class="company">Anthropic 签下 SpaceX 300 兆瓦算力协议</span>
+<div class="title">包下孟菲斯 Colossus 1 数据中心全部算力（约 22 万张英伟达 GPU），取消 Claude Pro/Max 高峰时段限制并提升 API 速率上限。Anthropic 目前估值约 9000 亿美元，年化收入约 440 亿美元，此前已与谷歌云和 AWS 签订长期算力合同。<br><a href="https://www.cnbc.com/2026/05/06/anthropic-spacex-data-center-capacity.html" target="_blank">来源：CNBC →</a></div>
+</div>
+
+<div class="card">
+<span class="emoji">🛠️</span><span class="company">OpenAI 发布 MRC 协议，五巨头联合重塑 AI 训练网络</span>
+<div class="title">基于 RoCE + SRv6 技术，实现两层交换机连接约 13.1 万块 GPU，较传统三四层架构大幅降低功耗。已在星际之门和微软 Fairwater 超算上运行。通过 OCP 向全行业开源。<br><a href="https://openai.com/index/mrc-supercomputer-networking/" target="_blank">来源：OpenAI 官方博客 →</a></div>
+</div>
+
+<div class="card">
+<span class="emoji">🔵</span><span class="company">Anthropic 发布 10 款金融 AI 智能体</span>
+<div class="title">覆盖银行、保险、资管、金融科技全链条。可独立撰写客户会议材料、审阅财报、触发合规审查、构建财务模型。已接入 Word/Excel/PowerPoint/Outlook。消息发布后 FactSet 盘中跌超 8%，晨星跌近 3%。<br><a href="https://finance.yahoo.com/sectors/technology/articles/anthropic-launches-10-ai-agents-153623834.html" target="_blank">来源：Yahoo Finance →</a></div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title red">📌 议题二 · AI 驱动的组织重构裁员潮</div>
+
+<div class="card">
+<span class="emoji">📉</span><span class="company">Cloudflare 裁员 20%（1100 人）</span>
+<div class="title">宣布转型"AI-first agentic 运营模式"。CEO 发全员信称"非削减成本"，公司 AI 使用量三个月增长 600%，各部门每天运行数千次 AI 代理会话。尽管 Q1 业绩超预期，股价盘后仍跌超 14%。预计 Q2 产生 1.4-1.5 亿美元相关费用。<br><a href="https://www.straitstimes.com/business/companies-markets/cloudflare-cuts-1100-jobs-or-20-of-workforce-in-ai-first-restructuring" target="_blank">来源：Straits Times →</a></div>
+</div>
+
+<div class="card">
+<span class="emoji">📉</span><span class="company">Coinbase 裁员 700 人（14%）</span>
+<div class="title">CEO Armstrong 清晨 6:55 发邮件，要求公司变"精益、快速、AI 原生"。取消管理层级，要求管理者成为"球员教练"。加密市场波动和 AI 转型为双重驱动力，将围绕 AI 技能重新聚集剩余员工。<br><a href="https://nypost.com/2026/05/07/business/coinbase-boss-fires-700-workers-in-655-a-m-email/" target="_blank">来源：NY Post →</a></div>
+</div>
+
+<div class="card">
+<span class="emoji">📉</span><span class="company">Cognizant 计划裁减 4000 人（Project Leap）</span>
+<div class="title">全球 IT 服务巨头启动 Project Leap 重组计划加速 AI 采用，但校招新人录取反而增加——释放"用新人替换中层"的信号。<br><a href="https://preprod.republickannada.co.in/tech/cognizant-may-cut-4000-jobs-as-ai-push-reshapes-hiring-even-as-fresher-intake-rises" target="_blank">来源：Republic →</a></div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title green">📌 议题三 · 机器人与模型前沿</div>
+
+<div class="card">
+<span class="emoji">🔵</span><span class="company">Genesis AI 发布全栈机器人基础模型 GENE-26.5</span>
+<div class="title">华人学者周衔创立（CMU 博士），去年获 1.05 亿美元种子轮。模型可执行单手打蛋、切番茄、解魔方、弹钢琴等复杂灵巧操作，全程自主运行 1 倍速。全栈自研解决数据、硬件和控制协同难题。<br><a href="https://techcrunch.com/2026/05/06/khosla-backed-robotics-startup-genesis-ai-has-gone-full-stack-demo-shows/" target="_blank">来源：TechCrunch →</a></div>
+</div>
+
+<div class="card">
+<span class="emoji">🔵</span><span class="company">GPT-5.5 Instant 成为 ChatGPT 新默认模型</span>
+<div class="title">5 月 5 日推送，取代 GPT-5.3 Instant。幻觉声明减少 52.5%，回复更简洁。医学、法律、金融等高风险场景准确性显著提升。付费用户可继续使用旧版三个月。<br><a href="https://openai.com/index/mrc-supercomputer-networking/" target="_blank">来源：OpenAI →</a></div>
+</div>
+
+<div class="card">
+<span class="emoji">💰</span><span class="company">无问芯穹完成超 7 亿元融资</span>
+<div class="title">中国 AI 原生基础设施公司，杭州高新金投和惠远资本联合领投。定位算力调度与运营中间层，标志 AI 投资从追热点模型向押注底层基建转移。<br><a href="https://new.qq.com/rain/a/20260508A01LDZ00" target="_blank">来源：腾讯新闻 →</a></div>
+</div>
+</div>
+
+<div class="思考题">
+<h3>💡 每日思考题</h3>
+<p>Cloudflare 说自己"AI 使用量 3 个月增 600%"，然后裁掉 20% 的人；Coinbase 说要变"AI 原生"，然后裁 14% 的人。两家公司的共同操作是：裁完人 → 股价跌。</p>
+<p style="margin-top:12px;">如果你是一家正在推进 AI 工具的公司 CHRO，管理层拿着"AI 提效"的数据来找你谈编制优化——你会建议他们先对外公布裁员消息再内部执行，还是先静默执行再对外叙事？这两种节奏选择，对雇主品牌、剩余员工士气和资本市场信心的影响，可能完全相反。</p>
+</div>
+
+<div class="watermark">Made by ChloeCao</div>
+</div>
+</body>
+</html>
