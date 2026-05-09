@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日AI简报 | 2026-05-09</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  background: #0a0e1a;
+  color: #e0e6ed;
+  line-height: 1.7;
+  padding: 0 0 60px 0;
+  min-height: 100vh;
+}
+.back-nav {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+  background: rgba(30, 40, 70, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 140, 255, 0.3);
+  border-radius: 8px;
+  padding: 8px 14px;
+  color: #7eb8ff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.back-nav:hover { background: rgba(50, 70, 120, 0.9); color: #a0d0ff; }
+@media (max-width: 768px) {
+  .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 12px 16px; }
+}
+.container { max-width: 680px; margin: 0 auto; padding: 20px 16px; }
+.header {
+  text-align: center;
+  padding: 40px 0 30px;
+  border-bottom: 1px solid rgba(100, 140, 255, 0.15);
+  margin-bottom: 30px;
+}
+.header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+.header .date {
+  font-size: 14px;
+  color: #7a8ba5;
+  margin-bottom: 6px;
+}
+.header .issue {
+  font-size: 12px;
+  color: #4a6a8a;
+}
+.lead-card {
+  background: linear-gradient(135deg, rgba(30, 50, 100, 0.6), rgba(20, 30, 60, 0.8));
+  border: 1px solid rgba(100, 140, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 28px;
+}
+.lead-card .label {
+  font-size: 12px;
+  color: #7eb8ff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.lead-card p {
+  font-size: 15px;
+  color: #c8d8e8;
+  line-height: 1.8;
+}
+.new-word {
+  background: linear-gradient(135deg, rgba(80, 40, 120, 0.4), rgba(40, 20, 80, 0.6));
+  border: 1px solid rgba(160, 100, 255, 0.25);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 28px;
+}
+.new-word .label {
+  font-size: 13px;
+  color: #c89eff;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.new-word .term {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e4c8ff;
+  margin-bottom: 10px;
+}
+.new-word .desc {
+  font-size: 14px;
+  color: #b8a8d0;
+  line-height: 1.8;
+}
+.section { margin-bottom: 32px; }
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 12px 0;
+  border-bottom: 2px solid rgba(100, 140, 255, 0.3);
+  margin-bottom: 16px;
+}
+.item {
+  background: rgba(20, 28, 50, 0.6);
+  border: 1px solid rgba(60, 80, 120, 0.3);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+.item:hover { border-color: rgba(100, 140, 255, 0.4); }
+.item .emoji { font-size: 16px; margin-right: 6px; }
+.item .brand {
+  font-weight: 700;
+  color: #7eb8ff;
+  font-size: 15px;
+}
+.item .title {
+  font-weight: 600;
+  color: #e0e8f0;
+  font-size: 15px;
+  margin-top: 4px;
+}
+.item .desc {
+  font-size: 14px;
+  color: #9ab0c8;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+.thinking-card {
+  background: linear-gradient(135deg, rgba(40, 80, 60, 0.4), rgba(20, 50, 40, 0.6));
+  border: 1px solid rgba(80, 200, 120, 0.25);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 28px;
+}
+.thinking-card .label {
+  font-size: 13px;
+  color: #6dd8a0;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.thinking-card p {
+  font-size: 14px;
+  color: #a8d8c0;
+  line-height: 1.9;
+}
+.watermark {
+  text-align: center;
+  padding: 40px 0 20px;
+  color: #2a3a50;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
+<div class="container">
+  <div class="header">
+    <h1>每日AI简报</h1>
+    <div class="date">2026年5月9日 · 星期六</div>
+    <div class="issue">第24期</div>
+  </div>
+
+  <div class="lead-card">
+    <div class="label">今日导读</div>
+    <p>Anthropic 正式把 Claude 塞进了微软 Office 全家桶，4亿 Office 用户的工作流将被重新定义；与此同时，Cloudflare 以"AI 替代人力"为由裁员 20%（1100人），明确宣布转向 Agentic AI 运营模式。模型能力溢出之后，AI 正在同时改写两件事：你的工作方式，和你是否还有这份工作。</p>
+  </div>
+
+  <div class="new-word">
+    <div class="label">🆕 今日AI新名词</div>
+    <div class="term">Agentic AI-First Operating Model</div>
+    <div class="desc">Cloudflare 裁员公告中首次使用的概念——不是"用 AI 辅助员工"，而是以 AI 智能体为核心重新设计整个公司的运营模式。CEO 透露过去三个月内部 AI 使用量暴增 600%，各部门每天运行数千个 AI Agent 会话。这意味着 AI 不再是工具，而是被编排进组织架构图的"数字员工"。</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📌 议题一 · AI 正式入驻办公桌面</div>
+
+    <div class="item">
+      <span class="emoji">🔵</span><span class="brand">Anthropic</span>
+      <div class="title">Claude 正式接入微软 Office 全家桶</div>
+      <div class="desc">Claude 正式接入 Excel、PowerPoint、Word，并在 Outlook 中开放公测。跨应用共享完整对话记忆，用户无需切换网页版即可完成邮件分拣、文档草拟、表格分析、汇报生成全流程。Office 全球付费用户超 4 亿，Claude 借此快速切入超大规模办公用户市场。</div>
+    </div>
+
+    <div class="item">
+      <span class="emoji">🔵</span><span class="brand">OpenAI</span>
+      <div class="title">发布三款实时语音模型，同传行业迎来终局</div>
+      <div class="desc">GPT-Realtime-2 具备 GPT-5 级推理能力，可边听边思考；GPT-Realtime-Translate 支持 70 种语言实时翻译，延迟低于 200ms；GPT-Realtime-Whisper 实现高精度流式转录。API 定价每分钟仅 0.017 美元，同声传译行业正式进入倒计时。</div>
+    </div>
+
+    <div class="item">
+      <span class="emoji">🔵</span><span class="brand">OpenAI</span>
+      <div class="title">Codex Chrome 扩展：AI 进入浏览器工作流</div>
+      <div class="desc">Codex 能力从代码编辑器扩展到浏览器，可跨标签页后台并行运行，处理网页调试、CRM 更新、资料研究等任务，不影响用户正常浏览。AI 编码助手正式进入浏览器场景。</div>
+    </div>
+
+    <div class="item">
+      <span class="emoji">🛠️</span><span class="brand">智谱</span>
+      <div class="title">GLM-5V-Turbo：看截图直接写代码</div>
+      <div class="desc">首个多模态编码基座模型，从预训练阶段深度融合视觉与语言。Design2Code 跑分 94.8 超过 Claude Opus 4.5，支持 200k 上下文，可接入 Claude Code 等 agent 框架。看懂设计稿和截图，直接生成可运行代码。</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📌 议题二 · AI 裁员潮加速与商业化转型</div>
+
+    <div class="item">
+      <span class="emoji">📉</span><span class="brand">Cloudflare</span>
+      <div class="title">裁员 20%（1100人），转向 Agentic AI 运营模式</div>
+      <div class="desc">CEO 称内部 AI 使用量三个月暴增 600%，各部门每天运行数千个 AI Agent 会话。公司强调这不是削减成本，而是从根本上以 AI 智能体重构运营模式。同期营收创历史新高，股价盘后下跌 14%。</div>
+    </div>
+
+    <div class="item">
+      <span class="emoji">📉</span><span class="brand">Freshworks</span>
+      <div class="title">裁员 500 人（11%），AI 已贡献超 50% 代码生成</div>
+      <div class="desc">SaaS 公司在 AI 效率提升后加速人员优化。营收同比增长 16% 至 2.28 亿美元，但在 AI 自动化推动下，代码生成超过一半已由 AI 完成，传统开发岗位面临重新定义。</div>
+    </div>
+
+    <div class="item">
+      <span class="emoji">🔄</span><span class="brand">OpenAI & Anthropic</span>
+      <div class="title">同日成立驻场服务合资公司，AI 进入"最后一英里"</div>
+      <div class="desc">OpenAI 联合 TPG/贝恩/软银等成立 The Deployment Company（目标 100 亿美元）；Anthropic 联合黑石/高盛成立 15 亿美元服务公司。从"卖 API"转向"派工程师上门帮企业落地 AI"，AI 商业化正式进入肉搏战。</div>
+    </div>
+
+    <div class="item">
+      <span class="emoji">💰</span><span class="brand">Anthropic</span>
+      <div class="title">估值 1.2 万亿美元，首次超越 OpenAI</div>
+      <div class="desc">Pre-IPO 市场估值飙升至 1.2 万亿美元，首次超越 OpenAI（1.1 万亿）。一季度年化收入从 90 亿暴增至 300 亿美元（80 倍增速），Claude Code 在开发者中快速渗透，约 4% 的 GitHub 公开代码提交已由 Claude 生成。</div>
+    </div>
+  </div>
+
+  <div class="thinking-card">
+    <div class="label">💡 每日思考题</div>
+    <p>Cloudflare 裁员 20% 的同时，营收创下历史新高——AI 让公司更赚钱了，但也让 1100 人失去了工作。OpenAI 和 Anthropic 同时成立"驻场服务公司"，本质是在告诉企业：你不需要自己培养 AI 人才，我们派人来帮你做。</p>
+    <p style="margin-top: 12px;">假设你是一家中等规模科技公司的 HRD：当 AI 工具让某些岗位的人效提升 3 倍，你会选择"保留编制、重新定义职责"，还是"先缩编、再观望"？你选择的时间窗口，可能比你想象的短得多。</p>
+  </div>
+
+  <div class="watermark">Made by ChloeCao</div>
+</div>
+</body>
+</html>
