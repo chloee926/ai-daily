@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>每日AI简报 | 2026-06-12</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #0a0e1a;
+    color: #e0e6f0;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .back-nav {
+    position: fixed; top: 16px; left: 16px; z-index: 1000;
+    background: rgba(20,30,60,0.85); border: 1px solid rgba(100,140,255,0.3);
+    color: #8ab4ff; padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; text-decoration: none; backdrop-filter: blur(8px);
+    transition: all 0.2s;
+  }
+  .back-nav:hover { background: rgba(40,60,120,0.9); color: #b0d0ff; }
+  @media (max-width: 600px) {
+    .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 12px auto 0; width: fit-content; }
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
+  .header {
+    text-align: center; padding: 48px 0 28px;
+    border-bottom: 1px solid rgba(100,140,255,0.15); margin-bottom: 24px;
+  }
+  .header .date { font-size: 14px; color: #6b7fa0; letter-spacing: 2px; }
+  .header h1 { font-size: 22px; color: #fff; margin: 8px 0 12px; font-weight: 700; }
+  .header .subtitle { font-size: 13px; color: #5a7199; }
+  .intro {
+    background: linear-gradient(135deg, rgba(30,50,100,0.4), rgba(20,35,70,0.3));
+    border: 1px solid rgba(100,140,255,0.15); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 24px; font-size: 14px;
+    color: #c0d0e8; line-height: 1.8;
+  }
+  .new-term {
+    background: linear-gradient(135deg, rgba(180,100,255,0.12), rgba(120,60,200,0.08));
+    border: 1px solid rgba(180,130,255,0.25); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 24px;
+  }
+  .new-term .badge {
+    display: inline-block; background: rgba(180,130,255,0.2); color: #c8a8ff;
+    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  }
+  .new-term h3 { color: #d8b8ff; font-size: 16px; margin-bottom: 6px; }
+  .new-term p { font-size: 14px; color: #b8c8e8; line-height: 1.8; }
+  .topic { margin-bottom: 24px; }
+  .topic-title {
+    font-size: 16px; font-weight: 700; color: #fff;
+    padding: 10px 0; border-bottom: 1px solid rgba(100,140,255,0.15);
+    margin-bottom: 14px;
+  }
+  .card {
+    background: rgba(18,26,50,0.6); border: 1px solid rgba(100,140,255,0.1);
+    border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: rgba(100,140,255,0.3); }
+  .card .tag {
+    display: inline-block; font-size: 11px; padding: 1px 8px;
+    border-radius: 8px; margin-right: 6px; margin-bottom: 4px;
+  }
+  .tag-blue { background: rgba(70,130,255,0.15); color: #6ea8ff; }
+  .tag-green { background: rgba(70,200,130,0.15); color: #5ed49a; }
+  .tag-red { background: rgba(255,90,90,0.15); color: #ff7070; }
+  .tag-orange { background: rgba(255,160,50,0.15); color: #ffa844; }
+  .tag-purple { background: rgba(180,130,255,0.15); color: #c8a8ff; }
+  .tag-teal { background: rgba(50,200,200,0.15); color: #50d0d0; }
+  .card h4 { font-size: 14px; color: #e0e8f8; margin: 6px 0 4px; font-weight: 600; }
+  .card p { font-size: 13px; color: #98a8c0; line-height: 1.7; }
+  .card .source { font-size: 11px; color: #5a6880; margin-top: 6px; }
+  .card .source a { color: #6b8fc0; text-decoration: none; }
+  .card .source a:hover { color: #8ab4ff; text-decoration: underline; }
+  .thinking {
+    background: linear-gradient(135deg, rgba(255,200,50,0.08), rgba(200,160,30,0.05));
+    border: 1px solid rgba(255,200,80,0.2); border-radius: 12px;
+    padding: 18px 20px; margin-top: 24px;
+  }
+  .thinking .badge {
+    display: inline-block; background: rgba(255,200,80,0.15); color: #ffc844;
+    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  }
+  .thinking p { font-size: 14px; color: #d0c8a0; line-height: 1.9; }
+  .watermark {
+    text-align: center; color: #2a3040; font-size: 11px;
+    padding: 32px 0 8px; letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
+<div class="container">
+  <div class="header">
+    <div class="date">2026-06-12 · 星期四</div>
+    <h1>AI 每日简报</h1>
+    <div class="subtitle">3 分钟跟上 AI 行业最值得关注的产品、组织和人才动向</div>
+  </div>
+
+  <div class="intro">
+    华为 HDC 2026 开幕，鸿蒙 7 正式迈入 Agent 时代；Coinbase 同步推出 AI 智能体金融账户，x402 协议首次跑通万级商户；DeepSeek 连续三周登顶全球大模型榜首，中国 AI 调用量首次持续超越美国。三大信号指向同一件事——AI 从"工具"正式升级为"经济主体"。
+  </div>
+
+  <div class="new-term">
+    <div class="badge">🆕 AI新名词</div>
+    <h3>x402 协议</h3>
+    <p>Coinbase 主导的机器对机器支付协议，让 AI 智能体无需人类介入，就能通过 HTTP 直接用稳定币为数据 API、算力等数字服务付款。不是"AI 帮人操作支付"，而是"AI 自己花钱办自己的事"——这是智能体从工具变成经济主体的基础设施。</p>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">📌 议题一 · 智能体商业化加速</div>
+
+    <div class="card">
+      <span class="tag tag-blue">🔵 产品发布</span>
+      <h4>华为 — 鸿蒙 7 正式发布，全生态迈入 Agent 时代</h4>
+      <p>HDC 2026 在东莞松山湖开幕，HarmonyOS 7 开发者 Beta 亮相。核心升级三大底层：Agent 亲和系统架构、鸿蒙智能体框架 2.0（复杂任务成功率超 90%）、系统智能体"小艺"全面 Skill 化。方舟引擎首次引入性能大模型，整机性能提升 15%。鸿蒙已成中国第二大智能手机系统，生态设备超 13 亿。</p>
+      <div class="source">来源：<a href="https://new.qq.com/rain/a/20260612A064VN00" target="_blank">腾讯新闻</a> · <a href="https://www.ithome.com/0/963/548.htm" target="_blank">IT之家</a></div>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-orange">💰 投融资</span>
+      <h4>Coinbase — 推出"Coinbase for Agents"智能体金融账户</h4>
+      <p>AI 智能体首次可以代表用户直接进行加密货币交易、资金转移和在线支付，基于 x402 协议实现机器对机器自主支付。过去 30 天约 15.7 万个 AI 智能体使用 x402 协议，已处理超 1 亿笔交易。</p>
+      <div class="source">来源：<a href="https://www.zhitongcaijing.com/content/detail/1453580.html" target="_blank">智通财经</a> · <a href="https://www.163.com/dy/article/KV6K2V4U05561FZO.html" target="_blank">网易</a></div>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-green">📈 增长</span>
+      <h4>DeepSeek — 连续三周蝉联全球大模型榜首</h4>
+      <p>中国 AI 周调用量达 3.69 万亿，首次持续超越美国。DeepSeek Y4 Flash 成为全球使用量最大的大模型，标志着中国 AI 应用生态进入爆发期。</p>
+      <div class="source">来源：<a href="https://blog.csdn.net/haohaizi_liu/article/details/161926400" target="_blank">CSDN</a></div>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-teal">🛠️ 开源工具</span>
+      <h4>小米 — 开源终端 AI 编程助手 MiMo Code</h4>
+      <p>内置免费多模态模型，支持代码生成与调试，集成顶级多模态能力，面向开发者免费开放。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-purple">🏛️ 大会</span>
+      <h4>北京智源大会 — 第八届今日开幕</h4>
+      <p>汇聚 200 余位全球顶尖学者，Meta、英伟达、哈佛、MIT 等与中国 AI 核心力量同场交流，围绕世界模型、通用智能体、具身智能等前沿方向展开。</p>
+      <div class="source">来源：<a href="https://new.qq.com/rain/a/20260612A04XC000" target="_blank">腾讯新闻</a></div>
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">📌 议题二 · AI 公司组织与人才洗牌</div>
+
+    <div class="card">
+      <span class="tag tag-red">📉 裁员</span>
+      <h4>Meta — 裁员 4665 人聚焦 AI 战略</h4>
+      <p>6 月 10 日在加州和华盛顿裁减 4665 人，管理人员超 1400 人、软件工程师近 1000 人。扎克伯格称不是"AI 替代人力"，而是将资源集中到大模型与元宇宙 AI 交互。预计年省 8 亿美元，2026 年 AI 投入计划超 50 亿美元。</p>
+      <div class="source">来源：<a href="https://www.tmtpost.com/agent/ai-article/18044" target="_blank">钛媒体</a></div>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-red">📉 裁员</span>
+      <h4>Salesforce — 第三轮裁员，AI 转型持续优化团队</h4>
+      <p>本轮涉及加州 86 人，Agentforce AI 产品等受影响，但核心团队未受波及。CEO 贝尼奥夫透露某支持团队已从近 9000 人缩减至约 5000 人，AI 客服智能体替代显著。Agentforce 年收入已突破 12 亿美元，同比增长 205%。</p>
+      <div class="source">来源：<a href="https://caifuhao.eastmoney.com/news/20260610210230457345780" target="_blank">东方财富</a></div>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-blue">🔄 策略调整</span>
+      <h4>Anthropic — 撤销被指"暗中削弱"研究人员的 Claude 策略</h4>
+      <p>此前 Anthropic 被曝在 Claude 内部设置限制影响研究人员使用效率，引发社区争议后已撤销。同日，Anthropic 发布 Claude Fable 5，安全机制与能力同步升级。</p>
+      <div class="source">来源：<a href="https://blog.csdn.net/haohaizi_liu/article/details/161926400" target="_blank">CSDN</a></div>
+    </div>
+  </div>
+
+  <div class="thinking">
+    <div class="badge">💡 每日思考题</div>
+    <p>Coinbase 让 AI 智能体有了自己的"钱包"，Meta 在裁员 4665 人后加码 AI 投入——<br>当 AI 从"工具"变成"经济主体"，拥有交易能力和组织资源调配权，你的公司里，谁来决定 AI 可以花多少钱、裁多少人？<br>如果你不主动设计这个决策机制，它就会被产品经理和算法之间的博弈默认决定。</p>
+  </div>
+
+  <div class="watermark">Made by ChloeCao</div>
+</div>
+</body>
+</html>
