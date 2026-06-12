@@ -2,245 +2,272 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>每日AI简报 | 2026-05-09</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-  background: #0a0e1a;
-  color: #e0e6ed;
-  line-height: 1.7;
-  padding: 0 0 60px 0;
-  min-height: 100vh;
-}
-.back-nav {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 1000;
-  background: rgba(30, 40, 70, 0.9);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(100, 140, 255, 0.3);
-  border-radius: 8px;
-  padding: 8px 14px;
-  color: #7eb8ff;
-  text-decoration: none;
-  font-size: 14px;
-  transition: all 0.2s;
-}
-.back-nav:hover { background: rgba(50, 70, 120, 0.9); color: #a0d0ff; }
-@media (max-width: 768px) {
-  .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 12px 16px; }
-}
-.container { max-width: 680px; margin: 0 auto; padding: 20px 16px; }
-.header {
-  text-align: center;
-  padding: 40px 0 30px;
-  border-bottom: 1px solid rgba(100, 140, 255, 0.15);
-  margin-bottom: 30px;
-}
-.header h1 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 8px;
-}
-.header .date {
-  font-size: 14px;
-  color: #7a8ba5;
-  margin-bottom: 6px;
-}
-.header .issue {
-  font-size: 12px;
-  color: #4a6a8a;
-}
-.lead-card {
-  background: linear-gradient(135deg, rgba(30, 50, 100, 0.6), rgba(20, 30, 60, 0.8));
-  border: 1px solid rgba(100, 140, 255, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 28px;
-}
-.lead-card .label {
-  font-size: 12px;
-  color: #7eb8ff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-}
-.lead-card p {
-  font-size: 15px;
-  color: #c8d8e8;
-  line-height: 1.8;
-}
-.new-word {
-  background: linear-gradient(135deg, rgba(80, 40, 120, 0.4), rgba(40, 20, 80, 0.6));
-  border: 1px solid rgba(160, 100, 255, 0.25);
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 28px;
-}
-.new-word .label {
-  font-size: 13px;
-  color: #c89eff;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.new-word .term {
-  font-size: 18px;
-  font-weight: 700;
-  color: #e4c8ff;
-  margin-bottom: 10px;
-}
-.new-word .desc {
-  font-size: 14px;
-  color: #b8a8d0;
-  line-height: 1.8;
-}
-.section { margin-bottom: 32px; }
-.section-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #ffffff;
-  padding: 12px 0;
-  border-bottom: 2px solid rgba(100, 140, 255, 0.3);
-  margin-bottom: 16px;
-}
-.item {
-  background: rgba(20, 28, 50, 0.6);
-  border: 1px solid rgba(60, 80, 120, 0.3);
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 12px;
-  transition: border-color 0.2s;
-}
-.item:hover { border-color: rgba(100, 140, 255, 0.4); }
-.item .emoji { font-size: 16px; margin-right: 6px; }
-.item .brand {
-  font-weight: 700;
-  color: #7eb8ff;
-  font-size: 15px;
-}
-.item .title {
-  font-weight: 600;
-  color: #e0e8f0;
-  font-size: 15px;
-  margin-top: 4px;
-}
-.item .desc {
-  font-size: 14px;
-  color: #9ab0c8;
-  margin-top: 8px;
-  line-height: 1.7;
-}
-.thinking-card {
-  background: linear-gradient(135deg, rgba(40, 80, 60, 0.4), rgba(20, 50, 40, 0.6));
-  border: 1px solid rgba(80, 200, 120, 0.25);
-  border-radius: 12px;
-  padding: 20px;
-  margin-top: 28px;
-}
-.thinking-card .label {
-  font-size: 13px;
-  color: #6dd8a0;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-.thinking-card p {
-  font-size: 14px;
-  color: #a8d8c0;
-  line-height: 1.9;
-}
-.watermark {
-  text-align: center;
-  padding: 40px 0 20px;
-  color: #2a3a50;
-  font-size: 12px;
-}
+  :root {
+    /* Dark theme (default) */
+    --bg: #0a0e1a;
+    --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
+    --surface: rgba(18, 26, 50, 0.6);
+    --surface-hover: rgba(28, 40, 70, 0.7);
+    --text: #e0e6f0;
+    --text-secondary: #98a8c0;
+    --text-dim: #5a6880;
+    --heading: #fff;
+    --intro-bg: linear-gradient(135deg, rgba(30,50,100,0.4), rgba(20,35,70,0.3));
+    --intro-border: rgba(100,140,255,0.15);
+    --intro-text: #c0d0e8;
+    --nw-bg: linear-gradient(135deg, rgba(180,100,255,0.12), rgba(120,60,200,0.08));
+    --nw-border: rgba(180,130,255,0.25);
+    --nw-badge-bg: rgba(180,130,255,0.2);
+    --nw-badge-text: #c8a8ff;
+    --nw-heading: #d8b8ff;
+    --think-bg: linear-gradient(135deg, rgba(255,200,50,0.08), rgba(200,160,30,0.05));
+    --think-border: rgba(255,200,80,0.2);
+    --think-badge-bg: rgba(255,200,80,0.15);
+    --think-badge-text: #ffc844;
+    --think-text: #d0c8a0;
+    --tag-blue-bg: rgba(70,130,255,0.15); --tag-blue-text: #6ea8ff;
+    --tag-green-bg: rgba(70,200,130,0.15); --tag-green-text: #5ed49a;
+    --tag-red-bg: rgba(255,90,90,0.15); --tag-red-text: #ff7070;
+    --tag-orange-bg: rgba(255,160,50,0.15); --tag-orange-text: #ffa844;
+    --tag-purple-bg: rgba(180,130,255,0.15); --tag-purple-text: #c8a8ff;
+    --tag-teal-bg: rgba(50,200,200,0.15); --tag-teal-text: #50d0d0;
+    --border-color: rgba(100,140,255,0.1);
+    --border-hover: rgba(100,140,255,0.3);
+    --nav-bg: rgba(20,30,60,0.85);
+    --nav-border: rgba(100,140,255,0.3);
+    --nav-text: #8ab4ff;
+    --nav-hover-bg: rgba(40,60,120,0.9);
+    --nav-hover-text: #b0d0ff;
+    --link: #6b8fc0;
+    --link-hover: #8ab4ff;
+    --watermark: #2a3040;
+    --shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  /* Light theme */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f0f2f7;
+      --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
+      --surface: rgba(255, 255, 255, 0.85);
+      --surface-hover: rgba(255, 255, 255, 0.95);
+      --text: #2d3748;
+      --text-secondary: #5a6878;
+      --text-dim: #8896a6;
+      --heading: #1a202c;
+      --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
+      --intro-border: rgba(66,103,178,0.15);
+      --intro-text: #3a4a60;
+      --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
+      --nw-border: rgba(140,100,220,0.2);
+      --nw-badge-bg: rgba(140,100,220,0.1);
+      --nw-badge-text: #7c4dff;
+      --nw-heading: #5b2eab;
+      --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
+      --think-border: rgba(200,170,50,0.2);
+      --think-badge-bg: rgba(200,170,50,0.1);
+      --think-badge-text: #b8860b;
+      --think-text: #5a4e30;
+      --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
+      --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
+      --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
+      --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
+      --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
+      --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
+      --border-color: rgba(0,0,0,0.06);
+      --border-hover: rgba(66,103,178,0.25);
+      --nav-bg: rgba(255,255,255,0.9);
+      --nav-border: rgba(66,103,178,0.2);
+      --nav-text: #4267b2;
+      --nav-hover-bg: rgba(240,242,247,0.95);
+      --nav-hover-text: #2d4a8a;
+      --link: #4267b2;
+      --link-hover: #2d4a8a;
+      --watermark: #c0c8d4;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+  }
+
+  /* Manual override */
+  [data-theme="dark"] { /* uses default dark vars */ }
+  [data-theme="light"] {
+    --bg: #f0f2f7;
+    --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
+    --surface: rgba(255, 255, 255, 0.85);
+    --surface-hover: rgba(255, 255, 255, 0.95);
+    --text: #2d3748;
+    --text-secondary: #5a6878;
+    --text-dim: #8896a6;
+    --heading: #1a202c;
+    --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
+    --intro-border: rgba(66,103,178,0.15);
+    --intro-text: #3a4a60;
+    --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
+    --nw-border: rgba(140,100,220,0.2);
+    --nw-badge-bg: rgba(140,100,220,0.1);
+    --nw-badge-text: #7c4dff;
+    --nw-heading: #5b2eab;
+    --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
+    --think-border: rgba(200,170,50,0.2);
+    --think-badge-bg: rgba(200,170,50,0.1);
+    --think-badge-text: #b8860b;
+    --think-text: #5a4e30;
+    --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
+    --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
+    --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
+    --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
+    --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
+    --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
+    --border-color: rgba(0,0,0,0.06);
+    --border-hover: rgba(66,103,178,0.25);
+    --nav-bg: rgba(255,255,255,0.9);
+    --nav-border: rgba(66,103,178,0.2);
+    --nav-text: #4267b2;
+    --nav-hover-bg: rgba(240,242,247,0.95);
+    --nav-hover-text: #2d4a8a;
+    --link: #4267b2;
+    --link-hover: #2d4a8a;
+    --watermark: #c0c8d4;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* Theme toggle */
+  .theme-toggle {
+    position: fixed; top: 16px; right: 16px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border);
+    color: var(--nav-text); padding: 6px 12px; border-radius: 20px;
+    font-size: 16px; cursor: pointer; backdrop-filter: blur(8px);
+    transition: all 0.2s; line-height: 1;
+  }
+  .theme-toggle:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
+
+  .back-nav {
+    position: fixed; top: 16px; left: 16px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border);
+    color: var(--nav-text); padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; text-decoration: none; backdrop-filter: blur(8px);
+    transition: all 0.2s;
+  }
+  .back-nav:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
+  @media (max-width: 600px) {
+    .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 12px auto 0; width: fit-content; }
+    .theme-toggle { top: auto; bottom: 20px; right: 16px; }
+  }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
+  .header {
+    text-align: center; padding: 48px 0 28px;
+    border-bottom: 1px solid var(--border-color); margin-bottom: 24px;
+  }
+  .header .date { font-size: 14px; color: var(--text-secondary); letter-spacing: 2px; }
+  .header h1 { font-size: 22px; color: var(--heading); margin: 8px 0 12px; font-weight: 700; }
+  .header .subtitle { font-size: 13px; color: var(--text-dim); }
+
+  .intro {
+    background: var(--intro-bg);
+    border: 1px solid var(--intro-border); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 24px; font-size: 14px;
+    color: var(--intro-text); line-height: 1.8;
+  }
+  .new-term {
+    background: var(--nw-bg);
+    border: 1px solid var(--nw-border); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 24px;
+  }
+  .new-term .badge {
+    display: inline-block; background: var(--nw-badge-bg); color: var(--nw-badge-text);
+    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  }
+  .new-term h3 { color: var(--nw-heading); font-size: 16px; margin-bottom: 6px; }
+  .new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+
+  .topic { margin-bottom: 24px; }
+  .topic-title {
+    font-size: 16px; font-weight: 700; color: var(--heading);
+    padding: 10px 0; border-bottom: 1px solid var(--border-color);
+    margin-bottom: 14px;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--border-color);
+    border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .card:hover { border-color: var(--border-hover); background: var(--surface-hover); }
+  .card .tag {
+    display: inline-block; font-size: 11px; padding: 1px 8px;
+    border-radius: 8px; margin-right: 6px; margin-bottom: 4px;
+  }
+  .tag-blue { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
+  .tag-green { background: var(--tag-green-bg); color: var(--tag-green-text); }
+  .tag-red { background: var(--tag-red-bg); color: var(--tag-red-text); }
+  .tag-orange { background: var(--tag-orange-bg); color: var(--tag-orange-text); }
+  .tag-purple { background: var(--tag-purple-bg); color: var(--tag-purple-text); }
+  .tag-teal { background: var(--tag-teal-bg); color: var(--tag-teal-text); }
+  .card h4 { font-size: 14px; color: var(--text); margin: 6px 0 4px; font-weight: 600; }
+  .card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--text-dim); margin-top: 6px; }
+  .card .source a { color: var(--link); text-decoration: none; }
+  .card .source a:hover { color: var(--link-hover); text-decoration: underline; }
+
+  .thinking {
+    background: var(--think-bg);
+    border: 1px solid var(--think-border); border-radius: 12px;
+    padding: 18px 20px; margin-top: 24px;
+  }
+  .thinking .badge {
+    display: inline-block; background: var(--think-badge-bg); color: var(--think-badge-text);
+    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  }
+  .thinking p { font-size: 14px; color: var(--think-text); line-height: 1.9; }
+
+  .watermark {
+    text-align: center; color: var(--watermark); font-size: 11px;
+    padding: 32px 0 8px; letter-spacing: 1px;
+  }
 </style>
 </head>
 <body>
 <a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌓</button>
+<script>
+(function() {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+</script>
 <div class="container">
   <div class="header">
-    <h1>每日AI简报</h1>
-    <div class="date">2026年5月9日 · 星期六</div>
-    <div class="issue">第24期</div>
+    <div class="date">2026-05-09 · 星期六</div>
+    <h1>AI 每日简报</h1>
+    <div class="subtitle">3 分钟跟上 AI 行业最值得关注的产品、组织和人才动向</div>
   </div>
 
-  <div class="lead-card">
-    <div class="label">今日导读</div>
-    <p>Anthropic 正式把 Claude 塞进了微软 Office 全家桶，4亿 Office 用户的工作流将被重新定义；与此同时，Cloudflare 以"AI 替代人力"为由裁员 20%（1100人），明确宣布转向 Agentic AI 运营模式。模型能力溢出之后，AI 正在同时改写两件事：你的工作方式，和你是否还有这份工作。</p>
-  </div>
+  <div class="intro">🔗 日报已上线：https://chloee926.github.io/ai-daily/2026-05-09.html 今日导读：Anthropic 正式把 Claude 塞进了微软 Office 全家桶，4亿 Office 用户的工作流将被重新定义；与此同时，Cloudflare 以"AI 替代人力"为由裁员 20%（1100人），明确宣布转向 Agentic AI 运营模式。模型能力溢出之后，AI 正在同时改写两件事：你的工作方式，和你是否还有这份工作。 🆕 今日AI新名词：Agentic AI-First Operating Model Cloudflare 裁员公告中首次使用的概念——不是"用 AI 辅助员工"，而是以 AI 智能体为核心重新设计整个公司的运营模式。CEO 透露过去三个月内部 AI 使用量暴增 600%，各部门每天运行数千个 AI Agent 会话。这意味着 AI 不再是工具，而是被编排进组织架构图的"数字员工"。 📌 议题一 · AI 正式入驻办公桌面 🔵 Anthropic — Claude 正式接入微软 Office 全家桶（Excel/Word/PPT/Outlook），跨应用共享对话记忆。用户无需切换网页版，可在 Office 内完成邮件分拣、文档草拟、表格分析、汇报生成全流程。Office 全球付费用户超 4 亿，Claude 借此快速切入超大办公用户市场。 &gt; 企微摘要：Claude正式接入Excel/Word/PPT/Outlook，跨应用共享记忆，4亿Office用户可直接在文档内调用AI 🔵 OpenAI — 发布三款实时语音模型：GPT-Realtime-2（GPT-5 级推理能力）、GPT-Realtime-Translate（70 种语言实时翻译，延迟低于 200ms）、GPT-Realtime-Whisper（实时转录）。同声传译行业迎来终局信号，API 定价每分钟仅 0.017 美元。 &gt; 企微摘要：OpenAI发布三款实时语音模型，GPT-5级推理+70语种翻译+实时转录，同传行业迎来终局 🔵 OpenAI — 发布 Codex Chrome 扩展，Codex 能力从代码编辑器扩展到浏览器。可跨标签页后台并行运行，处理网页调试、CRM 更新、资料研究等任务，不影响用户正常使用浏览器。 &gt; 企微摘要：OpenAI发布Codex Chrome扩展，AI编码助手正式进入浏览器工作流 🛠️ 智谱 — 发布 GLM-5V-Turbo 技术报告，首个多模态编码基座模型。从预训练阶段融合视觉与语言，Design2Code 跑分 94.8 超过 Claude Opus 4.5，支持 200k 上下文，可接入 Claude Code 等 agent 框架。 &gt; 企微摘要：智谱发布GLM-5V-Turbo多模态编码模型，看截图直接写代码，Design2Code跑分超Claude 📌 议题二 · AI 裁员潮加速与商业化转型 📉 Cloudflare — 以"AI-first"重组为由裁员 20%（1100人），CEO 称内部 AI 使用量三个月暴增 600%，各部门每天运行数千个 AI Agent 会话。公司强调这不是削减成本，而是转向 Agentic AI 运营模式。股价盘后下跌 14%。 &gt; 企微摘要：Cloudflare裁员20%共1100人，转向Agentic AI运营模式，内部AI使用量三月暴增600% 📉 Freshworks — 裁员 500 人（11%），AI 自动化已贡献超 50% 代码生成。SaaS 公司在 AI 效率提升后加速人员优化。 &gt; 企微摘要：Freshworks裁员500人占比11%，AI已贡献超50%代码生成 🔄 OpenAI &amp; Anthropic — 同日宣布联合华尔街 PE 成立驻场服务合资公司。OpenAI 联合 TPG/贝恩/软银等成立 The Deployment Company（目标 100 亿美元）；Anthropic 联合黑石/高盛成立 15 亿美元服务公司。从"卖 API"转向"派工程师上门帮企业落地 AI"，AI 商业化进入最后一英里。 &gt; 企微摘要：OpenAI和Anthropic同日成立驻场服务公司，从卖API转向帮企业落地AI 💰 Anthropic — Pre-IPO 市场估值飙升至 1.2 万亿美元，首次超越 OpenAI（1.1 万亿美元）。一季度年化收入从 90 亿暴增至 300 亿美元（80 倍增速），Claude Code 在开发者中快速渗透，约 4% 的 GitHub 公开代码提交已由 Claude 生成。 &gt; 企微摘要：Anthropic估值1.2万亿美元首超OpenAI，一季度收入暴增80倍至300亿美元 💡 每日思考题 Cloudflare 裁员 20% 的同时，营收创下历史新高——AI 让公司更赚钱了，但也让 1100 人失去了工作。OpenAI 和 Anthropic 同时成立"驻场服务公司"，本质是在告诉企业：你不需要自己培养 AI 人才，我们派人来帮你做。 假设你是一家中等规模科技公司的 HRD：当 AI 工具让某些岗位的人效提升 3 倍，你会选择"保留编制、重新定义职责"，还是"先缩编、再观望"？你选择的时间窗口，可能比你想象的短得多。</div>
 
-  <div class="new-word">
-    <div class="label">🆕 今日AI新名词</div>
-    <div class="term">Agentic AI-First Operating Model</div>
-    <div class="desc">Cloudflare 裁员公告中首次使用的概念——不是"用 AI 辅助员工"，而是以 AI 智能体为核心重新设计整个公司的运营模式。CEO 透露过去三个月内部 AI 使用量暴增 600%，各部门每天运行数千个 AI Agent 会话。这意味着 AI 不再是工具，而是被编排进组织架构图的"数字员工"。</div>
-  </div>
 
-  <div class="section">
-    <div class="section-title">📌 议题一 · AI 正式入驻办公桌面</div>
 
-    <div class="item">
-      <span class="emoji">🔵</span><span class="brand">Anthropic</span>
-      <div class="title">Claude 正式接入微软 Office 全家桶</div>
-      <div class="desc">Claude 正式接入 Excel、PowerPoint、Word，并在 Outlook 中开放公测。跨应用共享完整对话记忆，用户无需切换网页版即可完成邮件分拣、文档草拟、表格分析、汇报生成全流程。Office 全球付费用户超 4 亿，Claude 借此快速切入超大规模办公用户市场。</div>
-    </div>
 
-    <div class="item">
-      <span class="emoji">🔵</span><span class="brand">OpenAI</span>
-      <div class="title">发布三款实时语音模型，同传行业迎来终局</div>
-      <div class="desc">GPT-Realtime-2 具备 GPT-5 级推理能力，可边听边思考；GPT-Realtime-Translate 支持 70 种语言实时翻译，延迟低于 200ms；GPT-Realtime-Whisper 实现高精度流式转录。API 定价每分钟仅 0.017 美元，同声传译行业正式进入倒计时。</div>
-    </div>
-
-    <div class="item">
-      <span class="emoji">🔵</span><span class="brand">OpenAI</span>
-      <div class="title">Codex Chrome 扩展：AI 进入浏览器工作流</div>
-      <div class="desc">Codex 能力从代码编辑器扩展到浏览器，可跨标签页后台并行运行，处理网页调试、CRM 更新、资料研究等任务，不影响用户正常浏览。AI 编码助手正式进入浏览器场景。</div>
-    </div>
-
-    <div class="item">
-      <span class="emoji">🛠️</span><span class="brand">智谱</span>
-      <div class="title">GLM-5V-Turbo：看截图直接写代码</div>
-      <div class="desc">首个多模态编码基座模型，从预训练阶段深度融合视觉与语言。Design2Code 跑分 94.8 超过 Claude Opus 4.5，支持 200k 上下文，可接入 Claude Code 等 agent 框架。看懂设计稿和截图，直接生成可运行代码。</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">📌 议题二 · AI 裁员潮加速与商业化转型</div>
-
-    <div class="item">
-      <span class="emoji">📉</span><span class="brand">Cloudflare</span>
-      <div class="title">裁员 20%（1100人），转向 Agentic AI 运营模式</div>
-      <div class="desc">CEO 称内部 AI 使用量三个月暴增 600%，各部门每天运行数千个 AI Agent 会话。公司强调这不是削减成本，而是从根本上以 AI 智能体重构运营模式。同期营收创历史新高，股价盘后下跌 14%。</div>
-    </div>
-
-    <div class="item">
-      <span class="emoji">📉</span><span class="brand">Freshworks</span>
-      <div class="title">裁员 500 人（11%），AI 已贡献超 50% 代码生成</div>
-      <div class="desc">SaaS 公司在 AI 效率提升后加速人员优化。营收同比增长 16% 至 2.28 亿美元，但在 AI 自动化推动下，代码生成超过一半已由 AI 完成，传统开发岗位面临重新定义。</div>
-    </div>
-
-    <div class="item">
-      <span class="emoji">🔄</span><span class="brand">OpenAI & Anthropic</span>
-      <div class="title">同日成立驻场服务合资公司，AI 进入"最后一英里"</div>
-      <div class="desc">OpenAI 联合 TPG/贝恩/软银等成立 The Deployment Company（目标 100 亿美元）；Anthropic 联合黑石/高盛成立 15 亿美元服务公司。从"卖 API"转向"派工程师上门帮企业落地 AI"，AI 商业化正式进入肉搏战。</div>
-    </div>
-
-    <div class="item">
-      <span class="emoji">💰</span><span class="brand">Anthropic</span>
-      <div class="title">估值 1.2 万亿美元，首次超越 OpenAI</div>
-      <div class="desc">Pre-IPO 市场估值飙升至 1.2 万亿美元，首次超越 OpenAI（1.1 万亿）。一季度年化收入从 90 亿暴增至 300 亿美元（80 倍增速），Claude Code 在开发者中快速渗透，约 4% 的 GitHub 公开代码提交已由 Claude 生成。</div>
-    </div>
-  </div>
-
-  <div class="thinking-card">
-    <div class="label">💡 每日思考题</div>
-    <p>Cloudflare 裁员 20% 的同时，营收创下历史新高——AI 让公司更赚钱了，但也让 1100 人失去了工作。OpenAI 和 Anthropic 同时成立"驻场服务公司"，本质是在告诉企业：你不需要自己培养 AI 人才，我们派人来帮你做。</p>
-    <p style="margin-top: 12px;">假设你是一家中等规模科技公司的 HRD：当 AI 工具让某些岗位的人效提升 3 倍，你会选择"保留编制、重新定义职责"，还是"先缩编、再观望"？你选择的时间窗口，可能比你想象的短得多。</p>
-  </div>
 
   <div class="watermark">Made by ChloeCao</div>
 </div>

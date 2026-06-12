@@ -7,6 +7,7 @@
   <style>
     :root {
       --bg: #0a0e1a;
+      --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
       --surface: rgba(18, 24, 48, 0.92);
       --surface-hover: rgba(24, 32, 60, 0.95);
       --text: #e8edf8;
@@ -16,14 +17,48 @@
       --accent-green: #34d399;
       --accent-amber: #fbbf24;
       --border: rgba(255,255,255,0.06);
+      --shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f0f2f7;
+        --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
+        --surface: rgba(255,255,255,0.85);
+        --surface-hover: rgba(255,255,255,0.95);
+        --text: #2d3748;
+        --text-secondary: #5a6878;
+        --border: rgba(0,0,0,0.06);
+        --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      }
+    }
+    [data-theme="light"] {
+      --bg: #f0f2f7;
+      --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
+      --surface: rgba(255,255,255,0.85);
+      --surface-hover: rgba(255,255,255,0.95);
+      --text: #2d3748;
+      --text-secondary: #5a6878;
+      --border: rgba(0,0,0,0.06);
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    [data-theme="dark"] {
+      --bg: #0a0e1a;
+      --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
+      --surface: rgba(18, 24, 48, 0.92);
+      --surface-hover: rgba(24, 32, 60, 0.95);
+      --text: #e8edf8;
+      --text-secondary: #9aa8c7;
+      --border: rgba(255,255,255,0.06);
+      --shadow: 0 2px 12px rgba(0,0,0,0.12);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
-      background: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
+      background: var(--bg-gradient);
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
     }
     .wrap { max-width: 680px; margin: 0 auto; padding: 24px 16px 60px; }
 
@@ -41,6 +76,15 @@
     }
     .stats span b { color: var(--accent-blue); font-size: 18px; }
 
+    .theme-toggle {
+      position: fixed; top: 16px; right: 16px; z-index: 1000;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); padding: 6px 12px; border-radius: 20px;
+      font-size: 16px; cursor: pointer; backdrop-filter: blur(8px);
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover { opacity: 0.8; }
+
     .month-group { margin-bottom: 28px; }
     .month-title {
       font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;
@@ -53,16 +97,16 @@
       font-size: 13px; color: var(--text-secondary); line-height: 1.7;
     }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
     .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-      padding: 14px; text-align: center; text-decoration: none;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 8px; text-align: center; text-decoration: none;
+      box-shadow: var(--shadow);
       transition: all 0.2s ease;
     }
     .card:hover { background: var(--surface-hover); border-color: rgba(91,141,239,0.3); transform: translateY(-1px); }
-    .card .date { font-size: 16px; font-weight: 600; color: var(--text); }
-    .card .weekday { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
-    .card .issue { font-size: 10px; color: var(--accent-blue); margin-top: 4px; }
+    .card .date { font-size: 14px; font-weight: 600; color: var(--text); }
+    .card .weekday { font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
 
     .watermark {
       text-align: center; color: rgba(255,255,255,0.12); font-size: 11px;
@@ -71,91 +115,115 @@
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="header">
-      <h1>每日AI简报</h1>
-      <div class="sub">AI 行业 · 每日精选 · HR 视角</div>
-    </div>
-
-    <div class="stats">
-      <span>已发布 <b>24</b> 期</span>
-      <span>覆盖 <b>3</b> 个月</span>
-    </div>
-
-    <!-- 2026年6月 -->
-    <div class="month-group">
-      <div class="month-title">2026 年 6 月</div>
-      <div class="month-summary">智能体商业化元年：x402 协议让 AI 自主付款，华为鸿蒙 7 全面拥抱 Agent，Meta 裁员 4665 人引发"AI 替代 vs AI 升级"大讨论。</div>
-      <div class="grid">
-        <a class="card" href="2026-06-12.html">
-          <div class="date">06-12</div>
-          <div class="weekday">星期五</div>
-          <div class="issue">第 24 期</div>
-        </a>
-      </div>
-    </div>
-
-    <!-- 2026年5月 -->
-    <div class="month-group">
-      <div class="month-title">2026 年 5 月</div>
-      <div class="month-summary">Anthropic 估值首破 1.2 万亿超 OpenAI，DeepSeek 500 亿首轮融资创纪录，Cloudflare 裁员 1100 人宣告 AI 原生转型。</div>
-      <div class="grid">
-        <a class="card" href="2026-05-09.html">
-          <div class="date">05-09</div>
-          <div class="weekday">星期六</div>
-          <div class="issue">第 23 期</div>
-        </a>
-        <a class="card" href="2026-05-08.html">
-          <div class="date">05-08</div>
-          <div class="weekday">星期五</div>
-          <div class="issue">第 22 期</div>
-        </a>
-        <a class="card" href="2026-05-07.html">
-          <div class="date">05-07</div>
-          <div class="weekday">星期四</div>
-          <div class="issue">第 21 期</div>
-        </a>
-      </div>
-    </div>
-
-    <!-- 2026年4月 -->
-    <div class="month-group">
-      <div class="month-title">2026 年 4 月</div>
-      <div class="month-summary">AI Agent 批量落地应用，OpenAI 发布 GPT-5 系列，国内大模型价格战白热化，AI 编程助手渗透率突破 40%。</div>
-      <div class="grid">
-        <a class="card" href="2026-04-24.html"><div class="date">04-24</div><div class="weekday">星期五</div><div class="issue">第 20 期</div></a>
-        <a class="card" href="2026-04-23.html"><div class="date">04-23</div><div class="weekday">星期四</div><div class="issue">第 19 期</div></a>
-        <a class="card" href="2026-04-22.html"><div class="date">04-22</div><div class="weekday">星期三</div><div class="issue">第 18 期</div></a>
-        <a class="card" href="2026-04-21.html"><div class="date">04-21</div><div class="weekday">星期二</div><div class="issue">第 17 期</div></a>
-        <a class="card" href="2026-04-20.html"><div class="date">04-20</div><div class="weekday">星期一</div><div class="issue">第 16 期</div></a>
-        <a class="card" href="2026-04-18.html"><div class="date">04-18</div><div class="weekday">星期六</div><div class="issue">第 15 期</div></a>
-        <a class="card" href="2026-04-17.html"><div class="date">04-17</div><div class="weekday">星期五</div><div class="issue">第 14 期</div></a>
-        <a class="card" href="2026-04-16.html"><div class="date">04-16</div><div class="weekday">星期四</div><div class="issue">第 13 期</div></a>
-        <a class="card" href="2026-04-15.html"><div class="date">04-15</div><div class="weekday">星期三</div><div class="issue">第 12 期</div></a>
-        <a class="card" href="2026-04-14.html"><div class="date">04-14</div><div class="weekday">星期二</div><div class="issue">第 11 期</div></a>
-        <a class="card" href="2026-04-13.html"><div class="date">04-13</div><div class="weekday">星期一</div><div class="issue">第 10 期</div></a>
-        <a class="card" href="2026-04-10.html"><div class="date">04-10</div><div class="weekday">星期五</div><div class="issue">第 9 期</div></a>
-        <a class="card" href="2026-04-09.html"><div class="date">04-09</div><div class="weekday">星期四</div><div class="issue">第 8 期</div></a>
-        <a class="card" href="2026-04-08.html"><div class="date">04-08</div><div class="weekday">星期三</div><div class="issue">第 7 期</div></a>
-        <a class="card" href="2026-04-07.html"><div class="date">04-07</div><div class="weekday">星期二</div><div class="issue">第 6 期</div></a>
-        <a class="card" href="2026-04-03.html"><div class="date">04-03</div><div class="weekday">星期五</div><div class="issue">第 5 期</div></a>
-        <a class="card" href="2026-04-02.html"><div class="date">04-02</div><div class="weekday">星期四</div><div class="issue">第 4 期</div></a>
-        <a class="card" href="2026-04-01.html"><div class="date">04-01</div><div class="weekday">星期三</div><div class="issue">第 3 期</div></a>
-      </div>
-    </div>
-
-    <!-- 2026年3月 -->
-    <div class="month-group">
-      <div class="month-title">2026 年 3 月</div>
-      <div class="month-summary">AI 简报创刊，从 0 到 1 搭建自动化流水线，覆盖 AI 产品、公司组织、HR 视角三大板块。</div>
-      <div class="grid">
-        <a class="card" href="2026-03-31.html"><div class="date">03-31</div><div class="weekday">星期二</div><div class="issue">第 2 期</div></a>
-        <a class="card" href="2026-03-30.html"><div class="date">03-30</div><div class="weekday">星期一</div><div class="issue">第 1 期</div></a>
-        <a class="card" href="2026-03-27.html"><div class="date">03-27</div><div class="weekday">星期五</div><div class="issue">试刊</div></a>
-      </div>
-    </div>
-
-    <div class="watermark">Made by ChloeCao</div>
+<script>
+(function() {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+</script>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌓</button>
+<div class="wrap">
+  <div class="header">
+    <h1>每日AI简报</h1>
+    <div class="sub">AI 行业 · 每日精选 · HR 视角</div>
   </div>
+
+  <div class="stats">
+    <span>已发布 <b>47</b> 期</span>
+    <span>覆盖 <b>4</b> 个月</span>
+  </div>
+
+  <!-- 2026年6月 -->
+  <div class="month-group">
+    <div class="month-title">2026 年 6 月</div>
+    <div class="month-summary">智能体商业化元年：x402 协议让 AI 自主付款，华为鸿蒙 7 全面拥抱 Agent，Meta 裁员 4665 人引发"AI 替代 vs AI 升级"大讨论。苹果 WWDC 发布 Siri AI，OpenAI 连续发布 Codex 与超级应用。</div>
+    <div class="grid">
+      <a class="card" href="2026-06-01.html"><div class="date">06-01</div><div class="weekday">一</div></a>
+      <a class="card" href="2026-06-02.html"><div class="date">06-02</div><div class="weekday">二</div></a>
+      <a class="card" href="2026-06-03.html"><div class="date">06-03</div><div class="weekday">三</div></a>
+      <a class="card" href="2026-06-04.html"><div class="date">06-04</div><div class="weekday">四</div></a>
+      <a class="card" href="2026-06-05.html"><div class="date">06-05</div><div class="weekday">五</div></a>
+      <a class="card" href="2026-06-08.html"><div class="date">06-08</div><div class="weekday">一</div></a>
+      <a class="card" href="2026-06-09.html"><div class="date">06-09</div><div class="weekday">二</div></a>
+      <a class="card" href="2026-06-10.html"><div class="date">06-10</div><div class="weekday">三</div></a>
+      <a class="card" href="2026-06-11.html"><div class="date">06-11</div><div class="weekday">四</div></a>
+      <a class="card" href="2026-06-12.html"><div class="date">06-12</div><div class="weekday">五</div></a>
+    </div>
+  </div>
+
+  <!-- 2026年5月 -->
+  <div class="month-group">
+    <div class="month-title">2026 年 5 月</div>
+    <div class="month-summary">Anthropic 估值首破 1.2 万亿超 OpenAI，DeepSeek 500 亿首轮融资创纪录，Google I/O 发布 Gemini 3.5，Cloudflare 裁员 1100 人宣告 AI 原生转型，NVIDIA 季营收 816 亿美元。</div>
+    <div class="grid">
+      <a class="card" href="2026-05-05.html"><div class="date">05-05</div><div class="weekday">二</div></a>
+      <a class="card" href="2026-05-06.html"><div class="date">05-06</div><div class="weekday">三</div></a>
+      <a class="card" href="2026-05-07.html"><div class="date">05-07</div><div class="weekday">四</div></a>
+      <a class="card" href="2026-05-08.html"><div class="date">05-08</div><div class="weekday">五</div></a>
+      <a class="card" href="2026-05-09.html"><div class="date">05-09</div><div class="weekday">六</div></a>
+      <a class="card" href="2026-05-11.html"><div class="date">05-11</div><div class="weekday">一</div></a>
+      <a class="card" href="2026-05-12.html"><div class="date">05-12</div><div class="weekday">二</div></a>
+      <a class="card" href="2026-05-13.html"><div class="date">05-13</div><div class="weekday">三</div></a>
+      <a class="card" href="2026-05-14.html"><div class="date">05-14</div><div class="weekday">四</div></a>
+      <a class="card" href="2026-05-15.html"><div class="date">05-15</div><div class="weekday">五</div></a>
+      <a class="card" href="2026-05-18.html"><div class="date">05-18</div><div class="weekday">一</div></a>
+      <a class="card" href="2026-05-19.html"><div class="date">05-19</div><div class="weekday">二</div></a>
+      <a class="card" href="2026-05-20.html"><div class="date">05-20</div><div class="weekday">三</div></a>
+      <a class="card" href="2026-05-21.html"><div class="date">05-21</div><div class="weekday">四</div></a>
+      <a class="card" href="2026-05-22.html"><div class="date">05-22</div><div class="weekday">五</div></a>
+      <a class="card" href="2026-05-25.html"><div class="date">05-25</div><div class="weekday">一</div></a>
+      <a class="card" href="2026-05-26.html"><div class="date">05-26</div><div class="weekday">二</div></a>
+      <a class="card" href="2026-05-27.html"><div class="date">05-27</div><div class="weekday">三</div></a>
+      <a class="card" href="2026-05-28.html"><div class="date">05-28</div><div class="weekday">四</div></a>
+      <a class="card" href="2026-05-29.html"><div class="date">05-29</div><div class="weekday">五</div></a>
+    </div>
+  </div>
+
+  <!-- 2026年4月 -->
+  <div class="month-group">
+    <div class="month-title">2026 年 4 月</div>
+    <div class="month-summary">AI Agent 批量落地应用，OpenAI 发布 GPT-5 系列，国内大模型价格战白热化，AI 编程助手渗透率突破 40%。</div>
+    <div class="grid">
+      <a class="card" href="2026-04-01.html"><div class="date">04-01</div><div class="weekday">三</div></a>
+      <a class="card" href="2026-04-02.html"><div class="date">04-02</div><div class="weekday">四</div></a>
+      <a class="card" href="2026-04-03.html"><div class="date">04-03</div><div class="weekday">五</div></a>
+      <a class="card" href="2026-04-07.html"><div class="date">04-07</div><div class="weekday">二</div></a>
+      <a class="card" href="2026-04-08.html"><div class="date">04-08</div><div class="weekday">三</div></a>
+      <a class="card" href="2026-04-09.html"><div class="date">04-09</div><div class="weekday">四</div></a>
+      <a class="card" href="2026-04-10.html"><div class="date">04-10</div><div class="weekday">五</div></a>
+      <a class="card" href="2026-04-13.html"><div class="date">04-13</div><div class="weekday">一</div></a>
+      <a class="card" href="2026-04-14.html"><div class="date">04-14</div><div class="weekday">二</div></a>
+      <a class="card" href="2026-04-15.html"><div class="date">04-15</div><div class="weekday">三</div></a>
+      <a class="card" href="2026-04-16.html"><div class="date">04-16</div><div class="weekday">四</div></a>
+      <a class="card" href="2026-04-17.html"><div class="date">04-17</div><div class="weekday">五</div></a>
+      <a class="card" href="2026-04-18.html"><div class="date">04-18</div><div class="weekday">六</div></a>
+      <a class="card" href="2026-04-20.html"><div class="date">04-20</div><div class="weekday">一</div></a>
+      <a class="card" href="2026-04-21.html"><div class="date">04-21</div><div class="weekday">二</div></a>
+      <a class="card" href="2026-04-22.html"><div class="date">04-22</div><div class="weekday">三</div></a>
+      <a class="card" href="2026-04-23.html"><div class="date">04-23</div><div class="weekday">四</div></a>
+      <a class="card" href="2026-04-24.html"><div class="date">04-24</div><div class="weekday">五</div></a>
+    </div>
+  </div>
+
+  <!-- 2026年3月 -->
+  <div class="month-group">
+    <div class="month-title">2026 年 3 月</div>
+    <div class="month-summary">AI 简报创刊，从 0 到 1 搭建自动化流水线，覆盖 AI 产品、公司组织、HR 视角三大板块。</div>
+    <div class="grid">
+      <a class="card" href="2026-03-27.html"><div class="date">03-27</div><div class="weekday">五</div></a>
+      <a class="card" href="2026-03-30.html"><div class="date">03-30</div><div class="weekday">一</div></a>
+      <a class="card" href="2026-03-31.html"><div class="date">03-31</div><div class="weekday">二</div></a>
+    </div>
+  </div>
+
+  <div class="watermark">Made by ChloeCao</div>
+</div>
 </body>
 </html>
