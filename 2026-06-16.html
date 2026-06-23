@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>每日AI简报 | 2026-06-16</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
+    --surface: rgba(18, 26, 50, 0.6);
+    --surface-hover: rgba(28, 40, 70, 0.7);
+    --text: #e0e6f0;
+    --text-secondary: #98a8c0;
+    --text-dim: #5a6880;
+    --heading: #fff;
+    --intro-bg: linear-gradient(135deg, rgba(30,50,100,0.4), rgba(20,35,70,0.3));
+    --intro-border: rgba(100,140,255,0.15);
+    --intro-text: #c0d0e8;
+    --nw-bg: linear-gradient(135deg, rgba(180,100,255,0.12), rgba(120,60,200,0.08));
+    --nw-border: rgba(180,130,255,0.25);
+    --nw-badge-bg: rgba(180,130,255,0.2);
+    --nw-badge-text: #c8a8ff;
+    --nw-heading: #d8b8ff;
+    --think-bg: linear-gradient(135deg, rgba(255,200,50,0.08), rgba(200,160,30,0.05));
+    --think-border: rgba(255,200,80,0.2);
+    --think-badge-bg: rgba(255,200,80,0.15);
+    --think-badge-text: #ffc844;
+    --think-text: #d0c8a0;
+    --tag-blue-bg: rgba(70,130,255,0.15); --tag-blue-text: #6ea8ff;
+    --tag-green-bg: rgba(70,200,130,0.15); --tag-green-text: #5ed49a;
+    --tag-red-bg: rgba(255,90,90,0.15); --tag-red-text: #ff7070;
+    --tag-orange-bg: rgba(255,160,50,0.15); --tag-orange-text: #ffa844;
+    --tag-purple-bg: rgba(180,130,255,0.15); --tag-purple-text: #c8a8ff;
+    --tag-teal-bg: rgba(50,200,200,0.15); --tag-teal-text: #50d0d0;
+    --border-color: rgba(100,140,255,0.1);
+    --border-hover: rgba(100,140,255,0.3);
+    --nav-bg: rgba(20,30,60,0.85);
+    --nav-border: rgba(100,140,255,0.3);
+    --nav-text: #8ab4ff;
+    --nav-hover-bg: rgba(40,60,120,0.9);
+    --nav-hover-text: #b0d0ff;
+    --link: #6b8fc0;
+    --link-hover: #8ab4ff;
+    --watermark: #2a3040;
+    --shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f0f2f7;
+      --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
+      --surface: rgba(255, 255, 255, 0.85);
+      --surface-hover: rgba(255, 255, 255, 0.95);
+      --text: #2d3748;
+      --text-secondary: #5a6878;
+      --text-dim: #8896a6;
+      --heading: #1a202c;
+      --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
+      --intro-border: rgba(66,103,178,0.15);
+      --intro-text: #3a4a60;
+      --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
+      --nw-border: rgba(140,100,220,0.2);
+      --nw-badge-bg: rgba(140,100,220,0.1);
+      --nw-badge-text: #7c4dff;
+      --nw-heading: #5b2eab;
+      --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
+      --think-border: rgba(200,170,50,0.2);
+      --think-badge-bg: rgba(200,170,50,0.1);
+      --think-badge-text: #b8860b;
+      --think-text: #5a4e30;
+      --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
+      --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
+      --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
+      --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
+      --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
+      --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
+      --border-color: rgba(0,0,0,0.06);
+      --border-hover: rgba(66,103,178,0.25);
+      --nav-bg: rgba(255,255,255,0.9);
+      --nav-border: rgba(66,103,178,0.2);
+      --nav-text: #4267b2;
+      --nav-hover-bg: rgba(240,242,247,0.95);
+      --nav-hover-text: #2d4a8a;
+      --link: #4267b2;
+      --link-hover: #2d4a8a;
+      --watermark: #c0c8d4;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+  }
+  [data-theme="dark"] { }
+  [data-theme="light"] {
+    --bg: #f0f2f7;
+    --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
+    --surface: rgba(255, 255, 255, 0.85);
+    --surface-hover: rgba(255, 255, 255, 0.95);
+    --text: #2d3748;
+    --text-secondary: #5a6878;
+    --text-dim: #8896a6;
+    --heading: #1a202c;
+    --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
+    --intro-border: rgba(66,103,178,0.15);
+    --intro-text: #3a4a60;
+    --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
+    --nw-border: rgba(140,100,220,0.2);
+    --nw-badge-bg: rgba(140,100,220,0.1);
+    --nw-badge-text: #7c4dff;
+    --nw-heading: #5b2eab;
+    --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
+    --think-border: rgba(200,170,50,0.2);
+    --think-badge-bg: rgba(200,170,50,0.1);
+    --think-badge-text: #b8860b;
+    --think-text: #5a4e30;
+    --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
+    --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
+    --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
+    --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
+    --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
+    --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
+    --border-color: rgba(0,0,0,0.06);
+    --border-hover: rgba(66,103,178,0.25);
+    --nav-bg: rgba(255,255,255,0.9);
+    --nav-border: rgba(66,103,178,0.2);
+    --nav-text: #4267b2;
+    --nav-hover-bg: rgba(240,242,247,0.95);
+    --nav-hover-text: #2d4a8a;
+    --link: #4267b2;
+    --link-hover: #2d4a8a;
+    --watermark: #c0c8d4;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-gradient); color: var(--text); line-height: 1.7;
+    -webkit-font-smoothing: antialiased; transition: background 0.3s, color 0.3s;
+  }
+  .theme-toggle {
+    position: fixed; top: 16px; right: 16px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border);
+    color: var(--nav-text); padding: 6px 12px; border-radius: 20px;
+    font-size: 16px; cursor: pointer; backdrop-filter: blur(8px);
+    transition: all 0.2s; line-height: 1;
+  }
+  .theme-toggle:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
+  .back-nav {
+    position: fixed; top: 16px; left: 16px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border);
+    color: var(--nav-text); padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; text-decoration: none; backdrop-filter: blur(8px);
+    transition: all 0.2s;
+  }
+  .back-nav:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
+  @media (max-width: 600px) {
+    .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 12px auto 0; width: fit-content; }
+    .theme-toggle { top: auto; bottom: 20px; right: 16px; }
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
+  .header {
+    text-align: center; padding: 48px 0 28px;
+    border-bottom: 1px solid var(--border-color); margin-bottom: 24px;
+  }
+  .header .date { font-size: 14px; color: var(--text-secondary); letter-spacing: 2px; }
+  .header h1 { font-size: 22px; color: var(--heading); margin: 8px 0 12px; font-weight: 700; }
+  .header .subtitle { font-size: 13px; color: var(--text-dim); }
+  .intro {
+    background: var(--intro-bg); border: 1px solid var(--intro-border);
+    border-radius: 12px; padding: 18px 20px; margin-bottom: 24px;
+    font-size: 14px; color: var(--intro-text); line-height: 1.8;
+  }
+  .intro .top3 { margin-bottom: 12px; }
+  .intro .top3 li { margin-bottom: 4px; }
+  .intro .verdict { font-weight: 600; color: var(--heading); font-size: 13px; }
+  .new-term {
+    background: var(--nw-bg); border: 1px solid var(--nw-border);
+    border-radius: 12px; padding: 18px 20px; margin-bottom: 24px;
+  }
+  .new-term .badge {
+    display: inline-block; background: var(--nw-badge-bg); color: var(--nw-badge-text);
+    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  }
+  .new-term h3 { color: var(--nw-heading); font-size: 16px; margin-bottom: 6px; }
+  .new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+  .topic { margin-bottom: 24px; }
+  .topic-title {
+    font-size: 16px; font-weight: 700; color: var(--heading);
+    padding: 10px 0; border-bottom: 1px solid var(--border-color); margin-bottom: 14px;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--border-color);
+    border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
+    box-shadow: var(--shadow); transition: border-color 0.2s, background 0.2s;
+  }
+  .card:hover { border-color: var(--border-hover); background: var(--surface-hover); }
+  .card .tag {
+    display: inline-block; font-size: 11px; padding: 1px 8px;
+    border-radius: 8px; margin-right: 6px; margin-bottom: 4px;
+  }
+  .tag-blue { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
+  .tag-green { background: var(--tag-green-bg); color: var(--tag-green-text); }
+  .tag-red { background: var(--tag-red-bg); color: var(--tag-red-text); }
+  .tag-orange { background: var(--tag-orange-bg); color: var(--tag-orange-text); }
+  .tag-purple { background: var(--tag-purple-bg); color: var(--tag-purple-text); }
+  .tag-teal { background: var(--tag-teal-bg); color: var(--tag-teal-text); }
+  .card h4 { font-size: 14px; color: var(--text); margin: 6px 0 4px; font-weight: 600; }
+  .card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--text-dim); margin-top: 6px; }
+  .card .source a { color: var(--link); text-decoration: none; }
+  .card .source a:hover { color: var(--link-hover); text-decoration: underline; }
+  .thinking {
+    background: var(--think-bg); border: 1px solid var(--think-border);
+    border-radius: 12px; padding: 18px 20px; margin-top: 24px;
+  }
+  .thinking .badge {
+    display: inline-block; background: var(--think-badge-bg); color: var(--think-badge-text);
+    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  }
+  .thinking h4 { font-size: 14px; color: var(--think-badge-text); margin: 10px 0 6px; }
+  .thinking p { font-size: 14px; color: var(--think-text); line-height: 1.9; }
+  .watermark {
+    text-align: center; color: var(--watermark); font-size: 11px;
+    padding: 32px 0 8px; letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌓</button>
+<script>
+(function() {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+</script>
+<div class="container">
+  <div class="header">
+    <div class="date">2026-06-16 · 星期二</div>
+    <h1>AI 每日简报</h1>
+    <div class="subtitle">3 分钟跟上 AI 行业最值得关注的产品、组织和人才动向</div>
+  </div>
+
+  <div class="intro">
+    <div class="top3">
+      <strong>今日最重要的 3 点：</strong>
+      <ol>
+        <li>AI开发工具定价从补贴走向按量计费，生态博弈持续</li>
+        <li>AI视频生成进入规模降本阶段，性价比成新竞争轴</li>
+        <li>AI巨头加速构建企业落地通道，分发层竞争升温</li>
+      </ol>
+    </div>
+    <div class="verdict">总判断：AI行业正从"能力竞赛"转向"落地与治理并行"——工具定价重塑表明补贴红利消退，视频生成降价预示应用层拐点，合作伙伴生态战说明企业AI落地的瓶颈已从模型能力移至部署与变革管理。</div>
+  </div>
+
+  <!-- 📘 新名词 -->
+  <div class="new-term">
+    <span class="badge">📘 AI新名词</span>
+    <h3>信息智能体（Information Agent）</h3>
+    <p><strong>一句话解释：</strong>Google在AI搜索模式中推出的主动信息监测智能体，可全天候静默运行并推送用户关注的信息变化，无需手动检索。</p>
+    <p><strong>为什么重要：</strong>标志着搜索引擎从"被动响应查询"到"主动推送信息"的范式转变，AI智能体开始渗透日常信息获取场景，信息获取从"人找信息"进化为"信息找人"。</p>
+    <p class="source">来源：<a href="https://news.qq.com/rain/a/20260614A02EPW00?adChannelId=fx" target="_blank">IT之家 - 谷歌推出搜索智能体功能</a></p>
+  </div>
+
+  <!-- 🚀 议题一 -->
+  <div class="topic">
+    <div class="topic-title">🚀 AI产品 & 平台动态</div>
+
+    <div class="card">
+      <span class="tag tag-blue">视频生成</span><span class="tag tag-green">字节跳动</span>
+      <h4>字节跳动发布Seedance 2.0 Mini，视频生成成本降50%</h4>
+      <p>6月15日，火山引擎上线Seedance 2.0 Mini视频生成模型，定位高性价比。720P规格下单秒生成成本约0.5元，较标准版降低约50%。图生视频0.023元/千tokens，视频生视频0.014元/千tokens。输出质量与Fast版相当，速度比Fast版快2倍。适用于电商内容生产、营销素材批量生成、UGC创作等高频规模化场景，近期将开放API服务。</p>
+      <p><strong>对TME的启发：</strong>视频生成成本持续下探，音乐宣发的短视频素材批量生产门槛大幅降低。剪映已第一时间接入Mini模型，内容运营团队可关注该平台的应用场景。</p>
+      <p class="source">来源：<a href="https://cj.sina.cn/article/norm_detail?url=https%3A%2F%2Ffinance.sina.com.cn%2Ftech%2Fshenji%2F2026-06-16%2Fdoc-inicqhiz4491214.shtml" target="_blank">新浪科技</a></p>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-blue">编程AI</span><span class="tag tag-teal">月之暗面</span>
+      <h4>Kimi K2.7 Code高速版上线，输出速度提升6倍</h4>
+      <p>6月15日，月之暗面Kimi K2.7 Code高速版上线，输出速度为普通版5-6倍。常规编程场景约180 tokens/s，短上下文峰值260 tokens/s。价格为标准版2倍（输入13元/百万tokens，输出54元/百万tokens）。相比K2.6，长上下文指令遵循能力显著提升，平均token消耗减少30%。模型已开源上架HuggingFace。</p>
+      <p><strong>对TME的启发：</strong>编程类AI工具的输出速度和成本效率持续优化，技术团队在代码辅助工具选型时有了更高性价比选项，"加价加速"模式开始成为行业标配。</p>
+      <p class="source">来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_0106a3008b059752" target="_blank">IT之家</a></p>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-orange">企业生态</span><span class="tag tag-blue">OpenAI</span>
+      <h4>OpenAI发布Partner Network，1.5亿美元构建全球合作伙伴生态</h4>
+      <p>OpenAI正式发布首个全球合作伙伴计划，投入1.5亿美元，目标年底认证30万名顾问。计划分Select/Advanced/Elite三级，覆盖Codex、网络安全、API和AI智能体转型等方向。首批合作伙伴包括Accenture、BCG、Bain、QuantumBlack by McKinsey、PwC。同时推出"前沿部署专家"试点，OpenAI工程师与合作伙伴并肩完成复杂企业部署。</p>
+      <p><strong>对TME的启发：</strong>AI企业落地从"卖API"走向"卖部署能力"，合作伙伴生态的成熟将加速大型组织的AI变革管理。企业AI落地的瓶颈已从模型能力移至用例定义、流程重构和变革管理。</p>
+      <p class="source">来源：<a href="https://openai.com/business/partners/" target="_blank">OpenAI</a></p>
+    </div>
+  </div>
+
+  <!-- 👥 议题二 -->
+  <div class="topic">
+    <div class="topic-title">👥 AI公司组织 & 人才</div>
+
+    <div class="card">
+      <span class="tag tag-red">并购</span><span class="tag tag-orange">Salesforce</span>
+      <h4>Salesforce 36亿美元收购AI客服平台Fin，同步裁员</h4>
+      <p>6月15日，Salesforce宣布以约36亿美元收购AI客服平台Fin。Fin的核心产品是多渠道AI客服智能体（由自研Apex模型驱动），覆盖在线聊天、邮件、WhatsApp、短信、电话及Slack渠道，客户包括Anthropic、DoorDash等。交易将补充Salesforce的Agentforce平台（年化收入12亿美元），预计2027财年Q4完成。收购消息与新一轮裁员同步——AI、Mulesoft和Marketing Cloud部门受影响，86个岗位被裁撤。</p>
+      <p><strong>对招聘的启发：</strong>"36亿收购+同步裁员"是传统SaaS企业AI转型的典型样本——一边买AI原生能力，一边裁传统业务冗余。这种模式预计将在更多企业复制，HR需提前做好组织结构调整预案和人才盘点。</p>
+      <p class="source">来源：<a href="https://finance.sina.com.cn/stock/usstock/c/2026-06-15/doc-inicnyqn6700107.shtml" target="_blank">新浪财经</a></p>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-green">融资</span><span class="tag tag-purple">人才创业</span>
+      <h4>林俊旸AI实验室首轮融资，投后估值20亿美元</h4>
+      <p>前阿里巴巴千问大模型负责人林俊旸创办的AI实验室完成首轮融资，总额数亿美元，投后估值约20亿美元（约135亿人民币）。本轮由高榕创投和红杉中国领投（各1亿美元），腾讯参投2000万美元。融资完成后已启动下一轮。林俊旸今年3月从阿里离职，研究方向聚焦世界模型与具身智能。</p>
+      <p><strong>对招聘的启发：</strong>顶级AI技术人才创业持续获得高估值押注，"千问系"人才品牌溢价明显。腾讯连续投资月之暗面、MiniMax、智谱、DeepSeek及林俊旸项目，AI大模型赛道投资布局已形成矩阵。</p>
+      <p class="source">来源：<a href="https://eu.36kr.com/zh/p/3854438054417670" target="_blank">36氪</a></p>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-orange">定价政策</span><span class="tag tag-teal">Anthropic</span>
+      <h4>Anthropic暂停Claude Agent SDK独立计费变更</h4>
+      <p>原定6月15日生效的Claude Agent SDK/claude-p独立计费变更被Anthropic紧急叫停。Anthropic向用户发送邮件称"Nothing changes now"，表示正在更新方案以更好支持开发者，新方案生效前会提前通知。此前5月宣布的变更将程序化使用从订阅池拆分到独立月度额度（Pro $20/月，Max 20x $200/月），对重度开发者意味着5-10倍成本上升。此次暂停被视为对开发者社区强烈反弹的回应。</p>
+      <p><strong>对招聘的启发：</strong>AI工具定价模式仍在剧烈博弈中，企业在AI工具选型和预算规划时需预留定价波动空间。开发者生态的稳定性正成为AI平台竞争的关键变量。</p>
+      <p class="source">来源：<a href="https://juejin.cn/post/7649363408021635113" target="_blank">掘金</a></p>
+    </div>
+  </div>
+
+  <!-- 💡 思考延展 -->
+  <div class="thinking">
+    <span class="badge">💡 HR视角的思考延展</span>
+
+    <h4>今日关注点</h4>
+    <p>AI工具定价模式正在经历从"补贴获客"到"按量计费"的结构性转变。Anthropic的计费变更（虽已暂停）、OpenAI Codex的竞品抢客策略、以及Kimi高速版的"加价加速"模式，都指向同一个趋势：AI工具的免费/低价红利期正在收窄。对于企业HR而言，这意味着AI工具预算需要从"一次性采购"思维转向"按使用量弹性规划"，招聘中与AI工具链相关的岗位也需关注候选人的成本控制意识。</p>
+
+    <p>Salesforce"36亿收购+同步裁员"的组合拳，是传统SaaS企业AI转型的典型样本——一边买AI原生能力，一边裁传统业务冗余。这种"边购边裁"模式预计将在更多企业复制，HR需要提前做好组织结构调整的预案和人才盘点。</p>
+
+    <p>林俊旸以20亿美元估值完成首轮融资，刷新国内AI初创天使轮纪录。顶级AI技术人才的创业正获得前所未有的资本青睐，这对大厂的AI人才保留策略提出新挑战——仅靠薪酬和职级已不足以留住最有野心的人才，需要从事业空间、技术自由度和资源保障上提供更有竞争力的方案。</p>
+
+    <h4>今日思考题</h4>
+    <p><strong>问题：</strong>当AI工具从"补贴期"进入"按量付费"，企业在招聘AI相关岗位时，应该如何评估候选人的"AI成本意识"？</p>
+    <p><strong>解答思路：</strong><br>1. 在技术面试中加入AI工具使用成本评估的讨论，看候选人是否能识别不同模型的性价比差异<br>2. 关注候选人在过往项目中是否有优化AI工具使用成本的实际经验<br>3. 建议团队制定AI工具使用规范，将"成本效率"纳入AI相关岗位的KPI考量</p>
+  </div>
+
+  <div class="watermark">Made by ChloeCao</div>
+</div>
+</body>
+</html>
