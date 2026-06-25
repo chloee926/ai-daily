@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日AI速报 | 2026-06-25</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #1c2128;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-purple: #bc8cff;
+            --accent-orange: #d29922;
+            --accent-red: #f85149;
+            --border-color: #30363d;
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-primary: #ffffff;
+                --bg-secondary: #f6f8fa;
+                --bg-card: #ffffff;
+                --text-primary: #1f2328;
+                --text-secondary: #656d76;
+                --accent-blue: #0969da;
+                --accent-green: #1a7f37;
+                --accent-purple: #8250df;
+                --accent-orange: #9a6700;
+                --accent-red: #cf222e;
+                --border-color: #d0d7de;
+            }
+        }
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-card: #ffffff;
+            --text-primary: #1f2328;
+            --text-secondary: #656d76;
+            --accent-blue: #0969da;
+            --accent-green: #1a7f37;
+            --accent-purple: #8250df;
+            --accent-orange: #9a6700;
+            --accent-red: #cf222e;
+            --border-color: #d0d7de;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #1c2128;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-purple: #bc8cff;
+            --accent-orange: #d29922;
+            --accent-red: #f85149;
+            --border-color: #30363d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 0 16px 60px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .back-nav {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 999;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+        }
+        .back-nav:hover { opacity: 0.8; }
+        .theme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 999;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        @media (max-width: 600px) {
+            .back-nav { position: relative; top: 0; left: 0; display: inline-block; margin: 16px 0 8px; }
+            .theme-toggle { position: fixed; top: 12px; right: 12px; }
+        }
+        header {
+            padding: 60px 0 32px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 32px;
+        }
+        header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        header .date-badge {
+            display: inline-block;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .top3 {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .top3 h3 { font-size: 0.9rem; color: var(--accent-orange); margin-bottom: 12px; }
+        .top3 ol { padding-left: 20px; }
+        .top3 li { margin-bottom: 8px; font-size: 0.95rem; }
+        .verdict {
+            background: linear-gradient(135deg, rgba(88,166,255,0.08), rgba(188,140,255,0.08));
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 36px;
+            font-size: 0.95rem;
+        }
+        .verdict strong { color: var(--accent-blue); }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section-title .emoji { font-size: 1.3rem; }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: var(--accent-blue); }
+        .card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        .card .source {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .card .source a { color: var(--accent-blue); text-decoration: none; }
+        .card .source a:hover { text-decoration: underline; }
+        .card .summary { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px; }
+        .card .insight {
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+        .tag-product { background: rgba(88,166,255,0.15); color: var(--accent-blue); }
+        .tag-talent { background: rgba(188,140,255,0.15); color: var(--accent-purple); }
+        .tag-security { background: rgba(248,81,73,0.15); color: var(--accent-red); }
+        .tag-infra { background: rgba(63,185,80,0.15); color: var(--accent-green); }
+        .thinking-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 16px;
+        }
+        .thinking-section h4 { color: var(--accent-orange); margin-bottom: 12px; }
+        .thinking-section p { font-size: 0.9rem; margin-bottom: 12px; color: var(--text-secondary); }
+        .thinking-question {
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent-purple);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-top: 16px;
+        }
+        .thinking-question strong { color: var(--accent-purple); }
+        .thinking-question ol { padding-left: 20px; margin-top: 10px; font-size: 0.88rem; color: var(--text-secondary); }
+        .thinking-question li { margin-bottom: 6px; }
+        .watermark {
+            text-align: center;
+            padding: 40px 0 20px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-nav">◀ 返回目录</a>
+    <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">🌓</button>
+
+    <header>
+        <h1>今日AI速报</h1>
+        <span class="date-badge">2026-06-25 周四 · 第58期</span>
+    </header>
+
+    <div class="top3">
+        <h3>📌 今日最重要的3点</h3>
+        <ol>
+            <li>AI基础设施从硬件竞赛转向"软件定义算力"，收购逻辑在变</li>
+            <li>顶尖科学人才单周连续出走，前沿实验室的护城河不再是论文</li>
+            <li>桌面Agent产品集体收费，AI从对话工具进入生产力付费时代</li>
+        </ol>
+    </div>
+
+    <div class="verdict">
+        <strong>总判断：</strong>AI行业正经历从"模型能力竞赛"到"生态卡位战"的转折——高通用39亿美元买软件栈而非芯片公司，说明未来AI竞争的关键已从算力本身转向谁能让算力更高效地触达开发者。
+    </div>
+
+    <!-- 📘 新名词 -->
+    <div class="section-title"><span class="emoji">📘</span>新名词解释</div>
+
+    <div class="card">
+        <h4>Modular MAX引擎</h4>
+        <span class="tag tag-infra">基础设施</span>
+        <div class="source">来源：<a href="https://www.qualcomm.com/news/releases/2026/06/qualcomm-to-acquire-modular" target="_blank">Qualcomm官方公告</a></div>
+        <div class="summary">由Chris Lattner（Swift/LLVM之父）创建的AI推理引擎，可让模型跨CPU/GPU/NPU/ASIC架构运行而无需重写代码。高通以39亿美元收购，标志着AI产业从"谁有最强芯片"转向"谁有最好的跨硬件软件层"。</div>
+    </div>
+
+    <div class="card">
+        <h4>Agentjacking（智能体劫持）</h4>
+        <span class="tag tag-security">安全</span>
+        <div class="source">来源：<a href="https://dev.to/hiroki-ii-ai/ai-daily-digest-june-25-2026-gpt-55-cyber-colossus-2-compute-deal-alphafold-exodus-nn" target="_blank">Dev.to AI Daily Digest</a></div>
+        <div class="summary">通过伪造Sentry错误报告向AI编程智能体注入恶意指令的新型攻击手法，已影响2388家企业，利用率达85%。当编程Agent成为主流工具，其安全漏洞影响面远超传统软件。</div>
+    </div>
+
+    <!-- 🚀 议题一 -->
+    <div class="section-title"><span class="emoji">🚀</span>AI产品、平台与流媒体</div>
+
+    <div class="card">
+        <h4>高通39亿美元收购Modular，进军数据中心AI</h4>
+        <span class="tag tag-infra">基础设施</span><span class="tag tag-product">产品</span>
+        <div class="source">来源：<a href="https://www.qualcomm.com/news/releases/2026/06/qualcomm-to-acquire-modular" target="_blank">Qualcomm官方</a> · <a href="https://finance.yahoo.com/technology/ai/articles/qualcomm-acquires-ai-software-startup-131042959.html" target="_blank">Yahoo Finance</a></div>
+        <div class="summary">6月24日，高通宣布以全股票方式收购Chris Lattner创办的AI基础设施软件公司Modular。其统一平台可让AI模型在CPU、GPU、NPU和定制ASIC上高效运行，无需为每种芯片重写代码。交易预计2026年下半年完成。</div>
+        <div class="insight">💡 Modular的硬件无关理念意味着AI部署成本和选型灵活性将大幅改善，直接挑战英伟达CUDA生态锁定。</div>
+    </div>
+
+    <div class="card">
+        <h4>豆包正式推出专业版，桌面Agent进入收费时代</h4>
+        <span class="tag tag-product">产品</span>
+        <div class="source">来源：<a href="https://new.qq.com/rain/a/20260624A0352H00" target="_blank">豆包官方发布</a> · <a href="https://www.chinaz.com/2026/0625/1761011.shtml" target="_blank">chinaz</a></div>
+        <div class="summary">6月24日，字节跳动旗下豆包上线专业版，接入旗舰模型豆包2.1 Pro，核心为"办公任务模式"——可操控本地电脑、浏览器、调用Skills和定时任务，内置Office套件。三档定价：标准68元/月、加强200元/月、高级500元/月。</div>
+        <div class="insight">💡 桌面Agent进入收费验证期，国内15+竞品混战，Agent产品经理和工程人才需求将持续走高。</div>
+    </div>
+
+    <div class="card">
+        <h4>OpenAI发布GPT-5.5-Cyber，启动"Patch the Planet"行动</h4>
+        <span class="tag tag-security">安全</span><span class="tag tag-product">产品</span>
+        <div class="source">来源：<a href="https://dev.to/hiroki-ii-ai/ai-daily-digest-june-25-2026-gpt-55-cyber-colossus-2-compute-deal-alphafold-exodus-nn" target="_blank">Dev.to</a> · <a href="https://www.tmtpost.com/8038797.html" target="_blank">钛媒体</a></div>
+        <div class="summary">OpenAI发布专用安全模型GPT-5.5-Cyber（CyberGym基准85.6%），仅向Akamai、CrowdStrike等合作伙伴开放。联合Trail of Bits、HackerOne发起开源漏洞修复行动，强调AI发现漏洞后必须有人工专家验证闭环。</div>
+        <div class="insight">💡 AI安全垂直化加速，安全岗位从"执行防御"转向"AI审核"，能力画像正在重塑。</div>
+    </div>
+
+    <!-- 👥 议题二 -->
+    <div class="section-title"><span class="emoji">👥</span>AI公司组织与人才</div>
+
+    <div class="card">
+        <h4>诺奖得主Jumper离开DeepMind加入Anthropic，谷歌一周失两将</h4>
+        <span class="tag tag-talent">人才</span>
+        <div class="source">来源：<a href="https://www.buildfastwithai.com/blogs/ai-news-today-june-24-2026" target="_blank">Build Fast with AI</a> · <a href="https://www.sohu.com/a/1040892387_121332524" target="_blank">海量财经</a></div>
+        <div class="summary">AlphaFold联合开发者John Jumper（2024诺贝尔化学奖）加入Anthropic；Transformer论文合著者Noam Shazeer转投OpenAI。两人一周内连续出走导致Alphabet股价暴跌7.2%、市值蒸发超2200亿美元。</div>
+        <div class="insight">💡 顶尖人才流向=行业风向。当一个关键人才的留存能引发千亿市值波动，"人才就是估值"已成共识。</div>
+    </div>
+
+    <div class="card">
+        <h4>OpenAI重建机器人团队，宇树R1降至2.99万现货开售</h4>
+        <span class="tag tag-talent">人才</span><span class="tag tag-product">产品</span>
+        <div class="source">来源：<a href="https://caifuhao.eastmoney.com/news/20260625085551888126750" target="_blank">东方财富·科技早报</a></div>
+        <div class="summary">OpenAI官宣重建机器人团队（2021年曾解散），英伟达联合宇树发布Isaac GR200T参考设计。宇树R1人形机器人降至2.99万元起并开放现货，具身智能从实验室进入量产元年。</div>
+        <div class="insight">💡 具身智能人才需求即将爆发——机器人控制、强化学习、仿真开发等方向成为新争夺高地。</div>
+    </div>
+
+    <div class="card">
+        <h4>五眼联盟发布AI网络攻击预警，美国签署量子安全行政令</h4>
+        <span class="tag tag-security">安全</span>
+        <div class="source">来源：<a href="https://www.sohu.com/a/1041172751_122676730" target="_blank">搜狐报道</a></div>
+        <div class="summary">五眼联盟联合发布网络安全报告，判断外部借助前沿AI模型打造新型网攻手段的速度远超预期，时间窗口仅数月。白宫同日签署两份行政令，针对量子计算和量子时代网络安全防护。</div>
+        <div class="insight">💡 AI安全与量子安全将成为政策驱动的人才热点方向，复合型安全人才跨国竞争激烈。</div>
+    </div>
+
+    <!-- 💡 思考延展 -->
+    <div class="section-title"><span class="emoji">💡</span>HR视角的思考延展</div>
+
+    <div class="thinking-section">
+        <h4>今日关注点</h4>
+        <p><strong>桌面Agent收费潮与人才画像变化：</strong>豆包专业版、Kimi Work、TRAE Work等产品6月密集上线，AI从"免费试用"进入"为生产力付费"阶段。企业AI采购决策更理性，需要能证明ROI的产品经理和解决方案架构师。</p>
+        <p><strong>人才流动的"诺奖效应"：</strong>Jumper和Shazeer一周内分别加入Anthropic和OpenAI，导致谷歌市值蒸发2200亿美元。一个关键人才的留存或流失，能在资本市场产生可量化的巨大影响。HR需思考：如何用"影响力机会"而非纯薪资吸引核心人才？</p>
+        <p><strong>安全人才跨界需求：</strong>从Agentjacking到GPT-5.5-Cyber到五眼预警，AI安全正成为独立赛道。未来安全岗需同时理解AI模型行为和攻防对抗。</p>
+    </div>
+
+    <div class="thinking-question">
+        <strong>今日思考题</strong>
+        <p style="margin-top:8px;font-size:0.9rem;">当AI桌面Agent能替代部分重复性办公工作时，TME内部哪些岗位能力模型需要重新定义？HR应如何主动推动这种转变？</p>
+        <ol>
+            <li><strong>识别受影响岗位：</strong>数据汇总、日报生成、格式排版等任务密度高的岗位将首先被Agent辅助或替代</li>
+            <li><strong>重新定义能力模型：</strong>从"执行准确性"转向"任务拆解与AI协作能力"——能把复杂目标分解为Agent可执行指令的人更有价值</li>
+            <li><strong>落地建议：</strong>校招JD增加AI工具使用考察维度，内部开设"AI协作工作坊"，让员工从"被替代者"变为"Agent指挥官"</li>
+        </ol>
+    </div>
+
+    <div class="watermark">Made by ChloeCao</div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        }
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved) document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</body>
+</html>
