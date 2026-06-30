@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日AI速报 | 2026-06-30</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card-bg: #161b22;
+  --text: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --accent2: #f78166;
+  --accent3: #7ee787;
+  --accent4: #d2a8ff;
+  --border: #30363d;
+  --tag-bg: rgba(88,166,255,0.15);
+}
+[data-theme="light"] {
+  --bg: #ffffff;
+  --card-bg: #f6f8fa;
+  --text: #1f2328;
+  --text-secondary: #656d76;
+  --accent: #0969da;
+  --accent2: #cf222e;
+  --accent3: #1a7f37;
+  --accent4: #8250df;
+  --border: #d0d7de;
+  --tag-bg: rgba(9,105,218,0.1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 20px;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.back-nav {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+  z-index: 100;
+  transition: all 0.2s;
+}
+.back-nav:hover { background: var(--accent); color: #fff; }
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+h1 {
+  font-size: 1.6em;
+  margin: 40px 0 20px;
+  background: linear-gradient(135deg, var(--accent), var(--accent4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.top3 {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.top3 h3 { color: var(--accent); font-size: 0.95em; margin-bottom: 12px; }
+.top3 ol { padding-left: 20px; }
+.top3 li { margin: 8px 0; font-size: 0.95em; }
+.verdict {
+  background: linear-gradient(135deg, rgba(88,166,255,0.08), rgba(210,168,255,0.08));
+  border-left: 3px solid var(--accent4);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0 30px;
+  font-size: 0.92em;
+  color: var(--text-secondary);
+}
+.section-title {
+  font-size: 1.2em;
+  margin: 36px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 16px 0;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--accent); }
+.card h3 { font-size: 1.05em; margin-bottom: 10px; color: var(--text); }
+.card .meta { font-size: 0.85em; color: var(--text-secondary); margin-bottom: 10px; }
+.card .meta a { color: var(--accent); text-decoration: none; }
+.card .meta a:hover { text-decoration: underline; }
+.card .summary { font-size: 0.92em; margin-bottom: 10px; }
+.card .insight {
+  font-size: 0.88em;
+  color: var(--accent3);
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+.tag {
+  display: inline-block;
+  background: var(--tag-bg);
+  color: var(--accent);
+  font-size: 0.75em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+.tag.product { background: rgba(126,231,135,0.15); color: var(--accent3); }
+.tag.org { background: rgba(247,129,102,0.15); color: var(--accent2); }
+.tag.think { background: rgba(210,168,255,0.15); color: var(--accent4); }
+.thinking-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+}
+.thinking-section h4 { color: var(--accent4); margin-bottom: 12px; }
+.thinking-section p { font-size: 0.92em; margin-bottom: 12px; color: var(--text-secondary); }
+.question-box {
+  background: rgba(210,168,255,0.08);
+  border: 1px solid rgba(210,168,255,0.3);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 16px;
+}
+.question-box h4 { color: var(--accent4); margin-bottom: 8px; }
+.question-box ol { padding-left: 20px; font-size: 0.9em; color: var(--text-secondary); }
+.question-box li { margin: 6px 0; }
+.watermark {
+  text-align: center;
+  color: var(--text-secondary);
+  opacity: 0.4;
+  font-size: 0.8em;
+  margin-top: 60px;
+  padding-bottom: 30px;
+}
+@media (max-width: 600px) {
+  body { padding: 14px; }
+  h1 { font-size: 1.3em; margin-top: 50px; }
+  .back-nav { position: relative; top: 0; left: 0; display: inline-block; margin-bottom: 10px; }
+  .theme-toggle { top: 10px; right: 10px; }
+  .card { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<a class="back-nav" href="index.html">◀ 返回目录</a>
+<button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+<h1>今日AI速报 | 2026-06-30</h1>
+
+<div class="top3">
+<h3>📌 今日最重要的3点</h3>
+<ol>
+<li>AI前沿模型进入"政府审批发布"新常态，技术扩散节奏被主权意志重塑</li>
+<li>硬件霸主向软件层延伸遭遇人才与文化壁垒，收购整合模式受挫</li>
+<li>半导体产业进入国家级"赌国运"阶段，AI算力军备竞赛从企业升维至国家</li>
+</ol>
+</div>
+
+<div class="verdict">
+<strong>总判断：</strong>AI产业正在从"谁的模型最强"竞争转向"谁控制模型分发权"的主权博弈。算力基础设施投资规模已突破单一企业承载极限，各国政府直接介入产能布局，行业底层逻辑正在从技术驱动转向地缘-资本-技术三角驱动。
+</div>
+
+<!-- 新名词 -->
+<h2 class="section-title">📘 新名词解释</h2>
+
+<div class="card">
+<span class="tag">新概念</span>
+<h3>Government-Gated AI Release（政府门控发布）</h3>
+<p class="summary">指前沿AI模型在发布前须经政府安全审查并获得批准后，才能逐步向公众开放的新发布模式。GPT-5.6和Mythos 5同时经历此流程，标志着前沿模型发布从企业自主转向"政府—企业共治"。</p>
+<p class="meta">来源：<a href="https://www.buildfastwithai.com/blogs/ai-news-today-june-29-2026" target="_blank">Build Fast with AI</a></p>
+<p class="insight">💡 影响AI产品上市节奏和全球可及性，企业AI工具选型需考虑地缘供应链韧性。</p>
+</div>
+
+<div class="card">
+<span class="tag">新概念</span>
+<h3>Vibe Coding（氛围编程）</h3>
+<p class="summary">用户仅通过自然语言描述需求，由AI全程完成代码生成、测试到上线的零门槛应用开发模式。高德"袋马"入局标志着该模式从开发者圈扩展至大众产品形态。</p>
+<p class="meta">来源：<a href="https://www.toutiao.com/article/7656637396636697131/" target="_blank">IT之家</a></p>
+<p class="insight">💡 应用开发门槛降至分钟级对话，可能重塑小程序生态供给结构。</p>
+</div>
+
+<!-- 议题一 -->
+<h2 class="section-title">🚀 AI产品、平台与流媒体</h2>
+
+<div class="card">
+<span class="tag product">产品动态</span>
+<h3>Anthropic Fable 5 出口管制有望本周解禁</h3>
+<p class="summary">美国政府计划放宽对Fable 5的出口管制，限制有望最早本周解除。此前6月12日禁令导致全球用户无法访问该模型15天。Mythos 5已于6月26日向部分"可信合作伙伴"恢复访问。美国商务部长卢特尼克确认Anthropic"已取得重大进展"。</p>
+<p class="meta">来源：<a href="https://m.10jqka.com.cn/20260629/c677773279.shtml" target="_blank">证券时报网</a> · <a href="https://www.toutiao.com/a7656620441527747113" target="_blank">TechWeb</a></p>
+<p class="insight">💡 Fable 5是当前编码和Agent能力最强商用模型，其可用性直接影响企业AI工具链稳定性。</p>
+</div>
+
+<div class="card">
+<span class="tag product">产品动态</span>
+<h3>高德内测"袋马"Vibe Coding产品，入局零代码赛道</h3>
+<p class="summary">6月29日高德低调内测"袋马（daimax）"产品，用户无需代码基础，自然语言10分钟内生成可真机运行的微信小程序和iOS应用。含"灵感广场"模板库，支持对话式迭代修改。</p>
+<p class="meta">来源：<a href="https://news.10jqka.com.cn/20260629/c677778130.shtml" target="_blank">同花顺-读佳</a></p>
+<p class="insight">💡 零代码从开发者工具走向大众消费品，小程序生态可能迎来长尾供给爆发。</p>
+</div>
+
+<div class="card">
+<span class="tag product">治理政策</span>
+<h3>中美同日出手规范AI智能体，全球AI治理加速</h3>
+<p class="summary">6月30日美国拟推全球首部AI智能体法案，同日中国国常会专题部署AI产业。欧盟理事会正式批准AI Act修订案，新增AI生成内容禁令。三大经济体在同一周期密集出台AI监管政策。</p>
+<p class="meta">来源：<a href="https://new.qq.com/rain/a/20260630A0212500" target="_blank">腾讯新闻</a></p>
+<p class="insight">💡 AI Agent合规要求将影响企业AI工具部署策略和跨境数据处理。</p>
+</div>
+
+<!-- 议题二 -->
+<h2 class="section-title">👥 AI公司组织与人才</h2>
+
+<div class="card">
+<span class="tag org">人才动态</span>
+<h3>贾扬清离职英伟达：收购仅一年即"决裂"</h3>
+<p class="summary">6月29日SemiAnalysis爆料，Lepton AI创始人贾扬清已从英伟达离职，距英伟达7亿美元收购仅一年。原因：DGX Cloud Lepton表现不佳，且英伟达未兑现开源承诺。贾扬清已受邀担任Hyperbolic顾问。</p>
+<p class="meta">来源：<a href="https://36kr.com/p/3874163433903107" target="_blank">36氪</a> · <a href="https://new.qq.com/rain/a/20260630A02VGW00" target="_blank">IT之家</a></p>
+<p class="insight">💡 GPU霸主向软件层扩张遇阻，"收购-离职"模式提醒acqui-hire后需重视技术理想主义者留存。</p>
+</div>
+
+<div class="card">
+<span class="tag org">国家战略</span>
+<h3>韩国携三星SK公布4755万亿韩元史上最大半导体投资</h3>
+<p class="summary">6月29日韩国总统李在明公布"三大超级项目"：三星投2655万亿、SK投2100万亿韩元，合计约20.95万亿人民币（韩国GDP的1.6倍），投向半导体、HBM和AI数据中心。计划将晶圆厂建设提前12年。</p>
+<p class="meta">来源：<a href="https://www.36kr.com/p/3874163375625222" target="_blank">36氪-智东西</a> · <a href="https://www.163.com/dy/article/L0JQTBKK0534A4SC.html" target="_blank">界面新闻</a></p>
+<p class="insight">💡 AI算力军备竞赛升维至国家层面，半导体人才需求将迎来结构性增长。</p>
+</div>
+
+<div class="card">
+<span class="tag org">国家战略</span>
+<h3>中国国常会专题部署AI产业，明确四大战略方向</h3>
+<p class="summary">6月29日国务院常务会议专题部署AI：加力推进创新突破、加快超大规模智算集群建设、强化数据供给、深入"人工智能+"行动。明确AI为国家长期竞争力核心。</p>
+<p class="meta">来源：<a href="https://www.zhitongcaijing.com/content/detail/1460887.html" target="_blank">智通财经</a></p>
+<p class="insight">💡 国家级战略加持将持续扩大AI岗位需求，跨界复合型人才成重点方向。</p>
+</div>
+
+<!-- 思考延展 -->
+<h2 class="section-title">💡 HR视角思考延展</h2>
+
+<div class="thinking-section">
+<h4>今日关注点</h4>
+<p>AI产业竞争维度从"模型性能"扩展为"性能×分发权×合规×算力"多维博弈。Fable 5出口管制事件表明，最强AI模型也可能因地缘政治一夜不可用——HR在评估AI工具时需将"供应商地缘风险"纳入决策维度。</p>
+<p>贾扬清离职折射AI人才深层矛盾：硬件巨头收购获取软件能力，但开源文化与大企业管控存在根本张力。跟踪大厂收购后人才溢出，是获取高端AI基础设施人才的黄金窗口。</p>
+<p>韩国4755万亿韩元计划和中国国常会部署共同指向：AI算力从企业资本开支转变为国家基础设施投资，半导体人才需求将不受短期应用层周期波动影响。</p>
+</div>
+
+<div class="question-box">
+<h4>🤔 今日思考题</h4>
+<p style="margin-bottom:10px;font-size:0.92em;">当前沿AI模型可能因地缘政治突然不可用时，企业的AI工具选型策略应如何调整？HR部门在采购AI工具时如何评估"供应商地缘风险"？</p>
+<ol>
+<li>建立"双模型冗余"策略：核心流程避免单一模型依赖，保留国内外双供应商切换能力</li>
+<li>新增"地缘政策风险评级"评估维度，优先选择有本地化部署选项的AI服务商</li>
+<li>推动建立企业级AI工具供应商白名单制度，定期审视合规状态和政策风险暴露面</li>
+</ol>
+</div>
+
+<div class="watermark">Made by ChloeCao</div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('ai-daily-theme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+  } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+</body>
+</html>
