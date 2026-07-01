@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日AI速报 | 2026-07-01</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card-bg: #161b22;
+  --text: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --accent2: #7ee787;
+  --accent3: #d2a8ff;
+  --accent4: #ffa657;
+  --border: #30363d;
+  --tag-bg: rgba(88,166,255,0.15);
+}
+[data-theme="light"] {
+  --bg: #ffffff;
+  --card-bg: #f6f8fa;
+  --text: #1f2328;
+  --text-secondary: #656d76;
+  --accent: #0969da;
+  --accent2: #1a7f37;
+  --accent3: #8250df;
+  --accent4: #bc4c00;
+  --border: #d0d7de;
+  --tag-bg: rgba(9,105,218,0.1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 0 16px 80px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.back-nav {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 999;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+}
+.back-nav:hover { background: var(--accent); color: #fff; }
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.2s;
+}
+header { padding: 80px 0 32px; text-align: center; }
+header h1 { font-size: 1.8em; margin-bottom: 8px; }
+header .date { color: var(--text-secondary); font-size: 0.95em; }
+.top3 {
+  background: linear-gradient(135deg, rgba(88,166,255,0.08), rgba(126,231,135,0.08));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+}
+.top3 h3 { color: var(--accent); margin-bottom: 12px; font-size: 1em; }
+.top3 ol { padding-left: 20px; }
+.top3 li { margin-bottom: 8px; color: var(--text); }
+.top3 .verdict { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.95em; color: var(--text-secondary); }
+.section { margin: 40px 0; }
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+.section-title .emoji { font-size: 1.3em; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--accent); }
+.card h4 { margin-bottom: 10px; font-size: 1.05em; }
+.card .meta { font-size: 0.85em; color: var(--text-secondary); margin-bottom: 8px; }
+.card .meta a { color: var(--accent); text-decoration: none; }
+.card .meta a:hover { text-decoration: underline; }
+.card p { margin-bottom: 8px; font-size: 0.95em; }
+.card .tag {
+  display: inline-block;
+  background: var(--tag-bg);
+  color: var(--accent);
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  margin-top: 8px;
+}
+.thinking-box {
+  background: linear-gradient(135deg, rgba(210,168,255,0.08), rgba(255,166,87,0.08));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+}
+.thinking-box h4 { color: var(--accent3); margin-bottom: 12px; }
+.thinking-box ol { padding-left: 20px; }
+.thinking-box li { margin-bottom: 6px; font-size: 0.95em; }
+.watermark {
+  text-align: center;
+  padding: 40px 0 20px;
+  color: var(--text-secondary);
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+@media (max-width: 600px) {
+  .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 16px auto; width: fit-content; }
+  header { padding: 24px 0; }
+  header h1 { font-size: 1.4em; }
+}
+</style>
+</head>
+<body>
+<a class="back-nav" href="index.html">◀ 返回目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换主题">🌓</button>
+
+<header>
+  <h1>今日AI速报</h1>
+  <div class="date">2026-07-01 · 星期二 · 第61期</div>
+</header>
+
+<div class="top3">
+  <h3>📌 今日最重要的3点</h3>
+  <ol>
+    <li>AI巨头从卖模型转向卖服务——嵌入式工程师成新竞争维度</li>
+    <li>高性能模型向中端价格带迁移，Agent能力不再是旗舰专属</li>
+    <li>中国万亿参数大模型首次在全国产算力上完成全流程验证</li>
+  </ol>
+  <div class="verdict"><strong>总判断：</strong>AI产业正式进入"落地即竞争力"阶段——模型性能差距收窄后，谁能更快把AI塞进客户工作流，谁就赢得下一轮增长。AWS、OpenAI、Anthropic同步推出嵌入式工程师/咨询服务，标志着竞争焦点从"模型强不强"转向"部署快不快"。</div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="emoji">📘</span> 新名词解释</div>
+  
+  <div class="card">
+    <h4>Forward-Deployed Engineer（前线派驻工程师）</h4>
+    <p><strong>一句话解释：</strong>AI公司派遣工程师小组直接进驻客户企业，在45天内完成AI系统搭建与落地部署的新型服务模式。</p>
+    <p class="meta">来源：<a href="https://www.163.com/dy/article/L0N6CEV705568W0A.html">环球市场播报</a></p>
+    <p><strong>为什么重要：</strong>AWS投入10亿美元、配置数千名工程师开创此模式，OpenAI和Anthropic紧随其后——"驻场AI工程师"正在成为科技行业最抢手的新职种。</p>
+  </div>
+
+  <div class="card">
+    <h4>Semi-Autoregressive Speculative Decoding（半自回归推测解码）</h4>
+    <p><strong>一句话解释：</strong>DeepSeek提出的推理加速方法，在并行生成基础上加入轻量顺序模块，线上推理提速60%-85%。</p>
+    <p class="meta">来源：<a href="https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf">DeepSeek/DSpark论文</a></p>
+    <p><strong>为什么重要：</strong>已开源且适配Qwen3、Gemma4等主流模型，大幅降低推理成本和延迟。</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="emoji">🚀</span> AI产品、平台与流媒体</div>
+  
+  <div class="card">
+    <h4>Anthropic发布Claude Sonnet 5：Agent能力下沉中端价位</h4>
+    <p class="meta">来源：<a href="https://www.anthropic.com/">Anthropic官方</a> · <a href="https://new.qq.com/rain/a/20260701A02LBH00">机器之心</a></p>
+    <p>Anthropic正式发布Claude Sonnet 5，性能接近旗舰Opus 4.8（SWE-bench Pro 63.2% vs 69.2%），但API定价低约60%。限时优惠至8月31日：输入$2/M、输出$10/M。强化自主规划、浏览器和终端工具调用能力，已成为Free和Pro用户默认模型。</p>
+    <span class="tag">模型发布</span>
+  </div>
+
+  <div class="card">
+    <h4>Anthropic推出Claude Science科研工作台</h4>
+    <p class="meta">来源：<a href="https://www.anthropic.com/">Anthropic官方</a> · <a href="https://www.theblockbeats.info/flash/353978">动察Beating</a></p>
+    <p>面向科研人员的客户端beta版，整合本地/SSH/HPC节点运行环境。内置协调智能体+评审智能体实现自动纠错，支持自然语言操作图表，算力可自动扩展至数百GPU。内置NVIDIA BioNeMo工具包和60+预配置科学技能。</p>
+    <span class="tag">垂直场景</span>
+  </div>
+
+  <div class="card">
+    <h4>美团发布万亿参数大模型LongCat-2.0，匿名冲榜全球前三</h4>
+    <p class="meta">来源：<a href="https://tech.meituan.com/">美团技术</a> · <a href="https://news.qq.com/rain/a/20260701A01B2800">每日经济新闻</a></p>
+    <p>总参数1.6万亿，MoE架构，原生支持1M超长上下文。此前匿名"Owl Alpha"在OpenRouter调用量全球前三，Hermes场景月调用量全球第一。全程在5万卡国产算力集群完成训练与推理，SWE-bench Pro得分59.5，即将开源核心技术。</p>
+    <span class="tag">国产大模型</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="emoji">👥</span> AI公司组织与人才</div>
+  
+  <div class="card">
+    <h4>AWS斥资10亿美元成立前线派驻工程部</h4>
+    <p class="meta">来源：<a href="https://tech.caijing.com.cn/20260701/5168268.shtml">科创板日报</a> · <a href="https://www.163.com/dy/article/L0N6CEV705568W0A.html">新浪财经</a></p>
+    <p>6月30日，AWS宣布投入10亿美元成立Forward-Deployed Engineers新部门，由VP Francessca Vasquez负责。以5-6人小组形式进驻客户约45天，首批客户包括NBA和理光。是首家超大规模云厂商做此组织架构级布局。</p>
+    <p><strong>对招聘启发：</strong>"驻场AI工程师"成云厂商新标配，要求技术+咨询+沟通复合能力。</p>
+    <span class="tag">组织变革</span>
+  </div>
+
+  <div class="card">
+    <h4>DeepSeek完成500亿元融资并启动大规模招聘</h4>
+    <p class="meta">来源：<a href="https://pandaily.com/deepseek-funding-expansion-hiring-harness">Pandaily</a></p>
+    <p>完成超500亿元首轮外部融资（国家AI产业投资基金、腾讯、宁德时代参投）。开放36个岗位，目标翻倍所有部门。新成立Harness团队对标Claude Code，核心使命"Model + Harness = Agent"。过去半年已有5名核心研究员离职加入字节、腾讯、小米。</p>
+    <p><strong>对招聘启发：</strong>AI人才争夺进入新阶段，Agent方向产品经理和工程师岗位将爆发。</p>
+    <span class="tag">融资扩张</span>
+  </div>
+
+  <div class="card">
+    <h4>全球科技行业上半年裁员超12万人：AI驱动"腾笼换鸟"</h4>
+    <p class="meta">来源：<a href="https://www.sohu.com/a/1042364547_122888693">搜狐科技</a> · <a href="https://www.latestly.com/technology/cisco-layoffs-company-to-cut-471-california-jobs-amid-strategic-ai-restructuring-7494704.html">LatestLY</a></p>
+    <p>2026年1-5月美国科技公司裁员超12.3万人，同比增66%。Cisco/Intuit/Meta等均在利润创新高时主动裁员。被裁岗位集中在中后台、客服、中层管理；新增岗位集中在AI产品经理、Agent工程师。AI相关岗位需求同比增超40%。</p>
+    <p><strong>对招聘启发：</strong>不是AI抢工作，而是企业主动用AI替换人再将成本投向AI本身。HR自身也需升级。</p>
+    <span class="tag">行业趋势</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="emoji">💡</span> HR视角的思考延展</div>
+  
+  <div class="card">
+    <h4>今日关注点</h4>
+    <p>今天最值得HR关注的结构性变化是：AI公司集体转向"嵌入式服务"模式。AWS的10亿美元前线派驻工程部、OpenAI的企业咨询、Anthropic的Claude Science——三巨头同时从"卖模型"转向"帮你用"，企业内部对"AI落地人才"的需求将爆发式增长。</p>
+    <p>DeepSeek的500亿融资和全面扩招，叠加过去半年5名核心研究员流失，揭示关键矛盾：AI公司越大规模扩张，顶尖人才流动性越高。薪资竞争已不够，组织使命感、技术自由度和股权设计成为留人关键。</p>
+    <p>全球裁员12万人实则是最清晰的"人才结构转型"信号——被裁的是标准化重复岗位，新增的是AI Agent工程师和落地顾问。</p>
+  </div>
+
+  <div class="thinking-box">
+    <h4>💭 今日思考题</h4>
+    <p><strong>当AWS、OpenAI、Anthropic都在组建"驻场AI工程师"团队时，招聘团队应该如何调整对"AI工程师"岗位画像的理解？</strong></p>
+    <ol>
+      <li>传统画像偏重算法，但"Forward-Deployed Engineer"要求技术+咨询+沟通复合能力</li>
+      <li>关注候选人是否具备"端到端落地"经验——从训模型到接入业务系统并产出可衡量价值</li>
+      <li>与业务部门联合定义"AI落地工程师"新岗位JD，评估是否需要类似的AI赋能团队编制</li>
+    </ol>
+  </div>
+</div>
+
+<div class="watermark">Made by ChloeCao</div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('ai-daily-theme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+  } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+</body>
+</html>
