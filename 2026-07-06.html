@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日AI速报 | 2026-07-06（含周末）</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2235;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-pink: #ec4899;
+            --border-color: #1e293b;
+            --tag-bg: rgba(59, 130, 246, 0.1);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --accent-blue: #2563eb;
+            --accent-purple: #7c3aed;
+            --accent-green: #059669;
+            --accent-orange: #d97706;
+            --accent-pink: #db2777;
+            --border-color: #e2e8f0;
+            --tag-bg: rgba(37, 99, 235, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            backdrop-filter: blur(8px);
+        }
+        .back-nav:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
+
+        .theme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .theme-toggle:hover { border-color: var(--accent-blue); }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header .date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .highlights {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .highlights h2 {
+            font-size: 1rem;
+            color: var(--accent-blue);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .highlights ol {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        .highlights ol li {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 0.93rem;
+            font-weight: 500;
+        }
+
+        .highlights .verdict {
+            padding-top: 14px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .highlights .verdict strong {
+            color: var(--accent-purple);
+        }
+
+        .section {
+            margin-bottom: 36px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title .emoji { font-size: 1.2rem; }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: var(--accent-blue); }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .card .source {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .card .source a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        .card .source a:hover { text-decoration: underline; }
+
+        .card .summary {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .card .insight {
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            padding: 10px 14px;
+            background: rgba(16, 185, 129, 0.06);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .tag-product { background: rgba(59,130,246,0.12); color: var(--accent-blue); }
+        .tag-org { background: rgba(139,92,246,0.12); color: var(--accent-purple); }
+        .tag-term { background: rgba(245,158,11,0.12); color: var(--accent-orange); }
+        .tag-hr { background: rgba(236,72,153,0.12); color: var(--accent-pink); }
+
+        .thinking-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .thinking-section h3 {
+            font-size: 1rem;
+            color: var(--accent-pink);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .thinking-section p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .question-box {
+            background: rgba(139, 92, 246, 0.06);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 8px;
+            padding: 18px;
+            margin-top: 16px;
+        }
+
+        .question-box .q {
+            font-weight: 600;
+            color: var(--accent-purple);
+            margin-bottom: 12px;
+            font-size: 0.92rem;
+        }
+
+        .question-box ol {
+            padding-left: 18px;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .question-box ol li { margin-bottom: 6px; }
+
+        .watermark {
+            text-align: center;
+            padding: 30px 0 20px;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 50px 16px 30px; }
+            header h1 { font-size: 1.3rem; }
+            .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin-bottom: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <a class="back-nav" href="index.html">◀ 返回目录</a>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <div class="container">
+        <header>
+            <h1>今日AI速报</h1>
+            <p class="date">2026-07-06 周一（含周末） · 第64期</p>
+        </header>
+
+        <div class="highlights">
+            <h2>📌 今日最重要的3点</h2>
+            <ol>
+                <li>AI巨头从"买算力"转向"造算力"，芯片自研成为前沿实验室标配</li>
+                <li>大厂Agent战略进入产品重构期，从聊天框升级为后台自主工作系统</li>
+                <li>全球AI人才争夺从线上扩展到顶会现场，薪酬天花板持续刷新</li>
+            </ol>
+            <div class="verdict">
+                <strong>总判断：</strong>AI竞争正从"模型能力"维度向"基础设施自主+产品形态重构+人才深度绑定"三个维度同步演进。芯片自研、Agent产品化和人才抢夺彼此强化——谁能同时推进三条线，谁才能在下一阶段占据主动权。
+            </div>
+        </div>
+
+        <!-- 新名词 -->
+        <div class="section">
+            <div class="section-title"><span class="emoji">📘</span> 新名词解释</div>
+
+            <div class="card">
+                <span class="tag tag-term">新概念</span>
+                <h3>AutoPilot Agent（自动驾驶式智能体）</h3>
+                <div class="source">来源：<a href="https://mlq.ai/news/microsoft-merges-consumer-and-enterprise-copilot-into-single-app-launches-paid-autopilot-agents" target="_blank">The Information / MLQ.ai</a></div>
+                <div class="summary">微软为Copilot设计的后台常驻AI代理，无需用户逐次下达指令即可自动执行日程管理、邮件摘要等重复性工作。</div>
+                <div class="insight">标志AI助手从"被动应答"向"主动交付"的产品形态转变，未来知识工作者的协作对象将从"对话框"变为"后台Agent团队"。</div>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-term">新概念</span>
+                <h3>算电协同定价（Compute-Grid Synced Pricing）</h3>
+                <div class="source">来源：<a href="https://www.tmtpost.com/8052737.html" target="_blank">钛媒体</a></div>
+                <div class="summary">DeepSeek首创的API定价模式，将推理服务价格与底层算力节点的电网峰谷时段直接挂钩——高峰涨价、低谷降价。</div>
+                <div class="insight">全球首个将电力市场价格信号传导至AI服务终端用户的商业模式创新，开启了"算力即公用事业"的定价先河。</div>
+            </div>
+        </div>
+
+        <!-- 产品平台 -->
+        <div class="section">
+            <div class="section-title"><span class="emoji">🚀</span> AI产品、平台与流媒体</div>
+
+            <div class="card">
+                <span class="tag tag-product">产品重构</span>
+                <h3>微软全面重构Copilot：消费版与企业版合并，8月推出AutoPilot付费代理</h3>
+                <div class="source">来源：<a href="https://mlq.ai/news/microsoft-merges-consumer-and-enterprise-copilot-into-single-app-launches-paid-autopilot-agents" target="_blank">The Information / 微软内部备忘录</a></div>
+                <div class="summary">7月3日微软内部备忘录披露，将在8月前将消费者版和企业版Copilot合并为单一应用。新增代号"AutoPilot"的后台常驻智能体（首个为Microsoft Scout），并砍掉Copilot Podcasts和Labs等功能。目前4.5亿M365用户中仅不足4.5%付费使用Copilot，重构目标是让AI从"增值功能"变为"核心产品"。负责人为33岁前Snap高管Jacob Andreou，统管11000人团队。</div>
+                <div class="insight">Copilot重构直接影响全球办公生态，Agent从对话工具升级为后台自主系统，将改变企业对"AI产品经理"和"Agent开发工程师"的能力画像要求。</div>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-product">代理产品</span>
+                <h3>谷歌测试全天候个人AI代理"Gemini Spark"，关闭Project Mariner</h3>
+                <div class="source">来源：<a href="https://www.yeyulingfeng.com/a/836972.html" target="_blank">The Decoder / 多家媒体</a></div>
+                <div class="summary">谷歌内部测试代号"Remy"（后更名Gemini Spark）的24/7个人AI代理，可直连Gmail、日历、文档、云盘，代替用户处理日程协调、邮件回复和文档协作。同时关闭独立浏览器代理Project Mariner，将所有代理能力集中到Gemini单一产品线。</div>
+                <div class="insight">行业竞争焦点从"模型能力"转向"代理嵌入日常工作深度"，Agent岗位需求将从"研究型"向"产品落地型"快速倾斜。</div>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-product">模型发布</span>
+                <h3>OpenAI发布GPT-5.6系列，仅限机构预览；Codex与ChatGPT确认合体</h3>
+                <div class="source">来源：<a href="https://new.qq.com/rain/a/20260706A02A5V00" target="_blank">变量棱镜 / 机器之心</a></div>
+                <div class="summary">7月5日OpenAI正式发布GPT-5.6系列（Sol/Terra/Luna三款模型），当前仅以limited preview形式向少量受信任机构开放API权限。同日团队确认Codex将与ChatGPT完成整合，二者是同一能力的不同入口而非两条独立产品线。</div>
+                <div class="insight">OpenAI转向B端优先策略；Codex合体ChatGPT意味着"编程助手"和"通用助手"的产品边界正在消融。</div>
+            </div>
+        </div>
+
+        <!-- 组织人才 -->
+        <div class="section">
+            <div class="section-title"><span class="emoji">👥</span> AI公司组织与人才</div>
+
+            <div class="card">
+                <span class="tag tag-org">芯片自研</span>
+                <h3>Anthropic启动自研AI芯片，与三星洽谈2nm代工合作</h3>
+                <div class="source">来源：<a href="https://news.qq.com/rain/a/20260703A079AK00" target="_blank">TechCrunch / The Information（7月2日）</a></div>
+                <div class="summary">Anthropic已启动自有AI芯片早期研发，与三星电子就2nm制程代工展开洽谈。从OpenAI挖角芯片团队核心成员Clive Chan。三星参与了Anthropic今年5月650亿美元H轮融资。至此，OpenAI、Google、Amazon、Anthropic四大前沿实验室全部拥有自研芯片路线。</div>
+                <div class="insight">AI公司从"纯软件"组织向"软硬协同"组织演进，芯片架构师、先进封装工程师成为核心招聘方向。</div>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-org">人才争夺</span>
+                <h3>ICML 2026首尔：腾讯美团快手蚂蚁"摆摊挖人"</h3>
+                <div class="source">来源：<a href="https://new.qq.com/rain/a/20260706A03V1500" target="_blank">腾讯新闻（7月6日）</a></div>
+                <div class="summary">7月6-11日ICML 2026在韩国首尔举行，腾讯（50篇中稿+青云学术会议厅）、美团（LongCat团队现场宣讲）、快手（游轮晚宴）、蚂蚁（AGI Coffee Chat+SGLang联名晚宴）四家中国大厂深度参与，设展台、开Coffee Chat、办晚宴直接挖人。</div>
+                <div class="insight">顶会现场招聘成为新常态，HR需与技术团队深度协同才能在学术会议上精准触达目标人才。</div>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-org">裁员趋势</span>
+                <h3>2026上半年全球科技裁员超12万人，AI连续多月成头号原因</h3>
+                <div class="source">来源：<a href="https://www.toutiao.com/a7657772207048753710" target="_blank">Layoffs.fyi / Challenger数据</a></div>
+                <div class="summary">2026年至今全球科技行业已裁12.25万人（214家公司）。亚马逊裁3万人（HR团队裁70%）、Meta裁8000人、微软7月再裁数千。同时互联网企业释放超20万AI岗位——腾讯8000人、字节7000人。裁旧增新成为结构性趋势。</div>
+                <div class="insight">"AI替代岗位"与"AI创造岗位"并行——被裁的多为执行层，新增的多为设计层（Agent开发、AI产品经理、复合型人才）。</div>
+            </div>
+        </div>
+
+        <!-- 思考延展 -->
+        <div class="section">
+            <div class="section-title"><span class="emoji">💡</span> HR视角的思考延展</div>
+
+            <div class="thinking-section">
+                <h3>今日关注点</h3>
+                <p>本周末最值得HR关注的信号是"Agent产品化进入实战阶段"。微软、谷歌、Meta三家同时将AI代理从实验性功能升级为核心产品线。这不是概念验证，而是真金白银的产品重构——微软为此配备了11000人团队。对招聘的直接含义是：市场对"能把Agent从demo做成产品"的人才需求正在急剧放大。</p>
+                <p>芯片自研浪潮同样值得关注。Anthropic作为最后一家前沿实验室启动芯片自研，标志着AI公司的组织形态正在从"纯软件研究所"向"垂直整合硬件公司"演变。招聘需求将覆盖从芯片架构到分布式系统到模型训练的全栈。</p>
+                <p>ICML现场"摆摊挖人"则反映了顶尖AI人才市场的极度供不应求。当薪酬已经"上不封顶"时，差异化的人才触达方式成为关键。未来AI HR可能需要具备学术圈networking能力。</p>
+
+                <div class="question-box">
+                    <div class="q">💭 今日思考题：当Copilot从对话框升级为AutoPilot后台代理时，企业内部HR的哪些流程最可能被Agent率先接管？</div>
+                    <ol>
+                        <li><strong>高频重复决策：</strong>初筛简历、面试排期、入职材料审核等标准化流程——亚马逊HR裁员70%已是现实案例</li>
+                        <li><strong>信息聚合与推送：</strong>人才市场情报、竞对动态追踪、内部人才盘点等信息密集型工作，Agent可全天候执行</li>
+                        <li><strong>落地建议：</strong>HR应主动定义"哪些判断由我做、哪些执行交给Agent"的边界，投资战略判断、深度评估等不可替代维度的能力</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="watermark">Made by ChloeCao</div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const current = body.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', next);
+            localStorage.setItem('ai-daily-theme', next);
+        }
+
+        (function() {
+            const saved = localStorage.getItem('ai-daily-theme');
+            if (saved) {
+                document.body.setAttribute('data-theme', saved);
+            } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                document.body.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</body>
+</html>
