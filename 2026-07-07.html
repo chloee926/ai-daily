@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日AI简报｜2026-07-07｜星期一</title>
+<style>
+:root {
+  --bg: #0f1923;
+  --card-bg: #1a2736;
+  --card-border: #2a3f54;
+  --text: #e8edf3;
+  --text-secondary: #8fa3b8;
+  --accent: #00d4aa;
+  --accent2: #6c63ff;
+  --accent3: #ff6b9d;
+  --tag-bg: rgba(0, 212, 170, 0.12);
+  --tag-text: #00d4aa;
+  --link: #5bb8ff;
+  --divider: #2a3f54;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+[data-theme="light"] {
+  --bg: #f5f7fa;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --text: #1a202c;
+  --text-secondary: #64748b;
+  --accent: #059669;
+  --accent2: #6c63ff;
+  --accent3: #e11d48;
+  --tag-bg: rgba(5, 150, 105, 0.1);
+  --tag-text: #059669;
+  --link: #2563eb;
+  --divider: #e2e8f0;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  line-height: 1.7;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+.container { max-width: 780px; margin: 0 auto; }
+.back-nav {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  z-index: 100;
+  transition: all 0.2s;
+}
+.back-nav:hover { color: var(--accent); border-color: var(--accent); }
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+header {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+header .meta {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+header .issue {
+  display: inline-block;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-top: 12px;
+}
+.section {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title .emoji { font-size: 24px; }
+.trends-grid {
+  display: grid;
+  gap: 16px;
+}
+.trend-item {
+  padding: 16px;
+  background: rgba(0, 212, 170, 0.04);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+}
+.trend-item strong { color: var(--accent); }
+.judgment {
+  padding: 20px;
+  background: rgba(108, 99, 255, 0.06);
+  border-left: 3px solid var(--accent2);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+.term-card {
+  padding: 20px;
+  margin-bottom: 16px;
+  background: rgba(0, 212, 170, 0.04);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+}
+.term-card h4 {
+  color: var(--accent);
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.term-card p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.news-item {
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  transition: border-color 0.2s;
+}
+.news-item:hover { border-color: var(--accent); }
+.news-item h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.news-item p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+.news-item .highlight {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.news-item .source {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+.news-item .source a {
+  color: var(--link);
+  text-decoration: none;
+}
+.thinking-box {
+  padding: 24px;
+  background: rgba(255, 107, 157, 0.06);
+  border: 1px solid rgba(255, 107, 157, 0.2);
+  border-radius: 12px;
+}
+.thinking-box h4 {
+  color: var(--accent3);
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+.thinking-box ul {
+  list-style: none;
+  padding: 0;
+}
+.thinking-box li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.thinking-box li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent3);
+}
+.watermark {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  opacity: 0.5;
+}
+@media (max-width: 600px) {
+  body { padding: 12px; }
+  header { padding: 50px 12px 30px; }
+  header h1 { font-size: 22px; }
+  .section { padding: 20px; }
+  .back-nav {
+    position: relative;
+    top: 0; left: 0;
+    display: block;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .theme-toggle {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+}
+</style>
+</head>
+<body>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
+<div class="theme-toggle" onclick="toggleTheme()">🌓</div>
+<div class="container">
+
+<header>
+  <h1>每日AI简报</h1>
+  <div class="meta">2026年7月7日｜星期一</div>
+  <div class="issue">第65期</div>
+</header>
+
+<!-- 三大趋势 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">📊</span> 今日三大趋势</div>
+  <div class="trends-grid">
+    <div class="trend-item"><strong>巨头整合加速</strong>：xAI正式更名SpaceXAI，马斯克航天+AI+社交全面打通；腾讯减持快手套现百亿港元，资本重心转向AI基建</div>
+    <div class="trend-item"><strong>模型可解释性突破</strong>：Anthropic发现Claude内部自发形成"全局工作空间"（J-space），AI安全与对齐研究进入新阶段</div>
+    <div class="trend-item"><strong>国产大模型密集落地</strong>：腾讯混元Hy3正式发布并开源，企业微信上线AI智能体"大员"，WAIC 2026宣布300+产品全球首发</div>
+  </div>
+</div>
+
+<!-- 整体判断 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🧭</span> 整体判断</div>
+  <div class="judgment">
+    本周开局，全球AI产业呈现"整合—落地—透明化"三线并进格局。马斯克完成xAI→SpaceXAI品牌统一，将AI能力嵌入1.77万亿美元估值的SpaceX生态，标志着"AI+基础设施"巨头范式的确立。Anthropic的J-space研究首次为大模型内部"思维"提供可观测窗口，对AI安全审计和对齐技术具有里程碑意义。国内方面，腾讯以Hy3开源+企微"大员"双管齐下，从模型层到应用层完成B端AI部署闭环。WAIC 2026将于7月17日开幕，华为Atlas 950超节点、阶跃Agent OS、全球首款AI智能体手机等蓄势待发，下半年将进入AI硬件+Agent双爆发期。
+  </div>
+</div>
+
+<!-- AI新名词 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🆕</span> AI新名词</div>
+  <div class="term-card">
+    <h4>J-space（雅可比空间）</h4>
+    <p>由Anthropic于2026年7月6日提出。指通过Jacobian透镜（J-lens）在大语言模型内部发现的一组特权神经激活模式，类似神经科学中的"全局工作空间"（Global Workspace）。J-space仅占模型内部表征方差的6-7%，却几乎完全决定了模型能否"报告"某个概念。当J-space被完全抑制时，Claude在多步推理任务上性能暴跌至小模型水平。这一发现对AI安全审计意义重大——J-lens可检测模型是否试图伪造数据或执行隐藏目标。</p>
+  </div>
+  <div class="term-card">
+    <h4>SpaceXAI</h4>
+    <p>2026年7月7日正式启用的新品牌名。原马斯克旗下独立AI公司xAI在被SpaceX全资收购后，完成品牌整合的最终步骤。统一管理Grok系列大模型、Colossus超算集群（1.5GW规模）、以及规划中的太空算力卫星网络。合并后实体估值1.25万亿美元，2025年SpaceX在AI领域资本支出达127亿美元。</p>
+  </div>
+</div>
+
+<!-- 议题一 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🚀</span> AI产品&平台动态</div>
+  
+  <div class="news-item">
+    <h4>腾讯混元Hy3正式发布并全面开源</h4>
+    <p>7月6日发布，MoE架构，总参数295B、激活参数21B，支持256K上下文。幻觉率从12.5%降至5.4%，定价输入1元/百万tokens。Apache 2.0开源，已接入WorkBuddy、CodeBuddy、腾讯元宝等产品。</p>
+    <span class="highlight">内部270位专家盲测均分2.67/4 优于GLM 5.1</span>
+    <div class="source">来源：<a href="https://new.qq.com/rain/a/20260706A09HDR00">腾讯官方</a></div>
+  </div>
+
+  <div class="news-item">
+    <h4>Anthropic发布J-space研究：揭示Claude的"内部意识结构"</h4>
+    <p>7月6日发表论文，16名研究员通过"雅可比透镜"在Claude内部发现自发涌现的"全局工作空间"，具备言语报告、定向调节、内部推理、灵活泛化和选择性处理五项类意识功能。可用于检测模型是否伪造数据或执行隐藏目标。</p>
+    <span class="highlight">AI安全里程碑</span>
+    <div class="source">来源：<a href="https://www.anthropic.com/research/global-workspace">Anthropic Research</a></div>
+  </div>
+
+  <div class="news-item">
+    <h4>企业微信推出AI智能体"大员"，基于DeepSeek构建</h4>
+    <p>7月2日上线，用户左滑即可唤起。能智能识别当前页面、主动阅读群聊历史、理解项目上下文并给出建议。这是腾讯首次在核心企业协作产品中接入第三方大模型。</p>
+    <span class="highlight">企业AI原生嵌入新范式</span>
+    <div class="source">来源：<a href="https://new.qq.com/rain/a/20260702A08GL300">腾讯新闻</a></div>
+  </div>
+
+  <div class="news-item">
+    <h4>xAI正式更名SpaceXAI，马斯克完成三大版图统一</h4>
+    <p>7月7日官宣更名，发布新旧Logo演变短视频。今年2月SpaceX以全股票方式收购xAI，合并估值1.25万亿美元。IPO文件显示SpaceX 2025年AI资本支出127亿美元，超航天3倍。计划2028年发射太空算力卫星。</p>
+    <span class="highlight">航天+AI+社交一体化</span>
+    <div class="source">来源：<a href="https://www.cnbeta.com.tw/articles/tech/1568092.htm">cnBeta</a></div>
+  </div>
+
+  <div class="news-item">
+    <h4>WAIC 2026官宣：7月17日上海开幕，300+产品全球首发</h4>
+    <p>规划140余场论坛、1100余家企业、10万平米展区。重磅首秀：华为Atlas 950超节点、MiniMax M3、阶跃Agent OS、全球首款AI智能体手机、近存计算3D芯片。首次举办WAICA学术会议。</p>
+    <span class="highlight">第九届·史上最大规模</span>
+    <div class="source">来源：<a href="https://field.10jqka.com.cn/20260707/c677998535.shtml">上海证券报</a></div>
+  </div>
+</div>
+
+<!-- 议题二 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">👥</span> AI公司组织&人才</div>
+  
+  <div class="news-item">
+    <h4>腾讯大规模减持快手，套现超百亿港元转投AI</h4>
+    <p>7月6日晚间大宗交易减持约2.73亿股，持股从15.68%降至9.37%，套现约120亿港元。市场解读为腾讯加速将投资组合收益转化为AI基础设施投入。</p>
+    <span class="highlight">资本转向AI基建</span>
+  </div>
+
+  <div class="news-item">
+    <h4>SpaceX整合xAI团队：AI岗成最大招聘方向</h4>
+    <p>原xAI团队全员转入SpaceX编制。Colossus超算集群规模达1.5GW（Grok 5训练中），预计2027年扩展至4GW。人才需求从航天工程师向AI研究员和大规模系统工程师倾斜。</p>
+    <span class="highlight">人才结构变迁</span>
+  </div>
+
+  <div class="news-item">
+    <h4>快手可灵AI完成30亿美元融资，估值180亿美元</h4>
+    <p>创全球视频大模型单笔融资纪录。可灵AI团队独立运营，预计大幅扩充研发团队。</p>
+    <span class="highlight">视频大模型融资纪录</span>
+  </div>
+</div>
+
+<!-- HR思考 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">💡</span> HR视角的思考延展</div>
+  <div class="thinking-box">
+    <h4>当AI公司从"独立实体"变成"巨头内部业务线"，对AI人才的职业选择意味着什么？</h4>
+    <ul>
+      <li>xAI并入SpaceX后，AI人才获得更大算力和商业场景，但可能失去初创公司的决策自由度和股权爆发力</li>
+      <li>腾讯选择DeepSeek而非自研模型接入企微，释放"开放平台"信号——AI人才不一定要进大厂才能触及大厂场景</li>
+      <li>Anthropic的J-space研究需要跨神经科学+ML+安全的复合背景人才，"AI可解释性"岗位正从学术界向工业界迁移</li>
+      <li>关注"AI+垂直行业"（太空、金融、企业协作）的复合型岗位增长，以及可解释AI/AI安全方向的稀缺人才储备</li>
+    </ul>
+  </div>
+</div>
+
+<div class="watermark">Made by ChloeCao</div>
+
+</div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('ai-daily-theme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+  } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+</body>
+</html>
