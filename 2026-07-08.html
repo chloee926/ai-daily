@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日AI速报 | 2026-07-08</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card-bg: #161b22;
+  --text: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --accent2: #7ee787;
+  --accent3: #d2a8ff;
+  --accent4: #ffa657;
+  --border: #30363d;
+  --tag-bg: rgba(88,166,255,0.15);
+}
+[data-theme="light"] {
+  --bg: #ffffff;
+  --card-bg: #f6f8fa;
+  --text: #1f2328;
+  --text-secondary: #656d76;
+  --accent: #0969da;
+  --accent2: #1a7f37;
+  --accent3: #8250df;
+  --accent4: #bc4c00;
+  --border: #d0d7de;
+  --tag-bg: rgba(9,105,218,0.1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 20px;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.back-nav {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+  z-index: 999;
+  transition: all 0.2s;
+}
+.back-nav:hover { background: var(--accent); color: #fff; }
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 999;
+  color: var(--text);
+}
+@media (max-width: 600px) {
+  .back-nav { position: relative; top: 0; left: 0; display: inline-block; margin-bottom: 16px; }
+  .theme-toggle { top: 12px; right: 12px; }
+  body { padding: 14px; }
+}
+h1 {
+  font-size: 1.6em;
+  margin: 30px 0 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.date-badge {
+  display: inline-block;
+  background: var(--tag-bg);
+  color: var(--accent);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  margin-bottom: 20px;
+}
+.top3 {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.top3 h3 { color: var(--accent4); margin-bottom: 12px; font-size: 0.95em; }
+.top3 ol { padding-left: 20px; }
+.top3 li { margin-bottom: 8px; color: var(--text); font-size: 0.95em; }
+.verdict {
+  background: linear-gradient(135deg, rgba(88,166,255,0.08), rgba(210,168,255,0.08));
+  border-left: 3px solid var(--accent3);
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  margin: 16px 0 30px;
+  font-size: 0.92em;
+}
+.section-title {
+  font-size: 1.15em;
+  font-weight: 700;
+  margin: 36px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px 0;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--accent); }
+.card h4 { color: var(--text); margin-bottom: 10px; font-size: 1em; }
+.card .source { font-size: 0.82em; color: var(--text-secondary); margin-bottom: 8px; }
+.card .source a { color: var(--accent); text-decoration: none; }
+.card .source a:hover { text-decoration: underline; }
+.card .summary { font-size: 0.9em; color: var(--text); margin-bottom: 10px; }
+.card .insight {
+  font-size: 0.85em;
+  color: var(--accent2);
+  background: rgba(126,231,135,0.06);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent2);
+}
+.tag {
+  display: inline-block;
+  font-size: 0.72em;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+.tag-product { background: rgba(88,166,255,0.15); color: var(--accent); }
+.tag-org { background: rgba(210,168,255,0.15); color: var(--accent3); }
+.tag-term { background: rgba(255,166,87,0.15); color: var(--accent4); }
+.thinking {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px 0;
+}
+.thinking h4 { color: var(--accent3); margin-bottom: 12px; }
+.thinking p { font-size: 0.9em; margin-bottom: 12px; }
+.thinking-q {
+  background: rgba(255,166,87,0.08);
+  border-left: 3px solid var(--accent4);
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  margin: 16px 0;
+}
+.thinking-q h5 { color: var(--accent4); margin-bottom: 8px; }
+.thinking-q ol { padding-left: 20px; font-size: 0.88em; }
+.thinking-q li { margin-bottom: 6px; }
+.watermark {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.75em;
+  margin-top: 60px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+  opacity: 0.6;
+}
+</style>
+</head>
+<body>
+<a href="index.html" class="back-nav">◀ 返回目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换主题">🌓</button>
+
+<h1>今日AI速报</h1>
+<span class="date-badge">2026-07-08 周三 · 第66期</span>
+
+<div class="top3">
+<h3>📌 今日最重要的3点</h3>
+<ol>
+<li>AI大厂集体向"自研芯片+自研模型"双自主方向迁移</li>
+<li>科技巨头裁员与AI人才争夺战同步白热化</li>
+<li>图像生成正从工具走向嵌入社交场景的Agent</li>
+</ol>
+</div>
+
+<div class="verdict">
+<strong>总判断：</strong>AI产业链正经历一场"去依赖化"运动——从微软替换外部模型、到DeepSeek/OpenAI/Anthropic三家同时自研芯片，垂直整合能力正在取代合作生态位成为新的竞争壁垒。
+</div>
+
+<!-- 新名词 -->
+<div class="section-title">📘 新名词解释</div>
+
+<div class="card">
+<span class="tag tag-term">新术语</span>
+<h4>MAI（Microsoft Advanced Intelligence）</h4>
+<div class="source">来源：<a href="https://tech.sina.cn/mobile/xp/2026-07-08/detail-inifzwqk8094276.d.html" target="_blank">彭博社/IT之家</a></div>
+<div class="summary">微软自研AI基础模型系列，定位替代Office产品中的OpenAI/Anthropic模型，覆盖语音、图像、代码和推理能力。</div>
+<div class="insight">这是AI产业链"去中间化"的标志性信号——模型层的buyer正在变成builder，AI供应商的定价权面临结构性挑战。</div>
+</div>
+
+<div class="card">
+<span class="tag tag-term">新术语</span>
+<h4>Agentic Image Generation（智能体图像生成）</h4>
+<div class="source">来源：<a href="https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/" target="_blank">Meta AI官方博客</a></div>
+<div class="summary">Meta在Muse Image中首创的范式——图像生成模型不直接出图，而是像Agent一样先推理规划、调用搜索和代码工具、自我修正后再输出。</div>
+<div class="insight">图像生成从"提示词→出图"的管道模型进化为具备推理-工具调用-自我修正能力的Agent，预示着多模态AI的交互范式正在重构。</div>
+</div>
+
+<!-- 议题一 -->
+<div class="section-title">🚀 议题一｜AI 产品、平台与流媒体</div>
+
+<div class="card">
+<span class="tag tag-product">产品动态</span>
+<h4>微软自研MAI模型开始替换Office中的OpenAI/Anthropic</h4>
+<div class="source">来源：<a href="https://www.163.com/dy/article/L19LCHBH05198CJN.html" target="_blank">彭博社/财联社</a> · 2026-07-08</div>
+<div class="summary">彭博社报道，微软已在Excel和Outlook中用自研MAI模型替代OpenAI和Anthropic的模型处理AI任务，每周处理数万条提示词。AI负责人Mustafa Suleiman表态"目标是减少并最终消除对Anthropic的支出"。微软6月Build大会发布7款MAI模型，其中MAI-CodePro以Opus 4.6约52%的成本达到近似编码能力。</div>
+<div class="insight">微软的"去依赖化"趋势说明AI生态正从开放合作走向垂直整合，企业客户可能面临供应商切换风险。对招聘而言，AI自研团队人才需求将持续扩张。</div>
+</div>
+
+<div class="card">
+<span class="tag tag-product">产品发布</span>
+<h4>Meta发布Muse Image——首个超级智能实验室图像模型</h4>
+<div class="source">来源：<a href="https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/" target="_blank">Meta AI官方博客</a> · 2026-07-07</div>
+<div class="summary">Meta正式发布Muse Image，由超级智能实验室推出。模型具备Agent能力——先推理规划、调用搜索和代码工具、自我修正后再生成图像。已免费登陆Meta AI应用、Instagram Stories和WhatsApp，与广告系统Advantage+整合。用户可@提及Instagram账号使用公开照片进行AI创作。</div>
+<div class="insight">AI生图正从独立工具嵌入社交平台日常使用流程，"创作即分享"模式可能重新定义内容平台的创作者生态和人才需求。</div>
+</div>
+
+<div class="card">
+<span class="tag tag-product">芯片/基础设施</span>
+<h4>DeepSeek被曝自研AI推理芯片</h4>
+<div class="source">来源：<a href="https://k.sina.com.cn/article_5953466437_162dab0450670ay0ns.html" target="_blank">外媒报道/新浪</a> · 2026-07-07</div>
+<div class="summary">三位知情人士确认DeepSeek正在自研AI推理芯片，项目约一年前启动，已与芯片设计公司和代工厂接触。至此，OpenAI（Jalapeño/博通）、Anthropic（三星2nm）、DeepSeek三家全球头部AI公司在近两周内同时曝出自研芯片进展。</div>
+<div class="insight">AI芯片自研潮将催生大量芯片设计、硬件工程人才需求，中国AI公司的芯片自主化也可能改变供应链格局和人才流向。</div>
+</div>
+
+<!-- 议题二 -->
+<div class="section-title">👥 议题二｜组织、人才与治理</div>
+
+<div class="card">
+<span class="tag tag-org">裁员/重组</span>
+<h4>微软裁员4800人：AI改变工作方式，但岗位"并非被AI取代"</h4>
+<div class="source">来源：<a href="https://www.163.com/dy/article/L17OLS8V051180F7.html" target="_blank">微软官方/智东西</a> · 2026-07-07</div>
+<div class="summary">微软宣布裁员约4800人（占员工2.1%），主要波及Xbox（裁1600人，至2027财年累计裁约20%）和商业销售。首席人力官强调"岗位非AI取代，但AI正改变工作方式"。过去一年已内部转岗4000人。2026年全球科技行业累计裁员约12万人。</div>
+<div class="insight">HR需关注：传统业务收缩而AI业务扩张的结构性转移；内部转岗4000人意味着重新培训体系正成为关键基础设施。</div>
+</div>
+
+<div class="card">
+<span class="tag tag-org">人才流动</span>
+<h4>前OpenAI研究员田永龙加盟腾讯混元</h4>
+<div class="source">来源：<a href="https://www.163.com/dy/article/L196EPG805118HA4.html" target="_blank">雷峰网独家</a> · 2026-07-07</div>
+<div class="summary">OpenAI前研究员田永龙已加入腾讯，将参与VLM（视觉语言模型）研发。他与腾讯混元首席AI科学家姚顺雨为OpenAI时期同事。加入后，姚顺雨（语言/后训练）+ 田永龙（视觉/多模态）形成互补组合。</div>
+<div class="insight">顶尖AI人才回流中国大厂趋势持续。"前同事跟随"模式说明人才网络效应在AI行业极其强大。</div>
+</div>
+
+<div class="card">
+<span class="tag tag-org">组织架构</span>
+<h4>小米重组小爱同学组织架构：从集中供给到分布式AI</h4>
+<div class="source">来源：<a href="https://news.qq.com/rain/a/20260707A05QTI00" target="_blank">36氪/TechWeb</a> · 2026-07-07</div>
+<div class="summary">小米对小爱同学进行新一轮组织架构调整：基础模型归罗福莉MiMo团队、云端工程化归栾剑团队、端侧能力下放至手机/汽车OS团队。原负责人王刚（任职近十年）调任机器人业务。小爱正从对话机器人转型为能执行本地操作的Agent。</div>
+<div class="insight">AI组织架构从"集中大团队"走向"分布式嵌入业务线"成为趋势。招聘需求将更分散、更强调"AI+行业"复合能力。</div>
+</div>
+
+<!-- 思考延展 -->
+<div class="section-title">💡 思考延展｜HR 视角</div>
+
+<div class="thinking">
+<h4>今日关注点</h4>
+<p>今天最值得HR关注的结构性变化是"去依赖化"浪潮。微软用自研模型替换OpenAI、三家AI公司同时自研芯片、小米将AI能力从集中团队拆解嵌入各业务线——这些看似不同的事件背后是同一个逻辑：AI竞争进入"全栈自主"时代，组织必须拥有端到端的控制权。</p>
+<p>这对人才市场的直接影响是：AI岗位的颗粒度正在细化。过去"招一个大模型工程师"就够了，现在需要芯片设计、模型训练、推理优化、端侧部署、产品化各环节的专业人才。招聘策略需要从"抢明星"转向"搭拼图"。</p>
+<p>同时，微软"裁员4800+转岗4000"的操作模式值得借鉴：大规模转岗体系（而非简单裁员+外招）正在成为科技大厂人才管理的核心能力。</p>
+</div>
+
+<div class="thinking-q">
+<h5>💭 今日思考题</h5>
+<p><strong>问题：</strong>当AI公司从"合作生态"转向"垂直整合"（自研模型、自研芯片、自建基础设施），招聘策略应该如何相应调整？</p>
+<ol>
+<li><strong>从"单一技术栈"招聘转向"多层次技术栈"：</strong>同时覆盖芯片、系统、模型、应用各层人才</li>
+<li><strong>关注"跨界复合人才"：</strong>如懂模型架构的芯片设计师、懂硬件约束的算法工程师</li>
+<li><strong>建立内部转岗/再培训机制：</strong>参考微软模式，让现有员工能在技术栈层间流动</li>
+</ol>
+</div>
+
+<div class="watermark">Made by ChloeCao</div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('ai-daily-theme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+</body>
+</html>
