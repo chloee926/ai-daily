@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日AI速报 | 2026-07-09</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card-bg: #161b22;
+  --text: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --accent2: #7ee787;
+  --accent3: #d2a8ff;
+  --accent4: #ffa657;
+  --border: #30363d;
+  --tag-bg: rgba(88,166,255,0.15);
+}
+[data-theme="light"] {
+  --bg: #ffffff;
+  --card-bg: #f6f8fa;
+  --text: #1f2328;
+  --text-secondary: #656d76;
+  --accent: #0969da;
+  --accent2: #1a7f37;
+  --accent3: #8250df;
+  --accent4: #bf5700;
+  --border: #d0d7de;
+  --tag-bg: rgba(9,105,218,0.1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 0 16px 80px;
+  max-width: 780px;
+  margin: 0 auto;
+  transition: background .3s, color .3s;
+}
+.back-nav {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 100;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: all .2s;
+}
+.back-nav:hover { background: var(--accent); color: #fff; }
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: all .2s;
+}
+header { padding: 80px 0 32px; text-align: center; }
+header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+header .date { color: var(--text-secondary); font-size: 15px; }
+.highlight-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+.highlight-box h3 { font-size: 16px; color: var(--accent); margin-bottom: 12px; }
+.highlight-box ol { padding-left: 20px; }
+.highlight-box li { margin-bottom: 8px; font-size: 15px; }
+.highlight-box .verdict { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 15px; color: var(--text-secondary); }
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 40px 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title .emoji { font-size: 24px; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--accent); }
+.card h4 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.card .source { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+.card .source a { color: var(--accent); text-decoration: none; }
+.card .source a:hover { text-decoration: underline; }
+.card .summary { font-size: 15px; margin-bottom: 12px; }
+.card .insight { font-size: 14px; color: var(--accent2); background: rgba(125,209,135,0.08); padding: 10px 14px; border-radius: 8px; border-left: 3px solid var(--accent2); }
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+.tag-product { background: rgba(88,166,255,0.15); color: var(--accent); }
+.tag-org { background: rgba(210,168,255,0.15); color: var(--accent3); }
+.tag-term { background: rgba(255,166,87,0.15); color: var(--accent4); }
+.thinking-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 16px;
+}
+.thinking-section h4 { color: var(--accent3); margin-bottom: 12px; }
+.thinking-section p { font-size: 15px; margin-bottom: 12px; }
+.thinking-question {
+  background: rgba(210,168,255,0.08);
+  border: 1px solid rgba(210,168,255,0.2);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.thinking-question h5 { color: var(--accent3); font-size: 15px; margin-bottom: 10px; }
+.thinking-question ol { padding-left: 20px; font-size: 14px; }
+.thinking-question li { margin-bottom: 6px; }
+.watermark {
+  text-align: center;
+  padding: 40px 0 20px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  opacity: 0.5;
+}
+@media (max-width: 600px) {
+  body { padding: 0 12px 60px; }
+  header { padding: 70px 0 24px; }
+  header h1 { font-size: 22px; }
+  .back-nav { position: relative; top: 16px; left: 0; display: block; text-align: center; margin-bottom: 0; }
+  .theme-toggle { top: 12px; right: 12px; }
+  .card { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<a href="index.html" class="back-nav">◀ 返回目录</a>
+<div class="theme-toggle" onclick="toggleTheme()">🌓</div>
+
+<header>
+  <h1>今日AI速报</h1>
+  <div class="date">2026年7月9日 · 星期四 · 第67期</div>
+</header>
+
+<div class="highlight-box">
+  <h3>📌 今日最重要的3点</h3>
+  <ol>
+    <li>语音正在成为AI的统一交互入口，模型能力不再局限于文本</li>
+    <li>编程智能体赛道进入"性价比之王"争夺期，成本效率取代纯性能成为核心卖点</li>
+    <li>AI基础设施的全球化扩张进入"百亿美元"级单笔投资阶段</li>
+  </ol>
+  <div class="verdict"><strong>总判断：</strong>AI竞争正从"谁的模型最强"转向"谁能以最低成本、最自然的交互方式触达最多用户"。OpenAI押注语音、SpaceXAI押注性价比、Meta押注算力出海——三条路线殊途同归，都在争抢AI时代的基础设施入口。</div>
+</div>
+
+<!-- 新名词 -->
+<div class="section-title"><span class="emoji">📘</span> 新名词解释</div>
+
+<div class="card">
+  <span class="tag tag-term">新术语</span>
+  <h4>GPT-Live（全双工语音模型）</h4>
+  <div class="summary">OpenAI推出的原生实时语音模型，采用全双工架构，可同时聆听与说话，支持打断、停顿理解和后台调用推理模型。标志着AI语音交互从"轮流对话"进化为"同步对话"。</div>
+  <div class="source">来源：<a href="https://openai.com/index/gpt-live/" target="_blank">OpenAI官方公告</a></div>
+  <div class="insight">每周已有1.5亿人使用ChatGPT语音功能，语音正成为AI的主要人机交互方式。</div>
+</div>
+
+<div class="card">
+  <span class="tag tag-term">新术语</span>
+  <h4>Grok 4.5（SpaceXAI×Cursor联合训练模型）</h4>
+  <div class="summary">SpaceXAI与Cursor联合训练的首个AI模型，主打编程与智能体任务，Token效率为同类模型2倍，定价仅为Fable 5的1/10。首次证明"又快又便宜"可以逼近顶级模型性能。</div>
+  <div class="source">来源：<a href="https://www.donews.com/news/detail/4/6626091.html" target="_blank">DoNews/快科技</a></div>
+  <div class="insight">改变了AI模型竞争只看基准分数的单一维度，成本效率成为新战场。</div>
+</div>
+
+<!-- 议题一 -->
+<div class="section-title"><span class="emoji">🚀</span> AI产品、平台与流媒体</div>
+
+<div class="card">
+  <span class="tag tag-product">产品发布</span>
+  <h4>OpenAI发布GPT-Live全双工语音模型，ChatGPT语音体验全面升级</h4>
+  <div class="source">来源：<a href="https://openai.com/index/gpt-live/" target="_blank">OpenAI官网</a> · <a href="https://t.cj.sina.cn/articles/view/2868676035/aafc85c302001scf4" target="_blank">财联社</a></div>
+  <div class="summary">7月9日，OpenAI正式发布GPT-Live系列（GPT-Live-1和GPT-Live-1 mini）。采用全双工架构可同时听说，前台维持语音对话、后台调用GPT-5.5推理。在5-10分钟对话中整体偏好率75.7%，GPQA科学推理从45.3%提升至84.2%。即日起向全球ChatGPT用户开放。</div>
+  <div class="insight">语音交互成为AI主入口意味着音乐/音频类产品的AI交互形态将发生根本转变。</div>
+</div>
+
+<div class="card">
+  <span class="tag tag-product">产品发布</span>
+  <h4>SpaceXAI发布Grok 4.5：与Cursor联训，性能逼近Opus 4.7，成本低10倍</h4>
+  <div class="source">来源：<a href="https://www.163.com/dy/article/L1C6MTM505198CJN.html" target="_blank">财联社</a> · <a href="https://www.163.com/dy/article/L1COK2QJ0511ABV6.html" target="_blank">新智元</a></div>
+  <div class="summary">7月9日，SpaceXAI发布上市后首款新模型Grok 4.5。与Cursor联合训练，定价输入$2/百万Token、输出$6/百万Token。SWEBenchPro得分64.7%超GPT-5.5，TerminalBench 83.3%与GPT-5.5仅差0.1%。马斯克称其"性能相当于Opus 4.7但速度更快"，每任务成本仅$1.51。</div>
+  <div class="insight">Cursor生态的强化意味着AI辅助编码将进一步降低开发成本，编程工具性价比迎来质变。</div>
+</div>
+
+<div class="card">
+  <span class="tag tag-product">模型上线</span>
+  <h4>GPT-5.6获美政府放行，本周四全量上线</h4>
+  <div class="source">来源：<a href="https://www.163.com/dy/article/L1ATIHIA051180F7.html" target="_blank">智东西</a> · <a href="https://www.163.com/dy/article/L1B37KVE05198UNI.html" target="_blank">智通财经</a></div>
+  <div class="summary">7月8日，美国商务部正式批准OpenAI全面发布GPT-5.6系列（Sol/Terra/Luna），结束近两周有限预览期。Sol为旗舰、Terra性能媲美GPT-5.5但价格减半、Luna为最具性价比版本。此前因AI审查行政令，GPT-5.6仅向经审核的有限实体开放。</div>
+  <div class="insight">GPT-5.6全量开放意味着全球AI应用开发者将获得更强底层模型支撑，各业务线接入最新模型的价值需重新评估。</div>
+</div>
+
+<!-- 议题二 -->
+<div class="section-title"><span class="emoji">👥</span> 组织、人才与治理</div>
+
+<div class="card">
+  <span class="tag tag-org">基础设施</span>
+  <h4>Meta投资130亿加元建加拿大首个数据中心，海外最大算力基地</h4>
+  <div class="source">来源：<a href="https://new.qq.com/rain/a/20260709A01F5100" target="_blank">环球市场播报</a> · <a href="https://www.jiemian.com/article/14727238.html" target="_blank">界面新闻</a></div>
+  <div class="summary">7月8日，Meta宣布在加拿大阿尔伯塔省斯特金县投资130亿加元（约91亿美元）建设1GW装机容量超大型数据中心，系其美国以外最大算力基地。建设高峰期提供3000个建筑岗位、建成后创造300个全职运营岗。Meta全球数据中心总数增至33座。</div>
+  <div class="insight">AI基础设施全球化将催生数据中心运维、能源管理、冷却工程等新型岗位，相关人才储备值得提前布局。</div>
+</div>
+
+<div class="card">
+  <span class="tag tag-org">终端创新</span>
+  <h4>努比亚确认发布全球首款AI智能体手机，WAIC 2026首秀</h4>
+  <div class="source">来源：<a href="https://tech.ifeng.com/c/8uauvmve9Xg" target="_blank">凤凰科技</a> · <a href="https://www.163.com/dy/article/L1B4DJNK051191D6.html" target="_blank">CNMO</a></div>
+  <div class="summary">7月8日，中兴终端总裁倪飞确认努比亚将在7月17日WAIC首发全球首款AI智能体手机，定位量产旗舰。从安卓底层搭载AI智能体引擎，拥有系统级模拟触控权限，可跨App自主完成复杂连续任务。前代M153曾3万台当天售罄。</div>
+  <div class="insight">AI Agent从云端走向端侧，将催生"端侧AI系统工程师""AI-OS交互设计师"等新兴岗位。</div>
+</div>
+
+<div class="card">
+  <span class="tag tag-org">供应链</span>
+  <h4>三星正式量产英伟达Vera Rubin平台专用AI存储硬盘</h4>
+  <div class="source">来源：<a href="https://www.qianjia.com/html/2026-07/09_426118.html" target="_blank">千家早报</a></div>
+  <div class="summary">三星电子启动企业级固态硬盘PM1763量产，专为AI场景打造，将应用于英伟达即将推出的Vera Rubin平台。标志着AI芯片+存储的供应链协同进入新阶段。</div>
+  <div class="insight">AI芯片产业链从设计延伸到存储配套，半导体+AI交叉人才的稀缺性将进一步上升。</div>
+</div>
+
+<!-- 思考延展 -->
+<div class="section-title"><span class="emoji">💡</span> 思考延展｜HR视角</div>
+
+<div class="thinking-section">
+  <h4>今日关注点</h4>
+  <p>今天的密集发布揭示了AI竞争的新格局：<strong>成本效率正在取代纯性能成为核心竞争力</strong>。Grok 4.5以Fable 5十分之一的成本达到接近的性能，GPT-5.6推出价格减半的Terra版本，这意味着AI工具将加速普及到更多业务场景。对于TME，AI编码工具的性价比提升将直接影响研发效率和人效比估算。</p>
+  <p>语音交互成为AI主入口的趋势对音乐/音频行业有特殊意义。每周1.5亿人使用ChatGPT语音功能——这个数字已接近主流音乐流媒体的DAU量级。当用户习惯"说话解决一切"，产品的交互设计范式可能需要根本性重构。</p>
+  <p>Meta百亿美元级海外数据中心投资、三星量产Vera Rubin存储——AI基础设施正在全球化扩张。这波投资潮将在1-2年内释放大量基础设施运维、能源管理、散热工程等岗位需求，但对应的人才市场尚未成熟。</p>
+</div>
+
+<div class="thinking-question">
+  <h5>💭 今日思考题</h5>
+  <p><strong>问题：</strong>当AI编程工具成本降到传统工具的1/10，且性能已够用时，研发团队应如何重新定义"高效能工程师"的人才画像？</p>
+  <ol>
+    <li><strong>从"代码产出量"转向"AI工具驾驭能力"</strong>——能否高效使用Cursor/Grok等工具完成复杂工程任务，将比手写代码速度更重要</li>
+    <li><strong>"架构判断力"价值上升</strong>——当AI能写80%的代码时，系统设计、技术选型、安全审计等高阶决策能力将成为稀缺差异化因素</li>
+    <li><strong>落地建议</strong>：可在研发面试中增加"AI辅助编程"环节，评估候选人使用AI工具解决真实工程问题的能力</li>
+  </ol>
+</div>
+
+<div class="watermark">Made by ChloeCao</div>
+
+<script>
+function toggleTheme() {
+  const body = document.body;
+  const current = body.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  body.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('ai-daily-theme');
+  if (saved) {
+    document.body.setAttribute('data-theme', saved);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.body.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+</body>
+</html>
