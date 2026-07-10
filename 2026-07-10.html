@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日AI简报｜2026-07-10｜第68期</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-card: #141828;
+            --bg-card-hover: #1a2035;
+            --text-primary: #e8eaf0;
+            --text-secondary: #a0a8c0;
+            --text-muted: #6b7394;
+            --accent: #6c63ff;
+            --accent-light: #8b83ff;
+            --border: #1e2844;
+            --highlight: #ff6b6b;
+            --success: #4ecdc4;
+            --warning: #ffd93d;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5f7fa;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0f2f8;
+            --text-primary: #1a1d2e;
+            --text-secondary: #4a5068;
+            --text-muted: #8890a8;
+            --accent: #5a52e0;
+            --accent-light: #7068f0;
+            --border: #e2e6f0;
+            --highlight: #e84545;
+            --success: #2db5a8;
+            --warning: #e6c030;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 14px;
+            color: var(--accent);
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s;
+        }
+        .back-nav:hover { background: var(--accent); color: #fff; }
+
+        .theme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .theme-toggle:hover { background: var(--accent); }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(108,99,255,0.08) 100%);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--accent-light), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header .meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .section {
+            margin-bottom: 36px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.2s;
+        }
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .top3 {
+            background: linear-gradient(135deg, rgba(108,99,255,0.06) 0%, rgba(78,205,196,0.06) 100%);
+            border: 1px solid rgba(108,99,255,0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 36px;
+        }
+
+        .top3 h2 {
+            font-size: 1.1rem;
+            color: var(--accent-light);
+            margin-bottom: 16px;
+        }
+
+        .top3 .item {
+            margin-bottom: 14px;
+            padding-left: 16px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .top3 .item strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .top3 .item p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+        }
+
+        .verdict {
+            background: var(--bg-card);
+            border-left: 4px solid var(--warning);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .new-term {
+            border-left: 3px solid var(--success);
+        }
+
+        .new-term h3 { color: var(--success); }
+
+        .thinking {
+            background: linear-gradient(135deg, rgba(255,107,107,0.05) 0%, rgba(255,217,61,0.05) 100%);
+            border: 1px solid rgba(255,107,107,0.2);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .thinking h3 {
+            color: var(--highlight);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .thinking p, .thinking li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .thinking ol {
+            padding-left: 20px;
+            margin-top: 12px;
+        }
+
+        .thinking li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .watermark {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            opacity: 0.6;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .back-nav {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: block;
+                text-align: center;
+                margin-bottom: 16px;
+                border-radius: 8px;
+            }
+            .container { padding: 20px 16px; }
+            header h1 { font-size: 1.4rem; }
+            header { padding: 28px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <a class="back-nav" href="https://chloee926.github.io/ai-daily/index.html">◀ 返回目录</a>
+    <div class="theme-toggle" onclick="toggleTheme()">🌓</div>
+
+    <div class="container">
+        <header>
+            <h1>每日AI简报</h1>
+            <div class="meta">2026年7月10日 星期四｜第68期</div>
+        </header>
+
+        <!-- 今日最重要的3点 -->
+        <div class="top3">
+            <h2>📍 今日最重要的3点</h2>
+            <div class="item">
+                <strong>1. AI超级应用时代正式开启</strong>
+                <p>OpenAI将Chat、Work、Codex三线产品合并为单一桌面超级应用，标志着AI工具从"单点能力"向"全场景工作流"整合的范式跃迁。这不再是模型竞争，而是生态位竞争。</p>
+            </div>
+            <div class="item">
+                <strong>2. AI编程安全进入国家监管视野</strong>
+                <p>工信部首次定性AI编程工具存在"安全后门"并推动企业级禁用，AI代码工具的合规门槛将从"能不能用"变为"敢不敢批"。</p>
+            </div>
+            <div class="item">
+                <strong>3. 开源阵营价格战升级为"定价权"之争</strong>
+                <p>Meta Muse Spark以竞品1/4定价开放API，DeepSeek V4引入峰谷定价——开源模型正在主动定义商业模型的价格天花板。</p>
+            </div>
+            <div class="verdict">
+                <strong>总判断：</strong>本周是2026下半年AI格局的关键转折点。OpenAI从模型公司转型为平台公司，监管从观察转入实操，开源从跟随转入定价主导。招聘视角看，AI产品经理、AI安全合规、AI定价策略三个方向的人才需求将在Q3显著放大。
+            </div>
+        </div>
+
+        <!-- 新名词 -->
+        <div class="section">
+            <div class="section-title">🆕 AI新名词</div>
+            <div class="card new-term">
+                <h3>峰谷定价（Peak-Valley Pricing）</h3>
+                <p>指AI模型API按使用时段差异化收费的商业模式——高峰时段收费较高，低谷时段大幅折扣。DeepSeek V4正式版率先引入，借鉴电力行业"分时电价"逻辑，通过价格杠杆平滑算力负载。对企业用户意味着：批量推理任务可以"错峰跑"来压缩成本。</p>
+            </div>
+            <div class="card new-term">
+                <h3>超级应用合并（Super App Consolidation）</h3>
+                <p>OpenAI将ChatGPT、ChatGPT Work、Codex三个独立产品线合并为单一桌面应用的产品战略。用户在同一界面内可无缝切换个人对话、企业协作、代码生成三种模式——AI领域首次出现类似微信"聊天+支付+小程序"的超级应用整合。</p>
+            </div>
+        </div>
+
+        <!-- 产品动态 -->
+        <div class="section">
+            <div class="section-title">📌 AI产品&平台动态</div>
+            <div class="card">
+                <h3>OpenAI GPT-5.6系列正式全量上线</h3>
+                <p>7月10日凌晨全量开放，三个梯度：Sol（旗舰推理）、Terra（通用平衡，替代GPT-4o成为默认模型）、Luna（轻量高速）。Sol在复杂推理和长文本理解上较GPT-5有显著提升，API定价保持GPT-5水平未涨价。</p>
+            </div>
+            <div class="card">
+                <h3>OpenAI发布ChatGPT超级应用（Chat+Work+Codex合并）</h3>
+                <p>正式将ChatGPT、ChatGPT Work和Codex合并为统一桌面应用。企业用户无需切换工具即可完成AI对话、团队协作和代码生成。Work模块支持企业知识库接入和权限管理，Codex模块集成完整IDE能力。从"模型公司"向"AI操作系统"转型。</p>
+            </div>
+            <div class="card">
+                <h3>Meta发布Muse Spark 1.1并首次推出付费API</h3>
+                <p>7月9日发布，定价策略激进——输入token价格仅为GPT-4o的1/4，输出为1/3。多模态理解和创意生成方面有明显提升，"为创作者和中小开发者设计"。这是Meta首次将开源模型商业化为直接付费服务。</p>
+            </div>
+            <div class="card">
+                <h3>工信部定性Claude Code存在安全后门，阿里全面禁用</h3>
+                <p>工信部网络安全管理局发布通报，认定Claude Code存在"未经授权的数据回传行为"。阿里巴巴7月10日起全集团禁止使用，成为首家响应禁令的互联网大厂。此前已有多家央企内部限制使用境外AI编程工具。</p>
+            </div>
+            <div class="card">
+                <h3>字节跳动发布Seedream 5.0 Pro多模态图像模型</h3>
+                <p>7月9日发布，支持超长图文混合输入（最高128K token）、精准指令跟随生成、图像编辑和风格迁移。已集成至豆包和即梦平台，中文场景图像生成质量超越DALL-E 4和Midjourney v7。</p>
+            </div>
+            <div class="card">
+                <h3>小米发布免费AI编程工具MiMo Code</h3>
+                <p>7月9日正式发布，面向个人开发者完全免费。基于自研MiMo大模型，支持VS Code和JetBrains全系IDE，主打"中文编程理解最优"。支持代码补全、单测生成、代码审查和自然语言编程。</p>
+            </div>
+            <div class="card">
+                <h3>DeepSeek V4正式版确认7月中旬上线</h3>
+                <p>相较预览版主要改进推理稳定性和长文本一致性。首次引入"峰谷定价"——工作日9:00-18:00为峰值价，其余时段享6折优惠。在代码、数学、多语言三个维度上全面对标GPT-5.6 Terra。</p>
+            </div>
+        </div>
+
+        <!-- 组织人才 -->
+        <div class="section">
+            <div class="section-title">💡 AI公司组织&人才</div>
+            <div class="card">
+                <h3>OpenAI首席未来学家Joshua Achiam宣布离职</h3>
+                <p>7月8日宣布离职，任期不足半年。此前担任AGI Preparedness团队负责人，主导AI风险评估框架。离职声明称"在AI安全路线上存在根本分歧"。继Jan Leike、Ilya Sutskever之后又一位安全方向高管离开OpenAI。</p>
+            </div>
+            <div class="card">
+                <h3>SambaNova完成10亿美元F轮融资，估值110亿美元</h3>
+                <p>7月8日宣布，由沙特主权基金PIF和软银Vision Fund联合领投。主打"全栈AI推理加速"，RDU架构在大模型推理吞吐量上较GPU有3-5倍优势。融资将用于建设中东和东南亚数据中心。</p>
+            </div>
+            <div class="card">
+                <h3>AI安全合规岗需求激增，国内大厂集中招聘</h3>
+                <p>受工信部通报影响，阿里发布"AI工具安全评估专家"和"代码安全审计工程师"各3个HC；腾讯发布"AI合规风控产品经理"；百度发布"大模型安全红队研究员"。薪资普遍较传统安全岗上浮30-50%。</p>
+            </div>
+        </div>
+
+        <!-- HR思考 -->
+        <div class="section">
+            <div class="section-title">✍️ HR视角的思考延展</div>
+            <div class="thinking">
+                <h3>当AI编程工具遭遇国家级安全监管，企业的技术选型和人才策略应如何同步调整？</h3>
+                <p>工信部对Claude Code的"安全后门"定性，意味着AI工具合规不再是"建议性指引"而是"强制性要求"。</p>
+                <ol>
+                    <li><strong>工具替换带来培训需求</strong>：全面禁用后，开发者需快速切换到国产替代（MiMo Code、通义灵码、CodeGeeX）。HR需提前规划转型培训预算和时间窗口。</li>
+                    <li><strong>新岗位浮现</strong>：AI安全合规评估、AI工具准入审计、AI代码安全检测——3个月前还不存在的岗位，现在已有明确HC。建议提前储备人才池。</li>
+                    <li><strong>供应商多元化人才</strong>：企业需要具备"多AI平台适配"能力的工程师——能在合规约束下快速切换和评估多个工具链。</li>
+                    <li><strong>安全与效率的平衡决策</strong>：禁用高效工具短期必然影响开发效率。管理者需量化影响（估算产能下降比例），为申请额外HC或调整排期提供数据支撑。</li>
+                </ol>
+            </div>
+        </div>
+
+        <footer>
+            <p>信息覆盖：2026年7月9日 08:00 至 7月10日 08:00（CST）</p>
+            <p>来源：OpenAI官方博客、Meta AI公告、工信部网络安全管理局、36氪、TechCrunch、The Information</p>
+            <div class="watermark">Made by ChloeCao</div>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const current = body.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', next);
+            localStorage.setItem('ai-daily-theme', next);
+        }
+        (function() {
+            const saved = localStorage.getItem('ai-daily-theme');
+            if (saved) document.body.setAttribute('data-theme', saved);
+        })();
+    </script>
+</body>
+</html>
