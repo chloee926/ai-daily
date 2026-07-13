@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日AI简报｜2026-07-13｜第69期</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-card: #141828;
+            --bg-card-hover: #1a2035;
+            --text-primary: #e8eaf0;
+            --text-secondary: #a0a8c0;
+            --text-muted: #6b7394;
+            --accent: #6c63ff;
+            --accent-light: #8b83ff;
+            --border: #1e2844;
+            --highlight: #ff6b6b;
+            --success: #4ecdc4;
+            --warning: #ffd93d;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5f7fa;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0f2f8;
+            --text-primary: #1a1d2e;
+            --text-secondary: #4a5068;
+            --text-muted: #8890a8;
+            --accent: #5a52e0;
+            --accent-light: #7068f0;
+            --border: #e2e6f0;
+            --highlight: #e84545;
+            --success: #2db5a8;
+            --warning: #e6c030;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 14px;
+            color: var(--accent);
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s;
+        }
+        .back-nav:hover { background: var(--accent); color: #fff; }
+
+        .theme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .theme-toggle:hover { background: var(--accent); }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(108,99,255,0.08) 100%);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--accent-light), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header .meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .section {
+            margin-bottom: 36px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.2s;
+        }
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .top3 {
+            background: linear-gradient(135deg, rgba(108,99,255,0.06) 0%, rgba(78,205,196,0.06) 100%);
+            border: 1px solid rgba(108,99,255,0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 36px;
+        }
+
+        .top3 h2 {
+            font-size: 1.1rem;
+            color: var(--accent-light);
+            margin-bottom: 16px;
+        }
+
+        .top3 .item {
+            margin-bottom: 14px;
+            padding-left: 16px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .top3 .item strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .top3 .item p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+        }
+
+        .verdict {
+            background: var(--bg-card);
+            border-left: 4px solid var(--warning);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .new-term {
+            border-left: 3px solid var(--success);
+        }
+
+        .new-term h3 { color: var(--success); }
+
+        .thinking {
+            background: linear-gradient(135deg, rgba(255,107,107,0.05) 0%, rgba(255,217,61,0.05) 100%);
+            border: 1px solid rgba(255,107,107,0.2);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .thinking h3 {
+            color: var(--highlight);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .thinking p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .week-ahead {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .week-ahead h3 {
+            color: var(--accent-light);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .week-ahead table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        .week-ahead td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .week-ahead td:first-child {
+            color: var(--accent-light);
+            font-weight: 600;
+            width: 100px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .watermark {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            opacity: 0.6;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .back-nav {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: block;
+                text-align: center;
+                margin-bottom: 16px;
+                border-radius: 8px;
+            }
+            .container { padding: 20px 16px; }
+            header h1 { font-size: 1.4rem; }
+            header { padding: 28px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <a class="back-nav" href="https://chloee926.github.io/ai-daily/index.html">◀ 返回目录</a>
+    <div class="theme-toggle" onclick="toggleTheme()">🌓</div>
+
+    <div class="container">
+        <header>
+            <h1>每日AI简报</h1>
+            <div class="meta">2026年7月13日 星期一（含周末）｜第69期</div>
+        </header>
+
+        <!-- 今日最重要的3点 -->
+        <div class="top3">
+            <h2>📍 今日最重要的3点</h2>
+            <div class="item">
+                <strong>1. 智谱发"巨浪已来"内部信，GLM-5.2以MIT协议全量开源</strong>
+                <p>中国大模型从"价格战"正式升级为"开源生态战"。智谱选择在国产模型OpenRouter调用量连续十周碾压美国的窗口放大招——谁先占住开发者生态位，谁就是下一个Android。</p>
+            </div>
+            <div class="item">
+                <strong>2. GPT-5.6一小时证明50年数学猜想，同日被曝删除Mac用户文件</strong>
+                <p>AI能力天花板与安全地板同时暴露。前沿能力越强出错后果越致命——这不是"bug"问题，是"AI Agent权限边界"问题。</p>
+            </div>
+            <div class="item">
+                <strong>3. OpenAI安全系统负责人离职，八年内第八位安全高管出走</strong>
+                <p>安全团队的人持续走，最强模型持续发布。这个矛盾在OpenAI内部已经结构化，而非偶发事件。</p>
+            </div>
+            <div class="verdict">
+                <strong>总判断：</strong>周末三天浓缩了2026下半年AI格局的三条主线——开源主导权之争（智谱GLM-5.2 vs DeepSeek V4）、前沿模型安全治理困境（GPT-5.6事故+安全团队流失）、中国AI全球影响力质变（OpenRouter连续十周第一+WAIC本周开幕）。招聘视角看，AI安全/对齐、大模型开源社区运营、AI Agent权限设计三个方向的人才缺口正在放大。
+            </div>
+        </div>
+
+        <!-- 新名词 -->
+        <div class="section">
+            <div class="section-title">🆕 AI新名词</div>
+            <div class="card new-term">
+                <h3>模型蒸馏双向抄袭（Bidirectional Model Distillation Controversy）</h3>
+                <p>AI巨头之间互相使用对方模型输出来训练自家模型的争议现象。本周多家媒体报道，OpenAI与中国大模型厂商存在"你蒸馏我、我蒸馏你"的互相借鉴——当所有模型都在互相学习，"原创性"还有意义吗？</p>
+            </div>
+            <div class="card new-term">
+                <h3>峰谷分时定价（Time-of-Use API Pricing）</h3>
+                <p>DeepSeek V4首创的API定价机制——工作日白天高峰价、夜间和周末低谷价，借鉴电力行业分时电价逻辑。本质是用价格杠杆平滑GPU集群负载，让开发者批量任务"错峰跑"。7月15日全量上线后预计引发行业跟进。</p>
+            </div>
+        </div>
+
+        <!-- 议题一 -->
+        <div class="section">
+            <div class="section-title">📌 议题一 · 模型军备：开源vs闭源的决战周</div>
+            <div class="card">
+                <h3>🛠️ 智谱发布《巨浪已来》内部信，GLM-5.2以MIT协议全量开源</h3>
+                <p>智谱AI CEO张鹏7月11日向全员发布内部信，宣布GLM-5.2全系列（基座+微调+推理框架）以MIT协议开源。GLM-5.2在OpenRouter平台周调用量达2.58万亿Token，环比增长22%，冲进全球前五。选择在中国模型全球调用量连续十周领先的时间点开源，战略意图明确：用开源锁定开发者生态。</p>
+            </div>
+            <div class="card">
+                <h3>🔵 GPT-5.6 Sol Ultra一小时证明50年未解数学猜想</h3>
+                <p>OpenAI于7月11日展示GPT-5.6 Sol Ultra在数学推理领域的突破——用不到一小时完成困扰数学界50年的猜想证明，已提交同行评审。标志着AI在形式化推理方面正式超越绝大多数人类数学家的单点能力。</p>
+            </div>
+            <div class="card">
+                <h3>⚠️ GPT-5.6被曝删除Mac用户文件，OpenAI紧急修复</h3>
+                <p>7月11日大量用户报告GPT-5.6桌面版Agent执行文件整理任务时错误删除个人文件。OpenAI在12小时内确认bug并发布修复，CEO奥尔特曼公开致歉，承认"Agent获得文件系统写入权限的安全审查流程存在缺陷"。事件引发关于AI Agent系统级权限的广泛讨论。</p>
+            </div>
+            <div class="card">
+                <h3>🔵 谷歌Gemini 3.5 Pro定档7月17日，200万Token上下文</h3>
+                <p>Google确认旗舰模型Gemini 3.5 Pro于7月17日正式发布。原定6月推出但跳票后改为全新预训练（非微调）。核心：200万Token上下文窗口（当前最大）、Deep Think推理模式、自主工作流能力。发布时间精准卡位DeepSeek V4同期，正面对决。</p>
+            </div>
+            <div class="card">
+                <h3>🔵 DeepSeek V4定档7月15日全量上线，首创峰谷分时定价</h3>
+                <p>V4-Flash在OpenRouter连续七周全球调用量第一（周5.34万亿Token），价格仅为GPT-5.5的1/100。正式版最大创新在商业模式层面：首次引入峰谷分时定价。</p>
+            </div>
+            <div class="card">
+                <h3>🛠️ 谷歌Gemma 4技术报告发布，端侧原生多模态开源</h3>
+                <p>Google DeepMind 7月11日发布Gemma 4，首个端侧原生多模态开源模型，支持文本/图像/音频三模态输入输出，可直接在手机和边缘设备运行。Apache 2.0协议开源。</p>
+            </div>
+        </div>
+
+        <!-- 议题二 -->
+        <div class="section">
+            <div class="section-title">📌 议题二 · AI组织与人才：安全出走潮 & 中国AI全球崛起</div>
+            <div class="card">
+                <h3>👤 OpenAI安全系统负责人海德克离职，第八位安全高管出走</h3>
+                <p>约翰内斯·海德克7月11日宣布离职。继萨特斯凯弗、莱克、翁荔等人后第八位离开的安全高管。同周首席未来学家阿希亚姆（任职近9年）也宣布离职。OpenAI回应将安全团队整合进研究组织，由米娅·格莱斯统一负责。</p>
+            </div>
+            <div class="card">
+                <h3>📈 中国大模型OpenRouter调用量连续十周碾压美国</h3>
+                <p>截至7月5日当周，中国AI大模型周调用量23.45万亿Token，是美国（4.28万亿）的5.5倍。前六名全部为中国模型。美国企业使用中国模型Token占比从2025年上半年4.5%飙升至46%。1美元在DeepSeek可生成115万输出token，在Claude Opus 4.8仅4万。</p>
+            </div>
+            <div class="card">
+                <h3>🏛️ WAIC 2026世界人工智能大会7月17-20日开幕</h3>
+                <p>本届大会展览面积首破10万平方米，1100家企业参展，超300款AI产品全球首发。首设WAIC Academic学术会议，图灵奖得主姚期智和强化学习之父Richard Sutton共同主持。华为Atlas 950超节点真机将首次亮相。</p>
+            </div>
+            <div class="card">
+                <h3>🔵 阶跃星辰发布全球首款AI智能体手机</h3>
+                <p>7月13日发布AI智能体手机原型，系统层面深度集成Agent能力，可自主完成跨App操作链。目前为开发者预览版，计划Q4量产。AI Agent从云端走向终端设备的标志性产品形态。</p>
+            </div>
+            <div class="card">
+                <h3>💰 宇树科技104天登陆科创板，创最快IPO纪录</h3>
+                <p>从3月20日获受理到7月1日注册生效仅104天，创科创板预先审阅机制最快纪录。即将成为A股"人形机器人第一股"，拟募资42亿元，估值约420亿。业内认为2026年是人形机器人"场景验证元年"。</p>
+            </div>
+            <div class="card">
+                <h3>🎵 唱片业联盟推动AI音乐强制标注</h3>
+                <p>RIAA与IFPI牵头推动Spotify和Apple Music对AI生成音乐实施分类标注：纯AI生成 vs AI辅助创作。Spotify已上线AI参与标注功能，Apple Music推出透明化标签系统。音乐产业首次系统性建立AI内容分类标识。</p>
+            </div>
+        </div>
+
+        <!-- HR思考 -->
+        <div class="section">
+            <div class="section-title">✍️ HR视角的思考延展</div>
+            <div class="thinking">
+                <h3>💡 如果你是AI公司的HRD，你怎么定义"安全岗位"的留任优先级？</h3>
+                <p>OpenAI的安全系统负责人走了（第八个），首席未来学家也走了（九年老人）。同一周，OpenAI发布了"能证明数学猜想"的最强模型，但这个模型同时会误删用户文件。</p>
+                <p style="margin-top: 12px;">传统逻辑是：能力越强的人越难替代。但在AI安全领域，情况可能相反——安全负责人的离开不会让产品变弱，反而可能让产品发布得更快（少了一个"刹车"）。这意味着安全岗位的价值无法用传统"业务贡献"衡量，它的价值在于"阻止了多少本不该发生的事"——而这些事在没发生时无人看见。</p>
+                <p style="margin-top: 12px;">当八位安全高管相继离开后，留下的问题不是"怎么招到下一个"，而是<strong>"这个岗位的激励机制是不是从根本上就设计错了"</strong>。</p>
+            </div>
+        </div>
+
+        <!-- 本周前瞻 -->
+        <div class="section">
+            <div class="section-title">📊 本周前瞻</div>
+            <div class="week-ahead">
+                <table>
+                    <tr><td>7/15 周二</td><td>DeepSeek V4 正式版全量上线</td></tr>
+                    <tr><td>7/17 周四</td><td>谷歌 Gemini 3.5 Pro 正式发布</td></tr>
+                    <tr><td>7/17-20</td><td>WAIC 2026 世界人工智能大会（上海）</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <footer>
+            <p>信息覆盖：2026年7月11日 08:00 至 7月13日 08:00（CST）｜含周末72小时</p>
+            <p>来源：OpenAI官方、WIRED、智通财经、每日经济新闻、OpenRouter、科创板日报、联合国新闻、新浪财经</p>
+            <div class="watermark">Made by ChloeCao</div>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const current = body.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', next);
+            localStorage.setItem('ai-daily-theme', next);
+        }
+        (function() {
+            const saved = localStorage.getItem('ai-daily-theme');
+            if (saved) document.body.setAttribute('data-theme', saved);
+        })();
+    </script>
+</body>
+</html>
