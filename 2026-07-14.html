@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日AI速报 | 2026-07-14</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card-bg: #161b22;
+  --text: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --accent2: #7ee787;
+  --accent3: #d2a8ff;
+  --accent4: #ffa657;
+  --border: #30363d;
+  --tag-bg: rgba(88,166,255,0.15);
+}
+[data-theme="light"] {
+  --bg: #ffffff;
+  --card-bg: #f6f8fa;
+  --text: #1f2328;
+  --text-secondary: #656d76;
+  --accent: #0969da;
+  --accent2: #1a7f37;
+  --accent3: #8250df;
+  --accent4: #bc4c00;
+  --border: #d0d7de;
+  --tag-bg: rgba(9,105,218,0.1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 0;
+  transition: background 0.3s, color 0.3s;
+}
+.back-nav {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+}
+.back-nav:hover { background: var(--accent); color: #fff; }
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+.container { max-width: 780px; margin: 0 auto; padding: 60px 20px 40px; }
+h1 {
+  font-size: 1.8em;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.date-meta { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.9em; }
+.top3 {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+.top3 h2 { font-size: 1.1em; margin-bottom: 12px; color: var(--accent); }
+.top3 ol { padding-left: 20px; }
+.top3 li { margin-bottom: 8px; font-size: 0.95em; }
+.verdict {
+  background: linear-gradient(135deg, rgba(88,166,255,0.08), rgba(210,168,255,0.08));
+  border-left: 3px solid var(--accent3);
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 32px;
+  font-size: 0.95em;
+}
+.verdict strong { color: var(--accent3); }
+.section { margin-bottom: 36px; }
+.section-title {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: 500;
+  margin-right: 6px;
+}
+.tag-new { background: rgba(126,231,135,0.15); color: var(--accent2); }
+.tag-product { background: rgba(88,166,255,0.15); color: var(--accent); }
+.tag-org { background: rgba(210,168,255,0.15); color: var(--accent3); }
+.tag-think { background: rgba(255,166,87,0.15); color: var(--accent4); }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--accent); }
+.card h3 { font-size: 1em; margin-bottom: 8px; }
+.card .source { font-size: 0.82em; color: var(--text-secondary); margin-bottom: 8px; }
+.card .source a { color: var(--accent); text-decoration: none; }
+.card .source a:hover { text-decoration: underline; }
+.card .summary { font-size: 0.9em; margin-bottom: 8px; }
+.card .insight {
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+  margin-top: 8px;
+}
+.think-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 26px;
+}
+.think-section h3 { margin-bottom: 12px; color: var(--accent4); }
+.think-section p { margin-bottom: 12px; font-size: 0.92em; }
+.think-question {
+  background: linear-gradient(135deg, rgba(255,166,87,0.08), rgba(210,168,255,0.08));
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 16px;
+}
+.think-question strong { color: var(--accent4); }
+.think-question ol { padding-left: 20px; margin-top: 8px; }
+.think-question li { margin-bottom: 6px; font-size: 0.9em; }
+.watermark {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.8em;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  opacity: 0.6;
+}
+@media (max-width: 600px) {
+  .container { padding: 50px 14px 30px; }
+  h1 { font-size: 1.4em; }
+  .back-nav { top: 10px; left: 10px; font-size: 12px; padding: 4px 10px; }
+  .theme-toggle { top: 10px; right: 10px; padding: 4px 8px; font-size: 16px; }
+}
+</style>
+</head>
+<body>
+<a class="back-nav" href="index.html">◀ 返回目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换主题">🌓</button>
+<div class="container">
+
+<h1>今日AI速报</h1>
+<p class="date-meta">2026-07-14 周二 ｜ 第70期</p>
+
+<div class="top3">
+<h2>今日最重要的3点</h2>
+<ol>
+<li>AI终端从"外挂助手"走向"原生操作系统"，硬件主角正在从人切换为智能体</li>
+<li>前沿模型定价权争夺白热化，算力短缺正倒逼商业模式从订阅制走向分时计费</li>
+<li>头部AI公司安全治理架构集体转向"研发安全一体化"，独立安全团队正在消失</li>
+</ol>
+</div>
+
+<div class="verdict">
+<strong>总判断：</strong>AI行业正经历从"模型能力竞争"向"生态卡位竞争"的关键转折——阶跃做手机OS、OpenAI与Anthropic打额度战、软银锁定日本独家代理，本质都是在争夺用户时间和使用场景的垄断入口。
+</div>
+
+<!-- 📘 新名词 -->
+<div class="section">
+<div class="section-title"><span class="tag tag-new">📘 新名词</span>AI新名词解释</div>
+
+<div class="card">
+<h3>智能体原生操作系统（Agentic-native OS）</h3>
+<p class="summary">从底层为AI智能体（而非人类手指）设计的手机操作系统，用户只需描述意图，智能体自主跨应用执行全流程。</p>
+<p class="source">来源：<a href="https://i.ifeng.com/c/8ujZU1BLXB2" target="_blank">凤凰网科技</a></p>
+<p class="insight">这是手机交互范式的根本性变革——操作系统的"主角"从人变成AI，将重塑移动互联网的应用分发和用户触达逻辑。</p>
+</div>
+
+<div class="card">
+<h3>算力短缺商品化悖论（Compute Scarcity Commoditization Paradox）</h3>
+<p class="summary">当前基础模型因算力短缺享有高定价权，但分析师指出一旦供给缓解，模型将沦为低利润商品化基础设施。</p>
+<p class="source">来源：<a href="https://mp.weixin.qq.com/s/4u8QfkWfVYnqc-HDE2F1iA" target="_blank">腾讯研究院AI速递</a></p>
+<p class="insight">解释了为何OpenAI和Anthropic同时争抢用户——窗口期有限，谁先锁定用户习惯谁就能在算力充裕后保住护城河。</p>
+</div>
+</div>
+
+<!-- 🚀 议题一 -->
+<div class="section">
+<div class="section-title"><span class="tag tag-product">🚀 产品&平台</span>海内外 AI 产品、平台与流媒体</div>
+
+<div class="card">
+<h3>1. 阶跃星辰发布全球首款大模型原生智能体手机STEPX Neo</h3>
+<p class="source">来源：<a href="https://i.ifeng.com/c/8ujZU1BLXB2" target="_blank">凤凰网科技</a> ｜ 2026-07-13</p>
+<p class="summary">阶跃星辰发布AI终端品牌STEPX、智能体原生系统Step AOS及首款手机STEPX Neo。Step AOS从底层重构，让智能体直接调用合作方服务接口（非GUI模拟点击），首批生态接入美团、携程、支付宝等数十家应用。手机已通过国标L3级智能化测试，日常问答记忆召回最快15ms。</p>
+<p class="insight"><strong>为什么对 TME 重要：</strong>智能体原生OS代表下一代用户交互入口，若"结果交互"取代"过程交互"成为主流，App分发逻辑将彻底改变。需关注内容服务在智能体OS中的接入策略。</p>
+</div>
+
+<div class="card">
+<h3>2. OpenAI与Anthropic爆发额度争夺战</h3>
+<p class="source">来源：<a href="https://www.163.com/tech/article/L1NPP0GO00097U7T.html" target="_blank">网易科技</a> ｜ 2026-07-13</p>
+<p class="summary">Anthropic将Claude Fable 5切换按量付费截止日第三次延期至7月19日，Claude Code每周上限维持+50%优惠；OpenAI随即临时取消Codex和ChatGPT Work的5小时使用限制，并优化GPT-5.6 Sol运行效率使可用额度提升约10%。Codex活跃用户已达600万。</p>
+<p class="insight"><strong>为什么对 TME 重要：</strong>AI编程工具使用门槛快速降低。当Codex活跃用户已达600万，企业需重新评估内部AI Coding工具选型和成本结构。</p>
+</div>
+
+<div class="card">
+<h3>3. 腾讯混元开源HyOCR-1.5：1B参数OCR推理提速6.37倍</h3>
+<p class="source">来源：<a href="https://www.huxiu.com/ainews/13844.html" target="_blank">虎嗅</a> ｜ 2026-07-12</p>
+<p class="summary">腾讯混元开源端到端OCR专家模型HyOCR-1.5，仅1B参数覆盖8种以上任务。借助DFlash投机解码框架推理提速6.37倍，可在llama.cpp上用CPU和普通笔记本运行。OmniDocBench v1.6以94.74分居端到端第一。</p>
+<p class="insight"><strong>为什么对 TME 重要：</strong>轻量化OCR模型开源意味着文档处理成本大幅下降，简历解析、合同审核等招聘场景可直接受益。</p>
+</div>
+</div>
+
+<!-- 👥 议题二 -->
+<div class="section">
+<div class="section-title"><span class="tag tag-org">👥 组织&人才</span>海内外组织、人才与治理变化</div>
+
+<div class="card">
+<h3>1. OpenAI安全负责人海德克离职，安全团队并入研发体系</h3>
+<p class="source">来源：<a href="https://new.qq.com/rain/a/20260713A069HV00" target="_blank">量子位/WIRED</a> ｜ 2026-07-11</p>
+<p class="summary">任职近5年的安全系统负责人约翰内斯·海德克确认离职（2年内第6位安全高管出走）。OpenAI新设"研究与安全副总裁"岗位由米娅·格莱斯出任，安全团队不再拥有独立汇报线，整体并入研究部门。</p>
+<p class="insight"><strong>对招聘的启发：</strong>AI安全领域正形成独立人才市场，多人转投Anthropic或创建独立安全组织。对标企业如需组建AI安全团队，现在是窗口期。</p>
+</div>
+
+<div class="card">
+<h3>2. MiniMax融资160亿港元，创始人宣布AGI前零薪酬</h3>
+<p class="source">来源：<a href="https://finance.sina.cn/2026-07-10/detail-inihhvka7174378.d.html" target="_blank">中国证券报</a> ｜ 2026-07-10</p>
+<p class="summary">MiniMax完成160亿港元融资（配股+零息可转债），80%投入AI基础设施和模型研发。创始人闫俊杰宣布即日起至AGI不领薪酬，拿出总股本4%激励团队、1%设基金支持开源社区。但限售股解禁导致股价持续承压。</p>
+<p class="insight"><strong>对招聘的启发：</strong>零薪酬+大比例股权激励是AI公司争夺人才的极端手段，但人才吸引力最终取决于商业化路径的清晰度。</p>
+</div>
+
+<div class="card">
+<h3>3. 软银独家代理Sierra进军日本AI客服市场</h3>
+<p class="source">来源：<a href="https://www.softbank.jp/en/corp/news/press/sbkk/2026/20260714_01/" target="_blank">SoftBank官方</a> ｜ 2026-07-14</p>
+<p class="summary">软银与Bret Taylor创立的Sierra达成独家战略合作，在日本推出AI Agent客服平台。此前LINEMO部署中，Sierra将问题解决率从83%提升至97%，满意度从74%升至93%。计划年底覆盖生态内超8000万用户。</p>
+<p class="insight"><strong>对招聘的启发：</strong>AI Agent客服从"降本增效"走向"独占市场"，企业客服团队岗位结构将加速向AI运营和提示工程方向转型。</p>
+</div>
+</div>
+
+<!-- 💡 思考延展 -->
+<div class="section">
+<div class="section-title"><span class="tag tag-think">💡 思考延展</span>HR 视角</div>
+
+<div class="think-section">
+<h3>今日关注点</h3>
+<p>AI行业正从"谁的模型更强"转向"谁先锁定用户使用习惯"。OpenAI与Anthropic的额度战本质是用户粘性争夺，阶跃做手机OS是抢占交互入口，软银锁定独家代理是圈占区域市场。对TME而言，AI人才竞争也将从"模型研发"扩展到"产品设计+生态运营+商业化"的全链条。</p>
+<p>MiniMax创始人零薪酬+大比例股权激励的做法值得关注。当AI公司普遍面临"估值高但商业化不清晰"的困境时，HR需思考：在候选人offer比较中，如何帮助候选人正确评估不同AI公司股权方案的实际价值。</p>
+<p>OpenAI连续6位安全高管出走形成了一个新现象：AI安全正在成为独立于大厂的人才赛道。如果TME未来需要组建AI伦理/安全团队，现在的人才供给正在变好。</p>
+
+<div class="think-question">
+<strong>今日思考题：</strong>当AI终端从"App生态"转向"智能体生态"，TME的内容服务应如何重新定义与用户的触达方式？
+<ol>
+<li>从"用户打开App"到"智能体主动推荐"——内容服务如何在智能体OS中被发现和调用</li>
+<li>从"界面体验"到"意图匹配"——推荐逻辑需从视觉转向语义</li>
+<li>落地建议：关注智能体OS生态接入标准，提前布局Agent时代的内容分发协议，培养既懂内容运营又懂Agent接口设计的复合人才</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div class="watermark">Made by ChloeCao</div>
+
+</div>
+
+<script>
+function toggleTheme() {
+  const body = document.body;
+  const current = body.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  body.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('ai-daily-theme');
+  if (saved) {
+    document.body.setAttribute('data-theme', saved);
+  } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.body.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+</body>
+</html>
