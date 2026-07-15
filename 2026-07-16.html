@@ -19,6 +19,7 @@
     --c2: #1f5c4d;              /* 02 议题一 墨绿 */
     --c3: #2b4f8a;              /* 03 议题二 蓝 */
     --c4: #b06a1e;              /* 04 思考 橙 */
+    --c5: #7a3d8f;       /* 05 今日论文 紫 */
     --card-bg: #fbf9f3;
     --card-border: rgba(27,24,19,0.16);
     --card-hover: rgba(27,24,19,0.05);
@@ -50,6 +51,7 @@
       --c2: #6fae9a;
       --c3: #8aa9d6;
       --c4: #d9a35e;
+      --c5: #c89bd8;
       --card-bg: #1e1a14;
       --card-border: rgba(236,229,216,0.18);
       --card-hover: rgba(236,229,216,0.06);
@@ -219,14 +221,15 @@
   }
   .music-note b { color: var(--c4); }
   .music-note-empty { opacity: 0.65; }
-  .paper-feature {
-    font-family: var(--sans); font-size: 13px;
-    background: rgba(158,43,37,0.06); border-left: 3px solid var(--accent);
-    padding: 10px 16px; margin: 14px 0 0; color: var(--ink); line-height: 1.7;
-  }
-  .paper-feature b { color: var(--accent); }
-  .paper-feature a { color: var(--accent); text-decoration: none; font-weight: 600; }
-  .paper-feature a:hover { text-decoration: underline; }
+  .sec-num-5 { color: var(--c5); }
+  .sec-paper .card { border-top-color: var(--c5); }
+  .paper-authors { font-size: 12.5px; color: var(--ink-soft); margin: 8px 0 6px; line-height: 1.8; }
+  .paper-authors a { color: var(--c5); text-decoration: none; font-weight: 600; border-bottom: 1px dotted var(--c5); }
+  .paper-authors a:hover { border-bottom-style: solid; }
+  .paper-meta { font-size: 12px; color: var(--ink-dim); margin-top: 8px; }
+  .paper-meta .pcat { background: rgba(122,61,143,0.12); color: var(--c5); padding: 1px 8px; border-radius: 999px; font-weight: 600; }
+  .paper-meta a { color: var(--c5); text-decoration: none; font-weight: 600; }
+  .paper-meta a:hover { text-decoration: underline; }
 
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
@@ -311,6 +314,7 @@
   <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
   <a href="lexicon.html">词典</a>
   <a href="board.html">看板</a>
+  <a href="papers.html">论文</a>
 </nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
@@ -321,8 +325,6 @@
   </header>
 
     <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：阿里通义千问 Qwen-Music — 音乐生成模型发布，支持完整人声演唱的歌曲生成</div>
-
-    <div class="paper-feature">🎵 <b>今日论文</b>：<a href="https://arxiv.org/abs/2607.11699" target="_blank" rel="noopener">Qwen-Music</a> — 阿里通义千问音乐生成模型，可生成带完整人声演唱的歌曲（文生音乐 + 翻唱）。<a href="papers.html">查看音乐 AI 论文合集 →</a></div>
 
     <div class="lead">OpenAI 把卖点从「基准领先」拧到「每 Token 的有效工作」，企业 AI 正式进入算账时代；同一天国内《拟人化 AI 管理办法》落地，豆包、千问一夜下线用户自建角色智能体。资本端，Anthropic 估值反超 OpenAI 并抢跑 IPO，顶级 AI 人才的「退出预期」被重写。对 TME 招聘而言，企业 AI 落地岗、合规审核岗，以及用「使命 + 股权」留人的能力，比任何时候都重要。</div>
 
@@ -397,6 +399,21 @@
     </blockquote>
   </section>
 
+        <section class="section sec-paper">
+    <div class="sec-head">
+      <span class="sec-num sec-num-5">05</span>
+      <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card paper-card" id="2026-07-16-p0" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-16-p0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> <a href="https://arxiv.org/abs/2607.11699" target="_blank" rel="noopener">Qwen-Music Technical Report</a></h4>
+        <div class="paper-authors">① <a href="https://scholar.google.com/citations?user=...xu" target="_blank" rel="noopener" title="阿里通义千问">Jin Xu</a>, ② <a href="https://scholar.google.com/citations?user=...wang" target="_blank" rel="noopener" title="阿里通义千问">Kangdi Wang</a>, ③ <a href="https://ruibin-yuan.github.io/" target="_blank" rel="noopener" title="阿里通义千问 / AudioX-Turbo">Ruibin Yuan</a> <span class="auth-etal">(阿里通义千问)</span></div>
+        <p>阿里通义千问发布的音乐生成模型，可生成高保真、带完整人声演唱的歌曲。支持文生音乐与翻唱两种核心任务，覆盖歌词、音乐属性等多条件控制。</p>
+        <div class="paper-meta"><span class="pcat">cs.SD</span> · 分类：音乐生成 · <a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      </article>
+    </div>
+  </section>
 
   <div class="watermark">TME 招聘 HR 出品 &middot; ChloeCao</div>
 </div><script>

@@ -19,6 +19,7 @@
     --c2: #1f5c4d;              /* 02 议题一 墨绿 */
     --c3: #2b4f8a;              /* 03 议题二 蓝 */
     --c4: #b06a1e;              /* 04 思考 橙 */
+    --c5: #7a3d8f;       /* 05 今日论文 紫 */
     --card-bg: #fbf9f3;
     --card-border: rgba(27,24,19,0.16);
     --card-hover: rgba(27,24,19,0.05);
@@ -50,6 +51,7 @@
       --c2: #6fae9a;
       --c3: #8aa9d6;
       --c4: #d9a35e;
+      --c5: #c89bd8;
       --card-bg: #1e1a14;
       --card-border: rgba(236,229,216,0.18);
       --card-hover: rgba(236,229,216,0.06);
@@ -219,6 +221,16 @@
   }
   .music-note b { color: var(--c4); }
   .music-note-empty { opacity: 0.65; }
+  .sec-num-5 { color: var(--c5); }
+  .sec-paper .card { border-top-color: var(--c5); }
+  .paper-authors { font-size: 12.5px; color: var(--ink-soft); margin: 8px 0 6px; line-height: 1.8; }
+  .paper-authors a { color: var(--c5); text-decoration: none; font-weight: 600; border-bottom: 1px dotted var(--c5); }
+  .paper-authors a:hover { border-bottom-style: solid; }
+  .paper-meta { font-size: 12px; color: var(--ink-dim); margin-top: 8px; }
+  .paper-meta .pcat { background: rgba(122,61,143,0.12); color: var(--c5); padding: 1px 8px; border-radius: 999px; font-weight: 600; }
+  .paper-meta a { color: var(--c5); text-decoration: none; font-weight: 600; }
+  .paper-meta a:hover { text-decoration: underline; }
+
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
@@ -302,6 +314,7 @@
   <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
   <a href="lexicon.html">词典</a>
   <a href="board.html">看板</a>
+  <a href="papers.html">论文</a>
 </nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
@@ -390,6 +403,22 @@
     </blockquote>
   </section>
 
+
+      <section class="section sec-paper">
+    <div class="sec-head">
+      <span class="sec-num sec-num-5">05</span>
+      <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card paper-card" id="2026-04-17-p0" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-17-p0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> <a href="https://arxiv.org/abs/2606.12555" target="_blank" rel="noopener">AudioX-Turbo: A Unified Framework for Efficient Anything-to-Audio Generation</a></h4>
+        <div class="paper-authors">① <a href="https://www.google.com/scholar?q=Zeyue+Tian" target="_blank" rel="noopener" title="Google Scholar 搜索">Zeyue Tian</a>, ② <a href="https://www.google.com/scholar?q=Lei+Ke" target="_blank" rel="noopener" title="Google Scholar 搜索">Lei Ke</a>, ③ <a href="https://www.google.com/scholar?q=Zhaoyang+Liu" target="_blank" rel="noopener" title="Google Scholar 搜索">Zhaoyang Liu</a>, <span class="auth-etal">et al.</span></div>
+        <p>统一高效的多模态到音频生成框架，整合文本、视频、音频等条件，并通过蒸馏显著降低多步扩散采样的推理成本。</p>
+        <div class="paper-meta"><span class="pcat">cs.SD</span> · 分类：音乐生成 / 高效/端侧 · <a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      </article>
+    </div>
+  </section>
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
