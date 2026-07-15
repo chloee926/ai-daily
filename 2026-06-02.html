@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-02 · 星期二 · <b>第 40 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：Microsoft — Build 2026 发布七款自研 MAI 模型，全面转向 Agent 优先</div>
 
   
     <section class="section sec-nw">
@@ -260,12 +272,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Microsoft — Build 2026 发布七款自研 MAI 模型，全面转向 Agent 优先</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Microsoft — Build 2026 发布七款自研 MAI 模型，全面转向 Agent 优先 <span class="music-badge">🎵</span></h4>
         <p>微软 CEO 纳德拉在 Build 2026 开幕演讲中宣布"智能体优先"战略：Windows 中智能体成为"一等公民"，GitHub Copilot 定位从"结对编程伙伴"升级为"对等程序员"。七款 MAI 模型覆盖推理（MAI-Thinking-1）、代码（MAI-Code-1）、图像（MAI-Image-2.5）、语音（MAI-Voice-2）等多模态。微软 AI 负责人苏莱曼称目标是构建一台"爬山机器"，持续自我改进。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260603A02ABT00" target="_blank">腾讯新闻</a></div>
       </article>
       <article class="card">
-        <h4>Microsoft — 发布 Microsoft Scout 个人助理与量子芯片 Majorana 2</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Microsoft — 发布 Microsoft Scout 个人助理与量子芯片 Majorana 2</h4>
         <p>Build 大会同步发布 AI 个人助理 Microsoft Scout，可主动筛选邮件和消息、整理需要决策的事项；以及新一代量子计算芯片 Majorana 2，量子比特从 8 枚提升至 12 枚，存续时长突破 20 秒，微软计划 2029 年实现可规模化量子计算。</p>
         <div class="source">来源：<a href="https://www.toutiao.com/article/7646983286098575923/" target="_blank">界面新闻</a></div>
       </article>
@@ -278,12 +290,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic — 秘密递交 IPO 申请，估值 9650 亿美元反超 OpenAI</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — 秘密递交 IPO 申请，估值 9650 亿美元反超 OpenAI</h4>
         <p>当地时间 6 月 1 日，Anthropic 宣布已向美国 SEC 秘密递交 S-1 招股书，启动上市流程。此前刚完成 650 亿美元 H 轮融资，投后估值达 9650 亿美元，首次超越 OpenAI（约 8520 亿美元），成为全球估值最高的私有 AI 公司。Anthropic 预计 Q2 营收超 109 亿美元，首次实现季度营业利润约 5.59 亿美元。</p>
         <div class="source">来源：<a href="https://finance.sina.com.cn/stock/usstock/c/2026-06-02/doc-inhzzqck3063672.shtml" target="_blank">新浪财经</a></div>
       </article>
       <article class="card">
-        <h4>行业 — Anthropic 与 OpenAI 的 IPO 竞赛开启</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 行业 — Anthropic 与 OpenAI 的 IPO 竞赛开启</h4>
         <p>分析人士指出，Anthropic 抢先递交申请，在 AI 公司上市竞赛中占得先机，可能寻求募资超 600 亿美元。率先上市者将获得定义行业财务披露标准的话语权。OpenAI 据报也在加速准备，可能最快 9 月登陆公开市场。</p>
         <div class="source">来源：<a href="https://www.thepaper.cn/newsDetail_forward_33293485" target="_blank">澎湃新闻</a></div>
       </article>
@@ -293,7 +305,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>Anthropic 估值 9650 亿美元，推理毛利率从 38% 跃升至 70%——当 AI 公司的盈利能力取决于"推理成本压缩"而非"模型参数扩张"时，你公司的技术岗位价值是否也在被同样的逻辑重新定义？谁来评估一个"做模型的人"比"做推理优化的人"更值得保留？</p>
@@ -301,7 +313,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

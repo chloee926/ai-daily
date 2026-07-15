@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-04-25 · 星期六 · <b>第 23 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,12 +272,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI GPT-5.5 "Spud"</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI GPT-5.5 "Spud"</h4>
         <p>最强智能体编码模型发布，Token成本骤降至上代1/35。Terminal-Bench 2.0准确率82.7%（SOTA），SWE-Bench Pro达58.6%。API输入定价5美元/百万Token。Greg Brockman称其为"一类全新的智能"。已向Plus/Pro用户开放。([来源](https://finance.sina.com.cn/tech/discovery/2026-04-24/doc-inhvqfhe4440967.shtml))</p>
         
       </article>
       <article class="card">
-        <h4>DeepSeek V4预览版开源上线</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> DeepSeek V4预览版开源上线</h4>
         <p>Pro版1.6T参数为全球最大开源模型，百万字上下文标配，首款全运行于华为昇腾的前沿模型。同日曝出完成18亿美元首轮融资，阿里腾讯联投，估值200亿美元。Agent能力为重点升级方向。([来源](https://www.yicai.com/news/103150678.html))</p>
         
       </article>
@@ -278,17 +290,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Meta裁员8000人+停招6000岗</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta裁员8000人+停招6000岗</h4>
         <p>正式确认裁减10%员工约8000人，取消6000个在招岗位，合计影响14000个岗位。5月20日启动。扎克伯格内部备忘录将裁员与AI投入资源腾挪直接挂钩。据报道Meta已开始用员工工作行为数据训练AI模型。([来源](https://www.cnn.com/2026/04/23/tech/meta-layoffs-10-percent-staff-ai))</p>
         
       </article>
       <article class="card">
-        <h4>Microsoft首次推出自愿买断计划</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Microsoft首次推出自愿买断计划</h4>
         <p>51年历史上首次向美国员工提供自愿离职买断方案，预计影响约8000人。与Meta同日官宣，CNBC称两家合计约2万岗位受影响，引发"AI劳动力危机"讨论。([来源](https://fortune.com/2026/04/23/meta-microsoft-layoffs-job-cuts-not-filling-open-roles-voluntary-buyouts/))</p>
         
       </article>
       <article class="card">
-        <h4>AI岗位需求逆势暴涨</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> AI岗位需求逆势暴涨</h4>
         <p>据猎聘数据，2025.3-2026.2期间要求使用AI工具的职位同比增长155%，要求会用AI智能体的职位同比增293%。AI岗位占新经济整体岗位比重从2.3%飙升至26.2%。裁员与招聘的结构性分化正在加剧。([来源](https://finance.cctv.com/2026/04/13/ARTI3PsIRBGipnN2LyxQsnNJ260413.shtml))</p>
         
       </article>
@@ -298,7 +310,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日思考题 同一天，三大AI公司发布了更强的模型，两大科技巨头宣布了更大规模的减人——GPT-5.5的核心卖点是"自主工作"，Meta裁员的理由是"为AI腾资源"。 假设你所在的公司明年也要"为AI腾资源"——作为HR，你会建议管理层先砍哪些岗位？你的建议依据是"这些岗位已经被AI替代了"，还是"这些岗位未来最容易被AI替代"？这两种逻辑，决定了你是在做事后清理，还是在做前瞻规划。 而更尖锐的问题是：当AI智能体岗位需求暴涨293%的时候，你的招聘团队自己有没有在用AI？</p>
@@ -306,7 +318,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

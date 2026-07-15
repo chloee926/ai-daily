@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-12 · 星期五 · <b>第 48 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,27 +272,27 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>华为</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 华为</h4>
         <p>鸿蒙 7 正式发布，全生态迈入 Agent 时代。HDC 2026 在东莞松山湖开幕，HarmonyOS 7 开发者 Beta 亮相，核心升级围绕三大底层：Agent 亲和系统架构、鸿蒙智能体框架 2.0（复杂任务成功率超 90%）、系统智能体"小艺"全面 Skill 化。方舟引擎首次引入性能大模型，整机性能提升 15%。鸿蒙已成中国第二大智能手机系统，生态设备超 13 亿，生态伙伴超 3500 家。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260612A064VN00" target="_blank">腾讯新闻</a> | <a href="https://www.ithome.com/0/963/548.htm" target="_blank">IT之家</a></div>
       </article>
       <article class="card">
-        <h4>Coinbase</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Coinbase</h4>
         <p>推出"Coinbase for Agents"智能体金融账户。AI 智能体首次可以代表用户直接进行加密货币交易、资金转移和在线支付，基于 x402 协议实现机器对机器自主支付。过去 30 天约 15.7 万个 AI 智能体作为买方使用 x402 协议，已处理超 1 亿笔交易。Coinbase 将从智能体交易中赚取手续费。</p>
         <div class="source">来源：<a href="https://www.zhitongcaijing.com/content/detail/1453580.html" target="_blank">智通财经</a> | <a href="https://www.163.com/dy/article/KV6K2V4U05561FZO.html" target="_blank">TechCrunch via 网易</a></div>
       </article>
       <article class="card">
-        <h4>DeepSeek</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek</h4>
         <p>连续三周蝉联全球大模型榜首，中国 AI 周调用量达 3.69 万亿。这是国内 AI 服务调用量首次持续超越美国，标志着中国 AI 应用生态进入爆发期。DeepSeek Y4 Flash 成为全球使用量最大的大模型。</p>
         <div class="source">来源：<a href="https://blog.csdn.net/haohaizi_liu/article/details/161926400" target="_blank">CSDN</a></div>
       </article>
       <article class="card">
-        <h4>小米</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 小米</h4>
         <p>开源终端 AI 编程助手 MiMo Code。内置免费多模态模型，支持代码生成与调试，集成顶级多模态能力，面向开发者免费开放。</p>
         <div class="source">来源：<a href="https://wv.video.qq.com/export/UzFfBgAAxKqndFhbA33LjMzT4DBZDX7GUU7CXEYXzU3aIquMvXM" target="_blank">视频号热点</a></div>
       </article>
       <article class="card">
-        <h4>北京智源大会</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 北京智源大会</h4>
         <p>第八届今日开幕，聚焦智能系统新图景。汇聚 200 余位全球顶尖学者，Meta、英伟达、哈佛、MIT 等与中国 AI 核心力量同场交流，围绕世界模型、通用智能体、具身智能等前沿方向展开。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260612A04XC000" target="_blank">腾讯新闻</a></div>
       </article>
@@ -293,17 +305,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Meta</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta</h4>
         <p>裁员 4665 人聚焦 AI 战略，中层管理与工程师成重灾区。6 月 10 日在加州和华盛顿裁减 4665 人，管理人员超 1400 人、软件工程师近 1000 人。扎克伯格称不是"AI 替代人力"，而是将资源集中到大模型研发与元宇宙 AI 交互核心方向。预计年省 8 亿美元，2026 年 AI 投入计划超 50 亿美元。</p>
         <div class="source">来源：<a href="https://www.tmtpost.com/agent/ai-article/18044" target="_blank">钛媒体</a></div>
       </article>
       <article class="card">
-        <h4>Salesforce</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Salesforce</h4>
         <p>第三轮裁员，AI 转型持续优化团队。本轮涉及加州 86 人，Agentforce AI 产品、MuleSoft 等部门受影响，但核心 Agentforce 团队未受波及。CEO 贝尼奥夫透露某支持团队已从近 9000 人缩减至约 5000 人，AI 客服智能体替代显著。Agentforce 年收入已突破 12 亿美元，同比增长 205%。</p>
         <div class="source">来源：<a href="https://caifuhao.eastmoney.com/news/20260610210230457345780" target="_blank">东方财富</a></div>
       </article>
       <article class="card">
-        <h4>Anthropic</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic</h4>
         <p>撤销被指"暗中削弱"AI 研究人员的 Claude 策略。此前 Anthropic 被曝在 Claude 内部设置限制，影响研究人员使用效率，引发社区争议后已撤销。同日，Anthropic 发布 Claude Fable 5，安全机制与能力同步升级。</p>
         <div class="source">来源：<a href="https://blog.csdn.net/haohaizi_liu/article/details/161926400" target="_blank">CSDN</a></div>
       </article>
@@ -313,7 +325,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>Coinbase 让 AI 智能体有了自己的"钱包"，Meta 在裁员 4665 人后加码 AI 投入—— 当 AI 从"工具"变成"经济主体"，拥有交易能力和组织资源调配权，你的公司里，谁来决定 AI 可以花多少钱、裁多少人？ 如果你不主动设计这个决策机制，它就会被产品经理和算法之间的博弈默认决定。</p>
@@ -321,7 +333,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

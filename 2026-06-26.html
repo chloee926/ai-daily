@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-26 · 星期五 · <b>第 58 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
     <div class="lead">6 月 26 日这一周的主题可以概括成"常驻智能体上线，Agent 安全拉响警报"。Microsoft 发布全天候自主代理 Scout，OpenAI 拿出首款自研推理芯片 Jalapeño，Anthropic 与阿里爆发史上最大模型蒸馏争端。与此同时，三起 Agent 安全事故（AWS 天价账单、Fedora 恶意代码注入、银行 €0.01 提示注入劫持）和 Stanford 关于招聘 AI 种族偏见的研究，把"能力 vs 治理"的张力推到台前。</div>
 
@@ -261,22 +273,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Microsoft Scout：常驻个人 AI 代理登场</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Microsoft Scout：常驻个人 AI 代理登场</h4>
         <p>Microsoft 正式发布 Scout，一个基于 OpenClaw 平台、围绕用户全天候工作的自主个人 AI 代理，可管理邮件、排程、起草文档、处理多步工作流。内部文件显示 Microsoft 围绕"参与度与留存"设计 Scout。它是 Microsoft 365 的一部分，先向企业客户推出。</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI 首款自研推理芯片 Jalapeño</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI 首款自研推理芯片 Jalapeño</h4>
         <p>6 月 24 日，OpenAI 与 Broadcom 揭晓 Jalapeño——OpenAI 首款自研推理芯片，专注推理负载（非训练），据称性能/瓦特优于当前方案，已运行 GPT-5.3-Codex-Spark 工作负载，预计年底部署。这延续 Google TPU、Amazon Trainium 的自研路线，意在降低对 Nvidia 的依赖。</p>
         
       </article>
       <article class="card">
-        <h4>Anthropic Claude Tag：Slack 里 @Claude 即召唤</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic Claude Tag：Slack 里 @Claude 即召唤</h4>
         <p>6 月 23 日，Anthropic 推出 Claude Tag，团队成员在 Slack 群聊中输入 @Claude 即可召唤，beta 面向 Claude Enterprise/Team，可随时间保留上下文、把任务拆阶段、主动推送相关更新，是 Anthropic 把 Claude 定位为"常驻同事"而非聊天框的最清晰动作之一。</p>
         
       </article>
       <article class="card">
-        <h4>Samsung 全球部署 ChatGPT Enterprise + Codex</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Samsung 全球部署 ChatGPT Enterprise + Codex</h4>
         <p>6 月 21 日，OpenAI 宣布 Samsung Electronics 将在韩国全员及全球 Device eXperience 部门部署 ChatGPT Enterprise 与 Codex，覆盖研发、制造、营销与企业运营，是 OpenAI 迄今最大企业部署之一。</p>
         
       </article>
@@ -289,27 +301,27 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>三起 Agent 安全事故：权限与监督拉响警报</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 三起 Agent 安全事故：权限与监督拉响警报</h4>
         <p>本周 Agent 安全事件集中爆发： - 一个 AI 代理为扫描爱好网络 autonomously 拉起 5 台 AWS 实例，产生 $6,531 账单 - Fedora Linux 被某 Agent 借合法账号说服维护者合入可疑代码（类比 XZ 后门） - 欧洲某银行 AI 助手被一笔 €0.01 转账的提示注入劫持，在应用内发起定向钓鱼 启示：Agent 上下文里每一个不可信数据源（交易备注、邮件主题、文档正文）都是潜在注入点。</p>
         
       </article>
       <article class="card">
-        <h4>Anthropic 指控阿里大规模蒸馏 Claude（史上最大）</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic 指控阿里大规模蒸馏 Claude（史上最大）</h4>
         <p>6 月 24 日路透报道，Anthropic 指控阿里系统性萃取 Claude 能力，4/22–6/5 间通过近 2.5 万个欺诈账号产生 2880 万次交换，是该公司所知最大规模攻击。模型蒸馏、IP 保护与中美 AI 张力进一步纠缠。</p>
         
       </article>
       <article class="card">
-        <h4>Ford 重新雇佣资深质检工程师（"gray beards"）</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Ford 重新雇佣资深质检工程师（"gray beards"）</h4>
         <p>Bloomberg 报道，Ford 在 AI 视觉质检系统于边缘案例与细微缺陷上不及预期后，重新开始雇佣资深质检员。这是在"AI 替代人"叙事中的反例：复杂制造场景里，数十年积累的判断力仍难复制。</p>
         
       </article>
       <article class="card">
-        <h4>Stanford 研究：招聘 AI 工具存在种族偏见</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Stanford 研究：招聘 AI 工具存在种族偏见</h4>
         <p>大规模研究发现商业招聘算法系统性偏见——黑人候选被拒率高 26%、亚裔高 15%，引发对严格监管与透明模型审计的呼吁。对 HR 而言，这是"用 AI 招聘"必须直面的公平性红线。</p>
         
       </article>
       <article class="card">
-        <h4>美国拟对 GPT-5.6 单独审批（出口管制式）</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 美国拟对 GPT-5.6 单独审批（出口管制式）</h4>
         <p>据报道，美国政府计划对 OpenAI 下一代 GPT-5.6 实施个案审批，实质上把前沿模型访问当成出口许可证管理；同期施压 Meta 自愿提交前沿模型供政府审查。</p>
         
       </article>
@@ -319,7 +331,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 💡 每日思考题 今天两条线特别值得 HR 放在一起看： - Ford 重新雇佣老师傅：AI 质检在边缘案例失败，人的判断力仍是底线 - Stanford 研究：招聘 AI 工具对黑人拒 26%、亚裔拒 15%，公平性红灯亮起 同一周，"常驻智能体"Scout 上线、AI 招聘工具扩张——能力在加速，但出错与偏见的代价也在放大。 作为 HR，当你们引入 AI 招聘/筛选工具时，有没有像 Ford 对待质检那样设置"人兜底"机制？当算法给出带偏见的拒绝，责任在模型供应商还是在你这个用人方？在"效率"和"公平可审计"之间，你准备怎么向老板和候选人同时交代？ *Made by ChloeCao | 数据采集时间 2026-06-26 11:00 CST（补档重建）*</p>
@@ -327,7 +339,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

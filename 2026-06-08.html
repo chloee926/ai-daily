@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-08 · 星期一 · <b>第 44 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,12 +272,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Apple — WWDC26 发布 Siri AI，十五年最大重构但依赖谷歌技术</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Apple — WWDC26 发布 Siri AI，十五年最大重构但依赖谷歌技术</h4>
         <p>苹果正式发布"由 Apple Intelligence 驱动的全新 Siri"，命名为 Siri AI。新 Siri 具备跨应用执行能力、个人上下文理解能力和连续对话功能，首次拥有独立 App 并可跨设备同步对话记录。但核心基础模型与谷歌深度合作，采用 Gemini 系列技术。Siri AI 首版仅支持英语，不会立即投放欧盟和中国市场。发布会期间苹果股价转跌。</p>
         <div class="source">来源：<a href="https://www.apple.com.cn/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more" target="_blank">苹果新闻编辑室</a></div>
       </article>
       <article class="card">
-        <h4>Apple — iOS 27 与 Apple Intelligence 全面升级</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Apple — iOS 27 与 Apple Intelligence 全面升级</h4>
         <p>WWDC26 还发布了 iOS 27、macOS 27 Golden Gate、iPadOS 27 等系统升级，全部迈入"27 时代"。App 启动速度加快 30%、AirDrop 传输提速 80%。Apple Intelligence 免费开放给年下载量低于 200 万的开发者使用，旨在补全 AI 生态短板。</p>
         <div class="source">来源：<a href="https://finance.sina.com.cn/wm/2026-06-09/doc-iniauvas6490904.shtml" target="_blank">中国商报</a></div>
       </article>
@@ -278,12 +290,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>阿里巴巴 — 成立 Token Foundry 事业部，CEO 吴泳铭亲自挂帅</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 阿里巴巴 — 成立 Token Foundry 事业部，CEO 吴泳铭亲自挂帅</h4>
         <p>6 月 8 日，阿里宣布合并通义大模型事业部和未来生活实验室，成立 Token Foundry 事业部，由集团 CEO 吴泳铭直接负责。通义灵魂人物周靖人转任首席科学家，专攻前沿研究；淘天系技术干将郑波带 Happy Horse 和 Happy Oyster 并入，主攻产品化与场景落地。阿里云 AI 产品收入连续 11 季三位数增长，AI 年化收入将在 6 月当季突破 100 亿元。</p>
         <div class="source">来源：<a href="https://www.21jingji.com/article/20260609/herald/b7b881864a8f7480139e9472f1a84333.html" target="_blank">21世纪经济报道</a></div>
       </article>
       <article class="card">
-        <h4>百度/京东 — 百度成立数字人创新业务部，京东与腾讯就 AI Agent 达成合作</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 百度/京东 — 百度成立数字人创新业务部，京东与腾讯就 AI Agent 达成合作</h4>
         <p>百度 MEG 合并商业部与电商事业部成立大商业事业部，数字人创新业务部升级为独立部门。京东与腾讯围绕 AI Agent 展开深度合作，依托京东的供应链与腾讯的生态入口，共同打造跨场景智能化服务新范式。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260608A02NO300" target="_blank">腾讯新闻</a></div>
       </article>
@@ -293,7 +305,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>阿里让 CEO 直接管 AI 事业部，百度把数字人业务独立出来——当 AI 从"技术部门"变成"CEO 直管"时，其他业务部门的 AI 需求是走"向 CEO 申请"还是"自己搭建"？如果 AI 事业部是"铸造厂"，你所在的部门是"原料供应商"还是"客户"？</p>
@@ -301,7 +313,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

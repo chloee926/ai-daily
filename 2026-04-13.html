@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-04-13 · 星期一 · <b>第 4 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
     <div class="lead">1. Anthropic推出Claude for Word测试版，AI正式嵌入微软Office"三件套"最后一块拼图——法律、金融等文档密集型岗位的"AI同事"从概念变成现实 2. 英国央行、FCA、财政部和国家网络安全中心紧急召开联合会议，评估Claude Mythos Preview暴露的金融系统漏洞风险——AI安全问题首次触发G7国家金融监管层面的"应急响应" 3. BCG最新研究：50%-55%的美国工作将在2-3年内被AI"重塑"，但仅10%-15%会被"淘汰"——"重塑≠消灭"是HR必须向管理层讲清楚的关键区分 总判断： 今天的信息有一条清晰的主线：AI正在从"技术话题"变成"制度话题"。Anthropic的Claude for Word看似只是一个Word插件，但它意味着AI已经嵌入了全球最普及的办公软件——Word、Excel、PowerPoint三件套全部就位，白领工作流程中的每一个文档环节都有了AI副驾驶。与此同时，英国金融监管四大机构联合评估Claude Mythos的漏洞发现能力，说明AI的能力已经强到让金融监管体系感到不安。Meta提出"神经计算机"概念虽然还停留在论文阶段，但它指向了一个更深层的趋势——AI不满足于在现有硬件上运行软件，而是要重新定义"计算机"本身。BCG那份覆盖1.65亿个岗位的研究则给出了一个更冷静的结论：大多数工作不会消失，但会被彻底改变形态。</div>
 
@@ -261,17 +273,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic推出Claude for Word测试版——Office"三件套"AI化完成最后一步</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic推出Claude for Word测试版——Office"三件套"AI化完成最后一步</h4>
         <p>Anthropic于4月11日发布Claude for Word测试版，继此前进入Excel和PowerPoint之后，正式覆盖微软Office三大核心产品。核心功能包括：基于文档内容的问答并附带可点击段落引用、保留格式的智能编辑、用户可逐条审批的修订模式。主打场景为法律行业——合同审查、条款风险标记、赔偿条款改写、修订对比分析等。目前仅对Team和Enterprise用户开放。</p>
         <div class="source">来源：<a href="https://www.ithome.com/0/938/373.htm" target="_blank">IT之家</a>、<a href="https://www.donews.com/news/detail/8/6508551.html" target="_blank">DoNews</a>、<a href="https://finance.sina.com.cn/tech/digi/2026-04-13/doc-inhuiatq4948930.shtml" target="_blank">新浪科技</a> | 2026-04-11</div>
       </article>
       <article class="card">
-        <h4>OpenAI确认Sora将于4月26日正式关停——AI视频生成从"爆款"到"弃子"仅6个月</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI确认Sora将于4月26日正式关停——AI视频生成从"爆款"到"弃子"仅6个月</h4>
         <p>OpenAI确认Sora将于4月26日全面关停，包括独立应用、API和ChatGPT内嵌的视频生成功能。关停原因：用户数跌至不足50万，每日算力成本高达100万美元。释放的资源将重新投入智能体和编码工具方向——这与OpenAI此前发布GPT-5.3-Codex和Codex Security的战略重心一致。Sora从2024年2月概念发布到2025年9月正式上线再到2026年4月关停，完整生命周期仅约6个月。</p>
         <div class="source">来源：<a href="https://news.qq.com/rain/a/20260407A06YG900" target="_blank">腾讯新闻</a>、<a href="https://finance.sina.com.cn/jjxw/2026-03-25/doc-inhsecse6995306.shtml" target="_blank">新浪财经</a>、<a href="https://projectchat.ai/2026/04/10/latest-ai-company-news-google-openai-anthropic-deepseek-qwen-zai/" target="_blank">ProjectChat</a> | 2026-04-07</div>
       </article>
       <article class="card">
-        <h4>英国金融监管四大机构紧急评估Claude Mythos安全风险——AI模型首次触发国家级金融应急机制</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 英国金融监管四大机构紧急评估Claude Mythos安全风险——AI模型首次触发国家级金融应急机制</h4>
         <p>英国央行（Bank of England）、金融行为监管局（FCA）、财政部和国家网络安全中心（NCSC）于本周联合召开紧急会议，评估Anthropic的Claude Mythos Preview模型暴露的金融系统网络安全风险。该模型此前在Project Glasswing项目中发现了数千个零日漏洞，包括影响银行核心IT系统的关键漏洞。英国主要银行、保险公司和交易所的代表将在未来两周内参加监管机构的风险通报会议。与此同时，美国方面出现矛盾信号——尽管国防部将Anthropic列为"供应链风险"并计划180天内移除Claude，但另有官员推动银行测试Mythos模型。</p>
         <div class="source">来源：<a href="https://www.ft.com/content/ec7bb366-9643-47ce-9909-fc5ad4864ae5" target="_blank">Financial Times</a>、<a href="https://www.globalbankingandfinance.com/uk-financial-regulators-rush-assess-risks-anthropic-latest/" target="_blank">Global Banking & Finance</a>、<a href="https://seekingalpha.com/news/4574227-u-k-regulators-race-to-assess-risks-from-anthropic-s-powerful-new-ai-model-ft" target="_blank">Seeking Alpha</a> | 2026-04-13</div>
       </article>
@@ -284,17 +296,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>BCG研究：50%-55%美国工作将被AI重塑，但仅10%-15%会被淘汰——"六类冲击模型"详解</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> BCG研究：50%-55%美国工作将被AI重塑，但仅10%-15%会被淘汰——"六类冲击模型"详解</h4>
         <p>波士顿咨询集团（BCG）发布覆盖1500种职业、1.65亿个美国工作岗位的微观经济分析，将AI对工作的影响分为六类：放大型（5%，AI增强人类需求扩大）、再平衡型（14%，角色重新设计）、分化型（12%，初级岗受冲击）、替代型（12%，净岗位减少）、赋能型（23%，AI嵌入但不改变结构）、有限影响型（34%，自动化空间有限）。核心结论：美国职业平均有40%的任务可被AI自动化，43%的工作超过40%自动化门槛——但自动化任务≠消灭岗位，大部分角色将被"重塑"而非"替代"。</p>
         <div class="source">来源：<a href="https://www.bcg.com/publications/2026/ai-will-reshape-more-jobs-than-it-replaces" target="_blank">BCG</a> | 2026-04-03</div>
       </article>
       <article class="card">
-        <h4>中国五部门发布《AI拟人化互动服务管理暂行办法》——全球首个AI情感交互专项法规</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 中国五部门发布《AI拟人化互动服务管理暂行办法》——全球首个AI情感交互专项法规</h4>
         <p>国家网信办、工信部、教育部、公安部、广电总局五部门联合发布《人工智能拟人化互动服务管理暂行办法》，2026年7月15日起施行。核心规定：禁止向未成年人提供虚拟伴侣服务；AI拟人化互动须标识"AI生成"；鼓励文化传播和适老陪伴应用；要求分类分级管理AI与用户的情感交互行为。</p>
         <div class="source">来源：<a href="https://k.sina.cn/article_7857201856_1d45362c001904913w.html" target="_blank">新浪新闻</a> | 2026-04-13</div>
       </article>
       <article class="card">
-        <h4>三星Q1营业利润预计暴增6倍至40.5万亿韩元——AI驱动存储芯片"超级周期"</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 三星Q1营业利润预计暴增6倍至40.5万亿韩元——AI驱动存储芯片"超级周期"</h4>
         <p>三星电子2026年Q1营业利润预计约40.5万亿韩元（约269亿美元），接近去年全年总和（43.6万亿韩元），同比暴增约6倍。营收预计同比增长50%。花旗更乐观预测利润可达51万亿韩元。核心驱动力是AI热潮推动的存储芯片（HBM高带宽内存）需求爆发——分析师称存储芯片市场正经历"前所未有的超级周期"。这与Google计划2026年投入1750-1850亿美元AI基础设施资本支出、以及全球AI数据中心建设潮直接相关。</p>
         <div class="source">来源：<a href="https://k.sina.cn/article_7857201856_1d45362c001904913w.html" target="_blank">新浪新闻</a>、<a href="https://www.humai.blog/ai-news-trends-april-2026-complete-monthly-digest/" target="_blank">humAI Blog</a> | 2026-04-13</div>
       </article>
@@ -304,7 +316,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 今天如果只看一条，看BCG的"六类冲击模型"。它给了HR一个比"AI会替代多少人"更有用的分析工具——不是每个岗位都面临同样的冲击，关键在于判断每个岗位属于"放大型"还是"替代型"。 第一， Claude for Word的发布意味着"文档工作"这个最大的白领工作品类已经全面暴露在AI辅助之下。Word、Excel、PowerPoint三件套覆盖了绝大多数白领的日常工作。但请注意BCG的研究结论——"自动化任务≠消灭岗位"。律师不会因为Claude能审合同就消失，但初级律师的工作内容会发生剧变：从"逐条阅读标记"变成"审核AI的标记结果并做最终判断"。HR在做岗位设计时，需要区分"AI可以做的任务"和"这个岗位存在的理由"。 第二， 英国四大金融监管机构紧急评估Claude Mythos——这是一个信号：AI治理正在从"企业自律"升级为"国家金融安全"层面。对HR而言，"AI合规"不再只是IT部门的事。当AI模型能发现银行核心系统的漏洞时，"谁有权限使用什么AI工具"变成了一个需要HR参与制定的组织策略问题。未来，"AI使用权限"可能像"数据访问权限"一样，成为岗位说明书的标准组成部分。 第三， OpenAI关停Sora给出了一个清晰的战略判断：在当前算力极其昂贵的阶段，"帮人干活"（编码、审合同、做分析）比"帮人娱乐"（生成视频）的商业价值更高。这对HR规划"AI替代哪些岗位"有参考意义——优先被AI切入的不是"创造性最强"的岗位，而是"重复性高+产出可标准化衡量+节省成本效果明确"的岗位。 ### 今日思考题 BCG把AI对工作的冲击分成六类。你所在公司的核心岗位，分别属于哪种类型？是"放大型"（AI帮你做更多）还是"替代型"（AI替你做完了）？ 1. 用BCG的六类模型做一次岗位映射：把公司核心岗位序列逐一归类，识别哪些属于"替代型"（需要提前做人员转型计划），哪些属于"放大型"（需要加大AI工具投入） 2. 评估"Claude进Office"对本公司文档密集型岗位的影响：列出哪些岗位每天50%以上时间花在Word/Excel/PPT上，评估Claude全面覆盖后这些岗位的工作内容将如何变化 3. 制定"AI工具使用权限矩阵"：参考英国金融监管的思路，在公司层面明确哪些岗位可以使用哪些AI工具，特别是涉及敏感数据和核心系统的场景 *每日AI简报 | TME HR·AI情报站 | 2026-04-13* *以上信息仅供参考*</p>
@@ -312,7 +324,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

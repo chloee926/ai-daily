@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-04-16 · 星期四 · <b>第 7 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：GPT-6正式发布：200万Token上下文、性能暴涨40%；斯坦福2026 AI指数报告：中美差距缩至2.7%，生成式AI三年普及率超PC和互联网；Broadcom与Meta达成2nm AI芯片扩展合作，吉瓦级算力部署</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>GPT-6正式发布：200万Token上下文、性能暴涨40%</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> GPT-6正式发布：200万Token上下文、性能暴涨40% <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月14日，OpenAI正式发布代号「Spud（土豆）」的GPT-6。该模型历经18个月研发，采用全新Symphony双系统推理架构，综合基准得分较GPT-5.4提升约40%，支持200万Token超长上下文窗口。业界普遍认为GPT-6是通向AGI的重要里程碑，Sam Altman表示「AGI已完成70%-80%」。 为什么对 TME 重要： GPT-6的多模态能力和超长上下文将直接影响AI编程工具、内容创作工具的格局。TME技术岗位的能力评估标准需要跟进——候选人对AI工具链的熟练度正在成为硬指标。</p>
         <div class="source">来源：<a href="https://openai.com/index/gpt-6/" target="_blank">OpenAI官方博客</a>；<a href="https://www.ithome.com" target="_blank">IT之家报道</a></div>
       </article>
       <article class="card">
-        <h4>斯坦福2026 AI指数报告：中美差距缩至2.7%，生成式AI三年普及率超PC和互联网</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 斯坦福2026 AI指数报告：中美差距缩至2.7%，生成式AI三年普及率超PC和互联网 <span class="music-badge">🎵</span></h4>
         <p>摘要： 斯坦福大学4月14日发布第九年AI指数报告（423页）。核心发现包括：中美AI模型差距缩至2.7%；生成式AI三年内达到53%使用率，超越PC和互联网普及速度；超90%前沿模型来自企业而非学界；SWE-bench编程测试AI一年内从60%飙升至接近100%；25岁以下年轻开发者就业下降近20%。 为什么对 TME 重要： 年轻开发者就业下降20%是一个重要信号——校招中技术岗位的需求结构可能正在发生根本性变化。同时AI编程能力一年内从60%到近100%的飙升意味着对初级工程师的需求可能进一步收缩。</p>
         <div class="source">来源：<a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank">斯坦福大学HAI研究院</a>；<a href="https://news.qq.com/rain/a/20260414A03PKT00" target="_blank">腾讯新闻</a></div>
       </article>
       <article class="card">
-        <h4>Broadcom与Meta达成2nm AI芯片扩展合作，吉瓦级算力部署</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Broadcom与Meta达成2nm AI芯片扩展合作，吉瓦级算力部署 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月14日，Broadcom宣布与Meta扩展合作至2029年，将共同部署业界首款2nm AI计算加速器。此次合作以Meta自研MTIA芯片为核心，通过Broadcom的XPU平台整合运算逻辑、存储器与高速I/O架构，规模达到「吉瓦级」，覆盖多代芯片迭代。 为什么对 TME 重要： 科技巨头纷纷自研AI芯片意味着AI硬件人才的争夺将持续加剧。芯片设计、ASIC架构方向的人才需求值得关注。</p>
         <div class="source">来源：<a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-announces-extended-partnership-meta-deploy-technology" target="_blank">Broadcom投资者关系公告</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Claude Mythos安全争议持续发酵：英国FCA紧急介入，网络安全板块市值蒸发千亿美元</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Claude Mythos安全争议持续发酵：英国FCA紧急介入，网络安全板块市值蒸发千亿美元</h4>
         <p>摘要： Anthropic于4月7日发布的Claude Mythos Preview因具备自主发现零日漏洞的能力（准确率97.6%），引发金融和安全领域震动。4月15日，英国金融行为监管局（FCA）紧急召集政府网络安全机构和各大银行磋商，美联储也在评估其对金融基础设施的影响。美股网络安全板块单日市值蒸发超1000亿美元。Anthropic选择仅向40余家机构有限开放，不向公众开放API。 对招聘的启发： Anthropic的「能力太强不敢公开」策略开创了AI行业先例。这对AI安全、AI治理岗位的需求是明确的利好信号——企业级AI安全审计、红队测试、风险评估类人才的市场价值将持续走高。</p>
         <div class="source">来源：<a href="https://aiflashreport.com/" target="_blank">AI Flash Report</a>；<a href="https://duoke360.com/post/46152" target="_blank">多课网AI日报</a></div>
       </article>
       <article class="card">
-        <h4>扎克伯格正在构建自己的AI克隆体，计划替代本人参加会议</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 扎克伯格正在构建自己的AI克隆体，计划替代本人参加会议</h4>
         <p>摘要： 据多家媒体4月14-15日报道，Meta CEO扎克伯格正在开发一个外形逼真的AI克隆体，目标是替代他本人参加部分内部会议，并与员工互动和提供反馈。这与他近期重新开始亲自写代码的动向相互独立。Meta员工描述了一个管理越来越紧密的高压工作环境。 对招聘的启发： CEO级别的AI替身实验传递出一个明确信号——AI Agent在企业内部的角色正在从工具升级为「数字分身」。这将催生AI数字人、企业智能助理、数字员工管理等全新岗位方向。</p>
         <div class="source">来源：<a href="https://www.ibtimes.co.uk/mark-zuckerberg-reportedly-building-ai-clone-himself-watch-meta-employees-1791689" target="_blank">IBTimes UK</a>；<a href="https://gigazine.net/gsc_news/en/20260414-meta-mark-zuckerberg-ai-clone/" target="_blank">Gigazine</a></div>
       </article>
       <article class="card">
-        <h4>斯坦福报告揭示AI专家与公众认知鸿沟：73%专家乐观 vs 仅23%公众认可</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 斯坦福报告揭示AI专家与公众认知鸿沟：73%专家乐观 vs 仅23%公众认可</h4>
         <p>摘要： 斯坦福AI指数报告显示，73%的AI专家看好AI对工作的积极影响，而公众中仅23%持同样看法。AI安全事故从2024年的233起增至2025年的362起（增长55%）。美国公众对政府监管AI的信任度仅31%。报告认为AI「能力与治理」的差距是当前最核心挑战。 对招聘的启发： 专家与公众的认知鸿沟将直接影响AI岗位的人才供给和候选人心态。校招中需要注意：非AI专业的优秀候选人可能对AI岗位持观望态度，employer branding需要在「AI安全治理」维度做更多功课。</p>
         <div class="source">来源：<a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank">斯坦福大学HAI研究院</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 GPT-6的发布和斯坦福AI指数报告同日出炉，为HR工作提供了一个难得的「全景参照系」。报告中「25岁以下开发者就业下降近20%」的数据直接挑战了传统校招中「技术岗批量招聘」的逻辑——如果AI编程能力一年内从60%飙升到接近100%（SWE-bench），那么对初级工程师的需求结构将面临根本性调整。 Claude Mythos的「太强不敢开放」和GPT-6的「全量发布」形成了两种截然不同的商业策略，这背后的共同点是：AI安全与治理正在成为比AI能力本身更稀缺的核心竞争力。对于TME的招聘来说，「AI安全」「AI伦理审计」「AI风险评估」不再是锦上添花的加分项，而是正在变成刚性需求。 扎克伯格构建AI克隆体这件事虽然看似猎奇，但它释放的信号很严肃：当企业高管开始用AI替身参加会议，「数字员工」的概念将不再停留在客服场景，而是逐步渗透到企业的核心管理层。这对HR的组织设计和人才管理提出了全新命题。 ### 今日思考题 问题： 如果AI编程能力已接近100%，校招中技术岗位的评估标准应该如何调整？ 解答思路： 1. 从「能写代码」转向「能定义问题和架构系统」：评估候选人是否具备将模糊需求转化为清晰技术方案的能力，而非单纯的编码速度 2. 从「独立完成」转向「人机协作能力」：考察候选人使用AI工具链的熟练度、prompt engineering能力、以及对AI输出的审查和纠错能力 3. 落地建议：在面试题库中增加「AI辅助编程实操环节」，观察候选人如何与AI协作解决复杂问题，这比传统白板编程更能预测实际工作表现</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

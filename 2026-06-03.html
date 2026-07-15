@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-03 · 星期三 · <b>第 41 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,12 +272,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI — "AI 上岗"发布会：Codex 推出六款岗位插件，企业营收占比将达 50%</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — "AI 上岗"发布会：Codex 推出六款岗位插件，企业营收占比将达 50%</h4>
         <p>OpenAI 举行主题为"Intelligence at Work"的发布会，宣布 Codex 周活跃用户突破 500 万，其中 20% 非程序员。企业营收已占 OpenAI 整体 40%，预计年底达 50%。六款岗位插件让 Codex 从开发者工具升级为覆盖金融、设计、销售等多角色的企业平台，Codex 还将在未来几周并入 ChatGPT，面向 10 亿用户开放。</p>
         <div class="source">来源：<a href="https://www.toutiao.com/article/7646875321316229659/" target="_blank">财联社</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI — ChatGPT+Codex+Atlas 浏览器，构建 AI 超级应用</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI — ChatGPT+Codex+Atlas 浏览器，构建 AI 超级应用</h4>
         <p>OpenAI 产品负责人表示："你可能不会 7×24 小时工作，但你在云端的 Agent 会。"Codex 并入 ChatGPT 只是第一步，OpenAI 正在规划 Atlas 浏览器，形成"ChatGPT（对话）+Codex（执行）+Atlas（浏览）"三位一体的超级应用。这标志着 OpenAI 从聊天机器人公司向 AI 操作系统公司转型。</p>
         <div class="source">来源：<a href="https://www.36kr.com/p/3837314291299464" target="_blank">36氪</a></div>
       </article>
@@ -278,12 +290,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>GitLab — 裁员 14% 重构基础设施，应对百倍 AI 工作负载</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> GitLab — 裁员 14% 重构基础设施，应对百倍 AI 工作负载</h4>
         <p>开发者平台 GitLab 宣布裁员约 350 人（14%），退出 22 个国家/地区，精简管理层级并将资源转向 AI 基础设施投资。CEO Bill Staples 指出，以机器规模运行的 AI 智能体正将传统基础设施逼入绝境，GitLab 已启动"Git 的代际重构"以支持 100 倍增长。尽管面临架构压力，Q1 营收仍达 2.64 亿美元，同比增长 23%。</p>
         <div class="source">来源：<a href="https://www.chinaz.com/ainews/28635.shtml" target="_blank">AIbase</a></div>
       </article>
       <article class="card">
-        <h4>Uber — 人力部门裁员 23%，同时设置 AI 工具月消费上限</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Uber — 人力部门裁员 23%，同时设置 AI 工具月消费上限</h4>
         <p>Uber 裁减人力资源相关部门约 23% 岗位，新任总裁 Hazelbaker 称团队"复杂分散、职责重叠"。虽然公司强调与 AI 无关，但同期证实对员工使用 AI 工具（Claude Code、Cursor 等）实施每月 1500 美元的单人消费上限，因 2026 年 AI 预算在四个月内已耗尽。</p>
         <div class="source">来源：<a href="https://finance.jrj.com.cn/2026/06/05060057341615.shtml" target="_blank">智通财经</a></div>
       </article>
@@ -293,7 +305,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>OpenAI 说 Codex 的非程序员用户占 20%——当 AI 编程工具的用户不再是程序员时，"谁能使用 AI 工具"的门槛是由 IT 部门决定，还是由业务部门自己决定？Uber 给 AI 工具设了月度消费上限，你公司有没有类似的 AI 使用预算管控机制？</p>
@@ -301,7 +313,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

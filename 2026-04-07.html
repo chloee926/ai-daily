@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-04-07 · 星期二 · <b>第 10 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
     <div class="lead">1. DeepSeek V4完全弃用英伟达，改跑华为昇腾950PR芯片——国产AI算力实现里程碑式突破，阿里/字节/腾讯已提前下单 2. Anthropic封禁OpenClaw等第三方工具的Claude订阅访问权，强制转向按量付费——AI平台"围墙花园"争夺战正式开打 3. CNBC最新调查：AI裁员潮猛烈冲击美国硅谷，但中国工程师因劳动力成本优势和政府保就业政策暂时安全——中美AI就业市场出现结构性分化 总判断： 本周开局的信息揭示了AI产业正在同时经历三场深层博弈。DeepSeek V4"换芯"华为昇腾，不仅是技术路线的选择，更是地缘政治压力下中国AI产业被迫完成的"算力自主"考试——当万亿参数模型能在国产芯片上跑起来，美国出口管制的威慑力将大打折扣。Anthropic封禁第三方工具则暴露了AI平台经济的核心矛盾：当OpenClaw这样的"超级入口"让用户绕过官方生态，平台方必须在"开放生态"和"商业变现"之间做出残酷选择。而CNBC揭示的中美AI就业分化或许最值得HR关注：中国工程师月薪2万（硅谷同级的1/10），叠加政府保就业目标，意味着中国的AI人才"缓冲垫"比想象中厚得多——但这个缓冲能持续多久？</div>
 
@@ -261,17 +273,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>DeepSeek V4全面切换华为昇腾芯片——国产AI算力突破"CUDA封锁"</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek V4全面切换华为昇腾芯片——国产AI算力突破"CUDA封锁"</h4>
         <p>受美国出口管制影响，DeepSeek确认新一代旗舰模型V4将完全基于华为昇腾950PR芯片运行，底层代码从英伟达CUDA迁移至华为CANN框架。V4定位万亿参数级多模态大模型，拥有百万级上下文窗口，推理能力对标GPT-5。阿里、字节跳动、腾讯已提前下单华为昇腾芯片以应对V4上线后的算力需求。华为路线图显示昇腾950PR已于Q1商用，后续960、970性能逐代翻倍。</p>
         <div class="source">来源：<a href="https://zhuanlan.zhihu.com/p/2024429026257766162" target="_blank">The Information（经知乎转引）</a>、<a href="https://www.eet-china.com/mp/a485939.html" target="_blank">电子工程专辑</a>、<a href="https://www.sohu.com/a/1005432465_100085330" target="_blank">搜狐科技</a>、<a href="https://news.qq.com/rain/a/20260405A06CJL00" target="_blank">腾讯新闻</a> | 2026-04-04</div>
       </article>
       <article class="card">
-        <h4>Anthropic封禁OpenClaw——AI平台生态控制权争夺升级</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic封禁OpenClaw——AI平台生态控制权争夺升级</h4>
         <p>Anthropic于4月4日正式封禁Claude Pro和Max订阅用户通过OpenClaw及所有第三方代理工具的访问权限。用户如需继续使用，必须转向按量付费或购买额外使用包。Anthropic Claude Code负责人Boris Cherny给出的理由是"第三方工具的使用模式给基础设施带来巨大压力"，需要"优先保障直接使用Anthropic自家产品的客户"。OpenClaw创始人Peter Steinberger（现已入职OpenAI）称曾试图沟通但仅争取到一周缓冲期。Anthropic向受影响用户提供一次性信用额度补偿。</p>
         <div class="source">来源：<a href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban" target="_blank">The Verge</a>、<a href="https://techcrunch.com/2026/04/04/anthropic-says-claude-code-subscribers-will-need-to-pay-extra-for-openclaw-support/" target="_blank">TechCrunch</a>、<a href="https://www.pcmag.com/news/anthropic-you-cant-use-openclaw-with-claude-without-paying-extra" target="_blank">PCMag</a>、<a href="https://venturebeat.com/technology/anthropic-cuts-off-the-ability-to-use-claude-subscriptions-with-openclaw-and" target="_blank">VentureBeat</a> | 2026-04-03/04</div>
       </article>
       <article class="card">
-        <h4>GPT-6代号"土豆"传闻4月14日发布——AI军备竞赛进入新节点</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> GPT-6代号"土豆"传闻4月14日发布——AI军备竞赛进入新节点</h4>
         <p>多个消息源透露OpenAI下一代旗舰模型GPT-6（内部代号"Potato/土豆"）可能于4月14日发布。传闻称GPT-6性能较GPT-5提升约40%，拥有2M上下文窗口，并具备原生多模态能力。与此同时，OpenAI计划同步推出"超级App"整合ChatGPT、DALL-E、Sora等产品。不过分析师对此日期持谨慎态度，认为可能是渐进式发布而非一次性全量上线。</p>
         <div class="source">来源：<a href="https://vgtimes.com/tech-and-hardware/152833-40-more-power-and-a-super-app-insider-reveals-gpt-6-release-date-but-few-believe-them.html" target="_blank">VGTimes</a>、<a href="https://baike.baidu.com/item/GPT-6/66920449" target="_blank">百度百科</a>、<a href="https://hwcomputing.csdn.net/69d3ba7a54b52172bc6755cd.html" target="_blank">CSDN</a> | 2026-04-04/06</div>
       </article>
@@ -284,17 +296,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>CNBC深度调查：AI裁员冲击美国，中国工程师暂时安全</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> CNBC深度调查：AI裁员冲击美国，中国工程师暂时安全</h4>
         <p>CNBC今日发布深度调查报告《AI layoffs hit U.S. but not China jobs — yet》。核心发现：美国硅谷因AI自动化加速裁员（Oracle最新加入大裁员行列），但中国工程师受冲击明显较小。三大原因：一、中国政府设定城镇失业率5.5%目标，限制大规模裁员；二、中国高需求算法工程师平均月薪约2万元（约2900美元/年薪3.5万美元），仅为硅谷同级的十分之一，AI替代的经济动力不足；三、中国企业数字化程度较低，AI取代岗位的前提条件尚不充分。报告同时指出，许多在美中国籍工程师因裁员威胁签证身份而被迫回国，但面临"回流冲击"——中国公司高强度工作文化和薪资腰斩的现实。</p>
         <div class="source">来源：<a href="https://www.cnbc.com/2026/04/07/ai-jobs-layoffs-us-china-engineers-hiring.html" target="_blank">CNBC</a> | 2026-04-07</div>
       </article>
       <article class="card">
-        <h4>Meta新一代模型"Avocado""Mango"将推开源版——开源与闭源共存策略</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Meta新一代模型"Avocado""Mango"将推开源版——开源与闭源共存策略</h4>
         <p>Meta正在开发两个新旗舰模型：代号"Avocado"（大语言模型）和"Mango"（多媒体生成器），预计今年推出闭源版本，随后发布功能缩减的开源版本。开源版可能减少神经网络数量、降低参数量或跳过后训练步骤，其中网络安全相关能力将被剔除以防风险。这标志着Meta从"全面开源"转向"开源+闭源双轨"策略——既通过开源维持开发者生态影响力，又通过闭源保护前沿能力的商业价值。</p>
         <div class="source">来源：<a href="https://siliconangle.com/2026/04/06/report-meta-developing-open-source-versions-upcoming-ai-models/" target="_blank">SiliconANGLE</a>、<a href="https://www.axios.com" target="_blank">Axios</a>（经SiliconANGLE引用） | 2026-04-06</div>
       </article>
       <article class="card">
-        <h4>阿里裁员30%+聚焦AI，腾讯/华为逆势增员——中国科技巨头人才策略分化</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 阿里裁员30%+聚焦AI，腾讯/华为逆势增员——中国科技巨头人才策略分化</h4>
         <p>CNBC调查同时披露了中国科技巨头的人才策略分化：阿里巴巴为优先发展AI业务，员工总数减少超过30%；腾讯去年员工总数略有增长；华为研发人员增至11.4万人（前一年为11.3万人）。这组数据勾勒出一幅"K型分化"图景：激进转型的企业大幅裁减非核心岗位，稳健经营的企业保持温和增长，而硬科技方向的企业持续加码研发人才。</p>
         <div class="source">来源：<a href="https://www.cnbc.com/2026/04/07/ai-jobs-layoffs-us-china-engineers-hiring.html" target="_blank">CNBC</a> | 2026-04-07</div>
       </article>
@@ -304,7 +316,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 今天的信息如果只看一条，看CNBC的中美AI就业分化调查。不是因为它最新鲜（DeepSeek V4换芯华为更具冲击力），而是因为它第一次用可量化的数据回答了一个HR最关心的问题："中国的AI裁员潮什么时候来？"答案是：还没到，但缓冲正在消耗。 第一， "算力脱钩"成功将改变AI人才的技能需求结构。DeepSeek V4跑在华为芯片上，意味着未来中国AI工程师不再需要精通CUDA——取而代之的是华为CANN框架。HR和技术招聘需要更新技能关键词库：CANN、MindSpore、昇腾适配经验将逐渐成为中国AI岗位的硬性要求，而不再是"加分项"。 第二， Anthropic封禁OpenClaw的真正启示是"AI生态位"决定人才价值。当AI平台开始收紧生态控制权，能帮企业在"围墙花园"中高效运营的人才——理解API定价、生态合规、多平台适配——将比单纯的AI工程师更稀缺。这类"AI生态运营"人才目前在传统JD中几乎不存在。 第三， CNBC数据最值得HR反复咀嚼的不是"中国暂安"，而是"中国算法工程师月薪2万=硅谷1/10"。这个价差既是缓冲也是隐患——它意味着中国企业目前没有足够的经济动力用AI替代人力，但一旦AI工具的部署成本低于2万元/月/人的门槛（而这一天可能比想象中更近），中国的AI裁员潮可能来得比美国更猛烈，因为可替代的基数更大。 ### 今日思考题 中国算法工程师月薪仅为硅谷的1/10，是AI裁员潮的"缓冲垫"还是"定时炸弹"？当AI工具月成本跌破人力成本时，HR如何帮组织提前完成人才结构转型？ 1. 建立"AI替代成本对照表"：逐岗位测算当前人力成本与AI工具成本的差距，标注"替代临界点"预估时间，让管理层看到倒计时而非静态对比 2. 更新AI技能关键词库：将华为CANN、MindSpore适配经验纳入招聘JD，同时增加"AI生态运营"（API管理、多平台适配、成本优化）作为新兴岗位方向 3. 设计"缓冲期转型计划"：趁中国AI裁员潮尚未到来的窗口期，推动内部员工AI技能升级——重点不是"学会用AI"，而是"学会用AI做到之前做不到的事" *每日AI简报 | TME HR·AI情报站 | 2026-04-07* *以上信息仅供参考*</p>
@@ -312,7 +324,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

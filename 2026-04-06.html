@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-04-06 · 星期一 · <b>第 9 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
     <div class="lead">4 月 6 日前后，AI 产业的主线从"模型能力比拼"切换到"智能体工程化 + 生态收口"。Google 以 Apache 2.0 开源 Gemma 4，直接拉低先进模型的商用门槛；Cursor 3 把多个专业智能体并行调度，第一次让"软件工厂"从比喻变成产品形态。与此同时，Anthropic 主动封锁第三方工具、OpenAI 重组为"AGI Deployment"——头部公司都在把能力往"可控的运行时"收拢。</div>
 
@@ -261,22 +273,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Google Gemma 4 正式开源：Apache 2.0 拉低先进模型门槛</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Google Gemma 4 正式开源：Apache 2.0 拉低先进模型门槛</h4>
         <p>Google DeepMind 正式开源 Gemma 4 系列，基于与 Gemini 3 相同的技术体系，采用 Apache 2.0 许可证，提供 4 种规格从移动端到高性能服务器全覆盖。旗舰版 31B 参数模型在推理与编码基准上达到参数量大 20 倍竞品的 85% 性能，Arena AI 排行榜位列第 3。 关键信号： - 发布首日即获 vLLM、llama.cpp、Ollama、Intel 硬件、Unsloth、Hugging Face 等全生态支持 - 面向高级推理与自主智能体工作流优化，支持多步规划与复杂逻辑 - Apache 2.0 意味着全球开发者可自由商业化部署，倒逼闭源模型竞争升级</p>
         
       </article>
       <article class="card">
-        <h4>Cursor 3 — 多智能体集群编程，IDE 进化为"软件工厂"</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Cursor 3 — 多智能体集群编程，IDE 进化为"软件工厂"</h4>
         <p>Cursor 3 引入多智能体协同架构：编码、测试、文档智能体可并行工作，自动分工覆盖开发全生命周期。支持本地模型（Llama/CodeLlama）与云端大模型（GPT-5/Claude）无缝切换，并支持集群化调度重构整个大型代码库。 为什么重要：这是 AI 编程从"补全"到"软件工厂"的跃迁。预计未来 6 个月 Claude Code、Gemini Code Assist 等竞品将跟进类似架构，程序员的"写代码"职能进一步让位于"调度与校验智能体"。</p>
         
       </article>
       <article class="card">
-        <h4>DeepSeek V4 定档 4 月：梁文锋带队，长期记忆突破</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> DeepSeek V4 定档 4 月：梁文锋带队，长期记忆突破</h4>
         <p>由 DeepSeek 创始人梁文锋亲自带队研发的新一代旗舰模型 DeepSeek-V4 确定于 2026 年 4 月正式发布。团队耗时半年进行系统性技术攻坚，在四大核心领域实现关键突破： - 长期记忆（LTM）：自研 Engram 记忆印迹机制，近乎 O(1) 复杂度知识检索，可永久保存对话历史 - 编程能力：HumanEval 得分超 87.6%，SWE-Bench Verified 达 83.7% - 原生多模态：支持文本、图像、视频端到端语义融合 - AI 搜索增强：与国内领先技术公司达成战略合作</p>
         
       </article>
       <article class="card">
-        <h4>中国十部门联合发布《人工智能伦理治理指南（试行）》</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 中国十部门联合发布《人工智能伦理治理指南（试行）》</h4>
         <p>4 月 3 日，工信部等十部门联合发布《人工智能伦理治理指南（试行）》，聚焦数据、算法与偏见问题，是全球主要经济体在 AI 伦理治理领域的重大举措，标志国内 AI 治理框架进入落地阶段。</p>
         
       </article>
@@ -289,17 +301,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic 封锁第三方工具：最激进的"平台收割"</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic 封锁第三方工具：最激进的"平台收割"</h4>
         <p>当地时间 4 月 4 日，Anthropic 正式阻止 OpenClaw 等第三方 Agent 工具通过订阅账号调用 Claude，用户必须切换为按 Token 计费的 API 模式（成本激增 3–10×）。此举被解读为给官方产品 Claude Code 和 Claude Cowork 扫清竞争阻碍、强制收拢生态。 为什么值得关注：这是 AI Coding 生态史上最激进的平台动作之一。大量依赖 OpenClaw 工作流的独立开发者和内容团队被迫迁移至 Google Gemini 或本地开源方案，可能引发一轮开源替代浪潮。同时暗示 Anthropic 对 B 端 Agent 市场的商业化压力已超过社区口碑考量。</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI 重组为"AGI Deployment"：Altman 退出安全监督</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI 重组为"AGI Deployment"：Altman 退出安全监督</h4>
         <p>据多方爆料，OpenAI 已将产品部门更名为"AGI Deployment"，CEO Sam Altman 完全退出安全监督工作，专注于数据中心建设。Greg Brockman 透露 AGI 进度已完成 70%-80%，GPT-6（传闻 4 月 14 日发布）将补上剩余差距。这一战略调整标志 OpenAI 正式进入"AGI 最后一公里"的冲刺阶段。</p>
         
       </article>
       <article class="card">
-        <h4>具身智能 Q1 融资近 200 亿，AI 智能体自主攻破系统引安全反思</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 具身智能 Q1 融资近 200 亿，AI 智能体自主攻破系统引安全反思</h4>
         <p>一季度具身智能赛道融资接近 200 亿元，资本持续加注。同期安全圈警示：AI 智能体已能自主攻破系统（如自动化渗透测试），模型能力与安全边界的失衡成为新焦点，多家公司开始推出针对 Agent 的安全扫描工具。</p>
         
       </article>
@@ -309,7 +321,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 💡 每日思考题 今天有两个动作放在一起看很有意思： - Anthropic 主动封锁第三方工具、把能力收拢到官方运行时——本质是"控生态" - OpenAI 把部门改名"AGI Deployment"、Alltman 转攻数据中心——本质是"建工厂" 当头部公司都从"卖模型"转向"控生态、建工厂"，中小组织的选择其实只有两条路：要么深度绑定某家运行时，要么自己搭建可替换的智能体生产线。 作为 HR，你所在的组织目前是在"买工具"等别人喂能力，还是在培养能调度、校验、编排多个智能体的"智能体调度员"型人才？如果 AI 编程岗位的门槛从"会写代码"变成"会调度智能体"，你的人才画像和招聘标准准备好了吗？ *Made by ChloeCao | 数据采集时间 2026-04-06 11:00 CST（补档重建）*</p>
@@ -317,7 +329,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-01 · 星期五 · <b>第 18 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：四家实验室集体开源，性能逼近前沿、成本仅 1/3</div>
 
     <div class="lead">五一前后，中国 AI 开源生态迎来一波集中爆发：智谱、MiniMax、月之暗面、DeepSeek 四家实验室在约 12 天内相继开源重量级模型，性能逼近西方前沿、成本仅其三分之一。与此同时，OpenAI 的 GPT-5.5 早已于 4 月 23 日落地，Anthropic 年化收入首次超越 OpenAI。开源与闭源的性价比鸿沟正在快速收窄。</div>
 
@@ -261,17 +273,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>四家实验室集体开源，性能逼近前沿、成本仅 1/3</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 四家实验室集体开源，性能逼近前沿、成本仅 1/3 <span class="music-badge">🎵</span></h4>
         <p>据聚合数据，2026 年 5 月初 12 天内四次开源发布： - 智谱 GLM-5.1（约 5/1）：新增 8 小时超长音频与文本上下文，中文理解与代码生成对标 Claude Opus 4.6 - MiniMax M2.7（5/3）：以高性价比语音与文本模型见长 - Kimi K2.6（5/4）：聚焦长上下文窗口 - DeepSeek V4（5/4 全面铺开）：1.6 万亿参数（490 亿激活），100 万 token 上下文，API 价格仅为 GPT-4 的 1/70 在 SWE-Bench、Terminal-Bench 等代码智能体基准上已接近 Claude Opus 4.7 与 GPT-5.5，推理成本不超过闭源模型的 1/3。</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI GPT-5.5 已于 4/23 落地：超级 App + 200 万 token</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI GPT-5.5 已于 4/23 落地：超级 App + 200 万 token</h4>
         <p>GPT-5.5（内部代号 Spud）早已发布，从聊天界面升级为"超级 App"，集成原生网页浏览、自主文件管理与多小时科研推理工具，标配 200 万 token 上下文窗口；API 定价 $5/$30 每百万 token，在 Terminal-Bench 2.0 达 82.7%。</p>
         
       </article>
       <article class="card">
-        <h4>Cloudflare Dynamic Workflows 发布：多租户持久化执行</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Cloudflare Dynamic Workflows 发布：多租户持久化执行</h4>
         <p>5 月 1 日，Cloudflare 发布 @cloudflare/dynamic-workflows——一个约 300 行的 MIT 库，让单个 Worker 可向每租户代码派发持久化工作流运行，补齐"动态部署"与"持久执行"之间的缺口，CI/CD 成为头条用例。</p>
         
       </article>
@@ -284,17 +296,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic ARR 突破 $30B，首超 OpenAI</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic ARR 突破 $30B，首超 OpenAI</h4>
         <p>5 月初，Anthropic 年化经常性收入（ARR）首次超越 OpenAI：Anthropic 达 $300 亿，OpenAI 约 $240 亿。同期 Anthropic 与 Blackstone、Hellman & Friedman、Goldman Sachs 等达成 15 亿美元合资，结构为"前向部署企业服务公司"，把 Claude 直接嵌入 PE 投资组合公司的运营中。CFO Krishna Rao 称之为对企业需求"远超任何单一交付模式"的回应。</p>
         
       </article>
       <article class="card">
-        <h4>Adept AI 完成 $3.5 亿 C 轮，英伟达微软跟投</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Adept AI 完成 $3.5 亿 C 轮，英伟达微软跟投</h4>
         <p>5 月 4 日，Adept AI 宣布完成 3.5 亿美元 C 轮，General Catalyst 领投，英伟达、微软跟投。资金用于扩张 Act-2 Agent 团队——该智能体可在浏览器、IDE 与终端中自主执行数据迁移、编写测试等复杂业务流程。</p>
         
       </article>
       <article class="card">
-        <h4>地缘背景：自主化路径强化</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 地缘背景：自主化路径强化</h4>
         <p>5 月上旬，美国与 Google DeepMind、Microsoft、xAI 等达成模型审查协议，并确认 AI 合作框架下中国模型不在考虑之列。这一外部压力反而强化了中国 AI 产业"自强不息"的开源与国产适配路径。</p>
         
       </article>
@@ -304,7 +316,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 💡 每日思考题 今天最核心的信号是：中国四家实验室 12 天内集体开源对标前沿的模型，成本仅闭源 1/3。 这意味着企业用 AI 的"自研 vs 采购"天平正在移动——过去"闭源更省心"的默认假设，正在被"开源够用且便宜 70%"的现实动摇。 作为 HR，当贵司的技术栈可以基于开源模型以 1/3 成本搭建时，你的人才策略应该更偏向"会调开源、懂私有化部署"的复合型工程人才，还是继续重金囤积只熟悉闭源 API 的人？组织的能力沉淀，应该长在谁的生态上？ *Made by ChloeCao | 数据采集时间 2026-05-01 11:00 CST（补档重建）*</p>
@@ -312,7 +324,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

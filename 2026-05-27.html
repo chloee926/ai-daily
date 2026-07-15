@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-27 · 星期三 · <b>第 36 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：ElevenLabs — Music V2让AI音乐进入专业制作领域</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>ElevenLabs — Music V2让AI音乐进入专业制作领域</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> ElevenLabs — Music V2让AI音乐进入专业制作领域 <span class="music-badge">🎵</span></h4>
         <p>ElevenLabs发布Music V2，带来更清晰的人声、更丰富的编曲、多语言生成和分段编辑功能。此前AI音乐工具只能生成一次性输出，Music V2允许用户单独编辑副歌、调整桥段、替换配器——将AI输出视为可修改的乐曲而非成品。配合商用授权，AI生成音乐首次规模化适用于专业内容制作。</p>
         <div class="source">来源：<a href="https://ai4planet.in/global-ai-update-may-30-2026-claude-opus-48-elevenlabs-music-v2-robinhood-ai" target="_blank">AI4Planet</a></div>
       </article>
       <article class="card">
-        <h4>Robinhood — 推出AI股票分析师智能体</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Robinhood — 推出AI股票分析师智能体</h4>
         <p>Robinhood推出AI驱动的股票分析师智能体，可分析公司基本面、综合财报电话会议纪要、比较竞争定位并生成白话投资摘要。2300万用户可免费使用这一此前只有Bloomberg终端或专业顾问才能提供的分析能力，标志着华尔街研究被AI民主化。</p>
         <div class="source">来源：<a href="https://ai4planet.in/global-ai-update-may-30-2026-claude-opus-48-elevenlabs-music-v2-robinhood-ai" target="_blank">AI4Planet</a></div>
       </article>
       <article class="card">
-        <h4>Figma — 扩展AI设计能力</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Figma — 扩展AI设计能力</h4>
         <p>Figma扩展AI设计功能，推出更智能的自动布局建议和AI驱动的组件生成，直接嵌入设计工具中。这进一步降低了设计师使用AI辅助创作的门槛。</p>
         <div class="source">来源：<a href="https://ai4planet.in/global-ai-update-may-30-2026-claude-opus-48-elevenlabs-music-v2-robinhood-ai" target="_blank">AI4Planet</a></div>
       </article>
@@ -283,12 +295,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic — H轮融资650亿美元，估值达9650亿美元</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — H轮融资650亿美元，估值达9650亿美元</h4>
         <p>Anthropic即将完成650亿美元H轮融资，估值达9650亿美元，由Altimeter Capital、Dragoneer、Greenoaks和Sequoia Capital领投，Google和Amazon也参与其中。这被广泛认为是Anthropic上市前的最后一轮私募融资。其运行率收入已突破470亿美元，较年初300亿大幅增长。</p>
         <div class="source">来源：<a href="https://www1.infotech.com/software-reviews/vendor-technology-notes/big-5-ai-vendor-roundup-week-of-may-25-2026" target="_blank">Info-Tech Research Group</a></div>
       </article>
       <article class="card">
-        <h4>AI21 Labs — 解散模型团队转型专注智能体</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> AI21 Labs — 解散模型团队转型专注智能体</h4>
         <p>以色列AI公司AI21 Labs解散其大模型研发团队，转型专注于智能体开发，员工人数从180人锐减至70人。这一举措反映出行业趋势——通用大模型竞争趋同，差异化价值正从"模型能力"转向"智能体落地"。</p>
         <div class="source">来源：<a href="https://m.sohu.com/a/1027076273_122066678" target="_blank">搜狐科技</a></div>
       </article>
@@ -298,7 +310,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>1. ElevenLabs Music V2和Robinhood AI分析师分别将专业音乐制作和金融研究民主化——当AI让专业服务"平民化"，企业如何重新定义"专业人才"的价值？ 2. AI21 Labs从180人裁至70人转型智能体——在AI行业快速转向中，企业如何平衡"战略聚焦"与"人才保留"的矛盾？</p>
@@ -306,7 +318,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

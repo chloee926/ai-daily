@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-11 · 星期四 · <b>第 47 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,12 +272,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>小米 — 开源 MiMo Code，5 人 2 周开发，长周期任务胜率超 Claude Code</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 小米 — 开源 MiMo Code，5 人 2 周开发，长周期任务胜率超 Claude Code</h4>
         <p>6 月 11 日凌晨，小米 MiMo 团队发布终端编程 Agent 产品 MiMo Code，MIT 协议开源。5 人 2 周完成开发，内置限时免费 MiMo-V2.5 模型（百万 token 上下文），支持接入 DeepSeek、Kimi、GLM 等主流模型。官方数据显示：相同模型条件下 MiMo Code 在 SWE-bench Pro 和 TerminalBench 2 上比 Claude Code 高约 5 个百分点；超过 200 步的长周期任务胜率升至 65% 以上。</p>
         <div class="source">来源：<a href="https://finance.sina.com.cn/stock/relnews/hk/2026-06-11/doc-iniazays5618871.shtml" target="_blank">新浪财经</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI — 被曝考虑大幅降价，争夺 Anthropic 企业客户</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 被曝考虑大幅降价，争夺 Anthropic 企业客户</h4>
         <p>据报道，OpenAI 正在考虑大幅降价，以期从 Anthropic 手中争得企业客户。大幅降价可能侵蚀两家公司的利润率——它们已经因 AI 系统巨大的计算成本而损失数十亿美元。这标志着 AI 行业从"比模型能力"进入"比价格竞争力"的新竞争维度。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260612A01ZY500" target="_blank">腾讯新闻</a></div>
       </article>
@@ -278,12 +290,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic — CEO 发万字檄文呼吁政府强制监管，投入 3.5 亿美元推动落地</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic — CEO 发万字檄文呼吁政府强制监管，投入 3.5 亿美元推动落地</h4>
         <p>Anthropic CEO Dario Amodei 发布《指数级 AI 政策》长文，呼吁美国政府建立类似 FAA 的强制监管机构，对前沿 AI 模型进行第三方安全测试，政府有权阻止存在风险的模型发布。测试覆盖网络安全、生物武器、自主失控和自动化研发四个维度。Anthropic 承诺投入 3.5 亿美元（2 亿研究+1.5 亿奖学金）推动框架落地。Amodei 明确承认 AI 可能导致大规模持久失业。</p>
         <div class="source">来源：<a href="https://c.m.163.com/news/a/KV5FRR7O0511ABV6.html" target="_blank">新智元</a></div>
       </article>
       <article class="card">
-        <h4>行业 — AI 首次进入高考志愿填报，信息差被大规模抹平</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 行业 — AI 首次进入高考志愿填报，信息差被大规模抹平</h4>
         <p>千问、元宝、百度等 AI 产品全面上线高考志愿填报 Agent，免费提供方案推荐和专业分析。过去万元级咨询服务被 AI 平价化，信息差首次被大规模抹平，AI 进入中国家庭最重要的决策场景之一。这是 AI Agent 在中国 C 端最大规模的落地案例之一。</p>
         <div class="source">来源：<a href="https://wv.video.qq.com/export/UzFfBgAAxOGgYAJ8VU7IjMzT4DBZDd_k9O2s5V6Bi7igI5V2ej4" target="_blank">视频号</a></div>
       </article>
@@ -293,7 +305,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>Anthropic 的 CEO 主动要求政府监管自己——当 AI 公司开始"自请被管"，是因为真心担忧风险，还是因为监管门槛会成为阻挡新竞争者的护城河？AI 首次进入高考志愿填报，过去靠"信息差"生存的咨询师群体被 AI 替代——你公司里还有哪些岗位的"价值"本质上是"信息差"？</p>
@@ -301,7 +313,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

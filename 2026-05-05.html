@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-05 · 星期二 · <b>第 20 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI — GPT-5.5 Instant 成为 ChatGPT 默认模型</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — GPT-5.5 Instant 成为 ChatGPT 默认模型</h4>
         <p>OpenAI 于5月5日将 GPT-5.5 Instant 设为 ChatGPT 全平台默认模型，替代 GPT-5.3 Instant。官方称在医学、法律、金融等高风险领域幻觉率降低 52.5%，数学与视觉推理能力同步提升。这是 ChatGPT 史上最大规模的一次默认模型切换，覆盖免费与付费用户。</p>
         <div class="source">来源：<a href="https://whatllm.org/blog/new-ai-models-may-2026" target="_blank">WhatLLM</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI — Ads Manager 测试版上线，开启广告变现</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — Ads Manager 测试版上线，开启广告变现</h4>
         <p>OpenAI 同日推出 Ads Manager 工具测试版，允许美国广告主以点击付费（CPC）方式购买 ChatGPT 内广告位。这标志着 OpenAI 正式向 25 亿美元年度广告收入目标迈进，ChatGPT 从纯订阅模式转向"订阅+广告"双引擎。</p>
         <div class="source">来源：<a href="https://ima.qq.com/wiki/?shareId=f5f66c36bacee627481687aa9f8cc6da79906cf78b7436cabe701975abfa1742" target="_blank">Techmeme/IMA</a></div>
       </article>
       <article class="card">
-        <h4>SubQ — 首个商用亚二次方注意力 LLM 发布，1200 万 token 上下文</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> SubQ — 首个商用亚二次方注意力 LLM 发布，1200 万 token 上下文</h4>
         <p>初创公司 Subquadratic 发布 SubQ 1M-Preview，采用全新稀疏注意力架构（非 Transformer），原生支持 1200 万 token 上下文窗口，声称长上下文任务成本仅为前沿模型的 1/5，注意力速度最高快 52 倍。获 2900 万美元种子轮融资。</p>
         <div class="source">来源：<a href="https://whatllm.org/blog/new-ai-models-may-2026" target="_blank">WhatLLM</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>NIST — Google、Microsoft、xAI 加入 AI 模型预发布评估协议</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> NIST — Google、Microsoft、xAI 加入 AI 模型预发布评估协议</h4>
         <p>美国商务部 CAISI 宣布 Google、Microsoft、xAI 加入 OpenAI 和 Anthropic 的行列，同意在 AI 模型公开发布前向政府提供早期访问权限进行安全评估。NIST 的 AI 安全中心已完成 40 多项此类评估，包括尚未发布的前沿模型。这是政府与 AI 公司合作的"最小侵入"方式。</p>
         <div class="source">来源：<a href="https://ima.qq.com/wiki/?shareId=f5f66c36bacee627481687aa9f8cc6da79906cf78b7436cabe701975abfa1742" target="_blank">Techmeme/NIST</a></div>
       </article>
       <article class="card">
-        <h4>Coinbase — 裁员 14%（约 700 人），转向"AI 原生"运营</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Coinbase — 裁员 14%（约 700 人），转向"AI 原生"运营</h4>
         <p>Coinbase 宣布裁减约 14% 员工并取消 6000 个在招岗位，CEO Armstrong 发全员信称"AI 正在带来企业运营方式的深刻变革"。核心举措包括取消纯管理岗、要求管理者成为"球员教练"、高管层以下限 5 级架构。</p>
         <div class="source">来源：<a href="https://www.meritforgeai.com/news/coinbase-indeed-ai-layoffs-may-2026" target="_blank">MeritForge AI</a></div>
       </article>
       <article class="card">
-        <h4>Indeed/Glassdoor — 裁员 1300 人，CEO 直言"AI 正在改变世界"</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Indeed/Glassdoor — 裁员 1300 人，CEO 直言"AI 正在改变世界"</h4>
         <p>Recruit Holdings 旗下 Indeed 和 Glassdoor 裁减约 1300 人。CEO Idekoba 以罕见的直白语言表示："AI 正在改变世界，公司必须适应。"招聘平台自身的裁员，被视为 AI 对就业市场影响的"先行指标"。</p>
         <div class="source">来源：<a href="https://www.meritforgeai.com/news/coinbase-indeed-ai-layoffs-may-2026" target="_blank">MeritForge AI</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>Coinbase 裁员时说"AI 让我们不需要纯管理岗了"，Indeed 裁员时说"AI 正在改变世界所以我们必须适应"——当招聘平台自己都在以 AI 为由裁人，作为 HR，你如何看待"AI 替代"这个裁员理由的可信度？你认为企业应该在什么阶段、用什么数据来验证"AI 确实能替代被裁岗位的工作"？</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

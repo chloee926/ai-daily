@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-09 · 星期六 · <b>第 33 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：OpenAI</div>
 
   
     <section class="section sec-nw">
@@ -260,22 +272,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic</h4>
         <p>Claude 正式接入微软 Office 全家桶（Excel/Word/PPT/Outlook），跨应用共享对话记忆。用户无需切换网页版，可在 Office 内完成邮件分拣、文档草拟、表格分析、汇报生成全流程。Office 全球付费用户超 4 亿，Claude 借此快速切入超大办公用户市场。</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI <span class="music-badge">🎵</span></h4>
         <p>发布三款实时语音模型：GPT-Realtime-2（GPT-5 级推理能力）、GPT-Realtime-Translate（70 种语言实时翻译，延迟低于 200ms）、GPT-Realtime-Whisper（实时转录）。同声传译行业迎来终局信号，API 定价每分钟仅 0.017 美元。</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> OpenAI</h4>
         <p>发布 Codex Chrome 扩展，Codex 能力从代码编辑器扩展到浏览器。可跨标签页后台并行运行，处理网页调试、CRM 更新、资料研究等任务，不影响用户正常使用浏览器。</p>
         
       </article>
       <article class="card">
-        <h4>智谱</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 智谱</h4>
         <p>发布 GLM-5V-Turbo 技术报告，首个多模态编码基座模型。从预训练阶段融合视觉与语言，Design2Code 跑分 94.8 超过 Claude Opus 4.5，支持 200k 上下文，可接入 Claude Code 等 agent 框架。</p>
         
       </article>
@@ -288,22 +300,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Cloudflare</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Cloudflare</h4>
         <p>以"AI-first"重组为由裁员 20%（1100人），CEO 称内部 AI 使用量三个月暴增 600%，各部门每天运行数千个 AI Agent 会话。公司强调这不是削减成本，而是转向 Agentic AI 运营模式。股价盘后下跌 14%。</p>
         
       </article>
       <article class="card">
-        <h4>Freshworks</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Freshworks</h4>
         <p>裁员 500 人（11%），AI 自动化已贡献超 50% 代码生成。SaaS 公司在 AI 效率提升后加速人员优化。</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI & Anthropic</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI & Anthropic</h4>
         <p>同日宣布联合华尔街 PE 成立驻场服务合资公司。OpenAI 联合 TPG/贝恩/软银等成立 The Deployment Company（目标 100 亿美元）；Anthropic 联合黑石/高盛成立 15 亿美元服务公司。从"卖 API"转向"派工程师上门帮企业落地 AI"，AI 商业化进入最后一英里。</p>
         
       </article>
       <article class="card">
-        <h4>Anthropic</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic</h4>
         <p>Pre-IPO 市场估值飙升至 1.2 万亿美元，首次超越 OpenAI（1.1 万亿美元）。一季度年化收入从 90 亿暴增至 300 亿美元（80 倍增速），Claude Code 在开发者中快速渗透，约 4% 的 GitHub 公开代码提交已由 Claude 生成。</p>
         
       </article>
@@ -313,7 +325,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>Cloudflare 裁员 20% 的同时，营收创下历史新高——AI 让公司更赚钱了，但也让 1100 人失去了工作。OpenAI 和 Anthropic 同时成立"驻场服务公司"，本质是在告诉企业：你不需要自己培养 AI 人才，我们派人来帮你做。 假设你是一家中等规模科技公司的 HRD：当 AI 工具让某些岗位的人效提升 3 倍，你会选择"保留编制、重新定义职责"，还是"先缩编、再观望"？你选择的时间窗口，可能比你想象的短得多。</p>
@@ -321,7 +333,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

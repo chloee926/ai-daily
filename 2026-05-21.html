@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-21 · 星期四 · <b>第 32 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：Stability AI — Stable Audio 3.0发布，开放音频生成</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI — GPT-5.5 Instant更新版发布</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — GPT-5.5 Instant更新版发布</h4>
         <p>OpenAI于5月初推出GPT-5.5 Instant模型并于月底发布更新版本，被设为ChatGPT默认模型。内部测试显示其在医学、法律、金融等高风险领域幻觉较之前版本降低52.5%，数学与视觉推理能力得到提升。OpenAI同时扩展了SynthID水印和C2PA内容凭证覆盖范围。</p>
         <div class="source">来源：<a href="https://world.people.com.cn/n1/2026/0601/c1002-40731642.html" target="_blank">新华社</a></div>
       </article>
       <article class="card">
-        <h4>Stability AI — Stable Audio 3.0发布，开放音频生成</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Stability AI — Stable Audio 3.0发布，开放音频生成 <span class="music-badge">🎵</span></h4>
         <p>Stability AI发布Stable Audio 3.0音频生成模型套件，Small/Medium版本开放权重，最长可生成6分20秒音频，训练数据均获授权许可。该发布进一步推动了开源音频AI工具的可用性，为内容创作者提供了合规的AI音乐生成方案。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AI Critique</a></div>
       </article>
       <article class="card">
-        <h4>Cohere — Command A+开源企业模型发布</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Cohere — Command A+开源企业模型发布</h4>
         <p>加拿大AI公司Cohere发布Command A+（218B MoE）开源企业模型，可在2张H100上运行，专注于安全、快速的企业级AI应用场景，支持全球多语言部署。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AI Critique</a></div>
       </article>
@@ -283,12 +295,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI — 三大产品线合并，Brockman统管产品战略</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI — 三大产品线合并，Brockman统管产品战略</h4>
         <p>OpenAI宣布将ChatGPT、Codex和API三条产品线合并为统一组织，由联合创始人兼总裁Greg Brockman统一领导。Brockman在全员备忘录中表示将建设"一个统一的Agent平台"。这是OpenAI近期第二次战略收缩——去年末CEO Altman已要求公司回归主业。</p>
         <div class="source">来源：<a href="https://www.toutiao.com/article/7640888306800116266/" target="_blank">北京商报</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI — 关停Sora视频生成产品，聚焦核心业务</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI — 关停Sora视频生成产品，聚焦核心业务</h4>
         <p>同日，OpenAI正式关停视频生成产品Sora。原因是算力消耗与营收严重不匹配——Sora过度消耗计算资源，而下载量持续下滑，App Store排名已跌出前100。此前规划的10亿美元迪士尼投资也因此告吹。产品负责人Kevin Weil和技术负责人Bill Peebles已离开公司。</p>
         <div class="source">来源：<a href="https://finance.biggo.com.tw/news/202605180035_OpenAI_Merges_ChatGPT_Codex_API_Under_Brockman_Pre-IPO" target="_blank">BigGo财经</a></div>
       </article>
@@ -298,7 +310,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>1. OpenAI在IPO前关停Sora、合并产品线——当企业面临资本市场的盈利压力时，HR如何帮助团队在"战略聚焦"中保持创新活力？ 2. Sora团队因产品关停而解散——在AI行业快速迭代的环境下，企业应如何设计灵活的人才流动与转型机制？</p>
@@ -306,7 +318,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

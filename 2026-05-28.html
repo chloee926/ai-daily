@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-28 · 星期四 · <b>第 37 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic — Claude Opus 4.8发布，41天刷新升级纪录</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — Claude Opus 4.8发布，41天刷新升级纪录</h4>
         <p>Anthropic发布Claude Opus 4.8，距Opus 4.7仅41天。Agentic编码评分从64.3%跃升至69.2%，多维推理从54.7%升至57.9%，在Finance Agent v2上超越GPT-5.5和Gemini 3.1 Pro。最大亮点是"诚实度"——Opus 4.8让代码缺陷未被标记的概率较4.7降低约4倍。Dynamic Workflows可运行数百个并行子智能体，Effort Control让用户精确控制推理投入。</p>
         <div class="source">来源：<a href="https://ai4planet.in/global-ai-update-may-30-2026-claude-opus-48-elevenlabs-music-v2-robinhood-ai" target="_blank">AI4Planet</a></div>
       </article>
       <article class="card">
-        <h4>Higgsfield — AI视频生成入驻Adobe Premiere Pro</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Higgsfield — AI视频生成入驻Adobe Premiere Pro</h4>
         <p>Higgsfield发布Adobe Premiere Pro和After Effects插件，将AI视频生成直接带入剪辑时间线。视频编辑师可在Premiere Pro内生成图片、创建视频片段、应用转场、重构画面、移除背景并升级至4K——无需切换工具。这解决了AI视频制作最大的痛点：工具间频繁切换。</p>
         <div class="source">来源：<a href="https://ai4planet.in/global-ai-update-may-30-2026-claude-opus-48-elevenlabs-music-v2-robinhood-ai" target="_blank">AI4Planet</a></div>
       </article>
       <article class="card">
-        <h4>Mistral — 发布开源搜索工具包</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Mistral — 发布开源搜索工具包</h4>
         <p>Mistral发布开源检索工具包，面向生产级RAG（检索增强生成）和智能体搜索场景，为开发者提供完整的搜索基础设施。该工具包处于公开预览阶段。</p>
         <div class="source">来源：<a href="https://kingy.ai/ai-launch-tracker/ai-launch-radar-todays-biggest-ai-tools-model-releases-may-29-2026-copy" target="_blank">Kingy AI</a></div>
       </article>
@@ -283,12 +295,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic — 650亿美元H轮融资完成，估值超越OpenAI</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — 650亿美元H轮融资完成，估值超越OpenAI</h4>
         <p>Anthropic完成650亿美元H轮融资（含150亿此前承诺的超大规模投资），估值9650亿美元，首次超越OpenAI的8520亿美元估值，成为全球最贵AI公司。运行率收入突破470亿美元。这被广泛认为是IPO前最后一轮私募融资，标志着AI公司估值格局发生历史性变化。</p>
         <div class="source">来源：<a href="https://www1.infotech.com/software-reviews/vendor-technology-notes/big-5-ai-vendor-roundup-week-of-may-25-2026" target="_blank">Info-Tech Research Group</a></div>
       </article>
       <article class="card">
-        <h4>Meta — 成立Enterprise Solutions部门专攻企业级AI</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Meta — 成立Enterprise Solutions部门专攻企业级AI</h4>
         <p>据内部备忘录，Meta计划成立新部门Enterprise Solutions，由产品经理和工程师组成，专注为企业客户定制AI服务。此举与OpenAI此前成立独立AI部署公司的战略高度契合，表明头部AI企业正集体将重心从通用模型研发转向企业级场景深耕与价值交付。</p>
         <div class="source">来源：<a href="https://t.10jqka.com.cn/pid_632236090.shtml" target="_blank">极客网</a></div>
       </article>
@@ -298,7 +310,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>1. Anthropic估值超越OpenAI——当"安全优先"路线在资本市场获得认可，企业在AI战略制定中应如何平衡"速度"与"安全"？ 2. Effort Control功能让用户精确控制AI推理成本——这种"按需推理"模式是否会催生企业内部的"AI预算管理"新岗位？</p>
@@ -306,7 +318,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

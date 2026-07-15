@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-04 · 星期四 · <b>第 42 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,12 +272,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>NVIDIA — Nemotron 3 Ultra 上线，Perplexity 等率先采用</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> NVIDIA — Nemotron 3 Ultra 上线，Perplexity 等率先采用</h4>
         <p>NVIDIA 在 GTC 台北大会宣布 Nemotron 3 Ultra 正式上线。该模型专为长时间运行智能体打造，能够处理自主工作流中的编排和推理调用——在长时间编码会话中做架构决策、跨数百个研究来源进行合成。黄仁勋表示"这种应用模式，将成为每家公司未来十年采用的计算模式"。</p>
         <div class="source">来源：<a href="https://blogs.nvidia.cn/blog/nvidia-gtc-taipei-computex-2026-news/" target="_blank">NVIDIA博客</a></div>
       </article>
       <article class="card">
-        <h4>Microsoft — MAI 模型训练数据遭质疑，"零蒸馏"承诺受挑战</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Microsoft — MAI 模型训练数据遭质疑，"零蒸馏"承诺受挑战</h4>
         <p>科技媒体 The Decoder 报道，微软最新发布的 MAI 系列模型部分使用未获授权的开放网络数据训练，与其此前"仅采用企业级、干净且商业授权数据"的说法不一致。微软 AI 负责人苏莱曼在 Build 大会上强调 MAI"从零训练、零蒸馏"——如果训练数据合规性存疑，"自研替代 OpenAI"的战略叙事可能面临信任考验。</p>
         <div class="source">来源：<a href="https://baike.baidu.com/item/MAI%E7%B3%BB%E5%88%97%E6%A8%A1%E5%9E%8B/67588984" target="_blank">百度百科</a></div>
       </article>
@@ -278,12 +290,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Google — 云部门裁员波及威胁情报和 Mandiant 安全团队</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Google — 云部门裁员波及威胁情报和 Mandiant 安全团队</h4>
         <p>过去两周，谷歌对云服务部门实施新一轮裁员，涉及顶级安全部门 GTIG 威胁情报小组及 2022 年收购的 Mandiant 网络安全团队。知情人士称谷歌以"资源需重新投入 AI 等增长领域"为由辩护。从 UX 设计到网络安全防御的连续裁员，暴露出谷歌云服务在市场竞争中的战略焦虑。</p>
         <div class="source">来源：<a href="https://m.sohu.com/a/1032437268_122066678" target="_blank">IT之家</a></div>
       </article>
       <article class="card">
-        <h4>Google — 转岗 2000 人至 Gemini 大模型部门</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Google — 转岗 2000 人至 Gemini 大模型部门</h4>
         <p>据钛媒体 Edge AI Daily 报道，谷歌正将约 2000 名员工转岗至 Gemini 大模型部门，与微软新招 1500 名 AI 基础设施工程师、Meta 精简组织聚焦 AI 形成互补性格局。三大巨头在 AI 人才配置上的动作，标志着行业从"招人做 AI"进入"把人搬到 AI"的新阶段。</p>
         <div class="source">来源：<a href="https://www.tmtpost.com/8023189.html" target="_blank">钛媒体</a></div>
       </article>
@@ -293,7 +305,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>谷歌把安全团队裁掉、把人转去 Gemini——当公司从"防守型"岗位向"进攻型"AI 岗位转移人才时，谁在评估这种"安全换增长"的长期风险？如果你的公司也在做类似的资源重配，HR 是被动执行转岗，还是主动参与了风险评估？</p>
@@ -301,7 +313,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-07-14 · 星期二 · <b>第 70 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：阶跃星辰发布全球首款大模型原生智能体手机STEPX Neo；OpenAI与Anthropic爆发额度争夺战：Codex取消限制 vs Fable 5再延期至7/19；腾讯混元开源HyOCR-1.5：1B参数端到端OCR推理提速6.37倍</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>阶跃星辰发布全球首款大模型原生智能体手机STEPX Neo</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阶跃星辰发布全球首款大模型原生智能体手机STEPX Neo <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月13日，阶跃星辰发布AI终端品牌STEPX、智能体原生系统Step AOS及首款手机STEPX Neo。Step AOS从底层重构，让智能体直接调用合作方服务接口（非GUI模拟点击），首批生态接入美团、携程、支付宝等数十家应用。手机已通过国标L3级智能化测试，日常问答记忆召回最快15ms。 为什么对 TME 重要： 智能体原生OS代表下一代用户交互入口，若"结果交互"取代"过程交互"成为主流，App分发逻辑将彻底改变。TME需关注音乐/视频等内容服务在智能体OS中的接入策略和用户触达方式。</p>
         <div class="source">来源：<a href="https://i.ifeng.com/c/8ujZU1BLXB2" target="_blank">凤凰网科技</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI与Anthropic爆发额度争夺战：Codex取消限制 vs Fable 5再延期至7/19</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI与Anthropic爆发额度争夺战：Codex取消限制 vs Fable 5再延期至7/19 <span class="music-badge">🎵</span></h4>
         <p>摘要： Anthropic将Claude Fable 5切换按量付费的截止日再延7天至7月19日（第三次延期），同时Claude Code每周上限维持+50%优惠；OpenAI随即临时取消Codex和ChatGPT Work的5小时使用限制，并优化GPT-5.6 Sol运行效率使可用额度提升约10%。两家核心目标一致：降低高端模型实际使用成本，留住开发者。 为什么对 TME 重要： AI编程工具的使用门槛正在快速降低。当Codex活跃用户已达600万，企业需重新评估内部AI Coding工具选型和成本结构。</p>
         <div class="source">来源：<a href="https://www.163.com/tech/article/L1NPP0GO00097U7T.html" target="_blank">网易科技</a></div>
       </article>
       <article class="card">
-        <h4>腾讯混元开源HyOCR-1.5：1B参数端到端OCR推理提速6.37倍</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 腾讯混元开源HyOCR-1.5：1B参数端到端OCR推理提速6.37倍 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月12日，腾讯混元开源端到端OCR专家模型HyOCR-1.5，仅1B参数覆盖8种以上任务。借助DFlash投机解码框架推理提速6.37倍，可在llama.cpp上用CPU和普通笔记本运行。OmniDocBench v1.6以94.74分居端到端第一，新增古文字、图表解析等长尾能力。 为什么对 TME 重要： 轻量化OCR模型开源意味着企业级文档处理成本大幅下降。招聘场景中的简历解析、合同审核等环节可直接受益于这类端到端方案。</p>
         <div class="source">来源：<a href="https://www.huxiu.com/ainews/13844.html" target="_blank">虎嗅</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI安全负责人海德克离职，安全团队并入研发体系</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI安全负责人海德克离职，安全团队并入研发体系</h4>
         <p>摘要： 任职近5年的OpenAI安全系统负责人约翰内斯·海德克确认离职（2年内第6位安全高管出走）。OpenAI新设"研究与安全副总裁"岗位由米娅·格莱斯出任，安全团队不再拥有独立汇报线，整体并入研究部门。首席研究官Mark Chen称"安全工作需更早参与模型和产品决策"。 对招聘的启发： OpenAI的安全人才持续外流（多人转投Anthropic或创建独立安全组织），说明AI安全领域正形成独立人才市场。对标企业如需组建独立AI安全团队，现在是窗口期。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260713A069HV00" target="_blank">量子位/WIRED</a></div>
       </article>
       <article class="card">
-        <h4>MiniMax融资160亿港元，创始人闫俊杰宣布AGI前零薪酬</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> MiniMax融资160亿港元，创始人闫俊杰宣布AGI前零薪酬</h4>
         <p>摘要： MiniMax 7月10日完成160亿港元融资（配股95.4亿+零息可转债65亿），80%投入AI基础设施和模型研发。同日创始人闫俊杰发内部信：即日起至实现AGI不领任何薪酬，拿出总股本4%用于团队激励、1%设基金支持开源社区。但IPO后首轮限售股解禁（48%）导致股价持续承压。 对招聘的启发： 创始人零薪酬+大比例股权激励是AI公司争夺人才的极端手段。但MiniMax与智谱的市值分化说明，人才吸引力最终取决于商业化路径的清晰度。</p>
         <div class="source">来源：<a href="https://finance.sina.cn/2026-07-10/detail-inihhvka7174378.d.html" target="_blank">中国证券报</a></div>
       </article>
       <article class="card">
-        <h4>软银独家代理Sierra进军日本AI客服市场</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 软银独家代理Sierra进军日本AI客服市场</h4>
         <p>摘要： 7月14日，软银与Bret Taylor创立的Sierra达成独家战略合作，在日本市场推出AI Agent客服平台。此前在LINEMO部署中，Sierra将客户问题解决率从83%提升至97%，满意度从74%升至93%。软银计划3个月内在主力品牌全量接入，年底覆盖生态内超8000万用户。 对招聘的启发： AI Agent客服正从"降本增效"走向"独占市场"（独家代理模式）。企业客服团队的岗位结构将加速向AI运营、提示工程和异常处理方向转型。</p>
         <div class="source">来源：<a href="https://www.softbank.jp/en/corp/news/press/sbkk/2026/20260714_01/" target="_blank">SoftBank官方新闻稿</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 AI行业正在从"谁的模型更强"转向"谁先锁定用户使用习惯"。OpenAI与Anthropic的额度战本质是用户粘性争夺，阶跃做手机OS是抢占交互入口，软银锁定独家代理是圈占区域市场。对TME而言，这意味着AI人才竞争也将从"模型研发"单一维度，扩展到"产品设计+生态运营+商业化"的全链条。 MiniMax创始人零薪酬+大比例股权激励的做法值得关注。当AI公司普遍面临"估值高但商业化不清晰"的困境时，这种极端信号传递可能成为行业标配。HR需思考：在候选人offer比较中，如何帮助候选人正确评估不同AI公司股权激励方案的实际价值。 OpenAI连续6位安全高管出走形成了一个新现象：AI安全正在成为独立于大厂的人才赛道。这些人或加入竞品（Anthropic）、或创立独立组织。如果TME未来需要组建AI伦理/安全团队，现在的人才供给正在变好。 ### 今日思考题 问题： 当AI终端从"App生态"转向"智能体生态"（如阶跃Step AOS的"结果交互"模式），TME的内容服务（音乐、视频）应如何重新定义与用户的触达方式？ 解答思路： 1. 从"用户打开App"到"智能体主动推荐"——需要思考在智能体OS中，内容服务如何被发现和调用，是否需要MCP/A2A等标准协议接入 2. 从"界面体验"到"意图匹配"——用户不再浏览列表，而是说"放一首适合开车的歌"，内容推荐逻辑需从视觉转向语义 3. 落地建议：关注阶跃等智能体OS的生态接入标准，提前布局AI Agent时代的内容分发协议，培养既懂内容运营又懂Agent接口设计的复合人才</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

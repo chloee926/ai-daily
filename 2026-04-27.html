@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-04-27 · 星期一 · <b>第 14 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,22 +272,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> OpenAI</h4>
         <p>发布旗舰模型GPT-5.5，100万token上下文+全榜第一**，美国时间4月23日，OpenAI发布最新旗舰模型GPT-5.5，号称迄今为止"最智能、最直觉易用"的模型。核心突破：支持100万token上下文（自GPT-4.5以来首次完整重训）、Terminal-Bench 2.0得分82.7%、在极少人类指令下处理复杂多步骤任务。价格直接翻倍至$5/$30每百万token。据官方介绍，GPT-5.5擅长编写和调试代码、在线研究、数据分析、创建文档和表格，甚至能够跨越多个软件工具直到完成任务。</p>
         
       </article>
       <article class="card">
-        <h4>DeepSeek</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek</h4>
         <p>V4预览版正式上线并开源，百万上下文+国产算力适配**，4月24日，DeepSeek-V4预览版正式发布并同步开源，支持百万字超长上下文，在Agent能力、世界知识和推理性能上均实现国内与开源领域的领先。技术亮点：引入token维度压缩与自研稀疏注意力机制，使1M上下文处理在计算与显存需求上相比前代显著下降；明确验证细粒度EP方案在英伟达GPU和华为昇腾NPU双平台上的表现，打出"用国产算力跑国产模型"旗号。API最便宜版本每百万Tokens仅0.2元。</p>
         
       </article>
       <article class="card">
-        <h4>Anthropic</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic</h4>
         <p>Claude Opus 4.7发布，高端编程能力大幅提升**，4月16日，Anthropic发布Claude Opus 4.7，距上次升级仅间隔两个月，确立每两个月更新一次的稳定节奏。核心升级：高端软件开发和超高难度任务处理能力显著提升；更高分辨率图像识别和更优创作审美；增强的指令遵循和基于文件系统的记忆能力；SWE-bench Verified得分87.6%。注意：Opus 4.7的综合能力（含网络攻防）弱于未全面开放的Claude Mythos，Anthropic在训练中专门对其网络攻防能力进行了限制。Token消耗约为原来的1.0～1.35倍（新版分词器）。</p>
         
       </article>
       <article class="card">
-        <h4>月之暗面</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 月之暗面</h4>
         <p>Kimi K2.6发布并开源，262K上下文延伸**，近期，月之暗面正式发布并开源Kimi K2.6模型，延伸K2系列的262K上下文能力，在国产大模型开源社区引发广泛关注。</p>
         
       </article>
@@ -288,17 +300,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Meta</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta</h4>
         <p>裁员10%（约8,000人），额外取消6,000个开放职位**，4月23日，Meta正式宣布裁员约8,000人（占员工总数10%），裁员从5月20日开始。公司在备忘录中表示裁员是"继续更高效地运营公司"和"抵消我们正在进行的其他投资"的一部分。外界普遍认为，这与Meta加大AI基础设施投入（2026年预计AI支出占大頭）并同时利用AI驱动效率提升直接相关。这是Meta继2022-2023年"元年裁员"后的新一轮大规模人员优化。</p>
         
       </article>
       <article class="card">
-        <h4>Microsoft</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Microsoft</h4>
         <p>51年历史上首次提供全公司范围买断方案，约8,750人受影响**，4月24日，Microsoft宣布向美国员工提供自愿买断方案，覆盖约8,750人（美国员工的7%）。这是Microsoft 51年历史上的首次此类举措。与市场预期相反，Microsoft在大规模AI基础设施投入（2026年预计投入超1,000亿美元）的同时选择缩减人力成本，被专家解读为"AI驱动的效率提升"已实质性替代部分岗位。</p>
         
       </article>
       <article class="card">
-        <h4>行业背景数据：2026年截至4月24日，科技行业已有超过92,000名从业者被裁；自2020年以来累计近900,000人。Alphabet、Microsoft、Meta和Amazon预计2026年合计投入近7,000亿美元用于AI基础设施建设。专家警告：这代表根本性结构转变，而非暂时调整，AI时代的劳动力危机已经到来。</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 行业背景数据：2026年截至4月24日，科技行业已有超过92,000名从业者被裁；自2020年以来累计近900,000人。Alphabet、Microsoft、Meta和Amazon预计2026年合计投入近7,000亿美元用于AI基础设施建设。专家警告：这代表根本性结构转变，而非暂时调整，AI时代的劳动力危机已经到来。</h4>
         <p></p>
         
       </article>
@@ -308,7 +320,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>假设你的公司在未来12个月内大幅推进AI工具落地，某些岗位的人效提升了40%——但业务增长并没有同步跟上。 作为HRD，你会主动提议"优化编制"，还是选择维持现状、让多余的人力转向AI无法替代的创造性工作？ 如果你选择"优化"，你的判断标准是什么？如果你选择"维持"，你打算如何用数据说服CFO这笔"看似冗余"的人力支出是值得的？ 你对这个问题的回答，决定了你的HR团队在AI时代是"编制管理者"还是"组织能力设计者"。 *本期简报覆盖时间：2026-04-24 至 2026-04-26（周一版，覆盖72小时）* *信息来源：OpenAI官网、DeepSeek官网、Anthropic官方公告、CNBC、Caixin、新浪财经、IT之家等* *整理：ChloeCao | 每日AI简报系列*</p>
@@ -316,7 +328,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-12 · 星期二 · <b>第 25 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：Meta — Muse Spark 模型全面赋能语音/AR/购物场景</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Meta — Muse Spark 模型全面赋能语音/AR/购物场景</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Meta — Muse Spark 模型全面赋能语音/AR/购物场景 <span class="music-badge">🎵</span></h4>
         <p>Meta 更新博客（5月12日），详细阐述 Muse Spark 模型（4月发布）如何全面驱动产品线：更快的 AI 语音响应、智能 AR 眼镜功能、应用内购物助手。同时据路透社报道，Meta 正在测试 AI 吊坠、扩展 Ray-Ban/Oakley 智能眼镜产品线，并推出面向企业的"Wearables for Work"服务，目标 H2 2026 销售 1000 万台 AI 可穿戴设备。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AICritique</a></div>
       </article>
       <article class="card">
-        <h4>高德 — 发布鸿蒙首个生成式 UI 开源框架 AGenUI</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 高德 — 发布鸿蒙首个生成式 UI 开源框架 AGenUI</h4>
         <p>高德发布 AGenUI，为鸿蒙系统首个生成式 UI 开源框架。基于通用协议可将大模型界面意图直接转化为鸿蒙原生组件，一套代码适配手机、车机、智慧屏等多终端，渲染性能较 iOS/Android 版本提升 20%，内存占用降低 18%，已全面开源。</p>
         <div class="source">来源：<a href="https://www.aibetas.com.cn/p/6225.html" target="_blank">AIBetas</a></div>
       </article>
       <article class="card">
-        <h4>DeepSeek — V4 Pro API 限时 2.5 折优惠延长至 5 月底</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek — V4 Pro API 限时 2.5 折优惠延长至 5 月底</h4>
         <p>DeepSeek 宣布 V4-Pro 限时 2.5 折优惠延长至 5 月 31 日（原定 5 月 5 日截止）。叠加输入缓存降价后，V4-Pro 缓存命中输入低至 0.025 元/百万 Tokens，创全球大模型价格新低。缓存命中率约 95%，Agent 编程场景整体成本节省可达 83%。</p>
         <div class="source">来源：<a href="https://ima.qq.com/wiki/?shareId=0ba09fda97b04399abeed1ec4cc98bb75bc174b06e3bafce81f358fcd44a4471" target="_blank">量子位智库</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Microsoft — 自愿买断计划细则公布：年龄+司龄≥70</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Microsoft — 自愿买断计划细则公布：年龄+司龄≥70</h4>
         <p>微软向美国员工公布自愿退休计划（Voluntary Retirement Program）细则：职级 67 及以下、年龄与司龄之和≥70 的员工可自愿申报，获 8-39 周基本薪资的一次性现金补偿及最长 5 年医保延续。所有参与者统一离职日为 7 月 1 日。微软称此举为"自主决定职业发展下一步"的机会，而非强制裁员。</p>
         <div class="source">来源：<a href="https://www.alphapilot.tech/zh-CN/discover/microsoft-launches-first-ever-voluntary-buyout-program-amid-strategic-workforce-realignment" target="_blank">AlphaPilot</a></div>
       </article>
       <article class="card">
-        <h4>Bill Holdings — 裁员至多 30%，CEO 称要成为"端到端 AI 原生企业"</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Bill Holdings — 裁员至多 30%，CEO 称要成为"端到端 AI 原生企业"</h4>
         <p>后台办公软件开发商 Bill Holdings 宣布裁员至多 30%，CEO 勒内·拉塞尔特称"正大刀阔斧推动公司转型，致力于成为端到端 AI 原生企业，迅速重塑工作方式"。这是继 Cloudflare（20%）、Coinbase（14%）之后又一家以"AI 原生"为名的重大裁员。</p>
         <div class="source">来源：<a href="https://caifuhao.eastmoney.com/news/20260508113909357114180" target="_blank">东方财富</a></div>
       </article>
       <article class="card">
-        <h4>Anthropic — H 轮融资进行中，估值达 9000 亿美元以上</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — H 轮融资进行中，估值达 9000 亿美元以上</h4>
         <p>据彭博社报道，Anthropic 正在进行的 H 轮融资规模至少 300 亿美元，估值超过 9000 亿美元，由红杉、Dragoneer、Greenoaks 和 Altimeter 联合领投。该轮融资预计月底关闭，资金主要用于 AWS 和谷歌云的算力承诺。</p>
         <div class="source">来源：<a href="https://mml-studio.com/blog/ai-weekly-may-18-24-2026" target="_blank">MML Studio</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>微软用"自愿买断"替代"强制裁员"，用"年龄+司龄≥70"精准锁定资深员工——这种"柔性优化"表面上给了员工选择权，但实际上符合条件的人面临的职场选项可能非常有限。作为 HR，你认为"自愿买断"和"强制裁员"对雇主品牌、剩余员工士气和人才吸引力的长期影响，到底有多大差别？有没有一种情况，"自愿"比"强制"造成的伤害更大？</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

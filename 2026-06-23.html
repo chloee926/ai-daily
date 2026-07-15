@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-23 · 星期二 · <b>第 55 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：火山引擎FORCE大会：豆包2.1 Pro发布，宣称跨越生产级质变点；OpenAI扩展Daybreak安全计划，发布GPT-5.5-Cyber完整版；Getty Images与OpenAI达成正版图库合作，股价暴涨120%</div>
 
   
     <section class="section sec-nw">
@@ -260,22 +272,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>火山引擎FORCE大会：豆包2.1 Pro发布，宣称跨越生产级质变点</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 火山引擎FORCE大会：豆包2.1 Pro发布，宣称跨越生产级质变点 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月23日，火山引擎在北京举办2026夏季FORCE原动力大会，正式发布豆包大模型2.1 Pro。该模型在Coding、Agent、VLM三大方向实现能力跃升，在TerminalBench 2.1、SWE-Pro等代码评测中进入全球第一梯队，多项评测优于Claude Opus 4.6。定价方面，每百万Tokens输入6元、输出30元，缓存命中仅1.2元，综合成本较Claude Opus 4.6降低近80%。同步发布Seedance 2.5视频生成模型、Seedream 5.0 Pro图像模型、Seed-Audio 1.0音频模型。截至6月，豆包大模型日均Token调用量突破180万亿，过去一年增长超10倍。火山引擎以49.5%市场份额位居中国MaaS服务市场第一。 为什么对 TME 重要： 豆包2.1 Pro的Coding和Agent能力已对标Claude Opus 4.6，但价格仅为其1/5。字节系AI工具（TRAE、扣子）将率先接入，TME技术团队在AI开发工具选型时多了一个高性价比选项。同时Seedance 2.5+Seed-Audio 1.0的组合对音乐视频创作有直接应用价值。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260623A06ECT00" target="_blank">凤凰网科技 - 豆包大模型2.1 Pro发布</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI扩展Daybreak安全计划，发布GPT-5.5-Cyber完整版</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI扩展Daybreak安全计划，发布GPT-5.5-Cyber完整版 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月22日，OpenAI宣布扩展Daybreak网络安全计划，推出四项核心举措：①GPT-5.5-Cyber完整版发布，CyberGym得分85.6%（超越Anthropic Mythos 5的83.8%）；②Codex Security插件升级，已完成3万余代码库超3000万次提交扫描，自动判定可修复问题突破50万项；③"Patch the Planet"开源漏洞修复行动，联合Trail of Bits、HackerOne等发起；④Daybreak Cyber Partner Program，首批合作机构包括Accenture、Cisco、CrowdStrike、IBM、Palo Alto Networks等。该模型目前仅对通过认证的安全防御人员开放。 为什么对 TME 重要： AI网络安全从"辅助发现漏洞"升级为"自动生成补丁并验证修复"的完整闭环。Daybreak的"Codex Security→扫描→修复→验证"管线代表企业安全运维的新范式，安全团队的人才结构将从"大量安全工程师手动排查"转向"少量高级安全架构师+AI代理"。</p>
         <div class="source">来源：<a href="https://finance.sina.com.cn/tech/roll/2026-06-23/doc-iniekknt9717166.shtml" target="_blank">机器之心 - OpenAI安全专用GPT-5.5-Cyber完全体</a></div>
       </article>
       <article class="card">
-        <h4>Getty Images与OpenAI达成正版图库合作，股价暴涨120%</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Getty Images与OpenAI达成正版图库合作，股价暴涨120% <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月21日，Getty Images宣布与OpenAI签署多年期展示合作协议，将正版授权图库内容整合至ChatGPT搜索与内容发现功能。合作消息推动Getty Images盘前股价暴涨逾120%。CEO Craig Peters表示："高质量、经授权的视觉内容让AI搜索更加实用可信。"双方未公布合作金额，也未披露Getty图片是否将用于训练模型。此前Getty已与英伟达共同开发生成式AI工具，仅基于正版图库训练并提供版权保障。 为什么对 TME 重要： 正版内容与AI平台的合作正在建立新的商业模式。音乐版权行业可参考Getty的路径——从"对抗AI侵权"转向"授权合作获取分成"。ChatGPT接入正版图库的逻辑，同样适用于正版音乐在AI生成内容中的呈现。</p>
         <div class="source">来源：<a href="https://newsroom.gettyimages.com/en" target="_blank">Getty Images官方新闻稿</a></div>
       </article>
       <article class="card">
-        <h4>微软纳德拉呼吁打破AI巨头垄断，推"模型平权"路线</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 微软纳德拉呼吁打破AI巨头垄断，推"模型平权"路线 <span class="music-badge">🎵</span></h4>
         <p>摘要： 微软CEO纳德拉在《华尔街日报》专访中公开批评当前AI竞赛被少数公司主导的现状。他表示："你不能说所有白领工作都将消失、AI甚至可能成为武器，一边又动用一切资源建设数据中心。"纳德拉呼吁AI转向更便宜的模型、更强的用户控制权，并推出Copilot Cowork（支持多模型自由切换）和1美分/Credits按量计费模式。分析认为，微软此举源于其在前沿模型竞争中落后于OpenAI/Google/Anthropic的现实，转而押注"模型商品化+中立AI操作层"策略。 为什么对 TME 重要： 如果模型真的走向商品化，企业AI部署的决策权将从"选哪个模型"转向"建什么应用层"。这对企业AI战略团队的能力要求从"模型评测"升级为"场景定义+流程重构"，相关人才画像需更新。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260622A05P8B00" target="_blank">微软CEO纳德拉《华尔街日报》专访</a></div>
       </article>
@@ -288,17 +300,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>谷歌三天连失两位AI灵魂人物，Alphabet暴跌7%</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 谷歌三天连失两位AI灵魂人物，Alphabet暴跌7%</h4>
         <p>摘要： 短短3天内，谷歌DeepMind两位顶级技术领军人物先后离职：①6月18日，Noam Shazeer（Transformer论文核心作者、Gemini联合负责人、谷歌工程VP）宣布加入OpenAI——2024年谷歌曾斥资27亿美元收购Character.AI将其召回，回归不足两年再次出走；②6月20日，John Jumper（AlphaFold核心领导者、2024年诺贝尔化学奖得主、DeepMind工程院士）宣布加入Anthropic。至此，Transformer论文全部8位原作者均已离开谷歌。消息引发Alphabet周一暴跌7%，为近一年最大单日跌幅。D.A. Davidson分析师评价："这引发了对谷歌在AI前沿人才争夺战中地位的质疑。" 对招聘的启发： 谷歌的案例证明：即便是最有技术积淀的企业，也无法仅靠高薪和title留住顶级人才。真正吸引这些人的是"对未来的定义权"——Shazeer去OpenAI做架构前沿探索，Jumper去Anthropic做AI+科学交叉。大厂HR在设计AI人才保留方案时，需从"给多少钱"升级为"给多大的未来叙事空间"。</p>
         <div class="source">来源：<a href="https://www.tmtpost.com/8034755.html" target="_blank">钛媒体 - 三天内连失两位传奇：谷歌的AI人才大坝正在决堤</a></div>
       </article>
       <article class="card">
-        <h4>甲骨文年报披露裁员2.1万人，明确"AI部署导致员工减少"</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 甲骨文年报披露裁员2.1万人，明确"AI部署导致员工减少"</h4>
         <p>摘要： 6月22日，甲骨文向SEC提交的年度报告披露：2026财年（截至5月31日）全球员工从16.2万人减至14.1万人，裁员2.1万人（降幅13%）。年报明确写道："公司在运营中采用及部署AI技术，已导致并可能继续导致员工人数减少。"遣散费及重组开支达18.4亿美元，是上一财年3.74亿美元的近5倍。值得注意的是，甲骨文并非业绩下滑——SaaS业务全年159亿美元（+11%），同时计划今年在AI基建投入500亿美元。这是首家在年报中明确将裁员归因于"AI部署"的科技巨头。 对招聘的启发： 甲骨文的"越赚越裁"是AI时代组织变革的标志性事件——业绩增长不再等于编制增长。年报中那句"AI部署已导致员工减少"将成为更多企业年报的标准措辞。HR需要做好准备：未来的编制规划逻辑将从"业务增长→加人"转变为"业务增长→先算AI能替代多少→剩余部分才加人"。实施、运维、咨询和基础支持岗位是第一波冲击区。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260623A05FZX00" target="_blank">腾讯新闻 - 甲骨文裁员2.1万人</a></div>
       </article>
       <article class="card">
-        <h4>火山引擎日均Token 180万亿，中国MaaS市场份额近半</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 火山引擎日均Token 180万亿，中国MaaS市场份额近半 <span class="music-badge">🎵</span></h4>
         <p>摘要： 火山引擎在FORCE大会上披露最新运营数据：豆包大模型日均Token调用量突破180万亿，较发布时增长超1500倍，过去一年增长超10倍。IDC数据显示，火山引擎以49.5%的市场份额位居中国公有云MaaS服务市场第一。同时宣布豆包面向普通用户的日常基础功能（搜索问答、写作生图、语音视频对话等）将保持免费，并计划推出面向专业人群的"豆包专业版"办公任务模式，搭载2.1 Pro模型。 对招聘的启发： 字节系AI平台在中国MaaS市场的绝对领先地位（近50%份额），意味着大量企业将基于火山方舟构建AI应用。相关人才需求（方舟平台开发、扣子/TRAE生态）在招聘市场上的热度预计将持续上升。</p>
         <div class="source">来源：<a href="https://kjy.china.com/shehui/13002708/20260623/49564946.html" target="_blank">中华网财经 - FORCE大会数据</a></div>
       </article>
@@ -308,7 +320,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 今天三件事放在一起看，勾勒出AI时代组织变革的完整图景： 人才端： 谷歌三天连失两位AI灵魂人物，Transformer全部8位原作者离开谷歌——证明即便是AI技术的发源地，也无法留住最有野心的人才。真正的吸引力不是薪酬和title，而是"谁在定义下一代AI"的叙事权。 编制端： 甲骨文首次在年报中明确"AI部署已导致员工减少"——这不是传言或分析师推测，而是上市公司向SEC提交的法定披露。当"AI替代人力"从口头讨论变成财报措辞，HR对这个趋势的回应也需要从"关注"升级为"预案"。 能力端： 豆包2.1 Pro宣称跨越"生产级质变点"，模型从"能写代码"进化到"能交付项目"——这意味着AI不再只是辅助工具，而是开始具备独立完成任务的能力。当AI能自主调试、修复、交付，被影响的岗位范围将从"重复性工作"扩展到"需要判断力的中级技术工作"。 ### 今日思考题 甲骨文裁了2.1万人，但SaaS业务同比增长11%，股价不跌反涨——市场正在奖励"用AI替代人力"的企业。 假设你所在的公司明年年报中也写上了那句"AI部署已导致员工人数减少"： - 作为HR负责人，你是主动推动这个叙事（证明AI投入的ROI），还是被动接受这个结果？ - 如果是主动的，你会用什么指标向管理层证明"哪些岗位该缩、哪些该扩"？ - 如果是被动的，当这句话出现在年报里的那天，你还来得及做什么？ 你对这些问题的回答，决定了HR在AI时代是组织变革的架构师，还是执行通知的传声筒。</p>
@@ -316,7 +328,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

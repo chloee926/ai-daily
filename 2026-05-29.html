@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-29 · 星期五 · <b>第 38 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>腾讯 — 云日发布WorkBuddy、Miora与TokenHub</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯 — 云日发布WorkBuddy、Miora与TokenHub</h4>
         <p>腾讯云在香港举办首届Tencent Cloud Day，发布三款AI产品：办公智能体WorkBuddy可并行处理多任务，一条指令生成完整可交付物；创意智能体Miora具备持久记忆，帮助设计团队保持品牌视觉一致性；模型即服务平台TokenHub提供150+模型API统一网关。同时宣布100+云产品CLI已支持AI智能体直接通过自然语言管理云资源。</p>
         <div class="source">来源：<a href="https://bladeintel.com/markets/tencent-rolls-out-new-ai-tools-and-enterprise-solutions-for-global-markets-at-inaugural-tencent-cloud-day-hong-kong-taiwan-news-may-29-2026-1000" target="_blank">Taiwan News</a></div>
       </article>
       <article class="card">
-        <h4>科大讯飞 — 发布首款AI眼镜，支持122种语言翻译</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 科大讯飞 — 发布首款AI眼镜，支持122种语言翻译</h4>
         <p>科大讯飞在2026世界智能产业博览会上发布首款AI眼镜，支持122种语言（含方言、口音）翻译，覆盖通话翻译、同声传译、视觉翻译等多场景。整机仅40克，在轻量化方面处于行业领先地位，搭载讯飞星火大模型。</p>
         <div class="source">来源：<a href="https://www.stcn.com/article/detail/3933745.html" target="_blank">证券时报</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI — Codex登陆Windows，支持Computer Use</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — Codex登陆Windows，支持Computer Use</h4>
         <p>OpenAI发布Codex Windows更新，支持Computer Use功能和远程Codex持续运行。用户可在Windows上让Codex智能体自主操作桌面应用完成编程任务，无需macOS环境。</p>
         <div class="source">来源：<a href="https://kingy.ai/ai-launch-tracker/ai-launch-radar-todays-biggest-ai-tools-model-releases-may-29-2026-copy" target="_blank">Kingy AI</a></div>
       </article>
@@ -283,12 +295,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic — 向SEC秘密递交IPO招股书</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — 向SEC秘密递交IPO招股书</h4>
         <p>Anthropic已向美国SEC秘密递交S-1文件，正式启动上市流程。上周刚完成650亿美元H轮融资、估值9650亿美元的Anthropic，成为继SpaceX和OpenAI之后第三家冲刺IPO的AI巨头。三家公司总估值接近4万亿美元，今年IPO募资总额可能超过2000年以来所有美国风投支持的IPO之和。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/KUE7VH6F05118O8G_pdya11y.html" target="_blank">爱范儿</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI — 发布前沿治理框架与2026选举安全措施</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 发布前沿治理框架与2026选举安全措施</h4>
         <p>OpenAI发布Frontier Governance Framework，并公布2026年选举安全措施，包括与美联社的投票计数合作伙伴关系。同时，OpenAI和Anthropic都开始将监管标准直接对标加州和欧盟法律，标志着AI安全治理从"博客声明"正式进入"法律合规"阶段。</p>
         <div class="source">来源：<a href="https://www1.infotech.com/software-reviews/vendor-technology-notes/big-5-ai-vendor-roundup-week-of-may-25-2026" target="_blank">Info-Tech Research Group</a></div>
       </article>
@@ -298,7 +310,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>1. 腾讯、阿里等中国AI企业加速出海——全球化AI竞争中，企业需要什么样的人才结构？具备跨文化理解力的AI产品经理是否成为新的稀缺岗位？ 2. SpaceX、OpenAI、Anthropic三家总估值近4万亿美元竞相IPO——当AI公司从私募走向公开市场，更严格的财务透明度要求将如何影响AI人才的薪酬与激励体系？</p>
@@ -306,7 +318,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

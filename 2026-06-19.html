@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-19 · 星期五 · <b>第 53 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：OpenAI GPT-5.5：定位"新一代智能体基座"</div>
 
     <div class="lead">6 月 19 日这波更新的主线，是"智能体化"与"范式/开源扩散"两条上半年主线的汇合。OpenAI 把 GPT-5.5 定位为"新一代智能体基座"，Google 用 DiffusionGemma 挑战逐 token 生成范式，智谱 GLM-5.2 以 MIT 协议把开源前沿模型推到全球前三。对企业而言，头部厂商的差异化已不在"谁更聪明"，而在"谁更适合做 agent runtime"和"谁把推理拉到本地"。</div>
 
@@ -261,22 +273,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Google DiffusionGemma：突破逐 token 限制</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Google DiffusionGemma：突破逐 token 限制</h4>
         <p>Google 发布 DiffusionGemma，基于 Gemma 4 与 Gemini Diffusion 研究，260 亿参数 MoE，专为最大化文本输出生成设计。它从随机 token 画布出发迭代优化、一次性评估整个文本块并自我修正，在 GPU 上文本生成速度最高提升 4 倍；具备双向注意力机制，量化后可在 RTX 5090 等消费级 GPU 运行。</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI GPT-5.5：定位"新一代智能体基座"</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI GPT-5.5：定位"新一代智能体基座" <span class="music-badge">🎵</span></h4>
         <p>OpenAI 把 GPT-5.5 定位为理解复杂目标、调用工具、自我检查、把多步任务带到完成态的"智能体基座"。同期 GPT-Realtime-2 语音套件通过 Realtime API 脱离 Beta 向开发者开放；配套的 Prism 科研协作空间基于 GPT-5.2 起对 ChatGPT 个人账户免费开放。</p>
         
       </article>
       <article class="card">
-        <h4>智谱 GLM-5.2 开源登顶，马斯克 vs 唐杰"隔空对话"</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 智谱 GLM-5.2 开源登顶，马斯克 vs 唐杰"隔空对话"</h4>
         <p>智谱开源 GLM-5.2（MIT 协议，744B 总参数/40B 激活，1M 上下文），在 Artificial Analysis 综合榜单取得 51 分，跻身全球模型前三、登顶开源模型榜首，编程能力全球第三。围绕"中国大模型何时达 Fable 级别"，马斯克预计 2027 Q1，唐杰则表示"不用那么久"，引发全球关注。</p>
         
       </article>
       <article class="card">
-        <h4>Anthropic 研究三连：AI Fluency Index / Science Blog / NL Autoencoders</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic 研究三连：AI Fluency Index / Science Blog / NL Autoencoders</h4>
         <p>Anthropic 发布 AI Fluency Index、Science Blog（Opus 4.7 在 NMR 谱学上追平专用软件）、Natural Language Autoencoders（让模型"思考数字"可读），持续把前沿模型推向科研与可解释性前沿。</p>
         
       </article>
@@ -289,27 +301,27 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Amazon 拟对外出售 Trainium3 芯片，直击英伟达</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Amazon 拟对外出售 Trainium3 芯片，直击英伟达</h4>
         <p>据报道，Amazon 正洽谈将其自研 Trainium3 AI 芯片出售给其他公司的数据中心，把内部 Nvidia 替代方案变成直接的加速器市场打法，标志云厂商自研芯片从"自用"走向"对外变现"。</p>
         
       </article>
       <article class="card">
-        <h4>Noam Shazeer 据报道加入 OpenAI 攻坚新架构</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Noam Shazeer 据报道加入 OpenAI 攻坚新架构</h4>
         <p>Transformer 共同发明人、曾创办 Character.AI 后回归 DeepMind 的 Noam Shazeer，据报道将加入 OpenAI，攻坚新模型架构、演进 Transformer 本身。顶级架构人才的流向，仍是前沿竞赛的关键变量。</p>
         
       </article>
       <article class="card">
-        <h4>ChatGPT 市占率首破 50%，但 MAU 破 10 亿</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> ChatGPT 市占率首破 50%，但 MAU 破 10 亿</h4>
         <p>Sensor Tower 报告显示 ChatGPT 在 AI 助手市场份额首次跌破/围绕 50%（Gemini 27.7%、Claude 10.3%），同期 ChatGPT 月活突破 10 亿——绝对用户基数仍在高速增长，市场从"垄断"走向"寡头"。</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI 用 o3 Deep Research 重开 376 例罕见遗传病</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI 用 o3 Deep Research 重开 376 例罕见遗传病</h4>
         <p>OpenAI 协助波士顿儿童医院、哈佛等团队，用 o3 Deep Research 重开 376 例未解罕见遗传病例，经临床遗传学标准复核后确认 18 例新诊断。AI 医疗从 demo 走向"证据汇编"，压缩专家搜索空间。</p>
         
       </article>
       <article class="card">
-        <h4>Karpathy 三连发：AutoResearch / Knowledge Bases / "agentic engineering"</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Karpathy 三连发：AutoResearch / Knowledge Bases / "agentic engineering"</h4>
         <p>Karpathy 24 小时内连发三条，指向同一件事：把 agent 从"对话对象"重新定位为"长期运行的 .md 协作者 + 自主循环执行者"，并正式命名 "agentic engineering"。</p>
         
       </article>
@@ -319,7 +331,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 💡 每日思考题 今天两个信号值得并看： - Google 用 DiffusionGemma 把文本生成从"逐 token"变成"整段扩散"，速度 4×——按 token 计费的成本结构可能被动摇 - ChatGPT 份额围绕 50% 但 MAU 破 10 亿，市场从垄断走向寡头 当推理成本可能因新范式骤降、而模型供应商却在碎片化，依赖单一 API 计费的团队，既要重新算账，也要重新考虑"多模型架构"下的人才结构。 作为 HR，如果你的团队成本高度绑定某个闭源 API 的 token 单价，而底层范式（扩散 vs 自回归）可能在一年内改写定价，你会建议技术团队现在就做"多模型可切换"的能力储备吗？这类"架构弹性"人才，算不算你该提前布局的隐性竞争力？ *Made by ChloeCao | 数据采集时间 2026-06-19 11:00 CST（补档重建）*</p>
@@ -327,7 +339,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

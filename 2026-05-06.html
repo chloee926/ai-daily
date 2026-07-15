@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-06 · 星期三 · <b>第 21 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic — 发布 10 款金融服务 AI 智能体</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — 发布 10 款金融服务 AI 智能体</h4>
         <p>Anthropic 推出面向金融服务行业的完整智能体矩阵，覆盖银行、保险、资产管理与金融科技全链条。可独立撰写客户会议材料、审阅财报、触发合规审查、构建财务模型，已接入 Dun & Bradstreet 和穆迪等金融数据合作伙伴。消息发布后 FactSet 股价盘中跌超 8%，晨星跌近 3%。</p>
         <div class="source">来源：<a href="https://baike.baidu.com/item/Anthropic/62639515" target="_blank">百度百科/Anthropic</a></div>
       </article>
       <article class="card">
-        <h4>xAI — Grok 4.3 发布</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> xAI — Grok 4.3 发布</h4>
         <p>xAI 推出 Grok 4.3 模型，定位文本与推理能力升级。这是 xAI 并入 SpaceX 前的最后一批独立模型发布之一，后续 Grok 系列将以 SpaceXAI 品牌继续迭代。</p>
         <div class="source">来源：<a href="https://whatllm.org/blog/new-ai-models-may-2026" target="_blank">WhatLLM</a></div>
       </article>
       <article class="card">
-        <h4>Zyphra — ZAYA1-8B 开源 MoE 模型发布</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Zyphra — ZAYA1-8B 开源 MoE 模型发布</h4>
         <p>Zyphra 发布 ZAYA1-8B，采用混合专家（MoE）架构，Apache 2.0 开源协议，每个 token 仅激活 7.6 亿参数。这是 5 月上旬唯一的开源权重模型发布，为开发者提供了可自托管的轻量选择。</p>
         <div class="source">来源：<a href="https://whatllm.org/blog/new-ai-models-may-2026" target="_blank">WhatLLM</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic — 承诺 5 年 2000 亿美元采购谷歌 TPU 算力</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — 承诺 5 年 2000 亿美元采购谷歌 TPU 算力</h4>
         <p>Anthropic 与谷歌云签署超大规模算力协议，承诺未来 5 年支付 2000 亿美元使用谷歌 TPU。交易占谷歌云待交付订单 40% 以上，谷歌将为 Anthropic 新建多座超大规模数据中心。双方深度绑定：谷歌先投资 100 亿美元（估值 3500 亿），达标后追加至 400 亿；Anthropic 则承诺 2000 亿采购。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AICritique</a></div>
       </article>
       <article class="card">
-        <h4>Anthropic — Pre-IPO 隐含估值飙升至 1.2 万亿美元</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — Pre-IPO 隐含估值飙升至 1.2 万亿美元</h4>
         <p>据链上 Pre-IPO 市场数据，Anthropic 隐含估值瞬间飙升至 1.2 万亿美元（约 8.7 万亿人民币），超越 OpenAI 成为全球最值钱的 AI 创业公司。Anthropic 年化收入已从年初的 140 亿美元飙升至约 470 亿美元。</p>
         <div class="source">来源：<a href="https://baike.baidu.com/item/Anthropic/62639515" target="_blank">百度百科/Anthropic</a></div>
       </article>
       <article class="card">
-        <h4>AWS — 将 GPT-5.5 和 Codex 引入 Amazon Bedrock</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> AWS — 将 GPT-5.5 和 Codex 引入 Amazon Bedrock</h4>
         <p>亚马逊云服务宣布将 OpenAI 的 GPT-5.5、GPT-5.4 和编码智能体 Codex 引入 Amazon Bedrock 平台，进一步巩固 AWS 作为企业 AI 枢纽的地位。Snowflake 随后承诺 60 亿美元投入 AWS 联合建设"智能体企业"AI。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AICritique</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>Anthropic 用 2000 亿美元的长期采购锁定算力供给，同时 Pre-IPO 估值突破万亿美元——当 AI 公司的资本开支规模已经超过大多数国家的 GDP 时，作为 HR，你如何评估"在一家资本密集度极高的 AI 公司工作"对员工职业稳定性的影响？高估值是否意味着高安全感，还是恰恰相反？</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

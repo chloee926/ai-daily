@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-01 · 星期一 · <b>第 39 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,12 +272,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>NVIDIA — RTX Spark 超级芯片发布，PC 迈入 Agent 时代</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> NVIDIA — RTX Spark 超级芯片发布，PC 迈入 Agent 时代</h4>
         <p>COMPUTEX 2026 首日，黄仁勋发布 RTX Spark 超级芯片，联合联发科设计，搭载 6144 个 CUDA 核心和第五代 Tensor Core。联想、惠普、戴尔、微软等一线 PC 品牌将于今秋首发搭载 RTX Spark 的 Windows 整机。黄仁勋称"PC 正在被重新定义"——从人类点击应用，到向 Agent 下达指令即可完成任务。</p>
         <div class="source">来源：<a href="https://finance.sina.com.cn/wm/2026-06-02/doc-inhzzcpu1646264.shtml" target="_blank">环球Tech</a></div>
       </article>
       <article class="card">
-        <h4>NVIDIA — Agent Toolkit 全栈发布，构建自主智能体基础设施</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> NVIDIA — Agent Toolkit 全栈发布，构建自主智能体基础设施</h4>
         <p>同日，英伟达在 GTC 台北大会上发布 Agent Toolkit，包含 NemoClaw 蓝图、Nemotron 模型、OpenShell 安全运行时及 CUDA-X 技能库。NemoClaw 为企业开发者提供编排层模板，将前沿模型转化为可长期运行的自主智能体，覆盖工程、网络安全、软件开发等场景。</p>
         <div class="source">来源：<a href="https://blogs.nvidia.cn/blog/nvidia-gtc-taipei-computex-2026-news/" target="_blank">NVIDIA博客</a></div>
       </article>
@@ -278,12 +290,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>SentinelOne — 裁员 8% 转型 AI，资安行业首当其冲</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> SentinelOne — 裁员 8% 转型 AI，资安行业首当其冲</h4>
         <p>美国网络安全公司 SentinelOne 宣布裁减约 240 名全职员工（8%），将更多资源投入 AI 与数据分析领域。CEO Tomer Weingarten 称裁员并非因经营压力，而是推动转型的关键一步，目标是精简组织层级、改善运营效率。受裁员和低于预期的财测影响，股价单日重挫超 8%。</p>
         <div class="source">来源：<a href="https://infosecu.technews.tw/2026/06/01/ai-restructuring-wave-cybersecurity-sentinelone-layoffs-stock-8-drop/" target="_blank">MoneyDJ</a></div>
       </article>
       <article class="card">
-        <h4>科技行业 — AI 重组裁员潮加速，2026 年全球已超 8 万人</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 科技行业 — AI 重组裁员潮加速，2026 年全球已超 8 万人</h4>
         <p>据 TradingPlatforms 统计，2026 年至今全球科技行业裁员已超 84223 人，其中 AI 驱动的裁员占比近半（39000+）。Oracle 以 25254 人居首，Amazon 裁 16000 人，Block 裁 4000 人。Cloud/SaaS 行业是重灾区，累计裁员超 28000 人。</p>
         <div class="source">来源：<a href="https://www.enterpriseitworld.com/ai-layoffs-in-the-tech-industry-surge-past-39k-nearly-half-of-the-global-total-of-84223/" target="_blank">EnterpriseITWorld</a></div>
       </article>
@@ -293,7 +305,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>SentinelOne 裁员 8% 称"不是因经营压力，而是转型需要"——当公司用"战略转型"替代"经营困难"来解释裁员时，HR 如何判断这是真转型还是真困局？如果 AI 工具确实提升了生产力，被释放的人力应被"释放"还是被"再部署"？</p>
@@ -301,7 +313,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-18 · 星期一 · <b>第 29 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：阿里 — QoderWork上线设计工作台</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>NVIDIA — Vera CPU首批交付，专为智能体AI设计</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> NVIDIA — Vera CPU首批交付，专为智能体AI设计</h4>
         <p>英伟达正式宣布首款专为Agentic AI设计的CPU——Vera，已完成对Anthropic、OpenAI、SpaceX AI及甲骨文云的首批交付。Vera搭载88个自研Olympus核心，单核性能较前代Grace提升50%，内存带宽高达1.2TB/s，黄仁勋将其定位为"下一个数十亿美元级业务"。</p>
         <div class="source">来源：<a href="https://www.chinastarmarket.cn/detail/2374998" target="_blank">科创板日报</a></div>
       </article>
       <article class="card">
-        <h4>腾讯 — 推出AI应用生成平台"吐司"</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯 — 推出AI应用生成平台"吐司"</h4>
         <p>腾讯正式推出AI应用生成平台"吐司"，定位为"探索型氛围编程（Vibe Coding）产品"，用户通过自然语言描述即可将想法快速转化为可用的移动应用。平台核心功能覆盖从创意到分发的全流程。</p>
         <div class="source">来源：<a href="https://www.iimedia.cn/c1088/111380.html" target="_blank">艾媒网</a></div>
       </article>
       <article class="card">
-        <h4>阿里 — QoderWork上线设计工作台</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里 — QoderWork上线设计工作台 <span class="music-badge">🎵</span></h4>
         <p>阿里云智能编程平台QoderWork正式上线其首个细分领域模式——设计工作台（Design Desk），支持用户通过语音或自然语言描述需求，直接在无限画布上生成可运行、可编辑、可交付的专业设计产物。</p>
         <div class="source">来源：<a href="https://www.iimedia.cn/c1088/111380.html" target="_blank">艾媒网</a></div>
       </article>
@@ -283,12 +295,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI/Musk — 陪审团裁定Musk诉OpenAI案败诉</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI/Musk — 陪审团裁定Musk诉OpenAI案败诉</h4>
         <p>美国加州奥克兰联邦法院陪审团裁定，马斯克关于OpenAI违背创立初衷的全部主张已超过诉讼时效，OpenAI等被告不承担相应责任。主审法官接受该裁决，马斯克表示将提起上诉。此举为OpenAI的IPO扫清了最大法律障碍。</p>
         <div class="source">来源：<a href="https://world.people.com.cn/n1/2026/0601/c1002-40731642.html" target="_blank">新华社</a></div>
       </article>
       <article class="card">
-        <h4>Anthropic — OpenAI联创Karpathy加入Anthropic</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic — OpenAI联创Karpathy加入Anthropic</h4>
         <p>OpenAI联合创始人、前特斯拉AI总监Andrej Karpathy正式加入Anthropic。Karpathy是深度学习领域的标志性人物，此次跳槽被视为AI人才流动的重要信号——Anthropic在安全导向AI路线上的吸引力持续增强。</p>
         <div class="source">来源：<a href="https://cdn2.softwarereviews.com/vendor-technology-notes/big-5-ai-vendor-roundup-week-of-may-18-2026" target="_blank">Info-Tech Research Group</a></div>
       </article>
@@ -298,7 +310,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>1. 当AI公司从"模型竞争"转向"智能体竞争"，HR团队如何评估员工是否具备与AI智能体协作的能力？ 2. Karpathy从OpenAI跳槽至Anthropic，反映了AI人才对"安全优先"与"速度优先"路线的倾向性分化——企业在招聘AI人才时，应如何平衡技术能力与价值观契合度？</p>
@@ -306,7 +318,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

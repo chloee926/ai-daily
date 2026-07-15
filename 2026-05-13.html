@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-13 · 星期三 · <b>第 26 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>阿里 — Qoder 1.0 智能开发工作台正式上线</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里 — Qoder 1.0 智能开发工作台正式上线</h4>
         <p>阿里发布 Qoder 1.0，从传统 AI IDE 升级为智能体自主开发工作台，底层重构 Agent Harness 架构，复杂任务完成度提升 60%。支持跨项目多任务并行、自定义专家智能体、团队级共享知识引擎。全球累计用户达 500 万，企业端贡献 70% 营收。</p>
         <div class="source">来源：<a href="https://www.aibetas.com.cn/p/6225.html" target="_blank">AIBetas</a></div>
       </article>
       <article class="card">
-        <h4>华为云 — 公布 Agentic AI 全栈布局</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 华为云 — 公布 Agentic AI 全栈布局</h4>
         <p>华为云公布面向企业级 Agentic AI 的全栈布局，覆盖数据湖、知识与记忆平台、算力、模型、Agent 框架与数据韧性六大方向。其中业界首个支持异构算力的上下文记忆存储（CMS），可扩展为 PB 级共享 KV Cache 池，降低推理首 Token 时延 90%。</p>
         <div class="source">来源：<a href="https://www.huawei.com/cn/news/2026/5/idi-forum-data" target="_blank">华为官网</a></div>
       </article>
       <article class="card">
-        <h4>百度 — 发布通用智能体 DuMate（百度搭子）</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 百度 — 发布通用智能体 DuMate（百度搭子）</h4>
         <p>百度推出通用智能体 DuMate，将旗下多个产品集成在同一入口，可协同完成智能搜索、代码开发、深度调研、数据分析、应用搭建等多元复杂任务。这是继腾讯 Marvis、阿里百炼之后，又一家中国大厂推出系统级 AI 助手。</p>
         <div class="source">来源：<a href="https://www.news.cn/tech/20260526/02042bf2690e4f25acadd23488c1ee23/c.html" target="_blank">新华网</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI — 格雷格·布罗克曼正式接管全产品线</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI — 格雷格·布罗克曼正式接管全产品线</h4>
         <p>OpenAI 宣布架构调整，联合创始人兼总裁布罗克曼正式接管全产品线战略，将 ChatGPT、Codex、开发者 API 整合为统一产品团队，推进"超级应用"研发。原 ChatGPT 负责人转岗企业产品线。本次调整被视为 IPO 前的核心组织优化动作。</p>
         <div class="source">来源：<a href="https://www.aibetas.com.cn/p/6225.html" target="_blank">AIBetas</a></div>
       </article>
       <article class="card">
-        <h4>Anthropic — Claude 已编写公司 80% 以上的生产代码</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic — Claude 已编写公司 80% 以上的生产代码</h4>
         <p>Anthropic 发布论文披露：截至 2026 年 5 月，Claude 编写了 Anthropic 合并到生产系统的 80% 以上代码。每位工程师每天合并的代码量是 2024 年的 8 倍。人类工程师的角色正在从"写代码"转向"设定目标、审查 AI 产出、决定是否合并"。Anthropic 同时强调，完整的递归自我改进尚未实现。</p>
         <div class="source">来源：<a href="https://www.newsbreak.com/winbuzzer-com-302470011/4693518914266-anthropic-says-claude-now-writes-80-of-its-production-code-targets-full-self-improving-ai" target="_blank">NewsBreak/Winbuzzer</a></div>
       </article>
       <article class="card">
-        <h4>欧盟 — AI 法案即将进入执行阶段，禁止深度伪造色情内容</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 欧盟 — AI 法案即将进入执行阶段，禁止深度伪造色情内容</h4>
         <p>欧洲议会和欧盟成员国代表就修订《人工智能法》达成共识，同意禁止 AI 系统生成"深度伪造"色情内容。该法案的执行标志着全球主要经济体对 AI 生成内容的监管从讨论阶段进入实操阶段，对企业 AI 产品的合规设计产生直接影响。</p>
         <div class="source">来源：<a href="https://world.people.com.cn/n1/2026/0601/c1002-40731642.html" target="_blank">新华社</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>Anthropic 说 Claude 写了 80% 的生产代码，但人类工程师仍然是"设定目标、审查产出、决定合并"的角色——如果你们公司也达到这个比例，你作为 HR 需要重新定义"工程师"这个岗位的能力模型吗？当"写代码"不再是工程师的核心价值，你的招聘标准、晋升体系和培训体系应该怎么调整？</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

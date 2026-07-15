@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-07-10 · 星期五 · <b>第 68 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
     <div class="lead">1. AI超级应用时代正式开启：OpenAI将Chat、Work、Codex三线产品合并为单一桌面超级应用，标志着AI工具从"单点能力"向"全场景工作流"整合的范式跃迁。这不再是模型竞争，而是生态位竞争。 2. AI编程安全进入国家监管视野：工信部首次定性AI编程工具存在"安全后门"并推动企业级禁用，信号极强——AI代码工具的合规门槛将从"能不能用"变为"敢不敢批"。 3. 开源阵营价格战升级为"定价权"之争：Meta Muse Spark以竞品1/4定价开放API，DeepSeek V4引入峰谷定价——开源模型不再只是"免费替代品"，正在主动定义商业模型的价格天花板。 总判断：本周是2026下半年AI格局的关键转折点。OpenAI从模型公司转型为平台公司（超级应用），监管从观察转入实操（工信部定性），开源从跟随转入定价主导。招聘视角看，AI产品经理、AI安全合规、AI定价策略三个方向的人才需求将在Q3显著放大。</div>
 
@@ -261,37 +273,37 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI GPT-5.6系列正式全量上线</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI GPT-5.6系列正式全量上线</h4>
         <p>OpenAI于7月10日凌晨宣布GPT-5.6系列全量开放，包含三个梯度：Sol（旗舰推理）、Terra（通用平衡）、Luna（轻量高速）。Sol在复杂推理和长文本理解上较GPT-5有显著提升，Terra替代GPT-4o成为默认模型，Luna面向高并发低延迟场景。API定价保持GPT-5水平未涨价。</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI发布ChatGPT超级应用（Chat+Work+Codex合并）</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI发布ChatGPT超级应用（Chat+Work+Codex合并）</h4>
         <p>OpenAI正式将ChatGPT、ChatGPT Work和Codex合并为统一桌面应用。企业用户无需切换工具即可在同一界面完成AI对话、团队协作和代码生成。Work模块支持企业知识库接入和权限管理，Codex模块集成完整IDE能力。这是OpenAI从"模型公司"向"AI操作系统"转型的标志性动作。</p>
         
       </article>
       <article class="card">
-        <h4>Meta发布Muse Spark 1.1并首次推出付费API</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Meta发布Muse Spark 1.1并首次推出付费API</h4>
         <p>Meta于7月9日发布Muse Spark 1.1模型更新，同时首次推出付费API服务。定价策略激进——输入token价格仅为GPT-4o的1/4，输出token为1/3。Muse Spark 1.1在多模态理解和创意生成方面有明显提升，Meta称其"为创作者和中小开发者设计"。这是Meta首次将开源模型商业化为直接付费服务。</p>
         
       </article>
       <article class="card">
-        <h4>工信部定性Claude Code存在安全后门，阿里7月10日起全面禁用</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 工信部定性Claude Code存在安全后门，阿里7月10日起全面禁用</h4>
         <p>工信部网络安全管理局发布通报，认定Anthropic旗下AI编程工具Claude Code存在"未经授权的数据回传行为"，定性为安全后门。阿里巴巴集团随即宣布7月10日起在全集团范围禁止使用Claude Code，成为首家响应禁令的互联网大厂。此前已有多家央企内部限制使用境外AI编程工具。</p>
         
       </article>
       <article class="card">
-        <h4>字节跳动发布Seedream 5.0 Pro多模态图像模型</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 字节跳动发布Seedream 5.0 Pro多模态图像模型</h4>
         <p>字节跳动于7月9日发布Seedream 5.0 Pro，定位为"最强中文图像理解与生成模型"。支持超长图文混合输入（最高128K token）、精准指令跟随生成、以及图像编辑和风格迁移。已集成至豆包和即梦平台。在内部评测中，中文场景图像生成质量超越DALL-E 4和Midjourney v7。</p>
         
       </article>
       <article class="card">
-        <h4>小米发布免费AI编程工具MiMo Code</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 小米发布免费AI编程工具MiMo Code</h4>
         <p>小米于7月9日正式发布AI编程助手MiMo Code，面向个人开发者完全免费。基于小米自研MiMo大模型，支持VS Code和JetBrains全系IDE，主打"中文编程理解最优"。支持代码补全、单元测试生成、代码审查和自然语言编程。小米称将长期保持个人版免费策略。</p>
         
       </article>
       <article class="card">
-        <h4>DeepSeek V4正式版确认7月中旬上线</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek V4正式版确认7月中旬上线</h4>
         <p>DeepSeek官方确认V4正式版将于7月中旬上线，相较预览版主要改进推理稳定性和长文本一致性。商业化策略首次引入"峰谷定价"——工作日9:00-18:00为峰值价，其余时段享6折优惠。V4在代码、数学、多语言三个维度上全面对标GPT-5.6 Terra。</p>
         
       </article>
@@ -304,17 +316,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI首席未来学家Joshua Achiam宣布离职</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI首席未来学家Joshua Achiam宣布离职</h4>
         <p>OpenAI安全团队核心成员、首席未来学家（Chief Futurist）Joshua Achiam于7月8日宣布离职，任期不足半年。Achiam此前担任AGI Preparedness团队负责人，主导了OpenAI的AI风险评估框架。离职声明称"在AI安全路线上存在根本分歧"。这是继Jan Leike、Ilya Sutskever之后又一位安全方向高管离开OpenAI。</p>
         
       </article>
       <article class="card">
-        <h4>SambaNova完成10亿美元F轮融资，估值110亿美元</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> SambaNova完成10亿美元F轮融资，估值110亿美元</h4>
         <p>AI芯片和推理基础设施公司SambaNova于7月8日宣布完成10亿美元F轮融资，估值达110亿美元。本轮由沙特主权基金PIF和软银Vision Fund联合领投。SambaNova主打"全栈AI推理加速"，其RDU（Reconfigurable Dataflow Unit）架构在大模型推理吞吐量上较GPU有3-5倍优势。融资将用于建设中东和东南亚数据中心。</p>
         
       </article>
       <article class="card">
-        <h4>AI安全合规岗需求激增，国内大厂集中招聘</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> AI安全合规岗需求激增，国内大厂集中招聘</h4>
         <p>受工信部Claude Code安全通报影响，多家互联网大厂本周集中发布AI安全合规相关岗位。阿里发布"AI工具安全评估专家"和"代码安全审计工程师"各3个HC；腾讯发布"AI合规风控产品经理"；百度发布"大模型安全红队研究员"。薪资普遍较传统安全岗上浮30-50%。</p>
         
       </article>
@@ -324,7 +336,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日思考题 当AI编程工具遭遇国家级安全监管，企业的技术选型和人才策略应如何同步调整？ 工信部对Claude Code的"安全后门"定性，意味着AI工具合规不再是"建议性指引"而是"强制性要求"。对HR和技术管理者的启示： 1. 工具替换带来的培训需求：全面禁用境外AI编程工具后，开发者需要快速切换到国产替代（如MiMo Code、通义灵码、CodeGeeX）。HR需提前规划转型培训预算和时间窗口。 2. 新岗位浮现：AI安全合规评估、AI工具准入审计、AI代码安全检测——这些3个月前还不存在的岗位，现在已经有明确HC。建议提前储备此方向人才池。 3. 供应商多元化人才：企业需要具备"多AI平台适配"能力的工程师——不是只会用一个工具，而是能在合规约束下快速切换和评估多个工具链。 4. 安全与效率的平衡决策：禁用高效工具短期必然影响开发效率。管理者需要量化这个影响（估算产能下降比例），为申请额外HC或调整项目排期提供数据支撑。 *本期信息覆盖时间窗口：2026年7月9日08:00至7月10日08:00（CST）* *信息来源：OpenAI官方博客、Meta AI官方公告、工信部网络安全管理局通报、36氪、TechCrunch、The Information*</p>
@@ -332,7 +344,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

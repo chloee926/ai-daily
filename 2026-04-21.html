@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-04-21 · 星期二 · <b>第 10 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：Google</div>
 
     <div class="lead">1. Anthropic同时发布Claude Opus 4.7旗舰模型+Claude Design设计工具——编程能力64.3%登顶，设计工具直接对标Figma，一家公司同时向两个赛道宣战 2. 人形机器人半马赛事刷新人类纪录：荣耀"闪电"机器人50分26秒完赛，比人类世界纪录快7分钟——具身智能从实验室走向赛道，中国100+队伍参赛堪称国家级检阅 3. 腾讯阿里同日发布世界模型：混元3D世界模型2.0 vs HappyOyster（快乐生蚝），竞争焦点从"谁能聊天"正式转向"谁能理解三维物理世界" 总判断： 这个周末的三条主线拼出了AI竞争的最新格局图：Anthropic用"模型+产品"双线出击证明纯AI公司也能吃SaaS的蛋糕；人形机器人半马从去年20支队伍6队完赛、冠军2小时40分，进化到今年百支队伍47队完赛、冠军50分钟跑赢人类——一年间具身智能的进化速度令人震惊；腾讯阿里在同一天发布世界模型，意味着国内大厂的竞争焦点已经从语言模型扩展到空间智能。对HR从业者而言，AI正在从"替代文字工作"快速扩展到"替代视觉设计"和"理解物理世界"，岗位影响面正在加速扩大。</div>
 
@@ -261,27 +273,27 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic</h4>
         <p>Claude Opus 4.7发布+Claude Design同步上线，一家公司同时打两场仗。Opus 4.7编程基准分从55%跃升至64.3%，新增实时协作和视觉识别能力，意味着AI已具备独立完成中等复杂度代码项目的能力。Claude Design则用对话生成原型、幻灯片、线框图，可导出PPTX/PDF/Figma/Canva，直接切入设计师的核心工作流。Anthropic不再只是"模型公司"，而是开始吃SaaS的蛋糕。</p>
         
       </article>
       <article class="card">
-        <h4>腾讯</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯</h4>
         <p>发布并开源混元3D世界模型2.0，可直接生成可二次编辑的3D资产文件，导入游戏制作或具身仿真引擎，实现"真正可玩、可用"的3D世界生成。这意味着AI从"生成图片"进化到"生成可交互的3D环境"。</p>
         
       </article>
       <article class="card">
-        <h4>阿里巴巴</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里巴巴</h4>
         <p>ATH事业群发布开放式世界模型HappyOyster（快乐生蚝），基于原生多模态架构，支持多模态理解与音视频联合生成，可实时构建和交互虚拟世界，直接对标Google Genie 3。此前阿里已连续推出视频生成模型HappyHorse、AI开发工具Meoo，产品发布节奏密集。</p>
         
       </article>
       <article class="card">
-        <h4>字节跳动</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 字节跳动</h4>
         <p>旗下火山引擎正式上线Seedance 2.0系列API服务，面向企业和个人全面开放视频生成能力。视频生成赛道的商业化竞争进一步加剧。</p>
         
       </article>
       <article class="card">
-        <h4>Google</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Google <span class="music-badge">🎵</span></h4>
         <p>开源Gemma 4系列模型（2B/4B/26B MoE/31B Dense），Apache 2.0许可，31B Dense在Arena AI排名第三（Elo 1452），支持文本/图像/视频/音频多模态，上下文窗口256K tokens。AIME 2026得分89.2%，LiveCodeBench v6得分80.0%。开源模型正式进入"多模态+超长上下文"时代。</p>
         <div class="source">来源：<a href="https://www.anthropic.com/news/claude-design-anthropic-labs" target="_blank">Anthropic</a>、<a href="https://techcrunch.com/2026/04/17/anthropic-launches-claude-design-a-new-product-for-creating-quick-visuals/" target="_blank">TechCrunch</a>、<a href="https://www.ithome.com/0/940/099.htm" target="_blank">IT之家</a>、<a href="https://news.qq.com/rain/a/20260418A05QES00" target="_blank">腾讯新闻</a>、<a href="https://www.infoq.cn/article/XhNNKN6qY4YNml04B0fF" target="_blank">InfoQ</a>、<a href="https://aitoolsrecap.com/Blog/ai-tools-updates-april-2026" target="_blank">AIToolsRecap</a></div>
       </article>
@@ -294,12 +306,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>荣耀"闪电"机器人</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 荣耀"闪电"机器人</h4>
         <p>在4月19日北京亦庄人形机器人半程马拉松中以50分26秒夺冠，超越人类世界纪录（乌干达名将基普利莫今年3月创下的57分31秒）。今年赛事规模为上届5倍，超百支队伍参赛（含5支海外队伍），47支队伍完赛，完赛率超45%。对比去年：20支队伍参赛、6支完赛、冠军2小时40分——一年间进步幅度惊人。赛事汇聚宇树、荣耀、松延动力等头部企业以及清华、北大、中科大等高校。</p>
         
       </article>
       <article class="card">
-        <h4>智元机器人</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 智元机器人</h4>
         <p>4月17日上海发布会推出4款机器人本体新品+4大AI大模型，覆盖工业、家庭、特种作业场景。2025年营收10.5亿元，宣布2026年为"部署元年"目标万台交付。具身智能正从"技术验证"走向"规模化商业落地"。</p>
         <div class="source">来源：<a href="https://www.news.cn/20260419/c6697b8cbc214e8abcb286a3b0579709/c.html" target="_blank">新华社</a>、<a href="https://bj.people.com.cn/n2/2026/0419/c14540-41556562.html" target="_blank">人民网</a>、<a href="https://www.chinanews.com/cj/2026/04-19/10606469.shtml" target="_blank">中新网</a></div>
       </article>
@@ -312,22 +324,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>DeepSeek</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> DeepSeek</h4>
         <p>首次打开外部融资大门，计划以不低于100亿美元估值募集至少3亿美元。此前多次拒绝顶级风投。多位国资背景人士透露"根本投不进去"。创始人梁文锋首度公开战略思路：探索"开源底座+差异化服务"的第三条商业化路径。这是中国AI大模型赛道迄今最大规模融资之一。</p>
         
       </article>
       <article class="card">
-        <h4>微软</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 微软</h4>
         <p>2026黑客大赛支付230万美元奖金，发现80余个云服务和AI系统漏洞，AI相关漏洞占比显著提升。AI系统正成为黑客攻击新靶场。同时，Anthropic此前发布的Project Glasswing也显示Claude Mythos Preview能自主发现大量高严重级别零日漏洞——AI安全正从"防外部攻击"转向"控制模型自身行为"。</p>
         
       </article>
       <article class="card">
-        <h4>阿里云</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里云</h4>
         <p>AI算力服务正式涨价，部分产品涨幅最高达34%。叠加此前AWS、Azure等全球云厂商的涨价潮，AI算力成本上行趋势确立。企业AI部署的成本考量将更加重要。</p>
         
       </article>
       <article class="card">
-        <h4>斯坦福《2026年AI指数报告》</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 斯坦福《2026年AI指数报告》</h4>
         <p>数据显示阿里巴巴在2025年全球顶级模型贡献榜排名第三，中国企业在重要模型数量上已与美国头部企业基本并肩。AI竞争格局从"美国主导"转向"双雄并立"。</p>
         <div class="source">来源：<a href="https://www.zhihu.com" target="_blank">知乎</a>、<a href="https://36kr.com" target="_blank">36氪</a>、<a href="https://www.ithome.com" target="_blank">IT之家</a></div>
       </article>
@@ -337,7 +349,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 本周观察 这个周末最值得HR关注的信号不是某一款模型有多强，而是AI开始大规模"入侵"非技术岗位的工作领地。Claude Design的发布意味着AI从"替代编程"扩展到"替代视觉设计"——原型图、幻灯片、营销单页这些过去需要设计师花数小时完成的工作，现在用自然语言描述几分钟就能输出。Figma股价当天跌7%，市场的投票很直接。 与此同时，人形机器人一年间从"勉强跑完全程"进化到"跑赢人类世界纪录"，百支队伍参赛的规模说明这不是个别公司的秀肌肉，而是整个行业的能力跃升。 ### 💡 今日思考题 Claude Design让非设计师也能产出专业级设计稿，人形机器人开始在工厂规模化交付——当AI同时从"脑力劳动"和"体力劳动"两端挤压人类岗位时，你所在的组织里，哪些岗位会最先感受到冲击？你有没有提前做过这张"岗位影响图谱"？ 如果你的答案是"没有"，那这张图谱可能就是你本周最该做的一件事。因为等管理层来问你"AI对我们的组织有什么影响"的时候，再开始画就晚了。</p>
@@ -345,7 +357,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

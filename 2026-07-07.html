@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-07-07 · 星期二 · <b>第 65 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,27 +272,27 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>腾讯混元Hy3正式发布并全面开源</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯混元Hy3正式发布并全面开源</h4>
         <p>7月6日，腾讯正式发布混元Hy3——一款快慢思考融合的MoE架构大模型，总参数295B、激活参数21B，支持256K上下文。相比4月发布的preview版本，正式版在Agent能力、代码生成、办公自动化等方面显著提升，幻觉率从12.5%降至5.4%。定价输入1元/百万tokens、输出4元/百万tokens。采用Apache 2.0协议开源，已上架HuggingFace、ModelScope等平台。目前已接入WorkBuddy、CodeBuddy、腾讯元宝、Marvis、ima等产品。 关键数据：内部270位专家盲测均分2.67/4（优于GLM 5.1的2.51/4）；Agent任务成功率超90%；工具调用跨框架波动控制在4%以内。</p>
         <div class="source">来源：<a href="https://www.toutiao.com/article/7659380172067488297" target="_blank">环球网</a> / <a href="https://new.qq.com/rain/a/20260706A09HDR00" target="_blank">腾讯官方</a></div>
       </article>
       <article class="card">
-        <h4>Anthropic发布J-space研究：首次揭示Claude的"内部意识结构"</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic发布J-space研究：首次揭示Claude的"内部意识结构"</h4>
         <p>7月6日，Anthropic发表论文《可言语化表征在语言模型中形成全局工作空间》，16名研究员通过自研的"雅可比透镜"（J-lens）工具，在Claude内部发现了一个名为"J-space"的特权神经区域。这一结构在训练中自发涌现，具备五项类意识功能：言语报告、定向调节、内部推理、灵活泛化和选择性处理。研究发现，将"足球"表征替换为"橄榄球"后，Claude的回答随之改变；抑制J-space后，模型多步推理能力暴跌。该研究对AI安全具有重大意义——J-lens可检测模型是否试图伪造数据或执行隐藏目标。</p>
         <div class="source">来源：<a href="https://www.anthropic.com/research/global-workspace" target="_blank">Anthropic Research Blog</a> / <a href="https://news.sina.cn/ai/2026-07-07/detail-inifxtrc8260343.d.html" target="_blank">新浪科技</a></div>
       </article>
       <article class="card">
-        <h4>企业微信推出AI智能体"大员"，基于DeepSeek构建</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 企业微信推出AI智能体"大员"，基于DeepSeek构建</h4>
         <p>7月2日，腾讯宣布在企业微信中上线AI智能体"大员"，基于DeepSeek最新大语言模型构建。用户在企业微信任何界面左滑即可唤起，能智能识别当前页面、理解用户请求并主动参与协作。这是腾讯首次在核心企业协作产品中接入第三方大模型，标志着企业级AI助手从"外挂插件"进入"原生嵌入"阶段。"大员"可主动阅读群聊历史、理解项目上下文、给出建议，而非被动等待@。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260702A08GL300" target="_blank">腾讯新闻</a> / <a href="https://new.qq.com/rain/a/20260705A08BZ700" target="_blank">腾讯官方</a></div>
       </article>
       <article class="card">
-        <h4>xAI正式更名SpaceXAI，马斯克完成航天+AI一体化整合</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> xAI正式更名SpaceXAI，马斯克完成航天+AI一体化整合</h4>
         <p>7月7日，xAI在X平台官宣正式更名为SpaceXAI，发布新旧Logo演变短视频。这是今年2月SpaceX以全股票方式收购xAI（合并估值1.25万亿美元）后的最后一步品牌整合。此后xAI不再作为独立实体运营，Grok系列模型、地面超算集群（Colossus）、X平台AI工具等全部统一纳入SpaceXAI品牌。IPO文件显示，2025年SpaceX在AI领域资本支出127亿美元，超过航天和连接业务3倍。马斯克计划2028年发射太空算力卫星。</p>
         <div class="source">来源：<a href="https://tech.sina.cn/2026-07-07/detail-inifxtrf1594423.d.html" target="_blank">TechWeb</a> / <a href="https://www.cnbeta.com.tw/articles/tech/1568092.htm" target="_blank">cnBeta</a></div>
       </article>
       <article class="card">
-        <h4>WAIC 2026官宣：7月17日上海开幕，300+AI产品全球首发</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> WAIC 2026官宣：7月17日上海开幕，300+AI产品全球首发</h4>
         <p>7月7日上海市政府新闻发布会宣布，2026世界人工智能大会将于7月17-20日在上海三大片区举行（世博、张江、西岸），主题"智能伙伴，共创未来"。规划140余场论坛、1100余家企业、10万平米展区、300+产品全球首发。重磅首秀包括：华为Atlas 950（业界最大规模超节点）、MiniMax M3多模态大模型、阶跃Agent操作系统、全球首款AI智能体手机、近存计算3D芯片等。首次举办学术会议WAICA，由图灵奖得主姚期智担任主席。</p>
         <div class="source">来源：<a href="https://field.10jqka.com.cn/20260707/c677998535.shtml" target="_blank">上海证券报</a> / <a href="https://www.163.com/dy/article/L17RN1P005566WVY.html" target="_blank">网易新闻</a></div>
       </article>
@@ -293,17 +305,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>腾讯大规模减持快手，套现超百亿港元转投AI</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯大规模减持快手，套现超百亿港元转投AI</h4>
         <p>7月6日晚间，腾讯通过大宗交易减持快手约2.73亿股，持股比例从15.68%降至9.37%，套现规模预计超过120亿港元。市场解读为腾讯正加速将投资组合收益转化为AI基础设施投入——此前腾讯已连续减持多家被投企业，同时在AI算力、大模型研发和产品落地上持续加码。此次减持后，腾讯仍为快手第一大外部股东。 HR视角：大厂资本从"投资生态"转向"自建AI能力"，意味着AI相关岗位（算力运维、模型训练、AI产品经理）的HC将持续增长，而传统投资并购类岗位可能收缩。</p>
         <div class="source">来源：综合财经媒体报道</div>
       </article>
       <article class="card">
-        <h4>SpaceX整合xAI团队：AI岗位成为SpaceX最大招聘方向</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> SpaceX整合xAI团队：AI岗位成为SpaceX最大招聘方向</h4>
         <p>随着xAI正式更名SpaceXAI，原xAI团队全员转入SpaceX编制。IPO文件显示，SpaceX 2025年AI领域资本支出127亿美元，AI部门已成为SpaceX员工规模增长最快的业务线。Colossus超算集群目前规模达1.5GW（Grok 5训练中），预计2027年扩展至4GW。这一整合使SpaceX从"火箭公司"转型为"AI+太空基础设施公司"，其人才需求正从航天工程师向AI研究员和大规模系统工程师倾斜。</p>
         <div class="source">来源：<a href="https://www.cnbeta.com.tw/articles/tech/1568092.htm" target="_blank">cnBeta</a> / 微信公众号综合</div>
       </article>
       <article class="card">
-        <h4>快手可灵AI完成30亿美元融资，估值180亿美元</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 快手可灵AI完成30亿美元融资，估值180亿美元</h4>
         <p>此前7月2日，快手宣布旗下视频生成大模型可灵AI完成近30亿美元首轮融资，投后估值180亿美元，创全球视频大模型单笔融资纪录。可灵AI团队独立运营，预计大幅扩充研发团队。这也解释了腾讯减持快手的另一层逻辑——快手自身已通过可灵AI获得独立资本化路径。</p>
         <div class="source">来源：快手官方公告</div>
       </article>
@@ -313,7 +325,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日思考题 当AI公司从"独立实体"变成"巨头内部业务线"（如xAI→SpaceXAI），对AI人才的职业选择意味着什么？ 思考方向： - xAI并入SpaceX后，AI人才获得了更大的算力资源和商业场景（卫星、火箭制导），但可能失去初创公司的决策自由度和股权爆发力 - 腾讯选择DeepSeek而非自研模型接入企业微信，释放"开放平台"信号——这意味着AI人才不一定要进大厂才能触及大厂场景 - Anthropic的J-space研究需要跨神经科学+ML+安全的复合背景人才，这类"AI可解释性"岗位正在从学术界向工业界迁移 - HR启示：关注"AI+垂直行业"（太空、金融、企业协作）的复合型岗位需求增长，以及可解释AI/AI安全方向的稀缺人才储备 *信息来源：TechWeb、cnBeta、新浪科技、腾讯新闻、环球网、上海证券报、网易新闻、Anthropic Research Blog、微信公众号等。所有信息均经交叉验证。*</p>
@@ -321,7 +333,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

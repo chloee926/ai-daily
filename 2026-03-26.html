@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-03-26 · 星期四 · <b>第 2 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：OpenAI关停Sora视频应用，迪士尼10亿美元合作告吹；Arm发布首款自研136核AGI CPU，Meta为首批客户；OpenAI追加融资100亿美元，总融资额超1200亿</div>
 
   
     <section class="section sec-nw">
@@ -260,32 +272,32 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI关停Sora视频应用，迪士尼10亿美元合作告吹</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI关停Sora视频应用，迪士尼10亿美元合作告吹 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月25日，OpenAI正式宣布关停Sora独立视频生成应用。此前与迪士尼洽谈的约10亿美元合作也随之取消。OpenAI表示Sora的视频生成能力将整合回ChatGPT主平台，不再作为独立产品运营。消息人士透露，Sora团队已进行重组，部分核心成员转岗至ChatGPT团队，部分离职。关停原因主要是商业化不及预期——Sora自发布以来用户增长远低于预期，收入几乎为零。 为什么对 TME 重要： AI视频生成赛道的第一个重大"关停"信号。这提醒所有做AI内容生成的团队：技术炫酷≠商业可行。对招聘来说，AI视频方向的人才市场可能出现一波释放，但要甄别"做过Sora"和"做成过产品"的区别。</p>
         <div class="source">来源：<a href="https://www.theinformation.com" target="_blank">The Information</a>、<a href="https://techcrunch.com/2026/03/25/openai-shuts-down-sora/" target="_blank">TechCrunch</a></div>
       </article>
       <article class="card">
-        <h4>Arm发布首款自研136核AGI CPU，Meta为首批客户</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Arm发布首款自研136核AGI CPU，Meta为首批客户 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月25日，Arm在年度技术峰会上发布Neoverse V3AE处理器，定位为全球首款"AGI CPU"，采用136核设计，专为AI训练和推理中的非GPU计算环节优化。Meta宣布成为首批客户，将在其AI数据中心部署。Arm表示该芯片可将大模型推理中的CPU瓶颈环节性能提升3-5倍，能耗降低40%。这是Arm从移动芯片向数据中心AI芯片的标志性一步。 为什么对 TME 重要： AI算力格局正在发生结构性变化，NVIDIA GPU不再是唯一选择。这将影响AI基础设施团队的技术栈选型，也意味着"AI芯片+系统优化"方向的人才将更受关注。</p>
         <div class="source">来源：<a href="https://www.tomshardware.com/news/arm-launches-first-custom-agi-cpu-136-cores" target="_blank">Tom's Hardware</a>、<a href="https://www.theverge.com/news/arm-neoverse-v3ae-cpu-agi" target="_blank">The Verge</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI追加融资100亿美元，总融资额超1200亿</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI追加融资100亿美元，总融资额超1200亿 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI在3月完成新一轮100亿美元融资，使其总融资额超过1200亿美元，估值进一步攀升。此轮资金主要用于AI基础设施建设、Stargate数据中心扩张和全球市场拓展。与此同时，CEO Sam Altman宣布将部分安全监督职责移交给新任首席安全官，自己将更多精力投入产品和商业化。 为什么对 TME 重要： OpenAI持续融资说明资本市场对AI赛道信心不减，但Altman减少安全参与引发行业争议。AI公司的"增长vs安全"平衡将成为长期议题，AI安全和合规岗位的需求也随之增加。</p>
         <div class="source">来源：<a href="https://www.bloomberg.com" target="_blank">Bloomberg</a>、<a href="https://www.reuters.com" target="_blank">Reuters</a></div>
       </article>
       <article class="card">
-        <h4>Spotify推出SongDNA功能，AI让音乐推荐"可视化"</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Spotify推出SongDNA功能，AI让音乐推荐"可视化" <span class="music-badge">🎵</span></h4>
         <p>摘要： Spotify推出SongDNA功能，利用AI分析每首歌曲的节奏、情绪、风格等"基因特征"，并以交互式图谱方式展示歌曲之间的关联。用户可以通过点击图谱节点发现新歌，也可以查看自己听歌偏好的"音乐DNA画像"。该功能已在部分市场上线，预计Q2全球推广。 为什么对 TME 重要： AI推荐从"黑盒"走向"白盒"的标志性尝试。让用户理解推荐逻辑不仅提升信任感，也是差异化竞争的新维度。音乐AI产品经理和推荐算法可解释性方向的人才值得关注。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/03/24/spotify-songdna-feature/" target="_blank">TechCrunch</a></div>
       </article>
       <article class="card">
-        <h4>中关村论坛2026将于3月27日举办AI主题日</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 中关村论坛2026将于3月27日举办AI主题日 <span class="music-badge">🎵</span></h4>
         <p>摘要： 中关村论坛2026将于3月27日举办AI专题日活动，主题为"AI赋能产业新质生产力"。预计将发布多项AI产业政策、展示国产大模型最新进展，并举办AI人才论坛。工信部此前（3月26日）已发布AI安全治理标准征求意见稿，涵盖大模型安全评估、数据标注规范和AI生成内容标识要求。 为什么对 TME 重要： 国内AI政策和产业动态的风向标。AI安全治理标准的推出将对所有使用AI的企业产生合规要求影响，HR需关注AI合规和安全治理方向的人才布局。</p>
         <div class="source">来源：<a href="https://www.news.cn" target="_blank">新华网</a>、<a href="https://www.zgcforum.com.cn" target="_blank">中关村论坛官网</a></div>
       </article>
       <article class="card">
-        <h4>阿里通义推出PrismAudio音频生成工具</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 阿里通义推出PrismAudio音频生成工具 <span class="music-badge">🎵</span></h4>
         <p>摘要： 阿里通义团队发布PrismAudio，支持文字转语音、音效生成和音乐片段创作三大功能。该工具基于通义千问大模型，可生成多语种语音（支持中英日韩等8种语言），音效库覆盖环境音、UI音效和场景音乐。目前已在通义千问App和阿里云API开放使用。 为什么对 TME 重要： 国产AI音频生成能力正在快速追赶，对音乐和音频内容平台的技术选型和内容生产效率有直接影响。多模态AI人才（尤其音频方向）的稀缺性将进一步凸显。</p>
         <div class="source">来源：<a href="https://www.36kr.com" target="_blank">36氪</a>、<a href="https://www.alibabacloud.com" target="_blank">阿里云官方</a></div>
       </article>
@@ -298,17 +310,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>2026年Q1全球科技裁员近6万人，20%归因AI自动化</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 2026年Q1全球科技裁员近6万人，20%归因AI自动化 <span class="music-badge">🎵</span></h4>
         <p>摘要： 据统计，2026年Q1全球科技行业裁员累计达59,121人，其中约20%被明确归因于AI驱动的自动化替代。主要裁员企业包括：Block（裁员40%，CEO明确表示用AI替代人工）、Amazon、Dell和多家中型SaaS公司。受影响最大的岗位类型：客户支持、数据分析（初级）、内容审核和部分软件测试。与此同时，AI相关岗位（大模型工程师、AI产品经理、提示词工程师）的招聘需求同比增长47%。 对招聘的启发： 裁员和扩招并行是2026年的主旋律。"被AI替代"的岗位和"因AI而生"的岗位正在同步变化。HR需要建立动态的岗位价值评估框架，帮助业务团队识别哪些岗位应该缩减、哪些应该新增。</p>
         <div class="source">来源：<a href="https://layoffs.fyi" target="_blank">Layoffs.fyi</a>、<a href="https://techcrunch.com" target="_blank">TechCrunch</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI Sora团队重组，Altman交出安全监督权</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI Sora团队重组，Altman交出安全监督权</h4>
         <p>摘要： 伴随Sora关停，OpenAI内部进行了组织调整：Sora核心团队约200人被拆分，部分并入ChatGPT多模态组，部分转入研究部门，约30人选择离职。与此同时，Sam Altman宣布将安全监督职责交给新任首席安全官，自己将更多精力放在产品和商业化上。这一变动引发安全研究社区关注——Altman此前已因安全问题与联合创始人分道扬镳，此次进一步"远离安全"被视为信号。 对招聘的启发： AI公司的组织架构调整频率远高于传统科技公司，项目关停→团队拆分→人才释放的周期可能只需几周。HR应建立"AI人才池快速响应"机制，关注被关停项目释放的优质人才。</p>
         <div class="source">来源：<a href="https://www.theinformation.com" target="_blank">The Information</a>、<a href="https://www.wired.com" target="_blank">Wired</a></div>
       </article>
       <article class="card">
-        <h4>工信部发布AI安全治理标准征求意见稿</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 工信部发布AI安全治理标准征求意见稿</h4>
         <p>摘要： 3月26日，工信部发布《人工智能安全治理标准体系（征求意见稿）》，重点涵盖：大模型安全评估框架、AI生成内容标识规范、数据标注安全要求和AI应用分级分类管理。这是继去年《生成式AI服务管理暂行办法》后，国内AI监管的进一步细化。征求意见期至4月25日。 对招聘的启发： AI合规和安全治理正在从"锦上添花"变为"必须配置"的岗位。大型AI应用企业将需要AI合规专员、安全评估工程师和内容标识技术人才。</p>
         <div class="source">来源：<a href="https://www.miit.gov.cn" target="_blank">工信部官网</a>、<a href="https://www.thepaper.cn" target="_blank">澎湃新闻</a></div>
       </article>
@@ -318,7 +330,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 OpenAI关停Sora是AI行业进入"务实期"的重要标志。一个估值千亿的公司，果断砍掉不赚钱的明星产品，同时追加100亿融资加码能赚钱的方向——这说明AI公司的资源配置逻辑已经从"什么都试"转向"集中火力打能赢的仗"。对HR来说，这意味着在评估AI公司候选人时，要特别关注他们是"做过技术demo"还是"做过商业闭环"——后者的含金量将越来越高。 Arm AGI CPU的发布则揭示了另一个趋势：AI算力正在走向多元化。NVIDIA GPU不再是唯一答案，CPU、定制ASIC、光计算等多路线并行的格局正在形成。这将催生一批新的人才需求——不是"只会用GPU训练模型"，而是"能在异构计算环境下做系统优化"的工程师。 全球Q1科技裁员近6万人与AI岗位招聘同比增长47%的数据并列，清楚地画出了人才市场的"剪刀差"。Block裁员40%并明确以AI替代，是目前最激进的案例。这不是个别现象，而是趋势——HR需要帮助组织回答一个核心问题：我们的每个岗位，AI替代率是多少？ ### 今日思考题 问题： 当一家AI公司果断关停明星产品（如OpenAI关停Sora），释放出的人才应该如何评估？"做过Sora"是加分项还是减分项？ 解答思路： 1. 关停≠失败：要区分"产品方向有问题"和"个人能力有问题"。Sora团队成员在视频生成、多模态模型训练等方面的经验依然稀缺和有价值 2. 核心看复盘能力：最有价值的候选人是能清晰复盘"Sora为什么没做成"的人——他们理解技术到商业的鸿沟 3. 关注"被选择留下"还是"主动离开"：被整合进ChatGPT团队的人说明被认可，主动离开的人可能有更强的创业意愿</p>
@@ -326,7 +338,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

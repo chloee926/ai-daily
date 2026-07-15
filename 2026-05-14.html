@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-14 · 星期四 · <b>第 27 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Cerebras — AI 芯片公司 IPO 定价 185 美元/股，募资超 55 亿美元</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Cerebras — AI 芯片公司 IPO 定价 185 美元/股，募资超 55 亿美元</h4>
         <p>Cerebras 以每股 185 美元定价 IPO，5 月 14 日在纳斯达克开始交易（代码 CBRS），募资超 55 亿美元。这是继 NVIDIA 之后 AI 芯片领域最大的上市事件，Cerebras 的晶圆级芯片架构（整片晶圆作为单个芯片）是挑战 NVIDIA GPU 垄断地位的核心差异化。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/KU2Q7UCP05198CJN.html" target="_blank">财联社</a></div>
       </article>
       <article class="card">
-        <h4>NVIDIA — 黄仁勋宣布每年投资 1500 亿美元于台湾</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> NVIDIA — 黄仁勋宣布每年投资 1500 亿美元于台湾</h4>
         <p>NVIDIA CEO 黄仁勋表示将每年投资 1500 亿美元于台湾，并计划 2030 年前建成新总部，称台湾为"AI 革命的中心"。这一承诺反映了 GPU 需求的持续飙升，同时加剧了中美科技竞争的地缘政治紧张——许多 GPU 受出口管制限制。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AICritique</a></div>
       </article>
       <article class="card">
-        <h4>AWS — Snowflake 承诺 60 亿美元共建"智能体企业"AI</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> AWS — Snowflake 承诺 60 亿美元共建"智能体企业"AI</h4>
         <p>Snowflake 承诺在未来数年向 AWS 投入 60 亿美元，联合建设"智能体企业"AI 平台，将 AI 模型直接带到数据所在位置。这笔交易巩固了 AWS 作为企业 AI 算力枢纽的地位，也标志着"数据+AI"一体化的商业闭环正在形成。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AICritique</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>渣打银行 — 计划到 2030 年裁员 15%（约 8000 岗位），推进 AI 转型</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 渣打银行 — 计划到 2030 年裁员 15%（约 8000 岗位），推进 AI 转型</h4>
         <p>渣打银行宣布计划到 2030 年将公司职能部门岗位减少 15% 以上，涉及近 8000 个工作岗位。此前新加坡星展银行已宣布未来三年裁员近 4000 人，汇丰银行也在考虑影响约 2 万个岗位的 AI 驱动重组计划。金融行业正成为 AI 裁员的下一个密集区。</p>
         <div class="source">来源：<a href="https://www.stcn.com/article/detail/3926818.html" target="_blank">经济参考报</a></div>
       </article>
       <article class="card">
-        <h4>奥纬咨询 — AI 替代入门级任务，年轻人找工作更难</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 奥纬咨询 — AI 替代入门级任务，年轻人找工作更难</h4>
         <p>奥纬咨询最新研究报告指出，企业高管越来越多地将 AI 工具用于入门级任务，年轻人和即将进入劳动力市场的人群可能很快会发现找工作变得更加困难。科技行业尤为不利：74% 的科技行业 CEO 正在冻结或缩减招聘。</p>
         <div class="source">来源：<a href="https://www.stcn.com/article/detail/3926818.html" target="_blank">经济参考报</a></div>
       </article>
       <article class="card">
-        <h4>腾讯 — 上线操作系统层级 AI 助手 Marvis</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯 — 上线操作系统层级 AI 助手 Marvis</h4>
         <p>腾讯全新上线 AI 助手 Marvis（马维斯），差异化核心在于"操作系统层级"——将终端系统、文件、应用、算力和跨端连接纳入同一个 AI 中间层，适配 Windows、Mac、Android 等主流终端。用户通过自然语言下达指令，Marvis 即可理解任务、拆解步骤、调用智能体执行，在涉及隐私、安全和支付等关键环节交回用户确认。</p>
         <div class="source">来源：<a href="https://www.news.cn/tech/20260526/02042bf2690e4f25acadd23488c1ee23/c.html" target="_blank">新华网</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>渣打银行计划用 5 年时间裁减 15% 的职能岗位并推进 AI 转型，而奥纬咨询警告入门级岗位正被 AI 挤压——如果你是一家正在进行 AI 转型的传统企业的 HR 负责人，你会如何设计"人才过渡方案"：是先裁冗余岗位再补充 AI 人才，还是先培训现有员工掌握 AI 工具再逐步优化编制？这两种策略的风险窗口分别是什么？</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

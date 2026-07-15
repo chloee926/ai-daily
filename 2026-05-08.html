@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-08 · 星期五 · <b>第 23 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,22 +272,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>xAI 正式解散，整合为 SpaceXAI</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> xAI 正式解散，整合为 SpaceXAI</h4>
         <p>马斯克 5 月 6 日宣布 xAI 不再作为独立公司运营，整体并入 SpaceX 旗下新设 AI 子部门"SpaceXAI"。Grok 模型及 X 平台 AI 业务一并纳入。此前 xAI 11 位联合创始人已全部离职。SpaceX 借此将火箭、卫星、AI 算力纳入统一治理框架，并计划开发轨道太阳能 AI 数据中心。</p>
         
       </article>
       <article class="card">
-        <h4>Anthropic 签下 SpaceX 300 兆瓦算力协议</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic 签下 SpaceX 300 兆瓦算力协议</h4>
         <p>Anthropic 包下 SpaceX 孟菲斯 Colossus 1 数据中心全部算力（相当于 22 万张英伟达 GPU），用于提升 Claude Pro/Max 用户体验，取消高峰时段限制并提升 API 速率上限。Anthropic 目前估值约 9000 亿美元，年化收入约 440 亿美元，此前已与谷歌云（5 年 2000 亿美元）和 AWS（10 年 1000 亿美元）签订长期算力合同。</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI 发布 MRC 协议，五巨头联合重塑 AI 训练网络</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI 发布 MRC 协议，五巨头联合重塑 AI 训练网络</h4>
         <p>OpenAI 联合英伟达、AMD、英特尔、微软、博通推出 MRC 开源协议，基于 RoCE 标准扩展 + SRv6 技术，实现两层交换机连接约 13.1 万块 GPU，较传统三四层架构大幅降低功耗和组件数量。目前已在 OpenAI 所有最大规模的 NVIDIA GB200 超算上运行，包括星际之门和微软 Fairwater 超算。</p>
         
       </article>
       <article class="card">
-        <h4>Anthropic 发布 10 款金融 AI 智能体</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic 发布 10 款金融 AI 智能体</h4>
         <p>覆盖银行、保险、资管、金融科技全链条，可独立撰写客户会议材料、审阅财报、触发合规审查、构建财务模型。已接入 Word/Excel/PowerPoint/Outlook。消息发布后 FactSet 股价盘中跌超 8%，晨星跌近 3%。</p>
         
       </article>
@@ -288,17 +300,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Cloudflare 裁员 20%（1100 人），宣布转型"AI</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Cloudflare 裁员 20%（1100 人），宣布转型"AI</h4>
         <p>first agentic 运营模式" — CEO 普林斯发全员信称裁员反映向 AI 驱动运营模式转型，"非削减成本"。公司 AI 使用量三个月增长 600%，各部门每天运行数千次 AI 代理会话。尽管 Q1 业绩超预期，股价盘后仍跌超 14%。预计 Q2 产生 1.4-1.5 亿美元裁员相关费用。</p>
         
       </article>
       <article class="card">
-        <h4>Coinbase 裁员 700 人（14%），CEO 清晨 6:55 发邮件要求"精益、快速、AI 原生"</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Coinbase 裁员 700 人（14%），CEO 清晨 6:55 发邮件要求"精益、快速、AI 原生"</h4>
         <p>裁减 14% 员工并取消管理层级，要求管理者成为"球员教练"。Armstrong 称加密市场波动和 AI 是双重驱动力，公司将围绕 AI 技能重新聚集剩余员工。</p>
         
       </article>
       <article class="card">
-        <h4>Cognizant 计划裁减 4000 人（"Project Leap"计划）</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Cognizant 计划裁减 4000 人（"Project Leap"计划）</h4>
         <p>全球 IT 服务巨头 Cognizant 启动 Project Leap 重组计划，以加速 AI 采用和精简运营，同时校招新人录取反而增加——释放出"用新人替换中层"的信号。</p>
         
       </article>
@@ -311,17 +323,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Genesis AI 发布首个全栈机器人基础模型 GENE</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Genesis AI 发布首个全栈机器人基础模型 GENE</h4>
         <p>26.5 — 由华人学者周衔创立（CMU 博士），去年拿下 1.05 亿美元种子轮。GENE-26.5 可执行单手打蛋、切番茄、解魔方、弹钢琴等复杂灵巧操作，全程自主运行 1 倍速，同一模型通用。全栈自研解决数据、硬件和控制协同难题。</p>
         
       </article>
       <article class="card">
-        <h4>GPT</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> GPT</h4>
         <p>5.5 Instant 成为 ChatGPT 新默认模型 — OpenAI 5 月 5 日推送，取代 GPT-5.3 Instant。幻觉声明减少 52.5%，回复更简洁，减少不必要 emoji。医学、法律、金融等高风险场景准确性显著提升。付费用户可继续使用旧版三个月。</p>
         
       </article>
       <article class="card">
-        <h4>无问芯穹完成超 7 亿元融资</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 无问芯穹完成超 7 亿元融资</h4>
         <p>中国 AI 原生基础设施公司，杭州高新金投和惠远资本联合领投。定位算力调度与运营中间层，标志 AI 投资从追热点模型向押注底层基建转移。</p>
         
       </article>
@@ -331,7 +343,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>Cloudflare 说自己"AI 使用量 3 个月增 600%"，然后裁掉 20% 的人；Coinbase 说要变"AI 原生"，然后裁 14% 的人。两家公司的共同操作是：裁完人 → 股价跌。 如果你是一家正在推进 AI 工具的公司 CHRO，管理层拿着"AI 提效"的数据来找你谈编制优化——你会建议他们先对外公布裁员消息再内部执行，还是先静默执行再对外叙事？这两种节奏选择，对雇主品牌、剩余员工士气和资本市场信心的影响，可能完全相反。</p>
@@ -339,7 +351,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

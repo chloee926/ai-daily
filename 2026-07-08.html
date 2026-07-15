@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-07-08 · 星期三 · <b>第 66 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：微软自研MAI模型开始替换Office中的OpenAI/Anthropic；Meta发布Muse Image——首个超级智能实验室图像模型；DeepSeek被曝自研AI推理芯片</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>微软自研MAI模型开始替换Office中的OpenAI/Anthropic</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 微软自研MAI模型开始替换Office中的OpenAI/Anthropic <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月8日彭博社报道，微软已在Excel和Outlook中用自研MAI模型替代OpenAI和Anthropic的模型处理AI任务，每周处理数万条提示词。AI负责人Mustafa Suleiman明确表态"目标是减少并最终消除对Anthropic的支出"。微软6月Build大会发布7款MAI模型，其中MAI-CodePro以Opus 4.6约52%的成本达到近似编码能力。 为什么对 TME 重要： 微软的"去依赖化"趋势说明AI生态正在从开放合作走向垂直整合，企业客户可能面临供应商切换风险。对招聘而言，AI自研团队的人才需求将持续扩张。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/L19LCHBH05198CJN.html" target="_blank">彭博社报道/财联社</a></div>
       </article>
       <article class="card">
-        <h4>Meta发布Muse Image——首个超级智能实验室图像模型</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta发布Muse Image——首个超级智能实验室图像模型 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月7日Meta正式发布Muse Image，由Meta超级智能实验室（Alexandr Wang领导）推出。模型具备Agent能力——会先推理、调用搜索和代码工具、自我修正后再生成图像。已免费登陆Meta AI应用、Instagram Stories和WhatsApp，并与广告系统Advantage+整合。用户可在提示词中@提及Instagram账号，默认可使用其公开照片。 为什么对 TME 重要： AI生图正从独立工具嵌入社交平台日常使用流程，"创作即分享"模式可能重新定义内容平台的创作者生态和人才需求。</p>
         <div class="source">来源：<a href="https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/" target="_blank">Meta AI官方博客</a></div>
       </article>
       <article class="card">
-        <h4>DeepSeek被曝自研AI推理芯片</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> DeepSeek被曝自研AI推理芯片 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月7日外媒报道，三位知情人士确认DeepSeek正在自研AI推理芯片，项目约一年前启动，已与芯片设计公司和代工厂接触。至此，OpenAI（Jalapeño/博通）、Anthropic（三星2nm）、DeepSeek三家全球头部AI公司在近两周内同时曝出自研芯片进展，AI竞争正式从模型层延伸到芯片层。 为什么对 TME 重要： AI芯片自研潮将催生大量芯片设计、硬件工程人才需求，中国AI公司的芯片自主化也可能改变供应链格局和人才流向。</p>
         <div class="source">来源：<a href="https://k.sina.com.cn/article_5953466437_162dab0450670ay0ns.html" target="_blank">外媒报道/快科技/新浪</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>微软裁员4800人：AI改变工作方式，但岗位"并非被AI取代"</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 微软裁员4800人：AI改变工作方式，但岗位"并非被AI取代"</h4>
         <p>摘要： 7月7日微软宣布裁员约4800人（占员工2.1%），主要波及Xbox（裁1600人并启动最大规模重组，至2027财年累计裁3200人约20%）和商业销售。首席人力官强调"岗位非AI取代，但AI正改变工作完成方式"。过去一年已内部转岗4000人。2026年全球科技行业累计裁员约12万人。 对招聘的启发： "AI不是替代你，而是改变你的工作"正成为大厂裁员标准话术。HR需关注：①传统业务（游戏、销售）收缩而AI业务扩张的结构性转移；②内部转岗4000人意味着重新培训体系成为关键基础设施。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/L17OLS8V051180F7.html" target="_blank">微软官方/智东西</a></div>
       </article>
       <article class="card">
-        <h4>前OpenAI研究员田永龙加盟腾讯混元</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 前OpenAI研究员田永龙加盟腾讯混元</h4>
         <p>摘要： 7月7日雷峰网独家获悉，OpenAI前研究员田永龙（Yonglong Tian）已加入腾讯，将参与VLM（视觉语言模型）相关研发。田永龙此前在OpenAI任MTS，研究方向为计算机视觉和生成模型，与腾讯混元首席AI科学家姚顺雨为OpenAI时期同事。加入后，姚顺雨（语言/后训练）+ 田永龙（视觉/多模态）将形成互补组合。 对招聘的启发： 顶尖AI人才回流中国大厂趋势持续。"前同事跟随"模式说明人才网络效应在AI行业极其强大——一个关键人才的引入可以撬动整个研究圈层的流动。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/L196EPG805118HA4.html" target="_blank">雷峰网独家</a></div>
       </article>
       <article class="card">
-        <h4>小米重组小爱同学组织架构：从集中供给到分布式AI</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 小米重组小爱同学组织架构：从集中供给到分布式AI</h4>
         <p>摘要： 7月7日消息，小米对小爱同学进行新一轮组织架构调整：基础模型归罗福莉MiMo团队、云端工程化归栾剑团队、端侧能力下放至手机/汽车OS团队。原负责人王刚（任职近十年）调任机器人业务。小爱正从对话机器人转型为能执行本地操作的Agent。 对招聘的启发： AI组织架构从"集中大团队"走向"分布式嵌入业务线"成为趋势。这意味着AI人才不再集中在AI实验室，而是散布到各产品线——招聘需求将更分散、更强调"AI+行业"复合能力。</p>
         <div class="source">来源：<a href="https://news.qq.com/rain/a/20260707A05QTI00" target="_blank">36氪/TechWeb</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 今天最值得HR关注的结构性变化是"去依赖化"浪潮。微软用自研模型替换OpenAI、三家AI公司同时自研芯片、小米将AI能力从集中团队拆解嵌入各业务线——这些看似不同的事件背后是同一个逻辑：AI竞争进入"全栈自主"时代，组织必须拥有端到端的控制权。 这对人才市场的直接影响是：AI岗位的颗粒度正在细化。过去"招一个大模型工程师"就够了，现在需要芯片设计、模型训练、推理优化、端侧部署、产品化各环节的专业人才。招聘策略需要从"抢明星"转向"搭拼图"。 同时，微软"裁员4800+转岗4000"的操作模式值得借鉴：大规模转岗体系（而非简单裁员+外招）正在成为科技大厂人才管理的核心能力。 ### 今日思考题 问题： 当AI公司从"合作生态"转向"垂直整合"（自研模型、自研芯片、自建基础设施），招聘策略应该如何相应调整？ 解答思路： 1. 从"单一技术栈"招聘转向"多层次技术栈"：同时覆盖芯片、系统、模型、应用各层人才 2. 关注"跨界复合人才"：如懂模型架构的芯片设计师、懂硬件约束的算法工程师 3. 建立内部转岗/再培训机制：参考微软模式，让现有员工能在技术栈层间流动</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

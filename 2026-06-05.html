@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-05 · 星期五 · <b>第 43 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,12 +272,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>腾讯云 — 发布效率智能体工具集，构建 AI 生产力入口</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯云 — 发布效率智能体工具集，构建 AI 生产力入口</h4>
         <p>腾讯云 AI 产业应用大会在北京举办，发布效率智能体工具集，面向多元人群构建 AI 生产力入口。此前腾讯已面向全球市场推出 WorkBuddy 国际版、Miora 设计工具和 TokenHub MaaS 平台。腾讯正从"AI 辅助工具"向"AI 生产力基础设施"定位升级。</p>
         <div class="source">来源：<a href="https://www.tencent.com/zh-cn" target="_blank">腾讯官网</a></div>
       </article>
       <article class="card">
-        <h4>产业 — AI PC 产业驶入快车道，x86 与 ARM 双架构竞争格局形成</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 产业 — AI PC 产业驶入快车道，x86 与 ARM 双架构竞争格局形成</h4>
         <p>COMPUTEX 2026 后，AI PC 产业链加速落地。英伟达 RTX Spark 代表 ARM 阵营，搭配微软 Windows 安全原语和 OpenShell 运行时；传统 x86 阵营则由 Intel 和 AMD 驱动。戴尔、惠普、联想、华硕等 OEM 将在秋季批量推出 RTX Spark 笔记本与工作站。产业共识是：PC 不再是"运行应用的工具"，而是"运行智能体的平台"。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260605A09PXY00" target="_blank">腾讯新闻</a></div>
       </article>
@@ -278,12 +290,12 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Oracle — 裁员 25000+ 人，AI 基础设施转型中最大规模裁员</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Oracle — 裁员 25000+ 人，AI 基础设施转型中最大规模裁员</h4>
         <p>据 TradingPlatforms 数据，Oracle 以 25254 人成为 2026 年 AI 相关裁员的最大贡献者，主要裁减旧系统、手工操作和行政支持相关岗位，全面转向 AI 驱动的云基础设施和企业服务。这是科技史上最大规模的单次 AI 转型裁员之一。</p>
         <div class="source">来源：<a href="https://www.enterpriseitworld.com/ai-layoffs-in-the-tech-industry-surge-past-39k-nearly-half-of-the-global-total-of-84223/" target="_blank">EnterpriseITWorld</a></div>
       </article>
       <article class="card">
-        <h4>Amazon — 裁员 16000 人，运营效率优化持续进行</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Amazon — 裁员 16000 人，运营效率优化持续进行</h4>
         <p>Amazon 以 16000 人裁员位居 2026 年 AI 驱动裁员第二位，主要涉及电商和云服务运营团队。公司持续将资源从传统运营转向 AI 和自动化。分析指出，AI 正在"分裂劳动力市场"——高技能工程师需求增加，而初中级岗位被大量替代。</p>
         <div class="source">来源：<a href="https://www.enterpriseitworld.com/ai-layoffs-in-the-tech-industry-surge-past-39k-nearly-half-of-the-global-total-of-84223/" target="_blank">EnterpriseITWorld</a></div>
       </article>
@@ -293,7 +305,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>Oracle 裁掉 25000 多人做 AI 转型，Amazon 裁 16000 人"优化运营"——当裁员理由从"降本增效"变成"AI 转型"时，被裁员工获得的再培训机会和补偿方案是否应该不同？HR 在制定 AI 转型人员方案时，有没有"学习 Oracle"还是"学习 Salesforce"的选择权？</p>
@@ -301,7 +313,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

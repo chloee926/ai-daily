@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-03-25 · 星期三 · <b>第 1 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：Anthropic发布Claude Computer Use，AI正式接管Mac桌面；OpenAI发布GPT-5.4 mini和nano，API价格降至前代1/3；中国AI大模型Token调用量连续三周超越美国</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic发布Claude Computer Use，AI正式接管Mac桌面</h4>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic发布Claude Computer Use，AI正式接管Mac桌面 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月24日，Anthropic为Claude发布Computer Use功能（研究预览版），向Pro和Max用户开放。该功能集成在Claude Cowork和Claude Code中，AI可自主操控鼠标、键盘、打开应用、浏览网页、填写表格。配套的Dispatch功能允许用户通过手机远程向电脑端Claude派发任务，支持定时和重复任务。实测操作成功率约50%，常规任务（找文件、操作Notion、总结邮件）已能稳定完成。 为什么对 TME 重要： Agent桌面操控是AI落地的下一个关键方向，将直接影响企业效率工具选型和AI岗位能力要求。HR需关注候选人是否具备AI协作和Agent管理能力。</p>
         <div class="source">来源：<a href="https://www.36kr.com/p/3736521034498311" target="_blank">36氪</a>、<a href="https://www.chinaz.com/ainews/26477.shtml" target="_blank">站长之家</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI发布GPT-5.4 mini和nano，API价格降至前代1/3</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI发布GPT-5.4 mini和nano，API价格降至前代1/3 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI发布GPT-5.4 mini和GPT-5.4 nano两个轻量级模型，支持大容量上下文窗口，API调用价格降至前代同级别的1/3，主打高性价比和低功耗。这是OpenAI在3月5日发布GPT-5.4旗舰模型后的产品线补全动作。 为什么对 TME 重要： API成本大幅下降意味着企业AI应用的经济门槛持续降低，将加速内部AI工具的规模化部署，也意味着更多AI应用开发岗位需求。</p>
         <div class="source">来源：<a href="https://k.sina.com.cn/article_7857201856_1d45362c001903iooy.html" target="_blank">新浪AI热点</a></div>
       </article>
       <article class="card">
-        <h4>中国AI大模型Token调用量连续三周超越美国</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 中国AI大模型Token调用量连续三周超越美国 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenRouter最新数据显示，3月16-22日全球AI大模型周总调用量达20.4万亿Token，中国模型贡献7.359万亿（环比+56.9%），美国为3.536万亿（环比+7.35%），中国连续第三周领先。全球前四均为中国模型：小米MiMo V2 Pro、阶跃星辰Step 3.5 Flash、MiniMax M2.5、DeepSeek-V3.2。核心驱动力：成本优势（国产模型价格极具竞争力）、超级应用接入（微信/钉钉/飞书十亿级用户）、开源模式与闭源代差缩短至约3个月。 为什么对 TME 重要： 中国AI应用规模化进入爆发期，国内AI人才需求将持续走高；开源模型人才和应用层开发人才成为招聘重点。</p>
         <div class="source">来源：<a href="https://www.news.cn/tech/20260324/efd6f1cc39274d8fa6c61f5c24d55bf1/c.html" target="_blank">新华网/科技日报</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI计划年底前将员工翻倍至8000人</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI计划年底前将员工翻倍至8000人</h4>
         <p>摘要： 据FT报道，OpenAI计划在2026年底前将员工人数从约4000人扩张至8000人，大规模招聘覆盖产品、工程、研究、销售和"技术大使"等岗位，同时扩充办公空间。这反映出OpenAI正从研究机构转型为全面的企业级软件公司。与此同时，OpenAI向投资者披露的IPO风险文件显示：2025年收入131亿美元，ChatGPT周活9亿，估值7300亿美元，但面临对微软过度依赖、芯片供应链（TSMC地缘风险）、多起诉讼等关键风险。 对招聘的启发： OpenAI大规模扩招信号明确——AI公司正从"研究导向"转向"销售+产品导向"，企业级销售、客户成功、技术布道师等非纯技术岗位需求激增，值得关注这一人才结构转型趋势。</p>
         <div class="source">来源：<a href="https://www.ft.com" target="_blank">Financial Times</a>（经TechStartups转引）</div>
       </article>
       <article class="card">
-        <h4>2026年Q1全球科技裁员达4.5万人，超20%与AI替代直接相关</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 2026年Q1全球科技裁员达4.5万人，超20%与AI替代直接相关</h4>
         <p>摘要： 2026年一季度全球科技行业裁员达45,000人，其中超过9,200人（约20%）被明确归因于AI和自动化。Amazon一家占裁员总量的52%。受影响最大的岗位包括：软件工程、客户支持、物流规划、财务建模和内容审核。美国占全球科技裁员的80%。HBR分析指出，许多公司是基于AI的"潜力预期"而非实际性能表现进行裁员。 对招聘的启发： AI驱动的裁员与扩招并行——头部AI公司疯狂招人，而传统技术岗位因AI替代而缩减。HR需帮助业务方重新定义"什么岗位需要人"，并关注候选人的AI协作能力而非单一技术技能。</p>
         <div class="source">来源：<a href="https://opentools.ai/news/2026-tech-layoffs-hit-45000-in-march-ai-and-automation-take-the-lead" target="_blank">OpenTools/TechNode Global</a></div>
       </article>
       <article class="card">
-        <h4>美国白宫发布七点AI政策框架，推动联邦统一标准取代各州法律</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 美国白宫发布七点AI政策框架，推动联邦统一标准取代各州法律</h4>
         <p>摘要： 3月20日，美国白宫发布AI立法蓝图，核心是推动国会建立联邦统一标准并取代（preempt）各州AI法律，采取"轻监管"路线。框架涵盖儿童保护、电力成本、知识产权、言论审查和公共教育五大方向。同日，美国劳工部宣布面向全民推出免费AI素养课程，回应公众对AI替代工作的焦虑。 对招聘的启发： AI治理正在从"要不要管"进入"谁来管"——联邦统一标准将简化跨州合规，但也意味着AI公司需要更多政策合规、AI伦理和公共事务人才。AI素养课程的推出也预示着"AI能力"将逐步成为劳动力市场的基础要求。</p>
         <div class="source">来源：<a href="https://apnews.com" target="_blank">AP</a>（经TechStartups转引）、<a href="https://greyjournal.net/news/white-house-ai-framework-congress-preempt-state-laws/" target="_blank">Grey Journal</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 Anthropic的Computer Use和OpenAI的大规模扩招释放了一个共同信号：AI公司正在从"模型好不好"转向"产品能不能用、能不能卖"。这意味着招聘重心将进一步从纯算法研究向产品化、商业化和客户成功方向倾斜——技术大使、解决方案架构师、AI产品经理等复合型岗位将成为新的争夺焦点。 与此同时，全球科技裁员中20%与AI直接相关的数据，与OpenAI翻倍扩招形成鲜明对比。这不是矛盾，而是人才结构重组：旧岗位在缩减，新岗位在涌现。HR需要帮助组织建立"AI协作能力评估"维度，将候选人对AI工具的使用能力纳入面试标准。 中国AI大模型Token调用量连续超越美国的事实，意味着国内AI应用层已进入规模化爆发期。对TME而言，AI应用开发（尤其是基于国产开源模型的应用）和AI产品运营人才将是未来6-12个月的核心招聘方向。 ### 今日思考题 问题： 当AI桌面Agent（如Claude Computer Use）成熟后，哪些现有岗位的工作内容会被大幅重构？招聘方应如何提前调整JD和能力模型？ 解答思路： 1. 高频重复桌面操作岗（数据录入、报表整理、邮件处理）将首先被Agent辅助或替代，JD应从"熟练操作XX软件"转向"能够配置和管理AI Agent完成XX工作流" 2. 中层协调岗（项目协调、信息汇总）也将被Agent部分替代，招聘时应评估候选人的"人机协同管理"能力 3. 建议在能力模型中新增"AI工具使用与Agent管理"维度，与传统技能并列评估</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

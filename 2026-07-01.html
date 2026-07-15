@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-07-01 · 星期三 · <b>第 61 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：Anthropic发布Claude Sonnet 5：Agent能力下沉中端价位；Anthropic推出Claude Science科研工作台；美团发布万亿参数大模型LongCat-2.0，匿名冲榜全球前三</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic发布Claude Sonnet 5：Agent能力下沉中端价位</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic发布Claude Sonnet 5：Agent能力下沉中端价位 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月1日，Anthropic正式发布Claude Sonnet 5，定位为"最具Agent属性的Sonnet模型"。性能接近旗舰Opus 4.8（SWE-bench Pro 63.2% vs 69.2%），但API定价低约60%（限时优惠：输入$2/M、输出$10/M至8月31日）。模型强化自主规划、浏览器和终端工具调用能力，已成为Free和Pro用户默认模型。 为什么对 TME 重要： Sonnet 5验证了"高端能力向中端迁移"趋势——企业日常AI工作流的门槛和成本将持续下降，加速各业务团队自主使用AI Agent的速度。</p>
         <div class="source">来源：<a href="https://www.anthropic.com/" target="_blank">Anthropic官方</a> / <a href="https://new.qq.com/rain/a/20260701A02LBH00" target="_blank">机器之心</a></div>
       </article>
       <article class="card">
-        <h4>Anthropic推出Claude Science科研工作台</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic推出Claude Science科研工作台 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月1日，Anthropic发布面向科研人员的Claude Science客户端beta版。系统整合本地/SSH/HPC节点运行环境，内置协调智能体和评审智能体，支持自然语言操作图表、自动扩展至数百GPU、每张图表附带完整代码溯源。内置NVIDIA BioNeMo工具包和60+预配置科学技能。已向Pro/Max/Team/Enterprise用户开放。 为什么对 TME 重要： Anthropic在IPO前大力拓展垂直场景，科研工作台标志着AI从通用对话向专业工作流深度渗透，科研AI人才需求将持续上升。</p>
         <div class="source">来源：<a href="https://www.anthropic.com/" target="_blank">Anthropic官方</a> / <a href="https://new.qq.com/rain/a/20260701A01L8W00" target="_blank">环球市场播报</a></div>
       </article>
       <article class="card">
-        <h4>美团发布万亿参数大模型LongCat-2.0，匿名冲榜全球前三</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 美团发布万亿参数大模型LongCat-2.0，匿名冲榜全球前三 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月30日，美团正式发布LongCat-2.0，总参数1.6万亿，MoE架构，原生支持1M超长上下文。此前以匿名"Owl Alpha"身份接入OpenRouter，总调用量跻身全球前三，在Hermes场景月调用量全球第一、Claude Code场景仅次于Opus 4.8。全程在5万卡国产算力集群完成训练与推理，即将开源核心技术。 为什么对 TME 重要： 美团证明中国厂商在纯国产算力上也能训出全球竞争力的万亿模型，且已在海外开发者社区获得实际认可，对国产AI人才的需求和信心都是利好。</p>
         <div class="source">来源：<a href="https://tech.meituan.com/" target="_blank">美团官方</a> / <a href="https://news.qq.com/rain/a/20260701A01B2800" target="_blank">每日经济新闻</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>AWS斥资10亿美元成立前线派驻工程部</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> AWS斥资10亿美元成立前线派驻工程部</h4>
         <p>摘要： 6月30日，AWS宣布投入10亿美元成立Forward-Deployed Engineers新部门，由VP Francessca Vasquez负责，初期配置数千名工程师。以5-6人小组形式进驻客户企业约45天，首批客户包括NBA和理光。此举将AI部署周期从数月压缩至数日，是首家超大规模云厂商做此组织架构级布局。 对招聘的启发： "驻场AI工程师"成为云厂商新标配岗位——既要懂AI模型又要懂业务流程，还需出差能力。未来AI人才画像将从"纯技术型"向"技术+咨询复合型"演变。</p>
         <div class="source">来源：<a href="https://aws.amazon.com/" target="_blank">AWS官方</a> / <a href="https://tech.caijing.com.cn/20260701/5168268.shtml" target="_blank">科创板日报</a></div>
       </article>
       <article class="card">
-        <h4>DeepSeek完成500亿元融资并启动大规模招聘</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> DeepSeek完成500亿元融资并启动大规模招聘</h4>
         <p>摘要： DeepSeek完成超500亿元（约70亿美元）首轮外部融资，投资方含国家AI产业投资基金、腾讯、宁德时代。同步开放36个岗位覆盖北京和杭州，目标翻倍所有部门。新成立Harness团队（对标Claude Code），由前Jane Street的崔天一带队，核心使命"Model + Harness = Agent"。值得注意的是，过去半年已有5名核心研究员离职（分别加入字节、腾讯、小米等）。 对招聘的启发： DeepSeek从"不融资不商业化"到全面扩张，AI人才争夺战进入新阶段。创始人明确要求投资方不得挖角，反映顶尖AI研究员的稀缺程度。HR需关注AI Agent方向的产品经理和工程师岗位爆发。</p>
         <div class="source">来源：<a href="https://pandaily.com/deepseek-funding-expansion-hiring-harness" target="_blank">Pandaily</a></div>
       </article>
       <article class="card">
-        <h4>全球科技行业2026年上半年裁员超12万人，AI驱动"腾笼换鸟"</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 全球科技行业2026年上半年裁员超12万人，AI驱动"腾笼换鸟"</h4>
         <p>摘要： 据Challenger数据，2026年1-5月美国科技公司裁员超12.3万人，同比增66%。Cisco裁471人（利润创新高）、Intuit裁3000人（营收增14%）——共同特征是"盈利状态下主动换血"。Meta裁8000人同时转7000人至AI岗；IBM用AI替代约200个HR岗位同时AI招聘规模扩3倍。 对招聘的启发： "AI驱动裁员"的本质是岗位结构重组——中后台、客服、数据标注、中层管理成重灾区，而"懂AI的产品经理"和"会用AI的运营"缺口最大。HR自身也需警惕被替代风险。</p>
         <div class="source">来源：<a href="https://www.sohu.com/a/1042364547_122888693" target="_blank">搜狐科技</a> / <a href="https://www.latestly.com/technology/cisco-layoffs-company-to-cut-471-california-jobs-amid-strategic-ai-restructuring-7494704.html" target="_blank">LatestLY</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 今天最值得HR关注的结构性变化是：AI公司集体转向"嵌入式服务"模式。AWS的10亿美元前线派驻工程部、OpenAI的1000万美元起步企业咨询、Anthropic的Claude Science垂直工作台——三巨头同时从"卖模型"转向"帮你用"，这意味着企业内部对"AI落地人才"的需求将爆发式增长。 DeepSeek的500亿融资和全面扩招，叠加过去半年5名核心研究员流失，揭示了一个关键矛盾：AI公司越大规模扩张，顶尖人才的流动性越高。传统的薪资竞争已不够，组织使命感、技术自由度和股权设计成为留人关键因子。 全球科技裁员12万人的数据看似负面，实则是最清晰的"人才结构转型"信号。被裁的是标准化重复工作岗位，新增的是AI产品经理、Agent工程师、AI落地顾问——HR自身也需要从"管流程"向"管AI赋能"升级。 ### 今日思考题 问题： 当AWS、OpenAI、Anthropic都在组建"驻场AI工程师"团队时，TME的招聘团队应该如何调整对"AI工程师"岗位画像的理解？ 解答思路： 1. 传统AI工程师画像偏重算法能力，但"Forward-Deployed Engineer"要求技术+咨询+沟通的复合能力，招聘标准需拓宽 2. 关注候选人是否具备"端到端落地"经验——不只是训模型，还要能把模型接入业务系统并产出可衡量价值 3. 落地建议：与业务部门联合定义"AI落地工程师"新岗位JD，参考AWS的"5-6人小组驻场45天"模式，评估TME内部是否需要类似的AI赋能团队编制</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

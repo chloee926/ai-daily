@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-11 · 星期一 · <b>第 24 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
   
     <section class="section sec-nw">
@@ -260,17 +272,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>OpenAI — 成立 OpenAI Deployment Company，初始投资超 40 亿美元</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 成立 OpenAI Deployment Company，初始投资超 40 亿美元</h4>
         <p>OpenAI 于5月11日宣布成立全资控股的部署公司，由 TPG 领投，安宏资本、贝恩资本、布鲁克菲尔德联合领投，高盛、软银等 19 家投资与咨询机构作为合伙人。核心策略：将私募基金的投资组合公司变成 AI 工具的"被动分销渠道"，派驻工程师团队深入企业一线，从场景设计到工作流重塑提供全流程服务。</p>
         <div class="source">来源：<a href="https://openai.com/jv-ID/index/openai-launches-the-deployment-company" target="_blank">OpenAI 官网</a></div>
       </article>
       <article class="card">
-        <h4>OpenAI — 收购 Tomoro，引入 150 名 AI 部署专家</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 收购 Tomoro，引入 150 名 AI 部署专家</h4>
         <p>同步宣布收购 AI 咨询与工程公司 Tomoro，后者成立于 2023 年，客户包括美泰、红牛、特易购、维珍大西洋航空等。收购将立即带来约 150 名经验丰富的 FDE 和部署专家，曾服务超过 50 家全球 500 强企业。</p>
         <div class="source">来源：<a href="https://www.stcn.com/article/detail/3905102.html" target="_blank">第一财经</a></div>
       </article>
       <article class="card">
-        <h4>Anthropic — 与黑石高盛成立 15 亿美元 AI 服务合资公司</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — 与黑石高盛成立 15 亿美元 AI 服务合资公司</h4>
         <p>Anthropic 于5月4日宣布与黑石、高盛、Hellman & Friedman 等金融巨头成立 AI 服务合资公司，总承诺投资约 15 亿美元。采用 FDE 模式将工程师派驻客户现场，帮助将 Claude 深度集成进财务、运营等核心流程，目标针对中型企业和私募股权投资组合公司。</p>
         <div class="source">来源：<a href="https://m.21jingji.com/article/20260516/herald/f470e28e65c7aa7603fa7145718a5399.html" target="_blank">21世纪经济报道</a></div>
       </article>
@@ -283,17 +295,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Microsoft — 推出 51 年来首次自愿买断计划</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Microsoft — 推出 51 年来首次自愿买断计划</h4>
         <p>微软面向美国地区年龄与司龄之和达 70 及以上的长期员工启动自愿买断计划，约 8750 人符合资格。CFO 艾米·胡德在财报电话会上明确表示"预计员工人数将同比下降"。微软本财年资本支出承诺达 1900 亿美元，其中大部分投向 AI 基础设施。</p>
         <div class="source">来源：<a href="https://24newslatest.com/post/microsoft-offers-buyout-to-longtime-u-s-employees-as-it-shifts-focus-to-ai-spending" target="_blank">Business Insider/24News</a></div>
       </article>
       <article class="card">
-        <h4>BCG — AI 将在 2-3 年内重塑美国半数工作岗位</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> BCG — AI 将在 2-3 年内重塑美国半数工作岗位</h4>
         <p>波士顿咨询公司最新报告预测，AI 最终可能淘汰多达 15% 的岗位。报告特别指出，科技行业受裁员冲击最严重，74% 的科技行业 CEO 表示正在冻结或缩减招聘。同时警告：如果裁员速度超过 AI 部署速度，企业将面临运营风险。</p>
         <div class="source">来源：<a href="https://www.stcn.com/article/detail/3926818.html" target="_blank">经济参考报</a></div>
       </article>
       <article class="card">
-        <h4>Upwork — 裁员 25%，CEO 称"两个披萨团队已成历史"</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Upwork — 裁员 25%，CEO 称"两个披萨团队已成历史"</h4>
         <p>零工经济平台 Upwork 宣布裁减约四分之一员工，CEO 布朗在公开信中表示"AI 意味着产品和工程团队能以更小规模爆发出前所未有的影响力"，公司正在"整合冗余工作并压缩工作流程以减少交接环节"。</p>
         <div class="source">来源：<a href="https://caifuhao.eastmoney.com/news/20260508113909357114180" target="_blank">东方财富</a></div>
       </article>
@@ -303,7 +315,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>OpenAI 和 Anthropic 几乎同时以"合资公司+收购"的方式组建企业部署团队，核心人才模型都是 FDE——如果你是一家 AI 公司的 HR 负责人，FDE 这个岗位应该从内部转岗培养还是外部招聘？内部转岗懂产品但不懂客户行业，外部招聘懂行业但不懂 AI 产品——你如何设计这个岗位的能力模型和培训体系？</p>
@@ -311,7 +323,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-04-01 · 星期三 · <b>第 6 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：阿里通义发布Qwen3.5-Omni：215项SOTA全模态大模型</div>
 
   
     <section class="section sec-nw">
@@ -260,22 +272,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>全球云厂商集体掀起AI算力涨价潮，"降价时代"终结</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 全球云厂商集体掀起AI算力涨价潮，"降价时代"终结</h4>
         <p>摘要： 2026年3月，谷歌云、亚马逊云、腾讯云、阿里云、百度智能云在10天内相继发布调价公告。阿里云AI算力最高涨34%，4月18日生效；腾讯云部分核心产品涨幅最高达400%；行业整体AI算力与存储服务价格上调30%-50%。这与2025年4月"最高降幅60%"的价格战形成鲜明反转。根本原因是Token需求爆炸——国家数据局数据显示中国日均Token调用量已突破140万亿（2024年初仅1000亿），两年增长超千倍。GPU芯片供应链成本持续攀升，长期低价内卷模式不可持续，云厂商从"卖算力"转向"卖解决方案"。 为什么重要： 算力涨价直接抬高了AI应用的运营门槛，中小AI企业和初创者首当其冲。行业将加速"马太效应"——头部厂商优势扩大，中小云厂商生存空间受挤压。企业的AI投入ROI测算需要全面重估。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/KPBJ5QU805319LDA.html" target="_blank">Tech星球/网易</a>、<a href="https://www.36kr.com/p/3735284343963651" target="_blank">36氪</a>、<a href="https://www.aliyun.com/notice/118086" target="_blank">阿里云公告</a></div>
       </article>
       <article class="card">
-        <h4>阿里通义发布Qwen3.5-Omni：215项SOTA全模态大模型</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里通义发布Qwen3.5-Omni：215项SOTA全模态大模型 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月30日，阿里通义实验室正式发布旗舰级原生全模态大模型Qwen3.5-Omni，在音视频分析、推理、对话及翻译测试中斩获215项SOTA（State-of-the-Art），全面超越Gemini-3.1 Pro。核心架构升级：Thinker升级为Hybrid-Attention MoE支持256K超长上下文，Talker引入ARIA技术解决语音漏字与误读问题。实用功能包括根据视频生成代码、语义打断、结构化Caption生成、113种语言个性化音色定制等。中国大模型市场已从"百模大战"进入头部厂商技术硬实力比拼阶段。 为什么重要： 全模态是大模型下半场的主赛道——谁能让文本、图片、音频、视频"一个模型全搞定"，谁就掌握了下一代AI应用的入口。Qwen3.5-Omni超越Gemini-3.1 Pro标志着中国大模型在全模态能力上进入全球第一梯队。</p>
         <div class="source">来源：<a href="https://www.oschina.net/news/416053" target="_blank">开源中国</a>、<a href="https://www.sohu.com/a/1003166801_121123928" target="_blank">阿里云</a>、<a href="https://ai-bot.cn/qwen3-5-omni/" target="_blank">AI工具集</a></div>
       </article>
       <article class="card">
-        <h4>Harness Engineering席卷硅谷，AI治理成新竞争焦点</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Harness Engineering席卷硅谷，AI治理成新竞争焦点</h4>
         <p>摘要： 继Prompt Engineering和Context Engineering之后，Harness Engineering（驾驭工程）成为2026年AI工程化新范式。核心三要素：架构约束（为AI设定不可逾越的边界并自动检查）、反馈闭环（AI能自行运行-Debug-修复-性能调优的自愈循环）、全生命周期管理（从个人到组织级的上下文和记忆管理）。背景是OpenAI实践中3人团队用Codex在5个月内上线百万行代码，迫使行业思考"AI大规模编程怎么不翻车"。类比：提示词工程是"喊话模式"，上下文工程是"给地图"，驾驭工程是"装马鞍、套缰绳、修围栏"。 为什么重要： 当AI从个体工具升级为组织级生产力时，"治理"变得比"能力"更重要。驾驭工程代表了AI落地的下一个瓶颈——不是AI能不能干活，而是干活时怎么不出事。</p>
         <div class="source">来源：<a href="https://cloud.tencent.com/developer/article/2646443" target="_blank">腾讯云开发者社区</a>、<a href="https://www.51cto.com/aigc/11211.html" target="_blank">51CTO</a>、<a href="https://life.china.com/2026-03/30/content_558664.html" target="_blank">中国网</a></div>
       </article>
       <article class="card">
-        <h4>爱诗科技发布PixVerse V6，AI视频从"生成画面"走向"构建世界"</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 爱诗科技发布PixVerse V6，AI视频从"生成画面"走向"构建世界"</h4>
         <p>摘要： 爱诗科技"拍我AI闪电发布周"首日推出PixVerse V6，在人物真实感（皮肤纹理、毛孔、光影反射）、物理模拟（液体、布料、碰撞）和叙事连贯性（多镜头切换视觉统一）三个维度全面升级。支持子弹时间、FPV、延时摄影等专业特效，最长可生成15秒1080P视频。同日，美图发布Meitu CLI将核心影像能力标准化封装接入OpenClaw生态，采用"开箱即用、按量付费"模式。 为什么重要： AI视频生成正在从"能看"走向"能用"——当物理逻辑自洽、人物表情连贯时，商用门槛将大幅降低，短视频、广告、影视前期制作行业面临重塑。</p>
         <div class="source">来源：<a href="https://ai-bot.cn/pixverse-v6/" target="_blank">AI工具集</a>、<a href="https://news.aibase.com/zh/daily/26709" target="_blank">AIbase</a></div>
       </article>
@@ -288,17 +300,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>BOSS直聘盈利26.9亿却裁员804人：招聘平台先AI化了自己</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> BOSS直聘盈利26.9亿却裁员804人：招聘平台先AI化了自己</h4>
         <p>摘要： BOSS直聘2025年全年营收82.7亿元（+12.4%），净利润26.9亿元（+71.7%），经营利润翻倍增长。但同期净裁员804人（约14%），上半年净减945人为优化最猛阶段，下半年回补141人。裁员主要集中在运营岗——AI大模型语义识别能力升级后，大量基础审核、匹配、推荐工作被算法接管。一个招聘平台"帮别人找工作的人自己先丢了工作"的悖论，成为2026年AI职场最具讽刺意味的缩影。考虑到离职与招聘的动态平衡，实际优化人员或超1000人。 对招聘的启发： BOSS直聘案例揭示了一个深层趋势——AI对运营类岗位的替代已经不是"未来时"而是"过去式"。招聘平台自身的AI化进程，预示着所有依赖标准化操作的岗位都面临同样命运。HR需要重新审视哪些岗位属于"AI可完全接管"、哪些属于"AI增强人效"、哪些属于"AI无法替代"。</p>
         <div class="source">来源：<a href="https://baijiahao.baidu.com/s?id=1860890397845506040" target="_blank">百家号</a>、<a href="https://www.topnews.cn/news/145CD2E442BA4471" target="_blank">顶端新闻</a>、<a href="https://finance.sina.com.cn/stock/zqgd/2026-03-18/doc-inhrmihm7439761.shtml" target="_blank">新浪财经</a></div>
       </article>
       <article class="card">
-        <h4>"第一批用AI的人，反被AI砸了饭碗"——会用AI也不安全</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> "第一批用AI的人，反被AI砸了饭碗"——会用AI也不安全</h4>
         <p>摘要： 36氪深度文章指出，2026年一个深刻变化是"AI会淘汰不会用AI的人"这句话过时了——即便最先学会且最擅长使用AI的人，同样面临被淘汰。数据显示90%的公司以AI为由裁员，但只有2%是真正因AI提效后裁员，大多数企业是在纠正疫情期间过度招聘或追求"人机比"指标。大厂推动"全员Agent化"，要求员工拆解工作流以便AI接管，形成"不拥抱AI会被淘汰，拥抱AI又加速被替代"的双重困境。短剧行业、翻译、摄影等领域受冲击严重，多所高校已停招相关专业。 对招聘的启发： "AI素养"不再是护城河——当每个人都会用AI时，真正的竞争力回到了对业务本质的理解和决策能力上。HR在评估候选人时，需要区分"会用AI工具"和"能用AI创造不可替代的价值"。</p>
         <div class="source">来源：<a href="https://www.36kr.com/p/3739350325329924" target="_blank">36氪/金错刀</a></div>
       </article>
       <article class="card">
-        <h4>国家数据局官方定名Token为"词元"，AI有了统一度量衡</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 国家数据局官方定名Token为"词元"，AI有了统一度量衡</h4>
         <p>摘要： 国家数据局局长刘烈宏在中国发展高层论坛2026年年会上宣布，正式将AI术语Token定名为"词元"，定义为"大模型处理信息的最小信息单元，具有智能时代可计量、可定价、可交易的特征"。数据披露：中国日均词元调用量已突破140万亿（2024年初为1000亿，两年增长超千倍）。黄仁勋在GTC大会上指出，一个代理式任务的词元消耗量比传统聊天模式高出数个量级。词元正在成为智能时代的"度量衡"。 对招聘的启发： Token/词元成为AI产业的基础计量单位，类似于互联网时代的"流量"概念。HR在理解AI业务和招聘AI人才时，需要把"词元经济学"纳入基础认知框架——它决定了AI应用的成本结构和商业模式。</p>
         <div class="source">来源：<a href="https://www.chinanews.com.cn/cj/2026/03-28/10594293.shtml" target="_blank">中新网</a>、<a href="https://www.nda.gov.cn/sjj/swdt/mtsy/0325/20260325113219152129329_pc.html" target="_blank">人民日报/国家数据局</a>、<a href="https://news.cctv.com/2026/03/24/ARTINY0xAAFWDeoS64CCAdJw260324.shtml" target="_blank">央视网</a></div>
       </article>
@@ -308,7 +320,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 今天的新闻如果只看一条，看云厂商集体涨价。这不仅仅是IT部门的预算问题——它标志着AI从"免费午餐"时代进入"真金白银"时代，将深刻改变企业AI投入的决策逻辑和组织架构。 过去两年，低廉的AI算力成本让"全员AI化"看上去是一笔划算的买卖。但当阿里云涨价34%、腾讯云某些产品涨400%时，一个残酷的算术题摆上了管理层的桌面：如果用AI替代10个运营岗每年省200万人力成本，但算力账单从50万涨到200万，这笔账还划算吗？ BOSS直聘的案例恰好提供了"先行者样本"：盈利26.9亿（+71.7%），裁员804人（-14%），看上去是完美的AI转型故事。但细看会发现，它裁掉的主要是运营岗——也就是最容易被标准化、最适合AI接管的工种。问题是，当"容易被替代的"都替代完之后呢？下一步替代的成本和难度将呈指数级上升。 与此同时，Harness Engineering的走红揭示了另一个真相：AI规模化落地的瓶颈不是"AI能力不够"，而是"人类治理不足"。企业需要的不只是会用AI的人，而是能"驾驭"AI的人——能为AI设定边界、建立反馈机制、管理AI全生命周期的"AI治理师"。这类角色目前几乎没有成熟的人才供给。 ### 今日思考题 问题： 云厂商AI算力集体涨价30%-400%，同时BOSS直聘用AI裁掉14%的员工后利润暴涨71.7%——作为HR，如何帮企业在"算力成本上升"和"人力成本优化"之间找到最优平衡点？ 解答思路： 1. 建立"AI替代经济模型"：不要只算人力成本节省，要把算力成本、AI运维成本、质量兜底成本、员工转岗培训成本全部纳入ROI测算。BOSS直聘的成功是因为它的核心业务本身高度数字化，但大多数企业不具备这个条件 2. 实施"分层AI化"策略：将岗位分为三档——"AI完全接管"（如基础审核）、"AI辅助增效"（如招聘匹配）、"人类不可替代"（如客户关系、创新决策），优先对第一档实施AI替代，第二档投入AI工具提效，第三档反而要加大人才投入 3. 关注"AI治理师"这一新兴角色：Harness Engineering的兴起意味着企业需要能驾驭AI系统可靠运行的复合型人才。现在布局培养或招聘这类人才，是抢占下一个人才红利窗口</p>
@@ -316,7 +328,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

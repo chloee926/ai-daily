@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-06-18 · 星期四 · <b>第 52 期</b></div>
   </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：三大运营商推出标准化Token套餐，15元即可购买数百万Token；Kimi Work重磅更新：24小时目标模式+办公插件中心；阿里开源LOGOS科学大模型，1B参数性能超越微软7B系列</div>
 
   
     <section class="section sec-nw">
@@ -260,22 +272,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>三大运营商推出标准化Token套餐，15元即可购买数百万Token</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 三大运营商推出标准化Token套餐，15元即可购买数百万Token <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月18日，中国电信、中国移动、中国联通同步上线面向个人与企业的AI Token包，15元即可购买数百万Token，标志着大模型调用正式进入"流量化"消费时代。三大运营商将自身在通信网络、用户规模和渠道覆盖上的优势延伸至AI算力分发，使AI模型调用门槛大幅降低，算力资源向大众市场全面开放。 为什么对 TME 重要： 运营商入局AI算力分发，意味着AI应用的获客渠道和商业模式可能出现新路径。对于内容平台而言，Token套餐可能催生"AI+内容"的订阅捆绑模式，值得关注运营商与内容平台的合作机会。</p>
         <div class="source">来源：<a href="https://www.toutiao.com/article/7652530292309246491" target="_blank">今日头条 - AI每日简报 2026年6月18日</a></div>
       </article>
       <article class="card">
-        <h4>Kimi Work重磅更新：24小时目标模式+办公插件中心</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Kimi Work重磅更新：24小时目标模式+办公插件中心 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月18日，月之暗面升级电脑端Kimi Work客户端，上线两大核心功能：可连续运行24小时的目标模式（Goal Mode），以及打通多款主流办公软件的插件中心。目标模式允许AI在用户设定目标后自主规划并持续执行任务，插件中心则实现了与主流办公工具的深度集成。同时6月使用Work模式会员额度直接五折，大幅降低重度办公用户使用成本。 为什么对 TME 重要： "24小时自主任务"模式标志着AI办公助手从"问答工具"向"自主执行者"转型。插件中心模式预示AI助手正成为连接各类办公工具的中枢层，企业办公流程的AI化整合速度将加快。</p>
         <div class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100 - 每日AI资讯 2026年6月18日</a></div>
       </article>
       <article class="card">
-        <h4>阿里开源LOGOS科学大模型，1B参数性能超越微软7B系列</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里开源LOGOS科学大模型，1B参数性能超越微软7B系列 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月18日，阿里ATH-Token Foundry联合中国人民大学高瓴人工智能学院开源统一科学大模型LOGOS。该模型仅10亿以内参数规模，在蛋白编辑、分子设计、材料生成等六大核心科研任务上全面超越微软8×7B的NatureLM模型，大幅降低科研人员AI使用门槛。此举证明在垂直科学领域，小参数+高质量训练策略可超越大参数通用模型。 为什么对 TME 重要： "小模型超越大模型"的趋势在垂直领域持续验证。对于有垂直场景需求的企业，选择适合场景的专用小模型而非追求通用大模型，可能是更高效的AI落地策略。</p>
         <div class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100 - 每日AI资讯 2026年6月18日</a></div>
       </article>
       <article class="card">
-        <h4>Google NotebookLM测试个性化记忆与AI直写编辑双新功能</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Google NotebookLM测试个性化记忆与AI直写编辑双新功能 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月18日消息，谷歌正在科研AI工具NotebookLM内部测试两大升级功能：个人专属记忆系统（可记住用户偏好和历史交互）和内置AI笔记编辑能力（AI可直接在文档中撰写和编辑内容）。搭配上月Gemini 3.5底层架构升级，NotebookLM正从单纯文档阅读器转型为全流程科研智能工作台。 为什么对 TME 重要： AI工具从"信息检索"向"记忆+创作"一体化演进，个性化记忆能力将成为AI助手的核心差异化竞争力。企业级AI工具的选型需关注记忆系统的数据隐私和定制化能力。</p>
         <div class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100 - 每日AI资讯 2026年6月18日</a></div>
       </article>
@@ -288,22 +300,22 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>DeepSeek完成510亿元A轮融资，估值约4000亿元</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> DeepSeek完成510亿元A轮融资，估值约4000亿元</h4>
         <p>摘要： 6月17日，企查查数据显示DeepSeek完成A轮融资，总额约510亿元人民币，投后估值约4000亿元。投资方阵容涵盖产业资本、互联网巨头与国家队：创始人梁文锋出资约200亿元为最大单一出资方，腾讯出资约100亿元，宁德时代体系出资约50亿元，网易、京东各约30亿元，国家人工智能产业投资基金出资约9.8亿元。梁文锋要求外部投资者通过有限合伙企业间接注资，设五年锁定期，且除国家大基金外其余投资者不享有投票权，旨在筛选长线投资者。 对招聘的启发： DeepSeek以510亿融资刷新国内AI初创纪录，且拉起"算力（腾讯）+能源（宁德时代）+场景（京东/网易）+政策（国家大基金）"的产业同盟网络。宁德时代跨界投资AI尤其值得关注，预示"能源+AI"的深度融合趋势。AI人才市场的竞争将进一步白热化，高估值创业公司对大厂AI人才的虹吸效应将持续加强。</p>
         <div class="source">来源：<a href="https://finance.sina.com.cn/wm/2026-06-17/doc-inicttap5897130.shtml" target="_blank">新浪财经 - DeepSeek获510亿融资</a></div>
       </article>
       <article class="card">
-        <h4>Transformer核心作者Shazeer离开Google加入OpenAI</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Transformer核心作者Shazeer离开Google加入OpenAI</h4>
         <p>摘要： 6月17日，Google DeepMind研究员、Gemini联席负责人Noam Shazeer正式宣布加入OpenAI，担任架构研究负责人。Shazeer是2017年《Attention Is All You Need》论文的核心作者之一，该论文提出的Transformer架构是整个生成式AI浪潮的技术基础。2024年Google以27亿美元收购其创业公司Character.AI将其召回，但仅22个月后他再次离开。至此，8位Transformer论文作者已全部离开Google。OpenAI CEO Altman表示"等了10年"。此举被业内评价为"今年最重要的AI人才流动"。 对招聘的启发： 8位Transformer作者全部离开Google，标志着Google在AI基础研究人才方面的持续流失。顶级AI人才的流动方向正成为行业竞争格局的风向标——从大厂转向更具AGI愿景和上市预期的平台。HR需关注：顶级技术人才的择业逻辑已从"平台+薪酬"转向"愿景+股权+技术自由度"。</p>
         <div class="source">来源：<a href="https://36kr.com/p/3858117337633796" target="_blank">36氪 - 谷歌Gemini联席负责人被OpenAI挖了</a></div>
       </article>
       <article class="card">
-        <h4>钉钉组织架构全面调整，MuleRun并入打造全员Agent办公体系</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 钉钉组织架构全面调整，MuleRun并入打造全员Agent办公体系</h4>
         <p>摘要： 6月18日，钉钉发布内部组织调整公告，新任CEO陈宇森主导团队重构，将内部AI创新项目MuleRun完整并入悟空事业部，由原MuleRun CTO束骏亮统一管理，全面推动企业协同软件进入全员智能体时代。此次调整是钉钉新CEO上任后的首次重大组织变革，标志着钉钉战略重心从传统协同办公向AI Agent驱动的工作模式转型。 对招聘的启发： 企业协同软件全面转向AI Agent架构，意味着传统SaaS团队的组织结构和人才需求将发生根本性变化。产品经理、研发工程师需具备AI Agent设计思维，HR应提前规划"Agent化"转型所需的人才结构和技术能力图谱。</p>
         <div class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100 - 每日AI资讯 2026年6月18日</a></div>
       </article>
       <article class="card">
-        <h4>NVIDIA以超4亿美元收购企业预测AI公司Kumo AI</h4>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> NVIDIA以超4亿美元收购企业预测AI公司Kumo AI</h4>
         <p>摘要： NVIDIA收购企业预测AI公司Kumo AI，交易金额超4亿美元，旨在强化其在结构化企业数据预测分析领域的能力。Kumo AI的技术专长在于将图神经网络应用于企业关系型数据，提供预测性分析。该交易是NVIDIA 2024-2026年AI基础设施与企业软件收购潮的最新动作，标志着NVIDIA正从芯片供应商向全栈AI基础设施公司扩展。 对招聘的启发： NVIDIA持续通过并购补齐AI软件栈能力，从芯片到基础设施到企业应用的垂直整合趋势明显。AI基础设施领域的人才需求正从纯硬件/芯片向"硬件+软件+数据科学"的复合型转变。</p>
         <div class="source">来源：<a href="https://www.toutiao.com/a7652645312196133402" target="_blank">今日头条 - 2026年6月18日AI行业热点新闻简报</a></div>
       </article>
@@ -313,7 +325,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 今日关注点 DeepSeek以510亿元融资刷新国内AI初创纪录，且融资架构极为罕见——创始人自掏200亿、五年锁定期、外部投资者无投票权。这反映出顶级AI公司对资本的选择权日益增强，不再是"资本选公司"而是"公司选资本"。宁德时代50亿跨界参投尤其值得关注，"能源+AI"的融合可能催生新的产业生态。对HR而言，高估值AI创业公司对大厂人才的虹吸效应将持续加强，人才竞争正从"大厂vs大厂"全面升级为"大厂vs高估值创业+国家队"。 Shazeer从Google转投OpenAI，8位Transformer作者全部离开Google，是AI行业人才流动的标志性事件。Google花27亿美元召回Shazeer仅22个月就再次流失，说明在AGI竞赛中，单纯的薪酬和平台已不足以留住顶级人才——愿景、技术自由度和股权上升空间成为关键因素。HR在AI人才保留策略上需从"薪酬包"思维转向"事业平台"思维。 三大运营商推出Token套餐，AI算力进入"流量化"消费时代。这一变化的意义不仅在于降低了AI使用门槛，更在于可能催生全新的商业模式——"AI+通信"的捆绑销售、基于Token的增值服务等。对于企业HR而言，AI工具的采购和预算管理将面临"从订阅制到按量制"的范式转变。 ### 今日思考题 问题： 当AI算力从"企业专属"走向"大众消费"（如三大运营商Token套餐），企业HR在招聘AI相关岗位时，如何评估候选人是否具备"AI算力运营意识"——即既懂AI应用又懂成本优化的复合能力？ 解答思路： 1. 在面试中设置AI工具使用成本优化的场景题，考察候选人是否能识别不同模型和调用方式的性价比差异 2. 关注候选人是否具备从"效果导向"到"效果-成本双导向"的AI使用习惯，例如是否有Token消耗优化的实际经验 3. 在团队层面建立AI使用成本监控机制，将"AI算力效率"纳入技术团队的OKR或KPI，培养全员的成本意识</p>
@@ -321,7 +333,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>

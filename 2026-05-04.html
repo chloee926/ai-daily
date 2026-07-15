@@ -212,6 +212,16 @@
   }
   .thinking p { font-style: italic; }
 
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -236,10 +246,12 @@ function toggleTheme() {
 </script>
 <div class="container">
   <header class="masthead">
-    <div class="kicker">AI 行业事件 &middot; 人才动态</div>
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
     <h1>AI 行业与人才日报</h1>
     <div class="meta">2026-05-04 · 星期一 · <b>第 19 期</b></div>
   </header>
+
+    <div class="music-note music-note-empty">🎵 <b>今日音乐 AI 看点</b>：今日无重大音乐 AI 动态</div>
 
     <div class="lead">5 月 4 日前后，"国产算力自主化"与"企业 AI 落地"两条线同时兑现。DeepSeek V4 在 4 月 24 日预览后，一周内完成与华为昇腾、海光 DCU、寒武纪等国产主流芯片的 Day0 原生适配，把部署损耗从行业普遍 30% 压到接近 0；IBM 则在 Think 2026 上把企业级多智能体编排、全 SDLC AI 编程一并端出。开源模型 + 国产芯片的组合，正把"性价比标杆"做实。</div>
 
@@ -261,17 +273,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>DeepSeek V4 完成国产芯片 Day0 原生适配</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek V4 完成国产芯片 Day0 原生适配</h4>
         <p>4 月 24 日发布的旗舰模型 DeepSeek V4，在一周内完成与华为昇腾、海光 DCU、寒武纪等国内主流 AI 芯片的 Day0 原生适配，将国产芯片部署的性能损耗从行业普遍的 30% 降至接近 0。模型标配 100 万 token 超长上下文，API 调用价格仅为 GPT-4 的 1/70，成为国产大模型性价比标杆。</p>
         
       </article>
       <article class="card">
-        <h4>IBM Think 2026 开幕：企业多智能体编排 + 全 SDLC AI 编程</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> IBM Think 2026 开幕：企业多智能体编排 + 全 SDLC AI 编程</h4>
         <p>IBM 年度 Think 大会 5 月 4–7 日在波士顿开幕，吸引 80+ 国家 5000+ 技术与业务领导者。重磅发布包括： - watsonx Orchestrate 下一代：多智能体编排 - IBM Confluent：实时数据喂入 AI - IBM Concert：智能运维 - IBM Sovereign Core：在基础设施运行时层嵌入治理策略，面向受监管行业 - IBM Bob：覆盖从代码生成到测试部署的全 SDLC AI 编程方案 - Granite 4.1：80 亿参数模型，性能可比 320 亿参数 MoE 模型</p>
         
       </article>
       <article class="card">
-        <h4>OpenAI 推出 GPT-5.5 Cyber 安全专用大模型</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI 推出 GPT-5.5 Cyber 安全专用大模型</h4>
         <p>5 月 4 日，OpenAI 推出面向网络安全场景深度优化的 GPT-5.5 Cyber，恶意代码识别率较通用模型提升 28%，支持跨语言实时攻防模拟与全球网络威胁溯源，仅向全球核心安全机构与合规企业开放。</p>
         
       </article>
@@ -284,17 +296,17 @@ function toggleTheme() {
     </div>
     <div class="cards-grid">
       <article class="card">
-        <h4>Anthropic ARR 突破 $30B，首超 OpenAI</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic ARR 突破 $30B，首超 OpenAI</h4>
         <p>Anthropic 年化收入（ARR）突破 300 亿美元，首次超越 OpenAI 的约 240 亿。同期 Anthropic 与 Blackstone、Hellman & Friedman、Goldman Sachs 等达成 15 亿美元合资，结构为面向 PE 投资组合公司的"前向部署企业服务"，把 Claude 直接嵌入被投企业运营。这一渠道让 Anthropic 以史无前例的规模触达企业客户。</p>
         
       </article>
       <article class="card">
-        <h4>Adept AI 完成 $3.5 亿 C 轮</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Adept AI 完成 $3.5 亿 C 轮</h4>
         <p>Adept AI 宣布完成 3.5 亿美元 C 轮，General Catalyst 领投，英伟达、微软跟投。资金用于扩张 Act-2 Agent 团队，该智能体可在浏览器、IDE 与终端自主执行数据迁移、编写测试等复杂业务流程，反映资本对"可执行智能体"的持续加注。</p>
         
       </article>
       <article class="card">
-        <h4>国产模型"十二日四连发"收尾</h4>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 国产模型"十二日四连发"收尾</h4>
         <p>结合五一前窗口，智谱 GLM-5.1、MiniMax M2.7、Kimi K2.6、DeepSeek V4 在约 12 天内相继开源，性能逼近西方前沿、成本仅其 1/3，中国开源大模型正式进入"多强争霸"阶段。</p>
         
       </article>
@@ -304,7 +316,7 @@ function toggleTheme() {
     <section class="section sec-think">
     <div class="sec-head">
       <span class="sec-num sec-num-4">04</span>
-      <h2 class="sec-title">HR 视角的思考延展</h2>
+      <h2 class="sec-title">招聘今日可行动</h2>
     </div>
     <blockquote class="thinking">
       <p>### 💡 每日思考题 DeepSeek V4 与华为昇腾、寒武纪等国产芯片"发布即适配、损耗近零"——这意味着算力供应链的"买 vs 造"第一次有了接近无损的国产替代选项。 同时 IBM Bob 把"全 SDLC AI 编程"产品化，研发岗位的"人写代码"环节被进一步自动化。 作为 HR，当算力可以国产替代、研发可以 AI 编排，你所在组织对"芯片/算力采购"和"研发编制"的两笔预算，是否该重新分配？如果国产自主化是确定趋势，相关（国产芯片适配、私有化部署、模型微调）人才的组织占位，你现在要不要提前卡位？ *Made by ChloeCao | 数据采集时间 2026-05-04 11:00 CST（补档重建）*</p>
@@ -312,7 +324,7 @@ function toggleTheme() {
   </section>
 
 
-  <div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 </body>
 </html>
