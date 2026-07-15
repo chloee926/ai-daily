@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>每日AI简报 | 2026-05-01</title>
+<style>
+  :root {
+    /* Dark theme (default) */
+    --bg: #0a0e1a;
+    --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
+    --surface: rgba(18, 26, 50, 0.6);
+    --surface-hover: rgba(28, 40, 70, 0.7);
+    --text: #e0e6f0;
+    --text-secondary: #98a8c0;
+    --text-dim: #5a6880;
+    --heading: #fff;
+    --intro-bg: linear-gradient(135deg, rgba(30,50,100,0.4), rgba(20,35,70,0.3));
+    --intro-border: rgba(100,140,255,0.15);
+    --intro-text: #c0d0e8;
+    --nw-bg: linear-gradient(135deg, rgba(180,100,255,0.12), rgba(120,60,200,0.08));
+    --nw-border: rgba(180,130,255,0.25);
+    --nw-badge-bg: rgba(180,130,255,0.2);
+    --nw-badge-text: #c8a8ff;
+    --nw-heading: #d8b8ff;
+    --think-bg: linear-gradient(135deg, rgba(255,200,50,0.08), rgba(200,160,30,0.05));
+    --think-border: rgba(255,200,80,0.2);
+    --think-badge-bg: rgba(255,200,80,0.15);
+    --think-badge-text: #ffc844;
+    --think-text: #d0c8a0;
+    --tag-blue-bg: rgba(70,130,255,0.15); --tag-blue-text: #6ea8ff;
+    --tag-green-bg: rgba(70,200,130,0.15); --tag-green-text: #5ed49a;
+    --tag-red-bg: rgba(255,90,90,0.15); --tag-red-text: #ff7070;
+    --tag-orange-bg: rgba(255,160,50,0.15); --tag-orange-text: #ffa844;
+    --tag-purple-bg: rgba(180,130,255,0.15); --tag-purple-text: #c8a8ff;
+    --tag-teal-bg: rgba(50,200,200,0.15); --tag-teal-text: #50d0d0;
+    --border-color: rgba(100,140,255,0.1);
+    --border-hover: rgba(100,140,255,0.3);
+    --nav-bg: rgba(20,30,60,0.85);
+    --nav-border: rgba(100,140,255,0.3);
+    --nav-text: #8ab4ff;
+    --nav-hover-bg: rgba(40,60,120,0.9);
+    --nav-hover-text: #b0d0ff;
+    --link: #6b8fc0;
+    --link-hover: #8ab4ff;
+    --watermark: #2a3040;
+    --shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  /* Light theme */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f0f2f7;
+      --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
+      --surface: rgba(255, 255, 255, 0.85);
+      --surface-hover: rgba(255, 255, 255, 0.95);
+      --text: #2d3748;
+      --text-secondary: #5a6878;
+      --text-dim: #8896a6;
+      --heading: #1a202c;
+      --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
+      --intro-border: rgba(66,103,178,0.15);
+      --intro-text: #3a4a60;
+      --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
+      --nw-border: rgba(140,100,220,0.2);
+      --nw-badge-bg: rgba(140,100,220,0.1);
+      --nw-badge-text: #7c4dff;
+      --nw-heading: #5b2eab;
+      --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
+      --think-border: rgba(200,170,50,0.2);
+      --think-badge-bg: rgba(200,170,50,0.1);
+      --think-badge-text: #b8860b;
+      --think-text: #5a4e30;
+      --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
+      --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
+      --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
+      --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
+      --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
+      --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
+      --border-color: rgba(0,0,0,0.06);
+      --border-hover: rgba(66,103,178,0.25);
+      --nav-bg: rgba(255,255,255,0.9);
+      --nav-border: rgba(66,103,178,0.2);
+      --nav-text: #4267b2;
+      --nav-hover-bg: rgba(240,242,247,0.95);
+      --nav-hover-text: #2d4a8a;
+      --link: #4267b2;
+      --link-hover: #2d4a8a;
+      --watermark: #c0c8d4;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+  }
+
+  /* Manual override */
+  [data-theme="dark"] { /* uses default dark vars */ }
+  [data-theme="light"] {
+    --bg: #f0f2f7;
+    --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
+    --surface: rgba(255, 255, 255, 0.85);
+    --surface-hover: rgba(255, 255, 255, 0.95);
+    --text: #2d3748;
+    --text-secondary: #5a6878;
+    --text-dim: #8896a6;
+    --heading: #1a202c;
+    --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
+    --intro-border: rgba(66,103,178,0.15);
+    --intro-text: #3a4a60;
+    --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
+    --nw-border: rgba(140,100,220,0.2);
+    --nw-badge-bg: rgba(140,100,220,0.1);
+    --nw-badge-text: #7c4dff;
+    --nw-heading: #5b2eab;
+    --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
+    --think-border: rgba(200,170,50,0.2);
+    --think-badge-bg: rgba(200,170,50,0.1);
+    --think-badge-text: #b8860b;
+    --think-text: #5a4e30;
+    --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
+    --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
+    --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
+    --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
+    --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
+    --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
+    --border-color: rgba(0,0,0,0.06);
+    --border-hover: rgba(66,103,178,0.25);
+    --nav-bg: rgba(255,255,255,0.9);
+    --nav-border: rgba(66,103,178,0.2);
+    --nav-text: #4267b2;
+    --nav-hover-bg: rgba(240,242,247,0.95);
+    --nav-hover-text: #2d4a8a;
+    --link: #4267b2;
+    --link-hover: #2d4a8a;
+    --watermark: #c0c8d4;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* Theme toggle */
+  .theme-toggle {
+    position: fixed; top: 16px; right: 16px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border);
+    color: var(--nav-text); padding: 6px 12px; border-radius: 20px;
+    font-size: 16px; cursor: pointer; backdrop-filter: blur(8px);
+    transition: all 0.2s; line-height: 1;
+  }
+  .theme-toggle:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
+
+  .back-nav {
+    position: fixed; top: 16px; left: 16px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border);
+    color: var(--nav-text); padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; text-decoration: none; backdrop-filter: blur(8px);
+    transition: all 0.2s;
+  }
+  .back-nav:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
+  @media (max-width: 600px) {
+    .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 12px auto 0; width: fit-content; }
+    .theme-toggle { top: auto; bottom: 20px; right: 16px; }
+  }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
+  .header {
+    text-align: center; padding: 48px 0 28px;
+    border-bottom: 1px solid var(--border-color); margin-bottom: 24px;
+  }
+  .header .date { font-size: 14px; color: var(--text-secondary); letter-spacing: 2px; }
+  .header h1 { font-size: 22px; color: var(--heading); margin: 8px 0 12px; font-weight: 700; }
+  .header .subtitle { font-size: 13px; color: var(--text-dim); }
+
+  .intro {
+    background: var(--intro-bg);
+    border: 1px solid var(--intro-border); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 24px; font-size: 14px;
+    color: var(--intro-text); line-height: 1.8;
+  }
+  .new-term {
+    background: var(--nw-bg);
+    border: 1px solid var(--nw-border); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 24px;
+  }
+  .new-term .badge {
+    display: inline-block; background: var(--nw-badge-bg); color: var(--nw-badge-text);
+    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  }
+  .new-term h3 { color: var(--nw-heading); font-size: 16px; margin-bottom: 6px; }
+  .new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+
+  .topic { margin-bottom: 24px; }
+  .topic-title {
+    font-size: 16px; font-weight: 700; color: var(--heading);
+    padding: 10px 0; border-bottom: 1px solid var(--border-color);
+    margin-bottom: 14px;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--border-color);
+    border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .card:hover { border-color: var(--border-hover); background: var(--surface-hover); }
+  .card .tag {
+    display: inline-block; font-size: 11px; padding: 1px 8px;
+    border-radius: 8px; margin-right: 6px; margin-bottom: 4px;
+  }
+  .tag-blue { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
+  .tag-green { background: var(--tag-green-bg); color: var(--tag-green-text); }
+  .tag-red { background: var(--tag-red-bg); color: var(--tag-red-text); }
+  .tag-orange { background: var(--tag-orange-bg); color: var(--tag-orange-text); }
+  .tag-purple { background: var(--tag-purple-bg); color: var(--tag-purple-text); }
+  .tag-teal { background: var(--tag-teal-bg); color: var(--tag-teal-text); }
+  .card h4 { font-size: 14px; color: var(--text); margin: 6px 0 4px; font-weight: 600; }
+  .card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--text-dim); margin-top: 6px; }
+  .card .source a { color: var(--link); text-decoration: none; }
+  .card .source a:hover { color: var(--link-hover); text-decoration: underline; }
+
+  .thinking {
+    background: var(--think-bg);
+    border: 1px solid var(--think-border); border-radius: 12px;
+    padding: 18px 20px; margin-top: 24px;
+  }
+  .thinking .badge {
+    display: inline-block; background: var(--think-badge-bg); color: var(--think-badge-text);
+    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  }
+  .thinking p { font-size: 14px; color: var(--think-text); line-height: 1.9; }
+
+  .watermark {
+    text-align: center; color: var(--watermark); font-size: 11px;
+    padding: 32px 0 8px; letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌓</button>
+<script>
+(function() {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+</script>
+<div class="container">
+  <div class="header">
+    <div class="date">2026-05-01 · 星期五</div>
+    <h1>AI 每日简报</h1>
+    <div class="subtitle">3 分钟跟上 AI 行业最值得关注的产品、组织和人才动向</div>
+  </div>
+
+  <div class="intro">五一前后，中国 AI 开源生态迎来一波集中爆发：智谱、MiniMax、月之暗面、DeepSeek 四家实验室在约 12 天内相继开源重量级模型，性能逼近西方前沿、成本仅其三分之一。与此同时，OpenAI 的 GPT-5.5 早已于 4 月 23 日落地，Anthropic 年化收入首次超越 OpenAI。开源与闭源的性价比鸿沟正在快速收窄。</div>
+
+  <div class="new-term">
+    <div class="badge">🆕 AI新名词</div>
+    <h3>开源军备竞赛（Open-Source Arms Race）</h3>
+    <p>指多家 AI 实验室在极短时间间隔内连续发布可商用开源权重模型，以"性能逼近闭源 + 成本仅 1/3 + 允许自由微调部署"的组合快速抢占开发者生态的现象。2026 年 5 月初，中国四家实验室在 12 天内集体开源即是典型：智谱 GLM-5.1（约 5/1）、MiniMax M2.7（5/3）、Kimi K2.6（5/4）、DeepSeek V4（5/4 全面铺开）。 为什么今天值得知道：开源权重意味着任何人都能下载、微调、部署，既能快速扩张用户基数，又能围绕工具链建立生态护城河。当开源模型在代码等智能体基准上接近 Claude Opus 4.7 与 GPT-5.5，闭源模型的溢价空间被实质压缩。</p>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">📌 议题一 · 中国开源大模型"十二日四连发"</div>
+    <div class="card">
+      
+      <h4>🟢 四家实验室集体开源，性能逼近前沿、成本仅 1/3</h4>
+      <p>据聚合数据，2026 年 5 月初 12 天内四次开源发布： - **智谱 GLM-5.1**（约 5/1）：新增 8 小时超长音频与文本上下文，中文理解与代码生成对标 Claude Opus 4.6 - **MiniMax M2.7**（5/3）：以高性价比语音与文本模型见长 - **Kimi K2.6**（5/4）：聚焦长上下文窗口 - **DeepSeek V4**（5/4 全面铺开）：1.6 万亿参数（490 亿激活），100 万 token 上下文，API 价格仅为 GPT-4 的 1/70 在 SWE-Bench、Terminal-Bench 等代码智能体基准上已接近 Claude Opus 4.7 与 GPT-5.5，推理成本不超过闭源模型的 1/3。</p>
+      
+    </div>
+    <div class="card">
+      
+      <h4>🔵 OpenAI GPT-5.5 已于 4/23 落地：超级 App + 200 万 token</h4>
+      <p>GPT-5.5（内部代号 Spud）早已发布，从聊天界面升级为"超级 App"，集成原生网页浏览、自主文件管理与多小时科研推理工具，标配 200 万 token 上下文窗口；API 定价 $5/$30 每百万 token，在 Terminal-Bench 2.0 达 82.7%。</p>
+      
+    </div>
+    <div class="card">
+      
+      <h4>🟠 Cloudflare Dynamic Workflows 发布：多租户持久化执行</h4>
+      <p>5 月 1 日，Cloudflare 发布 @cloudflare/dynamic-workflows——一个约 300 行的 MIT 库，让单个 Worker 可向每租户代码派发持久化工作流运行，补齐"动态部署"与"持久执行"之间的缺口，CI/CD 成为头条用例。</p>
+      
+    </div>
+  </div>
+  <div class="topic">
+    <div class="topic-title">📌 议题二 · 商业化与资本同步升温</div>
+    <div class="card">
+      
+      <h4>📈 Anthropic ARR 突破 $30B，首超 OpenAI</h4>
+      <p>5 月初，Anthropic 年化经常性收入（ARR）首次超越 OpenAI：Anthropic 达 $300 亿，OpenAI 约 $240 亿。同期 Anthropic 与 Blackstone、Hellman &amp; Friedman、Goldman Sachs 等达成 15 亿美元合资，结构为"前向部署企业服务公司"，把 Claude 直接嵌入 PE 投资组合公司的运营中。CFO Krishna Rao 称之为对企业需求"远超任何单一交付模式"的回应。</p>
+      
+    </div>
+    <div class="card">
+      
+      <h4>💰 Adept AI 完成 $3.5 亿 C 轮，英伟达微软跟投</h4>
+      <p>5 月 4 日，Adept AI 宣布完成 3.5 亿美元 C 轮，General Catalyst 领投，英伟达、微软跟投。资金用于扩张 Act-2 Agent 团队——该智能体可在浏览器、IDE 与终端中自主执行数据迁移、编写测试等复杂业务流程。</p>
+      
+    </div>
+    <div class="card">
+      
+      <h4>🌏 地缘背景：自主化路径强化</h4>
+      <p>5 月上旬，美国与 Google DeepMind、Microsoft、xAI 等达成模型审查协议，并确认 AI 合作框架下中国模型不在考虑之列。这一外部压力反而强化了中国 AI 产业"自强不息"的开源与国产适配路径。</p>
+      
+    </div>
+  </div>
+
+  <div class="thinking">
+    <div class="badge">💡 每日思考题</div>
+    <p>今天最核心的信号是：中国四家实验室 12 天内集体开源对标前沿的模型，成本仅闭源 1/3。 这意味着企业用 AI 的"自研 vs 采购"天平正在移动——过去"闭源更省心"的默认假设，正在被"开源够用且便宜 70%"的现实动摇。 **作为 HR，当贵司的技术栈可以基于开源模型以 1/3 成本搭建时，你的人才策略应该更偏向"会调开源、懂私有化部署"的复合型工程人才，还是继续重金囤积只熟悉闭源 API 的人？组织的能力沉淀，应该长在谁的生态上？** *Made by ChloeCao | 数据采集时间 2026-05-01 11:00 CST（补档重建）*</p>
+  </div>
+
+
+  <div class="watermark">Made by ChloeCao</div>
+</div>
+</body>
+</html>
