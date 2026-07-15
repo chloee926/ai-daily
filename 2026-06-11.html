@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-06-11-nw-0">
       <button class="star-btn" data-key="2026-06-11-nw-0" aria-label="关注这条">☆</button>
       <h3>持久记忆系统</h3>
       <p>小米 MiMo Code 引入的 AI 编程架构，通过项目记忆、会话检查点、任务进度三重机制，配合独立子智能体负责状态记录与简报重构，解决 AI 在长会话中"越用越忘"的问题。即使上百轮交互，也能保持输出质量和关键信息不丢失。这是 AI 编程工具从"单次回答"走向"长期协作者"的关键基础设施。</p>
@@ -305,13 +334,13 @@
       <h2 class="sec-title">议题一 · AI 编程 Agent 竞争白热化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-11-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-06-11-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 小米 — 开源 MiMo Code，5 人 2 周开发，长周期任务胜率超 Claude Code</h4>
         <p>6 月 11 日凌晨，小米 MiMo 团队发布终端编程 Agent 产品 MiMo Code，MIT 协议开源。5 人 2 周完成开发，内置限时免费 MiMo-V2.5 模型（百万 token 上下文），支持接入 DeepSeek、Kimi、GLM 等主流模型。官方数据显示：相同模型条件下 MiMo Code 在 SWE-bench Pro 和 TerminalBench 2 上比 Claude Code 高约 5 个百分点；超过 200 步的长周期任务胜率升至 65% 以上。</p>
         <div class="source">来源：<a href="https://finance.sina.com.cn/stock/relnews/hk/2026-06-11/doc-iniazays5618871.shtml" target="_blank">新浪财经</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-11-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-06-11-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 被曝考虑大幅降价，争夺 Anthropic 企业客户</h4>
         <p>据报道，OpenAI 正在考虑大幅降价，以期从 Anthropic 手中争得企业客户。大幅降价可能侵蚀两家公司的利润率——它们已经因 AI 系统巨大的计算成本而损失数十亿美元。这标志着 AI 行业从"比模型能力"进入"比价格竞争力"的新竞争维度。</p>
@@ -325,13 +354,13 @@
       <h2 class="sec-title">议题二 · AI 治理与就业冲击</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-11-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-06-11-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic — CEO 发万字檄文呼吁政府强制监管，投入 3.5 亿美元推动落地</h4>
         <p>Anthropic CEO Dario Amodei 发布《指数级 AI 政策》长文，呼吁美国政府建立类似 FAA 的强制监管机构，对前沿 AI 模型进行第三方安全测试，政府有权阻止存在风险的模型发布。测试覆盖网络安全、生物武器、自主失控和自动化研发四个维度。Anthropic 承诺投入 3.5 亿美元（2 亿研究+1.5 亿奖学金）推动框架落地。Amodei 明确承认 AI 可能导致大规模持久失业。</p>
         <div class="source">来源：<a href="https://c.m.163.com/news/a/KV5FRR7O0511ABV6.html" target="_blank">新智元</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-11-t1-1" data-rel="mid">
         <button class="star-btn" data-key="2026-06-11-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 行业 — AI 首次进入高考志愿填报，信息差被大规模抹平</h4>
         <p>千问、元宝、百度等 AI 产品全面上线高考志愿填报 Agent，免费提供方案推荐和专业分析。过去万元级咨询服务被 AI 平价化，信息差首次被大规模抹平，AI 进入中国家庭最重要的决策场景之一。这是 AI Agent 在中国 C 端最大规模的落地案例之一。</p>
@@ -410,7 +439,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

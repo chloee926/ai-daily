@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-15-nw-0">
       <button class="star-btn" data-key="2026-05-15-nw-0" aria-label="关注这条">☆</button>
       <h3>Mixture of Agents (MoA)</h3>
       <p>OpenAI Project Orion 采用的新架构，不再靠单一巨型模型处理所有问题，而是让多个专精子模型协作解题。好处是推理成本降 40%、上下文窗口拉到 1000 万 token——相当于一次性喂进一整个企业级代码库。</p>
@@ -305,31 +334,31 @@
       <h2 class="sec-title">议题一 · AI 平台争夺战：三巨头同周交火</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-15-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-15-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI</h4>
         <p>Project Orion 正式亮相，Mixture of Agents 架构推理成本降 40%，上下文窗口达 1000 万 token，定位为自主 Agent 系统基础。企业合作伙伴已在 Q1 获得早期访问权限，商业化正式启动。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-15-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-15-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Google</h4>
         <p>I/O 前夕发布 Gemini Intelligence，全面嵌入 Android 系统底层，推出 Googlebook 笔记本电脑（与惠普、戴尔、联想合作），Magic Pointer 鼠标实现语义理解交互。安卓系统被定义为"有史以来最大更新"。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-15-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-15-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic</h4>
         <p>Claude 企业采用率首超 OpenAI（34.4% vs 32.3%），据 Ramp AI Index 覆盖 5 万+企业的数据显示。Claude Code 是核心增长引擎——全球 GitHub 公开提交中约 4% 由 Claude Code 撰写，一个月内翻倍。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-15-t0-3" data-rel="mid">
         <button class="star-btn" data-key="2026-05-15-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic</h4>
         <p>与 PwC 达成战略合作，PwC 将培训 3 万名美国员工使用 Claude Code，并在全球 36.4 万员工中推广，双方成立 AI 卓越中心（CoE）。同月获黑石、高盛等 15 亿美元投资。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-15-t0-4" data-rel="mid">
         <button class="star-btn" data-key="2026-05-15-t0-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 苹果</h4>
         <p>据彭博报道，Apple 正探索将 AI 智能体整合至 App Store，下月 WWDC 将大力推进 AI 战略。同时 OpenAI 与 Apple 因平台控制权产生紧张关系，Apple 考虑允许用户自选 AI 模型。</p>
@@ -343,31 +372,31 @@
       <h2 class="sec-title">议题二 · AI 对就业市场的深层冲击</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-15-t1-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-15-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 高盛报告</h4>
         <p>AI 替代效应每月净减少约 1.6 万个美国岗位（替代 2.5 万 vs 增效回补 0.9 万）。软件工程和数据分析岗位面临"Q3 2026 自动化压力"。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-15-t1-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-15-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 脉脉报告</h4>
         <p>2026年1-4月中国 AI 岗位量同比增长 8.7 倍，具身智能赛道暴增 15 倍。北京和杭州 AI 岗位渗透率约 30%（每 10 个新岗位有 3 个是 AI 岗），近 4 成程序员绩效考核纳入 AI 能力。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-15-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-15-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Cerebras</h4>
         <p>AI 芯片公司以每股 185 美元定价 IPO，拟募资超 55 亿美元，5 月 14 日在纳斯达克开始交易（代码 CBRS）。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-15-t1-3" data-rel="mid">
         <button class="star-btn" data-key="2026-05-15-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 微软</h4>
         <p>确认在 OpenAI 合作项目上已投入超过 1000 亿美元，涵盖初始投资和基础设施成本。这是微软首次公开披露总投入规模。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-15-t1-4" data-rel="mid">
         <button class="star-btn" data-key="2026-05-15-t1-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里</h4>
         <p>企业级 Agent 平台"悟空"开始逐步规模化放量，面向企业自动化场景。</p>
@@ -446,7 +475,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

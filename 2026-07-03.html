@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,8 +320,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-07-03-nw-0" aria-label="关注这条">☆</button><h4>FDE（Frontier Deployment Engineering，前沿部署工程）</h4><p>微软于7月2日宣布成立"Microsoft Frontier Company"时提出的新概念。FDE是一种专门帮助企业将前沿AI模型从实验室落地到生产环境的工程方法论，强调"部署"而非"研发"才是AI产业化的核心瓶颈。微软为此投入25亿美元、组建6000人团队，首批服务对象包括金融、医疗、制造等传统行业。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-07-03-nw-1" aria-label="关注这条">☆</button><h4>Prompt Steganography（提示词隐写术）</h4><p>指在AI系统的提示词中，通过替换视觉上几乎无法区分的Unicode字符（如不同编码的撇号、日期分隔符等）来隐蔽传递信息的技术。2026年6月30日，安全研究员逆向Claude Code客户端时发现Anthropic使用该技术标记中国用户——通过将日期连字符改为斜杠、将撇号替换为3种Unicode变体，静默编码用户身份信息发送至服务器端。该事件被称为"隐写门"。</p></div>
+      <div class="term-item" id="2026-07-03-nw-0"><button class="star-btn" data-key="2026-07-03-nw-0" aria-label="关注这条">☆</button><h4>FDE（Frontier Deployment Engineering，前沿部署工程）</h4><p>微软于7月2日宣布成立"Microsoft Frontier Company"时提出的新概念。FDE是一种专门帮助企业将前沿AI模型从实验室落地到生产环境的工程方法论，强调"部署"而非"研发"才是AI产业化的核心瓶颈。微软为此投入25亿美元、组建6000人团队，首批服务对象包括金融、医疗、制造等传统行业。</p></div>
+      <div class="term-item" id="2026-07-03-nw-1"><button class="star-btn" data-key="2026-07-03-nw-1" aria-label="关注这条">☆</button><h4>Prompt Steganography（提示词隐写术）</h4><p>指在AI系统的提示词中，通过替换视觉上几乎无法区分的Unicode字符（如不同编码的撇号、日期分隔符等）来隐蔽传递信息的技术。2026年6月30日，安全研究员逆向Claude Code客户端时发现Anthropic使用该技术标记中国用户——通过将日期连字符改为斜杠、将撇号替换为3种Unicode变体，静默编码用户身份信息发送至服务器端。该事件被称为"隐写门"。</p></div>
     </div>
   </section>
 
@@ -304,19 +333,19 @@
       <h2 class="sec-title">AI产品&平台动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-07-03-t0-0" data-rel="low">
         <button class="star-btn" data-key="2026-07-03-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic密集更新：Claude Code动态工作流正式版 + Claude Tag发布</h4>
         <p>Claude Code动态工作流（Dynamic Workflows）于7月2日从研究预览升级为正式可用，首次向月费$20的Pro用户开放。核心突破：Claude可针对每个任务现场生成JavaScript编排脚本，协调多达1000个并行子Agent，引入"评估器-优化器"对抗性验证机制。同日发布Claude Tag——可在企业Slack中运行的虚拟员工工具，化身团队成员完成协作任务。 此外，7月3日凌晨美国政府解除了对Claude Fable 5和Mythos 5的出口限制，恢复全球访问。</p>
         
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-07-03-t0-1" data-rel="low">
         <button class="star-btn" data-key="2026-07-03-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Kimi K2.7 Code登陆GitHub Copilot，开源模型首进模型选择器</h4>
         <p>7月1日，GitHub正式在Copilot中上线月之暗面的开源编程模型Kimi K2.7 Code，这是Copilot模型选择器首次纳入开放权重模型。K2.7 Code采用MoE架构（总参数1万亿，每token激活320亿），支持256K上下文，亮点在"过度思考抑制"——较K2.6减少约30%的thinking-token使用量。首批面向Pro/Pro+/Max用户，由GitHub托管在Azure上按用量计费。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-03-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-07-03-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 可灵AI完成近30亿美元融资，创全球视频大模型最大融资纪录</h4>
         <p>7月2日晚间，快手公告旗下视频生成大模型可灵AI完成约30亿美元（204亿元人民币）首轮外部融资，投后估值180亿美元。由CPE源峰、国方创投、BlueFive（阿布扎比资本）、腾讯、中关村科学城基金、中信证券联合领投；阿里云、百度、华策影视等参投。BAT罕见同场入局。可灵当前ARR近5亿美元，全球用户突破1亿。若2031年10月前未完成IPO，投资者可要求按年化8%回购。</p>
@@ -330,25 +359,25 @@
       <h2 class="sec-title">AI公司组织&人才</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-03-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-07-03-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 微软投入25亿美元成立Microsoft Frontier Company，6000人AI部署军团</h4>
         <p>微软于7月2日宣布成立全新独立子公司"Microsoft Frontier Company"，投入25亿美元初始资金，专注帮助企业客户将前沿AI模型落地到生产环境。团队规模6000人，从微软咨询、Azure和研究院整合而来。CEO由前Azure AI副总裁担任。首批客户覆盖金融（摩根大通）、医疗（梅奥诊所）、制造（西门子）等领域。微软将这一模式定义为"FDE（前沿部署工程）"——承认AI应用的最大瓶颈不在模型能力，而在落地部署。</p>
         
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-07-03-t1-1" data-rel="low">
         <button class="star-btn" data-key="2026-07-03-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Claude Code"隐写门"全面发酵：隐蔽标记中国用户近3个月</h4>
         <p>6月30日至7月2日持续发酵的重大事件。安全研究员逆向分析发现，Claude Code自4月2日v2.1.91版起内置了一套经XOR-91混淆的隐蔽检测逻辑：读取系统时区（Asia/Shanghai/Urumqi）+ 扫描代理域名（147个硬编码条目，覆盖百度、阿里、字节、月之暗面、MiniMax等）→ 通过Unicode字符替换将标记编码进提示词 → 服务器端识别用户身份。该机制运行近90天，从未在更新日志中披露。 7月1日Anthropic团队成员承认为"3月上线的反滥用实验"，承诺7月2日回滚。但始终未解释为何关键词清单集中指向中国科技主体，未披露数据流向。X平台相关讨论获近400万阅读。开发者社区将其定性为"文本隐写术+间谍软件行为"，多家企业开始重新审计本地AI工具权限配置。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-03-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-07-03-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Meta计划出售富余AI算力引发市场动荡，全球科技股承压</h4>
         <p>7月1-2日，多家媒体报道Meta正在探索向外部企业出售其数据中心的富余AI算力，准备进军云计算市场。市场将此解读为"AI算力可能过剩"的强烈信号。消息引发全球科技股大跌，A股科创50指数7月2日下跌7.7%，港股科技ETF跌超5%，美股英伟达盘后一度下跌4%。分析师观点分化：看空方认为这表明AI基础设施投入已过度；看多方认为这恰恰说明Meta的AI投资规模之大，以至于有余力对外服务。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-03-t1-3" data-rel="mid">
         <button class="star-btn" data-key="2026-07-03-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 亚马逊追加130亿美元印度AI基础设施投资</h4>
         <p>亚马逊于7月2日宣布追加130亿美元投资印度AI基础设施建设，使其在印度的AI总投资额达到480亿美元。投资将用于建设新的数据中心集群和训练集群，目标是将印度打造为除美国外最大的AI计算节点。此举与英伟达此前在印度设立收入分成合作模式形成呼应，印度正加速成为全球AI基础设施的第三极。</p>
@@ -427,7 +456,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

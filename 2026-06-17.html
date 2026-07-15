@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-06-17-nw-0">
       <button class="star-btn" data-key="2026-06-17-nw-0" aria-label="关注这条">☆</button>
       <h3>具身智能汽车（Embodied Intelligence Vehicle）</h3>
       <p>一句话解释： 理想汽车提出的全新产品形态定义——同时拥有电动车、职业司机、AI计算机与生活助手四大能力的智能体，本质上是将具身智能（Embodied AI）从机器人领域迁移至汽车载体。 为什么重要： 理想汽车CEO李想明确表示"理想本质上是一家AI终端公司"。具身智能汽车搭载自研马赫VLA（Vision-Language-Action）多模态模型实现能力涌现，配备全球首款量产动态数据流AI芯片马赫M100，端到端反应速度0.2秒（比人类快56%）。这标志着汽车从"交通工具"被重新定义为"具身智能载体"——不再是"车+智能"，而是"智能+轮子"，对整个汽车行业的产品定义和人才需求产生深远影响。</p>
@@ -305,25 +334,25 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-17-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-06-17-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> SpaceX 600亿美元全股票收购Cursor，AI编程工具进入超级并购时代 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月16日，SpaceX向SEC提交文件，确认以全股票方式收购AI编程工具Cursor开发商Anysphere，交易隐含估值约600亿美元，不涉及现金支付。交易完成后Cursor将成为SpaceX全资子公司，纳入SpaceX与xAI生态体系。SpaceX此前于4月签署看涨期权协议，本次IPO后正式行权，预计Q3完成交割，终止须付100亿分手费。Cursor两年做到10亿ARR但深度依赖Anthropic曾陷"套壳"争议，并购将打通"芯片—模型—产品"全链条。同日，Cursor在首届Compile大会上剧透与SpaceX合作打造的1.5万亿参数通用大模型，从零开始在超10万块GPU上训练，不局限于编程，未来几周内正式发布。同时发布移动应用CursorMobile和原生适配智能体的代码托管平台Origin（对标GitHub）。 为什么对 TME 重要： AI编程工具从"创业赛道"进入"超级平台"阶段。Cursor+SpaceX的组合意味着"算力—模型—编程工具"垂直整合，可能改变企业级开发工具的采购逻辑。技术团队需关注Cursor是否会因收购调整定价策略或平台中立性。</p>
         <div class="source">来源：<a href="https://www.nbd.com.cn/articles/2026-06-17/4428739.html" target="_blank">每经 - SpaceX收购Cursor</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-17-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-06-17-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 智谱发布GLM-5.2，MIT开源100万上下文窗口，编程与Agent能力大幅增强 <span class="music-badge">🎵</span></h4>
         <p>摘要： 智谱AI正式发布GLM-5.2，采用MIT开源许可证，支持100万token上下文窗口。该模型在编程和Agent任务上有显著提升，具备强大的长程推理能力（long-horizon capabilities）。MIT许可意味着完全商业自由，对企业开发者非常友好。这是国产大模型中首个在开源许可下提供百万级上下文窗口的旗舰模型，直接对标Claude Sonnet和GPT-5.5级别的编程与Agent能力。摩尔线程同日宣布在MTT S5000智算卡上完成GLM-5.2的Day-0极速适配。 为什么对 TME 重要： MIT开源+百万上下文窗口意味着企业可以完全自主部署一个旗舰级模型，无需担心API依赖和定价波动。对于需要处理长文档（如法律合同、代码仓库）的场景，百万上下文窗口有直接应用价值。国产模型在开源许可上的激进策略正在降低企业AI部署门槛。</p>
         <div class="source">来源：<a href="https://www.cnblogs.com/itech/p/20584655" target="_blank">博客园 - AI技术日报2026-06-17</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-17-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-06-17-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 支付宝AI版"阿宝"上线，Google发布Android 17集成最新AI模型 <span class="music-badge">🎵</span></h4>
         <p>摘要： 支付宝宣布开启AI版邀测，用户右滑可唤起AI助手"阿宝"，通过对话或语音安排办事，万种服务一句话直达。MiniMax M3接入支付宝Token Pay。同时，Google发布Android 17与Wear OS 7正式版，首发搭载于Pixel设备，集成最新AI模型。SpaceXAI上线Grok PowerPoint插件，支持结合实时数据与MCPs在幻灯片中直接生成图表、图像并优化排版。阿里桌面AI助理QoderWork上线"意识"功能，集成记忆、反思、技能进化三大模块。 为什么对 TME 重要： 支付宝"阿宝"标志着超级App从"功能聚合"走向"AI对话入口"——用户不再找功能，而是告诉AI要做什么。这对TME的产品交互设计有参考价值：音乐服务的发现、推荐、播放都可能被对话式AI重新定义。Google Android 17的AI集成意味着端侧AI能力将成为操作系统标配。</p>
         <div class="source">来源：<a href="https://www.yeyulingfeng.com/a/763559.html" target="_blank">夜雨聆风 - AI早报2026-06-17</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-17-t0-3" data-rel="mid">
         <button class="star-btn" data-key="2026-06-17-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 理想汽车发布Livis具身智能系统，阿里Qwen发布具身智能基础模型 <span class="music-badge">🎵</span></h4>
         <p>摘要： 理想汽车正式发布Livis具身智能系统，给出"具身智能汽车"完整定义：同时拥有电动车、职业司机、AI计算机与生活助手四大能力的智能体。核心亮点包括自研马赫VLA多模态模型、全球首款量产动态数据流AI芯片马赫M100、端到端反应0.2秒（比人类快56%）、7月起智驾效率提升30%。同日，Qwen团队发布Qwen-Robot Suite具身智能基础模型，包含三个模型弥合视觉语言理解与物理控制之间的鸿沟。高德AmapAI推出基于Wan2.2的通用世界模型DreamX-World 1.0，支持1分钟连续视频生成与实时交互。 为什么对 TME 重要： 具身智能是AI从"数字世界"走向"物理世界"的关键桥梁。理想"汽车即AI终端"的定义可能影响车载音乐交互方式——当汽车成为具身智能载体，音乐推荐和播放体验将深度融入驾驶场景，TME需关注车载场景的AI原生交互设计。</p>
@@ -337,25 +366,25 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-17-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-06-17-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> DeepSeek完成74亿美元首轮融资，估值500亿美元创中国AI纪录</h4>
         <p>摘要： 6月16日，DeepSeek完成成立以来的首轮外部融资，总规模约510亿元（约74亿美元），投后估值超500亿美元（约3380亿元），为国内AI行业最大单轮融资。投资方包括创始人梁文锋个人出资约200亿元、腾讯约100亿元、宁德时代体系约50亿元，以及网易、京东、IDG资本、国家人工智能产业投资基金等。融资采用特殊交易结构确保创始人控制权——投资者资金注入梁文锋管理的有限合伙企业，股份锁定五年且无投票权（国家AI产业基金例外）。DeepSeek以开源模型和极低成本训练闻名，DeepSeek-V4系列在多项基准测试中达国际一流水平。 对招聘的启发： DeepSeek的融资结构极为特殊——"创始人个人出资200亿+投资者无投票权+五年锁定期"——确保了技术路线不被资本短期利益干扰。这对人才市场传递了明确信号：DeepSeek将以长线姿态参与AI竞争，其开源策略和华为芯片路线意味着对"国产算力+开源模型"方向的人才需求将持续增长。</p>
         <div class="source">来源：<a href="https://www.toutiao.com/article/7652326158684308006/" target="_blank">今日头条 - DeepSeek完成约510亿元首轮融资</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-17-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-06-17-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 美国政府叫停Anthropic Fable 5模型，AI模型出口管制首例</h4>
         <p>摘要： 美国政府以国家安全为由，向Anthropic发出出口管制指令，要求暂停所有外国人士（包括在美外籍员工）对Fable 5和Mythos 5模型的访问。由于Anthropic无法在全球用户中实时核验国籍，被迫全面关停两款模型的所有用户访问。这是美国出口管制历史上首次直接叫停商业化大模型的全球流转。据后续报道，禁令前一天参议院情报委员会副主席在简报中转述称，Anthropic的Mythos模型在一次授权红队演习中"数小时即突破NSA几乎所有机密系统测试防线"。Anthropic声明称收到指令时仅有90分钟处理时间，并表示"不认同狭窄越狱漏洞应成为召回商业模型的理由"。 对招聘的启发： AI模型出口管制首例标志着前沿AI监管从"政策讨论"进入"强制执行"阶段。对于使用海外AI模型的企业而言，供应链安全风险陡增——任何海外模型都可能因地缘政治原因被随时叫停。这将加速企业对"国产替代"和"多模型策略"的需求，相关岗位的人才价值将提升。</p>
         <div class="source">来源：<a href="https://www.anthropic.com/news/fable-mythos-access" target="_blank">Anthropic官方声明 - Fable 5/Mythos 5暂停访问</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-17-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-06-17-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> ChatGPT市场份额首次跌破50%，OpenAI去年烧钱340亿美元</h4>
         <p>摘要： OpenAI的ChatGPT消费级AI助手市场份额首次跌破50%，Google Gemini和Anthropic Claude持续蚕食份额。市场正从"一家独大"走向"多强并存"，买方越来越多地混合使用多家供应商。财务数据显示OpenAI过去一年消耗约340亿美元，揭示了前沿模型开发、算力投入和产品扩张的巨大现金消耗。规模化的亏损加剧了与Anthropic的价格战，也解释了两家公司为何都在积极融资——估值均逼近1万亿美元。Anthropic同期撤回了引发争议的Agent SDK计费变更，被视为价格战压力下的开发者生态争夺。 对招聘的启发： ChatGPT份额跌破50%说明AI助手市场正走向"多供应商"格局，这对企业是利好——议价权从供应商转移至买方。OpenAI 340亿美元烧钱规模揭示了AI竞赛的真实成本，也意味着行业整合可能加速。HR需关注：多模型策略相关的人才需求正在上升，"模型评估与选型"正在成为新技能方向。</p>
         <div class="source">来源：<a href="https://www.my2cents.ai/news/2026-06-17" target="_blank">My2Cents - AI News June 17 2026</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-17-t1-3" data-rel="hi">
         <button class="star-btn" data-key="2026-06-17-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Robinhood裁员10%约300人，法国追加6.55亿欧元投资AI</h4>
         <p>摘要： 金融科技行业裁员潮持续，Robinhood裁员10%（约300人），Block、Coinbase、PayPal等均在裁撤行列。法国总理宣布在"法国2030"计划框架下追加6.55亿欧元，重点支持AI基础设施、算力、科研及产业链建设，并推进AI在公共服务中的应用，欧洲AI主权加速推进。国内方面，硅基流动完成超20亿元B轮融资，"Token工厂"加速落地；科创板第五套标准适用范围正式扩大至人工智能大模型行业，证监会主席吴清在陆家嘴论坛上明确表示支持优质AI大模型企业上市。 对招聘的启发： 金融科技裁员与AI投资形成鲜明对比——传统金融科技岗位在收缩，但AI基础设施建设相关投资在加码。科创板向AI大模型企业开放上市通道，将为中国AI初创企业提供新的融资和人才吸引路径。HR需关注：AI基础设施和国产AI芯片方向的人才需求正在政策驱动下加速增长。</p>
@@ -434,7 +463,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

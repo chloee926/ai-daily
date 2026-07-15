@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-22-nw-0">
       <button class="star-btn" data-key="2026-05-22-nw-0" aria-label="关注这条">☆</button>
       <h3>Compute-as-a-Service（算力即服务）</h3>
       <p>一种将AI计算资源（GPU/CPU集群）以云服务形式按需提供的商业模式。随着智能体AI对推理算力需求激增，Anthropic与SpaceX签署了每月12.5亿美元的算力服务合同，标志着算力正在成为AI产业链中最核心的交易商品。</p>
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · AI产品与平台动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-22-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-22-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> NVIDIA — Q1营收816亿美元，数据中心收入增长92%</h4>
         <p>英伟达发布2027财年Q1财报：总营收816亿美元（同比+87%），数据中心收入752亿美元（同比+92%）。黄仁勋指出，企业拥有价值数千亿美元的GPU集群，绝不能因CPU瓶颈而闲置——这正是Vera CPU存在的意义。公司同时宣布将在台湾每年投资1500亿美元并建设新总部。</p>
         <div class="source">来源：<a href="https://shengxinai.com/archives/ai-yi-zhou-da-shi-pan-dian-2026-nian-5-yue-17-ri" target="_blank">省心AI</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-22-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-22-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Mistral — 开源Medium 3.5模型，256K上下文</h4>
         <p>法国AI公司Mistral发布Medium 3.5（128B dense, 256K context），采用宽松许可协议，专为云编程智能体和多步骤工作场景设计。此前Mistral已于3月开源Small 4（119B MoE），持续推动欧洲开源AI生态发展。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AI Critique</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-22-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-22-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Google — Nano Banana 2与Nano Banana Pro面向企业开放</h4>
         <p>谷歌将快速图像与内容生成模型Nano Banana 2和Nano Banana Pro正式向企业用户开放，增强了对文本生成、多语言资产和高质量内容输出的控制能力，面向日常创意工作流提供更强的AI辅助。</p>
@@ -331,13 +360,13 @@
       <h2 class="sec-title">议题二 · AI公司组织、人才与治理</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-22-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-05-22-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta — 8000人裁员正式落地，AI转型加速</h4>
         <p>Meta裁员约8000人正式执行，约占员工总数10%。同日约7000名员工收到调岗通知，将其安排至扎克伯格亲自推动的Applied AI项目中。据报道，部分员工的工作内容被AI智能体覆盖——深圳一家大厂因AI Agent能完成原有工作而裁撤了整个文档团队，许多人直到当天上班才得知被裁。</p>
         <div class="source">来源：<a href="https://m.sohu.com/a/1027076273_122066678" target="_blank">搜狐科技</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-22-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-05-22-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> BCG — 报告预测AI将在2-3年内重塑美国半数工作岗位</h4>
         <p>波士顿咨询公司最新报告预测，AI将在两到三年内重塑美国约半数的工作岗位，最终可能有多达15%的岗位被彻底淘汰。奥纬咨询研究则指出，科技行业74%的CEO正在冻结或缩减招聘。但英伟达应用深度学习副总裁表示："以我的团队来说，运算成本远高于员工成本。"</p>
@@ -416,7 +445,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

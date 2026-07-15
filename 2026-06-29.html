@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,8 +320,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-06-29-nw-0" aria-label="关注这条">☆</button><h4>子智能体协同架构（Sub-Agent Orchestration）</h4><p>一句话解释： GPT-5.6 Sol的Ultra模式首次引入的全新推理架构——由一个主智能体调度多个"子智能体"并行处理同一复杂任务的不同子模块，再合并结果输出，本质是把"多Agent协同"从应用层下沉到模型原生能力。 为什么重要： 它打破了"一个模型解决一个问题"的传统范式，意味着AI开始具备"项目级"任务处理能力（同时调度写作、检索、计算、验证等多个子任务），是Agent时代的底层基础设施级突破。Sol Ultra在Terminal-Bench 2.1上拿到91.9%的最高分，正是该架构的直接体现。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-06-29-nw-1" aria-label="关注这条">☆</button><h4>AI-Native Device（AI原生设备）</h4><p>一句话解释： 区别于"传统设备+AI助手"（如手机+App），AI原生设备从芯片、OS、交互到云端均为AI能力重新设计——OpenAI挖角苹果Vision Pro硬件VP Paul Meade，正是为打造该品类。 为什么重要： 这是继"移动互联网设备"之后又一代产品范式跃迁——下一个十亿级硬件品类可能不再来自苹果、华为，而是来自OpenAI、Anthropic等AI原生公司。对消费电子产业链的人才结构、招聘画像将产生根本性重塑。</p></div>
+      <div class="term-item" id="2026-06-29-nw-0"><button class="star-btn" data-key="2026-06-29-nw-0" aria-label="关注这条">☆</button><h4>子智能体协同架构（Sub-Agent Orchestration）</h4><p>一句话解释： GPT-5.6 Sol的Ultra模式首次引入的全新推理架构——由一个主智能体调度多个"子智能体"并行处理同一复杂任务的不同子模块，再合并结果输出，本质是把"多Agent协同"从应用层下沉到模型原生能力。 为什么重要： 它打破了"一个模型解决一个问题"的传统范式，意味着AI开始具备"项目级"任务处理能力（同时调度写作、检索、计算、验证等多个子任务），是Agent时代的底层基础设施级突破。Sol Ultra在Terminal-Bench 2.1上拿到91.9%的最高分，正是该架构的直接体现。</p></div>
+      <div class="term-item" id="2026-06-29-nw-1"><button class="star-btn" data-key="2026-06-29-nw-1" aria-label="关注这条">☆</button><h4>AI-Native Device（AI原生设备）</h4><p>一句话解释： 区别于"传统设备+AI助手"（如手机+App），AI原生设备从芯片、OS、交互到云端均为AI能力重新设计——OpenAI挖角苹果Vision Pro硬件VP Paul Meade，正是为打造该品类。 为什么重要： 这是继"移动互联网设备"之后又一代产品范式跃迁——下一个十亿级硬件品类可能不再来自苹果、华为，而是来自OpenAI、Anthropic等AI原生公司。对消费电子产业链的人才结构、招聘画像将产生根本性重塑。</p></div>
     </div>
   </section>
 
@@ -304,19 +333,19 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-29-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-06-29-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI发布GPT-5.6系列，Sol/Terra/Luna三款模型首次受政府审批限制 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI于6月26日正式发布GPT-5.6系列，包含旗舰Sol、均衡Terra和轻量Luna三款模型。Sol在Terminal-Bench 2.1编程测试中标准模式得分88.8%（超Mythos 5的88.0%），Ultra模式达91.9%。但应美国政府要求，Sol目前仅对约20家经政府审批的合作伙伴开放预览，OpenAI表示这不是其偏好的长期模式。定价方面，Sol输入$5/输出$30、Terra输入$2.5/输出$15、Luna输入$1/输出$6（每百万token）。 为什么对 TME 重要： GPT-5.6的分层产品策略值得关注——Sol锚定天花板、Terra覆盖主流、Luna阻击入门，这种分层逻辑与企业级AI采购决策直接相关。政府审批模式也意味着前沿AI工具的获取可能不再是纯商业行为。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260627A0286300" target="_blank">TechWeb</a>（2026年6月27日）</div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-29-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-06-29-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic Fable 5出口管制有望本周解除，Mythos 5已向百余家企业开放 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月12日被紧急管制下线15天后，Anthropic最强模型迎来松绑信号。6月26日，美国政府已允许Mythos 5向100余家"可信"美国企业开放，包括大量财富500强。Fable 5的限制预计最快本周内解除，但国防部和NSA尚未最终批准。商务部长卢特尼克确认Anthropic已在安全保障方面取得"重大进展"。 为什么对 TME 重要： AI出口管制正成为行业常态变量。前沿模型的可用性不再仅取决于技术能力，政策合规将成为企业AI战略的关键考量因素。</p>
         <div class="source">来源：<a href="https://www.stcn.com/article/detail/3983776.html" target="_blank">证券时报</a>（2026年6月28日）</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-29-t0-2" data-rel="hi">
         <button class="star-btn" data-key="2026-06-29-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 英伟达Vera Rubin平台进入全面量产，硅光CPO交换机商用交付 <span class="music-badge">🎵</span></h4>
         <p>摘要： 英伟达在年度股东会上确认Vera Rubin平台进入全面量产，配套Spectrum-X以太网硅光CPO（共封装光学）交换机同步启动量产交付。这是全球首款从实验室走向商业化的CPO交换机，采用台积电COUPE硅光平台，单机柜最高128块GPU、最大扩展16000块GPU，实现5倍能效提升。黄仁勋称："Vera Rubin不是一颗芯片，而是一个AI工厂平台。" 为什么对 TME 重要： AI算力基础设施从"电互联"跨入"光互联"时代，意味着下一波AI人才需求将扩展到光通信、先进封装等交叉领域，招聘人才画像需要相应调整。</p>
@@ -330,19 +359,19 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-29-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-06-29-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 苹果Vision Pro硬件副总裁Paul Meade跳槽OpenAI，AI硬件人才战升温</h4>
         <p>摘要： 苹果视觉产品集团硬件工程副总裁Paul Meade确认离职加入OpenAI硬件部门。Meade在苹果15年，主导Vision Pro硬件工程7年，同时负责苹果智能眼镜项目。离职原因与苹果新CEO John Ternus上任后的高管重组有关——新首席硬件官Johny Srouji增加管理层级，Meade被"变相降级"。Meade将与Jony Ive、Sam Altman共同推进OpenAI的AI原生设备研发。 对招聘的启发： 这是AI行业人才争夺从模型层延伸到硬件层的标志性事件。OpenAI的硬件团队正在从"设计概念"走向"工业制造"，这意味着AI公司对消费电子硬件工程人才的需求将显著增长，传统硬件厂商面临核心人才流失风险。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260627A08NJO00" target="_blank">彭博社/科创板日报</a>（2026年6月27日）</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-29-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-06-29-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 全球科技行业AI驱动裁员超12万人，"腾笼换鸟"成新常态</h4>
         <p>摘要： 据Layoffs.fyi统计，2026年上半年全球科技行业裁员超12万人，47.9%明确归因于AI自动化。核心特征是"盈利越好裁得越狠"：甲骨文净利暴涨95%仍大规模裁员，Block裁撤40%员工当日股价暴涨23%。国内字节CEO梁汝波在火山引擎Force大会明确"收缩业务宽度、聚焦AI"，同时AI方向高薪招人。Meta裁8000人同时将7000人转至AI岗位。AI岗位供需比达1:7。 对招聘的启发： 当前裁员本质是AI驱动的人才结构置换而非经营收缩。招聘HR需要关注两个信号：一是AI岗位供需比1:7说明AI人才极度紧缺，二是被裁岗位（中后台、客服、数据标注）与新增岗位（AI工程、大模型、智能体）之间存在能力断层。</p>
         <div class="source">来源：<a href="https://data.iyiou.com/intelligence/details/b451334846f6251028713f86c1b2768c" target="_blank">亿欧智库</a>（2026年6月26日）</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-29-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-06-29-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 思科加州裁员471人，AI投资重塑人力布局</h4>
         <p>摘要： 思科在营收创158亿美元历史新高（同比增长35%）的同时，裁撤加州471名员工，覆盖软件工程、产品管理、设计、业务运营等多部门。CEO Chuck Robbins表示将在部分领域削减成本，同时加码AI工具投资。思科将自己定位为"AI时代关键基础设施供应商"。 对招聘的启发： 高增长企业同步裁员的模式再次印证：当前大厂裁员不是"活不下去"，而是主动调整人力结构以匹配AI战略。招聘侧需注意，被裁的传统岗位人才正在大量流入市场。</p>
@@ -421,7 +450,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

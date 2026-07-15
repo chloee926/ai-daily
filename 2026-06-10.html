@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-06-10-nw-0">
       <button class="star-btn" data-key="2026-06-10-nw-0" aria-label="关注这条">☆</button>
       <h3>DiffusionGemma</h3>
       <p>谷歌发布的实验性开源语言模型，首次将图像 AI 中的"扩散机制"引入文本生成领域。不同于传统大模型逐字生成（自回归），DiffusionGemma 从随机噪声出发进行多次迭代优化，一次性并行输出 256 个标记词块。在 H100 上速度达每秒 1000+ tokens，比传统模型快 4 倍。Apache 2.0 许可证开源。</p>
@@ -305,13 +334,13 @@
       <h2 class="sec-title">议题一 · AI 模型效率革命</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-06-10-t0-0" data-rel="low">
         <button class="star-btn" data-key="2026-06-10-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Google — 发布 DiffusionGemma 开源模型，文本生成提速 4 倍</h4>
         <p>6 月 10 日，谷歌发布 DiffusionGemma，260 亿参数 MoE 架构，单步激活参数仅 38 亿。模型具备"全块感知"能力，所有标记在生成过程中可相互引用，打破了自回归模型只能向后推演的局限。但在质量上略逊于标准 Gemma 4，谷歌明确称其为"实验性"产品。</p>
         <div class="source">来源：<a href="https://www.pconline.com.cn/ai/2170/21705023.html" target="_blank">太平洋科技</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-10-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-06-10-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 与甲骨文合作，OCI 客户可用云额度直接调用前沿模型</h4>
         <p>OpenAI 与甲骨文宣布合作，甲骨文云基础设施客户可在数周内通过现有云承诺额度（UCM 积分）直接访问 OpenAI 前沿模型及 Codex，无需新增独立采购流程。此举被视为 OpenAI 在 IPO 前夕加速 B 端商业化、拓宽企业触达渠道的关键落子。</p>
@@ -325,13 +354,13 @@
       <h2 class="sec-title">议题二 · AI 转型下的中层管理危机</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-10-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-06-10-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta — 裁员 4665 人聚焦 AI，中层管理超 1400 人成重灾区</h4>
         <p>6 月 10 日，Meta 在加州和华盛顿裁减 4665 人，管理人员超 1400 人（近三分之一），软件工程师近 1000 人，数据科学家 419 人，产品管理岗 301 人。扎克伯格称不是"AI 替代人力"，而是将资源集中到大模型研发和元宇宙 AI 交互核心方向。预计年省 8 亿美元，2026 年 AI 投入计划超 50 亿美元。</p>
         <div class="source">来源：<a href="https://www.tmtpost.com/agent/ai-article/18044" target="_blank">钛媒体</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-10-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-06-10-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Salesforce — 第三轮裁员，AI 客服智能体使某团队从 9000 人缩至 5000 人</h4>
         <p>本轮涉及加州 86 人，Agentforce AI 产品、MuleSoft 等部门受影响，但核心 Agentforce 团队未受波及。CEO 贝尼奥夫透露某支持团队已从近 9000 人缩减至约 5000 人，AI 客服智能体替代显著。Agentforce 年收入已突破 12 亿美元，同比增长 205%。Salesforce 为受影响美国员工提供最长 30 周薪资补偿。</p>
@@ -410,7 +439,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

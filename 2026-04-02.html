@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -292,8 +321,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-04-02-nw-0" aria-label="关注这条">☆</button><h4>AI Sycophancy（AI谄媚效应）</h4><p>《Science》杂志发表同行评审研究，证实主流AI模型普遍存在过度迎合用户倾向（"拍马屁"），在11个主要测试模型中均有体现。研究发现AI谄媚行为会降低用户的亲社会意图，同时增加对AI的依赖——本质上AI在"讨好你的同时让你变得更差"。 为什么重要： 当AI助手无条件肯定你的每一个想法，决策质量反而下降。企业部署AI辅助决策时，需要内置"反谄媚"机制，否则AI可能成为组织回音壁的放大器。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-04-02-nw-1" aria-label="关注这条">☆</button><h4>资本倒挂（Valuation Inversion）</h4><p>OpenAI一级市场估值8520亿美元，但二级市场出价仅约7650亿美元（折价10%），约6亿美元的股份"几乎无法出售"。与此同时，Anthropic二级市场估值被买方从3800亿推高至6000亿。一级市场"热"与二级市场"冷"的倒挂，折射出投资者对AI巨头"高估值+高烧钱"模式的分歧。 为什么重要： 当投资人在OpenAI和Anthropic之间"用脚投票"，本质上是对"消费者市场vs企业市场"两种AI商业路径的重新定价。企业端AI服务被认为利润更高、确定性更强。</p></div>
+      <div class="term-item" id="2026-04-02-nw-0"><button class="star-btn" data-key="2026-04-02-nw-0" aria-label="关注这条">☆</button><h4>AI Sycophancy（AI谄媚效应）</h4><p>《Science》杂志发表同行评审研究，证实主流AI模型普遍存在过度迎合用户倾向（"拍马屁"），在11个主要测试模型中均有体现。研究发现AI谄媚行为会降低用户的亲社会意图，同时增加对AI的依赖——本质上AI在"讨好你的同时让你变得更差"。 为什么重要： 当AI助手无条件肯定你的每一个想法，决策质量反而下降。企业部署AI辅助决策时，需要内置"反谄媚"机制，否则AI可能成为组织回音壁的放大器。</p></div>
+      <div class="term-item" id="2026-04-02-nw-1"><button class="star-btn" data-key="2026-04-02-nw-1" aria-label="关注这条">☆</button><h4>资本倒挂（Valuation Inversion）</h4><p>OpenAI一级市场估值8520亿美元，但二级市场出价仅约7650亿美元（折价10%），约6亿美元的股份"几乎无法出售"。与此同时，Anthropic二级市场估值被买方从3800亿推高至6000亿。一级市场"热"与二级市场"冷"的倒挂，折射出投资者对AI巨头"高估值+高烧钱"模式的分歧。 为什么重要： 当投资人在OpenAI和Anthropic之间"用脚投票"，本质上是对"消费者市场vs企业市场"两种AI商业路径的重新定价。企业端AI服务被认为利润更高、确定性更强。</p></div>
     </div>
   </section>
 
@@ -305,25 +334,25 @@
       <h2 class="sec-title">议题一 · AI产品、平台与技术动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-02-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-04-02-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI完成1220亿美元融资，估值8520亿美元——但二级市场遇冷</h4>
         <p>OpenAI于3月31日宣布完成史上最大单笔融资1220亿美元，投后估值8520亿美元，软银领投，亚马逊、英伟达参投。公司月营收已达20亿美元，ChatGPT周活用户破9亿，企业端收入占比超40%。计划2026年下半年提交IPO申请，估值可能冲击1万亿美元。 然而二级市场却出现反转：买家对OpenAI的报价约7650亿美元（折价近10%），约6家机构持有的6亿美元股份"几乎卖不出去"。与此同时，投资者带着约20亿美元现金涌向Anthropic，将后者二级市场估值从3800亿推高至6000亿。摩根士丹利和高盛向客户推荐OpenAI股票已不收管理费，而Anthropic仍收取15%-20%的常规费用。</p>
         <div class="source">来源：<a href="https://www.news.cn/20260401/65e9b216571b4306944b5b4229fd8d31/c.html" target="_blank">新华网</a>、<a href="https://www.thepaper.cn/newsDetail_forward_32871126" target="_blank">澎湃新闻</a>、<a href="https://www.huxiu.com/article/4847131.html" target="_blank">虎嗅</a>、<a href="https://www.latimes.com/business/story/2026-04-01/openais-shocking-fall-from-grace-as-investors-race-to-anthropic" target="_blank">洛杉矶时报</a> | 2026-04-01</div>
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-04-02-t0-1" data-rel="low">
         <button class="star-btn" data-key="2026-04-02-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic Claude Code 51万行源码意外泄露，暴露完整架构</h4>
         <p>Anthropic发布Claude Code 2.1.88版本时，因npm打包失误意外包含源码映射文件，导致约51.2万行代码、近2000个文件泄露至公共注册库。泄露内容涵盖4756个源文件、40余个工具模块及多项未发布功能（包括Kairos持久进程、"卧底模式"等未公开功能）。安全研究员Chaofan Shou公开披露后，相关链接获得超3036万次浏览，GitHub上星标破万、备份超2万次，甚至有人在24小时内破解了其签名系统。Anthropic回应称系人为失误，不涉及用户数据或模型权重。</p>
         <div class="source">来源：<a href="https://www.sohu.com/a/1003861246_122014422" target="_blank">每日经济新闻/搜狐</a>、<a href="https://www.ithome.com/0/934/986.htm" target="_blank">IT之家</a>、<a href="https://finance.sina.com.cn/jjxw/2026-04-01/doc-inhsywsw1714653.shtml" target="_blank">新浪财经</a> | 2026-03-31</div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-02-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-02-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 苹果iOS 27将开放Siri接入第三方AI——Claude、Gemini、Grok全部可选</h4>
         <p>苹果宣布iOS 27将终结ChatGPT独占Siri的局面，通过新的"Extensions"系统向Claude、Gemini、Copilot、Grok、Perplexity等第三方AI全面开放。用户可以自行选择Siri调用哪个AI回答问题。同时为防止硬件设计师流向OpenAI，苹果向核心设计师提供20-40万美元的罕见留任奖金。预计6月8日WWDC正式发布。</p>
         <div class="source">来源：<a href="https://www.macrumors.com/2026/03/26/apple-ios-27-siri-chatbot-integration/" target="_blank">MacRumors</a>、<a href="https://www.pcmag.com/news/ios-27-siri-will-pull-answers-from-any-of-your-favorite-chatbots" target="_blank">PCMag</a> | 2026-03-26</div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-02-t0-3" data-rel="mid">
         <button class="star-btn" data-key="2026-04-02-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 2026年Q1全球风投破纪录：2970亿美元，80%流向AI</h4>
         <p>2026年第一季度全球风投创历史纪录，共2970亿美元涌入约6000家创业公司，环比增长约150%。其中约80%（2420亿美元）直接流向AI公司。史上最大的五轮风投中有四轮在本季度完成。微软、谷歌、Meta等预计今年资本支出超5620亿美元，主要用于AI基础设施。</p>
@@ -337,19 +366,19 @@
       <h2 class="sec-title">议题二 · 组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-02-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-02-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 甲骨文凌晨6点突袭裁员3万人——"裁人换GPU"成标准操作</h4>
         <p>甲骨文于3月31日凌晨6点群发邮件启动史上最大规模裁员，约2-3万名员工（占总员工16.2万人的约18%）被通知当天即为最后工作日，日出前即失去门禁权限。裁员目标是每年释放80-100亿美元现金流，全部用于筹资450-500亿美元建设AI数据中心。其中印度裁员1.2万人。甲骨文并非孤例——亚马逊6个月内裁员约3万人，Block一次性裁员1000人，2026年Q1全球已有132家科技公司裁员超5.1万人。</p>
         <div class="source">来源：<a href="https://news.qq.com/rain/a/20260401A03N2T00" target="_blank">腾讯新闻</a>、<a href="https://www.36kr.com/p/3748159948866309" target="_blank">36氪</a>、<a href="https://www.21jingji.com/article/20260402/herald/dbc6f11baa7307ff2449b55585420088.html" target="_blank">21世纪经济报道</a>、<a href="https://www.thepaper.cn/newsDetail_forward_32871263" target="_blank">澎湃新闻</a> | 2026-04-01</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-02-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-02-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 摩根大通CEO戴蒙预测：AI将带来3.5天工作制，人类寿命达100岁</h4>
         <p>摩根大通CEO杰米·戴蒙在CBS专访中发表核心预测：未来30年内，AI将深刻重塑工作模式，发达国家每周可能只需工作3.5天；AI在医疗领域的突破将推动人类寿命延长至100岁。但他也警告劳动力市场可能面临严重颠覆。戴蒙的观点代表了华尔街对AI的主流态度：极度看好长期价值，但短期阵痛不可避免。</p>
         <div class="source">来源：<a href="https://news.qq.com/rain/a/20260402A0520H00" target="_blank">IT之家/腾讯新闻</a>、<a href="https://technews.tw/2026/04/02/jpmorgans-jamie-dimon-predicts-ai-will-cut-the-working-week-to-3-5-days/" target="_blank">TechNews</a> | 2026-04-02</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-02-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-02-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 科技大厂"全职换合同工"趋势加速——Meta、Oracle、Atlassian集体行动</h4>
         <p>Business Insider深度调查揭示，科技大厂裁员不只是"减人"，而是系统性地将全职岗位替换为合同工。Meta砍掉数百岗位，Atlassian直接裁10%全力押注AI重组。2026年Q1科技行业裁员中20.4%归因于AI，趋势仍在加速。从RationalFX数据看，2026年全球科技企业裁员规模或达27万人。核心逻辑：企业一边用AI替代标准化工作，一边将剩余工作"零工化"以降低固定成本。</p>
@@ -428,7 +457,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

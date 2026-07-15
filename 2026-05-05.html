@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-05-nw-0">
       <button class="star-btn" data-key="2026-05-05-nw-0" aria-label="关注这条">☆</button>
       <h3>亚二次方注意力（Subquadratic Attention）</h3>
       <p>传统 Transformer 的注意力机制复杂度为 O(n²)，上下文翻倍则计算量翻四倍。亚二次方注意力通过稀疏化注意力模式，将复杂度降至亚二次方级别，使超长上下文推理的边际成本大幅下降。初创公司 SubQ 于今日发布的 SubQ 1M-Preview 是首个商用亚二次方注意力 LLM，原生支持 1200 万 token 上下文窗口。</p>
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · AI 产品升级与商业化新路径</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-05-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-05-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — GPT-5.5 Instant 成为 ChatGPT 默认模型</h4>
         <p>OpenAI 于5月5日将 GPT-5.5 Instant 设为 ChatGPT 全平台默认模型，替代 GPT-5.3 Instant。官方称在医学、法律、金融等高风险领域幻觉率降低 52.5%，数学与视觉推理能力同步提升。这是 ChatGPT 史上最大规模的一次默认模型切换，覆盖免费与付费用户。</p>
         <div class="source">来源：<a href="https://whatllm.org/blog/new-ai-models-may-2026" target="_blank">WhatLLM</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-05-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-05-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — Ads Manager 测试版上线，开启广告变现</h4>
         <p>OpenAI 同日推出 Ads Manager 工具测试版，允许美国广告主以点击付费（CPC）方式购买 ChatGPT 内广告位。这标志着 OpenAI 正式向 25 亿美元年度广告收入目标迈进，ChatGPT 从纯订阅模式转向"订阅+广告"双引擎。</p>
         <div class="source">来源：<a href="https://ima.qq.com/wiki/?shareId=f5f66c36bacee627481687aa9f8cc6da79906cf78b7436cabe701975abfa1742" target="_blank">Techmeme/IMA</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-05-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-05-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> SubQ — 首个商用亚二次方注意力 LLM 发布，1200 万 token 上下文</h4>
         <p>初创公司 Subquadratic 发布 SubQ 1M-Preview，采用全新稀疏注意力架构（非 Transformer），原生支持 1200 万 token 上下文窗口，声称长上下文任务成本仅为前沿模型的 1/5，注意力速度最高快 52 倍。获 2900 万美元种子轮融资。</p>
@@ -331,19 +360,19 @@
       <h2 class="sec-title">议题二 · AI 监管与就业市场震荡</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-05-t1-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-05-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> NIST — Google、Microsoft、xAI 加入 AI 模型预发布评估协议</h4>
         <p>美国商务部 CAISI 宣布 Google、Microsoft、xAI 加入 OpenAI 和 Anthropic 的行列，同意在 AI 模型公开发布前向政府提供早期访问权限进行安全评估。NIST 的 AI 安全中心已完成 40 多项此类评估，包括尚未发布的前沿模型。这是政府与 AI 公司合作的"最小侵入"方式。</p>
         <div class="source">来源：<a href="https://ima.qq.com/wiki/?shareId=f5f66c36bacee627481687aa9f8cc6da79906cf78b7436cabe701975abfa1742" target="_blank">Techmeme/NIST</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-05-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-05-05-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Coinbase — 裁员 14%（约 700 人），转向"AI 原生"运营</h4>
         <p>Coinbase 宣布裁减约 14% 员工并取消 6000 个在招岗位，CEO Armstrong 发全员信称"AI 正在带来企业运营方式的深刻变革"。核心举措包括取消纯管理岗、要求管理者成为"球员教练"、高管层以下限 5 级架构。</p>
         <div class="source">来源：<a href="https://www.meritforgeai.com/news/coinbase-indeed-ai-layoffs-may-2026" target="_blank">MeritForge AI</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-05-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-05-05-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Indeed/Glassdoor — 裁员 1300 人，CEO 直言"AI 正在改变世界"</h4>
         <p>Recruit Holdings 旗下 Indeed 和 Glassdoor 裁减约 1300 人。CEO Idekoba 以罕见的直白语言表示："AI 正在改变世界，公司必须适应。"招聘平台自身的裁员，被视为 AI 对就业市场影响的"先行指标"。</p>
@@ -422,7 +451,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

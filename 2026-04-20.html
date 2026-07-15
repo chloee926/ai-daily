@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,8 +320,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-04-20-nw-0" aria-label="关注这条">☆</button><h4>Deployment Year One（部署元年）</h4><p>一句话解释： 智元机器人在APC 2026大会提出的概念，宣告具身智能从实验室演示阶段正式进入可量化ROI的规模化商业部署阶段。 为什么重要： 标志着具身智能行业叙事从"技术能力秀"切换到"生产力价值交付"，对相关岗位需求和人才画像将产生实质影响。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-04-20-nw-1" aria-label="关注这条">☆</button><h4>XYZ曲线模型</h4><p>一句话解释： AGIBOT提出的具身智能产业三阶段发展框架——X曲线（研发期2022-2026）、Y曲线（部署增长期2026-2030）、Z曲线（普及期2030后），描述机器人产业从研发到超越人类生产力的演进路径。 为什么重要： 为行业提供了可参照的发展节奏预期，有助于企业和HR判断具身智能人才需求的时间窗口。</p></div>
+      <div class="term-item" id="2026-04-20-nw-0"><button class="star-btn" data-key="2026-04-20-nw-0" aria-label="关注这条">☆</button><h4>Deployment Year One（部署元年）</h4><p>一句话解释： 智元机器人在APC 2026大会提出的概念，宣告具身智能从实验室演示阶段正式进入可量化ROI的规模化商业部署阶段。 为什么重要： 标志着具身智能行业叙事从"技术能力秀"切换到"生产力价值交付"，对相关岗位需求和人才画像将产生实质影响。</p></div>
+      <div class="term-item" id="2026-04-20-nw-1"><button class="star-btn" data-key="2026-04-20-nw-1" aria-label="关注这条">☆</button><h4>XYZ曲线模型</h4><p>一句话解释： AGIBOT提出的具身智能产业三阶段发展框架——X曲线（研发期2022-2026）、Y曲线（部署增长期2026-2030）、Z曲线（普及期2030后），描述机器人产业从研发到超越人类生产力的演进路径。 为什么重要： 为行业提供了可参照的发展节奏预期，有助于企业和HR判断具身智能人才需求的时间窗口。</p></div>
     </div>
   </section>
 
@@ -304,19 +333,19 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-20-t0-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-20-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic发布Claude Design，直接挑战Figma <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月17日，Anthropic Labs发布Claude Design，用户可通过文本提示生成交互原型、设计系统、演示文稿等视觉作品。产品由Claude Opus 4.7驱动，支持品牌设计系统自动构建、多格式导入导出（含Canva、PDF、PPTX），并可通过Handoff Bundle无缝衔接Claude Code进行开发。联合创始人Mike Krieger已从Figma董事会辞职。发布当天Figma股价下跌约7%。 为什么对TME重要： AI原生设计工具正在重塑设计工作流，设计师岗位的能力要求将从工具操作转向审美判断和AI协作，PM和市场人员的自主产出能力大幅提升。</p>
         <div class="source">来源：<a href="https://www.anthropic.com/news/claude-design-anthropic-labs" target="_blank">Anthropic官方博客</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-20-t0-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-20-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI一天流失三位高管，Sora正式关停后续效应显现 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月17日，OpenAI前CPO Kevin Weil（转任研究后领导OpenAI for Science团队）、Sora核心研究员Bill Peebles、企业应用CTO Srinivas Narayanan同日宣布离职。Sora已于3月关停（日亏约100万美元），Science团队被解散。OpenAI正战略收缩至企业级AI和"超级应用"方向，砍掉面向消费者的探索项目。 为什么对TME重要： OpenAI从广泛探索转向商业聚焦，释放出视频AI和科学AI方向大量高端人才到市场，也意味着AI行业的"登月项目"窗口正在收窄。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/04/17/kevin-weil-and-bill-peebles-exit-openai-as-company-continues-to-shed-side-quests/" target="_blank">TechCrunch</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-20-t0-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-20-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> DeepSeek首次寻求外部融资，估值100亿美元 <span class="music-badge">🎵</span></h4>
         <p>摘要： 据4月17日The Information报道，DeepSeek正与投资者洽谈首轮外部融资，计划募集至少3亿美元，估值至少100亿美元。此前DeepSeek完全依靠幻方量化自有资金支撑。融资背后是V4模型适配华为昇腾芯片带来的额外开支，以及核心人才流失压力——V2核心开发者罗富利去了小米，R1首席作者郭大雅去了字节跳动。另外，4月19日普林斯顿研究员张一帆在社交平台暗示"V4下周"。 为什么对TME重要： DeepSeek打破不融资原则说明前沿AI研发成本已超出单一对冲基金承受范围，其核心人才向大厂流动的趋势值得关注。</p>
@@ -330,19 +359,19 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-20-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-20-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta确认5月20日启动8000人裁员，AI驱动组织重构</h4>
         <p>摘要： 4月18日确认，Meta将于5月20日启动新一轮裁员约8000人，占全球员工总数10%。这是继2022-2023年连续两轮裁员后的最大规模组织重组。裁员核心逻辑是AI驱动的组织扁平化和效率提升，受影响岗位集中在中层管理、内容审核和部分工程团队。 对招聘的启发： Meta持续将"AI替代"作为裁员的公开理由，这一叙事正在成为科技公司组织调整的标准话术。HR需要关注哪些岗位确实被AI替代，哪些只是借AI之名行成本优化之实。</p>
         <div class="source">来源：<a href="https://ai.zol.com.cn/1166/11666200.html" target="_blank">中关村在线</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-20-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-20-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 智元机器人APC 2026：万台交付里程碑，20亿元生态投入</h4>
         <p>摘要： 4月18日，智元机器人在上海举办APC 2026大会，宣布截至3月已完成第10000台机器人下线交付。发布"一体三智"技术架构、全栈开放平台AIMA、七大标准化行业解决方案。同时宣布未来5年投入超20亿元人民币扩展生态，支持开发者和合作伙伴。 对招聘的启发： 具身智能进入部署期意味着需求从纯研发型人才（算法、硬件）扩展到方案交付型人才（行业解决方案、部署运维、客户成功），人才画像正在发生结构性变化。</p>
         <div class="source">来源：<a href="https://www.prnewswire.com/apac/news-releases/agibot-declares-2026-deployment-year-one--at-apc-2026-accelerating-the-era-of-embodied-ai-productivity-302746179.html" target="_blank">AGIBOT via PR Newswire</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-20-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-20-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 中国五部门发布AI拟人化互动服务监管新规</h4>
         <p>摘要： 4月10日（本周窗口内首次广泛讨论），国家网信办等五部门联合公布《人工智能拟人化互动服务管理暂行办法》，7月15日起施行。明确禁止向未成年人提供虚拟伴侣等虚拟亲密关系服务，要求AI拟人化服务必须做身份标识，防止人机关系异化。这是全球首个针对AI拟人化互动的专项监管文件。 对招聘的启发： AI合规和伦理治理岗位需求将进一步增长，尤其是在社交、内容和消费AI领域，企业需要配备懂监管又懂产品的复合型人才。</p>
@@ -421,7 +450,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

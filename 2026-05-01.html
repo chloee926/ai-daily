@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,7 +320,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-01-nw-0">
       <button class="star-btn" data-key="2026-05-01-nw-0" aria-label="关注这条">☆</button>
       <h3>开源军备竞赛（Open-Source Arms Race）</h3>
       <p>指多家 AI 实验室在极短时间间隔内连续发布可商用开源权重模型，以"性能逼近闭源 + 成本仅 1/3 + 允许自由微调部署"的组合快速抢占开发者生态的现象。2026 年 5 月初，中国四家实验室在 12 天内集体开源即是典型：智谱 GLM-5.1（约 5/1）、MiniMax M2.7（5/3）、Kimi K2.6（5/4）、DeepSeek V4（5/4 全面铺开）。 为什么今天值得知道：开源权重意味着任何人都能下载、微调、部署，既能快速扩张用户基数，又能围绕工具链建立生态护城河。当开源模型在代码等智能体基准上接近 Claude Opus 4.7 与 GPT-5.5，闭源模型的溢价空间被实质压缩。</p>
@@ -306,19 +335,19 @@
       <h2 class="sec-title">议题一 · 中国开源大模型"十二日四连发"</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-01-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-01-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 四家实验室集体开源，性能逼近前沿、成本仅 1/3 <span class="music-badge">🎵</span></h4>
         <p>据聚合数据，2026 年 5 月初 12 天内四次开源发布： - 智谱 GLM-5.1（约 5/1）：新增 8 小时超长音频与文本上下文，中文理解与代码生成对标 Claude Opus 4.6 - MiniMax M2.7（5/3）：以高性价比语音与文本模型见长 - Kimi K2.6（5/4）：聚焦长上下文窗口 - DeepSeek V4（5/4 全面铺开）：1.6 万亿参数（490 亿激活），100 万 token 上下文，API 价格仅为 GPT-4 的 1/70 在 SWE-Bench、Terminal-Bench 等代码智能体基准上已接近 Claude Opus 4.7 与 GPT-5.5，推理成本不超过闭源模型的 1/3。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-01-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-01-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI GPT-5.5 已于 4/23 落地：超级 App + 200 万 token</h4>
         <p>GPT-5.5（内部代号 Spud）早已发布，从聊天界面升级为"超级 App"，集成原生网页浏览、自主文件管理与多小时科研推理工具，标配 200 万 token 上下文窗口；API 定价 $5/$30 每百万 token，在 Terminal-Bench 2.0 达 82.7%。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-01-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-01-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Cloudflare Dynamic Workflows 发布：多租户持久化执行</h4>
         <p>5 月 1 日，Cloudflare 发布 @cloudflare/dynamic-workflows——一个约 300 行的 MIT 库，让单个 Worker 可向每租户代码派发持久化工作流运行，补齐"动态部署"与"持久执行"之间的缺口，CI/CD 成为头条用例。</p>
@@ -332,19 +361,19 @@
       <h2 class="sec-title">议题二 · 商业化与资本同步升温</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-01-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-05-01-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic ARR 突破 $30B，首超 OpenAI</h4>
         <p>5 月初，Anthropic 年化经常性收入（ARR）首次超越 OpenAI：Anthropic 达 $300 亿，OpenAI 约 $240 亿。同期 Anthropic 与 Blackstone、Hellman & Friedman、Goldman Sachs 等达成 15 亿美元合资，结构为"前向部署企业服务公司"，把 Claude 直接嵌入 PE 投资组合公司的运营中。CFO Krishna Rao 称之为对企业需求"远超任何单一交付模式"的回应。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-01-t1-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-01-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Adept AI 完成 $3.5 亿 C 轮，英伟达微软跟投</h4>
         <p>5 月 4 日，Adept AI 宣布完成 3.5 亿美元 C 轮，General Catalyst 领投，英伟达、微软跟投。资金用于扩张 Act-2 Agent 团队——该智能体可在浏览器、IDE 与终端中自主执行数据迁移、编写测试等复杂业务流程。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-01-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-01-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 地缘背景：自主化路径强化</h4>
         <p>5 月上旬，美国与 Google DeepMind、Microsoft、xAI 等达成模型审查协议，并确认 AI 合作框架下中国模型不在考虑之列。这一外部压力反而强化了中国 AI 产业"自强不息"的开源与国产适配路径。</p>
@@ -423,7 +452,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

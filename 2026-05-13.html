@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-13-nw-0">
       <button class="star-btn" data-key="2026-05-13-nw-0" aria-label="关注这条">☆</button>
       <h3>Agent Harness</h3>
       <p>阿里 Qoder 1.0 底层重构的智能体调度架构，支持跨项目多任务并行执行、自定义专家智能体、团队级共享知识引擎。相比传统 AI IDE 的单任务模式，Agent Harness 让多个智能体在统一框架内协作完成复杂开发任务，是 AI 编程从"辅助工具"向"自主开发系统"演进的关键基础设施。</p>
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · 中国 AI 生态加速布局</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-13-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-13-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里 — Qoder 1.0 智能开发工作台正式上线</h4>
         <p>阿里发布 Qoder 1.0，从传统 AI IDE 升级为智能体自主开发工作台，底层重构 Agent Harness 架构，复杂任务完成度提升 60%。支持跨项目多任务并行、自定义专家智能体、团队级共享知识引擎。全球累计用户达 500 万，企业端贡献 70% 营收。</p>
         <div class="source">来源：<a href="https://www.aibetas.com.cn/p/6225.html" target="_blank">AIBetas</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-13-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-13-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 华为云 — 公布 Agentic AI 全栈布局</h4>
         <p>华为云公布面向企业级 Agentic AI 的全栈布局，覆盖数据湖、知识与记忆平台、算力、模型、Agent 框架与数据韧性六大方向。其中业界首个支持异构算力的上下文记忆存储（CMS），可扩展为 PB 级共享 KV Cache 池，降低推理首 Token 时延 90%。</p>
         <div class="source">来源：<a href="https://www.huawei.com/cn/news/2026/5/idi-forum-data" target="_blank">华为官网</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-13-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-13-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 百度 — 发布通用智能体 DuMate（百度搭子）</h4>
         <p>百度推出通用智能体 DuMate，将旗下多个产品集成在同一入口，可协同完成智能搜索、代码开发、深度调研、数据分析、应用搭建等多元复杂任务。这是继腾讯 Marvis、阿里百炼之后，又一家中国大厂推出系统级 AI 助手。</p>
@@ -331,19 +360,19 @@
       <h2 class="sec-title">议题二 · AI 公司组织与治理</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-13-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-05-13-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI — 格雷格·布罗克曼正式接管全产品线</h4>
         <p>OpenAI 宣布架构调整，联合创始人兼总裁布罗克曼正式接管全产品线战略，将 ChatGPT、Codex、开发者 API 整合为统一产品团队，推进"超级应用"研发。原 ChatGPT 负责人转岗企业产品线。本次调整被视为 IPO 前的核心组织优化动作。</p>
         <div class="source">来源：<a href="https://www.aibetas.com.cn/p/6225.html" target="_blank">AIBetas</a></div>
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-05-13-t1-1" data-rel="low">
         <button class="star-btn" data-key="2026-05-13-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic — Claude 已编写公司 80% 以上的生产代码</h4>
         <p>Anthropic 发布论文披露：截至 2026 年 5 月，Claude 编写了 Anthropic 合并到生产系统的 80% 以上代码。每位工程师每天合并的代码量是 2024 年的 8 倍。人类工程师的角色正在从"写代码"转向"设定目标、审查 AI 产出、决定是否合并"。Anthropic 同时强调，完整的递归自我改进尚未实现。</p>
         <div class="source">来源：<a href="https://www.newsbreak.com/winbuzzer-com-302470011/4693518914266-anthropic-says-claude-now-writes-80-of-its-production-code-targets-full-self-improving-ai" target="_blank">NewsBreak/Winbuzzer</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-13-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-13-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 欧盟 — AI 法案即将进入执行阶段，禁止深度伪造色情内容</h4>
         <p>欧洲议会和欧盟成员国代表就修订《人工智能法》达成共识，同意禁止 AI 系统生成"深度伪造"色情内容。该法案的执行标志着全球主要经济体对 AI 生成内容的监管从讨论阶段进入实操阶段，对企业 AI 产品的合规设计产生直接影响。</p>
@@ -422,7 +451,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

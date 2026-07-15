@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-18-nw-0">
       <button class="star-btn" data-key="2026-05-18-nw-0" aria-label="关注这条">☆</button>
       <h3>Agentic AI（智能体AI）</h3>
       <p>指能够自主规划、执行多步骤任务并调用外部工具的AI系统，区别于传统"问答式"大模型。其核心特征是持续运行、自主决策和工具调用，代表AI从"被动应答"向"主动执行"的范式转变。</p>
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · AI产品与平台动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-18-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-18-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> NVIDIA — Vera CPU首批交付，专为智能体AI设计</h4>
         <p>英伟达正式宣布首款专为Agentic AI设计的CPU——Vera，已完成对Anthropic、OpenAI、SpaceX AI及甲骨文云的首批交付。Vera搭载88个自研Olympus核心，单核性能较前代Grace提升50%，内存带宽高达1.2TB/s，黄仁勋将其定位为"下一个数十亿美元级业务"。</p>
         <div class="source">来源：<a href="https://www.chinastarmarket.cn/detail/2374998" target="_blank">科创板日报</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-18-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-18-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯 — 推出AI应用生成平台"吐司"</h4>
         <p>腾讯正式推出AI应用生成平台"吐司"，定位为"探索型氛围编程（Vibe Coding）产品"，用户通过自然语言描述即可将想法快速转化为可用的移动应用。平台核心功能覆盖从创意到分发的全流程。</p>
         <div class="source">来源：<a href="https://www.iimedia.cn/c1088/111380.html" target="_blank">艾媒网</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-18-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-18-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里 — QoderWork上线设计工作台 <span class="music-badge">🎵</span></h4>
         <p>阿里云智能编程平台QoderWork正式上线其首个细分领域模式——设计工作台（Design Desk），支持用户通过语音或自然语言描述需求，直接在无限画布上生成可运行、可编辑、可交付的专业设计产物。</p>
@@ -331,13 +360,13 @@
       <h2 class="sec-title">议题二 · AI公司组织、人才与治理</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-18-t1-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-18-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI/Musk — 陪审团裁定Musk诉OpenAI案败诉</h4>
         <p>美国加州奥克兰联邦法院陪审团裁定，马斯克关于OpenAI违背创立初衷的全部主张已超过诉讼时效，OpenAI等被告不承担相应责任。主审法官接受该裁决，马斯克表示将提起上诉。此举为OpenAI的IPO扫清了最大法律障碍。</p>
         <div class="source">来源：<a href="https://world.people.com.cn/n1/2026/0601/c1002-40731642.html" target="_blank">新华社</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-18-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-05-18-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic — OpenAI联创Karpathy加入Anthropic</h4>
         <p>OpenAI联合创始人、前特斯拉AI总监Andrej Karpathy正式加入Anthropic。Karpathy是深度学习领域的标志性人物，此次跳槽被视为AI人才流动的重要信号——Anthropic在安全导向AI路线上的吸引力持续增强。</p>
@@ -416,7 +445,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

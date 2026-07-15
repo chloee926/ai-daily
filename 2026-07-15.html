@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,7 +320,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-07-15-nw-0">
       <button class="star-btn" data-key="2026-07-15-nw-0" aria-label="关注这条">☆</button>
       <h3>峰谷分时定价（Peak-Valley Compute Pricing）</h3>
       <p>DeepSeek V4 正式版今日推出的行业首创 API 定价模式。核心逻辑和居民用电的"峰谷电价"一样：工作日 9:00-12:00、14:00-18:00 为高峰时段，API 价格自动翻倍；晚 6 点后至次日早 9 点及周末全天，价格直降 60%。 为什么今天值得知道：这意味着 AI 算力正式进入"公用事业化"阶段——不再是固定单价的 SaaS 服务，而是像水、电、网络带宽一样按供需动态定价。企业 IT 部门未来可能需要像管理能耗一样管理 AI 算力支出。</p>
@@ -306,31 +335,31 @@
       <h2 class="sec-title">议题一 · 三大模型同日交付：算力公用事业化加速</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-15-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-07-15-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek V4 — 今日正式全量上线，国产最大旗舰模型落地</h4>
         <p>DeepSeek V4 正式版 7 月 15 日全量上线，从 4 月 24 日预览版到正式版打磨近 3 个月。旗舰版 V4 Pro 总参数 1.6 万亿（每次推理仅激活 490 亿），轻量版 V4 Flash 总参数 284B/激活 13B，均支持 100 万 token 超长上下文。 关键信号： - 峰谷定价：V4 Pro 输出价格高峰 12 元/百万 token，低谷 6 元；Flash 高峰 4 元，低谷 2 元 - 缓存命中价格极低：仅 0.025 元/百万 token（平时），鼓励开发者优化缓存策略 - 网页/App 端保持免费，峰谷定价仅针对 API 开发者 - 原生适配昇腾算力，首个国产大模型全面支持国产芯片栈 - 腾讯云 TokenHub 同步跟随原厂定价策略上线 V4 原厂直供</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-15-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-07-15-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里 Qwen-Audio-3.0-Realtime — 实时语音模型今日发布 <span class="music-badge">🎵</span></h4>
         <p>7 月 15 日，通义千问正式发布实时语音交互模型 Qwen-Audio-3.0-Realtime，主打"毫秒级响应 + 不牺牲推理深度"。提供 Plus（推理更强）和 Flash（速度更快）两版本。 核心能力： - Agent 工具调用：无需显式指令即可自动调用外部工具，结果自动融入对话记忆 - 共情对话：根据语境动态调整语气、节奏、音调，支持笑声/叹息等副语言信号 - 双工交互：内置"多模态感知双工控制"子模型，嘈杂环境不误打断，多人场景锁定主对话者 - VoiceBench 得分 92.5（Plus 版），口语化提问仅降 2 分</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-15-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-07-15-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — Claude 教师版免费开放冲击教育股</h4>
         <p>7 月 14 日 Anthropic 宣布向美国 K-12 在职教师免费开放 Claude Pro 全部高级功能（"Claude for Teachers"），有效期至 2027 年 6 月。消息直接冲击教育科技公司 Stride，股价盘中最大跌 7.7%，收跌 5.6%。 同日其他动态： - Artifacts 支持公开分享与多人协作编辑，与 Claude Code、Slack 串联形成交付闭环 - Claude Cowork 移动远程控制功能曝光，允许手机端远程查看桌面任务进度 - 印度市场本地化定价：Claude Pro 月费 1999 卢比，印度占全球用量 5.8% 为美国外最大市场</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-15-t0-3" data-rel="mid">
         <button class="star-btn" data-key="2026-07-15-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯混元 Hy3 — 登顶 OpenRouter 周度调用量第一</h4>
         <p>腾讯 7 月初正式发布混元 Hy3 大模型（MoE 架构，295B 总参数/21B 激活，256K 上下文），截至 7 月 13 日已位列 OpenRouter 模型周度调用量排行榜第一。API 定价 1 元/百万 tokens 输入、4 元输出，幻觉率从 12.5% 降至 5.4%。今日腾讯港股盘中涨超 4%。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-15-t0-4" data-rel="mid">
         <button class="star-btn" data-key="2026-07-15-t0-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 谷歌 TPU 战略转向 — 从内部工具到对外销售挑战英伟达</h4>
         <p>谷歌正加速将自研 TPU 商业化，已与 Anthropic 达成部署 100 万颗第七代 TPU 的协议。自研 TPU 处理 AI 负载成本比竞品低 30%，预计 2027 年年产量达 500 万块。分析认为这是英伟达 GPU 主导地位面临的最具结构性威胁。</p>
@@ -344,31 +373,31 @@
       <h2 class="sec-title">议题二 · AI人才争夺战升级：从"抢人"到"脱钩"</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-15-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-07-15-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Tom Blomfield（Monzo 创始人）— 放弃 YC 合伙人加入 Anthropic 当技术员工</h4>
         <p>7 月 13 日，英国最大数字银行 Monzo 联合创始人、Y Combinator 合伙人 Tom Blomfield 宣布请假离开 YC，加入 Anthropic 算力团队担任 Member of Technical Staff（MTS），与联合创始人 Tom Brown 共事。 这延续了 2026 年 Anthropic 的"巨佬虹吸"趋势：此前已吸纳 OpenAI 联合创始人 Andrej Karpathy（预训练负责人）、诺贝尔化学奖得主 John Jumper（科学团队）、前微软 Azure 高管 Eric Boyd（基础设施）。Anthropic 二级市场估值已达 9650 亿美元，传闻 10 月 IPO。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-15-t1-1" data-rel="mid">
         <button class="star-btn" data-key="2026-07-15-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里内部全面禁用 Claude — 技术脱钩加速</h4>
         <p>7 月 14 日消息，因 Anthropic 控诉模型蒸馏并封禁阿里账号，阿里于 7 月 3 日通知全员卸载 Claude 等海外 AI 产品，全部切换自研 Qoder。这被行业解读为"反向禁用"，反映国产 AI 面临的外部围堵与内部技术自主化压力。</p>
         
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-15-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-07-15-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 美国科技行业 2026 上半年裁员近 14 万人</h4>
         <p>据行业统计，2026 年上半年美国科技行业裁员人数接近 14 万，同比增 66%。AI 替代人力被认为是主因。具体案例： - Cisco：7 月 13 日加州三地裁员 471 人，同期营收却创纪录达 $15.8B - 亿航智能：7 月 14 日确认基于"AI 提效"裁减低绩效岗位，Q1 净亏损 1.26 亿元</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-15-t1-3" data-rel="mid">
         <button class="star-btn" data-key="2026-07-15-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> PixVerse（爱诗科技）— 完成 29.8 亿元 C 轮，阿里领投</h4>
         <p>7 月 14 日，AI 视频生成公司爱诗科技（PixVerse）宣布 C 轮融资 29.8 亿元人民币（约 4.39 亿美元），C+ 轮由阿里巴巴领投，估值突破 20 亿美元。公司同步推出 PixVerse Game Engine，用户已超 1.5 亿。这是国内 AI 视频赛道融资体量最大的一笔。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-15-t1-4" data-rel="mid">
         <button class="star-btn" data-key="2026-07-15-t1-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> WAIC 2026 世界人工智能大会 — 7月17-20日上海开幕</h4>
         <p>确认习近平将出席。展览面积首破 10 万㎡，1100+ 企业参展，300+ 全球首发产品。大会将聚焦"模型落地到产业化"这一年度主题。</p>
@@ -447,7 +476,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

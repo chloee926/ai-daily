@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-04-30-nw-0">
       <button class="star-btn" data-key="2026-04-30-nw-0" aria-label="关注这条">☆</button>
       <h3>数字员工（Digital Employee）</h3>
       <p>一句话解释： 阿里巴巴QoderWake提出的AI Agent新形态，不是辅助工具而是能承担软件工程师、运营、分析师等真实岗位角色的生产级智能体，具备24/7全天在线、自进化学习和防腐治理能力。 为什么重要： 标志着AI Agent从"工具"（Tool）正式迈入"员工"（Employee）阶段。QoderWake采用Harness-First架构，每次执行后自动将经验沉淀到记忆、技能、策略、验证规则和工作流五个维度，解决了通用Agent"做完即忘"的问题。这不是聊天机器人的升级，而是组织结构的变革——当AI可以"入职"并"胜任"岗位，企业的人才定义、编制规划和绩效体系都将被重构。</p>
@@ -305,25 +334,25 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-30-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-04-30-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI Stargate项目突破10GW算力目标，基础设施扩张超预期 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月29日，OpenAI宣布其Stargate基础设施项目取得重大进展，已突破10GW算力目标。OpenAI采用合作伙伴模式，与Vantage Data Centers、Oracle等公司协同建设数据中心，并与北美建筑工会（NABTU）合作确保大规模基础设施项目拥有熟练劳动力。OpenAI强调算力是AI发展的核心制约因素——更多算力意味着更好的模型、更低的成本和更广泛的应用，公司正在全美评估新的数据中心选址。 为什么对 TME 重要： 算力基础设施的扩张将直接降低AI模型推理成本，对依赖AI进行内容生成、推荐和用户交互的TME业务而言，意味着更高的AI使用密度和更低的边际成本。Stargate的进展也是行业算力竞赛的风向标。</p>
         <div class="source">来源：<a href="https://chen-blog-sigma.vercel.app/ai-daily-2026-04-30" target="_blank">AI日报 - OpenAI Stargate进展</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-30-t0-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-30-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 阿里发布QoderWake数字员工和Qoder移动端，覆盖企业与个人全场景 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月30日，阿里巴巴正式发布两款AI Agent产品——QoderWake与Qoder移动端。QoderWake是业界首个安全可控、持续进化的生产级数字员工，能在真实工作中承担软件工程师、运营和分析师等岗位角色，预置6+岗位、100+岗位技能，24/7全天在线，入职时间小于1分钟。QoderWake采用Harness-First架构，实现多维度自进化体系，基于内置的防腐机制（Anti-Rot Governance）持续淘汰过时经验、合并冲突、撤回失效策略。目前已开启邀测。 为什么对 TME 重要： "数字员工"概念可能重塑企业组织结构。当AI可以承担标准化岗位角色，内容审核、数据分析、运营执行等岗位的工作定义将发生根本性变化。HR需要提前思考"人+数字员工"的混合编制模式。</p>
         <div class="source">来源：<a href="https://weibo.com/1639225703/QDaGPzUk1" target="_blank">微博 - 阿里发布两款AI数字员工</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-30-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-30-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek上线识图模式，腾讯混元发布440MB手机端离线翻译模型 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月29日，DeepSeek正式开启识图模式灰度测试，同步登陆网页端与移动App，从纯文本对话迈出多模态关键一步。同日，腾讯混元推出Hy-MT1.5-1.8B-1.25bit离线翻译模型，将支持33种语言、5种方言和民族语言的翻译大模型压缩到440MB，可在手机本地离线运行，效果超谷歌翻译。此外，商汤科技发布并开源SenseNova U1系列模型，采用NEO-unify原生统一架构，多模态理解、推理和生成性能提升超32%。 为什么对 TME 重要： 多模态和端侧AI是两个关键趋势——DeepSeek识图意味着AI交互从文字扩展到视觉，对音乐内容的图像理解（如专辑封面、MV画面分析）有直接应用价值；440MB端侧翻译模型可在无网络环境下工作，对海外市场拓展和线下场景有实际意义。</p>
         <div class="source">来源：<a href="https://www.yeyulingfeng.com/566854.html" target="_blank">AI前沿动态日报 - 原生多模态与端侧翻译</a></div>
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-04-30-t0-3" data-rel="low">
         <button class="star-btn" data-key="2026-04-30-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Mistral AI发布Medium 3.5旗舰模型，128B稠密架构SWE-Bench达77.6% <span class="music-badge">🎵</span></h4>
         <p>摘要： Mistral AI推出旗舰级128B稠密模型Mistral Medium 3.5，支持256K上下文窗口，在SWE-Bench Verified上取得77.6%得分。该模型已成为Mistral Vibe和Le Chat的默认模型，支持远程异步编码代理（remote agents），可在云端并行运行长时间任务。Le Chat新增"工作模式"预览版，支持复杂多步骤任务。此外，IBM发布Granite 4.1全模态模型家族，覆盖语言、语音、视觉、嵌入、安全五大方向；Poolside AI开源首个编码模型Laguna XS.2，33B参数可在Mac本地运行。 为什么对 TME 重要： 开源大模型的能力持续逼近闭源旗舰，128B参数模型SWE-Bench达77.6%表明开源编程能力已达企业可用水平。技术团队在AI工具选型时，开源模型提供了更具成本可控性的选项。</p>
@@ -337,25 +366,25 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-30-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-30-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic估值冲击9000亿美元，ChatGPT卸载量暴增413%</h4>
         <p>摘要： 4月29日，Anthropic被爆正在谈判新一轮融资，估值可能突破9000亿美元，有望超越OpenAI成为全球估值最高的AI独角兽。Anthropic的年化收入从2025年底的90亿美元飙升至2026年4月的超300亿美元，四个月增长233%，反超OpenAI同期250亿美元。与此同时，ChatGPT今年4月卸载量同比增加132%，上月卸载率同比上升413%，一度暴涨563%。同一时期，Claude下载量一周激增199%，在美国单日下载量首次超过ChatGPT，并登顶多个国家iPhone免费应用排行榜。此外，微软Copilot付费企业用户达2000万，OpenAI Stargate项目号称投入5000亿美元建算力基础设施。 对招聘的启发： AI市场格局正在逆转，Anthropic从"追赶者"变为"领跑者"。对于人才市场而言，这意味着Claude生态相关的技能和企业级AI安全方向的候选人将更加抢手。同时，ChatGPT卸载暴增说明C端AI应用的忠诚度极低，用户切换成本几乎为零——这对AI产品的用户留存策略提出严峻挑战。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/KRPFLBOC0511ABV6.html?f=post1603_tab_news" target="_blank">新智元 - Anthropic估值即将冲破9000亿</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-30-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-30-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Cognizant裁员4000人同时招聘2万应届生，"Project Leap"重塑人才金字塔</h4>
         <p>摘要： 4月29日，Cognizant宣布作为"Project Leap"AI转型计划的一部分，将裁减约4000名员工（约1%），重组成本2.3-3.2亿美元，预计年节省2-3亿美元。与此同时，公司计划在2026年招聘超2万名应届毕业生，并投资6亿美元收购AI基础设施公司Astraa。CEO S. Ravi Kumar表示，年轻人才往往具备更多"原生AI技能"，公司旨在重建面向未来的"金字塔"人才结构——用AI自动化替代中层冗余岗位，用AI-ready的入门级人才填补底层。Cognizant全球员工总数357,600人，其中约70%在印度。 对招聘的启发： "裁4000招20000"的组合拳是AI转型期企业人才重塑的典型模式——裁减AI可替代的中层岗位，大规模招聘"原生AI技能"的应届生。这种"金字塔重建"策略预计将在更多IT服务企业复制。HR需要关注：中层岗位的AI替代风险正在加速，而应届生的"AI原生能力"正在成为新的核心竞争力。</p>
         <div class="source">来源：<a href="https://www.finalroundai.cv/blog/cognizant-layoffs-2026" target="_blank">FinalRound AI - Cognizant Layoffs 2026</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-30-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-30-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 微软裁员15000人创史上最大单次裁员，AI转型代价兑现</h4>
         <p>摘要： 4月29日，微软宣布裁员15000人，约占员工总数10%，为公司历史上最大规模单次裁员。CEO Nadella表示这是战略重组的一部分，旨在将资源重新聚焦于AI开发和云计算能力增强，包括合并重复岗位和淘汰低优先级项目。值得注意的是，此次裁员发生在微软季度盈利创纪录的背景下——AI业务年化收入达370亿美元增长123%，Copilot付费用户突破2000万。此外，苹果于4月29日解散Vision Products Group，Vision Pro硬件路线图暂停，三家美国零售店计划6月关闭，AI负责人John Giannandrea已于4月13日离职。 对招聘的启发： 微软"创纪录利润+创纪录裁员"的组合，说明AI转型不再是"投入期"叙事，而是"兑现期"现实——企业可以在业绩增长的同时大规模裁员，因为AI已开始实质替代部分岗位。HR需要正视这一趋势：AI转型的人力代价正在加速兑现，传统岗位的裁撤速度可能超预期。</p>
         <div class="source">来源：<a href="https://www.thetechedvocate.org/shocking-microsoft-layoffs-15000-jobs-cut-as-ai-takes-center-stage-whats-next/" target="_blank">TheTechEdvocate - Microsoft Layoffs 15000 Jobs Cut</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-30-t1-3" data-rel="hi">
         <button class="star-btn" data-key="2026-04-30-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 马斯克诉OpenAI案正式开庭，涉案关联资产规模达1500亿美元</h4>
         <p>摘要： 马斯克诉OpenAI案件正式开庭审理，核心指控OpenAI背离非营利初心、商业化过度逐利、违背创立初衷。诉求包括罢免Altman管理层、恢复OpenAI非营利属性，涉案关联资产规模高达1500亿美元。此外，OpenAI本周宣布终止与微软的独家云端协议，正式扩展至AWS——微软放弃对OpenAI所有产品及知识产权的独家授权，改以非独家方式延续至2032年。Azure仍是OpenAI的"主要云端伙伴"，但OpenAI的GPT全系模型已正式入驻亚马逊AWS Bedrock平台。 对招聘的启发： OpenAI与微软"脱绑"意味着AI模型分发渠道多元化，企业不再被单一云平台锁定。对于技术选型和人才技能要求而言，多云AI部署能力将成为新的加分项。马斯克诉讼的结果可能重塑OpenAI的股权结构和发展路线，值得持续关注。</p>
@@ -434,7 +463,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

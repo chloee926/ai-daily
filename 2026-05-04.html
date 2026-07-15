@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,7 +320,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-04-nw-0">
       <button class="star-btn" data-key="2026-05-04-nw-0" aria-label="关注这条">☆</button>
       <h3>Day0 原生适配（Day0 Native Adaptation）</h3>
       <p>指大模型在发布当天即完成与特定硬件（尤其是国产 AI 芯片）的底层算子、编译与推理框架适配，使开发者无需等待后续移植即可直接部署。DeepSeek V4 对华为昇腾、海光 DCU、寒武纪等国产芯片的实现即为例证——将国产芯片部署的性能损耗从行业普遍的 30% 降至接近 0。 为什么今天值得知道：这意味着"模型发布"与"算力可用"之间的时差被抹平。对受出口管制与供应链不确定性影响的市场，Day0 适配是把"国产模型 + 国产芯片"从口号变成可交付方案的关键能力。</p>
@@ -306,19 +335,19 @@
       <h2 class="sec-title">议题一 · 国产算力自主化兑现</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-04-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-04-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek V4 完成国产芯片 Day0 原生适配</h4>
         <p>4 月 24 日发布的旗舰模型 DeepSeek V4，在一周内完成与华为昇腾、海光 DCU、寒武纪等国内主流 AI 芯片的 Day0 原生适配，将国产芯片部署的性能损耗从行业普遍的 30% 降至接近 0。模型标配 100 万 token 超长上下文，API 调用价格仅为 GPT-4 的 1/70，成为国产大模型性价比标杆。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-04-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-04-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> IBM Think 2026 开幕：企业多智能体编排 + 全 SDLC AI 编程</h4>
         <p>IBM 年度 Think 大会 5 月 4–7 日在波士顿开幕，吸引 80+ 国家 5000+ 技术与业务领导者。重磅发布包括： - watsonx Orchestrate 下一代：多智能体编排 - IBM Confluent：实时数据喂入 AI - IBM Concert：智能运维 - IBM Sovereign Core：在基础设施运行时层嵌入治理策略，面向受监管行业 - IBM Bob：覆盖从代码生成到测试部署的全 SDLC AI 编程方案 - Granite 4.1：80 亿参数模型，性能可比 320 亿参数 MoE 模型</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-04-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-04-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI 推出 GPT-5.5 Cyber 安全专用大模型</h4>
         <p>5 月 4 日，OpenAI 推出面向网络安全场景深度优化的 GPT-5.5 Cyber，恶意代码识别率较通用模型提升 28%，支持跨语言实时攻防模拟与全球网络威胁溯源，仅向全球核心安全机构与合规企业开放。</p>
@@ -332,19 +361,19 @@
       <h2 class="sec-title">议题二 · 商业化与资本</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-04-t1-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-04-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic ARR 突破 $30B，首超 OpenAI</h4>
         <p>Anthropic 年化收入（ARR）突破 300 亿美元，首次超越 OpenAI 的约 240 亿。同期 Anthropic 与 Blackstone、Hellman & Friedman、Goldman Sachs 等达成 15 亿美元合资，结构为面向 PE 投资组合公司的"前向部署企业服务"，把 Claude 直接嵌入被投企业运营。这一渠道让 Anthropic 以史无前例的规模触达企业客户。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-04-t1-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-04-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Adept AI 完成 $3.5 亿 C 轮</h4>
         <p>Adept AI 宣布完成 3.5 亿美元 C 轮，General Catalyst 领投，英伟达、微软跟投。资金用于扩张 Act-2 Agent 团队，该智能体可在浏览器、IDE 与终端自主执行数据迁移、编写测试等复杂业务流程，反映资本对"可执行智能体"的持续加注。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-04-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-04-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 国产模型"十二日四连发"收尾</h4>
         <p>结合五一前窗口，智谱 GLM-5.1、MiniMax M2.7、Kimi K2.6、DeepSeek V4 在约 12 天内相继开源，性能逼近西方前沿、成本仅其 1/3，中国开源大模型正式进入"多强争霸"阶段。</p>
@@ -423,7 +452,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

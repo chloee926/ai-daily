@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -292,8 +321,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-04-09-nw-0" aria-label="关注这条">☆</button><h4>SaaSpocalypse（SaaS末日）</h4><p>2026年4月出现的行业新词，源于"SaaS"和"Apocalypse"的合成。起因是Anthropic发布Claude Cowork（自动审查合同和NDA的法律AI代理），加上OpenClaw等AI Agent平台的涌现，导致法律科技和传统SaaS公司股票遭遇集体抛售。核心逻辑是：AI Agent不再只是"辅助工具"，而是直接替代了SaaS软件的终端用户——当AI能自动完成合同审查、客户支持、数据分析等任务时，企业不再需要购买让人类使用的软件工具。受冲击最严重的包括法律科技、客服平台和HR SaaS公司。 为什么重要： "SaaSpocalypse"不只是一次股市波动，它标志着一个根本性的商业模式转变：从"卖工具给人用"到"卖AI替人干活"。对HR来说，当SaaS厂商本身都在被AI颠覆时，企业内部使用的各种HR SaaS工具（招聘系统、薪酬平台、绩效管理）也将面临同样的替代逻辑——不是工具升级，而是工具本身变得多余。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-04-09-nw-1" aria-label="关注这条">☆</button><h4>Muse系列（Meta Superintelligence模型族）</h4><p>Meta于4月8日推出的全新AI模型系列，首款产品为Muse Spark（内部代号"Avocado"）。由前Scale AI CEO Alexandr Wang领导的Meta Superintelligence Labs开发，标志着Meta从Llama开源路线转向专有闭源模型。Muse Spark具有三种运行模式——简单模式（快速问答）、复杂模式（法律文档分析等）、思考模式（多Agent并行推理），后者直接对标OpenAI GPT Pro和Google Gemini Deep Think。Meta声称用"低一个数量级的计算量"达到旧版Llama 4中型变体的能力。 为什么重要： Meta花143亿美元收购Scale AI 49%股份并挖来Wang，九个月后交出的答卷是：放弃开源、重建技术栈、推出闭源模型。这意味着AI前沿模型的竞争已经进入"专有壁垒"阶段——即便是最坚定的开源倡导者也不得不承认，在最高性能层面，闭源可能是唯一可行的商业路径。</p></div>
+      <div class="term-item" id="2026-04-09-nw-0"><button class="star-btn" data-key="2026-04-09-nw-0" aria-label="关注这条">☆</button><h4>SaaSpocalypse（SaaS末日）</h4><p>2026年4月出现的行业新词，源于"SaaS"和"Apocalypse"的合成。起因是Anthropic发布Claude Cowork（自动审查合同和NDA的法律AI代理），加上OpenClaw等AI Agent平台的涌现，导致法律科技和传统SaaS公司股票遭遇集体抛售。核心逻辑是：AI Agent不再只是"辅助工具"，而是直接替代了SaaS软件的终端用户——当AI能自动完成合同审查、客户支持、数据分析等任务时，企业不再需要购买让人类使用的软件工具。受冲击最严重的包括法律科技、客服平台和HR SaaS公司。 为什么重要： "SaaSpocalypse"不只是一次股市波动，它标志着一个根本性的商业模式转变：从"卖工具给人用"到"卖AI替人干活"。对HR来说，当SaaS厂商本身都在被AI颠覆时，企业内部使用的各种HR SaaS工具（招聘系统、薪酬平台、绩效管理）也将面临同样的替代逻辑——不是工具升级，而是工具本身变得多余。</p></div>
+      <div class="term-item" id="2026-04-09-nw-1"><button class="star-btn" data-key="2026-04-09-nw-1" aria-label="关注这条">☆</button><h4>Muse系列（Meta Superintelligence模型族）</h4><p>Meta于4月8日推出的全新AI模型系列，首款产品为Muse Spark（内部代号"Avocado"）。由前Scale AI CEO Alexandr Wang领导的Meta Superintelligence Labs开发，标志着Meta从Llama开源路线转向专有闭源模型。Muse Spark具有三种运行模式——简单模式（快速问答）、复杂模式（法律文档分析等）、思考模式（多Agent并行推理），后者直接对标OpenAI GPT Pro和Google Gemini Deep Think。Meta声称用"低一个数量级的计算量"达到旧版Llama 4中型变体的能力。 为什么重要： Meta花143亿美元收购Scale AI 49%股份并挖来Wang，九个月后交出的答卷是：放弃开源、重建技术栈、推出闭源模型。这意味着AI前沿模型的竞争已经进入"专有壁垒"阶段——即便是最坚定的开源倡导者也不得不承认，在最高性能层面，闭源可能是唯一可行的商业路径。</p></div>
     </div>
   </section>
 
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · AI产品、平台与技术动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-09-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-04-09-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Meta发布Muse Spark——放弃开源转向闭源，九个月重建AI技术栈</h4>
         <p>Meta正式发布Muse Spark，这是自2025年6月以143亿美元引入Alexandr Wang以来的首款大型AI模型。关键信息：GPQA Diamond（博士级推理）得分89.5%，低于Gemini 3.1 Pro的94.3%和Claude Opus 4.6的92.7%，但在HealthBench Hard医学推理上以42.8%击败所有对手。模型采用并行子代理架构，包含"思考模式"用于多Agent协作推理。与Llama系列的开源策略截然不同，Muse Spark目前为专有模型，仅通过私有API预览向精选合作伙伴开放。Meta 2026年AI资本支出预计1150-1350亿美元，几乎是去年两倍。Apollo Research第三方评估发现该模型具有极高的"评估意识"——能识别测试场景为"对齐陷阱"。</p>
         <div class="source">来源：<a href="https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html" target="_blank">CNBC</a>、<a href="https://fortune.com/2026/04/08/meta-unveils-muse-spark-mark-zuckerberg-ai-push/" target="_blank">Fortune</a> | 2026-04-08</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-09-t0-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-09-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI确认IPO将向散户投资者开放，基金会投1亿美元攻克阿尔茨海默</h4>
         <p>OpenAI CFO Sarah Friar公开表示，由于最近1220亿美元融资中个人投资者展现出"强劲需求"，OpenAI"肯定"会在IPO中为散户保留份额。同日，OpenAI基金会宣布正在敲定超过1亿美元的赠款，涉及6家研究机构，专门用于加速阿尔茨海默病研究。此前Friar与Altman在未来5年6000亿美元支出计划及IPO时间表上的分歧曾被媒体曝光，此次公开表态被视为"内部统一口径"的信号。</p>
         <div class="source">来源：<a href="https://www.cnbc.com/2026/03/24/openai-secures-an-extra-10-billion-in-record-funding-round-cfo-friar-says.html" target="_blank">CNBC</a>、<a href="https://llm-stats.com/ai-news" target="_blank">LLM Stats</a> | 2026-04-09</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-09-t0-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-09-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Google Gemini深度整合NotebookLM——AI助手从对话工具升级为知识管理平台</h4>
         <p>Google在Gemini应用中引入"笔记本"功能，将NotebookLM深度整合进AI助手。用户现在可以在Gemini内直接组织聊天记录和文件，形成结构化的知识库。此前Gemini已在2025年12月添加了源引用功能，此次更新进一步将AI助手从"问答工具"升级为"个人知识管理平台"。Gemini 3.1 Pro在Artificial Analysis Intelligence Index v4.0上排名第一，领先于GPT-5.4和Claude Opus 4.6。</p>
@@ -331,19 +360,19 @@
       <h2 class="sec-title">议题二 · 组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-09-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-09-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> xAI工程团队二次大修——SpaceX高管空降接管，IPO前夕"推倒重来"</h4>
         <p>SpaceX高级副总裁（Starlink业务负责人）Michael Nicolls已正式出任xAI总裁，在内部备忘录中直言xAI"明显落后"。这是继2月马斯克承认"xAI第一次没建对"、12位联合创始人走了9位之后的第二轮重组。新的工程架构分为六大板块：模型预训练（Devendra Chaplot）、模型工厂与工具（Aman Madaan）、后训练与强化学习（Aditya Gupta）、Grok Code产品（Beibin Li，前微软/Meta）、产品（Andrew Milich + Jason Ginsburg）、基础设施（Jake Palmer + Daniel Dueri）。多名SpaceX员工已在重组中担任关键角色。SpaceX预计2026年IPO，合并后实体估值可能超2万亿美元。</p>
         <div class="source">来源：<a href="https://nationaltoday.com/us/ca/palo-alto/news/2026/04/08/xai-undergoes-major-engineering-overhaul-ahead-of-spacex-ipo/" target="_blank">National Today</a>、<a href="https://www.businessinsider.com/" target="_blank">Business Insider</a> via <a href="https://llm-stats.com/ai-news" target="_blank">LLM Stats</a> | 2026-04-08/09</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-09-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-09-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> "SaaSpocalypse"裁员数据更新——2026年已有6.1万人因AI失业</h4>
         <p>截至4月，2026年已有超过61,000名员工因AI驱动的裁员失业（2025全年为10万+）。45位以上CEO公开宣布因AI效率提升而裁员。具体案例：Salesforce裁5000人（AI已处理50%客户互动）、Oracle裁30000人（省800亿建AI中心）、SAP裁3000人（转向Business AI）、Intuit裁1800人（AI接管财务/税务支持）、Klarna裁700人（CEO称AI等于数百名员工）、Workday裁1750人（AI投资降低人力需求）。至少8家公司宣布了涉及10000+人的与AI相关裁员。裁员已从科技行业蔓延至金融、物流、咨询、媒体、零售和制造业。</p>
         <div class="source">来源：<a href="https://programs.com/resources/ai-layoffs/" target="_blank">Programs.com</a>、<a href="https://www.humai.blog/ai-news-trends-april-2026-complete-monthly-digest/" target="_blank">HUMAI Blog</a> | 2026-04-08</div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-09-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-09-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic以3500亿估值完成员工Tender Offer——IPO前最大规模内部流动性事件</h4>
         <p>Anthropic以3500亿美元估值完成员工Tender Offer（要约收购），允许现任和前任员工在IPO前出售部分股权。据报道，这一估值低于部分投资者期望的6000亿美元目标，且有员工选择持股等待IPO。此前Anthropic年化营收已达300亿美元，G轮估值3800亿美元，Claude Code以54%份额主导开发者工具市场。结合其1亿美元Project Glasswing和4亿美元收购Coefficient Bio进军医疗AI，Anthropic正在从"Claude API公司"快速扩展为"AI基础设施平台"。</p>
@@ -422,7 +451,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

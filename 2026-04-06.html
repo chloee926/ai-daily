@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,7 +320,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-04-06-nw-0">
       <button class="star-btn" data-key="2026-04-06-nw-0" aria-label="关注这条">☆</button>
       <h3>多智能体软件工厂（Agentic Software Factory）</h3>
       <p>Cursor 3 于 4 月 6 日前后发布所代表的新范式：不再是单个 AI 帮你写几行代码，而是由编码智能体、测试智能体、文档智能体并行工作，自动分工覆盖开发全生命周期，并支持集群化调度重构整个大型代码库。 为什么今天值得知道：这标志着 AI 编程工具从"智能补全"→"全流程 Agent"→"多 Agent 并发软件工厂"的第三次范式跃迁。程序员的核心角色正式向"AI 智能体调度员"转变，本地/云端混合部署也为金融、医疗等合规场景提供了可行路径。</p>
@@ -306,25 +335,25 @@
       <h2 class="sec-title">议题一 · 开源与智能体双线加速</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-06-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-04-06-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Google Gemma 4 正式开源：Apache 2.0 拉低先进模型门槛</h4>
         <p>Google DeepMind 正式开源 Gemma 4 系列，基于与 Gemini 3 相同的技术体系，采用 Apache 2.0 许可证，提供 4 种规格从移动端到高性能服务器全覆盖。旗舰版 31B 参数模型在推理与编码基准上达到参数量大 20 倍竞品的 85% 性能，Arena AI 排行榜位列第 3。 关键信号： - 发布首日即获 vLLM、llama.cpp、Ollama、Intel 硬件、Unsloth、Hugging Face 等全生态支持 - 面向高级推理与自主智能体工作流优化，支持多步规划与复杂逻辑 - Apache 2.0 意味着全球开发者可自由商业化部署，倒逼闭源模型竞争升级</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-06-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-04-06-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Cursor 3 — 多智能体集群编程，IDE 进化为"软件工厂"</h4>
         <p>Cursor 3 引入多智能体协同架构：编码、测试、文档智能体可并行工作，自动分工覆盖开发全生命周期。支持本地模型（Llama/CodeLlama）与云端大模型（GPT-5/Claude）无缝切换，并支持集群化调度重构整个大型代码库。 为什么重要：这是 AI 编程从"补全"到"软件工厂"的跃迁。预计未来 6 个月 Claude Code、Gemini Code Assist 等竞品将跟进类似架构，程序员的"写代码"职能进一步让位于"调度与校验智能体"。</p>
         
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-06-t0-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-06-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> DeepSeek V4 定档 4 月：梁文锋带队，长期记忆突破</h4>
         <p>由 DeepSeek 创始人梁文锋亲自带队研发的新一代旗舰模型 DeepSeek-V4 确定于 2026 年 4 月正式发布。团队耗时半年进行系统性技术攻坚，在四大核心领域实现关键突破： - 长期记忆（LTM）：自研 Engram 记忆印迹机制，近乎 O(1) 复杂度知识检索，可永久保存对话历史 - 编程能力：HumanEval 得分超 87.6%，SWE-Bench Verified 达 83.7% - 原生多模态：支持文本、图像、视频端到端语义融合 - AI 搜索增强：与国内领先技术公司达成战略合作</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-06-t0-3" data-rel="mid">
         <button class="star-btn" data-key="2026-04-06-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 中国十部门联合发布《人工智能伦理治理指南（试行）》</h4>
         <p>4 月 3 日，工信部等十部门联合发布《人工智能伦理治理指南（试行）》，聚焦数据、算法与偏见问题，是全球主要经济体在 AI 伦理治理领域的重大举措，标志国内 AI 治理框架进入落地阶段。</p>
@@ -338,19 +367,19 @@
       <h2 class="sec-title">议题二 · 头部公司从"卖模型"转向"控生态"</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-06-t1-0" data-rel="mid">
         <button class="star-btn" data-key="2026-04-06-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic 封锁第三方工具：最激进的"平台收割"</h4>
         <p>当地时间 4 月 4 日，Anthropic 正式阻止 OpenClaw 等第三方 Agent 工具通过订阅账号调用 Claude，用户必须切换为按 Token 计费的 API 模式（成本激增 3–10×）。此举被解读为给官方产品 Claude Code 和 Claude Cowork 扫清竞争阻碍、强制收拢生态。 为什么值得关注：这是 AI Coding 生态史上最激进的平台动作之一。大量依赖 OpenClaw 工作流的独立开发者和内容团队被迫迁移至 Google Gemini 或本地开源方案，可能引发一轮开源替代浪潮。同时暗示 Anthropic 对 B 端 Agent 市场的商业化压力已超过社区口碑考量。</p>
         
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-06-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-06-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI 重组为"AGI Deployment"：Altman 退出安全监督</h4>
         <p>据多方爆料，OpenAI 已将产品部门更名为"AGI Deployment"，CEO Sam Altman 完全退出安全监督工作，专注于数据中心建设。Greg Brockman 透露 AGI 进度已完成 70%-80%，GPT-6（传闻 4 月 14 日发布）将补上剩余差距。这一战略调整标志 OpenAI 正式进入"AGI 最后一公里"的冲刺阶段。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-06-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-06-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 具身智能 Q1 融资近 200 亿，AI 智能体自主攻破系统引安全反思</h4>
         <p>一季度具身智能赛道融资接近 200 亿元，资本持续加注。同期安全圈警示：AI 智能体已能自主攻破系统（如自动化渗透测试），模型能力与安全边界的失衡成为新焦点，多家公司开始推出针对 Agent 的安全扫描工具。</p>
@@ -429,7 +458,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

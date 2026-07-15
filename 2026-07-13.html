@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -292,8 +321,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-07-13-nw-0" aria-label="关注这条">☆</button><h4>模型蒸馏双向抄袭（Bidirectional Model Distillation Controversy）</h4><p>指AI巨头之间互相使用对方模型输出来训练自家模型的争议现象。本周多家媒体报道，OpenAI与中国大模型厂商存在"你蒸馏我、我蒸馏你"的互相借鉴行为——这不再是单方面"偷学"，而是系统性的技术循环。争议的核心问题是：当所有模型都在互相学习，"原创性"还有意义吗？</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-07-13-nw-1" aria-label="关注这条">☆</button><h4>峰谷分时定价（Time-of-Use API Pricing）</h4><p>DeepSeek V4正式版首创的API定价机制——工作日白天高峰价、夜间和周末低谷价，借鉴电力行业分时电价逻辑。本质是用价格杠杆平滑GPU集群负载，让开发者的批量任务"错峰跑"。7月15日全量上线后，预计将引发行业跟进。</p></div>
+      <div class="term-item" id="2026-07-13-nw-0"><button class="star-btn" data-key="2026-07-13-nw-0" aria-label="关注这条">☆</button><h4>模型蒸馏双向抄袭（Bidirectional Model Distillation Controversy）</h4><p>指AI巨头之间互相使用对方模型输出来训练自家模型的争议现象。本周多家媒体报道，OpenAI与中国大模型厂商存在"你蒸馏我、我蒸馏你"的互相借鉴行为——这不再是单方面"偷学"，而是系统性的技术循环。争议的核心问题是：当所有模型都在互相学习，"原创性"还有意义吗？</p></div>
+      <div class="term-item" id="2026-07-13-nw-1"><button class="star-btn" data-key="2026-07-13-nw-1" aria-label="关注这条">☆</button><h4>峰谷分时定价（Time-of-Use API Pricing）</h4><p>DeepSeek V4正式版首创的API定价机制——工作日白天高峰价、夜间和周末低谷价，借鉴电力行业分时电价逻辑。本质是用价格杠杆平滑GPU集群负载，让开发者的批量任务"错峰跑"。7月15日全量上线后，预计将引发行业跟进。</p></div>
     </div>
   </section>
 
@@ -305,37 +334,37 @@
       <h2 class="sec-title">议题一 · 模型军备：开源vs闭源的决战周</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-13-t0-0" data-rel="hi">
         <button class="star-btn" data-key="2026-07-13-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 智谱发布《巨浪已来》内部信，GLM-5.2以MIT协议全量开源</h4>
         <p>智谱AI CEO张鹏于7月11日向全员发布内部信《巨浪已来》，宣布GLM-5.2全系列以MIT协议开源，包括基座模型、微调版本和推理框架。GLM-5.2发布后在OpenRouter平台周调用量达2.58万亿Token，环比增长22%，冲进全球前五。智谱选择在中国模型全球调用量连续十周领先的时间点开源，战略意图明确：用开源锁定开发者生态。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-13-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-07-13-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> GPT-5.6 Sol Ultra一小时证明50年未解数学猜想</h4>
         <p>OpenAI于7月11日展示GPT-5.6 Sol Ultra在数学推理领域的突破——用不到一小时时间完成了一个困扰数学界50年的猜想证明。该证明已提交数学界同行评审。这标志着AI在形式化推理方面正式超越绝大多数人类数学家的单点能力。</p>
         
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-13-t0-2" data-rel="hi">
         <button class="star-btn" data-key="2026-07-13-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> GPT-5.6被曝删除Mac用户文件，OpenAI紧急发布修复</h4>
         <p>7月11日，大量用户报告GPT-5.6桌面版Agent在执行文件整理任务时，错误删除了Mac用户的个人文件（包括文档和照片）。OpenAI在12小时内确认bug并发布紧急修复，但事件引发关于"AI Agent系统级权限"的广泛讨论。OpenAI CEO奥尔特曼公开致歉，承认"Agent获得文件系统写入权限的安全审查流程存在缺陷"。</p>
         
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-07-13-t0-3" data-rel="low">
         <button class="star-btn" data-key="2026-07-13-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 谷歌Gemini 3.5 Pro定档7月17日发布，200万Token上下文</h4>
         <p>Google确认旗舰大模型Gemini 3.5 Pro将于7月17日正式发布。此前该模型原定6月推出但跳票，Google团队选择放弃微调路线，改为全新预训练。核心亮点：200万Token上下文窗口（当前最大）、Deep Think推理模式、自主工作流能力。发布时间精准卡位DeepSeek V4同期，正面对决意图明确。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-13-t0-4" data-rel="mid">
         <button class="star-btn" data-key="2026-07-13-t0-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek V4定档7月15日全量上线，首创峰谷分时定价</h4>
         <p>DeepSeek确认V4正式版7月15日全量上线。除模型能力大幅提升外，最大创新是商业模式层面：首次引入峰谷分时定价。V4-Flash在OpenRouter上已连续七周位居全球调用量榜首（周5.34万亿Token），价格仅为GPT-5.5的1/100。</p>
         
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-07-13-t0-5" data-rel="low">
         <button class="star-btn" data-key="2026-07-13-t0-5" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 谷歌Gemma 4技术报告发布，端侧原生多模态开源 <span class="music-badge">🎵</span></h4>
         <p>Google DeepMind于7月11日发布Gemma 4技术报告。Gemma 4是首个端侧原生多模态开源模型，支持文本、图像、音频三模态输入输出，可直接在手机和边缘设备运行。模型权重以Apache 2.0协议开源，定位为"人人可用的小模型"。</p>
@@ -349,37 +378,37 @@
       <h2 class="sec-title">议题二 · AI组织与人才：安全团队出走潮 & 中国AI全球崛起</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-13-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-07-13-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI安全系统负责人海德克离职，八年内第八位安全高管出走</h4>
         <p>OpenAI安全系统负责人约翰内斯·海德克（Johannes Heidecke）7月11日宣布离职。这是继伊利亚·萨特斯凯弗、简·莱克、翁荔等人后，第八位离开OpenAI的安全领域高管。同周，首席未来学家约书亚·阿希亚姆也宣布离职（任职近9年）。OpenAI回应称将安全团队整合进研究组织，由米娅·格莱斯统一负责。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-13-t1-1" data-rel="mid">
         <button class="star-btn" data-key="2026-07-13-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 中国大模型OpenRouter调用量连续十周碾压美国，包揽前六</h4>
         <p>据每日经济新闻报道，截至7月5日当周，中国AI大模型在OpenRouter周调用量达23.45万亿Token，是美国（4.28万亿）的5.5倍，连续十周全球第一。前六名全部为中国模型（DeepSeek V4-Flash、小米MiMo、MiniMax M3、腾讯Hy3、智谱GLM-5.2、阶跃星辰Step 3.7）。美国企业使用中国模型的Token占比从2025年上半年的4.5%飙升至46%。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-13-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-07-13-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> WAIC 2026世界人工智能大会7月17-20日在上海举办</h4>
         <p>2026世界人工智能大会暨人工智能全球治理高级别会议将于7月17-20日在上海三大会场举办。本届大会展览面积首破10万平方米，1100家企业参展，超300款AI产品全球首发。首设WAIC Academic学术会议，图灵奖得主姚期智和强化学习之父Richard Sutton共同主持。华为Atlas 950超节点真机将首次亮相。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-13-t1-3" data-rel="mid">
         <button class="star-btn" data-key="2026-07-13-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阶跃星辰发布全球首款AI智能体手机</h4>
         <p>阶跃星辰于7月13日发布全球首款"AI智能体手机"原型，手机系统层面深度集成大模型Agent能力，可自主完成跨App操作链（如"帮我订明天去上海的高铁+酒店+发通知给同事"）。目前为开发者预览版，计划Q4量产。这是AI Agent从云端走向终端设备的标志性产品形态。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-13-t1-4" data-rel="mid">
         <button class="star-btn" data-key="2026-07-13-t1-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 宇树科技104天登陆科创板，创预先审阅机制最快IPO纪录</h4>
         <p>宇树科技从3月20日获受理到7月1日注册生效仅用104天，创科创板预先审阅机制最快审核纪录，即将成为A股"人形机器人第一股"。公司拟募资42亿元，对应估值约420亿元。业内认为2026年是人形机器人"场景验证元年"。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-13-t1-5" data-rel="mid">
         <button class="star-btn" data-key="2026-07-13-t1-5" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 唱片业联盟敦促Spotify和Apple Music为AI音乐打标签 <span class="music-badge">🎵</span></h4>
         <p>RIAA与IFPI牵头，联合多家唱片公司推动Spotify和Apple Music对AI生成音乐实施强制标注。标签分两类：纯AI生成（主唱/核心乐器由AI完成）和AI辅助创作。Spotify已上线AI参与标注功能，Apple Music推出"透明化标签"系统。这是音乐产业首次系统性建立AI内容的分类标识体系。</p>
@@ -458,7 +487,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

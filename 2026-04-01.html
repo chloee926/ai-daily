@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,8 +320,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-04-01-nw-0" aria-label="关注这条">☆</button><h4>Harness Engineering（驾驭工程）</h4><p>一句话解释： 继Prompt Engineering（提示词工程）和Context Engineering（上下文工程）之后，2026年初硅谷兴起的AI工程化新范式，核心是为AI智能体构建架构约束、反馈闭环和全生命周期管理系统，让AI可控、可靠、安全地完成复杂工作。 为什么重要： OpenAI曾有3人团队借助Codex工具、用Vibe Coding模式5个月上线百万行代码的产品级项目。要支撑这种大规模AI编程，需要的不再是更好的提示词，而是"操作系统级"的治理体系。形象比喻：提示词工程是吆喝马跑，上下文工程是给马地图，驾驭工程是给马装马鞍、套缰绳、修围栏——防止AI乱跑或遇障无法自愈。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-04-01-nw-1" aria-label="关注这条">☆</button><h4>算力通胀（AI Compute Inflation）</h4><p>一句话解释： 全球云厂商在10天内集体将AI算力及存储服务价格上调30%-400%，结束了持续多年的"降价抢客"时代，AI算力从买方市场转为卖方市场。 为什么重要： 中国日均Token调用量从2024年初的1000亿暴增至2026年3月的140万亿，两年增长超千倍。尽管Token单价曾降幅高达99%，但需求的指数级爆发远超价格下降速度。算力成本上涨将直接推高AI应用的运营门槛，对中小AI企业打击尤大。</p></div>
+      <div class="term-item" id="2026-04-01-nw-0"><button class="star-btn" data-key="2026-04-01-nw-0" aria-label="关注这条">☆</button><h4>Harness Engineering（驾驭工程）</h4><p>一句话解释： 继Prompt Engineering（提示词工程）和Context Engineering（上下文工程）之后，2026年初硅谷兴起的AI工程化新范式，核心是为AI智能体构建架构约束、反馈闭环和全生命周期管理系统，让AI可控、可靠、安全地完成复杂工作。 为什么重要： OpenAI曾有3人团队借助Codex工具、用Vibe Coding模式5个月上线百万行代码的产品级项目。要支撑这种大规模AI编程，需要的不再是更好的提示词，而是"操作系统级"的治理体系。形象比喻：提示词工程是吆喝马跑，上下文工程是给马地图，驾驭工程是给马装马鞍、套缰绳、修围栏——防止AI乱跑或遇障无法自愈。</p></div>
+      <div class="term-item" id="2026-04-01-nw-1"><button class="star-btn" data-key="2026-04-01-nw-1" aria-label="关注这条">☆</button><h4>算力通胀（AI Compute Inflation）</h4><p>一句话解释： 全球云厂商在10天内集体将AI算力及存储服务价格上调30%-400%，结束了持续多年的"降价抢客"时代，AI算力从买方市场转为卖方市场。 为什么重要： 中国日均Token调用量从2024年初的1000亿暴增至2026年3月的140万亿，两年增长超千倍。尽管Token单价曾降幅高达99%，但需求的指数级爆发远超价格下降速度。算力成本上涨将直接推高AI应用的运营门槛，对中小AI企业打击尤大。</p></div>
     </div>
   </section>
 
@@ -304,25 +333,25 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与技术动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-01-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-04-01-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 全球云厂商集体掀起AI算力涨价潮，"降价时代"终结</h4>
         <p>摘要： 2026年3月，谷歌云、亚马逊云、腾讯云、阿里云、百度智能云在10天内相继发布调价公告。阿里云AI算力最高涨34%，4月18日生效；腾讯云部分核心产品涨幅最高达400%；行业整体AI算力与存储服务价格上调30%-50%。这与2025年4月"最高降幅60%"的价格战形成鲜明反转。根本原因是Token需求爆炸——国家数据局数据显示中国日均Token调用量已突破140万亿（2024年初仅1000亿），两年增长超千倍。GPU芯片供应链成本持续攀升，长期低价内卷模式不可持续，云厂商从"卖算力"转向"卖解决方案"。 为什么重要： 算力涨价直接抬高了AI应用的运营门槛，中小AI企业和初创者首当其冲。行业将加速"马太效应"——头部厂商优势扩大，中小云厂商生存空间受挤压。企业的AI投入ROI测算需要全面重估。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/KPBJ5QU805319LDA.html" target="_blank">Tech星球/网易</a>、<a href="https://www.36kr.com/p/3735284343963651" target="_blank">36氪</a>、<a href="https://www.aliyun.com/notice/118086" target="_blank">阿里云公告</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-01-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-04-01-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里通义发布Qwen3.5-Omni：215项SOTA全模态大模型 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月30日，阿里通义实验室正式发布旗舰级原生全模态大模型Qwen3.5-Omni，在音视频分析、推理、对话及翻译测试中斩获215项SOTA（State-of-the-Art），全面超越Gemini-3.1 Pro。核心架构升级：Thinker升级为Hybrid-Attention MoE支持256K超长上下文，Talker引入ARIA技术解决语音漏字与误读问题。实用功能包括根据视频生成代码、语义打断、结构化Caption生成、113种语言个性化音色定制等。中国大模型市场已从"百模大战"进入头部厂商技术硬实力比拼阶段。 为什么重要： 全模态是大模型下半场的主赛道——谁能让文本、图片、音频、视频"一个模型全搞定"，谁就掌握了下一代AI应用的入口。Qwen3.5-Omni超越Gemini-3.1 Pro标志着中国大模型在全模态能力上进入全球第一梯队。</p>
         <div class="source">来源：<a href="https://www.oschina.net/news/416053" target="_blank">开源中国</a>、<a href="https://www.sohu.com/a/1003166801_121123928" target="_blank">阿里云</a>、<a href="https://ai-bot.cn/qwen3-5-omni/" target="_blank">AI工具集</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-01-t0-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-01-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Harness Engineering席卷硅谷，AI治理成新竞争焦点</h4>
         <p>摘要： 继Prompt Engineering和Context Engineering之后，Harness Engineering（驾驭工程）成为2026年AI工程化新范式。核心三要素：架构约束（为AI设定不可逾越的边界并自动检查）、反馈闭环（AI能自行运行-Debug-修复-性能调优的自愈循环）、全生命周期管理（从个人到组织级的上下文和记忆管理）。背景是OpenAI实践中3人团队用Codex在5个月内上线百万行代码，迫使行业思考"AI大规模编程怎么不翻车"。类比：提示词工程是"喊话模式"，上下文工程是"给地图"，驾驭工程是"装马鞍、套缰绳、修围栏"。 为什么重要： 当AI从个体工具升级为组织级生产力时，"治理"变得比"能力"更重要。驾驭工程代表了AI落地的下一个瓶颈——不是AI能不能干活，而是干活时怎么不出事。</p>
         <div class="source">来源：<a href="https://cloud.tencent.com/developer/article/2646443" target="_blank">腾讯云开发者社区</a>、<a href="https://www.51cto.com/aigc/11211.html" target="_blank">51CTO</a>、<a href="https://life.china.com/2026-03/30/content_558664.html" target="_blank">中国网</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-01-t0-3" data-rel="mid">
         <button class="star-btn" data-key="2026-04-01-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 爱诗科技发布PixVerse V6，AI视频从"生成画面"走向"构建世界"</h4>
         <p>摘要： 爱诗科技"拍我AI闪电发布周"首日推出PixVerse V6，在人物真实感（皮肤纹理、毛孔、光影反射）、物理模拟（液体、布料、碰撞）和叙事连贯性（多镜头切换视觉统一）三个维度全面升级。支持子弹时间、FPV、延时摄影等专业特效，最长可生成15秒1080P视频。同日，美图发布Meitu CLI将核心影像能力标准化封装接入OpenClaw生态，采用"开箱即用、按量付费"模式。 为什么重要： AI视频生成正在从"能看"走向"能用"——当物理逻辑自洽、人物表情连贯时，商用门槛将大幅降低，短视频、广告、影视前期制作行业面临重塑。</p>
@@ -336,19 +365,19 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-01-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-01-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> BOSS直聘盈利26.9亿却裁员804人：招聘平台先AI化了自己</h4>
         <p>摘要： BOSS直聘2025年全年营收82.7亿元（+12.4%），净利润26.9亿元（+71.7%），经营利润翻倍增长。但同期净裁员804人（约14%），上半年净减945人为优化最猛阶段，下半年回补141人。裁员主要集中在运营岗——AI大模型语义识别能力升级后，大量基础审核、匹配、推荐工作被算法接管。一个招聘平台"帮别人找工作的人自己先丢了工作"的悖论，成为2026年AI职场最具讽刺意味的缩影。考虑到离职与招聘的动态平衡，实际优化人员或超1000人。 对招聘的启发： BOSS直聘案例揭示了一个深层趋势——AI对运营类岗位的替代已经不是"未来时"而是"过去式"。招聘平台自身的AI化进程，预示着所有依赖标准化操作的岗位都面临同样命运。HR需要重新审视哪些岗位属于"AI可完全接管"、哪些属于"AI增强人效"、哪些属于"AI无法替代"。</p>
         <div class="source">来源：<a href="https://baijiahao.baidu.com/s?id=1860890397845506040" target="_blank">百家号</a>、<a href="https://www.topnews.cn/news/145CD2E442BA4471" target="_blank">顶端新闻</a>、<a href="https://finance.sina.com.cn/stock/zqgd/2026-03-18/doc-inhrmihm7439761.shtml" target="_blank">新浪财经</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-01-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-01-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> "第一批用AI的人，反被AI砸了饭碗"——会用AI也不安全</h4>
         <p>摘要： 36氪深度文章指出，2026年一个深刻变化是"AI会淘汰不会用AI的人"这句话过时了——即便最先学会且最擅长使用AI的人，同样面临被淘汰。数据显示90%的公司以AI为由裁员，但只有2%是真正因AI提效后裁员，大多数企业是在纠正疫情期间过度招聘或追求"人机比"指标。大厂推动"全员Agent化"，要求员工拆解工作流以便AI接管，形成"不拥抱AI会被淘汰，拥抱AI又加速被替代"的双重困境。短剧行业、翻译、摄影等领域受冲击严重，多所高校已停招相关专业。 对招聘的启发： "AI素养"不再是护城河——当每个人都会用AI时，真正的竞争力回到了对业务本质的理解和决策能力上。HR在评估候选人时，需要区分"会用AI工具"和"能用AI创造不可替代的价值"。</p>
         <div class="source">来源：<a href="https://www.36kr.com/p/3739350325329924" target="_blank">36氪/金错刀</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-01-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-01-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 国家数据局官方定名Token为"词元"，AI有了统一度量衡</h4>
         <p>摘要： 国家数据局局长刘烈宏在中国发展高层论坛2026年年会上宣布，正式将AI术语Token定名为"词元"，定义为"大模型处理信息的最小信息单元，具有智能时代可计量、可定价、可交易的特征"。数据披露：中国日均词元调用量已突破140万亿（2024年初为1000亿，两年增长超千倍）。黄仁勋在GTC大会上指出，一个代理式任务的词元消耗量比传统聊天模式高出数个量级。词元正在成为智能时代的"度量衡"。 对招聘的启发： Token/词元成为AI产业的基础计量单位，类似于互联网时代的"流量"概念。HR在理解AI业务和招聘AI人才时，需要把"词元经济学"纳入基础认知框架——它决定了AI应用的成本结构和商业模式。</p>
@@ -427,7 +456,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-04-27-nw-0">
       <button class="star-btn" data-key="2026-04-27-nw-0" aria-label="关注这条">☆</button>
       <h3>AI新名词</h3>
       <p>GPT-5.5 / DeepSeek-V4 —— 同一天，两种答案 4月24日，OpenAI和DeepSeek选择了同一天出手。GPT-5.5是OpenAI自GPT-4.5以来第一次从零重训的基座模型，主打"最智能、最直觉易用"，API支持100万token上下文；DeepSeek-V4则延续开源路线，同样支持百万字超长上下文，并在Agent能力、世界知识和推理性能上实现国内开源领域领先。两家在同一天发布，被视为全球AI竞赛进入新阶段的标志性事件——闭源旗舰与开源先锋的正面交锋。</p>
@@ -305,25 +334,25 @@
       <h2 class="sec-title">议题一 · 前沿模型密集落地，AI能力竞赛进入"周更"节奏</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-04-27-t0-0" data-rel="low">
         <button class="star-btn" data-key="2026-04-27-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> OpenAI</h4>
         <p>发布旗舰模型GPT-5.5，100万token上下文+全榜第一**，美国时间4月23日，OpenAI发布最新旗舰模型GPT-5.5，号称迄今为止"最智能、最直觉易用"的模型。核心突破：支持100万token上下文（自GPT-4.5以来首次完整重训）、Terminal-Bench 2.0得分82.7%、在极少人类指令下处理复杂多步骤任务。价格直接翻倍至$5/$30每百万token。据官方介绍，GPT-5.5擅长编写和调试代码、在线研究、数据分析、创建文档和表格，甚至能够跨越多个软件工具直到完成任务。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-27-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-04-27-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek</h4>
         <p>V4预览版正式上线并开源，百万上下文+国产算力适配**，4月24日，DeepSeek-V4预览版正式发布并同步开源，支持百万字超长上下文，在Agent能力、世界知识和推理性能上均实现国内与开源领域的领先。技术亮点：引入token维度压缩与自研稀疏注意力机制，使1M上下文处理在计算与显存需求上相比前代显著下降；明确验证细粒度EP方案在英伟达GPU和华为昇腾NPU双平台上的表现，打出"用国产算力跑国产模型"旗号。API最便宜版本每百万Tokens仅0.2元。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-27-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-27-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic</h4>
         <p>Claude Opus 4.7发布，高端编程能力大幅提升**，4月16日，Anthropic发布Claude Opus 4.7，距上次升级仅间隔两个月，确立每两个月更新一次的稳定节奏。核心升级：高端软件开发和超高难度任务处理能力显著提升；更高分辨率图像识别和更优创作审美；增强的指令遵循和基于文件系统的记忆能力；SWE-bench Verified得分87.6%。注意：Opus 4.7的综合能力（含网络攻防）弱于未全面开放的Claude Mythos，Anthropic在训练中专门对其网络攻防能力进行了限制。Token消耗约为原来的1.0～1.35倍（新版分词器）。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-27-t0-3" data-rel="mid">
         <button class="star-btn" data-key="2026-04-27-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 月之暗面</h4>
         <p>Kimi K2.6发布并开源，262K上下文延伸**，近期，月之暗面正式发布并开源Kimi K2.6模型，延伸K2系列的262K上下文能力，在国产大模型开源社区引发广泛关注。</p>
@@ -337,19 +366,19 @@
       <h2 class="sec-title">议题二 · Meta、Microsoft合计裁员超20,000人，AI提效正式摆上台面</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-27-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-27-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta</h4>
         <p>裁员10%（约8,000人），额外取消6,000个开放职位**，4月23日，Meta正式宣布裁员约8,000人（占员工总数10%），裁员从5月20日开始。公司在备忘录中表示裁员是"继续更高效地运营公司"和"抵消我们正在进行的其他投资"的一部分。外界普遍认为，这与Meta加大AI基础设施投入（2026年预计AI支出占大頭）并同时利用AI驱动效率提升直接相关。这是Meta继2022-2023年"元年裁员"后的新一轮大规模人员优化。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-27-t1-1" data-rel="mid">
         <button class="star-btn" data-key="2026-04-27-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Microsoft</h4>
         <p>51年历史上首次提供全公司范围买断方案，约8,750人受影响**，4月24日，Microsoft宣布向美国员工提供自愿买断方案，覆盖约8,750人（美国员工的7%）。这是Microsoft 51年历史上的首次此类举措。与市场预期相反，Microsoft在大规模AI基础设施投入（2026年预计投入超1,000亿美元）的同时选择缩减人力成本，被专家解读为"AI驱动的效率提升"已实质性替代部分岗位。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-27-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-27-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 行业背景数据：2026年截至4月24日，科技行业已有超过92,000名从业者被裁；自2020年以来累计近900,000人。Alphabet、Microsoft、Meta和Amazon预计2026年合计投入近7,000亿美元用于AI基础设施建设。专家警告：这代表根本性结构转变，而非暂时调整，AI时代的劳动力危机已经到来。</h4>
         <p></p>
@@ -428,7 +457,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

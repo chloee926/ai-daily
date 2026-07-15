@@ -91,7 +91,13 @@
     .card .date { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--ink); }
     .card .weekday { font-family: var(--sans); font-size: 10px; color: var(--ink-dim); margin-top: 3px; }
 
-    .watermark {
+    .topnav { position: sticky; top: 0; z-index: 50; display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; padding: 10px 8px; background: var(--paper); border-bottom: 1px solid var(--rule-soft); }
+  .topnav a { color: var(--ink-soft); text-decoration: none; font-family: var(--sans); font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s; }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star { display: inline-block; min-width: 16px; text-align: center; background: var(--accent); color: #fff; border-radius: 999px; font-size: 11px; padding: 0 5px; margin-left: 2px; }
+
+  .watermark {
       text-align: center; color: var(--ink-dim); font-size: 11px;
       margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--rule-soft); letter-spacing: 2px;
     }
@@ -127,7 +133,23 @@ function toggleTheme() {
   }
 }
 </script>
+<script>
+(function(){
+  try {
+    var s = JSON.parse(localStorage.getItem('ai-daily-stars') || '{}');
+    var n = Object.keys(s).length;
+    var el = document.getElementById('starCount');
+    if (el) el.textContent = n;
+  } catch(e){}
+})();
+</script>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色" aria-label="切换主题">🌙</button>
+<nav class="topnav">
+  <a href="index.html" class="active">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <div class="wrap">
   <div class="header">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>

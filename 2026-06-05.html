@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-06-05-nw-0">
       <button class="star-btn" data-key="2026-06-05-nw-0" aria-label="关注这条">☆</button>
       <h3>AI PC</h3>
       <p>AI PC 不是简单在电脑上装一个 AI 助手，而是让个人电脑成为 AI 智能体的原生运行环境——拥有独立算力（1 Petaflop）、大内存（128GB 统一内存），可以在本地离线运行千亿参数大模型、执行自主智能体任务。英伟达 RTX Spark 是首款专用芯片，联想、戴尔等今秋首发。</p>
@@ -305,13 +334,13 @@
       <h2 class="sec-title">议题一 · AI PC 产业化与中国企业智能化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-05-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-06-05-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯云 — 发布效率智能体工具集，构建 AI 生产力入口</h4>
         <p>腾讯云 AI 产业应用大会在北京举办，发布效率智能体工具集，面向多元人群构建 AI 生产力入口。此前腾讯已面向全球市场推出 WorkBuddy 国际版、Miora 设计工具和 TokenHub MaaS 平台。腾讯正从"AI 辅助工具"向"AI 生产力基础设施"定位升级。</p>
         <div class="source">来源：<a href="https://www.tencent.com/zh-cn" target="_blank">腾讯官网</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-06-05-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-06-05-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 产业 — AI PC 产业驶入快车道，x86 与 ARM 双架构竞争格局形成</h4>
         <p>COMPUTEX 2026 后，AI PC 产业链加速落地。英伟达 RTX Spark 代表 ARM 阵营，搭配微软 Windows 安全原语和 OpenShell 运行时；传统 x86 阵营则由 Intel 和 AMD 驱动。戴尔、惠普、联想、华硕等 OEM 将在秋季批量推出 RTX Spark 笔记本与工作站。产业共识是：PC 不再是"运行应用的工具"，而是"运行智能体的平台"。</p>
@@ -325,13 +354,13 @@
       <h2 class="sec-title">议题二 · AI 裁员的结构性冲击</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-05-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-06-05-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Oracle — 裁员 25000+ 人，AI 基础设施转型中最大规模裁员</h4>
         <p>据 TradingPlatforms 数据，Oracle 以 25254 人成为 2026 年 AI 相关裁员的最大贡献者，主要裁减旧系统、手工操作和行政支持相关岗位，全面转向 AI 驱动的云基础设施和企业服务。这是科技史上最大规模的单次 AI 转型裁员之一。</p>
         <div class="source">来源：<a href="https://www.enterpriseitworld.com/ai-layoffs-in-the-tech-industry-surge-past-39k-nearly-half-of-the-global-total-of-84223/" target="_blank">EnterpriseITWorld</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-05-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-06-05-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Amazon — 裁员 16000 人，运营效率优化持续进行</h4>
         <p>Amazon 以 16000 人裁员位居 2026 年 AI 驱动裁员第二位，主要涉及电商和云服务运营团队。公司持续将资源从传统运营转向 AI 和自动化。分析指出，AI 正在"分裂劳动力市场"——高技能工程师需求增加，而初中级岗位被大量替代。</p>
@@ -410,7 +439,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

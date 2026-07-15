@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-12-nw-0">
       <button class="star-btn" data-key="2026-05-12-nw-0" aria-label="关注这条">☆</button>
       <h3>AI 原生设计原则（AI-Native Design Principle）</h3>
       <p>Meta 首席人力资源官在裁员备忘录中首次提出这一概念，指在组织架构设计中以 AI 能力为默认前提，而非将 AI 作为人力配置之后的补充。具体表现为：大幅削减管理层职位推行扁平化、组建更精简更有自主权的小团队、默认假设 AI 能承担大部分执行工作。这不是"用 AI 辅助现有流程"，而是"围绕 AI 能力重新设计流程"。</p>
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · AI 产品生态加速扩张</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-12-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-12-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Meta — Muse Spark 模型全面赋能语音/AR/购物场景 <span class="music-badge">🎵</span></h4>
         <p>Meta 更新博客（5月12日），详细阐述 Muse Spark 模型（4月发布）如何全面驱动产品线：更快的 AI 语音响应、智能 AR 眼镜功能、应用内购物助手。同时据路透社报道，Meta 正在测试 AI 吊坠、扩展 Ray-Ban/Oakley 智能眼镜产品线，并推出面向企业的"Wearables for Work"服务，目标 H2 2026 销售 1000 万台 AI 可穿戴设备。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AICritique</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-12-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-12-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 高德 — 发布鸿蒙首个生成式 UI 开源框架 AGenUI</h4>
         <p>高德发布 AGenUI，为鸿蒙系统首个生成式 UI 开源框架。基于通用协议可将大模型界面意图直接转化为鸿蒙原生组件，一套代码适配手机、车机、智慧屏等多终端，渲染性能较 iOS/Android 版本提升 20%，内存占用降低 18%，已全面开源。</p>
         <div class="source">来源：<a href="https://www.aibetas.com.cn/p/6225.html" target="_blank">AIBetas</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-12-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-12-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek — V4 Pro API 限时 2.5 折优惠延长至 5 月底</h4>
         <p>DeepSeek 宣布 V4-Pro 限时 2.5 折优惠延长至 5 月 31 日（原定 5 月 5 日截止）。叠加输入缓存降价后，V4-Pro 缓存命中输入低至 0.025 元/百万 Tokens，创全球大模型价格新低。缓存命中率约 95%，Agent 编程场景整体成本节省可达 83%。</p>
@@ -331,19 +360,19 @@
       <h2 class="sec-title">议题二 · AI 驱动组织"瘦身"潮持续</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-12-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-05-12-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Microsoft — 自愿买断计划细则公布：年龄+司龄≥70</h4>
         <p>微软向美国员工公布自愿退休计划（Voluntary Retirement Program）细则：职级 67 及以下、年龄与司龄之和≥70 的员工可自愿申报，获 8-39 周基本薪资的一次性现金补偿及最长 5 年医保延续。所有参与者统一离职日为 7 月 1 日。微软称此举为"自主决定职业发展下一步"的机会，而非强制裁员。</p>
         <div class="source">来源：<a href="https://www.alphapilot.tech/zh-CN/discover/microsoft-launches-first-ever-voluntary-buyout-program-amid-strategic-workforce-realignment" target="_blank">AlphaPilot</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-12-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-05-12-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Bill Holdings — 裁员至多 30%，CEO 称要成为"端到端 AI 原生企业"</h4>
         <p>后台办公软件开发商 Bill Holdings 宣布裁员至多 30%，CEO 勒内·拉塞尔特称"正大刀阔斧推动公司转型，致力于成为端到端 AI 原生企业，迅速重塑工作方式"。这是继 Cloudflare（20%）、Coinbase（14%）之后又一家以"AI 原生"为名的重大裁员。</p>
         <div class="source">来源：<a href="https://caifuhao.eastmoney.com/news/20260508113909357114180" target="_blank">东方财富</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-12-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-12-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — H 轮融资进行中，估值达 9000 亿美元以上</h4>
         <p>据彭博社报道，Anthropic 正在进行的 H 轮融资规模至少 300 亿美元，估值超过 9000 亿美元，由红杉、Dragoneer、Greenoaks 和 Altimeter 联合领投。该轮融资预计月底关闭，资金主要用于 AWS 和谷歌云的算力承诺。</p>
@@ -422,7 +451,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

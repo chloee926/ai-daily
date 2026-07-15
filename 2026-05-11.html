@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-11-nw-0">
       <button class="star-btn" data-key="2026-05-11-nw-0" aria-label="关注这条">☆</button>
       <h3>前沿部署工程师（Forward Deployed Engineer, FDE）</h3>
       <p>FDE 是由 Palantir 首创、现被 AI 公司广泛采用的人才模式：将工程师派驻到客户现场，深度嵌入业务流程，帮助企业将 AI 模型集成到核心运营中。OpenAI 部署公司的核心运营模式即基于 FDE，收购 Tomoro 后一次性引入约 150 名资深 FDE，平均拥有 8 年 AI 项目经验。</p>
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · AI 巨头押注企业部署"最后一公里"</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-11-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-11-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 成立 OpenAI Deployment Company，初始投资超 40 亿美元</h4>
         <p>OpenAI 于5月11日宣布成立全资控股的部署公司，由 TPG 领投，安宏资本、贝恩资本、布鲁克菲尔德联合领投，高盛、软银等 19 家投资与咨询机构作为合伙人。核心策略：将私募基金的投资组合公司变成 AI 工具的"被动分销渠道"，派驻工程师团队深入企业一线，从场景设计到工作流重塑提供全流程服务。</p>
         <div class="source">来源：<a href="https://openai.com/jv-ID/index/openai-launches-the-deployment-company" target="_blank">OpenAI 官网</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-11-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-11-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 收购 Tomoro，引入 150 名 AI 部署专家</h4>
         <p>同步宣布收购 AI 咨询与工程公司 Tomoro，后者成立于 2023 年，客户包括美泰、红牛、特易购、维珍大西洋航空等。收购将立即带来约 150 名经验丰富的 FDE 和部署专家，曾服务超过 50 家全球 500 强企业。</p>
         <div class="source">来源：<a href="https://www.stcn.com/article/detail/3905102.html" target="_blank">第一财经</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-11-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-11-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — 与黑石高盛成立 15 亿美元 AI 服务合资公司</h4>
         <p>Anthropic 于5月4日宣布与黑石、高盛、Hellman & Friedman 等金融巨头成立 AI 服务合资公司，总承诺投资约 15 亿美元。采用 FDE 模式将工程师派驻客户现场，帮助将 Claude 深度集成进财务、运营等核心流程，目标针对中型企业和私募股权投资组合公司。</p>
@@ -331,19 +360,19 @@
       <h2 class="sec-title">议题二 · AI 转型下的组织重构</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-11-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-05-11-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Microsoft — 推出 51 年来首次自愿买断计划</h4>
         <p>微软面向美国地区年龄与司龄之和达 70 及以上的长期员工启动自愿买断计划，约 8750 人符合资格。CFO 艾米·胡德在财报电话会上明确表示"预计员工人数将同比下降"。微软本财年资本支出承诺达 1900 亿美元，其中大部分投向 AI 基础设施。</p>
         <div class="source">来源：<a href="https://24newslatest.com/post/microsoft-offers-buyout-to-longtime-u-s-employees-as-it-shifts-focus-to-ai-spending" target="_blank">Business Insider/24News</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-11-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-05-11-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> BCG — AI 将在 2-3 年内重塑美国半数工作岗位</h4>
         <p>波士顿咨询公司最新报告预测，AI 最终可能淘汰多达 15% 的岗位。报告特别指出，科技行业受裁员冲击最严重，74% 的科技行业 CEO 表示正在冻结或缩减招聘。同时警告：如果裁员速度超过 AI 部署速度，企业将面临运营风险。</p>
         <div class="source">来源：<a href="https://www.stcn.com/article/detail/3926818.html" target="_blank">经济参考报</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-11-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-05-11-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Upwork — 裁员 25%，CEO 称"两个披萨团队已成历史"</h4>
         <p>零工经济平台 Upwork 宣布裁减约四分之一员工，CEO 布朗在公开信中表示"AI 意味着产品和工程团队能以更小规模爆发出前所未有的影响力"，公司正在"整合冗余工作并压缩工作流程以减少交接环节"。</p>
@@ -422,7 +451,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-09-nw-0">
       <button class="star-btn" data-key="2026-05-09-nw-0" aria-label="关注这条">☆</button>
       <h3>Agentic AI-First Operating Model</h3>
       <p>Cloudflare 裁员公告中首次使用的概念——不是"用 AI 辅助员工"，而是以 AI 智能体为核心重新设计整个公司的运营模式。CEO 透露过去三个月内部 AI 使用量暴增 600%，各部门每天运行数千个 AI Agent 会话。这意味着 AI 不再是工具，而是被编排进组织架构图的"数字员工"。</p>
@@ -305,25 +334,25 @@
       <h2 class="sec-title">议题一 · AI 正式入驻办公桌面</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-09-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-09-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic</h4>
         <p>Claude 正式接入微软 Office 全家桶（Excel/Word/PPT/Outlook），跨应用共享对话记忆。用户无需切换网页版，可在 Office 内完成邮件分拣、文档草拟、表格分析、汇报生成全流程。Office 全球付费用户超 4 亿，Claude 借此快速切入超大办公用户市场。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-09-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-09-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI <span class="music-badge">🎵</span></h4>
         <p>发布三款实时语音模型：GPT-Realtime-2（GPT-5 级推理能力）、GPT-Realtime-Translate（70 种语言实时翻译，延迟低于 200ms）、GPT-Realtime-Whisper（实时转录）。同声传译行业迎来终局信号，API 定价每分钟仅 0.017 美元。</p>
         
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-05-09-t0-2" data-rel="low">
         <button class="star-btn" data-key="2026-05-09-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> OpenAI</h4>
         <p>发布 Codex Chrome 扩展，Codex 能力从代码编辑器扩展到浏览器。可跨标签页后台并行运行，处理网页调试、CRM 更新、资料研究等任务，不影响用户正常使用浏览器。</p>
         
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-05-09-t0-3" data-rel="low">
         <button class="star-btn" data-key="2026-05-09-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 智谱</h4>
         <p>发布 GLM-5V-Turbo 技术报告，首个多模态编码基座模型。从预训练阶段融合视觉与语言，Design2Code 跑分 94.8 超过 Claude Opus 4.5，支持 200k 上下文，可接入 Claude Code 等 agent 框架。</p>
@@ -337,25 +366,25 @@
       <h2 class="sec-title">议题二 · AI 裁员潮加速与商业化转型</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-09-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-05-09-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Cloudflare</h4>
         <p>以"AI-first"重组为由裁员 20%（1100人），CEO 称内部 AI 使用量三个月暴增 600%，各部门每天运行数千个 AI Agent 会话。公司强调这不是削减成本，而是转向 Agentic AI 运营模式。股价盘后下跌 14%。</p>
         
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-05-09-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-05-09-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Freshworks</h4>
         <p>裁员 500 人（11%），AI 自动化已贡献超 50% 代码生成。SaaS 公司在 AI 效率提升后加速人员优化。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-09-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-09-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI & Anthropic</h4>
         <p>同日宣布联合华尔街 PE 成立驻场服务合资公司。OpenAI 联合 TPG/贝恩/软银等成立 The Deployment Company（目标 100 亿美元）；Anthropic 联合黑石/高盛成立 15 亿美元服务公司。从"卖 API"转向"派工程师上门帮企业落地 AI"，AI 商业化进入最后一英里。</p>
         
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-09-t1-3" data-rel="mid">
         <button class="star-btn" data-key="2026-05-09-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic</h4>
         <p>Pre-IPO 市场估值飙升至 1.2 万亿美元，首次超越 OpenAI（1.1 万亿美元）。一季度年化收入从 90 亿暴增至 300 亿美元（80 倍增速），Claude Code 在开发者中快速渗透，约 4% 的 GitHub 公开代码提交已由 Claude 生成。</p>
@@ -434,7 +463,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

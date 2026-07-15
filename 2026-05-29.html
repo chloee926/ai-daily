@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-05-29-nw-0">
       <button class="star-btn" data-key="2026-05-29-nw-0" aria-label="关注这条">☆</button>
       <h3>Model-as-a-Service（模型即服务 / MaaS）</h3>
       <p>将AI模型以API服务形式提供给开发者和企业的商业模式。腾讯云TokenHub即为此类平台，提供单一网关接入腾讯混元及第三方150+模型，支持灵活Token分配和多模型优化。MaaS使企业无需自建模型基础设施，即可按需调用最合适的AI能力。</p>
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · AI产品与平台动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-29-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-29-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯 — 云日发布WorkBuddy、Miora与TokenHub</h4>
         <p>腾讯云在香港举办首届Tencent Cloud Day，发布三款AI产品：办公智能体WorkBuddy可并行处理多任务，一条指令生成完整可交付物；创意智能体Miora具备持久记忆，帮助设计团队保持品牌视觉一致性；模型即服务平台TokenHub提供150+模型API统一网关。同时宣布100+云产品CLI已支持AI智能体直接通过自然语言管理云资源。</p>
         <div class="source">来源：<a href="https://bladeintel.com/markets/tencent-rolls-out-new-ai-tools-and-enterprise-solutions-for-global-markets-at-inaugural-tencent-cloud-day-hong-kong-taiwan-news-may-29-2026-1000" target="_blank">Taiwan News</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-29-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-29-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 科大讯飞 — 发布首款AI眼镜，支持122种语言翻译</h4>
         <p>科大讯飞在2026世界智能产业博览会上发布首款AI眼镜，支持122种语言（含方言、口音）翻译，覆盖通话翻译、同声传译、视觉翻译等多场景。整机仅40克，在轻量化方面处于行业领先地位，搭载讯飞星火大模型。</p>
         <div class="source">来源：<a href="https://www.stcn.com/article/detail/3933745.html" target="_blank">证券时报</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-29-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-05-29-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — Codex登陆Windows，支持Computer Use</h4>
         <p>OpenAI发布Codex Windows更新，支持Computer Use功能和远程Codex持续运行。用户可在Windows上让Codex智能体自主操作桌面应用完成编程任务，无需macOS环境。</p>
@@ -331,13 +360,13 @@
       <h2 class="sec-title">议题二 · AI公司组织、人才与治理</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-29-t1-0" data-rel="mid">
         <button class="star-btn" data-key="2026-05-29-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — 向SEC秘密递交IPO招股书</h4>
         <p>Anthropic已向美国SEC秘密递交S-1文件，正式启动上市流程。上周刚完成650亿美元H轮融资、估值9650亿美元的Anthropic，成为继SpaceX和OpenAI之后第三家冲刺IPO的AI巨头。三家公司总估值接近4万亿美元，今年IPO募资总额可能超过2000年以来所有美国风投支持的IPO之和。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/KUE7VH6F05118O8G_pdya11y.html" target="_blank">爱范儿</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-05-29-t1-1" data-rel="mid">
         <button class="star-btn" data-key="2026-05-29-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 发布前沿治理框架与2026选举安全措施</h4>
         <p>OpenAI发布Frontier Governance Framework，并公布2026年选举安全措施，包括与美联社的投票计数合作伙伴关系。同时，OpenAI和Anthropic都开始将监管标准直接对标加州和欧盟法律，标志着AI安全治理从"博客声明"正式进入"法律合规"阶段。</p>
@@ -416,7 +445,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -292,8 +321,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-04-03-nw-0" aria-label="关注这条">☆</button><h4>Capybara层级（水豚层级）</h4><p>Anthropic在泄露文档中首次出现的全新模型等级，位于现有层级之上：Haiku（速度）< Sonnet（平衡）< Opus（最强）< Capybara（超越Opus）。代号"Mythos"的模型即为首个Capybara层级产品，被描述为"迄今为止我们构建的最强大模型"，在编程、推理和网络安全领域均大幅超越Opus 4.6。传闻API价格可能达到输入$100/百万Token、输出$500/百万Token。 为什么重要： Capybara层级标志着AI模型正式进入"三层制"定价时代：基础免费、标准付费、高端天价。当顶级AI能力的成本可能高达现有模型的10倍以上，"谁用得起最强AI"将成为企业竞争的新分水岭。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-04-03-nw-1" aria-label="关注这条">☆</button><h4>AI武器化（AI Weaponization）</h4><p>Anthropic泄露的内部评估显示，Claude Mythos具备"远超任何其他AI模型"的网络攻击能力，能"以远超防御者的速度利用漏洞"。消息传出后，CrowdStrike、Palo Alto Networks等头部网安公司股价单日暴跌6-7%，整个网络安全板块经历近年最大单日跌幅。这一事件标志着"AI武器化"从理论担忧变成了可量化的市场冲击。 为什么重要： 当AI攻击速度超过人类防御速度，传统网络安全行业的"人力密集型"护城河被动摇。企业未来需要的不只是网安工程师，而是能用AI对抗AI的新型安全人才。</p></div>
+      <div class="term-item" id="2026-04-03-nw-0"><button class="star-btn" data-key="2026-04-03-nw-0" aria-label="关注这条">☆</button><h4>Capybara层级（水豚层级）</h4><p>Anthropic在泄露文档中首次出现的全新模型等级，位于现有层级之上：Haiku（速度）< Sonnet（平衡）< Opus（最强）< Capybara（超越Opus）。代号"Mythos"的模型即为首个Capybara层级产品，被描述为"迄今为止我们构建的最强大模型"，在编程、推理和网络安全领域均大幅超越Opus 4.6。传闻API价格可能达到输入$100/百万Token、输出$500/百万Token。 为什么重要： Capybara层级标志着AI模型正式进入"三层制"定价时代：基础免费、标准付费、高端天价。当顶级AI能力的成本可能高达现有模型的10倍以上，"谁用得起最强AI"将成为企业竞争的新分水岭。</p></div>
+      <div class="term-item" id="2026-04-03-nw-1"><button class="star-btn" data-key="2026-04-03-nw-1" aria-label="关注这条">☆</button><h4>AI武器化（AI Weaponization）</h4><p>Anthropic泄露的内部评估显示，Claude Mythos具备"远超任何其他AI模型"的网络攻击能力，能"以远超防御者的速度利用漏洞"。消息传出后，CrowdStrike、Palo Alto Networks等头部网安公司股价单日暴跌6-7%，整个网络安全板块经历近年最大单日跌幅。这一事件标志着"AI武器化"从理论担忧变成了可量化的市场冲击。 为什么重要： 当AI攻击速度超过人类防御速度，传统网络安全行业的"人力密集型"护城河被动摇。企业未来需要的不只是网安工程师，而是能用AI对抗AI的新型安全人才。</p></div>
     </div>
   </section>
 
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · AI产品、平台与技术动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-04-03-t0-0" data-rel="low">
         <button class="star-btn" data-key="2026-04-03-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Google发布Gemma 4开源模型——首次采用Apache 2.0许可证，开源AI进入新纪元 <span class="music-badge">🎵</span></h4>
         <p>Google DeepMind发布新一代开源模型Gemma 4，提供E2B（2B）、E4B（4B）、26B MoE、31B Dense四种规格。其中26B模型在Arena AI排行榜位列全球开源第3名，能击败比它大20倍的模型。关键突破：首次采用Apache 2.0许可证（之前为限制性更强的Gemma许可），意味着完全无限制商用。模型原生支持代理工作流、函数调用、视觉/音频输入，边缘模型可在手机和Raspberry Pi上离线运行，大型模型支持256K上下文窗口。首日即支持Hugging Face、Ollama、vLLM等主流工具。</p>
         <div class="source">来源：<a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/" target="_blank">Google Blog</a>、<a href="https://www.zdnet.com/article/google-gemma-4-fully-open-source-powerful-local-ai/" target="_blank">ZDNet</a>、<a href="https://news.qq.com/rain/a/20260403A00Q7L00" target="_blank">腾讯新闻</a>、<a href="https://arstechnica.com/ai/2026/04/google-announces-gemma-4-open-ai-models-switches-to-apache-2-0-license/" target="_blank">Ars Technica</a> | 2026-04-02</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-03-t0-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-03-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic Mythos模型引爆网安恐慌——CrowdStrike等网安股蒸发数百亿美元</h4>
         <p>Anthropic CMS配置错误导致近3000份内部文档泄露，其中最受关注的是代号"Mythos"的超级模型。泄露文档显示Mythos在编程、推理和网络安全三个维度"远高于"Opus 4.6，特别是其网络攻击能力被Anthropic自己评估为"远超任何其他AI模型"。消息传出后：CrowdStrike年内已跌16%（大部分由此引发），Palo Alto Networks和Zscaler单日跌6-7%，Okta、SentinelOne等也跌3-5%。Anthropic的应对策略是：将Mythos优先提供给网络安全防御组织，而非开发者或企业客户，试图在攻击者利用之前给防御方创造窗口期。</p>
         <div class="source">来源：<a href="https://www.cnbc.com/2026/03/27/anthropic-cybersecurity-stocks-ai-mythos.html" target="_blank">CNBC</a>、<a href="https://www.investors.com/news/technology/cybersecurity-stocks-anthropic-claude-mythos-accenture-databricks/" target="_blank">Investors.com</a>、<a href="https://www.marketbeat.com/originals/crowdstrike-stock-drops-on-ai-fearsis-this-a-buying-opportunity/" target="_blank">MarketBeat</a>、<a href="https://www.36kr.com/p/3740796375679236" target="_blank">36氪</a> | 2026-03-27至04-02</div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-03-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-03-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Google Gemini API推出Flex/Priority双层定价——AI推理成本进入"精细化管理"时代 <span class="music-badge">🎵</span></h4>
         <p>Google于4月1日为Gemini API正式推出Flex和Priority两个全新推理层级。Flex层级侧重成本优化，Priority层级侧重低延迟高优先级处理。此外，同步发布了Google Veo 3.1 Lite视频生成预览版（成本减半）和Gemini 3.1 Flash Live实时语音模型。Gemini 3.1 Pro此前已在ARC-AGI-2推理测试中以77.1%登顶。</p>
@@ -331,19 +360,19 @@
       <h2 class="sec-title">议题二 · 组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-03-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-03-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 字节跳动Seed团队全球招百人——"豆包股"成AI人才争夺新武器 <span class="music-badge">🎵</span></h4>
         <p>字节跳动旗下Seed团队（大模型核心研发团队）启动全球专项校招，计划招募约100名大模型人才，同步开放2027届应届生和在校实习生两大通道。招聘覆盖六大核心方向：基础大模型、视觉智能、语音智能、机器学习系统、大模型应用、具身智能。关键激励：符合要求的应届生和优秀实习生可获得"豆包股"——官方明确表示"越早加入，越有机会共享业务增值空间"。此前字节Seed团队已交出万亿参数"豆包2.0"模型，豆包App周活用户达1.55亿。</p>
         <div class="source">来源：<a href="https://www.nbd.com.cn/articles/2026-04-01/4320993.html" target="_blank">每经网</a>、<a href="https://research.doubao.com/zh/seedearlycareer" target="_blank">Seed官网</a> | 2026-04-01</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-03-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-03-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> AI裁员与招聘悖论加剧——2026年已裁4.5万人，但AI岗位需求创历史新高</h4>
         <p>2026年Q1全球科技行业裁员持续加速：Oracle裁3万、Amazon裁1.6万、Meta裁1.5万，Block直接砍40%员工。截至4月初，全球科技公司已裁员超4.5万人，其中68%发生在美国。但与此同时，AI专业岗位需求创历史新高——企业一边裁掉传统岗位，一边疯狂招募AI工程师、AI安全专家和模型训练师。接下来6个月被视为关键验证期：AI驱动的裁员究竟是结构性转型还是过度修正？</p>
         <div class="source">来源：<a href="https://opentools.ai/news/2026-the-year-ai-reshaped-the-tech-workforce" target="_blank">OpenTools/Firstpost</a>、<a href="https://startupfortune.com/ai-layoffs-accelerate-in-2026-but-not-everyone-is-convinced/" target="_blank">StartupFortune</a>、<a href="https://stepto.net/blog/ai-workforce-paradox-layoffs-hiring-boom-2026" target="_blank">StepTo</a> | 2026-04-02</div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-03-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-03-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 网安行业面临存亡拷问——AI攻击速度超越人类防御，行业护城河动摇</h4>
         <p>Claude Mythos泄露事件对网络安全行业的冲击远超一般科技新闻。Anthropic的内部评估白纸黑字写着"攻击速度远超防御者"——这等于官方认证了AI在攻防博弈中的不对称优势。行业面临三条路：维持现有人工攻防模式（但已被证明速度不够）、开发全新的"AI对抗AI"安全范式、或在一段时间内接受"AI攻击领先于人类防御"的现实。CrowdStrike 2026年已累计跌16%，投资者开始重新审视整个网安行业的价值逻辑。</p>
@@ -422,7 +451,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,8 +320,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-04-18-nw-0" aria-label="关注这条">☆</button><h4>Wafer-Scale Computing（晶圆级计算）</h4><p>一句话解释： 将整块硅晶圆直接制造为单一芯片，而非切割为数百个小芯片，从而获得数量级的算力提升。 为什么重要： OpenAI以超200亿美元押注Cerebras的晶圆级架构，标志着AI算力竞争已突破传统GPU范式，可能重塑整个AI芯片产业链。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-04-18-nw-1" aria-label="关注这条">☆</button><h4>Computer Use / Desktop Agent（桌面操作代理）</h4><p>一句话解释： AI模型通过模拟鼠标点击和键盘输入，直接操控用户桌面上的任意应用程序来完成任务。 为什么重要： OpenAI Codex和Anthropic Claude先后实现桌面操控能力，意味着AI Agent已从"生成内容"跨越到"执行操作"，将深刻影响知识工作岗位定义。</p></div>
+      <div class="term-item" id="2026-04-18-nw-0"><button class="star-btn" data-key="2026-04-18-nw-0" aria-label="关注这条">☆</button><h4>Wafer-Scale Computing（晶圆级计算）</h4><p>一句话解释： 将整块硅晶圆直接制造为单一芯片，而非切割为数百个小芯片，从而获得数量级的算力提升。 为什么重要： OpenAI以超200亿美元押注Cerebras的晶圆级架构，标志着AI算力竞争已突破传统GPU范式，可能重塑整个AI芯片产业链。</p></div>
+      <div class="term-item" id="2026-04-18-nw-1"><button class="star-btn" data-key="2026-04-18-nw-1" aria-label="关注这条">☆</button><h4>Computer Use / Desktop Agent（桌面操作代理）</h4><p>一句话解释： AI模型通过模拟鼠标点击和键盘输入，直接操控用户桌面上的任意应用程序来完成任务。 为什么重要： OpenAI Codex和Anthropic Claude先后实现桌面操控能力，意味着AI Agent已从"生成内容"跨越到"执行操作"，将深刻影响知识工作岗位定义。</p></div>
     </div>
   </section>
 
@@ -304,19 +333,19 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-18-t0-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-18-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI Codex 大版本更新：从编程助手升级为桌面超级Agent <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI 4月16日发布Codex重大更新。核心变化包括：可在Mac后台运行并操控任意桌面应用（Computer Use）、支持多Agent并行、内置浏览器、新增111个插件集成（CodeRabbit、GitLab Issues等）、记忆功能预览版，以及面向企业客户的按量付费定价模式。此举直接对标Anthropic的Claude Code桌面操控能力。 为什么对 TME 重要： Codex从编程工具变为通用桌面Agent，意味着软件工程师的工作方式将发生根本改变。TME招聘需关注：候选人是否具备AI Agent协作能力可能成为新的筛选维度。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/04/16/openai-takes-aim-at-anthropic-with-beefed-up-codex-that-gives-it-more-power-over-your-desktop/" target="_blank">TechCrunch</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-18-t0-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-18-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic 发布 Claude Opus 4.7 + Claude Design <span class="music-badge">🎵</span></h4>
         <p>摘要： Anthropic 4月16日发布Claude Opus 4.7，在高难度编码任务上显著提升，人工监督需求更低。同步发布Claude Design（Anthropic Labs产品），用户可与Claude协作生成视觉输出。Opus 4.7还增强了视觉理解和多会话记忆能力。此前备受关注的Mythos模型仍限于约50家企业客户的限量预览。 为什么对 TME 重要： Claude Design的推出标志着AI设计工具进入一线模型厂商竞争阶段，可能改变创意岗位的工作流程和人才需求。</p>
         <div class="source">来源：<a href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank">Anthropic 官方</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-18-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-18-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Canva 发布 AI 2.0：设计助手升级为工具调用型Agent <span class="music-badge">🎵</span></h4>
         <p>摘要： Canva 4月16日发布AI 2.0，核心变化是将AI助手从生成式工具重构为可自主调用各种设计工具的Agent。用户用自然语言描述需求，AI自动调用工具生成可编辑的分层设计。同时新增Gmail、Slack等工作流集成。Canva目前月活2.65亿，正为预期420亿美元估值的IPO做准备。 为什么对 TME 重要： Canva的Agent化转型代表了SaaS产品的通用趋势——从工具变为代理。TME内部使用的各类设计和办公工具都可能经历类似变革。</p>
@@ -330,19 +359,19 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-18-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-18-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Snap 裁员16%（约1000人），以AI Agent直接替代人工岗位 <span class="music-badge">🎵</span></h4>
         <p>摘要： Snap 4月15日宣布裁员约1000人（占员工总数16%），同时关闭300个空缺岗位。CEO Spiegel称这是公司的"关键时刻"。关键数据：65%的新代码由AI生成，公司将以AI Agent直接替代编码和行政岗位，目标到2026下半年年化节省超5亿美元。裁员后股价上涨约6%。 对招聘的启发： 这是目前最清晰的"AI替代岗位"案例之一——不是AI辅助提效，而是直接用AI Agent替代人工。HR需关注：哪些岗位正在从"AI增效"滑向"AI替代"？65%代码由AI生成的数据值得在TME内部对标评估。</p>
         <div class="source">来源：<a href="https://www.mirrorreview.com/news/snap-layoffs/" target="_blank">Mirror Review</a> / [Reuters]</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-18-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-18-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI 以超200亿美元锁定Cerebras芯片产能</h4>
         <p>摘要： OpenAI与芯片初创公司Cerebras达成三年超200亿美元协议，使用后者晶圆级AI芯片驱动的服务器，并可能获得Cerebras少数股权。此举旨在降低对NVIDIA的依赖。Cerebras同步准备IPO。这是AI公司将竞争从模型延伸到底层硬件供应链的标志性事件。 对招聘的启发： AI芯片人才争夺将更加激烈。非NVIDIA生态的AI芯片工程人才（尤其是晶圆级架构、异构计算方向）可能成为稀缺资源。</p>
         <div class="source">来源：<a href="https://www.theinformation.com/articles/openai-spend-20-billion-cerebras-chips-receive-equity-stake" target="_blank">The Information</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-18-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-18-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> AI编程初创Factory拟以15亿美元估值融资1.5亿 <span class="music-badge">🎵</span></h4>
         <p>摘要： AI编程工具初创公司Factory计划以15亿美元估值进行1.5亿美元融资，由Khosla Ventures领投。Factory致力于构建自主编程工具，在OpenAI Codex和Anthropic Claude Code激烈竞争的背景下，垂直AI编程赛道仍获资本追捧。 对招聘的启发： AI编程工具赛道资本热度不减，表明市场对"AI替代软件工程师"的预期持续升温。TME需评估AI编程工具对技术招聘的中长期影响。</p>
@@ -421,7 +450,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

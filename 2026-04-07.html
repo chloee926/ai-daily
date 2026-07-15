@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -292,8 +321,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-04-07-nw-0" aria-label="关注这条">☆</button><h4>算力脱钩（Compute Decoupling）</h4><p>DeepSeek V4从英伟达CUDA生态全面迁移至华为CANN框架，标志着中国头部AI公司首次在万亿参数级模型上实现对美国芯片的"零依赖"。此前行业普遍认为CUDA生态的护城河极深，迁移成本高到不可行。华为昇腾950PR芯片采用自研高带宽内存（HBM），在2026年Q1实现商用化，后续还有960、970两代芯片规划，性能逐代翻倍。 为什么重要： "算力脱钩"的成功意味着美国对华AI芯片出口管制的实际效力正在被技术替代方案削弱。当中国AI公司证明国产芯片能跑万亿参数模型，全球AI产业的供应链格局将加速重构——芯片不再是卡脖子的唯一变量。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-04-07-nw-1" aria-label="关注这条">☆</button><h4>围墙花园战争（Walled Garden War）</h4><p>Anthropic于4月4日正式封禁Claude Pro/Max订阅用户通过OpenClaw等第三方工具访问API的权限，强制转向按量付费。这一举措被业界称为AI平台的"围墙花园战争"——当AI能力足够强大，平台方开始收紧生态控制权，防止第三方"套壳"工具分走用户和收入。OpenClaw创始人Peter Steinberger（已入职OpenAI）称曾尝试沟通但只争取到一周缓冲期。 为什么重要： 这场争夺标志着AI行业从"模型竞赛"进入"生态竞赛"——谁控制了用户入口和数据通路，谁就掌握了AI时代的定价权。OpenClaw创始人转投OpenAI更暗示了AI人才流动正在与生态竞争深度绑定。</p></div>
+      <div class="term-item" id="2026-04-07-nw-0"><button class="star-btn" data-key="2026-04-07-nw-0" aria-label="关注这条">☆</button><h4>算力脱钩（Compute Decoupling）</h4><p>DeepSeek V4从英伟达CUDA生态全面迁移至华为CANN框架，标志着中国头部AI公司首次在万亿参数级模型上实现对美国芯片的"零依赖"。此前行业普遍认为CUDA生态的护城河极深，迁移成本高到不可行。华为昇腾950PR芯片采用自研高带宽内存（HBM），在2026年Q1实现商用化，后续还有960、970两代芯片规划，性能逐代翻倍。 为什么重要： "算力脱钩"的成功意味着美国对华AI芯片出口管制的实际效力正在被技术替代方案削弱。当中国AI公司证明国产芯片能跑万亿参数模型，全球AI产业的供应链格局将加速重构——芯片不再是卡脖子的唯一变量。</p></div>
+      <div class="term-item" id="2026-04-07-nw-1"><button class="star-btn" data-key="2026-04-07-nw-1" aria-label="关注这条">☆</button><h4>围墙花园战争（Walled Garden War）</h4><p>Anthropic于4月4日正式封禁Claude Pro/Max订阅用户通过OpenClaw等第三方工具访问API的权限，强制转向按量付费。这一举措被业界称为AI平台的"围墙花园战争"——当AI能力足够强大，平台方开始收紧生态控制权，防止第三方"套壳"工具分走用户和收入。OpenClaw创始人Peter Steinberger（已入职OpenAI）称曾尝试沟通但只争取到一周缓冲期。 为什么重要： 这场争夺标志着AI行业从"模型竞赛"进入"生态竞赛"——谁控制了用户入口和数据通路，谁就掌握了AI时代的定价权。OpenClaw创始人转投OpenAI更暗示了AI人才流动正在与生态竞争深度绑定。</p></div>
     </div>
   </section>
 
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · AI产品、平台与技术动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-07-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-04-07-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek V4全面切换华为昇腾芯片——国产AI算力突破"CUDA封锁"</h4>
         <p>受美国出口管制影响，DeepSeek确认新一代旗舰模型V4将完全基于华为昇腾950PR芯片运行，底层代码从英伟达CUDA迁移至华为CANN框架。V4定位万亿参数级多模态大模型，拥有百万级上下文窗口，推理能力对标GPT-5。阿里、字节跳动、腾讯已提前下单华为昇腾芯片以应对V4上线后的算力需求。华为路线图显示昇腾950PR已于Q1商用，后续960、970性能逐代翻倍。</p>
         <div class="source">来源：<a href="https://zhuanlan.zhihu.com/p/2024429026257766162" target="_blank">The Information（经知乎转引）</a>、<a href="https://www.eet-china.com/mp/a485939.html" target="_blank">电子工程专辑</a>、<a href="https://www.sohu.com/a/1005432465_100085330" target="_blank">搜狐科技</a>、<a href="https://news.qq.com/rain/a/20260405A06CJL00" target="_blank">腾讯新闻</a> | 2026-04-04</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-07-t0-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-07-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic封禁OpenClaw——AI平台生态控制权争夺升级</h4>
         <p>Anthropic于4月4日正式封禁Claude Pro和Max订阅用户通过OpenClaw及所有第三方代理工具的访问权限。用户如需继续使用，必须转向按量付费或购买额外使用包。Anthropic Claude Code负责人Boris Cherny给出的理由是"第三方工具的使用模式给基础设施带来巨大压力"，需要"优先保障直接使用Anthropic自家产品的客户"。OpenClaw创始人Peter Steinberger（现已入职OpenAI）称曾试图沟通但仅争取到一周缓冲期。Anthropic向受影响用户提供一次性信用额度补偿。</p>
         <div class="source">来源：<a href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban" target="_blank">The Verge</a>、<a href="https://techcrunch.com/2026/04/04/anthropic-says-claude-code-subscribers-will-need-to-pay-extra-for-openclaw-support/" target="_blank">TechCrunch</a>、<a href="https://www.pcmag.com/news/anthropic-you-cant-use-openclaw-with-claude-without-paying-extra" target="_blank">PCMag</a>、<a href="https://venturebeat.com/technology/anthropic-cuts-off-the-ability-to-use-claude-subscriptions-with-openclaw-and" target="_blank">VentureBeat</a> | 2026-04-03/04</div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-07-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-07-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> GPT-6代号"土豆"传闻4月14日发布——AI军备竞赛进入新节点</h4>
         <p>多个消息源透露OpenAI下一代旗舰模型GPT-6（内部代号"Potato/土豆"）可能于4月14日发布。传闻称GPT-6性能较GPT-5提升约40%，拥有2M上下文窗口，并具备原生多模态能力。与此同时，OpenAI计划同步推出"超级App"整合ChatGPT、DALL-E、Sora等产品。不过分析师对此日期持谨慎态度，认为可能是渐进式发布而非一次性全量上线。</p>
@@ -331,19 +360,19 @@
       <h2 class="sec-title">议题二 · 组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-07-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-07-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> CNBC深度调查：AI裁员冲击美国，中国工程师暂时安全</h4>
         <p>CNBC今日发布深度调查报告《AI layoffs hit U.S. but not China jobs — yet》。核心发现：美国硅谷因AI自动化加速裁员（Oracle最新加入大裁员行列），但中国工程师受冲击明显较小。三大原因：一、中国政府设定城镇失业率5.5%目标，限制大规模裁员；二、中国高需求算法工程师平均月薪约2万元（约2900美元/年薪3.5万美元），仅为硅谷同级的十分之一，AI替代的经济动力不足；三、中国企业数字化程度较低，AI取代岗位的前提条件尚不充分。报告同时指出，许多在美中国籍工程师因裁员威胁签证身份而被迫回国，但面临"回流冲击"——中国公司高强度工作文化和薪资腰斩的现实。</p>
         <div class="source">来源：<a href="https://www.cnbc.com/2026/04/07/ai-jobs-layoffs-us-china-engineers-hiring.html" target="_blank">CNBC</a> | 2026-04-07</div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-07-t1-1" data-rel="mid">
         <button class="star-btn" data-key="2026-04-07-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Meta新一代模型"Avocado""Mango"将推开源版——开源与闭源共存策略</h4>
         <p>Meta正在开发两个新旗舰模型：代号"Avocado"（大语言模型）和"Mango"（多媒体生成器），预计今年推出闭源版本，随后发布功能缩减的开源版本。开源版可能减少神经网络数量、降低参数量或跳过后训练步骤，其中网络安全相关能力将被剔除以防风险。这标志着Meta从"全面开源"转向"开源+闭源双轨"策略——既通过开源维持开发者生态影响力，又通过闭源保护前沿能力的商业价值。</p>
         <div class="source">来源：<a href="https://siliconangle.com/2026/04/06/report-meta-developing-open-source-versions-upcoming-ai-models/" target="_blank">SiliconANGLE</a>、<a href="https://www.axios.com" target="_blank">Axios</a>（经SiliconANGLE引用） | 2026-04-06</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-07-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-07-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 阿里裁员30%+聚焦AI，腾讯/华为逆势增员——中国科技巨头人才策略分化</h4>
         <p>CNBC调查同时披露了中国科技巨头的人才策略分化：阿里巴巴为优先发展AI业务，员工总数减少超过30%；腾讯去年员工总数略有增长；华为研发人员增至11.4万人（前一年为11.3万人）。这组数据勾勒出一幅"K型分化"图景：激进转型的企业大幅裁减非核心岗位，稳健经营的企业保持温和增长，而硬科技方向的企业持续加码研发人才。</p>
@@ -422,7 +451,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

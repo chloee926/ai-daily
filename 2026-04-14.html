@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -292,8 +321,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-04-14-nw-0" aria-label="关注这条">☆</button><h4>Spud（土豆）——OpenAI GPT-6 内部代号</h4><p>OpenAI于4月14日正式发布的下一代旗舰模型GPT-6的内部代号。"Spud"在英文俚语中意为"土豆"，延续了OpenAI用食物命名模型的传统（此前GPT-4o代号"草莓"）。此前通过推特爆料人和内部备忘录泄露，预训练于3月17日在得克萨斯州Stargate数据中心完成。核心参数：200万token上下文窗口（Claude Mythos的10倍）、综合性能较GPT-5.4提升约40%（代码生成约提升50%）、原生多模态统一架构（文本/音频/图像/视频）、API定价$2.5/百万输入token + $12/百万输出token（比Claude Opus 4.6便宜约6倍）。 为什么重要： GPT-6不只是性能升级——200万token上下文意味着可以一次性处理整个代码仓库或数十份合同，这是从"对话助手"到"工作引擎"的质变。而"性能涨40%但价格不涨"的策略直接挤压Anthropic和所有竞品的定价空间，AI API的价格战正式进入白热化阶段。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-04-14-nw-1" aria-label="关注这条">☆</button><h4>Frontier（前沿）——OpenAI 企业智能体平台</h4><p>OpenAI泄露的内部备忘录中披露的企业级AI Agent平台，由首席营收官Denise Dresser提出。定位是成为"企业智能体的默认运行平台"，核心飞轮逻辑是：更好的模型→平台更有价值→更深集成→提高切换成本→从"产品供应商"转变为"运营基础设施"。配套的还有与亚马逊合作的"Amazon Stateful Runtime Environment"（支持记忆和上下文连续性）以及名为"DeployCo"的规模化部署引擎。 为什么重要： 这份备忘录揭示了OpenAI2026年最核心的战略转型——从卖模型到卖平台。当企业AI从"试用"进入"生产"，谁控制了运行时基础设施，谁就控制了客户。这和AWS当年从"卖服务器"变成"卖云"的逻辑完全一致。备忘录还首次公开攻击Anthropic——指控其300亿年化收入中有约80亿是"虚报"（总额vs净额入账方式）。</p></div>
+      <div class="term-item" id="2026-04-14-nw-0"><button class="star-btn" data-key="2026-04-14-nw-0" aria-label="关注这条">☆</button><h4>Spud（土豆）——OpenAI GPT-6 内部代号</h4><p>OpenAI于4月14日正式发布的下一代旗舰模型GPT-6的内部代号。"Spud"在英文俚语中意为"土豆"，延续了OpenAI用食物命名模型的传统（此前GPT-4o代号"草莓"）。此前通过推特爆料人和内部备忘录泄露，预训练于3月17日在得克萨斯州Stargate数据中心完成。核心参数：200万token上下文窗口（Claude Mythos的10倍）、综合性能较GPT-5.4提升约40%（代码生成约提升50%）、原生多模态统一架构（文本/音频/图像/视频）、API定价$2.5/百万输入token + $12/百万输出token（比Claude Opus 4.6便宜约6倍）。 为什么重要： GPT-6不只是性能升级——200万token上下文意味着可以一次性处理整个代码仓库或数十份合同，这是从"对话助手"到"工作引擎"的质变。而"性能涨40%但价格不涨"的策略直接挤压Anthropic和所有竞品的定价空间，AI API的价格战正式进入白热化阶段。</p></div>
+      <div class="term-item" id="2026-04-14-nw-1"><button class="star-btn" data-key="2026-04-14-nw-1" aria-label="关注这条">☆</button><h4>Frontier（前沿）——OpenAI 企业智能体平台</h4><p>OpenAI泄露的内部备忘录中披露的企业级AI Agent平台，由首席营收官Denise Dresser提出。定位是成为"企业智能体的默认运行平台"，核心飞轮逻辑是：更好的模型→平台更有价值→更深集成→提高切换成本→从"产品供应商"转变为"运营基础设施"。配套的还有与亚马逊合作的"Amazon Stateful Runtime Environment"（支持记忆和上下文连续性）以及名为"DeployCo"的规模化部署引擎。 为什么重要： 这份备忘录揭示了OpenAI2026年最核心的战略转型——从卖模型到卖平台。当企业AI从"试用"进入"生产"，谁控制了运行时基础设施，谁就控制了客户。这和AWS当年从"卖服务器"变成"卖云"的逻辑完全一致。备忘录还首次公开攻击Anthropic——指控其300亿年化收入中有约80亿是"虚报"（总额vs净额入账方式）。</p></div>
     </div>
   </section>
 
@@ -305,19 +334,19 @@
       <h2 class="sec-title">议题一 · AI产品、平台与技术动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-14-t0-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-14-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> GPT-6正式发布——OpenAI最大赌注落地</h4>
         <p>OpenAI正式发布GPT-6（代号Spud），这是OpenAI"压上全部家当的一次豪赌"——为此砍掉了Sora视频生成等非核心项目，将资源集中于GPT-6。联合创始人Greg Brockman亲口确认"这不是增量改进"。泄露的内部备忘录同时曝光了OpenAI的五大战略优先级：Spud模型、Frontier智能体平台、亚马逊合作扩展、全栈产品布局（ChatGPT for Work + Codex + API + Frontier + Amazon Runtime）、以及"DeployCo"部署引擎。备忘录点名Anthropic为主要竞争对手，指控其算力不足导致客户限流，并质疑其收入数据"虚报80亿美元"。</p>
         <div class="source">来源：<a href="https://the-decoder.com/openais-leaked-memo-says-new-spud-model-will-make-all-its-products-significantly-better/" target="_blank">The Decoder</a>、<a href="https://zhuanlan.zhihu.com/p/2025315653536490756" target="_blank">知乎</a>、<a href="https://www.aitoolbox.hk/articles/gpt-6-spud-leak-openai-robot-tax-anti-distillation-april7-2026/" target="_blank">AI工具宝箱</a> | 2026-04-14</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-14-t0-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-14-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI收购AI理财初创Hiro Finance——人才收购扩充金融版图</h4>
         <p>OpenAI确认收购AI个人理财初创公司Hiro Finance，创始人Ethan Bloch（连续创业者，此前以2.3亿美元出售数字银行Digit）宣布团队约10人将全部加入OpenAI。Hiro将于4月20日关闭运营、5月13日删除所有数据，属于典型的"人才收购"（acquihire）。Hiro此前获得Ribbit、General Catalyst等顶级VC投资，产品核心是AI驱动的财务规划"假设场景"模拟。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/04/13/openai-has-bought-ai-personal-finance-startup-hiro/" target="_blank">TechCrunch</a>、<a href="https://www.ithome.com/0/938/776.htm" target="_blank">IT之家</a> | 2026-04-14</div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-14-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-04-14-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 斯坦福2026 AI Index：AI编程能力一年内从60%飙至近100%，但机器人做家务成功率仅12%</h4>
         <p>斯坦福HAI发布423页《2026 AI Index报告》，核心数据：AI在编程基准SWE-bench上从60%飙升至接近100%（一年内）；2025年记录的有害AI事件达362起（同比+55%）；26个模型的幻觉率在22%-94%之间；GPT-5.4 High读模拟时钟正确率仅50.6%（人类约90%）。2025年美国AI投资达2859亿美元，是中国（124亿美元）的23倍，但中美模型性能差距已缩小至2.7个百分点（Claude Opus 4.6得分1503 vs 字节Dola-Seed 1464）。</p>
@@ -331,19 +360,19 @@
       <h2 class="sec-title">议题二 · 组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-14-t1-0" data-rel="mid">
         <button class="star-btn" data-key="2026-04-14-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 公众vs专家：AI认知鸿沟达历史最大——64%美国人担心AI抢饭碗</h4>
         <p>斯坦福报告揭示AI业内人士与公众之间的认知鸿沟正在加速扩大。AI对工作方式的影响：专家73%积极 vs 公众仅23%积极（差距50个百分点）；AI对经济的影响：专家69%积极 vs 公众21%积极。64%美国人认为AI将在20年内减少就业岗位。美国对政府监管AI的信任度仅31%，全球垫底（新加坡最高81%）。Z世代引领反AI情绪——尽管约半数每天使用AI，但越来越愤怒和缺乏希望。唯一共识：专家和公众一致认为AI将对选举和人际关系产生负面影响。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/04/13/stanford-report-highlights-growing-disconnect-between-ai-insiders-and-everyone-else/" target="_blank">TechCrunch</a>、<a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/public-opinion" target="_blank">Stanford HAI</a> | 2026-04-13</div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-14-t1-1" data-rel="mid">
         <button class="star-btn" data-key="2026-04-14-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> AI渗透测试公司CodeWall连续攻破麦肯锡和贝恩——咨询巨头AI安全"裸奔"</h4>
         <p>AI安全初创公司CodeWall的自主渗透测试Agent在一个月内接连攻破两大咨询巨头的内部AI系统。3月，其Agent仅用2小时就入侵了麦肯锡的内部AI平台Lilli——通过SQL注入获取了4650万条聊天记录、72.8万份文件。4月13日，CodeWall又成功入侵了贝恩的一个内部AI工具。这凸显了一个系统性问题：企业在疯狂部署AI的同时，安全防护远远落后。</p>
         <div class="source">来源：<a href="https://www.ft.com/content/e73ddecf-8c41-4ecb-ada3-77a163c8d69f" target="_blank">Financial Times</a>、<a href="https://codewall.ai/blog/how-we-hacked-mckinseys-ai-platform" target="_blank">CodeWall Blog</a>、<a href="https://cybernews.com/security/ai-agent-cracked-mckinsey-chatbot/" target="_blank">CyberNews</a> | 2026-04-14</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-14-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-14-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 美国AI人才吸引力断崖式下降——移居美国的AI研究人员一年骤降80%</h4>
         <p>斯坦福报告中一个容易被忽视但极为关键的数据：移居美国的AI研究人员数量自2017年以来累计下降89%，仅过去一年就下降了80%。与此同时，中美模型性能差距从数十个百分点缩小至2.7%。美国2025年AI投资2859亿美元虽是中国的23倍，但"人才流动逆转+性能差距收窄"的组合正在动摇美国的AI领导地位根基。</p>
@@ -422,7 +451,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

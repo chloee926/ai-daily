@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,8 +320,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-03-25-nw-0" aria-label="关注这条">☆</button><h4>Computer Use（电脑使用）</h4><p>一句话解释： AI助手直接接管用户桌面，自主执行鼠标点击、键盘输入、跨应用操作等完整任务的能力。 为什么重要： 这标志着AI从"回答问题"跨入"替你干活"，是Agent从概念走向生产力工具的关键一步。配合Dispatch功能，用户甚至可以手机远程指挥AI在电脑上执行任务。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-03-25-nw-1" aria-label="关注这条">☆</button><h4>Terafab（太拉工厂）</h4><p>一句话解释： 马斯克宣布的250亿美元联合芯片制造工厂计划，由Tesla、SpaceX、xAI三方合建，目标年产一太瓦AI算力。 为什么重要： 这是科技巨头从"买芯片"转向"造芯片"的标志性事件，将深刻影响全球AI算力供应链格局。</p></div>
+      <div class="term-item" id="2026-03-25-nw-0"><button class="star-btn" data-key="2026-03-25-nw-0" aria-label="关注这条">☆</button><h4>Computer Use（电脑使用）</h4><p>一句话解释： AI助手直接接管用户桌面，自主执行鼠标点击、键盘输入、跨应用操作等完整任务的能力。 为什么重要： 这标志着AI从"回答问题"跨入"替你干活"，是Agent从概念走向生产力工具的关键一步。配合Dispatch功能，用户甚至可以手机远程指挥AI在电脑上执行任务。</p></div>
+      <div class="term-item" id="2026-03-25-nw-1"><button class="star-btn" data-key="2026-03-25-nw-1" aria-label="关注这条">☆</button><h4>Terafab（太拉工厂）</h4><p>一句话解释： 马斯克宣布的250亿美元联合芯片制造工厂计划，由Tesla、SpaceX、xAI三方合建，目标年产一太瓦AI算力。 为什么重要： 这是科技巨头从"买芯片"转向"造芯片"的标志性事件，将深刻影响全球AI算力供应链格局。</p></div>
     </div>
   </section>
 
@@ -304,19 +333,19 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-03-25-t0-0" data-rel="low">
         <button class="star-btn" data-key="2026-03-25-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic发布Claude Computer Use，AI正式接管Mac桌面 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月24日，Anthropic为Claude发布Computer Use功能（研究预览版），向Pro和Max用户开放。该功能集成在Claude Cowork和Claude Code中，AI可自主操控鼠标、键盘、打开应用、浏览网页、填写表格。配套的Dispatch功能允许用户通过手机远程向电脑端Claude派发任务，支持定时和重复任务。实测操作成功率约50%，常规任务（找文件、操作Notion、总结邮件）已能稳定完成。 为什么对 TME 重要： Agent桌面操控是AI落地的下一个关键方向，将直接影响企业效率工具选型和AI岗位能力要求。HR需关注候选人是否具备AI协作和Agent管理能力。</p>
         <div class="source">来源：<a href="https://www.36kr.com/p/3736521034498311" target="_blank">36氪</a>、<a href="https://www.chinaz.com/ainews/26477.shtml" target="_blank">站长之家</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-03-25-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-03-25-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI发布GPT-5.4 mini和nano，API价格降至前代1/3 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI发布GPT-5.4 mini和GPT-5.4 nano两个轻量级模型，支持大容量上下文窗口，API调用价格降至前代同级别的1/3，主打高性价比和低功耗。这是OpenAI在3月5日发布GPT-5.4旗舰模型后的产品线补全动作。 为什么对 TME 重要： API成本大幅下降意味着企业AI应用的经济门槛持续降低，将加速内部AI工具的规模化部署，也意味着更多AI应用开发岗位需求。</p>
         <div class="source">来源：<a href="https://k.sina.com.cn/article_7857201856_1d45362c001903iooy.html" target="_blank">新浪AI热点</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-03-25-t0-2" data-rel="hi">
         <button class="star-btn" data-key="2026-03-25-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 中国AI大模型Token调用量连续三周超越美国 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenRouter最新数据显示，3月16-22日全球AI大模型周总调用量达20.4万亿Token，中国模型贡献7.359万亿（环比+56.9%），美国为3.536万亿（环比+7.35%），中国连续第三周领先。全球前四均为中国模型：小米MiMo V2 Pro、阶跃星辰Step 3.5 Flash、MiniMax M2.5、DeepSeek-V3.2。核心驱动力：成本优势（国产模型价格极具竞争力）、超级应用接入（微信/钉钉/飞书十亿级用户）、开源模式与闭源代差缩短至约3个月。 为什么对 TME 重要： 中国AI应用规模化进入爆发期，国内AI人才需求将持续走高；开源模型人才和应用层开发人才成为招聘重点。</p>
@@ -330,19 +359,19 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-03-25-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-03-25-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI计划年底前将员工翻倍至8000人</h4>
         <p>摘要： 据FT报道，OpenAI计划在2026年底前将员工人数从约4000人扩张至8000人，大规模招聘覆盖产品、工程、研究、销售和"技术大使"等岗位，同时扩充办公空间。这反映出OpenAI正从研究机构转型为全面的企业级软件公司。与此同时，OpenAI向投资者披露的IPO风险文件显示：2025年收入131亿美元，ChatGPT周活9亿，估值7300亿美元，但面临对微软过度依赖、芯片供应链（TSMC地缘风险）、多起诉讼等关键风险。 对招聘的启发： OpenAI大规模扩招信号明确——AI公司正从"研究导向"转向"销售+产品导向"，企业级销售、客户成功、技术布道师等非纯技术岗位需求激增，值得关注这一人才结构转型趋势。</p>
         <div class="source">来源：<a href="https://www.ft.com" target="_blank">Financial Times</a>（经TechStartups转引）</div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-03-25-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-03-25-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 2026年Q1全球科技裁员达4.5万人，超20%与AI替代直接相关</h4>
         <p>摘要： 2026年一季度全球科技行业裁员达45,000人，其中超过9,200人（约20%）被明确归因于AI和自动化。Amazon一家占裁员总量的52%。受影响最大的岗位包括：软件工程、客户支持、物流规划、财务建模和内容审核。美国占全球科技裁员的80%。HBR分析指出，许多公司是基于AI的"潜力预期"而非实际性能表现进行裁员。 对招聘的启发： AI驱动的裁员与扩招并行——头部AI公司疯狂招人，而传统技术岗位因AI替代而缩减。HR需帮助业务方重新定义"什么岗位需要人"，并关注候选人的AI协作能力而非单一技术技能。</p>
         <div class="source">来源：<a href="https://opentools.ai/news/2026-tech-layoffs-hit-45000-in-march-ai-and-automation-take-the-lead" target="_blank">OpenTools/TechNode Global</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-03-25-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-03-25-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 美国白宫发布七点AI政策框架，推动联邦统一标准取代各州法律</h4>
         <p>摘要： 3月20日，美国白宫发布AI立法蓝图，核心是推动国会建立联邦统一标准并取代（preempt）各州AI法律，采取"轻监管"路线。框架涵盖儿童保护、电力成本、知识产权、言论审查和公共教育五大方向。同日，美国劳工部宣布面向全民推出免费AI素养课程，回应公众对AI替代工作的焦虑。 对招聘的启发： AI治理正在从"要不要管"进入"谁来管"——联邦统一标准将简化跨州合规，但也意味着AI公司需要更多政策合规、AI伦理和公共事务人才。AI素养课程的推出也预示着"AI能力"将逐步成为劳动力市场的基础要求。</p>
@@ -421,7 +450,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

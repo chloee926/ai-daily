@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,8 +320,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-07-06-nw-0" aria-label="关注这条">☆</button><h4>AutoPilot Agent（自动驾驶式智能体）</h4><p>一句话解释： 微软为Copilot设计的后台常驻AI代理，无需用户逐次下达指令即可自动执行日程管理、邮件摘要等重复性工作。 为什么重要： 标志AI助手从"被动应答"向"主动交付"的产品形态转变，预示未来知识工作者的协作对象将从"对话框"变为"后台Agent团队"。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-07-06-nw-1" aria-label="关注这条">☆</button><h4>算电协同定价（Compute-Grid Synced Pricing）</h4><p>一句话解释： DeepSeek首创的API定价模式，将推理服务价格与底层算力节点的电网峰谷时段直接挂钩，高峰涨价、低谷降价。 为什么重要： 这是全球首个将电力市场价格信号传导至AI服务终端用户的商业模式创新，开启了"算力即公用事业"的定价先河。</p></div>
+      <div class="term-item" id="2026-07-06-nw-0"><button class="star-btn" data-key="2026-07-06-nw-0" aria-label="关注这条">☆</button><h4>AutoPilot Agent（自动驾驶式智能体）</h4><p>一句话解释： 微软为Copilot设计的后台常驻AI代理，无需用户逐次下达指令即可自动执行日程管理、邮件摘要等重复性工作。 为什么重要： 标志AI助手从"被动应答"向"主动交付"的产品形态转变，预示未来知识工作者的协作对象将从"对话框"变为"后台Agent团队"。</p></div>
+      <div class="term-item" id="2026-07-06-nw-1"><button class="star-btn" data-key="2026-07-06-nw-1" aria-label="关注这条">☆</button><h4>算电协同定价（Compute-Grid Synced Pricing）</h4><p>一句话解释： DeepSeek首创的API定价模式，将推理服务价格与底层算力节点的电网峰谷时段直接挂钩，高峰涨价、低谷降价。 为什么重要： 这是全球首个将电力市场价格信号传导至AI服务终端用户的商业模式创新，开启了"算力即公用事业"的定价先河。</p></div>
     </div>
   </section>
 
@@ -304,19 +333,19 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-06-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-07-06-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 微软全面重构Copilot：消费版与企业版合并，8月推出AutoPilot付费代理 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月3日微软内部备忘录披露，将在8月前将消费者版和企业版Copilot合并为单一应用。新增代号"AutoPilot"的后台常驻智能体（首个为Microsoft Scout），并砍掉Copilot Podcasts和Copilot Labs等表现不佳的功能。目前4.5亿M365用户中仅不足4.5%付费使用Copilot，重构目标是让AI助手从"增值功能"变为"必用产品"。 为什么对 TME 重要： Copilot重构直接影响全球办公软件生态，Agent从对话工具升级为后台自主工作系统的趋势，将改变企业对"AI产品经理"和"Agent开发工程师"的能力画像要求。</p>
         <div class="source">来源：<a href="https://mlq.ai/news/microsoft-merges-consumer-and-enterprise-copilot-into-single-app-launches-paid-autopilot-agents" target="_blank">The Information / 微软内部备忘录</a></div>
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-07-06-t0-1" data-rel="low">
         <button class="star-btn" data-key="2026-07-06-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 谷歌测试24/7个人AI代理"Gemini Spark"，关闭Project Mariner <span class="music-badge">🎵</span></h4>
         <p>摘要： 谷歌内部测试代号"Remy"（后更名Gemini Spark）的全天候个人AI代理，可直连Gmail、日历、文档、云盘，代替用户处理日程协调、邮件回复和文档协作。同时关闭独立浏览器代理Project Mariner，将所有代理能力集中到Gemini单一产品线。 为什么对 TME 重要： 行业竞争焦点从"模型能力"转向"代理嵌入日常工作深度"。谷歌、微软、Meta三家同时推进个人代理，意味着Agent岗位需求将从"研究型"向"产品落地型"快速倾斜。</p>
         <div class="source">来源：<a href="https://www.yeyulingfeng.com/a/836972.html" target="_blank">The Decoder / 多家媒体报道</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-06-t0-2" data-rel="hi">
         <button class="star-btn" data-key="2026-07-06-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI发布GPT-5.6系列，仅限机构API预览；Codex与ChatGPT确认合体 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月5日OpenAI正式发布GPT-5.6系列（Sol/Terra/Luna三款模型），当前仅以limited preview形式向少量受信任机构开放API及Codex权限。同日团队回应Codex与ChatGPT将完成整合——二者是同一能力的不同入口而非两条产品线。 为什么对 TME 重要： GPT-5.6暂未向普通用户开放说明OpenAI正转向B端优先策略；Codex合体ChatGPT则意味着"编程助手"和"通用助手"的产品边界正在消融，未来AI产品人才需要同时理解开发者和消费者场景。</p>
@@ -330,19 +359,19 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-06-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-07-06-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic启动自研AI芯片，与三星洽谈2nm代工合作</h4>
         <p>摘要： 7月2日The Information报道，Anthropic已启动自有AI芯片早期研发，与三星电子就2nm制程代工展开洽谈。项目仍处于方案论证阶段。Anthropic从OpenAI挖角芯片团队核心成员Clive Chan。三星作为战略投资者参与了Anthropic今年5月的650亿美元H轮融资。至此，OpenAI（Jalapeño+Broadcom）、Google（TPU）、Amazon（Trainium）、Anthropic（三星2nm）四大前沿实验室全部拥有自研芯片路线。 对招聘的启发： 芯片自研浪潮意味着AI公司从"纯软件"组织向"软硬协同"组织演进，芯片架构师、先进封装工程师等硬件人才正在成为AI公司的核心招聘方向。</p>
         <div class="source">来源：<a href="https://news.qq.com/rain/a/20260703A079AK00" target="_blank">TechCrunch / The Information（7月2日报道）</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-06-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-07-06-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 互联网大厂ICML 2026首尔"摆摊挖人"：腾讯50篇论文+青云计划，美团快手蚂蚁同步出击</h4>
         <p>摘要： 7月6-11日ICML 2026在韩国首尔举行，腾讯（50篇中稿+青云学术会议厅+晚宴）、美团（LongCat团队+现场招聘宣讲）、快手（20余篇中稿+游轮晚宴）、蚂蚁（AGI Coffee Chat+SGLang联名晚宴）四家中国大厂深度参与，在现场设展台、开CoffeeChat、办晚宴直接挖人。人才竞赛从线上延伸到顶会现场。 对招聘的启发： 顶会现场招聘成为新常态，HR需要与技术团队深度协同才能在学术会议上精准触达目标人才。AI人才的争夺战场已从LinkedIn扩展到学术走廊。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260706A03V1500" target="_blank">腾讯新闻（7月6日报道）</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-06-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-07-06-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 2026上半年全球科技裁员超12万人，AI连续多月成头号裁员原因</h4>
         <p>摘要： 据Layoffs.fyi统计，2026年至今全球科技行业已裁12.25万人（214家公司）。亚马逊裁3万人（HR团队裁70%）、Meta裁8000人、微软7月再裁数千人。Challenger报告6月美国科技裁员15503人中90%以上因AI。同时，互联网企业集中释放超20万AI相关岗位——腾讯8000人、字节7000人。裁旧增新成为结构性趋势。 对招聘的启发： "AI替代岗位"与"AI创造岗位"并行发生，HR需关注岗位结构性转型——被裁的多为执行层（初级编码、内容审核、HR流程操作），新增的多为设计层（Agent开发、AI产品经理、复合型人才）。</p>
@@ -421,7 +450,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

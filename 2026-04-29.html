@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -290,7 +319,7 @@
       <span class="sec-num sec-num-1">01</span>
       <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="new-term">
+    <div class="new-term" id="2026-04-29-nw-0">
       <button class="star-btn" data-key="2026-04-29-nw-0" aria-label="关注这条">☆</button>
       <h3>智能体工厂（Agent Factory）</h3>
       <p>一句话解释： 工信部与国家数据局"模数共振"行动通知中浮现的概念，指在20个重点行业批量产出AI应用场景、攻关行业模型和特色智能体的系统化生产模式，类似工业流水线但产出的是AI智能体。 为什么重要： 标志着AI应用从"定制开发"走向"批量生产"，政府层面首次以"工厂"概念定义AI智能体的规模化产出模式，意味着AI落地从"试点探索"进入"工业化生产"阶段。</p>
@@ -305,25 +334,25 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-29-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-04-29-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI正式牵手AWS，GPT-5.4上线Amazon Bedrock <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月29日凌晨，AWS在全球开发者大会上正式官宣与OpenAI达成多年期全面战略合作。GPT-5.4即日起上线Amazon Bedrock，GPT-5.5及后续所有前沿模型将在未来几周跟进。同步发布Codex on Bedrock和Amazon Bedrock Managed Agents两款联合产品。这是OpenAI成立以来首次与微软以外的云厂商达成如此深度合作，宣告大模型独家绑定单一云厂商的模式彻底破产。AWS同时发布Amazon Quick智能助手，接入OpenAI模型打造企业AI操作系统。 为什么对 TME 重要： 大模型多云分发意味着企业在AI模型选型时不再受限于单一云厂商，可以根据成本和性能灵活选择部署平台。云厂商间的竞争将压低AI推理服务的整体价格。</p>
         <div class="source">来源：<a href="https://ima.qq.com/wiki/?shareId=ddce2fa31ec63ee6ef1467f10c518d49e35310fb7cc0b9bcc140ee22e0189fd9&mediaId=wechatarticle_a5533dc88fcb0db26ca9a33be90ad46e_14571cad08a1af8750e3a757b884bbff7310458914620884&action=openDetailDrawer&webFrom=10000171" target="_blank">熵减时瞬 - OpenAI官宣牵手AWS</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-29-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-04-29-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 月之暗面计划Q3推出Kimi K3，2.5万亿参数 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月29日，AIbase报道月之暗面计划于第三季度推出Kimi K3大模型，参数规模达2.5万亿，成为国产大模型顶尖代表。上下文长度提升至约100万字，在长文本处理能力上实现突破。月之暗面在技术迭代和商业落地方面展现出极强的工程能力，Kimi K2.7 Code高速版刚于近期上线。 为什么对 TME 重要： 国产大模型参数规模持续攀升，2.5万亿参数意味着国产模型在规模上已与GPT-5.5、Claude Opus 4.7等国际前沿模型处于同一量级。企业在模型选型时，国产开源大模型正成为越来越有竞争力的选项。</p>
         <div class="source">来源：<a href="https://ima.qq.com/wiki/?shareId=c2aa04d0e6e39ec5306e022d6d2f0f08570ad9027cb9166fdf26819138bbcc82&mediaId=wechatarticle_0c3755a4b0ae3f90e27fb79458d95090_1fd480d2d22d7f362c92df2970521afa7296716545989727&action=openDetailDrawer&webFrom=10000171" target="_blank">AIbase - AI日报4月29日</a></div>
       </article>
-      <article class="card" data-rel="low">
+      <article class="card" id="2026-04-29-t0-2" data-rel="low">
         <button class="star-btn" data-key="2026-04-29-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 蚂蚁集团百灵Ling-2.6-flash正式开源 <span class="music-badge">🎵</span></h4>
         <p>摘要： 蚂蚁集团旗下百灵大模型宣布Ling-2.6-flash正式开源，同步提供BF16、FP8、INT4等多精度版本，已上线Hugging Face与ModelScope。模型总参数104B、激活参数7.4B，两周前曾以Elephant Alpha匿名身份登陆OpenRouter，迅速获得开发者社区与行业用户广泛关注。多精度版本的提供使企业可根据自身算力条件灵活选择部署方案。 为什么对 TME 重要： 蚂蚁集团加入开源大模型行列，进一步丰富了国产开源模型生态。INT4量化版本意味着可以在消费级GPU上运行百亿参数模型，降低了企业AI部署的硬件门槛。</p>
         <div class="source">来源：<a href="https://blog.lin8177.icu/posts/5477195298/" target="_blank">AI资讯快报20260429</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-04-29-t0-3" data-rel="mid">
         <button class="star-btn" data-key="2026-04-29-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 百度GenFlow 4.0发布，Office Agent并行调用 <span class="music-badge">🎵</span></h4>
         <p>摘要： 百度文库与网盘联合发布GenFlow 4.0，核心升级为Office Agent，可并行调用PPT、Excel和Word Agent完成复杂办公任务，并与OpenClaw深度集成。百度文库月活已超1亿。同期，Google Cloud宣布50多个托管MCP服务器正式可用，帮助AI Agent访问真实数据并解决复杂问题，加速Agent生产落地。 为什么对 TME 重要： AI办公工具从"单点辅助"进化为"多Agent并行协作"，办公效率提升进入新阶段。企业可关注Office Agent模式在内部流程自动化中的应用潜力。</p>
@@ -337,25 +366,25 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-29-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-04-29-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta营收创纪录563亿美元，同步裁员8000人、AI预算提至1450亿</h4>
         <p>摘要： 4月29日，Meta发布Q1 2026财报：营收563亿美元（同比+33%），创历史新高。但同一日宣布裁员8000人（约10%），并将全年资本支出预期从1150-1350亿美元上调至1250-1450亿美元，几乎全部用于AI基础设施。日活跃用户（DAP）35.6亿，首次出现季度环比下降。盘后股价跌约7%，反映投资者对AI巨额投入回报的质疑。Meta计划下半年进一步裁员。 对招聘的启发： "营收新高+裁员+加码AI"正在成为大型科技公司的标准操作范式。HR需关注：即使在业务增长期，AI替代也可能驱动组织精简，传统岗位的"安全区"正在缩小。招聘应向AI相关技能倾斜，同时为传统岗位员工设计转型路径。</p>
         <div class="source">来源：<a href="https://awesomeagents.ai/news/meta-q1-2026-record-revenue-8k-layoffs-ai-capex" target="_blank">Awesome Agents - Meta Q1 2026</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-29-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-04-29-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Cognizant裁员4000人同时招2万应届生，AI驱动人才结构重构</h4>
         <p>摘要： 4月29日，IT服务巨头Cognizant宣布"Project Leap"计划：全球裁员约4000人（占员工总数1%），同时计划招聘超2万名应届毕业生。公司预计支出2.3-3.2亿美元用于重组，2026年可节省2-3亿美元。裁员原因是AI日益接管重复性任务，减少对中级岗位的需求。同时投资6亿美元收购AI基础设施公司Astraa。Cognizant认为，具备AI技能的入门级人才可产出高于传统中级员工的吞吐量。 对招聘的启发： "裁中级、招初级+AI技能"是AI驱动人才结构重构的典型案例。这一模式揭示了一个残酷趋势：传统中级岗位正在被"AI+低成本初级人才"组合替代。HR需要重新定义岗位能力模型，将AI协作能力作为核心评估维度。</p>
         <div class="source">来源：<a href="https://www.finalroundai.com/blog/cognizant-layoffs-2026" target="_blank">Final Round AI - Cognizant Layoffs 2026</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-29-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-04-29-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 前DeepMind首席科学家创业，Ineffable完成11亿美元种子轮</h4>
         <p>摘要： 前谷歌DeepMind首席科学家、AlphaGo核心研发者David Silver创立的英国AI公司Ineffable完成11亿美元种子轮融资，估值达51亿美元。本轮由红杉资本与光速创投领投，英伟达、谷歌等参投，创下欧洲史上最大种子轮纪录。这是继Jeff Bezos的Project Prometheus（100亿美元）和Anthropic（50亿美元）之后，4月AI领域的又一笔超大额融资。 对招聘的启发： 顶级AI研究人才的创业正获得前所未有的资本支持，"DeepMind系"人才品牌正在形成。这与国内"千问系"人才的高估值现象形成呼应，全球范围内AI顶尖人才的创业窗口期正在打开，大厂的人才保留面临更大压力。</p>
         <div class="source">来源：<a href="https://blog.lin8177.icu/posts/5477195298/" target="_blank">AI资讯快报20260429</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-04-29-t1-3" data-rel="hi">
         <button class="star-btn" data-key="2026-04-29-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 马斯克诉奥特曼案正式开庭，索赔1340亿美元</h4>
         <p>摘要： 4月27日，马斯克起诉OpenAI CEO奥尔特曼一案在加州正式开庭。马斯克指控OpenAI将非营利组织转为营利实体、违反创始协议，索赔超1340亿美元。OpenAI反驳称马斯克知情重组计划。此案正值OpenAI计划2026年底IPO之际，结果可能影响"美国大模型第一股"的估值和治理结构。同期，中央网信办表示将发布《人工智能应用伦理安全指引（1.0版）》，中共中央政治局会议定调全面实施"人工智能+"行动。 对招聘的启发： AI行业最大治理纠纷的开庭，叠加国内AI伦理安全指引的即将出台，表明AI治理正从"行业自律"走向"法律规范"。企业在AI人才招聘和管理中需关注AI伦理合规要求，相关合规岗位需求可能上升。</p>
@@ -434,7 +463,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

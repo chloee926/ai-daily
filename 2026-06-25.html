@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,8 +320,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-06-25-nw-0" aria-label="关注这条">☆</button><h4>Modular MAX引擎</h4><p>一句话解释： 由Chris Lattner（Swift/LLVM之父）创建的AI推理引擎，可让模型跨CPU/GPU/NPU/ASIC架构运行而无需重写代码。 为什么重要： 高通以39亿美元收购Modular，标志着AI产业从"谁有最强芯片"转向"谁有最好的跨硬件软件层"，直接挑战英伟达CUDA生态的开发者锁定效应。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-06-25-nw-1" aria-label="关注这条">☆</button><h4>Agentjacking（智能体劫持）</h4><p>一句话解释： 通过伪造Sentry错误报告向AI编程智能体注入恶意指令的新型攻击手法，已影响2388家企业，利用率达85%。 为什么重要： 当编程Agent成为主流开发工具，其安全漏洞的影响面远超传统软件漏洞，企业需要为Agent工作流建立新的安全审计机制。</p></div>
+      <div class="term-item" id="2026-06-25-nw-0"><button class="star-btn" data-key="2026-06-25-nw-0" aria-label="关注这条">☆</button><h4>Modular MAX引擎</h4><p>一句话解释： 由Chris Lattner（Swift/LLVM之父）创建的AI推理引擎，可让模型跨CPU/GPU/NPU/ASIC架构运行而无需重写代码。 为什么重要： 高通以39亿美元收购Modular，标志着AI产业从"谁有最强芯片"转向"谁有最好的跨硬件软件层"，直接挑战英伟达CUDA生态的开发者锁定效应。</p></div>
+      <div class="term-item" id="2026-06-25-nw-1"><button class="star-btn" data-key="2026-06-25-nw-1" aria-label="关注这条">☆</button><h4>Agentjacking（智能体劫持）</h4><p>一句话解释： 通过伪造Sentry错误报告向AI编程智能体注入恶意指令的新型攻击手法，已影响2388家企业，利用率达85%。 为什么重要： 当编程Agent成为主流开发工具，其安全漏洞的影响面远超传统软件漏洞，企业需要为Agent工作流建立新的安全审计机制。</p></div>
     </div>
   </section>
 
@@ -304,19 +333,19 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-25-t0-0" data-rel="hi">
         <button class="star-btn" data-key="2026-06-25-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 高通39亿美元收购AI软件公司Modular，进军数据中心 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月24日，高通宣布以全股票方式、约39.2亿美元收购Chris Lattner创办的AI基础设施软件公司Modular。Modular的统一平台可让AI模型在CPU、GPU、NPU和定制ASIC上高效运行，无需为每种芯片重写代码。交易预计2026年下半年完成，高通将向Modular股东发行1920万股新股。 为什么对 TME 重要： Modular的硬件无关理念意味着未来AI部署成本和选型灵活性将大幅改善。音乐推荐、内容理解等AI应用不再被单一芯片生态绑定，招聘时可关注跨平台AI工程人才。</p>
         <div class="source">来源：<a href="https://www.qualcomm.com/news/releases/2026/06/qualcomm-to-acquire-modular" target="_blank">Qualcomm官方新闻稿</a>；<a href="https://finance.yahoo.com/technology/ai/articles/qualcomm-acquires-ai-software-startup-131042959.html" target="_blank">Yahoo Finance报道</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-25-t0-1" data-rel="hi">
         <button class="star-btn" data-key="2026-06-25-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 豆包正式推出专业版，桌面Agent进入收费时代 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月24日，字节跳动旗下豆包正式上线专业版，接入旗舰模型豆包2.1 Pro，核心功能为"办公任务模式"——可操控本地电脑、浏览器、调用Skills技能和定时任务，内置Office套件。定价三档：标准68元/月、加强200元/月、高级500元/月。免费版同步升级至2.1 Turbo，不缩减功能。 为什么对 TME 重要： 桌面Agent产品进入收费验证期，C端用户为AI生产力付费的意愿正在被测试。同期Kimi Work、TRAE Work等竞品密集上线，国内"桌面Agent"赛道形成15+产品混战，相关产品经理和Agent工程人才需求将持续走高。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260624A0352H00" target="_blank">豆包官方发布</a>；<a href="https://www.chinaz.com/2026/0625/1761011.shtml" target="_blank">chinaz报道</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-25-t0-2" data-rel="hi">
         <button class="star-btn" data-key="2026-06-25-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI发布GPT-5.5-Cyber网络安全专用模型，启动"Patch the Planet"行动 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI发布专用网络安全模型GPT-5.5-Cyber，在CyberGym基准达85.6%（超越通用GPT-5.5的81.8%）。该模型仅通过"Trusted Access for Cyber"计划向Akamai、CrowdStrike等合作伙伴开放。同时联合Trail of Bits、HackerOne发起"Patch the Planet"开源漏洞修复行动，强调AI发现漏洞后必须有人工专家验证和修复闭环。 为什么对 TME 重要： AI安全垂直化加速，企业安全岗位从"防御执行者"转向"AI审核者"。TME作为大型互联网平台，安全团队的能力模型和招聘画像也在发生变化。</p>
@@ -330,19 +359,19 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-25-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-06-25-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 诺奖得主John Jumper离开DeepMind加入Anthropic，谷歌一周失两将 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月20日，2024年诺贝尔化学奖共同得主、AlphaFold联合开发者John Jumper宣布离开谷歌DeepMind近9年后加入Anthropic。此前6月18日，Transformer论文"Attention Is All You Need"合著者Noam Shazeer已离职加入OpenAI。两人连续出走导致Alphabet股价单日暴跌7.2%、市值蒸发超2200亿美元。 对招聘的启发： 顶尖人才的流向是行业风向标——Anthropic和OpenAI正在"挖空"谷歌的基础研究层。当核心人才流失能直接引发千亿市值波动，说明AI时代"人才就是估值"的逻辑已成共识。TME在人才争夺中需关注：候选人选择平台时越来越看重"能做出影响力的东西"而非品牌本身。</p>
         <div class="source">来源：<a href="https://www.buildfastwithai.com/blogs/ai-news-today-june-24-2026" target="_blank">TechCrunch报道</a>；<a href="https://www.sohu.com/a/1040892387_121332524" target="_blank">搜狐·海量财经</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-25-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-06-25-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI重建机器人团队，宇树R1降至2.99万现货开售 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI官宣重建机器人团队（此前2021年解散），同日英伟达联合宇树发布Isaac GR200T参考设计。宇树R1人形机器人降至2.99万元起并开放现货销售，具身智能从实验室进入量产元年。智元稚晖君在MWC上海演讲中表示"百个高价值场景将凝练"。 对招聘的启发： 具身智能人才需求即将爆发——机器人关节控制、强化学习、仿真环境开发等方向将成为新的人才争夺高地。TME虽非机器人公司，但音频/视觉AI与具身智能的底层能力（多模态感知、端侧推理）有交集，可关注相关人才跨领域流动。</p>
         <div class="source">来源：<a href="https://caifuhao.eastmoney.com/news/20260625085551888126750" target="_blank">东方财富·科技早报 6月25日</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-06-25-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-06-25-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 五眼联盟发布AI网络攻击预警，美国同日签署量子安全行政令</h4>
         <p>摘要： 6月22日（本周公开传播），五眼联盟（美英加新澳）联合发布网络安全报告，判断外部对手借助前沿AI模型打造新型网攻手段的速度远超预期，时间窗口仅数月。同日白宫签署两份行政令，分别针对量子计算研发和量子时代网络安全防护。 对招聘的启发： AI安全与量子安全将成为未来2-3年政策驱动的人才热点方向。企业安全团队需要既懂AI又懂攻防的复合型人才，这类人才稀缺且跨国竞争激烈。</p>
@@ -421,7 +450,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });

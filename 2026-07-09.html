@@ -265,6 +265,29 @@
   @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
   .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
 
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -273,7 +296,13 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+</nav>
 <button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
@@ -291,8 +320,8 @@
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><button class="star-btn" data-key="2026-07-09-nw-0" aria-label="关注这条">☆</button><h4>GPT-Live（全双工语音模型）</h4><p>一句话解释： OpenAI推出的原生实时语音模型，采用全双工架构，可同时聆听与说话，支持打断、停顿理解和后台调用推理模型。 为什么重要： 标志着AI语音交互从"轮流对话"进化为"同步对话"，语音将成为AI的主要人机交互方式，每周已有1.5亿人使用ChatGPT语音功能。</p></div>
-      <div class="term-item"><button class="star-btn" data-key="2026-07-09-nw-1" aria-label="关注这条">☆</button><h4>Grok 4.5（SpaceXAI×Cursor联合训练模型）</h4><p>一句话解释： SpaceXAI与Cursor联合训练的首个AI模型，主打编程与智能体任务，Token效率为同类模型2倍，定价仅为Fable 5的1/10。 为什么重要： 首次证明"又快又便宜"可以逼近顶级模型性能，改变了AI模型竞争只看基准分数的单一维度，成本效率成为新战场。</p></div>
+      <div class="term-item" id="2026-07-09-nw-0"><button class="star-btn" data-key="2026-07-09-nw-0" aria-label="关注这条">☆</button><h4>GPT-Live（全双工语音模型）</h4><p>一句话解释： OpenAI推出的原生实时语音模型，采用全双工架构，可同时聆听与说话，支持打断、停顿理解和后台调用推理模型。 为什么重要： 标志着AI语音交互从"轮流对话"进化为"同步对话"，语音将成为AI的主要人机交互方式，每周已有1.5亿人使用ChatGPT语音功能。</p></div>
+      <div class="term-item" id="2026-07-09-nw-1"><button class="star-btn" data-key="2026-07-09-nw-1" aria-label="关注这条">☆</button><h4>Grok 4.5（SpaceXAI×Cursor联合训练模型）</h4><p>一句话解释： SpaceXAI与Cursor联合训练的首个AI模型，主打编程与智能体任务，Token效率为同类模型2倍，定价仅为Fable 5的1/10。 为什么重要： 首次证明"又快又便宜"可以逼近顶级模型性能，改变了AI模型竞争只看基准分数的单一维度，成本效率成为新战场。</p></div>
     </div>
   </section>
 
@@ -304,19 +333,19 @@
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-09-t0-0" data-rel="mid">
         <button class="star-btn" data-key="2026-07-09-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI发布GPT-Live全双工语音模型，ChatGPT语音体验全面升级 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月9日，OpenAI正式发布GPT-Live系列，包含GPT-Live-1和GPT-Live-1 mini两个版本。采用全双工架构可同时听说，前台维持语音对话流、后台调用GPT-5.5完成复杂推理。在5-10分钟对话中整体偏好率75.7%，GPQA科学推理测试从45.3%提升至84.2%。即日起向全球ChatGPT用户开放。 为什么对 TME 重要： 语音交互成为AI主入口意味着音乐/音频类产品的AI交互形态将发生根本转变，TME在语音AI领域的技术储备和产品创新方向值得重新审视。</p>
         <div class="source">来源：<a href="https://openai.com/index/gpt-live/" target="_blank">OpenAI官网</a>、<a href="https://t.cj.sina.cn/articles/view/2868676035/aafc85c302001scf4" target="_blank">财联社</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-09-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-07-09-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> SpaceXAI发布Grok 4.5：与Cursor联训，性能逼近Opus 4.7，成本低10倍 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月9日，SpaceXAI正式发布Grok 4.5，系该公司上市后首款新模型。与Cursor联合训练，专攻编程和Agent任务，定价输入$2/百万Token、输出$6/百万Token。SWEBenchPro得分64.7%超过GPT-5.5，TerminalBench 83.3%与GPT-5.5仅差0.1%。马斯克称其"性能相当于Opus 4.7但速度更快"，每任务成本$1.51仅为Fable 5 Max的1/10。 为什么对 TME 重要： Cursor生态的强化意味着AI辅助编码将进一步降低开发成本，TME技术团队引入AI编码工具的ROI将更加显著。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/L1C6MTM505198CJN.html" target="_blank">财联社</a>、<a href="https://www.163.com/dy/article/L1COK2QJ0511ABV6.html" target="_blank">新智元</a></div>
       </article>
-      <article class="card" data-rel="mid">
+      <article class="card" id="2026-07-09-t0-2" data-rel="mid">
         <button class="star-btn" data-key="2026-07-09-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> GPT-5.6获美政府放行，本周四全量上线 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月8日，美国商务部正式批准OpenAI全面发布GPT-5.6系列（Sol/Terra/Luna），结束近两周的有限预览期。Sol为旗舰版本、Terra性能媲美GPT-5.5但价格减半、Luna为最具性价比版本。此前因特朗普签署的AI审查行政令，GPT-5.6仅向经审核的有限实体开放。 为什么对 TME 重要： GPT-5.6全量开放意味着全球AI应用开发者将获得更强的底层模型支撑，TME各业务线接入最新模型的技术可行性和商业价值需要重新评估。</p>
@@ -330,19 +359,19 @@
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-09-t1-0" data-rel="hi">
         <button class="star-btn" data-key="2026-07-09-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta投资130亿加元建加拿大首个数据中心，海外最大算力基地 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月8日，Meta宣布在加拿大阿尔伯塔省斯特金县投资130亿加元（约91亿美元）建设1GW装机容量的超大型数据中心，系其美国以外规模最大的算力基地。建设高峰期提供3000个建筑岗位、建成后创造300个全职运营岗位。Meta全球数据中心总数将增至33座，今年资本支出预算达1450亿美元。 对招聘的启发： AI基础设施全球化布局将催生大量数据中心运维、能源管理、冷却工程等新型岗位。TME若跟进海外算力部署，相关基础设施人才的储备值得提前布局。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260709A01F5100" target="_blank">新华社/环球市场播报</a>、<a href="https://www.jiemian.com/article/14727238.html" target="_blank">界面新闻</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-09-t1-1" data-rel="hi">
         <button class="star-btn" data-key="2026-07-09-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 努比亚确认将发布全球首款AI智能体手机，WAIC 2026首秀</h4>
         <p>摘要： 7月8日，中兴终端总裁倪飞确认努比亚将在7月17日WAIC首发全球首款AI智能体手机，定位量产旗舰。该机从安卓底层搭载AI智能体引擎，拥有系统级模拟触控权限，可跨App自主完成复杂连续任务。前代产品M153曾3万台当天售罄，但因高危系统权限被多平台封杀。 对招聘的启发： AI Agent从云端走向端侧，将催生"端侧AI系统工程师""AI-OS交互设计师"等新兴岗位，同时对安全合规人才的需求将显著增加。</p>
         <div class="source">来源：<a href="https://tech.ifeng.com/c/8uauvmve9Xg" target="_blank">凤凰科技</a>、<a href="https://www.163.com/dy/article/L1B4DJNK051191D6.html" target="_blank">CNMO</a></div>
       </article>
-      <article class="card" data-rel="hi">
+      <article class="card" id="2026-07-09-t1-2" data-rel="hi">
         <button class="star-btn" data-key="2026-07-09-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 三星正式量产英伟达Vera Rubin平台专用存储硬盘</h4>
         <p>摘要： 三星电子启动企业级固态硬盘PM1763的量产，这款专为AI场景打造的存储设备将应用于英伟达即将推出的Vera Rubin平台。Vera Rubin作为英伟达下一代AI超级计算平台，三星为其量产配套存储标志着AI芯片+存储的供应链协同进入新阶段。 对招聘的启发： AI芯片产业链从设计延伸到存储配套，半导体+AI交叉人才的稀缺性将进一步上升，相关领域的人才画像和薪资水平值得关注。</p>
@@ -421,7 +450,19 @@ document.addEventListener('click', function (e) {
   var btn = e.target.closest ? e.target.closest('.star-btn') : null;
   if (!btn) return;
   var k = btn.getAttribute('data-key'); var stars = getStars();
-  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
   setStars(stars); refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
 });
