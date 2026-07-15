@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>智能体原生操作系统（Agentic-native OS）</h4><p>一句话解释： 从底层为AI智能体（而非人类手指）设计的手机操作系统，用户只需描述意图，智能体自主跨应用执行全流程。 为什么重要： 这是手机交互范式的根本性变革——操作系统的"主角"从人变成AI，将重塑移动互联网的应用分发和用户触达逻辑，对所有依赖App生态的企业产生深远影响。</p></div>
-      <div class="term-item"><h4>算力短缺商品化悖论（Compute Scarcity Commoditization Paradox）</h4><p>一句话解释： 当前基础模型因算力短缺享有高定价权，但分析师指出一旦供给缓解，模型将沦为低利润商品化基础设施。 为什么重要： 这解释了为何OpenAI和Anthropic同时争抢用户——不是模型不好，而是窗口期有限，谁先锁定用户习惯谁就能在算力充裕后保住护城河。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-07-14-nw-0" aria-label="关注这条">☆</button><h4>智能体原生操作系统（Agentic-native OS）</h4><p>一句话解释： 从底层为AI智能体（而非人类手指）设计的手机操作系统，用户只需描述意图，智能体自主跨应用执行全流程。 为什么重要： 这是手机交互范式的根本性变革——操作系统的"主角"从人变成AI，将重塑移动互联网的应用分发和用户触达逻辑，对所有依赖App生态的企业产生深远影响。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-07-14-nw-1" aria-label="关注这条">☆</button><h4>算力短缺商品化悖论（Compute Scarcity Commoditization Paradox）</h4><p>一句话解释： 当前基础模型因算力短缺享有高定价权，但分析师指出一旦供给缓解，模型将沦为低利润商品化基础设施。 为什么重要： 这解释了为何OpenAI和Anthropic同时争抢用户——不是模型不好，而是窗口期有限，谁先锁定用户习惯谁就能在算力充裕后保住护城河。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,17 +304,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-14-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阶跃星辰发布全球首款大模型原生智能体手机STEPX Neo <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月13日，阶跃星辰发布AI终端品牌STEPX、智能体原生系统Step AOS及首款手机STEPX Neo。Step AOS从底层重构，让智能体直接调用合作方服务接口（非GUI模拟点击），首批生态接入美团、携程、支付宝等数十家应用。手机已通过国标L3级智能化测试，日常问答记忆召回最快15ms。 为什么对 TME 重要： 智能体原生OS代表下一代用户交互入口，若"结果交互"取代"过程交互"成为主流，App分发逻辑将彻底改变。TME需关注音乐/视频等内容服务在智能体OS中的接入策略和用户触达方式。</p>
         <div class="source">来源：<a href="https://i.ifeng.com/c/8ujZU1BLXB2" target="_blank">凤凰网科技</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-14-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI与Anthropic爆发额度争夺战：Codex取消限制 vs Fable 5再延期至7/19 <span class="music-badge">🎵</span></h4>
         <p>摘要： Anthropic将Claude Fable 5切换按量付费的截止日再延7天至7月19日（第三次延期），同时Claude Code每周上限维持+50%优惠；OpenAI随即临时取消Codex和ChatGPT Work的5小时使用限制，并优化GPT-5.6 Sol运行效率使可用额度提升约10%。两家核心目标一致：降低高端模型实际使用成本，留住开发者。 为什么对 TME 重要： AI编程工具的使用门槛正在快速降低。当Codex活跃用户已达600万，企业需重新评估内部AI Coding工具选型和成本结构。</p>
         <div class="source">来源：<a href="https://www.163.com/tech/article/L1NPP0GO00097U7T.html" target="_blank">网易科技</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-14-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 腾讯混元开源HyOCR-1.5：1B参数端到端OCR推理提速6.37倍 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月12日，腾讯混元开源端到端OCR专家模型HyOCR-1.5，仅1B参数覆盖8种以上任务。借助DFlash投机解码框架推理提速6.37倍，可在llama.cpp上用CPU和普通笔记本运行。OmniDocBench v1.6以94.74分居端到端第一，新增古文字、图表解析等长尾能力。 为什么对 TME 重要： 轻量化OCR模型开源意味着企业级文档处理成本大幅下降。招聘场景中的简历解析、合同审核等环节可直接受益于这类端到端方案。</p>
         <div class="source">来源：<a href="https://www.huxiu.com/ainews/13844.html" target="_blank">虎嗅</a></div>
@@ -294,17 +330,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-14-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI安全负责人海德克离职，安全团队并入研发体系</h4>
         <p>摘要： 任职近5年的OpenAI安全系统负责人约翰内斯·海德克确认离职（2年内第6位安全高管出走）。OpenAI新设"研究与安全副总裁"岗位由米娅·格莱斯出任，安全团队不再拥有独立汇报线，整体并入研究部门。首席研究官Mark Chen称"安全工作需更早参与模型和产品决策"。 对招聘的启发： OpenAI的安全人才持续外流（多人转投Anthropic或创建独立安全组织），说明AI安全领域正形成独立人才市场。对标企业如需组建独立AI安全团队，现在是窗口期。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260713A069HV00" target="_blank">量子位/WIRED</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-14-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> MiniMax融资160亿港元，创始人闫俊杰宣布AGI前零薪酬</h4>
         <p>摘要： MiniMax 7月10日完成160亿港元融资（配股95.4亿+零息可转债65亿），80%投入AI基础设施和模型研发。同日创始人闫俊杰发内部信：即日起至实现AGI不领任何薪酬，拿出总股本4%用于团队激励、1%设基金支持开源社区。但IPO后首轮限售股解禁（48%）导致股价持续承压。 对招聘的启发： 创始人零薪酬+大比例股权激励是AI公司争夺人才的极端手段。但MiniMax与智谱的市值分化说明，人才吸引力最终取决于商业化路径的清晰度。</p>
         <div class="source">来源：<a href="https://finance.sina.cn/2026-07-10/detail-inihhvka7174378.d.html" target="_blank">中国证券报</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-14-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 软银独家代理Sierra进军日本AI客服市场</h4>
         <p>摘要： 7月14日，软银与Bret Taylor创立的Sierra达成独家战略合作，在日本市场推出AI Agent客服平台。此前在LINEMO部署中，Sierra将客户问题解决率从83%提升至97%，满意度从74%升至93%。软银计划3个月内在主力品牌全量接入，年底覆盖生态内超8000万用户。 对招聘的启发： AI Agent客服正从"降本增效"走向"独占市场"（独家代理模式）。企业客服团队的岗位结构将加速向AI运营、提示工程和异常处理方向转型。</p>
         <div class="source">来源：<a href="https://www.softbank.jp/en/corp/news/press/sbkk/2026/20260714_01/" target="_blank">SoftBank官方新闻稿</a></div>
@@ -325,5 +364,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

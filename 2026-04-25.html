@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,13 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
+      <button class="star-btn" data-key="2026-04-25-nw-0" aria-label="关注这条">☆</button>
       <h3>MoE激活比（Activation Ratio）</h3>
       <p>MoE激活比 — 混合专家模型中，实际参与推理的"激活参数"占"总参数"的比例。比如DeepSeek V4 Pro总参数1.6万亿但激活仅490亿（约3%），腾讯Hy3总参数2950亿激活210亿（约7%）。激活比越低，意味着同等智能下推理成本越省——这正是本周三大模型竞争的核心战场。</p>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,12 +305,14 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 三大模型同日对撞：GPT-5.5 vs DeepSeek V4 vs 混元Hy3</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-25-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI GPT-5.5 "Spud"</h4>
         <p>最强智能体编码模型发布，Token成本骤降至上代1/35。Terminal-Bench 2.0准确率82.7%（SOTA），SWE-Bench Pro达58.6%。API输入定价5美元/百万Token。Greg Brockman称其为"一类全新的智能"。已向Plus/Pro用户开放。([来源](https://finance.sina.com.cn/tech/discovery/2026-04-24/doc-inhvqfhe4440967.shtml))</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-04-25-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> DeepSeek V4预览版开源上线</h4>
         <p>Pro版1.6T参数为全球最大开源模型，百万字上下文标配，首款全运行于华为昇腾的前沿模型。同日曝出完成18亿美元首轮融资，阿里腾讯联投，估值200亿美元。Agent能力为重点升级方向。([来源](https://www.yicai.com/news/103150678.html))</p>
         
@@ -289,17 +325,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · Meta+Microsoft同日宣布缩编，合计约2万岗</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-25-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta裁员8000人+停招6000岗</h4>
         <p>正式确认裁减10%员工约8000人，取消6000个在招岗位，合计影响14000个岗位。5月20日启动。扎克伯格内部备忘录将裁员与AI投入资源腾挪直接挂钩。据报道Meta已开始用员工工作行为数据训练AI模型。([来源](https://www.cnn.com/2026/04/23/tech/meta-layoffs-10-percent-staff-ai))</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-25-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Microsoft首次推出自愿买断计划</h4>
         <p>51年历史上首次向美国员工提供自愿离职买断方案，预计影响约8000人。与Meta同日官宣，CNBC称两家合计约2万岗位受影响，引发"AI劳动力危机"讨论。([来源](https://fortune.com/2026/04/23/meta-microsoft-layoffs-job-cuts-not-filling-open-roles-voluntary-buyouts/))</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-25-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> AI岗位需求逆势暴涨</h4>
         <p>据猎聘数据，2025.3-2026.2期间要求使用AI工具的职位同比增长155%，要求会用AI智能体的职位同比增293%。AI岗位占新经济整体岗位比重从2.3%飙升至26.2%。裁员与招聘的结构性分化正在加剧。([来源](https://finance.cctv.com/2026/04/13/ARTI3PsIRBGipnN2LyxQsnNJ260413.shtml))</p>
         
@@ -320,5 +359,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,13 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
+      <button class="star-btn" data-key="2026-05-06-nw-0" aria-label="关注这条">☆</button>
       <h3>金融AI智能体（Financial AI Agent）</h3>
       <p>不同于通用聊天机器人，金融 AI 智能体是针对银行、保险、资管等专业场景预构建的自主执行系统，可独立完成投研报告撰写、KYC 合规筛查、财务模型构建等高耗时工作。Anthropic 今日发布的 10 款金融智能体已接入 Excel、PowerPoint、Outlook，标志着 AI 从"对话助手"正式进入"虚拟员工"阶段。</p>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,17 +305,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · AI 智能体深入专业领域</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-06-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — 发布 10 款金融服务 AI 智能体</h4>
         <p>Anthropic 推出面向金融服务行业的完整智能体矩阵，覆盖银行、保险、资产管理与金融科技全链条。可独立撰写客户会议材料、审阅财报、触发合规审查、构建财务模型，已接入 Dun & Bradstreet 和穆迪等金融数据合作伙伴。消息发布后 FactSet 股价盘中跌超 8%，晨星跌近 3%。</p>
         <div class="source">来源：<a href="https://baike.baidu.com/item/Anthropic/62639515" target="_blank">百度百科/Anthropic</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-06-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> xAI — Grok 4.3 发布</h4>
         <p>xAI 推出 Grok 4.3 模型，定位文本与推理能力升级。这是 xAI 并入 SpaceX 前的最后一批独立模型发布之一，后续 Grok 系列将以 SpaceXAI 品牌继续迭代。</p>
         <div class="source">来源：<a href="https://whatllm.org/blog/new-ai-models-may-2026" target="_blank">WhatLLM</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-06-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Zyphra — ZAYA1-8B 开源 MoE 模型发布</h4>
         <p>Zyphra 发布 ZAYA1-8B，采用混合专家（MoE）架构，Apache 2.0 开源协议，每个 token 仅激活 7.6 亿参数。这是 5 月上旬唯一的开源权重模型发布，为开发者提供了可自托管的轻量选择。</p>
         <div class="source">来源：<a href="https://whatllm.org/blog/new-ai-models-may-2026" target="_blank">WhatLLM</a></div>
@@ -294,17 +331,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · AI 资本加速集中</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-06-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — 承诺 5 年 2000 亿美元采购谷歌 TPU 算力</h4>
         <p>Anthropic 与谷歌云签署超大规模算力协议，承诺未来 5 年支付 2000 亿美元使用谷歌 TPU。交易占谷歌云待交付订单 40% 以上，谷歌将为 Anthropic 新建多座超大规模数据中心。双方深度绑定：谷歌先投资 100 亿美元（估值 3500 亿），达标后追加至 400 亿；Anthropic 则承诺 2000 亿采购。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AICritique</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-06-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic — Pre-IPO 隐含估值飙升至 1.2 万亿美元</h4>
         <p>据链上 Pre-IPO 市场数据，Anthropic 隐含估值瞬间飙升至 1.2 万亿美元（约 8.7 万亿人民币），超越 OpenAI 成为全球最值钱的 AI 创业公司。Anthropic 年化收入已从年初的 140 亿美元飙升至约 470 亿美元。</p>
         <div class="source">来源：<a href="https://baike.baidu.com/item/Anthropic/62639515" target="_blank">百度百科/Anthropic</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-06-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> AWS — 将 GPT-5.5 和 Codex 引入 Amazon Bedrock</h4>
         <p>亚马逊云服务宣布将 OpenAI 的 GPT-5.5、GPT-5.4 和编码智能体 Codex 引入 Amazon Bedrock 平台，进一步巩固 AWS 作为企业 AI 枢纽的地位。Snowflake 随后承诺 60 亿美元投入 AWS 联合建设"智能体企业"AI。</p>
         <div class="source">来源：<a href="https://www.aicritique.org/us/2026/06/01/ai-developments-in-may-2026" target="_blank">AICritique</a></div>
@@ -325,5 +365,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

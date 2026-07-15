@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>Symphony 架构（Symphony Architecture）</h4><p>OpenAI 在 GPT-6 中引入的全新多模态统一架构，代号"Symphony"。与以往文本、图像、音频分模块拼接的方案不同，Symphony 将所有模态在同一架构内原生融合处理，使模型具备类似人类的"通感"能力——例如上传手绘草图可直接生成前端代码，上传产品演示视频可自动生成测试用例。这一架构标志着 AI 从"内容生成"正式转向"任务执行"。</p></div>
-      <div class="term-item"><h4>Engram 条件记忆（Engram Conditional Memory）</h4><p>DeepSeek V4 即将引入的长期记忆架构，名称借鉴神经科学中"记忆痕迹"（engram）的概念。该架构允许模型在多轮对话和长周期任务中维持并调用条件性记忆，而非每次对话都从零开始。这被视为从"无状态对话"到"持续协作智能体"的关键技术突破。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-15-nw-0" aria-label="关注这条">☆</button><h4>Symphony 架构（Symphony Architecture）</h4><p>OpenAI 在 GPT-6 中引入的全新多模态统一架构，代号"Symphony"。与以往文本、图像、音频分模块拼接的方案不同，Symphony 将所有模态在同一架构内原生融合处理，使模型具备类似人类的"通感"能力——例如上传手绘草图可直接生成前端代码，上传产品演示视频可自动生成测试用例。这一架构标志着 AI 从"内容生成"正式转向"任务执行"。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-15-nw-1" aria-label="关注这条">☆</button><h4>Engram 条件记忆（Engram Conditional Memory）</h4><p>DeepSeek V4 即将引入的长期记忆架构，名称借鉴神经科学中"记忆痕迹"（engram）的概念。该架构允许模型在多轮对话和长周期任务中维持并调用条件性记忆，而非每次对话都从零开始。这被视为从"无状态对话"到"持续协作智能体"的关键技术突破。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,22 +304,26 @@ function toggleTheme() {
       <h2 class="sec-title">AI产品 & 平台动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-15-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> GPT-6 正式发布：200万 Token 上下文、Symphony 全模态架构</h4>
         <p>2026年4月14日，OpenAI 正式发布代号"土豆"（Spud）的 GPT-6。核心突破包括：200万 Token 上下文窗口（相当于一次性读入约两部《三体》全集）、Symphony 原生多模态架构、综合性能较 GPT-5 提升40%。为集中资源，OpenAI 此前已关停 Sora 视频生成服务，CEO 奥尔特曼将此比作"GPT-3 发布前的资源聚焦"。GPT-6 被业界视为通向 AGI 的"最后一公里"关键节点。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-15-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> DeepSeek V4 确认4月下旬发布：万亿参数 + 国产芯片适配</h4>
         <p>DeepSeek 创始人梁文锋在内部沟通中确认，新一代旗舰大模型 DeepSeek V4 将于4月下旬正式发布。据悉该模型参数规模达万亿级，引入 Engram 条件记忆架构和 LTM（Long Term Memory）长期记忆能力，并首次深度适配华为昇腾等国产 AI 芯片。定价方面，每百万 token 仅 0.3 美元，比 GPT 旗舰模型便宜十倍以上。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-15-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 小红书开源 RL 训练引擎 RELAX</h4>
         <p>2026年4月15日，小红书正式开源强化学习训练引擎 RELAX。实测全异步 Off-Policy 模式较共卡 On-Policy 吞吐提升76%，较 veRL 同模式提升20%，可显著提升全模态智能体强化学习训练的效率与稳定性。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-04-15-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Stanford 2026 AI Index 报告发布</h4>
         <p>斯坦福大学 HAI 研究所发布2026年度 AI Index 报告（超400页）。核心发现：生成式 AI 全球普及率3年内达53%，超越互联网和个人电脑的普及速度；中美顶尖模型差距缩小至仅2.7%；AI 模型透明度指数从58分降至40分；2025年全球共记录362起 AI 安全事件，较上年增长55%。</p>
         
@@ -299,22 +336,26 @@ function toggleTheme() {
       <h2 class="sec-title">AI公司组织 & 人才</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-15-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 2026年Q1全球科技裁员近8万人，47.9%归因AI</h4>
         <p>据 RationalFX 报告，2026年第一季度全球科技行业裁员78,557人，美国占比76.7%。其中约37,638人的岗位削减直接或间接归因于 AI 技术实施和工作流自动化。Cognizant 首席AI官 Babak Hodjat 指出，当前裁员更多源于企业对AI能力的预期而非实际生产力提升，真正的实质性冲击预计在未来6至12个月内显现。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-15-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> AI首次成为单月裁员第一大原因</h4>
         <p>据 Challenger, Gray & Christmas 报告，2026年3月AI相关裁员达15,341人，占当月总裁员60,620人的25%，首次超越重组、关闭等所有其他原因成为裁员首因。自2023年追踪以来，AI累计影响岗位已达107,094个。同时，3月招聘公告达32,826人，新岗位越来越要求 AI 和数据技能。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-15-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Stanford 报告：25岁以下软件工程师就业下滑近20%</h4>
         <p>Stanford 2026 AI Index 报告显示，美国22-25岁软件工程师就业人数自2022年以来下滑近20%。报告谨慎指出无法将此单独归因于 AI，但 AI 已成为不可忽视的重要变量，尤其对"初阶、可重复性高的编码任务"影响最为直接。与此同时，AI 在软件开发领域带来26%的生产力提升，在客服领域带来14%的提升。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-15-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 移居美国的AI研究人员数量自2017年以来下滑89%</h4>
         <p>Stanford 报告还揭示，选择移居美国的 AI 研究人员数量自2017年以来累计下滑89%，仅去年单年就下滑80%。美国对全球 AI 人才的吸引力正在快速衰退，而韩国在 AI 创新密度（人均 AI 专利申请数）上跃居全球第一。</p>
         
@@ -335,5 +376,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

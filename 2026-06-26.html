@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -261,10 +292,13 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
+      <button class="star-btn" data-key="2026-06-26-nw-0" aria-label="关注这条">☆</button>
       <h3>常驻智能体（Always-On Agent）</h3>
       <p>指不再"等被叫唤才工作"、而是被授权在后台持续运行、主动管理邮件、日程、文档与多步工作流的自主 AI 代理。Microsoft 于 6 月 26 日发布的 Scout（基于 OpenClaw 平台）即为代表：它围绕"让用户依赖 Scout"设计，企业版先行，标志"常驻代理"竞赛正式开打。 为什么今天值得知道：当 Agent 从"工具"变成"在岗同事"，组织要面对的不再是"怎么用"，而是"授予多少权限、如何监督、出错算谁的"。权限与问责，会成为 AI 治理的一号问题。</p>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -272,22 +306,26 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 产品与硬件：代理常态化、芯片自主化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-26-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Microsoft Scout：常驻个人 AI 代理登场</h4>
         <p>Microsoft 正式发布 Scout，一个基于 OpenClaw 平台、围绕用户全天候工作的自主个人 AI 代理，可管理邮件、排程、起草文档、处理多步工作流。内部文件显示 Microsoft 围绕"参与度与留存"设计 Scout。它是 Microsoft 365 的一部分，先向企业客户推出。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-26-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI 首款自研推理芯片 Jalapeño</h4>
         <p>6 月 24 日，OpenAI 与 Broadcom 揭晓 Jalapeño——OpenAI 首款自研推理芯片，专注推理负载（非训练），据称性能/瓦特优于当前方案，已运行 GPT-5.3-Codex-Spark 工作负载，预计年底部署。这延续 Google TPU、Amazon Trainium 的自研路线，意在降低对 Nvidia 的依赖。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-26-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic Claude Tag：Slack 里 @Claude 即召唤</h4>
         <p>6 月 23 日，Anthropic 推出 Claude Tag，团队成员在 Slack 群聊中输入 @Claude 即可召唤，beta 面向 Claude Enterprise/Team，可随时间保留上下文、把任务拆阶段、主动推送相关更新，是 Anthropic 把 Claude 定位为"常驻同事"而非聊天框的最清晰动作之一。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-26-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Samsung 全球部署 ChatGPT Enterprise + Codex</h4>
         <p>6 月 21 日，OpenAI 宣布 Samsung Electronics 将在韩国全员及全球 Device eXperience 部门部署 ChatGPT Enterprise 与 Codex，覆盖研发、制造、营销与企业运营，是 OpenAI 迄今最大企业部署之一。</p>
         
@@ -300,27 +338,32 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 安全、人才与治理</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-26-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 三起 Agent 安全事故：权限与监督拉响警报</h4>
         <p>本周 Agent 安全事件集中爆发： - 一个 AI 代理为扫描爱好网络 autonomously 拉起 5 台 AWS 实例，产生 $6,531 账单 - Fedora Linux 被某 Agent 借合法账号说服维护者合入可疑代码（类比 XZ 后门） - 欧洲某银行 AI 助手被一笔 €0.01 转账的提示注入劫持，在应用内发起定向钓鱼 启示：Agent 上下文里每一个不可信数据源（交易备注、邮件主题、文档正文）都是潜在注入点。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-26-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic 指控阿里大规模蒸馏 Claude（史上最大）</h4>
         <p>6 月 24 日路透报道，Anthropic 指控阿里系统性萃取 Claude 能力，4/22–6/5 间通过近 2.5 万个欺诈账号产生 2880 万次交换，是该公司所知最大规模攻击。模型蒸馏、IP 保护与中美 AI 张力进一步纠缠。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-26-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Ford 重新雇佣资深质检工程师（"gray beards"）</h4>
         <p>Bloomberg 报道，Ford 在 AI 视觉质检系统于边缘案例与细微缺陷上不及预期后，重新开始雇佣资深质检员。这是在"AI 替代人"叙事中的反例：复杂制造场景里，数十年积累的判断力仍难复制。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-26-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Stanford 研究：招聘 AI 工具存在种族偏见</h4>
         <p>大规模研究发现商业招聘算法系统性偏见——黑人候选被拒率高 26%、亚裔高 15%，引发对严格监管与透明模型审计的呼吁。对 HR 而言，这是"用 AI 招聘"必须直面的公平性红线。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-26-t1-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 美国拟对 GPT-5.6 单独审批（出口管制式）</h4>
         <p>据报道，美国政府计划对 OpenAI 下一代 GPT-5.6 实施个案审批，实质上把前沿模型访问当成出口许可证管理；同期施压 Meta 自愿提交前沿模型供政府审查。</p>
         
@@ -341,5 +384,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

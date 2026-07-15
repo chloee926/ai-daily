@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,13 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
+      <button class="star-btn" data-key="2026-05-13-nw-0" aria-label="关注这条">☆</button>
       <h3>Agent Harness</h3>
       <p>阿里 Qoder 1.0 底层重构的智能体调度架构，支持跨项目多任务并行执行、自定义专家智能体、团队级共享知识引擎。相比传统 AI IDE 的单任务模式，Agent Harness 让多个智能体在统一框架内协作完成复杂开发任务，是 AI 编程从"辅助工具"向"自主开发系统"演进的关键基础设施。</p>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,17 +305,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 中国 AI 生态加速布局</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-13-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里 — Qoder 1.0 智能开发工作台正式上线</h4>
         <p>阿里发布 Qoder 1.0，从传统 AI IDE 升级为智能体自主开发工作台，底层重构 Agent Harness 架构，复杂任务完成度提升 60%。支持跨项目多任务并行、自定义专家智能体、团队级共享知识引擎。全球累计用户达 500 万，企业端贡献 70% 营收。</p>
         <div class="source">来源：<a href="https://www.aibetas.com.cn/p/6225.html" target="_blank">AIBetas</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-13-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 华为云 — 公布 Agentic AI 全栈布局</h4>
         <p>华为云公布面向企业级 Agentic AI 的全栈布局，覆盖数据湖、知识与记忆平台、算力、模型、Agent 框架与数据韧性六大方向。其中业界首个支持异构算力的上下文记忆存储（CMS），可扩展为 PB 级共享 KV Cache 池，降低推理首 Token 时延 90%。</p>
         <div class="source">来源：<a href="https://www.huawei.com/cn/news/2026/5/idi-forum-data" target="_blank">华为官网</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-13-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 百度 — 发布通用智能体 DuMate（百度搭子）</h4>
         <p>百度推出通用智能体 DuMate，将旗下多个产品集成在同一入口，可协同完成智能搜索、代码开发、深度调研、数据分析、应用搭建等多元复杂任务。这是继腾讯 Marvis、阿里百炼之后，又一家中国大厂推出系统级 AI 助手。</p>
         <div class="source">来源：<a href="https://www.news.cn/tech/20260526/02042bf2690e4f25acadd23488c1ee23/c.html" target="_blank">新华网</a></div>
@@ -294,17 +331,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · AI 公司组织与治理</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-05-13-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI — 格雷格·布罗克曼正式接管全产品线</h4>
         <p>OpenAI 宣布架构调整，联合创始人兼总裁布罗克曼正式接管全产品线战略，将 ChatGPT、Codex、开发者 API 整合为统一产品团队，推进"超级应用"研发。原 ChatGPT 负责人转岗企业产品线。本次调整被视为 IPO 前的核心组织优化动作。</p>
         <div class="source">来源：<a href="https://www.aibetas.com.cn/p/6225.html" target="_blank">AIBetas</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-05-13-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic — Claude 已编写公司 80% 以上的生产代码</h4>
         <p>Anthropic 发布论文披露：截至 2026 年 5 月，Claude 编写了 Anthropic 合并到生产系统的 80% 以上代码。每位工程师每天合并的代码量是 2024 年的 8 倍。人类工程师的角色正在从"写代码"转向"设定目标、审查 AI 产出、决定是否合并"。Anthropic 同时强调，完整的递归自我改进尚未实现。</p>
         <div class="source">来源：<a href="https://www.newsbreak.com/winbuzzer-com-302470011/4693518914266-anthropic-says-claude-now-writes-80-of-its-production-code-targets-full-self-improving-ai" target="_blank">NewsBreak/Winbuzzer</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-13-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 欧盟 — AI 法案即将进入执行阶段，禁止深度伪造色情内容</h4>
         <p>欧洲议会和欧盟成员国代表就修订《人工智能法》达成共识，同意禁止 AI 系统生成"深度伪造"色情内容。该法案的执行标志着全球主要经济体对 AI 生成内容的监管从讨论阶段进入实操阶段，对企业 AI 产品的合规设计产生直接影响。</p>
         <div class="source">来源：<a href="https://world.people.com.cn/n1/2026/0601/c1002-40731642.html" target="_blank">新华社</a></div>
@@ -325,5 +365,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

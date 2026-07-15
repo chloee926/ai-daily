@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,13 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
+      <button class="star-btn" data-key="2026-06-12-nw-0" aria-label="关注这条">☆</button>
       <h3>x402 协议</h3>
       <p>Coinbase 主导的机器对机器支付协议，让 AI 智能体无需人类介入，就能通过 HTTP 直接用稳定币为数据 API、算力等数字服务付款。不是"AI 帮人操作支付"，而是"AI 自己花钱办自己的事"——这是智能体从工具变成经济主体的基础设施。</p>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,27 +305,32 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 智能体商业化加速</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-12-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 华为</h4>
         <p>鸿蒙 7 正式发布，全生态迈入 Agent 时代。HDC 2026 在东莞松山湖开幕，HarmonyOS 7 开发者 Beta 亮相，核心升级围绕三大底层：Agent 亲和系统架构、鸿蒙智能体框架 2.0（复杂任务成功率超 90%）、系统智能体"小艺"全面 Skill 化。方舟引擎首次引入性能大模型，整机性能提升 15%。鸿蒙已成中国第二大智能手机系统，生态设备超 13 亿，生态伙伴超 3500 家。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260612A064VN00" target="_blank">腾讯新闻</a> | <a href="https://www.ithome.com/0/963/548.htm" target="_blank">IT之家</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-12-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Coinbase</h4>
         <p>推出"Coinbase for Agents"智能体金融账户。AI 智能体首次可以代表用户直接进行加密货币交易、资金转移和在线支付，基于 x402 协议实现机器对机器自主支付。过去 30 天约 15.7 万个 AI 智能体作为买方使用 x402 协议，已处理超 1 亿笔交易。Coinbase 将从智能体交易中赚取手续费。</p>
         <div class="source">来源：<a href="https://www.zhitongcaijing.com/content/detail/1453580.html" target="_blank">智通财经</a> | <a href="https://www.163.com/dy/article/KV6K2V4U05561FZO.html" target="_blank">TechCrunch via 网易</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-12-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek</h4>
         <p>连续三周蝉联全球大模型榜首，中国 AI 周调用量达 3.69 万亿。这是国内 AI 服务调用量首次持续超越美国，标志着中国 AI 应用生态进入爆发期。DeepSeek Y4 Flash 成为全球使用量最大的大模型。</p>
         <div class="source">来源：<a href="https://blog.csdn.net/haohaizi_liu/article/details/161926400" target="_blank">CSDN</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-12-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 小米</h4>
         <p>开源终端 AI 编程助手 MiMo Code。内置免费多模态模型，支持代码生成与调试，集成顶级多模态能力，面向开发者免费开放。</p>
         <div class="source">来源：<a href="https://wv.video.qq.com/export/UzFfBgAAxKqndFhbA33LjMzT4DBZDX7GUU7CXEYXzU3aIquMvXM" target="_blank">视频号热点</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-12-t0-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 北京智源大会</h4>
         <p>第八届今日开幕，聚焦智能系统新图景。汇聚 200 余位全球顶尖学者，Meta、英伟达、哈佛、MIT 等与中国 AI 核心力量同场交流，围绕世界模型、通用智能体、具身智能等前沿方向展开。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260612A04XC000" target="_blank">腾讯新闻</a></div>
@@ -304,17 +343,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · AI 公司组织与人才洗牌</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-12-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta</h4>
         <p>裁员 4665 人聚焦 AI 战略，中层管理与工程师成重灾区。6 月 10 日在加州和华盛顿裁减 4665 人，管理人员超 1400 人、软件工程师近 1000 人。扎克伯格称不是"AI 替代人力"，而是将资源集中到大模型研发与元宇宙 AI 交互核心方向。预计年省 8 亿美元，2026 年 AI 投入计划超 50 亿美元。</p>
         <div class="source">来源：<a href="https://www.tmtpost.com/agent/ai-article/18044" target="_blank">钛媒体</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-12-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Salesforce</h4>
         <p>第三轮裁员，AI 转型持续优化团队。本轮涉及加州 86 人，Agentforce AI 产品、MuleSoft 等部门受影响，但核心 Agentforce 团队未受波及。CEO 贝尼奥夫透露某支持团队已从近 9000 人缩减至约 5000 人，AI 客服智能体替代显著。Agentforce 年收入已突破 12 亿美元，同比增长 205%。</p>
         <div class="source">来源：<a href="https://caifuhao.eastmoney.com/news/20260610210230457345780" target="_blank">东方财富</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-06-12-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic</h4>
         <p>撤销被指"暗中削弱"AI 研究人员的 Claude 策略。此前 Anthropic 被曝在 Claude 内部设置限制，影响研究人员使用效率，引发社区争议后已撤销。同日，Anthropic 发布 Claude Fable 5，安全机制与能力同步升级。</p>
         <div class="source">来源：<a href="https://blog.csdn.net/haohaizi_liu/article/details/161926400" target="_blank">CSDN</a></div>
@@ -335,5 +377,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

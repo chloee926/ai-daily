@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -261,10 +292,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>安静重聘（Quiet Re-hiring）</h4><p>Forrester Research在2026年Q1劳动力报告中提出的概念：约50%被标注为"因AI裁员"的岗位，实际上会在3-6个月内被重新招聘——但通常换一个更低的薪资、不同的地理区域和不同的职位头衔。例如，亚马逊在西雅图关闭了大量工程岗位，同期却在意大利米兰和比萨大量发布相似岗位。本质上是借"AI转型"之名行"成本套利"之实：用AI叙事获得裁员正当性，再用低成本地区的人力填补缺口。 为什么重要： "安静重聘"揭示了AI裁员浪潮的另一面——并非所有裁员都是真正的"人换AI"。HR需要区分三种情形：真正被AI替代的岗位、被借AI名义降本的岗位、以及被重新定义后再招的岗位。这直接影响组织对"AI替代率"的判断准确性。</p></div>
-      <div class="term-item"><h4>SB 24-205（科罗拉多州AI反歧视法）</h4><p>全美第一部正式生效的州级AI反歧视法案（2026年2月生效），要求AI开发者：①披露技术文档、训练数据集和风险缓解策略；②建立问责机制防止算法歧视；③对高风险AI系统进行影响评估。xAI于4月9日以"侵犯商业机密""违宪负担""监管碎片化"为由起诉要求阻止执行。这是AI公司首次以联邦诉讼的方式正面挑战州级AI监管立法。 为什么重要： 这场诉讼的结果将定义未来AI监管的边界。如果xAI胜诉，各州将很难单独立法约束AI；如果科罗拉多州胜诉，其他州会跟进，AI公司将面临50个不同的合规标准。对中国企业的参考意义在于：当欧美开始要求"训练数据透明"和"算法可审计"时，出海AI产品的合规门槛将大幅提升。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-10-nw-0" aria-label="关注这条">☆</button><h4>安静重聘（Quiet Re-hiring）</h4><p>Forrester Research在2026年Q1劳动力报告中提出的概念：约50%被标注为"因AI裁员"的岗位，实际上会在3-6个月内被重新招聘——但通常换一个更低的薪资、不同的地理区域和不同的职位头衔。例如，亚马逊在西雅图关闭了大量工程岗位，同期却在意大利米兰和比萨大量发布相似岗位。本质上是借"AI转型"之名行"成本套利"之实：用AI叙事获得裁员正当性，再用低成本地区的人力填补缺口。 为什么重要： "安静重聘"揭示了AI裁员浪潮的另一面——并非所有裁员都是真正的"人换AI"。HR需要区分三种情形：真正被AI替代的岗位、被借AI名义降本的岗位、以及被重新定义后再招的岗位。这直接影响组织对"AI替代率"的判断准确性。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-10-nw-1" aria-label="关注这条">☆</button><h4>SB 24-205（科罗拉多州AI反歧视法）</h4><p>全美第一部正式生效的州级AI反歧视法案（2026年2月生效），要求AI开发者：①披露技术文档、训练数据集和风险缓解策略；②建立问责机制防止算法歧视；③对高风险AI系统进行影响评估。xAI于4月9日以"侵犯商业机密""违宪负担""监管碎片化"为由起诉要求阻止执行。这是AI公司首次以联邦诉讼的方式正面挑战州级AI监管立法。 为什么重要： 这场诉讼的结果将定义未来AI监管的边界。如果xAI胜诉，各州将很难单独立法约束AI；如果科罗拉多州胜诉，其他州会跟进，AI公司将面临50个不同的合规标准。对中国企业的参考意义在于：当欧美开始要求"训练数据透明"和"算法可审计"时，出海AI产品的合规门槛将大幅提升。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -272,17 +305,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · AI产品、平台与技术动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-04-10-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> OpenAI暂停英国Stargate项目——电价4倍+版权僵局逼退硅谷巨头</h4>
         <p>OpenAI宣布暂停与Nvidia、Nscale合作的英国Stargate数据中心项目。该项目原计划在英格兰东北部Cobalt Park部署8,000-31,000个GPU，是英国"AI增长区"战略的标杆项目。暂停原因：①英国工业电价是美国4倍以上，大规模GPU集群运营成本难以持续；②AI版权政策仍在僵持——政府原本计划允许AI训练使用版权内容的"选择退出"机制遭创意行业强烈反对，政策被无限期推迟。OpenAI表示伦敦仍是其最大国际研究中心，但Stargate UK需等"正确条件"才会重启。</p>
         <div class="source">来源：<a href="https://www.cnbc.com/2026/04/09/openai-halts-uk-stargate-project.html" target="_blank">CNBC</a>、<a href="https://theoutpost.ai/news-story/open-ai-halts-stargate-uk-data-center-project-citing-energy-costs-and-regulatory-hurdles-25263/" target="_blank">The Outpost</a>、<a href="https://sherwood.news/tech/openais-stargate-shrinks-further-as-uk-data-center-paused/" target="_blank">Sherwood</a> | 2026-04-09</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-10-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI推出$100/月ChatGPT Pro计划——填补$20到$200的价格断层</h4>
         <p>OpenAI正式推出$100/月的ChatGPT Pro订阅层级，提供Plus（$20/月）5倍的Codex编程助手用量，而$200/月的Pro层级则提供20倍用量。此前$20和$200之间的巨大价格断层一直被用户诟病：$20不够用，$200又太贵。新层级主要面向需要大量AI编程辅助的专业开发者和小型团队。这也是OpenAI在Anthropic Claude Code以54%市场份额主导开发者工具市场后的直接回应。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/04/09/chatgpt-pro-plan-100-month-codex/" target="_blank">TechCrunch</a>、<a href="https://www.techmeme.com/260409/p33" target="_blank">Techmeme</a> | 2026-04-09</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-10-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 佛罗里达州总检察长调查OpenAI——ChatGPT被指与FSU枪击案有关联</h4>
         <p>佛罗里达州总检察长James Uthmeier宣布对OpenAI展开正式调查，理由包括：①ChatGPT涉嫌被去年FSU枪击案嫌疑人用于策划；②对未成年人构成潜在危害；③数据处理与国家安全风险。这是继意大利、加拿大之后，又一个政府级别对OpenAI发起的正式调查。OpenAI回应称已与失踪与被剥削儿童国家中心及总检察长联盟AI工作组合作。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/04/09/florida-ag-to-probe-openai-alleging-possible-connection-to-fsu-shooting/" target="_blank">TechCrunch</a>、<a href="https://www.cbsnews.com/miami/news/florida-investigates-openai-ai-risks-minors-safeguards/" target="_blank">CBS News</a>、<a href="https://thehill.com/policy/technology/5824392-florida-investigates-openai-chatgpt/" target="_blank">The Hill</a> | 2026-04-09</div>
@@ -295,17 +331,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-10-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Q1全球科技裁员突破9万，但6.7万AI岗位空缺——"削减-重定向"成为标配操作</h4>
         <p>2026年Q1数据画面：科技行业裁员超9万人（日均933人、217起裁员事件），约50%明确归因于AI。与此同时，6.7万个AI和软件工程岗位空缺（覆盖9,000家公司），AI/ML招聘同比增长88%。AI工程师均薪20.6万美元，LLM微调专家比通用ML工程师薪资高25-40%。人才竞争比达3.2:1（每个合格AI候选人对应3.2家公司争抢）。典型操作：Atlassian裁10%（内容、客服、QA、项目管理）同时招800名AI工程师；Block裁40%员工。</p>
         <div class="source">来源：<a href="https://ai2.work/blog/tech-layoffs-and-ai-hiring-how-companies-are-restructuring" target="_blank">AI2Work</a>、<a href="https://www.tomshardware.com/tech-industry/tech-industry-lays-off-nearly-80-000-employees-in-the-first-quarter-of-2026-almost-50-percent-of-affected-positions-cut-due-to-ai" target="_blank">Tom's Hardware</a>、<a href="https://layofftrends.com/" target="_blank">LayoffTrends</a> | 2026-04-08/10</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-10-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> GPT-6（代号Spud）预训练完成，"几周内"发布——AI人才市场将迎新一轮洗牌</h4>
         <p>OpenAI下一代前沿模型（代号"Spud"）预训练已于3月24日在德州Abilene的Stargate超级集群完成。Sam Altman确认距离发布仅剩"几周"，4月14日的传闻虽未证实但时间窗口吻合。模型可能命名为GPT-5.5或GPT-6（取决于性能跃升幅度），传闻称比GPT-5.4强40%、200万token上下文窗口，将与统一"超级应用"（整合ChatGPT+Codex+新浏览器Atlas）一同发布。竞争对手同期：Anthropic Claude Mythos（受限发布）、Google Gemini 3.1 Ultra（已发布）、DeepSeek V4（4月底预期）。</p>
         <div class="source">来源：<a href="https://findskill.ai/blog/gpt-6-release-date/" target="_blank">FindSkill.ai</a>、<a href="https://renovateqr.com/blog/ai-models-april-2026" target="_blank">RenovateQR</a>、<a href="https://www.36kr.com/p/3757661357916931" target="_blank">36Kr</a> | 2026-04-08/09</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-10-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> xAI起诉科罗拉多州+Anthropic考虑自研芯片——AI公司战略分化加剧</h4>
         <p>xAI以"侵犯商业机密""违宪负担"起诉科罗拉多州，要求阻止全美首个AI反歧视法SB 24-205执行——该法要求AI公司披露技术文档和训练数据。同日，Anthropic被曝正认真评估自研AI芯片的可行性，以应对Claude模型需求激增（年化营收已超300亿美元）对算力的巨大压力。亚马逊CEO Jassy同日披露其定制AI芯片业务年收入已超200亿美元，印证了"自研芯片"正从可选变为必选。</p>
         <div class="source">来源：<a href="https://www.ft.com/content/55e8cba9-d09c-4f94-b710-4ab447b987f9" target="_blank">FT</a>、<a href="https://creati.ai/ai-news/2026-04-10/" target="_blank">Creati.ai</a> | 2026-04-09/10</div>
@@ -326,5 +365,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

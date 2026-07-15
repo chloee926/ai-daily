@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -261,10 +292,13 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
+      <button class="star-btn" data-key="2026-06-19-nw-0" aria-label="关注这条">☆</button>
       <h3>文本扩散模型（Text Diffusion Model）</h3>
       <p>Google 于 6 月 19 日发布的实验性开放模型 DiffusionGemma 所代表的新范式：不再像传统大模型那样从左到右逐 token 生成，而是从"随机占位 token 的画布"出发，经多轮迭代同时生成整段文本（256 token 段落）。其 26B MoE 版本仅激活 38 亿参数，经量化可在 18GB 显存运行，文本生成速度最高提升 4 倍。 为什么今天值得知道：长期依赖"按 token 计费"的商业模式，本质是惩罚低效使用方。文本扩散把推理从"逐字打字机"升级为"整页印刷机"，可能在本地单用户场景重写成本结构，也迫使闭源 API 重新思考定价逻辑。</p>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -272,22 +306,26 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 模型栈：智能体化 + 范式扩散</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-06-19-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Google DiffusionGemma：突破逐 token 限制</h4>
         <p>Google 发布 DiffusionGemma，基于 Gemma 4 与 Gemini Diffusion 研究，260 亿参数 MoE，专为最大化文本输出生成设计。它从随机 token 画布出发迭代优化、一次性评估整个文本块并自我修正，在 GPU 上文本生成速度最高提升 4 倍；具备双向注意力机制，量化后可在 RTX 5090 等消费级 GPU 运行。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-19-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI GPT-5.5：定位"新一代智能体基座" <span class="music-badge">🎵</span></h4>
         <p>OpenAI 把 GPT-5.5 定位为理解复杂目标、调用工具、自我检查、把多步任务带到完成态的"智能体基座"。同期 GPT-Realtime-2 语音套件通过 Realtime API 脱离 Beta 向开发者开放；配套的 Prism 科研协作空间基于 GPT-5.2 起对 ChatGPT 个人账户免费开放。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-06-19-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 智谱 GLM-5.2 开源登顶，马斯克 vs 唐杰"隔空对话"</h4>
         <p>智谱开源 GLM-5.2（MIT 协议，744B 总参数/40B 激活，1M 上下文），在 Artificial Analysis 综合榜单取得 51 分，跻身全球模型前三、登顶开源模型榜首，编程能力全球第三。围绕"中国大模型何时达 Fable 级别"，马斯克预计 2027 Q1，唐杰则表示"不用那么久"，引发全球关注。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-06-19-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic 研究三连：AI Fluency Index / Science Blog / NL Autoencoders</h4>
         <p>Anthropic 发布 AI Fluency Index、Science Blog（Opus 4.7 在 NMR 谱学上追平专用软件）、Natural Language Autoencoders（让模型"思考数字"可读），持续把前沿模型推向科研与可解释性前沿。</p>
         
@@ -300,27 +338,32 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 基础设施与人才流动</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-19-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Amazon 拟对外出售 Trainium3 芯片，直击英伟达</h4>
         <p>据报道，Amazon 正洽谈将其自研 Trainium3 AI 芯片出售给其他公司的数据中心，把内部 Nvidia 替代方案变成直接的加速器市场打法，标志云厂商自研芯片从"自用"走向"对外变现"。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-19-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Noam Shazeer 据报道加入 OpenAI 攻坚新架构</h4>
         <p>Transformer 共同发明人、曾创办 Character.AI 后回归 DeepMind 的 Noam Shazeer，据报道将加入 OpenAI，攻坚新模型架构、演进 Transformer 本身。顶级架构人才的流向，仍是前沿竞赛的关键变量。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-19-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> ChatGPT 市占率首破 50%，但 MAU 破 10 亿</h4>
         <p>Sensor Tower 报告显示 ChatGPT 在 AI 助手市场份额首次跌破/围绕 50%（Gemini 27.7%、Claude 10.3%），同期 ChatGPT 月活突破 10 亿——绝对用户基数仍在高速增长，市场从"垄断"走向"寡头"。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-19-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI 用 o3 Deep Research 重开 376 例罕见遗传病</h4>
         <p>OpenAI 协助波士顿儿童医院、哈佛等团队，用 o3 Deep Research 重开 376 例未解罕见遗传病例，经临床遗传学标准复核后确认 18 例新诊断。AI 医疗从 demo 走向"证据汇编"，压缩专家搜索空间。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-19-t1-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Karpathy 三连发：AutoResearch / Knowledge Bases / "agentic engineering"</h4>
         <p>Karpathy 24 小时内连发三条，指向同一件事：把 agent 从"对话对象"重新定位为"长期运行的 .md 协作者 + 自主循环执行者"，并正式命名 "agentic engineering"。</p>
         
@@ -341,5 +384,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

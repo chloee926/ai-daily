@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>AGI CPU</h4><p>一句话解释： Arm推出的首款专为AGI（通用人工智能）工作负载设计的CPU芯片架构，采用136核设计，主打AI推理和训练中的非GPU计算环节。 为什么重要： 此前AI算力几乎等于GPU算力（NVIDIA独大），AGI CPU的出现标志着AI计算正在从"只靠GPU"走向"CPU+GPU+定制芯片"的多元架构。Meta作为首批客户的入场，意味着超大规模AI公司已在布局后GPU时代。</p></div>
-      <div class="term-item"><h4>SongDNA</h4><p>一句话解释： Spotify推出的音乐关联探索功能，利用AI分析每首歌曲的"基因特征"（节奏、情绪、风格等），并以可视化方式展示歌曲之间的关联图谱。 为什么重要： SongDNA把AI推荐的"黑盒"变成了"可视化图谱"，让用户理解为什么被推荐某首歌。这是AI推荐从"猜你喜欢"走向"让你理解"的重要一步，对所有内容推荐平台都有借鉴意义。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-03-26-nw-0" aria-label="关注这条">☆</button><h4>AGI CPU</h4><p>一句话解释： Arm推出的首款专为AGI（通用人工智能）工作负载设计的CPU芯片架构，采用136核设计，主打AI推理和训练中的非GPU计算环节。 为什么重要： 此前AI算力几乎等于GPU算力（NVIDIA独大），AGI CPU的出现标志着AI计算正在从"只靠GPU"走向"CPU+GPU+定制芯片"的多元架构。Meta作为首批客户的入场，意味着超大规模AI公司已在布局后GPU时代。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-03-26-nw-1" aria-label="关注这条">☆</button><h4>SongDNA</h4><p>一句话解释： Spotify推出的音乐关联探索功能，利用AI分析每首歌曲的"基因特征"（节奏、情绪、风格等），并以可视化方式展示歌曲之间的关联图谱。 为什么重要： SongDNA把AI推荐的"黑盒"变成了"可视化图谱"，让用户理解为什么被推荐某首歌。这是AI推荐从"猜你喜欢"走向"让你理解"的重要一步，对所有内容推荐平台都有借鉴意义。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,32 +304,38 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-26-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI关停Sora视频应用，迪士尼10亿美元合作告吹 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月25日，OpenAI正式宣布关停Sora独立视频生成应用。此前与迪士尼洽谈的约10亿美元合作也随之取消。OpenAI表示Sora的视频生成能力将整合回ChatGPT主平台，不再作为独立产品运营。消息人士透露，Sora团队已进行重组，部分核心成员转岗至ChatGPT团队，部分离职。关停原因主要是商业化不及预期——Sora自发布以来用户增长远低于预期，收入几乎为零。 为什么对 TME 重要： AI视频生成赛道的第一个重大"关停"信号。这提醒所有做AI内容生成的团队：技术炫酷≠商业可行。对招聘来说，AI视频方向的人才市场可能出现一波释放，但要甄别"做过Sora"和"做成过产品"的区别。</p>
         <div class="source">来源：<a href="https://www.theinformation.com" target="_blank">The Information</a>、<a href="https://techcrunch.com/2026/03/25/openai-shuts-down-sora/" target="_blank">TechCrunch</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-26-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Arm发布首款自研136核AGI CPU，Meta为首批客户 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月25日，Arm在年度技术峰会上发布Neoverse V3AE处理器，定位为全球首款"AGI CPU"，采用136核设计，专为AI训练和推理中的非GPU计算环节优化。Meta宣布成为首批客户，将在其AI数据中心部署。Arm表示该芯片可将大模型推理中的CPU瓶颈环节性能提升3-5倍，能耗降低40%。这是Arm从移动芯片向数据中心AI芯片的标志性一步。 为什么对 TME 重要： AI算力格局正在发生结构性变化，NVIDIA GPU不再是唯一选择。这将影响AI基础设施团队的技术栈选型，也意味着"AI芯片+系统优化"方向的人才将更受关注。</p>
         <div class="source">来源：<a href="https://www.tomshardware.com/news/arm-launches-first-custom-agi-cpu-136-cores" target="_blank">Tom's Hardware</a>、<a href="https://www.theverge.com/news/arm-neoverse-v3ae-cpu-agi" target="_blank">The Verge</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-26-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI追加融资100亿美元，总融资额超1200亿 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI在3月完成新一轮100亿美元融资，使其总融资额超过1200亿美元，估值进一步攀升。此轮资金主要用于AI基础设施建设、Stargate数据中心扩张和全球市场拓展。与此同时，CEO Sam Altman宣布将部分安全监督职责移交给新任首席安全官，自己将更多精力投入产品和商业化。 为什么对 TME 重要： OpenAI持续融资说明资本市场对AI赛道信心不减，但Altman减少安全参与引发行业争议。AI公司的"增长vs安全"平衡将成为长期议题，AI安全和合规岗位的需求也随之增加。</p>
         <div class="source">来源：<a href="https://www.bloomberg.com" target="_blank">Bloomberg</a>、<a href="https://www.reuters.com" target="_blank">Reuters</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-26-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Spotify推出SongDNA功能，AI让音乐推荐"可视化" <span class="music-badge">🎵</span></h4>
         <p>摘要： Spotify推出SongDNA功能，利用AI分析每首歌曲的节奏、情绪、风格等"基因特征"，并以交互式图谱方式展示歌曲之间的关联。用户可以通过点击图谱节点发现新歌，也可以查看自己听歌偏好的"音乐DNA画像"。该功能已在部分市场上线，预计Q2全球推广。 为什么对 TME 重要： AI推荐从"黑盒"走向"白盒"的标志性尝试。让用户理解推荐逻辑不仅提升信任感，也是差异化竞争的新维度。音乐AI产品经理和推荐算法可解释性方向的人才值得关注。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/03/24/spotify-songdna-feature/" target="_blank">TechCrunch</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-26-t0-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 中关村论坛2026将于3月27日举办AI主题日 <span class="music-badge">🎵</span></h4>
         <p>摘要： 中关村论坛2026将于3月27日举办AI专题日活动，主题为"AI赋能产业新质生产力"。预计将发布多项AI产业政策、展示国产大模型最新进展，并举办AI人才论坛。工信部此前（3月26日）已发布AI安全治理标准征求意见稿，涵盖大模型安全评估、数据标注规范和AI生成内容标识要求。 为什么对 TME 重要： 国内AI政策和产业动态的风向标。AI安全治理标准的推出将对所有使用AI的企业产生合规要求影响，HR需关注AI合规和安全治理方向的人才布局。</p>
         <div class="source">来源：<a href="https://www.news.cn" target="_blank">新华网</a>、<a href="https://www.zgcforum.com.cn" target="_blank">中关村论坛官网</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-26-t0-5" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 阿里通义推出PrismAudio音频生成工具 <span class="music-badge">🎵</span></h4>
         <p>摘要： 阿里通义团队发布PrismAudio，支持文字转语音、音效生成和音乐片段创作三大功能。该工具基于通义千问大模型，可生成多语种语音（支持中英日韩等8种语言），音效库覆盖环境音、UI音效和场景音乐。目前已在通义千问App和阿里云API开放使用。 为什么对 TME 重要： 国产AI音频生成能力正在快速追赶，对音乐和音频内容平台的技术选型和内容生产效率有直接影响。多模态AI人才（尤其音频方向）的稀缺性将进一步凸显。</p>
         <div class="source">来源：<a href="https://www.36kr.com" target="_blank">36氪</a>、<a href="https://www.alibabacloud.com" target="_blank">阿里云官方</a></div>
@@ -309,17 +348,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-26-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 2026年Q1全球科技裁员近6万人，20%归因AI自动化 <span class="music-badge">🎵</span></h4>
         <p>摘要： 据统计，2026年Q1全球科技行业裁员累计达59,121人，其中约20%被明确归因于AI驱动的自动化替代。主要裁员企业包括：Block（裁员40%，CEO明确表示用AI替代人工）、Amazon、Dell和多家中型SaaS公司。受影响最大的岗位类型：客户支持、数据分析（初级）、内容审核和部分软件测试。与此同时，AI相关岗位（大模型工程师、AI产品经理、提示词工程师）的招聘需求同比增长47%。 对招聘的启发： 裁员和扩招并行是2026年的主旋律。"被AI替代"的岗位和"因AI而生"的岗位正在同步变化。HR需要建立动态的岗位价值评估框架，帮助业务团队识别哪些岗位应该缩减、哪些应该新增。</p>
         <div class="source">来源：<a href="https://layoffs.fyi" target="_blank">Layoffs.fyi</a>、<a href="https://techcrunch.com" target="_blank">TechCrunch</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-26-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI Sora团队重组，Altman交出安全监督权</h4>
         <p>摘要： 伴随Sora关停，OpenAI内部进行了组织调整：Sora核心团队约200人被拆分，部分并入ChatGPT多模态组，部分转入研究部门，约30人选择离职。与此同时，Sam Altman宣布将安全监督职责交给新任首席安全官，自己将更多精力放在产品和商业化上。这一变动引发安全研究社区关注——Altman此前已因安全问题与联合创始人分道扬镳，此次进一步"远离安全"被视为信号。 对招聘的启发： AI公司的组织架构调整频率远高于传统科技公司，项目关停→团队拆分→人才释放的周期可能只需几周。HR应建立"AI人才池快速响应"机制，关注被关停项目释放的优质人才。</p>
         <div class="source">来源：<a href="https://www.theinformation.com" target="_blank">The Information</a>、<a href="https://www.wired.com" target="_blank">Wired</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-26-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 工信部发布AI安全治理标准征求意见稿</h4>
         <p>摘要： 3月26日，工信部发布《人工智能安全治理标准体系（征求意见稿）》，重点涵盖：大模型安全评估框架、AI生成内容标识规范、数据标注安全要求和AI应用分级分类管理。这是继去年《生成式AI服务管理暂行办法》后，国内AI监管的进一步细化。征求意见期至4月25日。 对招聘的启发： AI合规和安全治理正在从"锦上添花"变为"必须配置"的岗位。大型AI应用企业将需要AI合规专员、安全评估工程师和内容标识技术人才。</p>
         <div class="source">来源：<a href="https://www.miit.gov.cn" target="_blank">工信部官网</a>、<a href="https://www.thepaper.cn" target="_blank">澎湃新闻</a></div>
@@ -340,5 +382,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

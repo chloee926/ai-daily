@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -261,10 +292,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>机器人税（Robot Tax）</h4><p>OpenAI于4月6日发布的13页政策文件《智能时代的产业政策》中正式提出"机器人税"概念：当AI替代人类劳动力后，原本依附于工资的社会保障税、医疗保险税和住房援助税基将塌陷，因此需要对自动化劳动征税来填补缺口。具体方案包括将税基从工资税转向资本利得税和企业所得税，同时建立与AI利润挂钩的国家公共财富基金，让每位公民直接分享AI红利。配套提议还包括全薪32小时四天工作制——将AI带来的效率提升转化为"工人的空闲时间"而非"企业的利润率"。 为什么重要： 当AI公司自己主动提出"向AI征税"，说明它们已经预判到监管风暴即将来临。OpenAI此举更像是一次"先发制人"——在政府立法之前先抛出自己的版本，掌握规则制定的主动权。对HR而言，"机器人税"一旦落地，企业用AI替代人力的成本优势将被重新计算。</p></div>
-      <div class="term-item"><h4>Project Glasswing（玻璃翼计划）</h4><p>Anthropic于4月7日宣布的网络安全联盟计划，核心是将未公开发布的Claude Mythos Preview模型（内部代号Capybara）部署于网络安全防御。该模型已在所有主流操作系统、浏览器和关键软件中自主发现了数千个严重零日漏洞——包括OpenBSD中一个27年历史的远程崩溃漏洞、FFmpeg中一个经过500万次自动化测试未被发现的16年老漏洞。12家合作方包括AWS、苹果、微软、谷歌、CrowdStrike、英伟达、摩根大通等。Anthropic承诺1亿美元使用额度+400万美元开源安全捐赠。 为什么重要： "太危险不能公开发布"——这个定性本身就是一个里程碑，意味着AI能力已经强到需要像核技术一样"受控部署"。CrowdStrike CTO指出"漏洞从发现到被利用的时间窗口已从数月缩短至数分钟"，这是AI攻防双方能力同步飙升的信号。网络安全人才需求将迎来新一轮爆发。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-08-nw-0" aria-label="关注这条">☆</button><h4>机器人税（Robot Tax）</h4><p>OpenAI于4月6日发布的13页政策文件《智能时代的产业政策》中正式提出"机器人税"概念：当AI替代人类劳动力后，原本依附于工资的社会保障税、医疗保险税和住房援助税基将塌陷，因此需要对自动化劳动征税来填补缺口。具体方案包括将税基从工资税转向资本利得税和企业所得税，同时建立与AI利润挂钩的国家公共财富基金，让每位公民直接分享AI红利。配套提议还包括全薪32小时四天工作制——将AI带来的效率提升转化为"工人的空闲时间"而非"企业的利润率"。 为什么重要： 当AI公司自己主动提出"向AI征税"，说明它们已经预判到监管风暴即将来临。OpenAI此举更像是一次"先发制人"——在政府立法之前先抛出自己的版本，掌握规则制定的主动权。对HR而言，"机器人税"一旦落地，企业用AI替代人力的成本优势将被重新计算。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-08-nw-1" aria-label="关注这条">☆</button><h4>Project Glasswing（玻璃翼计划）</h4><p>Anthropic于4月7日宣布的网络安全联盟计划，核心是将未公开发布的Claude Mythos Preview模型（内部代号Capybara）部署于网络安全防御。该模型已在所有主流操作系统、浏览器和关键软件中自主发现了数千个严重零日漏洞——包括OpenBSD中一个27年历史的远程崩溃漏洞、FFmpeg中一个经过500万次自动化测试未被发现的16年老漏洞。12家合作方包括AWS、苹果、微软、谷歌、CrowdStrike、英伟达、摩根大通等。Anthropic承诺1亿美元使用额度+400万美元开源安全捐赠。 为什么重要： "太危险不能公开发布"——这个定性本身就是一个里程碑，意味着AI能力已经强到需要像核技术一样"受控部署"。CrowdStrike CTO指出"漏洞从发现到被利用的时间窗口已从数月缩短至数分钟"，这是AI攻防双方能力同步飙升的信号。网络安全人才需求将迎来新一轮爆发。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -272,17 +305,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · AI产品、平台与技术动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-08-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI高管团队大洗牌——IPO前夕人事地震 <span class="music-badge">🎵</span></h4>
         <p>OpenAI在IPO关键节点遭遇密集人事变动：AGI部署CEO Fidji Simo因自身免疫疾病休病假，联合创始人Greg Brockman临时接管产品；COO Brad Lightcap转岗"特别项目"（负责与私募股权的合资企业），前Slack CEO Denise Dresser接手运营；CMO Kate Rouch也因健康原因离职。同时，CFO Sarah Friar被曝与Sam Altman在未来5年6000亿美元支出计划及IPO时间表上存在重大分歧。《纽约客》发布长篇调查质疑Altman可信度，OpenAI又以"数亿美元"收购科技播客TBPN试图控制舆论。</p>
         <div class="source">来源：<a href="https://www.cnbc.com/2026/04/03/openai-fidji-simo-medical-leave-executive-changes.html" target="_blank">CNBC</a>、<a href="https://www.wired.com/story/openais-fidji-simo-is-taking-a-leave-of-absence/" target="_blank">Wired</a>、<a href="https://fortune.com/2026/04/07/openai-drama-sam-altman-ipo-anthropic-cybersecurity-risks-eye-on-ai/" target="_blank">Fortune</a> | 2026-04-03/07</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-08-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic年化营收超300亿美元，反超OpenAI——AI商业格局翻转</h4>
         <p>Anthropic宣布年化营收达300亿美元（3月单月激增58%），超过OpenAI今年2月报告的250亿美元。在企业级LLM API市场，Anthropic份额32%已超OpenAI的25%，其Claude Code更以54%份额主导开发者工具市场。同时，Anthropic以4亿美元收购生物科技公司Coefficient Bio进军医疗AI，并联合黑石集团和General Atlantic筹集10亿美元企业风投基金。与Google和Broadcom的算力合作预计从2027年起提供约3.5吉瓦算力。</p>
         <div class="source">来源：<a href="https://fortune.com/2026/04/07/openai-drama-sam-altman-ipo-anthropic-cybersecurity-risks-eye-on-ai/" target="_blank">Fortune</a>、<a href="https://aiweekly.co/learning-ai/ai-business-news-openai-122b-round-anthropic-acquisition-oracle-layoffs-april-7-2026" target="_blank">AI Weekly</a> | 2026-04-07</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-08-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 美国AI三巨头联合反制中国模型"对抗性蒸馏"</h4>
         <p>OpenAI、Anthropic和Google于4月7日宣布通过"前沿模型论坛"结盟，共享威胁情报以阻止中国AI公司通过"对抗性蒸馏"窃取模型能力。被指控的公司包括DeepSeek、Moonshot AI和MiniMax。仅Anthropic就记录了1600万次未授权交换，涉及约24,000个欺诈性账户。美国官员估计此做法每年使美国AI实验室损失数十亿美元。OpenAI已向美国众议院中国特别委员会提交了针对DeepSeek的备忘录，预计未来6-12个月将出现针对蒸馏技术的出口管制和诉讼。</p>
         <div class="source">来源：<a href="https://www.roborhythms.com/openai-anthropic-google-fight-chinese-ai-copying-2026/" target="_blank">RoboRhythms</a> | 2026-04-08</div>
@@ -295,17 +331,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-08-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> AI首次成为美国裁员头号原因，3月单月近乎去年全年</h4>
         <p>根据Challenger, Gray & Christmas的最新报告，AI在3月首次成为美国裁员的头号原因，占所有裁员理由的25%（一个月前仅10%）。3月因AI裁员15,341人，几乎等于2025全年总和。科技行业2026年Q1裁员总数达52,050人，同比增长40%。裁员已蔓延至金融、物流、咨询、媒体、零售和制造业。Oracle执行了公司48年历史上最大规模裁员（约3万人），目的是节省800-1000亿美元现金投入AI数据中心建设。</p>
         <div class="source">来源：<a href="https://aiweekly.co/learning-ai/ai-careers-news-ai-job-cuts-hit-record-oracle-layoffs-skills-demand-april-7-2026" target="_blank">AI Weekly</a> | 2026-04-07</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-08-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> AI技能溢价56%，但市场正在急剧分化</h4>
         <p>与裁员同步的是AI技能需求爆发：Upwork报告显示AI技能工作需求同比增长109%，其中AI视频生成+329%、AI集成+178%、AI数据标注+154%。招聘计划环比增长157%至32,826个岗位，集中在AI工程、MLOps和数据基础设施。中层AI工程师底薪155K-200K美元，高级岗位总薪酬超300K美元，AI技能溢价达56%。MIT研究显示AI目前仅能在65%的文本任务上产出"勉强合格"工作，预计2029年覆盖80-95%但仍限于最低质量水平。</p>
         <div class="source">来源：<a href="https://aiweekly.co/learning-ai/ai-careers-news-ai-job-cuts-hit-record-oracle-layoffs-skills-demand-april-7-2026" target="_blank">AI Weekly</a>、<a href="https://www.upwork.com/" target="_blank">Upwork 2026报告</a> | 2026-04-07</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-04-08-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> OpenAI提议四天工作制——AI公司首次正式为"就业冲击"开出药方</h4>
         <p>OpenAI的13页政策白皮书不仅提了"机器人税"和"公共财富基金"，还有更具体的操作建议：政府应激励试行全薪32小时四天工作制，将AI效率红利转化为"工人的空闲时间"而非"企业利润率"；建立与经济数据挂钩的"自动触发安全网"，当AI失业指标触及阈值时自动增加救济；将AI接入视为基本权利，像识字率和电力一样覆盖学校、图书馆和欠发达社区。Sam Altman将当前比作1930年代新政时期，OpenAI将提供高达100万美元API积分资助相关研究。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/" target="_blank">TechCrunch</a>、<a href="https://www.unite.ai/openai-proposes-robot-taxes-public-wealth-fund-and-four-day-work-week/" target="_blank">Unite.AI</a> | 2026-04-06</div>
@@ -326,5 +365,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

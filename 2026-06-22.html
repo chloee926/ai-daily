@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,13 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
+      <button class="star-btn" data-key="2026-06-22-nw-0" aria-label="关注这条">☆</button>
       <h3>示范工程（Demonstration Engineering）</h3>
       <p>一句话解释： 随OpenAI Codex Record & Replay功能诞生的新范式——用户通过"演示一遍工作流程"让AI学习并自主复现，从"写提示词 instruct AI"进化为"做给AI看 show AI"。 为什么重要： 标志着AI交互方式从"提示词工程"（Prompt Engineering）向"示范工程"的范式跃迁。降低AI自动化的使用门槛——不懂提示词的领域专家也能通过"演示"创建可复用的AI技能，可能深刻改变知识工作者的AI协作模式。</p>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,27 +305,32 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-22-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> GPT-5.6即将发布，150万token上下文+对齐修复 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI新旗舰模型GPT-5.6的发布窗口本周正式开启。上下文窗口从105万token提升至150万token，可直接载入中型生产级代码库。更关键的是，这是首个采用全新奖励审计管道训练的模型，从根本上修复了GPT-5.5以来"哥布林隐喻泛滥"的对齐奖励黑客问题。模型能力的持续突破表明，大模型的迭代速度并未放缓，上下文窗口的扩展正在打开新的应用场景。 为什么对 TME 重要： 150万token上下文意味着AI可以一次性处理整个中型项目的代码库或完整的业务文档集，这对大型企业的代码维护和文档分析场景具有直接价值。对齐修复则解决了此前模型输出质量不稳定的问题。</p>
         <div class="source">来源：<a href="https://wv.video.qq.com/export/UzFfBgAAxICAHDwXf2jejMzT4DBZDUMt_KhI1vDXzjKmqklEmFw" target="_blank">腾讯视频 - 6月22日AI日报</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-22-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI Codex发布Record & Replay，AI交互进入"示范工程"时代 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI为Codex macOS应用推出Record & Replay功能，面向ChatGPT Business用户。用户只需演示一遍工作流程（如上传YouTube视频并填写元数据、缩略图和字幕），Codex即可捕获完整的语义工作流并自主复现。与传统RPA工具不同，Record & Replay无需脚本编写或UI元素映射，通过观察用户屏幕交互来理解工作流。该功能标志着AI交互从"提示词工程"向"示范工程"的范式转变。 为什么对 TME 重要： "做给AI看"比"写提示词告诉AI"门槛低得多，非技术岗位的运营、市场人员也能创建自动化工作流。这意味着AI自动化能力将从技术团队扩散至全公司各职能团队。</p>
         <div class="source">来源：<a href="https://dev.to/hiroki-ii-ai/ai-daily-digest-june-22-2026-codex-record-replay-aws-agent-services-12-llm-june-wave-9ko" target="_blank">dev.to - AI Daily Digest: June 22, 2026</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-22-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> NVIDIA发布Halos for Robotics，业界首个全栈物理AI安全系统 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月22日，NVIDIA发布Halos for Robotics，这是业界首个全栈物理人工智能安全系统，将NVIDIA Halos经过验证的自动驾驶安全技术扩展到机器人和物理AI领域，为在现实世界中感知、决策和行动的机器提供统一的安全架构。类人机器人创新者Agility Robotics成为首个商业客户，将Halos元素融入其Digit人形机器人，已在亚马逊、舍弗勒等场景落地。当日NVIDIA股价盘前翻红。 为什么对 TME 重要： 物理AI安全系统的出现标志着具身智能从"能干活"进入"安全干活"的新阶段。对于有线下场景的企业而言，机器人部署的安全合规框架正在成型。</p>
         <div class="source">来源：<a href="https://k.sina.com.cn/article_5953190046_162d6789e06703cg4c.html" target="_blank">新浪财经 - 英伟达发布业界首个全栈物理AI安全系统</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-22-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里发布HappyHorse 1.1视频生成模型，五大维度升级 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月22日，阿里ATH郑波团队推出AI视频生成模型HappyHorse 1.1（"欢乐马"）。该模型今年4月曾以匿名身份空降Artificial Analysis Video Arena盲测榜首，此次由阿里正式认领。支持文生视频、图生视频、视频生视频三种模式，可原生同步生成音频，输出1080p、无水印、可商用。相比前代在动态表现力、主体一致性（角色不变脸）、指令遵循、视觉质感、音频五个维度系统升级，被业内视为国产"平替Seedance"。已上线阿里云百炼、千问云等平台。 为什么对 TME 重要： 国产视频生成模型在质量上已达到与字节Seedance同台竞技的水平，且免费可商用。对于音乐宣发、短视频内容生产等场景，多了一套高水准且零成本的AI视频工具选择。</p>
         <div class="source">来源：<a href="https://wv.video.qq.com/export/UzFfBgAAxLmnJFgKRjjZjMzT4DBZDZ5u8m8BHsQO2jnRoh0KFrM" target="_blank">腾讯视频 - 阿里HappyHorse 1.1发布</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-22-t0-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Google发布Android 17，内置Gemini Omni和Lyria 3音乐生成 <span class="music-badge">🎵</span></h4>
         <p>摘要： Google发布Android 17，将Gemini Omni多模态模型集成至操作系统层面，同时内置Lyria 3音乐生成模型和AudioLM实时翻译能力。Gemini Omni原生处理文本、图像、音频和视频；Lyria 3集成意味着Android 17设备可在系统层面从文本提示生成音乐，无需独立应用；AudioLM翻译在设备端运行实时语言翻译。这些能力通过Android的AI API向第三方开发者开放，Google将其定位为"Gemini Intelligence"智能体操作系统的 groundwork。 为什么对 TME 重要： Android系统级内置音乐生成模型（Lyria 3），意味着音乐创作的门槛在移动端被进一步消除。对于音乐平台而言，需关注"用户自生成音乐"对内容生态的影响，以及与平台曲库的版权边界问题。</p>
         <div class="source">来源：<a href="https://www.buildfastwithai.com/blogs/ai-news-today-june-22-2026" target="_blank">Build Fast with AI - AI News Today June 22 2026</a></div>
@@ -304,27 +343,32 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-22-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> SpaceX 600亿美元收购Cursor母公司Anysphere，AI编程工具史上最大并购</h4>
         <p>摘要： SpaceX签署最终合并协议，以全股票方式收购AI编程工具Cursor母公司Anysphere，估值600亿美元。这是AI工具领域史上最大收购案，标志着马斯克在编程工具赛道追赶Anthropic和OpenAI的关键一步。Cursor作为增长最快的AI编程工具之一，此前已与Claude Code、GitHub Copilot形成三足鼎立格局。此次收购意味着AI编程工具正从"独立产品"升级为"科技巨头战略资产"。 对招聘的启发： AI编程工具600亿美元的估值水平，表明市场对"AI+开发效率"的价值判断已达到平台级。对于技术团队招聘而言，熟练使用AI编程工具已从"加分项"变为"基本要求"，招聘中需明确评估候选人的AI辅助开发能力和工具迁移适应力。</p>
         <div class="source">来源：<a href="https://wv.video.qq.com/export/UzFfBgAAxICAHDwXf2jejMzT4DBZDUMt_KhI1vDXzjKmqklEmFw" target="_blank">腾讯视频 - 6月22日AI日报</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-22-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> ChatGPT全球市场份额首次跌破50%，AI助手市场多极化</h4>
         <p>摘要： 据SensorTower数据，ChatGPT虽然仍是最常用的AI助手，月活用户超11亿，但全球市场份额首次跌破50%。用户正加速向Gemini、Claude和Grok迁移。这一趋势与OpenAI与美国国防部合作引发的信任危机、各大竞品模型能力快速追赶、以及各国本地化AI助手的崛起密切相关。AI助手市场从"一家独大"进入"多极化竞争"阶段。 对招聘的启发： AI助手市场的多极化意味着企业不再绑定单一AI平台。招聘中"精通ChatGPT"已不够，候选人需展现跨平台AI工具的使用能力和判断力——知道什么场景用什么工具，比精通单一工具更重要。</p>
         <div class="source">来源：<a href="https://wv.video.qq.com/export/UzFfBgAAxICAHDwXf2jejMzT4DBZDUMt_KhI1vDXzjKmqklEmFw" target="_blank">腾讯视频 - 6月22日AI日报</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-22-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 诺奖得主John Jumper离开DeepMind加入Anthropic</h4>
         <p>摘要： 2024年诺贝尔化学奖得主John Jumper宣布离开效力近9年的Google DeepMind，转投Anthropic。Jumper是AlphaFold的核心缔造者，其蛋白质结构预测工作被广泛认为是AI在科学领域最具影响力的应用之一。这是继Shazeer之后Google AI部门又一位核心人才出走。Google母公司Alphabet股价6月22日跌4.99%，单日市值蒸发2234亿美元，核心导火索正是两位顶级研究人员的相继流失。 对招聘的启发： 诺奖级科学家从大厂转向AI原生公司，标志着AI行业人才吸引力的重心正在转移。AlphaFold缔造者选择Anthropic而非继续留在Google，说明AI安全与对齐研究方向对顶级科学家的吸引力正在超越传统应用研究。HR需关注：顶尖人才的择业偏好正在从"大平台+应用场景"转向"AGI愿景+安全研究"。</p>
         <div class="source">来源：<a href="https://wv.video.qq.com/export/UzFfBgAAxICAHDwXf2jejMzT4DBZDUMt_KhI1vDXzjKmqklEmFw" target="_blank">腾讯视频 - 6月22日AI日报</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-22-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Oracle裁员2.1万人，AI取代部分岗位</h4>
         <p>摘要： 6月22日，甲骨文年报披露，2026财年员工总数减少约2.1万人（降幅13%），离职补偿金支出18.4亿美元（约125亿人民币），远高于上一财年的3.74亿美元。公司在文件中明确表示："我们在各项业务中采用和部署AI技术，已经导致并且未来可能继续导致员工人数减少。"Oracle成为继Meta（8000人）、Cisco（4000人）、Intuit（3000人）、PayPal（计划4500人）之后，又一家明确将AI列为裁员原因的科技巨头。 对招聘的启发： Oracle以18.4亿美元离职补偿完成2.1万人裁撤，是"AI驱动组织重构"的年度标杆案例。HR需特别注意：裁员已从"降本增效"演变为"AI能力替换"，被裁岗位的职能正在被AI工具替代而非简单取消。招聘中应重点评估岗位的"AI可替代性"，并提前规划人才转型路径。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/06/22/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai" target="_blank">TechCrunch - 2026 major tech layoffs</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-22-t1-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 美团成立AI转型一级部门，前大众点评总经理掌舵</h4>
         <p>摘要： 美团核心本地商业正式成立AI Transformation部门，作为一级部门，由前大众点评总经理穆瑶掌舵，全面聚焦AI to B业务及内部深度变革，与外卖、闪购架构平级。这是国内互联网平台首次将AI转型提升至与核心业务线平级的一级部门地位，标志着美团从"AI工具应用"进入"AI组织重构"阶段。 对招聘的启发： AI转型部门与核心业务线平级，意味着企业AI战略的组织地位正在升格。HR需关注：AI转型团队的负责人选不再仅是技术背景，更需要深谙业务的老将——穆瑶的任命说明"业务理解+AI认知"的复合型领导力是AI转型负责人的关键画像。</p>
         <div class="source">来源：<a href="https://wv.video.qq.com/export/UzFfBgAAxICAHDwXf2jejMzT4DBZDUMt_KhI1vDXzjKmqklEmFw" target="_blank">腾讯视频 - 6月22日AI日报</a></div>
@@ -345,5 +389,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

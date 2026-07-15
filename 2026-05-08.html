@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,13 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
+      <button class="star-btn" data-key="2026-05-08-nw-0" aria-label="关注这条">☆</button>
       <h3>MRC（Multipath Reliable Connection）</h3>
       <p>OpenAI 联合英伟达、AMD、英特尔、微软、博通发布的开源网络协议。核心解决大规模 AI 训练中 GPU 集群的通信瓶颈——通过多路径传输和微秒级故障恢复，让 10 万块以上 GPU 能稳定协作训练，单一链路故障不再拖垮整个训练进度。已通过 OCP 开放计算项目向全行业开源。</p>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,22 +305,26 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · AI 算力竞赛与平台扩张</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-05-08-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> xAI 正式解散，整合为 SpaceXAI</h4>
         <p>马斯克 5 月 6 日宣布 xAI 不再作为独立公司运营，整体并入 SpaceX 旗下新设 AI 子部门"SpaceXAI"。Grok 模型及 X 平台 AI 业务一并纳入。此前 xAI 11 位联合创始人已全部离职。SpaceX 借此将火箭、卫星、AI 算力纳入统一治理框架，并计划开发轨道太阳能 AI 数据中心。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-08-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic 签下 SpaceX 300 兆瓦算力协议</h4>
         <p>Anthropic 包下 SpaceX 孟菲斯 Colossus 1 数据中心全部算力（相当于 22 万张英伟达 GPU），用于提升 Claude Pro/Max 用户体验，取消高峰时段限制并提升 API 速率上限。Anthropic 目前估值约 9000 亿美元，年化收入约 440 亿美元，此前已与谷歌云（5 年 2000 亿美元）和 AWS（10 年 1000 亿美元）签订长期算力合同。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-08-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI 发布 MRC 协议，五巨头联合重塑 AI 训练网络</h4>
         <p>OpenAI 联合英伟达、AMD、英特尔、微软、博通推出 MRC 开源协议，基于 RoCE 标准扩展 + SRv6 技术，实现两层交换机连接约 13.1 万块 GPU，较传统三四层架构大幅降低功耗和组件数量。目前已在 OpenAI 所有最大规模的 NVIDIA GB200 超算上运行，包括星际之门和微软 Fairwater 超算。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-08-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic 发布 10 款金融 AI 智能体</h4>
         <p>覆盖银行、保险、资管、金融科技全链条，可独立撰写客户会议材料、审阅财报、触发合规审查、构建财务模型。已接入 Word/Excel/PowerPoint/Outlook。消息发布后 FactSet 股价盘中跌超 8%，晨星跌近 3%。</p>
         
@@ -299,17 +337,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · AI 驱动的组织重构裁员潮</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-05-08-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Cloudflare 裁员 20%（1100 人），宣布转型"AI</h4>
         <p>first agentic 运营模式" — CEO 普林斯发全员信称裁员反映向 AI 驱动运营模式转型，"非削减成本"。公司 AI 使用量三个月增长 600%，各部门每天运行数千次 AI 代理会话。尽管 Q1 业绩超预期，股价盘后仍跌超 14%。预计 Q2 产生 1.4-1.5 亿美元裁员相关费用。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-05-08-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Coinbase 裁员 700 人（14%），CEO 清晨 6:55 发邮件要求"精益、快速、AI 原生"</h4>
         <p>裁减 14% 员工并取消管理层级，要求管理者成为"球员教练"。Armstrong 称加密市场波动和 AI 是双重驱动力，公司将围绕 AI 技能重新聚集剩余员工。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-05-08-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Cognizant 计划裁减 4000 人（"Project Leap"计划）</h4>
         <p>全球 IT 服务巨头 Cognizant 启动 Project Leap 重组计划，以加速 AI 采用和精简运营，同时校招新人录取反而增加——释放出"用新人替换中层"的信号。</p>
         
@@ -322,17 +363,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题三 · 机器人与模型前沿</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-08-t2-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Genesis AI 发布首个全栈机器人基础模型 GENE</h4>
         <p>26.5 — 由华人学者周衔创立（CMU 博士），去年拿下 1.05 亿美元种子轮。GENE-26.5 可执行单手打蛋、切番茄、解魔方、弹钢琴等复杂灵巧操作，全程自主运行 1 倍速，同一模型通用。全栈自研解决数据、硬件和控制协同难题。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-08-t2-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> GPT</h4>
         <p>5.5 Instant 成为 ChatGPT 新默认模型 — OpenAI 5 月 5 日推送，取代 GPT-5.3 Instant。幻觉声明减少 52.5%，回复更简洁，减少不必要 emoji。医学、法律、金融等高风险场景准确性显著提升。付费用户可继续使用旧版三个月。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-05-08-t2-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 无问芯穹完成超 7 亿元融资</h4>
         <p>中国 AI 原生基础设施公司，杭州高新金投和惠远资本联合领投。定位算力调度与运营中间层，标志 AI 投资从追热点模型向押注底层基建转移。</p>
         
@@ -353,5 +397,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

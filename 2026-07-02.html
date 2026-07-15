@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>Anthropomorphic Interactive Services（拟人化互动服务）</h4><p>中国五部门联合发布的《人工智能拟人化互动服务管理暂行办法》将于7月15日正式施行。该办法定义了"利用AI技术模拟自然人人格特征、思维模式和沟通风格，提供持续性情感互动服务"的新型服务类别，涵盖AI伴侣、虚拟伴侣、情感陪伴等产品。三条红线：不得诱导情感依赖、不得情感操纵诱导不合理决策、不得向未成年人推送有害内容。一般性智能客服、工作助手不适用。</p></div>
-      <div class="term-item"><h4>Agentic-AI-First（Agent AI优先）</h4><p>科技公司在裁员重组时提出的新组织转型理念。以Cloudflare裁员20%（超1100人）为代表，公司明确表示裁员非为削减成本，而是将组织架构全面转向"Agentic AI优先"模式——用AI Agent替代流程化岗位，重新定义人机协作边界。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-07-02-nw-0" aria-label="关注这条">☆</button><h4>Anthropomorphic Interactive Services（拟人化互动服务）</h4><p>中国五部门联合发布的《人工智能拟人化互动服务管理暂行办法》将于7月15日正式施行。该办法定义了"利用AI技术模拟自然人人格特征、思维模式和沟通风格，提供持续性情感互动服务"的新型服务类别，涵盖AI伴侣、虚拟伴侣、情感陪伴等产品。三条红线：不得诱导情感依赖、不得情感操纵诱导不合理决策、不得向未成年人推送有害内容。一般性智能客服、工作助手不适用。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-07-02-nw-1" aria-label="关注这条">☆</button><h4>Agentic-AI-First（Agent AI优先）</h4><p>科技公司在裁员重组时提出的新组织转型理念。以Cloudflare裁员20%（超1100人）为代表，公司明确表示裁员非为削减成本，而是将组织架构全面转向"Agentic AI优先"模式——用AI Agent替代流程化岗位，重新定义人机协作边界。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,32 +304,38 @@ function toggleTheme() {
       <h2 class="sec-title">海内外AI产品&平台动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-02-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic发布Claude Sonnet 5：Agent能力最强的中端模型</h4>
         <p>7月1日，Anthropic正式发布Claude Sonnet 5，定位为"Agent能力最强"的模型。关键参数：输入$2/M tokens（限时优惠，正常价$3）、输出$10/M tokens，价格比Opus 4.8低约60%，但在SWE-bench、Agent任务等基准上接近Opus表现。支持200K上下文、原生工具调用和计算机使用。Anthropic称其为"价格性能比最优的Agent工作负载模型"。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-07-02-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic推出Claude Science：AI科研工作台</h4>
         <p>6月30日发布的Claude Science是面向科研场景的专用工作台，整合60+科学数据库（PubMed、ChEMBL、UniProt等），支持文献检索-假设生成-实验设计-数据分析全流程。首批支持生物学、化学、材料科学领域，面向研究机构和药企提供API接入。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-02-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 谷歌发布Nano Banana 2 Lite + Gemini Omni Flash</h4>
         <p>7月1日，谷歌在Google Cloud Next延伸活动中发布两款新产品：① Nano Banana 2 Lite——超低成本图像生成模型，4秒出图、$0.034/千张，面向大规模商业图像生成场景；② Gemini Omni Flash——视频生成模型，支持对话式编辑，$0.10/秒视频，首次实现"边聊边改"的视频创作交互模式。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-02-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Claude模型上线Azure AI Foundry + NVIDIA GB300</h4>
         <p>7月1日，Anthropic宣布Claude全系模型正式登陆Microsoft Azure AI Foundry，搭载NVIDIA GB300 Blackwell Ultra加速器。企业客户可在Azure环境中直接调用Claude API，享受Blackwell架构带来的推理性能提升。这标志着Anthropic在企业分发渠道上实现AWS+Azure+GCP三云覆盖。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-02-t0-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> SpaceX收购Cursor后首款产品：Cursor iOS应用发布 <span class="music-badge">🎵</span></h4>
         <p>6月29日正式上架App Store的Cursor iOS版是SpaceX（含xAI）以600亿美元全股票收购Cursor后的首款产品动作。功能覆盖：远程启动Agent编码任务、实时进度追踪、PR审查与合并、语音对话、Live Activities通知。马斯克在X平台亲自转发推广。同期OpenClaw也发布双端移动版，AI编程入口之战正式延伸至移动端。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-02-t0-5" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Kimi K3确认7月发布：2.5万亿参数国产最大</h4>
         <p>7月1日，月之暗面员工在X平台确认Kimi K3将于本月发布。据悉K3参数规模达2.5万亿，超越DeepSeek V4 Pro（1.6万亿）和文心5.0（2.4万亿），支持1M上下文+原生多模态，有望成为国产参数量最大的大模型。结合月之暗面"一月一迭代"节奏，预计7月中旬发布。</p>
         
@@ -309,22 +348,26 @@ function toggleTheme() {
       <h2 class="sec-title">海内外AI公司组织&人才</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-02-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 快手可灵AI完成30亿美元融资，腾讯参投</h4>
         <p>7月2日报道，快手旗下AI视频生成平台"可灵AI"已完成30亿美元融资，投后估值约180亿美元。腾讯为本轮参投方之一。公司计划12个月内赴港IPO，将成为中国AI独角兽上市潮的标志性事件之一。可灵AI此前凭借视频生成能力已在海外获得大量用户。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-02-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Etched AI芯片公司融资8亿美元，估值50亿</h4>
         <p>6月30日披露，专注Transformer推理芯片的Etched完成8亿美元融资，估值达50亿美元。其专用芯片Sohu针对Transformer架构深度优化，声称推理效率远超通用GPU。投资人阵容豪华：Geoffrey Hinton（辛顿）、李飞飞、Andrej Karpathy均为个人投资者。该轮融资标志着AI芯片赛道从通用走向专用的趋势加速。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-07-02-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 施耐德电气31亿美元收购工业AI平台Cognite</h4>
         <p>7月1日，施耐德电气宣布以31亿美元收购挪威工业数据平台Cognite，后者将并入旗下AVEVA部门。Cognite专注工业数字孪生和AI数据编排，服务于能源、制造业客户。收购后施耐德将拥有从OT数据采集到AI分析的全栈工业AI能力，加速工业AI在传统制造企业中的落地。</p>
         
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-02-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 微软计划裁员数千人：AI投资下的组织重塑</h4>
         <p>7月1日报道，微软计划新一轮裁员涉及数千岗位（不到总员工2.5%），覆盖销售、咨询和Xbox部门。裁员逻辑：在AI基础设施投资加大的同时压缩非核心开支。2026年科技行业已累计裁员12.25万人（涉及214家公司），Oracle净减2.1万人、Cloudflare裁20%转向Agent AI优先、Meta裁8000人将资金转向AI。</p>
         
@@ -345,5 +388,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,13 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
+      <button class="star-btn" data-key="2026-06-23-nw-0" aria-label="关注这条">☆</button>
       <h3>Token资本（Token Capital）</h3>
       <p>一句话解释： 微软CEO纳德拉提出的新概念，指企业内部的AI能力储备——未来企业的核心资产不只是人力资本，还包括自主可控的AI推理能力（即"token产出能力"），两者共同构成组织的生产力基础。 为什么重要： 这个概念标志着企业资源观的范式转变——从"人头编制"到"人+AI双资本"。未来组织能力的衡量不再仅看HC数量，还要看其可调用的AI推理资源。对HR而言，这意味着人力规划需要纳入AI能力预算的协同考量。</p>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,22 +305,26 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · AI产品竞赛加速：从"能写代码"到"能交付项目"</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-06-23-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 火山引擎FORCE大会：豆包2.1 Pro发布，宣称跨越生产级质变点 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月23日，火山引擎在北京举办2026夏季FORCE原动力大会，正式发布豆包大模型2.1 Pro。该模型在Coding、Agent、VLM三大方向实现能力跃升，在TerminalBench 2.1、SWE-Pro等代码评测中进入全球第一梯队，多项评测优于Claude Opus 4.6。定价方面，每百万Tokens输入6元、输出30元，缓存命中仅1.2元，综合成本较Claude Opus 4.6降低近80%。同步发布Seedance 2.5视频生成模型、Seedream 5.0 Pro图像模型、Seed-Audio 1.0音频模型。截至6月，豆包大模型日均Token调用量突破180万亿，过去一年增长超10倍。火山引擎以49.5%市场份额位居中国MaaS服务市场第一。 为什么对 TME 重要： 豆包2.1 Pro的Coding和Agent能力已对标Claude Opus 4.6，但价格仅为其1/5。字节系AI工具（TRAE、扣子）将率先接入，TME技术团队在AI开发工具选型时多了一个高性价比选项。同时Seedance 2.5+Seed-Audio 1.0的组合对音乐视频创作有直接应用价值。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260623A06ECT00" target="_blank">凤凰网科技 - 豆包大模型2.1 Pro发布</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-23-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI扩展Daybreak安全计划，发布GPT-5.5-Cyber完整版 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月22日，OpenAI宣布扩展Daybreak网络安全计划，推出四项核心举措：①GPT-5.5-Cyber完整版发布，CyberGym得分85.6%（超越Anthropic Mythos 5的83.8%）；②Codex Security插件升级，已完成3万余代码库超3000万次提交扫描，自动判定可修复问题突破50万项；③"Patch the Planet"开源漏洞修复行动，联合Trail of Bits、HackerOne等发起；④Daybreak Cyber Partner Program，首批合作机构包括Accenture、Cisco、CrowdStrike、IBM、Palo Alto Networks等。该模型目前仅对通过认证的安全防御人员开放。 为什么对 TME 重要： AI网络安全从"辅助发现漏洞"升级为"自动生成补丁并验证修复"的完整闭环。Daybreak的"Codex Security→扫描→修复→验证"管线代表企业安全运维的新范式，安全团队的人才结构将从"大量安全工程师手动排查"转向"少量高级安全架构师+AI代理"。</p>
         <div class="source">来源：<a href="https://finance.sina.com.cn/tech/roll/2026-06-23/doc-iniekknt9717166.shtml" target="_blank">机器之心 - OpenAI安全专用GPT-5.5-Cyber完全体</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-23-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Getty Images与OpenAI达成正版图库合作，股价暴涨120% <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月21日，Getty Images宣布与OpenAI签署多年期展示合作协议，将正版授权图库内容整合至ChatGPT搜索与内容发现功能。合作消息推动Getty Images盘前股价暴涨逾120%。CEO Craig Peters表示："高质量、经授权的视觉内容让AI搜索更加实用可信。"双方未公布合作金额，也未披露Getty图片是否将用于训练模型。此前Getty已与英伟达共同开发生成式AI工具，仅基于正版图库训练并提供版权保障。 为什么对 TME 重要： 正版内容与AI平台的合作正在建立新的商业模式。音乐版权行业可参考Getty的路径——从"对抗AI侵权"转向"授权合作获取分成"。ChatGPT接入正版图库的逻辑，同样适用于正版音乐在AI生成内容中的呈现。</p>
         <div class="source">来源：<a href="https://newsroom.gettyimages.com/en" target="_blank">Getty Images官方新闻稿</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-23-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 微软纳德拉呼吁打破AI巨头垄断，推"模型平权"路线 <span class="music-badge">🎵</span></h4>
         <p>摘要： 微软CEO纳德拉在《华尔街日报》专访中公开批评当前AI竞赛被少数公司主导的现状。他表示："你不能说所有白领工作都将消失、AI甚至可能成为武器，一边又动用一切资源建设数据中心。"纳德拉呼吁AI转向更便宜的模型、更强的用户控制权，并推出Copilot Cowork（支持多模型自由切换）和1美分/Credits按量计费模式。分析认为，微软此举源于其在前沿模型竞争中落后于OpenAI/Google/Anthropic的现实，转而押注"模型商品化+中立AI操作层"策略。 为什么对 TME 重要： 如果模型真的走向商品化，企业AI部署的决策权将从"选哪个模型"转向"建什么应用层"。这对企业AI战略团队的能力要求从"模型评测"升级为"场景定义+流程重构"，相关人才画像需更新。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260622A05P8B00" target="_blank">微软CEO纳德拉《华尔街日报》专访</a></div>
@@ -299,17 +337,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · AI人才大洗牌：谷歌失血、甲骨文减编、行业重组加速</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-23-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 谷歌三天连失两位AI灵魂人物，Alphabet暴跌7%</h4>
         <p>摘要： 短短3天内，谷歌DeepMind两位顶级技术领军人物先后离职：①6月18日，Noam Shazeer（Transformer论文核心作者、Gemini联合负责人、谷歌工程VP）宣布加入OpenAI——2024年谷歌曾斥资27亿美元收购Character.AI将其召回，回归不足两年再次出走；②6月20日，John Jumper（AlphaFold核心领导者、2024年诺贝尔化学奖得主、DeepMind工程院士）宣布加入Anthropic。至此，Transformer论文全部8位原作者均已离开谷歌。消息引发Alphabet周一暴跌7%，为近一年最大单日跌幅。D.A. Davidson分析师评价："这引发了对谷歌在AI前沿人才争夺战中地位的质疑。" 对招聘的启发： 谷歌的案例证明：即便是最有技术积淀的企业，也无法仅靠高薪和title留住顶级人才。真正吸引这些人的是"对未来的定义权"——Shazeer去OpenAI做架构前沿探索，Jumper去Anthropic做AI+科学交叉。大厂HR在设计AI人才保留方案时，需从"给多少钱"升级为"给多大的未来叙事空间"。</p>
         <div class="source">来源：<a href="https://www.tmtpost.com/8034755.html" target="_blank">钛媒体 - 三天内连失两位传奇：谷歌的AI人才大坝正在决堤</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-23-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 甲骨文年报披露裁员2.1万人，明确"AI部署导致员工减少"</h4>
         <p>摘要： 6月22日，甲骨文向SEC提交的年度报告披露：2026财年（截至5月31日）全球员工从16.2万人减至14.1万人，裁员2.1万人（降幅13%）。年报明确写道："公司在运营中采用及部署AI技术，已导致并可能继续导致员工人数减少。"遣散费及重组开支达18.4亿美元，是上一财年3.74亿美元的近5倍。值得注意的是，甲骨文并非业绩下滑——SaaS业务全年159亿美元（+11%），同时计划今年在AI基建投入500亿美元。这是首家在年报中明确将裁员归因于"AI部署"的科技巨头。 对招聘的启发： 甲骨文的"越赚越裁"是AI时代组织变革的标志性事件——业绩增长不再等于编制增长。年报中那句"AI部署已导致员工减少"将成为更多企业年报的标准措辞。HR需要做好准备：未来的编制规划逻辑将从"业务增长→加人"转变为"业务增长→先算AI能替代多少→剩余部分才加人"。实施、运维、咨询和基础支持岗位是第一波冲击区。</p>
         <div class="source">来源：<a href="https://new.qq.com/rain/a/20260623A05FZX00" target="_blank">腾讯新闻 - 甲骨文裁员2.1万人</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-23-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 火山引擎日均Token 180万亿，中国MaaS市场份额近半 <span class="music-badge">🎵</span></h4>
         <p>摘要： 火山引擎在FORCE大会上披露最新运营数据：豆包大模型日均Token调用量突破180万亿，较发布时增长超1500倍，过去一年增长超10倍。IDC数据显示，火山引擎以49.5%的市场份额位居中国公有云MaaS服务市场第一。同时宣布豆包面向普通用户的日常基础功能（搜索问答、写作生图、语音视频对话等）将保持免费，并计划推出面向专业人群的"豆包专业版"办公任务模式，搭载2.1 Pro模型。 对招聘的启发： 字节系AI平台在中国MaaS市场的绝对领先地位（近50%份额），意味着大量企业将基于火山方舟构建AI应用。相关人才需求（方舟平台开发、扣子/TRAE生态）在招聘市场上的热度预计将持续上升。</p>
         <div class="source">来源：<a href="https://kjy.china.com/shehui/13002708/20260623/49564946.html" target="_blank">中华网财经 - FORCE大会数据</a></div>
@@ -330,5 +371,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

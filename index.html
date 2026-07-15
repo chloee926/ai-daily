@@ -63,9 +63,11 @@
     .theme-toggle {
       position: fixed; top: 14px; right: 14px; z-index: 1000;
       background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
-      padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer; transition: all 0.2s;
+      padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+      transition: background 0.2s, transform 0.45s ease;
     }
     .theme-toggle:hover { background: var(--rule-soft); }
+    .theme-toggle:active { transform: scale(0.88); }
 
     .month-group { margin-bottom: 30px; }
     .month-title {
@@ -100,16 +102,32 @@
 (function() {
   var saved = localStorage.getItem('ai-daily-theme');
   if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
 })();
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
 function toggleTheme() {
   var root = document.documentElement;
   var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
   root.setAttribute('data-theme', next);
   localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
 }
 </script>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色">◐</button>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色" aria-label="切换主题">🌙</button>
 <div class="wrap">
   <div class="header">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>

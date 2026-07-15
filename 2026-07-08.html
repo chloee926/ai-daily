@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>MAI（Microsoft Advanced Intelligence）</h4><p>一句话解释： 微软自研AI基础模型系列，定位替代Office产品中的OpenAI/Anthropic模型，覆盖语音、图像、代码和推理能力。 为什么重要： 这是AI产业链"去中间化"的标志性信号——模型层的buyer正在变成builder，AI供应商的定价权面临结构性挑战。</p></div>
-      <div class="term-item"><h4>Agentic Image Generation（智能体图像生成）</h4><p>一句话解释： Meta在Muse Image中首创的范式——图像生成模型不直接出图，而是像Agent一样先推理规划、调用搜索和代码工具、自我修正后再输出。 为什么重要： 图像生成从"提示词→出图"的管道模型进化为具备推理-工具调用-自我修正能力的Agent，预示着多模态AI的交互范式正在重构。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-07-08-nw-0" aria-label="关注这条">☆</button><h4>MAI（Microsoft Advanced Intelligence）</h4><p>一句话解释： 微软自研AI基础模型系列，定位替代Office产品中的OpenAI/Anthropic模型，覆盖语音、图像、代码和推理能力。 为什么重要： 这是AI产业链"去中间化"的标志性信号——模型层的buyer正在变成builder，AI供应商的定价权面临结构性挑战。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-07-08-nw-1" aria-label="关注这条">☆</button><h4>Agentic Image Generation（智能体图像生成）</h4><p>一句话解释： Meta在Muse Image中首创的范式——图像生成模型不直接出图，而是像Agent一样先推理规划、调用搜索和代码工具、自我修正后再输出。 为什么重要： 图像生成从"提示词→出图"的管道模型进化为具备推理-工具调用-自我修正能力的Agent，预示着多模态AI的交互范式正在重构。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,17 +304,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-08-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 微软自研MAI模型开始替换Office中的OpenAI/Anthropic <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月8日彭博社报道，微软已在Excel和Outlook中用自研MAI模型替代OpenAI和Anthropic的模型处理AI任务，每周处理数万条提示词。AI负责人Mustafa Suleiman明确表态"目标是减少并最终消除对Anthropic的支出"。微软6月Build大会发布7款MAI模型，其中MAI-CodePro以Opus 4.6约52%的成本达到近似编码能力。 为什么对 TME 重要： 微软的"去依赖化"趋势说明AI生态正在从开放合作走向垂直整合，企业客户可能面临供应商切换风险。对招聘而言，AI自研团队的人才需求将持续扩张。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/L19LCHBH05198CJN.html" target="_blank">彭博社报道/财联社</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-08-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta发布Muse Image——首个超级智能实验室图像模型 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月7日Meta正式发布Muse Image，由Meta超级智能实验室（Alexandr Wang领导）推出。模型具备Agent能力——会先推理、调用搜索和代码工具、自我修正后再生成图像。已免费登陆Meta AI应用、Instagram Stories和WhatsApp，并与广告系统Advantage+整合。用户可在提示词中@提及Instagram账号，默认可使用其公开照片。 为什么对 TME 重要： AI生图正从独立工具嵌入社交平台日常使用流程，"创作即分享"模式可能重新定义内容平台的创作者生态和人才需求。</p>
         <div class="source">来源：<a href="https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/" target="_blank">Meta AI官方博客</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-08-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> DeepSeek被曝自研AI推理芯片 <span class="music-badge">🎵</span></h4>
         <p>摘要： 7月7日外媒报道，三位知情人士确认DeepSeek正在自研AI推理芯片，项目约一年前启动，已与芯片设计公司和代工厂接触。至此，OpenAI（Jalapeño/博通）、Anthropic（三星2nm）、DeepSeek三家全球头部AI公司在近两周内同时曝出自研芯片进展，AI竞争正式从模型层延伸到芯片层。 为什么对 TME 重要： AI芯片自研潮将催生大量芯片设计、硬件工程人才需求，中国AI公司的芯片自主化也可能改变供应链格局和人才流向。</p>
         <div class="source">来源：<a href="https://k.sina.com.cn/article_5953466437_162dab0450670ay0ns.html" target="_blank">外媒报道/快科技/新浪</a></div>
@@ -294,17 +330,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-08-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 微软裁员4800人：AI改变工作方式，但岗位"并非被AI取代"</h4>
         <p>摘要： 7月7日微软宣布裁员约4800人（占员工2.1%），主要波及Xbox（裁1600人并启动最大规模重组，至2027财年累计裁3200人约20%）和商业销售。首席人力官强调"岗位非AI取代，但AI正改变工作完成方式"。过去一年已内部转岗4000人。2026年全球科技行业累计裁员约12万人。 对招聘的启发： "AI不是替代你，而是改变你的工作"正成为大厂裁员标准话术。HR需关注：①传统业务（游戏、销售）收缩而AI业务扩张的结构性转移；②内部转岗4000人意味着重新培训体系成为关键基础设施。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/L17OLS8V051180F7.html" target="_blank">微软官方/智东西</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-08-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 前OpenAI研究员田永龙加盟腾讯混元</h4>
         <p>摘要： 7月7日雷峰网独家获悉，OpenAI前研究员田永龙（Yonglong Tian）已加入腾讯，将参与VLM（视觉语言模型）相关研发。田永龙此前在OpenAI任MTS，研究方向为计算机视觉和生成模型，与腾讯混元首席AI科学家姚顺雨为OpenAI时期同事。加入后，姚顺雨（语言/后训练）+ 田永龙（视觉/多模态）将形成互补组合。 对招聘的启发： 顶尖AI人才回流中国大厂趋势持续。"前同事跟随"模式说明人才网络效应在AI行业极其强大——一个关键人才的引入可以撬动整个研究圈层的流动。</p>
         <div class="source">来源：<a href="https://www.163.com/dy/article/L196EPG805118HA4.html" target="_blank">雷峰网独家</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-07-08-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 小米重组小爱同学组织架构：从集中供给到分布式AI</h4>
         <p>摘要： 7月7日消息，小米对小爱同学进行新一轮组织架构调整：基础模型归罗福莉MiMo团队、云端工程化归栾剑团队、端侧能力下放至手机/汽车OS团队。原负责人王刚（任职近十年）调任机器人业务。小爱正从对话机器人转型为能执行本地操作的Agent。 对招聘的启发： AI组织架构从"集中大团队"走向"分布式嵌入业务线"成为趋势。这意味着AI人才不再集中在AI实验室，而是散布到各产品线——招聘需求将更分散、更强调"AI+行业"复合能力。</p>
         <div class="source">来源：<a href="https://news.qq.com/rain/a/20260707A05QTI00" target="_blank">36氪/TechWeb</a></div>
@@ -325,5 +364,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

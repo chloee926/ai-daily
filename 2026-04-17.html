@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>Desktop Background Agent（桌面后台代理）</h4><p>一句话解释： OpenAI为Codex新增的能力——AI代理可在用户电脑后台自主运行，模拟光标点击和键盘输入操作任意应用程序，多个代理可并行工作。 为什么重要： 这是AI编码助手首次获得操作系统级的自主操控能力，意味着AI工具的竞争维度从"代码生成质量"扩展到"对整个开发工作流的接管程度"，将重新定义开发者工效与团队配置。</p></div>
-      <div class="term-item"><h4>NVIDIA Ising（英伟达 Ising 模型系列）</h4><p>一句话解释： NVIDIA于世界量子日发布的全球首个开源量子AI模型系列，专为量子处理器校准和纠错优化，可实现2.5倍处理速度提升。 为什么重要： 量子计算长期面临"硬件不稳定"难题，Ising用AI模型为量子处理器提供校准和纠错的基础设施层，是量子-AI融合的关键一步，直接影响量子人才需求的技术栈定义。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-17-nw-0" aria-label="关注这条">☆</button><h4>Desktop Background Agent（桌面后台代理）</h4><p>一句话解释： OpenAI为Codex新增的能力——AI代理可在用户电脑后台自主运行，模拟光标点击和键盘输入操作任意应用程序，多个代理可并行工作。 为什么重要： 这是AI编码助手首次获得操作系统级的自主操控能力，意味着AI工具的竞争维度从"代码生成质量"扩展到"对整个开发工作流的接管程度"，将重新定义开发者工效与团队配置。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-17-nw-1" aria-label="关注这条">☆</button><h4>NVIDIA Ising（英伟达 Ising 模型系列）</h4><p>一句话解释： NVIDIA于世界量子日发布的全球首个开源量子AI模型系列，专为量子处理器校准和纠错优化，可实现2.5倍处理速度提升。 为什么重要： 量子计算长期面临"硬件不稳定"难题，Ising用AI模型为量子处理器提供校准和纠错的基础设施层，是量子-AI融合的关键一步，直接影响量子人才需求的技术栈定义。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,17 +304,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-17-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI Codex 重大升级：桌面后台代理 + 111插件 + 企业按量付费 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI于4月16日发布Codex重大升级，核心新增：①桌面后台代理——可在Mac后台自主操控任意应用，多代理并行；②内置浏览器用于前端开发测试；③记忆功能回忆历史工作会话；④图像生成能力；⑤111个第三方插件（含CodeRabbit、GitLab Issues等）；⑥企业版按量付费新定价。此举被视为直接回应Anthropic Claude Code在企业编码市场的领先地位。 为什么对 TME 重要： AI编码工具的"桌面接管"能力意味着研发工效比将出现阶跃式变化。Codex与Claude Code的激烈竞争也预示编码类AI岗位（Prompt工程、Agent开发）的技能要求正在快速迭代。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/04/16/openai-takes-aim-at-anthropic-with-beefed-up-codex-that-gives-it-more-power-over-your-desktop/" target="_blank">TechCrunch</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-17-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Google Gemini 发布 Mac 原生桌面应用 <span class="music-badge">🎵</span></h4>
         <p>摘要： Google于4月15日正式发布Gemini Mac原生桌面应用。用户可通过键盘快捷键唤起浮动聊天窗口，支持窗口内容共享、文件拖拽分析等功能。此举将AI助手从浏览器带到操作系统层面，与Apple此前宣布的Gemini深度集成计划相呼应。 为什么对 TME 重要： AI助手竞争阵地从浏览器扩展到桌面操作系统，Google和Apple的联动可能重塑Mac生态下的AI工作流。桌面AI应用开发人才需求将持续增长。</p>
         <div class="source">来源：<a href="https://www.macrumors.com/2026/04/15/google-gemini-mac-app/" target="_blank">MacRumors</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-17-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 智元机器人召开2026合作伙伴大会：4款本体新品 + 4个AI大模型 <span class="music-badge">🎵</span></h4>
         <p>摘要： 智元机器人于4月17日在上海举办2026合作伙伴大会，来自34个国家的2500位合作伙伴参会。大会发布4款机器人本体新品、4个AI大模型和7个行业解决方案，创始人邓磊分享"一体三智"全栈架构最新进展，聚焦"具身生产力"落地。 为什么对 TME 重要： 具身智能是2026年AI应用落地的核心赛道之一。34国合作伙伴参会表明中国具身智能企业的国际化已进入实质阶段，相关跨文化运营和国际化人才需求值得关注。</p>
         <div class="source">来源：<a href="https://www.ithome.com/0/938/317.htm" target="_blank">IT之家</a></div>
@@ -294,17 +330,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-17-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Snap裁员1000人（16%），CEO称AI已生成65%新代码</h4>
         <p>摘要： Snap于4月15日宣布裁员约1000人（占全球员工的16%），同时关闭300多个空缺岗位。CEO Evan Spiegel在内部信中明确表示，AI的快速进步使更小的团队能完成更多工作——AI目前已生成公司65%的新代码。此次裁员预计为公司2026下半年节省超5亿美元，目标实现净利润盈利。消息公布后Snap股价大涨。 对招聘的启发： "AI生成65%代码"是迄今为止上市公司给出的最具体的AI替代数据。这一数字将成为其他公司效仿的标杆——预计Q2财报季会有更多公司引用类似数据来支撑裁员决策。HR需要密切关注这一趋势对技术岗位headcount规划的影响。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/04/15/snap-is-cutting-1000-jobs-16-of-its-workforce/" target="_blank">TechCrunch</a>；<a href="https://www.cnbc.com/2026/04/15/snap-stock-layoffs-16-percent-workforce.html" target="_blank">CNBC</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-17-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 2026年AI驱动裁员累计超5万人，Snap、Oracle、Meta领衔 <span class="music-badge">🎵</span></h4>
         <p>摘要： 截至2026年4月中旬，全球科技行业因AI效率提升而裁员的累计人数已超过5万。除Snap外，Oracle此前以AI基础设施转型为由裁员3万人，Meta也持续以AI驱动效率优化为理由缩减编制。专家指出，"AI裁员"中既有真实的AI替代效应，也有企业借AI叙事进行的常规重组。 对招聘的启发： AI裁员浪潮既是招聘市场的"供给释放"（大量有经验的技术人才进入市场），也是甲方HR与业务团队沟通headcount时的新变量。建议TME HR在与业务沟通人力规划时，主动建立"AI替代率"的评估框架。</p>
         <div class="source">来源：<a href="https://www.cityam.com/ai-job-cuts-top-50000-in-2026-as-snap-oracle-meta-slash-roles/" target="_blank">City A.M.</a>；<a href="https://www.techspot.com/news/112006-tech-layoffs-hit-80000-early-2026-ai-blamed.html" target="_blank">TechSpot</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-17-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> CNBC深度：AI焦虑为何席卷职场？听听科技领袖怎么说</h4>
         <p>摘要： CNBC于4月15日发表深度报道，梳理了科技领袖关于AI对就业影响的最新表态。报道指出，工人对AI替代工作的焦虑是真实且复杂的——虽然某些岗位确实在被自动化取代，但AI同时创造了大量新型岗位。关键问题在于过渡期的速度和工人再培训的可及性。 对招聘的启发： 候选人的"AI焦虑"已成为影响雇主品牌和人才吸引力的真实因素。在校招和社招中，明确传达公司对AI的定位（"AI增强人而非替代人"）可能成为差异化雇主品牌的关键信息点。</p>
         <div class="source">来源：<a href="https://www.cnbc.com/2026/04/15/ai-work-jobs-layoffs-unemployment-fears.html" target="_blank">CNBC</a></div>
@@ -325,5 +364,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

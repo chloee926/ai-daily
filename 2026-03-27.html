@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>通通3.0（Tongtong 3.0）</h4><p>一句话解释： 中关村论坛发布的全球首个通用智能人，配套"通智大脑"通用具身智能核心引擎，能像人一样感知环境、理解意图并执行物理操作。 为什么重要： "通用智能人"标志着AI从"做软件任务"走向"做物理世界任务"的跨越。配合具身智能行业标准的同步发布，这意味着AI机器人赛道正在从实验室走向产业化，相关人才需求将加速释放。</p></div>
-      <div class="term-item"><h4>AI岗位"剪刀差"</h4><p>一句话解释： 2026年就业市场的结构性特征——AI高端岗位需求暴涨12倍、月薪溢价26%，但22-25岁年轻人在高AI暴露岗位的入职率反而下降14%，初级岗位被大量冻结或替代。 为什么重要： AI不是在"消灭工作"，而是在"抬高门槛"。能用AI提效的资深人才身价暴涨，而不会用AI的初级人才连面试机会都拿不到。这个剪刀差正在重新定义"什么是AI时代的好人才"。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-03-27-nw-0" aria-label="关注这条">☆</button><h4>通通3.0（Tongtong 3.0）</h4><p>一句话解释： 中关村论坛发布的全球首个通用智能人，配套"通智大脑"通用具身智能核心引擎，能像人一样感知环境、理解意图并执行物理操作。 为什么重要： "通用智能人"标志着AI从"做软件任务"走向"做物理世界任务"的跨越。配合具身智能行业标准的同步发布，这意味着AI机器人赛道正在从实验室走向产业化，相关人才需求将加速释放。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-03-27-nw-1" aria-label="关注这条">☆</button><h4>AI岗位"剪刀差"</h4><p>一句话解释： 2026年就业市场的结构性特征——AI高端岗位需求暴涨12倍、月薪溢价26%，但22-25岁年轻人在高AI暴露岗位的入职率反而下降14%，初级岗位被大量冻结或替代。 为什么重要： AI不是在"消灭工作"，而是在"抬高门槛"。能用AI提效的资深人才身价暴涨，而不会用AI的初级人才连面试机会都拿不到。这个剪刀差正在重新定义"什么是AI时代的好人才"。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,27 +304,32 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与技术动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-27-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 中关村论坛AI主题日今日开幕，六大平行论坛同步启动 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月27日，2026中关村论坛"人工智能主题日"正式开幕，主题为"交融·智享AI新范式下的全球创新与产业融合"。采用"1+6"框架（1个核心论坛+6场平行论坛），核心论坛聚焦AI开源前沿，发布众智FlagOS 2.0开源成果，揭牌北京市人工智能协会与中关村人工智能开源联盟。六大平行论坛覆盖AI未来投资、AI for Science、教育人才、通用人工智能、脑机接口、RISC-V硬件生态等方向。参会嘉宾包括张亚勤、月之暗面杨植麟、智谱AI张鹏、银河通用王鹤等。 为什么对 TME 重要： 作为国内AI产业年度标杆活动，中关村论坛释放的政策和产业信号将影响全年AI投资和招聘方向。FlagOS开源成果和人工智能协会的揭牌，意味着国内AI开源生态将进一步完善。</p>
         <div class="source">来源：<a href="https://www.xinhuanet.com/tech/20260326/c94e0c98cb0b4580b1ff7921c5833fa5/c.html" target="_blank">新华网</a>、<a href="https://bj.people.com.cn/n2/2026/0326/c14540-41534326.html" target="_blank">人民网</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-27-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 具身智能领域首个行业标准正式发布 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月26日，中国信息通信研究院联合40余家单位发布具身智能领域首个行业标准，构建统一基准测试框架。标准覆盖基础能力、认知推理能力、全链路闭环能力三大维度，支持静态仿真、动态仿真、真实环境、组合式四种测试方法。配套建设超过1万条测试任务库，覆盖工业、家庭、零售、物流等领域、300+种任务类型。该标准将于2026年6月1日正式实施。 为什么对 TME 重要： 具身智能从"实验室炫技"进入"有标可依"阶段，产业化提速。这意味着AI机器人方向的工程化人才（不是只会写论文，而是能过标准测试的）需求将增加。</p>
         <div class="source">来源：<a href="https://news.cctv.cn/2026/03/27/ARTIGixNMr914RhtxhEfutgp260326.shtml" target="_blank">央视新闻</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-03-27-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 谷歌推出极端压缩技术+发布音乐生成模型Lyria 3 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月27日，谷歌发布极端模型压缩技术，实现大模型内存占用降低6倍、推理速度提升8倍，精度几乎零损失。同日还发布了音乐生成模型Lyria 3 Pro和Lyria 3 Clip。此外，Gemini用户数已突破7.5亿（两年增长107倍），Gemini 3.1 Pro在13个基准测试中领先，定价仅为Claude的一半。 为什么对 TME 重要： 谷歌的压缩技术将大幅降低大模型部署成本，让更多设备能运行AI。Lyria 3的发布标志着谷歌正式进入AI音乐生成赛道，与Spotify的SongDNA、阿里的PrismAudio形成三方竞争。</p>
         <div class="source">来源：<a href="https://www.bilibili.com/video/BV17zXWBbEkB/" target="_blank">Bilibili - AI早报</a>、<a href="https://tech-insider.org/google-gemini-750-million-users-march-2026-updates/" target="_blank">Tech Insider</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-27-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 云厂商大模型API集体涨价，"免费红利期"终结 <span class="music-badge">🎵</span></h4>
         <p>摘要： 3月中旬，腾讯云、阿里云、百度智能云三大云厂商密集发布调价公告。腾讯云混元HY2.0价格涨幅达463%，结束GLM 5等模型免费公测；阿里云算力卡涨5%-34%、存储涨30%；百度AI算力涨5%-30%。涨价主因是开源智能体OpenClaw爆火导致Token消耗指数增长，Agent应用的复杂长链路任务推高算力成本。 为什么对 TME 重要： AI应用的使用成本正在上升，企业需重新评估AI项目的投入产出比。同时，这也意味着"AI降本"人才（模型压缩、推理优化、混合部署）的价值将进一步凸显。</p>
         <div class="source">来源：<a href="https://finance.sina.com.cn/jjxw/2026-03-20/doc-inhrrkwt8027225.shtml" target="_blank">新浪财经</a>、<a href="https://news.qq.com/rain/a/20260324A02W6O00" target="_blank">腾讯新闻</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-27-t0-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 医疗AI"医生分身"密集上线 <span class="music-badge">🎵</span></h4>
         <p>摘要： 央视报道，国内多个医疗大模型密集上线，已有健康AI应用推出真人医生的智能体"AI分身"，能复刻医生的个性化诊疗思维和交流语气，与患者展开专业问答。"带着AI建议走进医院"正成为更多患者的新选择。 为什么对 TME 重要： AI在垂直领域的落地正在加速，"AI+行业"的产品经理和行业专家型AI人才需求上升。</p>
         <div class="source">来源：<a href="https://news.cctv.com/2026/03/27/ARTIb0cNXdW3u3sxO99DcLDn260326.shtml" target="_blank">央视新闻</a></div>
@@ -304,17 +342,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-27-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 中国AI岗位需求暴涨12倍，平均月薪60,738元</h4>
         <p>摘要： 脉脉高聘人才智库《2026年1-2月中高端人才求职招聘洞察》显示，新发AI岗位占比从2025年同期的2.29%暴涨至26.23%，同比增长约12倍；AI岗位平均月薪60,738元，高出新经济行业均值26%。头部企业动态：阿里巴巴2027届实习生招聘AI岗位占比超80%；腾讯开放1万+实习岗位，技术类扩招36%；京东可留用实习offer达1万个。 对招聘的启发： AI人才争夺已进入白热化，头部公司通过实习生提前锁定人才。HR需要建立"AI人才快速通道"——从识别、面试到发offer的周期要压缩到极致。</p>
         <div class="source">来源：<a href="https://news.qq.com/rain/a/20260326A05YKG00" target="_blank">腾讯新闻</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-27-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 873家中国AI机构遭NeurIPS投稿限制，CCF倡议抵制</h4>
         <p>摘要： AI顶级会议NeurIPS新增OFAC制裁清单限制条款，禁止华为、商汤、旷视科技、云天励飞、中芯国际、海康威视及三大运营商等873家中国机构投稿、评审和编辑。中国计算机学会（CCF）发布声明强烈反对，倡议中国学者暂停向该会议投稿和审稿以示抗议。 对招聘的启发： 国际学术交流壁垒加高，意味着国内AI研究人才的流动将更多转向国内平台和自主体系。校招和社招中，对候选人的评价标准需要更多关注"国内产出"而非"国际论文"。</p>
         <div class="source">来源：<a href="https://k.sina.com.cn/article_7857201856_1d45362c001903n80q.html" target="_blank">新浪新闻</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-03-27-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic报告：AI实际替代率仅33%，但年轻人入职率已降14%</h4>
         <p>摘要： Anthropic于3月5日发布《Labor Market Impacts of AI》报告，基于O*NET职业数据库和400万+次AI对话记录分析。核心发现：计算机岗位AI理论能力覆盖率达94%，但实际采用仅33%（差距61个百分点）；22-25岁年轻人在高AI暴露岗位入职率下跌14%，年轻软件开发者就业人数下降20%；AI技能薪资溢价从2024年25%飙升至2025年56%。大规模失业潮未至，但年轻人入口正在收窄。 对招聘的启发： AI的就业冲击不是"裁员潮"，而是"招聘冻结+自然减员"。校招策略需要调整——不是减少招聘量，而是提高AI能力门槛要求，确保新人进来就能用AI。</p>
         <div class="source">来源：<a href="https://www.huxiu.com/article/4844185.html" target="_blank">虎嗅网</a></div>
@@ -335,5 +376,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

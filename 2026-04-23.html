@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>Thinking Image Generation（思考型图像生成）</h4><p>一句话解释： 图像生成模型在出图前先进行逻辑推理和信息检索，再生成符合语义的图像，区别于传统的"直接生成"模式。 为什么重要： 这标志着AI生图从"像素拟合"迈向"语义理解+视觉输出"融合，对设计、营销、内容创作等岗位的能力要求将发生根本性变化。</p></div>
-      <div class="term-item"><h4>Cube Sandbox（硬件级隔离AI Agent沙箱）</h4><p>一句话解释： 腾讯云开源的AI Agent代码执行环境，实现硬件级安全隔离+亚百毫秒冷启动，单机支撑2000+沙箱并行。 为什么重要： Agent落地的最大阻碍之一是安全执行环境。Cube Sandbox以Apache 2.0协议开源，兼容E2B标准，降低了Agent工程化的基础设施门槛。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-23-nw-0" aria-label="关注这条">☆</button><h4>Thinking Image Generation（思考型图像生成）</h4><p>一句话解释： 图像生成模型在出图前先进行逻辑推理和信息检索，再生成符合语义的图像，区别于传统的"直接生成"模式。 为什么重要： 这标志着AI生图从"像素拟合"迈向"语义理解+视觉输出"融合，对设计、营销、内容创作等岗位的能力要求将发生根本性变化。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-23-nw-1" aria-label="关注这条">☆</button><h4>Cube Sandbox（硬件级隔离AI Agent沙箱）</h4><p>一句话解释： 腾讯云开源的AI Agent代码执行环境，实现硬件级安全隔离+亚百毫秒冷启动，单机支撑2000+沙箱并行。 为什么重要： Agent落地的最大阻碍之一是安全执行环境。Cube Sandbox以Apache 2.0协议开源，兼容E2B标准，降低了Agent工程化的基础设施门槛。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,17 +304,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-04-23-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> OpenAI发布ChatGPT Images 2.0，以242分创纪录优势登顶图像生成排行榜 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月22日凌晨，Sam Altman亲自直播发布ChatGPT Images 2.0。该模型新增"思考模式"——生成图像前可联网检索信息、解析上传文件并完成结构推理。在Arena.ai评测中，GPT-Image-2以242分优势登顶所有Image Arena排行榜第一，创下该领域最大分差纪录。最高支持2K分辨率，单次提示可生成8张连贯图像，面向全体ChatGPT及Codex用户免费开放。 为什么对 TME 重要： 生图能力的跃升将直接影响内容创作、营销素材生成等场景。TME旗下音乐平台的视觉内容生产（封面、海报、MV概念图）可能进一步被AI工具替代或增强，相关岗位的技能画像需要重新审视。</p>
         <div class="source">来源：<a href="https://openai.com/index/introducing-chatgpt-images-2/" target="_blank">OpenAI官方发布会</a> / <a href="https://arena.ai" target="_blank">Arena.ai评测</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-23-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Google发布Deep Research智能体，基于Gemini 3.1 Pro支持接入私有数据源 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月21日，Google推出两款基于Gemini 3.1 Pro的自主调研智能体：Deep Research（重速度，低延迟交互）和Deep Research Max（重深度，异步执行复杂尽调）。核心突破在于通过MCP协议可直接连接企业私有数据库，并原生生成高质量图表。已通过付费Gemini API向全球开发者开放预览。 为什么对 TME 重要： 企业级AI Agent从"对话助手"升级为"自主调研员"，HR团队可关注此类工具在人才市场研究、竞品组织分析等场景的应用潜力。</p>
         <div class="source">来源：<a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/" target="_blank">Google AI官方博客</a> / <a href="https://venturebeat.com/technology/googles-new-deep-research-and-deep-research-max-agents-can-search-the-web-and-your-private-data" target="_blank">VentureBeat报道</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-23-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 特斯拉中国车机语音助手接入豆包大模型和DeepSeek，完成备案 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月21日，上海新增1款生成式AI服务备案——特斯拉车机语音大模型服务。据知情人士透露，特斯拉Model车型将接入豆包大模型（负责语音命令：导航、播放、空调等）和DeepSeek模型（负责AI互动），均通过火山引擎提供。这是特斯拉入华13年来车机语音助手的最大一次升级。 为什么对 TME 重要： 中国大模型能力获得全球顶级车企认可并进入量产车机，说明国产模型的工程化交付能力已达标。对于TME而言，可关注字节在音乐/音频场景的AI落地是否会进一步加速。</p>
         <div class="source">来源：<a href="https://mp.weixin.qq.com" target="_blank">网信上海公告</a> / <a href="https://news.qq.com/rain/a/20260422A06OGE00" target="_blank">科创板日报报道</a></div>
@@ -294,17 +330,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-23-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> SpaceX获得600亿美元收购Cursor的期权，AI编程赛道估值天花板再被推高 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月21日，SpaceX宣布与AI编程工具Cursor达成战略合作，获得年内以600亿美元收购Cursor的期权（或支付100亿美元合作费）。Cursor将使用xAI Colossus超级计算机（等效100万块H100）训练自研模型，目标摆脱对Anthropic和OpenAI的模型依赖。Cursor估值已从2024年初的40亿美元飙升至此次的600亿。此前，Cursor两位高级工程负责人已离职加入xAI。 对招聘的启发： 600亿美元的估值信号表明AI编程工具已成为科技行业最稀缺的资产类别之一。TME技术团队招聘可关注：(1) AI编程工具的使用能力是否应纳入工程师能力模型；(2) xAI/SpaceX与Cursor的人才流动模式——高管跳槽后带来收购合作，值得关注人才与战略投资的联动效应。</p>
         <div class="source">来源：<a href="https://techcrunch.com/2026/04/21/spacex-is-working-with-cursor-and-has-an-option-to-buy-the-startup-for-60-billion/" target="_blank">TechCrunch独家报道</a> / <a href="https://www.cnbc.com/2026/04/21/spacex-says-it-can-buy-cursor-later-this-year-for-60-billion-or-pay-10-billion-for-our-work-together.html" target="_blank">CNBC报道</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-23-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 国务院首次将"大模型、智能体"纳入政府采购支持清单 <span class="music-badge">🎵</span></h4>
         <p>摘要： 4月21日，国务院印发《关于推进服务业扩能提质的意见》（国发〔2026〕7号），明确提出"深入实施'人工智能+'行动，加快智能编程工具研发使用，支持采购大模型、智能体服务"，目标到2030年服务业总规模达100万亿元。这是国务院层面首次在正式文件中将大模型和智能体列入采购支持清单，标志着中国AI产业从"鼓励探索"进入"规模采购"阶段。 对招聘的启发： 政策明确后，国有企业和大型机构的AI采购预算将加速释放。TME可关注：(1) 政策驱动下AI产品经理、AI解决方案架构师等岗位需求是否会出现结构性增长；(2) "智能编程工具"被单独提及，意味着内部效率工具赛道将获得政策红利。</p>
         <div class="source">来源：<a href="https://www.news.cn/politics/20260421/3f7ff7029a064f388f25e1a4d2767d70/c.html" target="_blank">国务院《关于推进服务业扩能提质的意见》</a> / <a href="https://www.caixin.com/2026-04-22/102436567.html" target="_blank">财新网报道</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-04-23-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 具身智能机器人安全告急：知名品牌产品8小时即被完整攻破 <span class="music-badge">🎵</span></h4>
         <p>摘要： 网络安全机构深蓝DARKNAVY发布白皮书，对一台市面在售的知名品牌具身智能机器人进行渗透测试，从漏洞识别到远程完整攻破仅耗时不足8小时——而主流智能手机和智能汽车的攻破通常需要数月甚至一年以上。白皮书结论称"具身智能领域网络安全防护能力普遍处于较低水平"。 对招聘的启发： 具身智能是2026年资本涌入最多的赛道之一，但安全短板暴露出该领域对安全工程师的需求被严重低估。TME虽非机器人赛道，但可关注AI安全人才的跨行业流动趋势。</p>
         <div class="source">来源：<a href="https://www.nbd.com.cn/articles/2026-04-22/4352624.html" target="_blank">深蓝DARKNAVY《具身智能安全技术白皮书：机器人篇》</a></div>
@@ -325,5 +364,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

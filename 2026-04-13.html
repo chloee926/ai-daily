@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -261,10 +292,12 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
-      <div class="term-item"><h4>神经计算机（Neural Computers）</h4><p>Meta AI与沙特阿卜杜拉国王科技大学（KAUST）于4月12日联合发布论文，提出"神经计算机"（Neural Computers, NCs）概念——一种将计算、内存和I/O折叠为单一可学习模型的全新机器架构。不同于当前AI在传统冯·诺依曼架构上运行的模式，神经计算机的目标是让神经网络本身成为硬件，用脉冲神经网络、存储-计算耦合和类比信号处理取代传统的CPU/GPU+内存分离架构，从而在硬件层面直接完成推理，大幅降低延迟和功耗。 为什么重要： 这是继"AI模型竞赛"和"AI芯片竞赛"之后，AI领域的第三层竞赛——"AI计算架构竞赛"。如果神经计算机概念在未来5-10年从论文变成产品，当前所有基于GPU/TPU的算力投资逻辑都将被重写。对HR而言，这意味着"AI硬件工程师"的能力要求正在从"会设计芯片"升级为"会设计全新的计算范式"。</p></div>
-      <div class="term-item"><h4>AI拟人化互动服务（AI Persona Interaction Services）</h4><p>中国五部门（网信办、工信部、教育部、公安部、广电总局）于4月发布《人工智能拟人化互动服务管理暂行办法》，将于2026年7月15日起施行。该办法首次为AI拟人化互动设立了监管框架：明确禁止向未成年人提供虚拟伴侣服务，要求AI拟人化服务必须在显著位置标识"AI生成"，鼓励在文化传播和适老陪伴领域的应用，同时要求对AI与用户的情感交互行为进行分类分级管理。 为什么重要： 这是全球首个针对"AI拟人化互动"的专项法规。随着AI聊天伴侣、虚拟男/女友等产品的爆发式增长，"人机情感关系"已从科幻话题变成了需要监管的现实问题。对音乐娱乐行业而言，虚拟偶像、AI互动角色等产品形态都将受到这一法规的约束，产品合规设计需要提前介入。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-13-nw-0" aria-label="关注这条">☆</button><h4>神经计算机（Neural Computers）</h4><p>Meta AI与沙特阿卜杜拉国王科技大学（KAUST）于4月12日联合发布论文，提出"神经计算机"（Neural Computers, NCs）概念——一种将计算、内存和I/O折叠为单一可学习模型的全新机器架构。不同于当前AI在传统冯·诺依曼架构上运行的模式，神经计算机的目标是让神经网络本身成为硬件，用脉冲神经网络、存储-计算耦合和类比信号处理取代传统的CPU/GPU+内存分离架构，从而在硬件层面直接完成推理，大幅降低延迟和功耗。 为什么重要： 这是继"AI模型竞赛"和"AI芯片竞赛"之后，AI领域的第三层竞赛——"AI计算架构竞赛"。如果神经计算机概念在未来5-10年从论文变成产品，当前所有基于GPU/TPU的算力投资逻辑都将被重写。对HR而言，这意味着"AI硬件工程师"的能力要求正在从"会设计芯片"升级为"会设计全新的计算范式"。</p></div>
+      <div class="term-item"><button class="star-btn" data-key="2026-04-13-nw-1" aria-label="关注这条">☆</button><h4>AI拟人化互动服务（AI Persona Interaction Services）</h4><p>中国五部门（网信办、工信部、教育部、公安部、广电总局）于4月发布《人工智能拟人化互动服务管理暂行办法》，将于2026年7月15日起施行。该办法首次为AI拟人化互动设立了监管框架：明确禁止向未成年人提供虚拟伴侣服务，要求AI拟人化服务必须在显著位置标识"AI生成"，鼓励在文化传播和适老陪伴领域的应用，同时要求对AI与用户的情感交互行为进行分类分级管理。 为什么重要： 这是全球首个针对"AI拟人化互动"的专项法规。随着AI聊天伴侣、虚拟男/女友等产品的爆发式增长，"人机情感关系"已从科幻话题变成了需要监管的现实问题。对音乐娱乐行业而言，虚拟偶像、AI互动角色等产品形态都将受到这一法规的约束，产品合规设计需要提前介入。</p></div>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -272,17 +305,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · AI产品、平台与技术动态</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-13-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Anthropic推出Claude for Word测试版——Office"三件套"AI化完成最后一步</h4>
         <p>Anthropic于4月11日发布Claude for Word测试版，继此前进入Excel和PowerPoint之后，正式覆盖微软Office三大核心产品。核心功能包括：基于文档内容的问答并附带可点击段落引用、保留格式的智能编辑、用户可逐条审批的修订模式。主打场景为法律行业——合同审查、条款风险标记、赔偿条款改写、修订对比分析等。目前仅对Team和Enterprise用户开放。</p>
         <div class="source">来源：<a href="https://www.ithome.com/0/938/373.htm" target="_blank">IT之家</a>、<a href="https://www.donews.com/news/detail/8/6508551.html" target="_blank">DoNews</a>、<a href="https://finance.sina.com.cn/tech/digi/2026-04-13/doc-inhuiatq4948930.shtml" target="_blank">新浪科技</a> | 2026-04-11</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-13-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI确认Sora将于4月26日正式关停——AI视频生成从"爆款"到"弃子"仅6个月</h4>
         <p>OpenAI确认Sora将于4月26日全面关停，包括独立应用、API和ChatGPT内嵌的视频生成功能。关停原因：用户数跌至不足50万，每日算力成本高达100万美元。释放的资源将重新投入智能体和编码工具方向——这与OpenAI此前发布GPT-5.3-Codex和Codex Security的战略重心一致。Sora从2024年2月概念发布到2025年9月正式上线再到2026年4月关停，完整生命周期仅约6个月。</p>
         <div class="source">来源：<a href="https://news.qq.com/rain/a/20260407A06YG900" target="_blank">腾讯新闻</a>、<a href="https://finance.sina.com.cn/jjxw/2026-03-25/doc-inhsecse6995306.shtml" target="_blank">新浪财经</a>、<a href="https://projectchat.ai/2026/04/10/latest-ai-company-news-google-openai-anthropic-deepseek-qwen-zai/" target="_blank">ProjectChat</a> | 2026-04-07</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-13-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 英国金融监管四大机构紧急评估Claude Mythos安全风险——AI模型首次触发国家级金融应急机制</h4>
         <p>英国央行（Bank of England）、金融行为监管局（FCA）、财政部和国家网络安全中心（NCSC）于本周联合召开紧急会议，评估Anthropic的Claude Mythos Preview模型暴露的金融系统网络安全风险。该模型此前在Project Glasswing项目中发现了数千个零日漏洞，包括影响银行核心IT系统的关键漏洞。英国主要银行、保险公司和交易所的代表将在未来两周内参加监管机构的风险通报会议。与此同时，美国方面出现矛盾信号——尽管国防部将Anthropic列为"供应链风险"并计划180天内移除Claude，但另有官员推动银行测试Mythos模型。</p>
         <div class="source">来源：<a href="https://www.ft.com/content/ec7bb366-9643-47ce-9909-fc5ad4864ae5" target="_blank">Financial Times</a>、<a href="https://www.globalbankingandfinance.com/uk-financial-regulators-rush-assess-risks-anthropic-latest/" target="_blank">Global Banking & Finance</a>、<a href="https://seekingalpha.com/news/4574227-u-k-regulators-race-to-assess-risks-from-anthropic-s-powerful-new-ai-model-ft" target="_blank">Seeking Alpha</a> | 2026-04-13</div>
@@ -295,17 +331,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="low">
+        <button class="star-btn" data-key="2026-04-13-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> BCG研究：50%-55%美国工作将被AI重塑，但仅10%-15%会被淘汰——"六类冲击模型"详解</h4>
         <p>波士顿咨询集团（BCG）发布覆盖1500种职业、1.65亿个美国工作岗位的微观经济分析，将AI对工作的影响分为六类：放大型（5%，AI增强人类需求扩大）、再平衡型（14%，角色重新设计）、分化型（12%，初级岗受冲击）、替代型（12%，净岗位减少）、赋能型（23%，AI嵌入但不改变结构）、有限影响型（34%，自动化空间有限）。核心结论：美国职业平均有40%的任务可被AI自动化，43%的工作超过40%自动化门槛——但自动化任务≠消灭岗位，大部分角色将被"重塑"而非"替代"。</p>
         <div class="source">来源：<a href="https://www.bcg.com/publications/2026/ai-will-reshape-more-jobs-than-it-replaces" target="_blank">BCG</a> | 2026-04-03</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-13-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 中国五部门发布《AI拟人化互动服务管理暂行办法》——全球首个AI情感交互专项法规</h4>
         <p>国家网信办、工信部、教育部、公安部、广电总局五部门联合发布《人工智能拟人化互动服务管理暂行办法》，2026年7月15日起施行。核心规定：禁止向未成年人提供虚拟伴侣服务；AI拟人化互动须标识"AI生成"；鼓励文化传播和适老陪伴应用；要求分类分级管理AI与用户的情感交互行为。</p>
         <div class="source">来源：<a href="https://k.sina.cn/article_7857201856_1d45362c001904913w.html" target="_blank">新浪新闻</a> | 2026-04-13</div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-04-13-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 三星Q1营业利润预计暴增6倍至40.5万亿韩元——AI驱动存储芯片"超级周期"</h4>
         <p>三星电子2026年Q1营业利润预计约40.5万亿韩元（约269亿美元），接近去年全年总和（43.6万亿韩元），同比暴增约6倍。营收预计同比增长50%。花旗更乐观预测利润可达51万亿韩元。核心驱动力是AI热潮推动的存储芯片（HBM高带宽内存）需求爆发——分析师称存储芯片市场正经历"前所未有的超级周期"。这与Google计划2026年投入1750-1850亿美元AI基础设施资本支出、以及全球AI数据中心建设潮直接相关。</p>
         <div class="source">来源：<a href="https://k.sina.cn/article_7857201856_1d45362c001904913w.html" target="_blank">新浪新闻</a>、<a href="https://www.humai.blog/ai-news-trends-april-2026-complete-monthly-digest/" target="_blank">humAI Blog</a> | 2026-04-13</div>
@@ -326,5 +365,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>

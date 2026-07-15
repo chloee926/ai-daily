@@ -222,6 +222,49 @@
   .music-badge { font-size: 12px; }
   .rel { font-size: 11px; margin-right: 2px; }
 
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
@@ -229,21 +272,9 @@
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
-<script>
-(function() {
-  var saved = localStorage.getItem('ai-daily-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  var root = document.documentElement;
-  var cur = root.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('ai-daily-theme', next);
-}
-</script>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录 <span class="star-count" id="starCount">0</span></a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
 <div class="container">
   <header class="masthead">
     <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
@@ -260,10 +291,13 @@ function toggleTheme() {
       <h2 class="sec-title">AI 新名词</h2>
     </div>
     <div class="new-term">
+      <button class="star-btn" data-key="2026-06-16-nw-0" aria-label="关注这条">☆</button>
       <h3>信息智能体（Information Agent）</h3>
       <p>一句话解释： Google在AI搜索模式中推出的主动信息监测智能体，可全天候静默运行并推送用户关注的信息变化，无需手动检索。 为什么重要： 标志着搜索引擎从"被动响应查询"到"主动推送信息"的范式转变，AI智能体开始渗透日常信息获取场景，信息获取从"人找信息"进化为"信息找人"。</p>
     </div>
   </section>
+
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
 
     <section class="section sec-topic">
     <div class="sec-head">
@@ -271,17 +305,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-16-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 字节跳动发布Seedance 2.0 Mini，视频生成成本降50% <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月15日，火山引擎旗下火山方舟体验中心上线Seedance 2.0 Mini视频生成模型，定位高性价比。720P规格下单秒生成成本约0.5元，较Seedance 2.0标准版降低约50%。图生视频0.023元/千tokens，视频生视频0.014元/千tokens。输出质量与Fast版相当，速度比Fast版快2倍。适用于电商内容生产、营销素材批量生成、UGC创作及特效玩法等高频规模化场景，近期将开放API服务。 为什么对 TME 重要： 视频生成成本持续下探，音乐宣发的短视频素材批量生产门槛大幅降低。剪映已第一时间接入Mini模型，内容运营团队可关注该平台的应用场景。</p>
         <div class="source">来源：<a href="https://cj.sina.cn/article/norm_detail?url=https%3A%2F%2Ffinance.sina.com.cn%2Ftech%2Fshenji%2F2026-06-16%2Fdoc-inicqhiz4491214.shtml" target="_blank">新浪科技 - 火山引擎发布Seedance 2.0 mini</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="mid">
+        <button class="star-btn" data-key="2026-06-16-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Kimi K2.7 Code高速版上线，输出速度提升6倍 <span class="music-badge">🎵</span></h4>
         <p>摘要： 6月15日，月之暗面Kimi K2.7 Code高速版上线，输出速度为普通版5-6倍。常规编程场景约180 tokens/s，短上下文峰值260 tokens/s。价格为标准版2倍（输入13元/百万tokens，输出54元/百万tokens）。相比K2.6，长上下文指令遵循能力显著提升，平均token消耗减少30%。模型已开源上架HuggingFace，面向Kimi Code Beta计划成员、API开发者及企业用户开放。 为什么对 TME 重要： 编程类AI工具的输出速度和成本效率持续优化，技术团队在代码辅助工具选型时有了更高性价比选项，"加价加速"模式开始成为行业标配。</p>
         <div class="source">来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_0106a3008b059752" target="_blank">IT之家 - 月之暗面Kimi K2.7 Code高速版上线</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-16-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> OpenAI发布Partner Network，1.5亿美元构建全球合作伙伴生态 <span class="music-badge">🎵</span></h4>
         <p>摘要： OpenAI正式发布首个全球合作伙伴计划，投入1.5亿美元，目标年底认证30万名顾问。计划分Select/Advanced/Elite三级，覆盖Codex、网络安全、API和AI智能体转型等方向。首批合作伙伴包括Accenture、BCG、Bain、QuantumBlack by McKinsey、PwC。同时推出"前沿部署专家"（Forward Deployed Experts）试点，OpenAI工程师与合作伙伴并肩完成复杂企业部署。 为什么对 TME 重要： AI企业落地从"卖API"走向"卖部署能力"，合作伙伴生态的成熟将加速大型组织的AI变革管理。企业AI落地的瓶颈已从模型能力移至用例定义、流程重构和变革管理。</p>
         <div class="source">来源：<a href="https://openai.com/business/partners/" target="_blank">OpenAI - Partner Network</a></div>
@@ -294,17 +331,20 @@ function toggleTheme() {
       <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
     <div class="cards-grid">
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-16-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Salesforce 36亿美元收购AI客服平台Fin，同步裁员</h4>
         <p>摘要： 6月15日，Salesforce宣布以约36亿美元收购AI客服平台Fin。Fin的核心产品是多渠道AI客服智能体（由自研Apex模型驱动），覆盖在线聊天、邮件、WhatsApp、短信、电话及Slack渠道，客户包括Anthropic、DoorDash等。交易将补充Salesforce的Agentforce平台（年化收入12亿美元），预计2027财年Q4完成。收购消息与新一轮裁员同步——AI、Mulesoft和Marketing Cloud部门受影响，86个岗位被裁撤。 对招聘的启发： "36亿收购+同步裁员"是传统SaaS企业AI转型的典型样本——一边买AI原生能力，一边裁传统业务冗余。这种模式预计将在更多企业复制，HR需提前做好组织结构调整预案和人才盘点。</p>
         <div class="source">来源：<a href="https://finance.sina.com.cn/stock/usstock/c/2026-06-15/doc-inicnyqn6700107.shtml" target="_blank">新浪财经 - Salesforce将以36亿美元收购Fin</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-16-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 林俊旸AI实验室首轮融资，投后估值20亿美元</h4>
         <p>摘要： 前阿里巴巴千问大模型负责人林俊旸创办的AI实验室完成首轮融资，总额数亿美元，投后估值约20亿美元（约135亿人民币）。本轮由高榕创投和红杉中国领投（各1亿美元），腾讯参投2000万美元。融资完成后已启动下一轮。林俊旸今年3月从阿里离职，研究方向聚焦世界模型与具身智能。其密集注册了语用科技、卜拉格科技等多家实体。 对招聘的启发： 顶级AI技术人才创业持续获得高估值押注，"千问系"人才品牌溢价明显。腾讯连续投资月之暗面、MiniMax、智谱、DeepSeek及林俊旸项目，AI大模型赛道投资布局已形成矩阵，人才竞争格局正从"大厂vs大厂"转向"大厂vs高估值创业"。</p>
         <div class="source">来源：<a href="https://eu.36kr.com/zh/p/3854438054417670" target="_blank">36氪 - 林俊旸获腾讯投资</a></div>
       </article>
-      <article class="card">
+      <article class="card" data-rel="hi">
+        <button class="star-btn" data-key="2026-06-16-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic暂停Claude Agent SDK独立计费变更</h4>
         <p>摘要： 原定6月15日生效的Claude Agent SDK/claude-p独立计费变更被Anthropic紧急叫停。Anthropic向用户发送邮件称"Nothing changes now"，表示正在更新方案以更好支持开发者，新方案生效前会提前通知。此前5月宣布的变更将程序化使用从订阅池拆分到独立月度额度（Pro $20/月，Max 20x $200/月），对重度开发者意味着5-10倍成本上升。此次暂停被视为对开发者社区强烈反弹的回应。 对招聘的启发： AI工具定价模式仍在剧烈博弈中，企业在AI工具选型和预算规划时需预留定价波动空间。开发者生态的稳定性正成为AI平台竞争的关键变量——定价政策反复可能影响团队工具选型决策。</p>
         <div class="source">来源：<a href="https://juejin.cn/post/7649363408021635113" target="_blank">掘金 - claude-p和Agent SDK不再走订阅额度</a></div>
@@ -325,5 +365,78 @@ function toggleTheme() {
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) { delete stars[k]; } else { stars[k] = 1; }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
 </body>
 </html>
