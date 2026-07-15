@@ -222,6 +222,31 @@
   .music-note b { color: var(--c4); }
   .music-note-empty { opacity: 0.65; }
   .sec-num-5 { color: var(--c5); }
+  .sec-paper { margin-top: 28px; }
+  .sec-paper .paper-card {
+    border-left: 4px solid var(--c5);
+    padding: 22px 24px 20px;
+    max-width: 100%; width: auto;
+    background: var(--paper); border-radius: 4px;
+    border: 1px solid var(--rule-soft); display: block;
+  }
+  .paper-card .paper-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700;
+    line-height: 1.45; color: var(--ink); margin-bottom: 10px;
+  }
+  .paper-card .paper-title a { color: inherit; text-decoration: none; }
+  .paper-card .paper-title a:hover { color: var(--c5); text-decoration: underline; }
+  .paper-authors { font-size: 13px; color: var(--ink-soft); margin: 8px 0 6px; line-height: 1.9; }
+  .paper-authors a { color: var(--c5); text-decoration: none; font-weight: 600; border-bottom: 1px dotted var(--c5); }
+  .paper-authors a:hover { border-bottom-style: solid; }
+  .paper-summary { font-size: 13.2px; color: var(--ink-soft); line-height: 1.78; margin: 8px 0; }
+  .paper-meta { font-size: 12px; color: var(--ink-dim); margin-top: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .paper-meta .pcat { background: rgba(122,61,143,0.12); color: var(--c5); padding: 2px 10px; border-radius: 999px; font-weight: 600; }
+  .paper-meta .ptags span { font-size: 11px; color: var(--ink-dim); border: 1px solid var(--rule-soft); border-radius: 999px; padding: 1px 9px; margin-right: 5px; }
+  .paper-meta a { color: var(--c5); text-decoration: none; font-weight: 600; }
+  .paper-meta a:hover { text-decoration: underline; }
+
+  .sec-num-5 { color: var(--c5); }
   .sec-paper .card { border-top-color: var(--c5); }
   .paper-authors { font-size: 12.5px; color: var(--ink-soft); margin: 8px 0 6px; line-height: 1.8; }
   .paper-authors a { color: var(--c5); text-decoration: none; font-weight: 600; border-bottom: 1px dotted var(--c5); }
@@ -405,21 +430,18 @@
     </blockquote>
   </section>
 
-
       <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
-    <div class="cards-grid">
-      <article class="card paper-card" id="2026-05-04-p0" data-rel="mid">
-        <button class="star-btn" data-key="2026-05-04-p0" aria-label="关注这条">☆</button>
-        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> <a href="https://arxiv.org/abs/2606.07397" target="_blank" rel="noopener">Audio-Oscar: A Multi-Agent System for Complex Audio Scene Generation, Orchestration, and Refinement</a></h4>
-        <div class="paper-authors">① <a href="https://www.google.com/scholar?q=Yifan+Duan" target="_blank" rel="noopener" title="Google Scholar 搜索">Yifan Duan</a>, ② <a href="https://www.google.com/scholar?q=Qixiang+Xu" target="_blank" rel="noopener" title="Google Scholar 搜索">Qixiang Xu</a>, ③ <a href="https://www.google.com/scholar?q=Hengtao+Wu" target="_blank" rel="noopener" title="Google Scholar 搜索">Hengtao Wu</a></div>
-        <p>多智能体系统 Audio-Oscar 生成长篇可控音频场景，协调语音、音效、音乐、歌曲与时间结构及后期制作于一体。</p>
-        <div class="paper-meta"><span class="pcat">cs.SD</span> · 分类：语音合成 · <a href="papers.html">查看音乐 AI 论文合集 →</a></div>
-      </article>
-    </div>
+    <article class="paper-card">
+      <button class="star-btn" data-key="2026-05-04-p0" aria-label="关注这条">☆</button>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.07397" target="_blank" rel="noopener">Audio-Oscar: A Multi-Agent System for Complex Audio Scene Generation, Orchestration, and Refinement</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Yifan+Duan"&searchtype=author" target="_blank" rel="noopener">Yifan Duan</a>, ② <a href="https://arxiv.org/search/?query=au:"Qixiang+Xu"&searchtype=author" target="_blank" rel="noopener">Qixiang Xu</a>, ③ <a href="https://arxiv.org/search/?query=au:"Hengtao+Wu"&searchtype=author" target="_blank" rel="noopener">Hengtao Wu</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">多智能体系统 Audio-Oscar 生成长篇可控音频场景，协调语音、音效、音乐、歌曲与时间结构及后期制作于一体。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>语音合成</span></span><span>· 分类：语音合成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+    </article>
   </section>
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>

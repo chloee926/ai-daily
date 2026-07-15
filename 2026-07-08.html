@@ -222,6 +222,31 @@
   .music-note b { color: var(--c4); }
   .music-note-empty { opacity: 0.65; }
   .sec-num-5 { color: var(--c5); }
+  .sec-paper { margin-top: 28px; }
+  .sec-paper .paper-card {
+    border-left: 4px solid var(--c5);
+    padding: 22px 24px 20px;
+    max-width: 100%; width: auto;
+    background: var(--paper); border-radius: 4px;
+    border: 1px solid var(--rule-soft); display: block;
+  }
+  .paper-card .paper-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700;
+    line-height: 1.45; color: var(--ink); margin-bottom: 10px;
+  }
+  .paper-card .paper-title a { color: inherit; text-decoration: none; }
+  .paper-card .paper-title a:hover { color: var(--c5); text-decoration: underline; }
+  .paper-authors { font-size: 13px; color: var(--ink-soft); margin: 8px 0 6px; line-height: 1.9; }
+  .paper-authors a { color: var(--c5); text-decoration: none; font-weight: 600; border-bottom: 1px dotted var(--c5); }
+  .paper-authors a:hover { border-bottom-style: solid; }
+  .paper-summary { font-size: 13.2px; color: var(--ink-soft); line-height: 1.78; margin: 8px 0; }
+  .paper-meta { font-size: 12px; color: var(--ink-dim); margin-top: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .paper-meta .pcat { background: rgba(122,61,143,0.12); color: var(--c5); padding: 2px 10px; border-radius: 999px; font-weight: 600; }
+  .paper-meta .ptags span { font-size: 11px; color: var(--ink-dim); border: 1px solid var(--rule-soft); border-radius: 999px; padding: 1px 9px; margin-right: 5px; }
+  .paper-meta a { color: var(--c5); text-decoration: none; font-weight: 600; }
+  .paper-meta a:hover { text-decoration: underline; }
+
+  .sec-num-5 { color: var(--c5); }
   .sec-paper .card { border-top-color: var(--c5); }
   .paper-authors { font-size: 12.5px; color: var(--ink-soft); margin: 8px 0 6px; line-height: 1.8; }
   .paper-authors a { color: var(--c5); text-decoration: none; font-weight: 600; border-bottom: 1px dotted var(--c5); }
@@ -403,21 +428,18 @@
     </blockquote>
   </section>
 
-
       <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
-    <div class="cards-grid">
-      <article class="card paper-card" id="2026-07-08-p0" data-rel="mid">
-        <button class="star-btn" data-key="2026-07-08-p0" aria-label="关注这条">☆</button>
-        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> <a href="https://arxiv.org/abs/2606.18052" target="_blank" rel="noopener">An Empirical Analysis of AI Slop in Music Streaming</a></h4>
-        <div class="paper-authors">① <a href="https://www.google.com/scholar?q=Stanley+Wu" target="_blank" rel="noopener" title="Google Scholar 搜索">Stanley Wu</a>, ② <a href="https://www.google.com/scholar?q=Josephine+Passananti" target="_blank" rel="noopener" title="Google Scholar 搜索">Josephine Passananti</a>, ③ <a href="https://www.google.com/scholar?q=Viresh+Mittal" target="_blank" rel="noopener" title="Google Scholar 搜索">Viresh Mittal</a>, <span class="auth-etal">et al.</span></div>
-        <p>实证分析音乐流媒体中的「AI slop」现象——大量低质 AI 生成内容通过伪装人类创作或自动化脚本刷量牟利，揭示平台治理挑战。</p>
-        <div class="paper-meta"><span class="pcat">cs.CR</span> · 分类：行业分析 / 检测/水印 · <a href="papers.html">查看音乐 AI 论文合集 →</a></div>
-      </article>
-    </div>
+    <article class="paper-card">
+      <button class="star-btn" data-key="2026-07-08-p0" aria-label="关注这条">☆</button>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.18052" target="_blank" rel="noopener">An Empirical Analysis of AI Slop in Music Streaming</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Stanley+Wu"&searchtype=author" target="_blank" rel="noopener">Stanley Wu</a>, ② <a href="https://arxiv.org/search/?query=au:"Josephine+Passananti"&searchtype=author" target="_blank" rel="noopener">Josephine Passananti</a>, ③ <a href="https://arxiv.org/search/?query=au:"Viresh+Mittal"&searchtype=author" target="_blank" rel="noopener">Viresh Mittal</a>, <a href="https://arxiv.org/search/?query=au:"Wenxin+Ding"&searchtype=author" target="_blank" rel="noopener">Wenxin Ding</a>, <a href="https://arxiv.org/search/?query=au:"Haitao+Zheng"&searchtype=author" target="_blank" rel="noopener">Haitao Zheng</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Ben+Y.+Zhao"&searchtype=author" target="_blank" rel="noopener">Ben Y. Zhao</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">实证分析音乐流媒体中的「AI slop」现象——大量低质 AI 生成内容通过伪装人类创作或自动化脚本刷量牟利，揭示平台治理挑战。</div>
+      <div class="paper-meta"><span class="pcat">cs.CR</span><span class="ptags"><span>行业分析</span><span>检测/水印</span></span><span>· 分类：行业分析 / 检测/水印</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+    </article>
   </section>
 
   <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
