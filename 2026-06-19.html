@@ -447,21 +447,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-06-19-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.23080" target="_blank" rel="noopener">AudioCALM: Continuous Autoregressive Language Modeling for Universal Audio Generation</a></div>
-      <div class="paper-authors">① <a href="https://github.com/RayMusk/AudioLCM" target="_blank" rel="noopener">Huadai Liu</a>, ② <a href="https://arxiv.org/search/?query=au:"Kaicheng+Luo"&searchtype=author" target="_blank" rel="noopener">Kaicheng Luo</a>, ③ <a href="https://arxiv.org/search/?query=au:"Wen+Wang"&searchtype=author" target="_blank" rel="noopener">Wen Wang</a>, <a href="https://arxiv.org/search/?query=au:"Qian+Chen"&searchtype=author" target="_blank" rel="noopener">Qian Chen</a>, <a href="https://arxiv.org/search/?query=au:"Bin+Ma"&searchtype=author" target="_blank" rel="noopener">Bin Ma</a>, <a href="https://arxiv.org/search/?query=au:"Xiangang+Li"&searchtype=author" target="_blank" rel="noopener">Xiangang Li</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Wei+Xue"&searchtype=author" target="_blank" rel="noopener">Wei Xue</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">用连续音频隐变量扩展自回归 next-token 预测，以轻量 flow-matching 头替代 softmax，统一语音、音效与音乐生成于单一框架。</div>
-      <div class="paper-meta"><span class="pcat">eess.AS</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.24307" target="_blank" rel="noopener">Real-Time Interactive Music Generation via Data-Free Streaming Consistency Distillation</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Baisen+Wang%22&searchtype=author" target="_blank" rel="noopener">Baisen Wang</a>, ② <a href="https://arxiv.org/search/?query=au:%22Chenxi+Bao%22&searchtype=author" target="_blank" rel="noopener">Chenxi Bao</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Qisong+Han%22&searchtype=author" target="_blank" rel="noopener">Qisong Han</a></div>
+      <div class="paper-summary">面向现场表演和共创的交互式流式音乐生成框架。现代生成式音乐 AI 因推理延迟过高基本缺席现场互动场景。本工作将离线静态模型改造为动态可演奏乐器：在流式自回归潜在空间内做知识蒸馏，无需昂贵的配对音频-潜在数据集，利用仅 prompt 输入即时合成教师引导的分块轨迹。为保证高保真，引入音乐感知一致性目标（包含频谱和时域差损失）。通过参数高效适配，蒸馏后的模型达到极低的实时因子（real-time factor）。关键是作为连续自回归流运行时，系统能实时吸纳动态人工输入——用户可即时引导音乐轨迹而不中断音频流。最终将文生音乐模型重新定位为「响应式乐器」而非被动等待系统。对 TME 直播业务和虚拟演出有意义。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>实时交互</span><span>高效/端侧</span></span><span>· 分类：实时交互 / 高效/端侧</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -523,19 +522,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

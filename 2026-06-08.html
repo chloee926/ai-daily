@@ -416,21 +416,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-06-08-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.07397" target="_blank" rel="noopener">Audio-Oscar: A Multi-Agent System for Complex Audio Scene Generation, Orchestration, and Refinement</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Yifan+Duan"&searchtype=author" target="_blank" rel="noopener">Yifan Duan</a>, ② <a href="https://arxiv.org/search/?query=au:"Qixiang+Xu"&searchtype=author" target="_blank" rel="noopener">Qixiang Xu</a>, ③ <a href="https://arxiv.org/search/?query=au:"Hengtao+Wu"&searchtype=author" target="_blank" rel="noopener">Hengtao Wu</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">多智能体系统 Audio-Oscar 生成长篇可控音频场景，协调语音、音效、音乐、歌曲与时间结构及后期制作于一体。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>语音合成</span></span><span>· 分类：语音合成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2601.03973" target="_blank" rel="noopener">Muse: Towards Reproducible Long-Form Song Generation with Fine-Grained Style Control</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Changhao+Jiang%22&searchtype=author" target="_blank" rel="noopener">Changhao Jiang</a>, ② <a href="https://arxiv.org/search/?query=au:%22Jiahao+Chen%22&searchtype=author" target="_blank" rel="noopener">Jiahao Chen</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Zhenghao+Xiang%22&searchtype=author" target="_blank" rel="noopener">Zhenghao Xiang</a>, <a href="https://arxiv.org/search/?query=au:%22Zhixiong+Yang%22&searchtype=author" target="_blank" rel="noopener">Zhixiong Yang</a>, <a href="https://arxiv.org/search/?query=au:%22Hanchen+Wang%22&searchtype=author" target="_blank" rel="noopener">Hanchen Wang</a>, <a href="https://arxiv.org/search/?query=au:%22Jiabao+Zhuang%22&searchtype=author" target="_blank" rel="noopener">Jiabao Zhuang</a>, <a href="https://arxiv.org/search/?query=au:%22Xinmeng+Che%22&searchtype=author" target="_blank" rel="noopener">Xinmeng Che</a>, <a href="https://arxiv.org/search/?query=au:%22Jiajun+Sun%22&searchtype=author" target="_blank" rel="noopener">Jiajun Sun</a>, <a href="https://arxiv.org/search/?query=au:%22Hui+Li%22&searchtype=author" target="_blank" rel="noopener">Hui Li</a>, <a href="https://arxiv.org/search/?query=au:%22Yifei+Cao%22&searchtype=author" target="_blank" rel="noopener">Yifei Cao</a>, <a href="https://arxiv.org/search/?query=au:%22Shihan+Dou%22&searchtype=author" target="_blank" rel="noopener">Shihan Dou</a>, <a href="https://arxiv.org/search/?query=au:%22Ming+Zhang%22&searchtype=author" target="_blank" rel="noopener">Ming Zhang</a>, <a href="https://arxiv.org/search/?query=au:%22Junjie+Ye%22&searchtype=author" target="_blank" rel="noopener">Junjie Ye</a>, <a href="https://arxiv.org/search/?query=au:%22Tao+Ji%22&searchtype=author" target="_blank" rel="noopener">Tao Ji</a>, <a href="https://arxiv.org/search/?query=au:%22Tao+Gui%22&searchtype=author" target="_blank" rel="noopener">Tao Gui</a>, <a href="https://arxiv.org/search/?query=au:%22Qi+Zhang%22&searchtype=author" target="_blank" rel="noopener">Qi Zhang</a>, <a href="https://arxiv.org/search/?query=au:%22Xuanjing+Huang%22&searchtype=author" target="_blank" rel="noopener">Xuanjing Huang</a></div>
+      <div class="paper-summary">复旦 NLP 团队开源的长篇幅歌曲生成系统 Muse 及配套可商用数据集。商业系统（如 Suno）展示强大能力但因缺少公开训练数据导致学术研究不可复现。Muse 发布：11.6 万首完全授权的合成歌曲（由 SunoV5 合成+自动生成歌词和风格描述）；模型基于 Qwen 语言模型扩展 MuCodec 离散音频 token 单阶段监督微调，无需任务特定损失或额外架构组件。虽数据规模和模型参数适中，但在音素错误率、文本-音乐风格相似度和音频美学质量上均有竞争力，支持分段级可控生成（不同音乐结构）。所有数据/模型权重/训练管线全部公开发布。对 TME：这是目前最完整的开源长歌曲生成方案，可作为内部原型验证和技术储备的起点。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -492,19 +491,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

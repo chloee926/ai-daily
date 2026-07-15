@@ -428,21 +428,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-05-05-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.07387" target="_blank" rel="noopener">Making the Most of Limited Data: Score-Aware Training for Text-to-Music Generation</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Yun-Chen+Cheng"&searchtype=author" target="_blank" rel="noopener">Yun-Chen Cheng</a>, ② <a href="https://arxiv.org/search/?query=au:"Tzu-Hung+Huang"&searchtype=author" target="_blank" rel="noopener">Tzu-Hung Huang</a>, ③ <a href="https://arxiv.org/search/?query=au:"Chih-Pin+Tan"&searchtype=author" target="_blank" rel="noopener">Chih-Pin Tan</a></div>
-      <div class="paper-summary">提出 score-aware training，将音频-文本对齐分数作为全管线直接监督信号，在有限数据下解耦架构贡献与资源优势。</div>
-      <div class="paper-meta"><span class="pcat">cs.LG</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2607.11117" target="_blank" rel="noopener">MusicMark: A Robust Generative Watermarking Framework for Music Generation</a></div>
+      <div class="paper-authors">① <a href="https://agi.korea.ac.kr/people" target="_blank" rel="noopener">Seohwan Yun</a>, ② <a href="https://agi.korea.ac.kr/people" target="_blank" rel="noopener">Jeeyoung Yun</a>, ③ <a href="https://agi.korea.ac.kr/people" target="_blank" rel="noopener">Yongjin Kim</a>, <a href="https://arxiv.org/search/?query=au:%22Juyeon+Lee%22&searchtype=author" target="_blank" rel="noopener">Juyeon Lee</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Sungwoong+Kim%22&searchtype=author" target="_blank" rel="noopener">Sungwoong Kim</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">MusicMark 是首个面向音乐生成的**生成式水印框架**，解决现有语音水印方法难以适配音乐的难题。音乐结构复杂、声学纹理丰富，传统后处理式水印（生成后叠加不可听扰动）在神经编解码重合成后极易失效。MusicMark 将水印嵌入扩散模型的语义潜空间——在去噪过程中通过 Watermark Adapter 注入水印信息，使水印成为音乐内容的一部分而非附加物。适配器和检测器联合训练，保真度约束确保水印不影响音质，攻击增强提升鲁棒性。在包括编解码重合成在内的多种攻击下大幅优于后处理基线。TME 关注点：随着 AI 音乐商用加速，版权溯源与内容认证成为刚需，懂音频取证+生成模型的复合型人才稀缺。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>检测/水印</span></span><span>· 分类：检测/水印</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -504,19 +503,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

@@ -433,21 +433,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-04-01-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.16612" target="_blank" rel="noopener">Beyond Artifacts: Towards Generalizable Synthetic Song Detection via Music-Intrinsic Features</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Yan+Han"&searchtype=author" target="_blank" rel="noopener">Yan Han</a>, ② <a href="https://arxiv.org/search/?query=au:"Zhibin+Wen"&searchtype=author" target="_blank" rel="noopener">Zhibin Wen</a>, ③ <a href="https://arxiv.org/search/?query=au:"Yuan+Wang"&searchtype=author" target="_blank" rel="noopener">Yuan Wang</a>, <a href="https://arxiv.org/search/?query=au:"Shuangrun+Shao"&searchtype=author" target="_blank" rel="noopener">Shuangrun Shao</a>, <a href="https://arxiv.org/search/?query=au:"Xiaobing+Li"&searchtype=author" target="_blank" rel="noopener">Xiaobing Li</a>, <a href="https://arxiv.org/search/?query=au:"Yang+Xu"&searchtype=author" target="_blank" rel="noopener">Yang Xu</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Wei+Li"&searchtype=author" target="_blank" rel="noopener">Wei Li</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">提出基于音乐内在特征的通用合成歌曲检测（SSD）方法，摆脱对低层伪影或固定特征的依赖，提升对未知生成器的泛化能力。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>检测/水印</span></span><span>· 分类：检测/水印</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.17006" target="_blank" rel="noopener">TuneJury: An Open Metric for Improving Music Generation Preference Alignment</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Yonghyun+Kim%22&searchtype=author" target="_blank" rel="noopener">Yonghyun Kim</a>, ② <a href="https://arxiv.org/search/?query=au:%22Junwon+Lee%22&searchtype=author" target="_blank" rel="noopener">Junwon Lee</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Haiwen+Xia%22&searchtype=author" target="_blank" rel="noopener">Haiwen Xia</a>, <a href="https://arxiv.org/search/?query=au:%22Yinghao+Ma%22&searchtype=author" target="_blank" rel="noopener">Yinghao Ma</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">TuneJury 是开放的实例级文本到音乐成对奖励模型（reward model），从文本提示和音频片段预测音乐偏好分数。训练数据涵盖竞技场式 A/B 投票、指标对齐偏好对、众包比较和专家美学评分等多种来源的人类偏好标签。预测的分数差值在校准良好的测试集上高度准确，支持通过简单阈值做数据过滤。对于训练后发布的新生成器，引入 anchor calibration（锚定校准）——一种事后 Bradley-Terry 校准方法，以远高于从头训练的数据效率恢复一致性。同一个冻结的 reward model 驱动三种下游应用：推理时 best-of-N 选择、DITTO 式潜在优化和专家迭代后训练。对 TME：自动评估音乐质量的 reward model 是规模化内容生产的基础设施。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>评估</span><span>音乐生成</span></span><span>· 分类：评估 / 音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -509,19 +508,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

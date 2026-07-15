@@ -452,21 +452,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-06-22-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.22708" target="_blank" rel="noopener">Libretto: Giving LLM Agents a Sense of Musical Structure</a></div>
-      <div class="paper-authors">Yichen Xu</div>
-      <div class="paper-summary">面向 Agent 的符号音乐生成与修订框架，让生成式音乐系统具备可检视、可编辑、可诊断的音乐结构感知能力。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>语音合成</span><span>符号音乐</span></span><span>· 分类：语音合成 / 符号音乐</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.23080" target="_blank" rel="noopener">AudioCALM: Continuous Autoregressive Language Modeling for Universal Audio Generation</a></div>
+      <div class="paper-authors">① <a href="https://github.com/RayMusk/AudioLCM" target="_blank" rel="noopener">Huadai Liu</a>, ② <a href="https://arxiv.org/search/?query=au:%22Kaicheng+Luo%22&searchtype=author" target="_blank" rel="noopener">Kaicheng Luo</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Wen+Wang%22&searchtype=author" target="_blank" rel="noopener">Wen Wang</a>, <a href="https://arxiv.org/search/?query=au:%22Qian+Chen%22&searchtype=author" target="_blank" rel="noopener">Qian Chen</a>, <a href="https://arxiv.org/search/?query=au:%22Bin+Ma%22&searchtype=author" target="_blank" rel="noopener">Bin Ma</a>, <a href="https://arxiv.org/search/?query=au:%22Xiangang+Li%22&searchtype=author" target="_blank" rel="noopener">Xiangang Li</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Wei+Xue%22&searchtype=author" target="_blank" rel="noopener">Wei Xue</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">AudioCALM 是一个统一的音频生成框架，首次在一个模型内同时处理语音、音效和音乐三大类任务。核心创新是将自回归 next-token 预测从离散 token 扩展到连续音频潜变量——用薄型 flow-matching 头替代 softmax 预测整流速度，block-causal AR-Flow attention 模式支持任意长度输出。最大挑战是三种任务的文本-音频不对称性：语音需要紧密时间对齐，而音效和音乐只需整体语义描述。方案有两层：① 数据层面统一为单一描述式条件接口；② 架构层面引入 Asymmetric Mixture-of-Modality-Experts (A-MoME)，为语音增加专属残差专家，音效和音乐共享骨干，非语音输入无额外开销。在三类任务上均达到领域 SOTA。统一音频模型意味着一套技能栈可覆盖多场景，TME 可关注这类通用型人才。</div>
+      <div class="paper-meta"><span class="pcat">eess.AS</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -528,19 +527,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

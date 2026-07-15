@@ -428,21 +428,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-04-14-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.21018" target="_blank" rel="noopener">LK Jam: Real-Time Human-AI Interactive Music Generation System using Role-Aware GRU</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Yakun+Liu"&searchtype=author" target="_blank" rel="noopener">Yakun Liu</a>, ② <a href="https://arxiv.org/search/?query=au:"Zhiyu+Jin"&searchtype=author" target="_blank" rel="noopener">Zhiyu Jin</a>, ③ <a href="https://arxiv.org/search/?query=au:"Dong+Liu"&searchtype=author" target="_blank" rel="noopener">Dong Liu</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Hai+Luan"&searchtype=author" target="_blank" rel="noopener">Hai Luan</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">基于轻量 GRU 与高性能音频宿主架构的实时双向人机交互音乐生成系统，突破离线单向生成的限制，实现低延迟动态协作。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>实时交互</span><span>interactive</span></span><span>· 分类：实时交互 / interactive</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.16612" target="_blank" rel="noopener">Beyond Artifacts: Towards Generalizable Synthetic Song Detection via Music-Intrinsic Features</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Yan+Han%22&searchtype=author" target="_blank" rel="noopener">Yan Han</a>, ② <a href="https://arxiv.org/search/?query=au:%22Zhibin+Wen%22&searchtype=author" target="_blank" rel="noopener">Zhibin Wen</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Yuan+Wang%22&searchtype=author" target="_blank" rel="noopener">Yuan Wang</a>, <a href="https://arxiv.org/search/?query=au:%22Shuangrun+Shao%22&searchtype=author" target="_blank" rel="noopener">Shuangrun Shao</a>, <a href="https://arxiv.org/search/?query=au:%22Xiaobing+Li%22&searchtype=author" target="_blank" rel="noopener">Xiaobing Li</a>, <a href="https://arxiv.org/search/?query=au:%22Yang+Xu%22&searchtype=author" target="_blank" rel="noopener">Yang Xu</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Wei+Li%22&searchtype=author" target="_blank" rel="noopener">Wei Li</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">Sofia 是一个灵活的合成歌曲检测框架（Synthetic Song Detection），应对 AI 音乐生成器普及带来的鉴定需求。现有 SSD 方法依赖低级伪影或固定特征假设，难以捕捉生成器无关的通用线索。Sofia 通过特定特征专家（人声、音效、全局结构）和自适应 Mixture-of-Experts (MoE) 模块建模音乐内在属性。同时构建 MUSIC8K 基准测试集，涵盖最新生成器和真实音频扰动。实验显示 Sofia 从音乐内在特征学到生成器无关的表示，F1 分比最强基线高 18.5 点。对 TME：平台方需要鉴别用户上传内容是否为 AI 生成（版权合规+内容生态），AI 音频取证是明确的刚需岗位。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>检测/水印</span></span><span>· 分类：检测/水印</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -504,19 +503,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

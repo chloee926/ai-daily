@@ -452,21 +452,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-07-10-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.10010" target="_blank" rel="noopener">DeRA-MOS: Optimizing Text-to-Music Evaluation via Decoupled Listwise Ranking and Modality Alignment</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Chien-Chun+Wang"&searchtype=author" target="_blank" rel="noopener">Chien-Chun Wang</a>, ② <a href="https://arxiv.org/search/?query=au:"Hung-Shin+Lee"&searchtype=author" target="_blank" rel="noopener">Hung-Shin Lee</a>, ③ <a href="https://arxiv.org/search/?query=au:"Hsin-Min+Wang"&searchtype=author" target="_blank" rel="noopener">Hsin-Min Wang</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Berlin+Chen"&searchtype=author" target="_blank" rel="noopener">Berlin Chen</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">将音乐印象（MI）与文本对齐（TA）评分解耦为列表式排序与模态对齐分别优化，降低文生音乐自动评估对人工 MOS 的依赖。</div>
-      <div class="paper-meta"><span class="pcat">eess.AS</span><span class="ptags"><span>评估</span></span><span>· 分类：评估</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.05522" target="_blank" rel="noopener">Exploring LLMs for South Asian Music Understanding and Generation</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Faria+Binte+Kader%22&searchtype=author" target="_blank" rel="noopener">Faria Binte Kader</a>, ② <a href="https://arxiv.org/search/?query=au:%22Mohtasim+Hadi+Rafi%22&searchtype=author" target="_blank" rel="noopener">Mohtasim Hadi Rafi</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Shah+Wasif+Sajjad%22&searchtype=author" target="_blank" rel="noopener">Shah Wasif Sajjad</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Santu+Karmaker%22&searchtype=author" target="_blank" rel="noopener">Santu Karmaker</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">首个系统性评估 LLM 在南亚古典音乐（印度斯坦尼古典、孟加拉 Rabindra/Nazrul 传统）能力的研究。现有 LLM 音乐研究局限于西方大小调体系，对结构不同的低资源音乐传统缺乏洞察。南亚古典音乐由 raga（拉格）和 tala（塔拉）约束，与西方和声驱动的音乐有根本性差异。理解评估：504 题 QA 基准涵盖 raga 语法/文化知识/符号推理，33 个 LLM 中 Gemini 2.5 Pro 达 85-90% 准确率，多数开源模型仅 23-40%。生成评估：五级可控提示框架下最强模型也仅 40% 时间生成风格忠实的输出。揭示结构有效性（structural validity）和风格忠实性（stylistic faithfulness）是两个独立目标，文化根基的音乐建模仍是开放挑战。对 TME：全球化音乐平台需要对多元音乐文化的理解能力，不仅是技术问题更是文化问题。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐理解</span></span><span>· 分类：音乐理解</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -528,19 +527,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

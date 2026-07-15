@@ -422,21 +422,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-05-29-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2607.00309" target="_blank" rel="noopener">A Text-Steerable Instrument for Sketching Procedural Soundscapes via Language Models</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Prabal+Gupta"&searchtype=author" target="_blank" rel="noopener">Prabal Gupta</a></div>
-      <div class="paper-summary">实时音乐界面，将自然语言场景描述转化为演化的程序化声景，表演者可通过直接调参（亮度、节奏风格）持续引导而无需重新提示。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.07397" target="_blank" rel="noopener">Audio-Oscar: A Multi-Agent System for Complex Audio Scene Generation, Orchestration, and Refinement</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Yifan+Duan%22&searchtype=author" target="_blank" rel="noopener">Yifan Duan</a>, ② <a href="https://arxiv.org/search/?query=au:%22Qixiang+Xu%22&searchtype=author" target="_blank" rel="noopener">Qixiang Xu</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Hengtao+Wu%22&searchtype=author" target="_blank" rel="noopener">Hengtao Wu</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">Audio-Oscar 是多 Agent 框架，用于从复杂音频场景描述生成音频。复杂场景常需协调语音/音效/音乐/歌曲/时间结构和后期制作等多个方面。Audio-Oscar 协调一组专家 Agent 分别负责：角色建模与语音设计、语音生成、细粒度时间线规划、模型选择、非语音生成和音频后期制作，并加入反馈驱动的精细化循环。同步构建 ASG-Bench 基准测试（Audio Scene Generation Benchmark），含场景描述-参考音频对及纯文本场景描述，每个场景标注了目标音频事件和时间陈述。对 TME：多 Agent 协作生成复杂音频内容——这对游戏/影视/元宇宙的音频制作流水线有直接的降本增效价值。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>语音合成</span></span><span>· 分类：语音合成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -498,19 +497,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

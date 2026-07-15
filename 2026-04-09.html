@@ -428,21 +428,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-04-09-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2607.01669" target="_blank" rel="noopener">UT-AISTimprt submission for ICME 2026 Grand Challenge on Academic Text-to-Music Generation</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Shunsuke+Yoshida"&searchtype=author" target="_blank" rel="noopener">Shunsuke Yoshida</a>, ② <a href="https://arxiv.org/search/?query=au:"Yu-Hua+Chen"&searchtype=author" target="_blank" rel="noopener">Yu-Hua Chen</a>, ③ <a href="https://arxiv.org/search/?query=au:"Satoru+Fukayama"&searchtype=author" target="_blank" rel="noopener">Satoru Fukayama</a></div>
-      <div class="paper-summary">ICME 2026 学术文生音乐挑战赛方案，研究低数据与小规模模型设定下的批量采样策略及其对生成质量的影响。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span><span>challenge</span></span><span>· 分类：音乐生成 / challenge</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.21018" target="_blank" rel="noopener">LK Jam: Real-Time Human-AI Interactive Music Generation System using Role-Aware GRU</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Yakun+Liu%22&searchtype=author" target="_blank" rel="noopener">Yakun Liu</a>, ② <a href="https://arxiv.org/search/?query=au:%22Zhiyu+Jin%22&searchtype=author" target="_blank" rel="noopener">Zhiyu Jin</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Dong+Liu%22&searchtype=author" target="_blank" rel="noopener">Dong Liu</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Hai+Luan%22&searchtype=author" target="_blank" rel="noopener">Hai Luan</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">LK_Jam 是基于轻量 GRU 的实时双向人机交互音乐生成系统，面向具身 AI 时代的现场音乐交互需求。算法层放弃计算昂贵的固定时间网格，构建多维稀疏事件流（整合 time-shift、连续和声嵌入和角色感知编码），单步推理即可捕获轮替逻辑和微时序。工程层用 C++ 和 JUCE 框架构建严格的多线程无锁通信桥接，使用 RTNeural 推理引擎，编译时拓扑固化+零分配机制将自回归解码端到端开销锁定在 O(1) 复杂度。三阶段渐进训练策略从基础和弦和声进化到专家级交互。初步验证表明在保证音乐连贯性的同时成功挑战了极端实时工程约束。对 TME：下一代 AI 协奏者/实时伴奏系统需要这类「算法+工程」双优的人才。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>实时交互</span><span>interactive</span></span><span>· 分类：实时交互 / interactive</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -504,19 +503,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

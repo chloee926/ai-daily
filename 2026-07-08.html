@@ -427,21 +427,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-07-08-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.18052" target="_blank" rel="noopener">An Empirical Analysis of AI Slop in Music Streaming</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Stanley+Wu"&searchtype=author" target="_blank" rel="noopener">Stanley Wu</a>, ② <a href="https://arxiv.org/search/?query=au:"Josephine+Passananti"&searchtype=author" target="_blank" rel="noopener">Josephine Passananti</a>, ③ <a href="https://arxiv.org/search/?query=au:"Viresh+Mittal"&searchtype=author" target="_blank" rel="noopener">Viresh Mittal</a>, <a href="https://arxiv.org/search/?query=au:"Wenxin+Ding"&searchtype=author" target="_blank" rel="noopener">Wenxin Ding</a>, <a href="https://arxiv.org/search/?query=au:"Haitao+Zheng"&searchtype=author" target="_blank" rel="noopener">Haitao Zheng</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Ben+Y.+Zhao"&searchtype=author" target="_blank" rel="noopener">Ben Y. Zhao</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">实证分析音乐流媒体中的「AI slop」现象——大量低质 AI 生成内容通过伪装人类创作或自动化脚本刷量牟利，揭示平台治理挑战。</div>
-      <div class="paper-meta"><span class="pcat">cs.CR</span><span class="ptags"><span>行业分析</span><span>检测/水印</span></span><span>· 分类：行业分析 / 检测/水印</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.07387" target="_blank" rel="noopener">Making the Most of Limited Data: Score-Aware Training for Text-to-Music Generation</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Yun-Chen+Cheng%22&searchtype=author" target="_blank" rel="noopener">Yun-Chen Cheng</a>, ② <a href="https://arxiv.org/search/?query=au:%22Tzu-Hung+Huang%22&searchtype=author" target="_blank" rel="noopener">Tzu-Hung Huang</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Chih-Pin+Tan%22&searchtype=author" target="_blank" rel="noopener">Chih-Pin Tan</a></div>
+      <div class="paper-summary">针对 ICME 2026 ATTM 挑赛效率赛道的 score-aware training 方案。SOTA 文生音乐系统依赖大规模专有数据和工业级算力，无法区分架构贡献和资源优势。核心创新是将音频-caption 对齐分数作为全管线直接监督信号：低分片段不丢弃，而是通过 CLAP-conditioned Beta noise timestep schedule 路由到高噪声训练区充当隐式正则化；段落级过滤移除最不对齐样本；两阶段 caption 弥合训练/推理分布差距；REPA 辅助损失从 CLAP/MuQ 迁移语义知识。450M 参数 FluxAudio 系统在效率赛道客观评估第 2、MOS 第 3。对 TME：证明了「数据质量+智能调度」可弥补规模劣势，对资源有限团队有实操指导意义。</div>
+      <div class="paper-meta"><span class="pcat">cs.LG</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -503,19 +502,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

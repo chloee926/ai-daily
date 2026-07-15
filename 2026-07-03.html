@@ -433,21 +433,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-07-03-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2607.00309" target="_blank" rel="noopener">A Text-Steerable Instrument for Sketching Procedural Soundscapes via Language Models</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Prabal+Gupta"&searchtype=author" target="_blank" rel="noopener">Prabal Gupta</a></div>
-      <div class="paper-summary">实时音乐界面，将自然语言场景描述转化为演化的程序化声景，表演者可通过直接调参（亮度、节奏风格）持续引导而无需重新提示。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.10010" target="_blank" rel="noopener">DeRA-MOS: Optimizing Text-to-Music Evaluation via Decoupled Listwise Ranking and Modality Alignment</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Chien-Chun+Wang%22&searchtype=author" target="_blank" rel="noopener">Chien-Chun Wang</a>, ② <a href="https://arxiv.org/search/?query=au:%22Hung-Shin+Lee%22&searchtype=author" target="_blank" rel="noopener">Hung-Shin Lee</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Hsin-Min+Wang%22&searchtype=author" target="_blank" rel="noopener">Hsin-Min Wang</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Berlin+Chen%22&searchtype=author" target="_blank" rel="noopener">Berlin Chen</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">DeRA-MOS 是文本到音乐（TTM）系统评估的解耦优化框架。当前 TTM 评估依赖昂贵的人工 MOS 评分，自动估计器的点式回归/分布分类目标不能直接优化排序指标且几何约束弱。DeRA-MOS 将音乐印象（MI）和文本对齐（TA）分开优化：MI 引入 batch-aware listwise ranking loss 建模批内相对顺序；TA 引入 score-anchored modality alignment loss 将人工评分映射到目标音频-文本相似度并正则化融合前的潜空间。有效缓解点式训练失配和模态漂移，在 MusicEval 上 MI 和 TA 排序指标均大幅提升。对 TME：规模化生产音乐内容需要可靠的自动化评估流水线，这类评估框架是基础设施级能力。</div>
+      <div class="paper-meta"><span class="pcat">eess.AS</span><span class="ptags"><span>评估</span></span><span>· 分类：评估</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -509,19 +508,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

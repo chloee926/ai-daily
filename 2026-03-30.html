@@ -439,21 +439,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-03-30-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.22708" target="_blank" rel="noopener">Libretto: Giving LLM Agents a Sense of Musical Structure</a></div>
-      <div class="paper-authors">Yichen Xu</div>
-      <div class="paper-summary">面向 Agent 的符号音乐生成与修订框架，让生成式音乐系统具备可检视、可编辑、可诊断的音乐结构感知能力。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>语音合成</span><span>符号音乐</span></span><span>· 分类：语音合成 / 符号音乐</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.18052" target="_blank" rel="noopener">An Empirical Analysis of AI Slop in Music Streaming</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Stanley+Wu%22&searchtype=author" target="_blank" rel="noopener">Stanley Wu</a>, ② <a href="https://arxiv.org/search/?query=au:%22Josephine+Passananti%22&searchtype=author" target="_blank" rel="noopener">Josephine Passananti</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Viresh+Mittal%22&searchtype=author" target="_blank" rel="noopener">Viresh Mittal</a>, <a href="https://arxiv.org/search/?query=au:%22Wenxin+Ding%22&searchtype=author" target="_blank" rel="noopener">Wenxin Ding</a>, <a href="https://arxiv.org/search/?query=au:%22Haitao+Zheng%22&searchtype=author" target="_blank" rel="noopener">Haitao Zheng</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Ben+Y.+Zhao%22&searchtype=author" target="_blank" rel="noopener">Ben Y. Zhao</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">系统性研究 AI 音乐在流媒体平台上的「slop」（垃圾内容）现象。生成式 AI 降低了内容创作门槛，催生了以量取胜的 AI 音乐产业——大量平庸内容冒充人类作品或通过自动化脚本刷量。通过 Spotify 数据确认：93% 的 AI 音乐收听极少且几乎不被推荐；AI 音乐人采取「广撒网」策略大量发布多风格曲目。作者甚至自行通过 11 家独立发行商发布 AI 曲目验证：发行商对 AI 音乐政策不一致且执行松散，批量发布异常容易。当前 AI 音乐检测方法准确性不足。结论：除非行业采取具体措施，否则 AI 音乐 slop 将发展成自我维持的影子产业。对 TME：平台治理和内容风控需要关注这一趋势。</div>
+      <div class="paper-meta"><span class="pcat">cs.CR</span><span class="ptags"><span>行业分析</span><span>检测/水印</span></span><span>· 分类：行业分析 / 检测/水印</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -515,19 +514,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

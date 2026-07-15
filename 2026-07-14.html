@@ -427,21 +427,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-07-14-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.07387" target="_blank" rel="noopener">Making the Most of Limited Data: Score-Aware Training for Text-to-Music Generation</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Yun-Chen+Cheng"&searchtype=author" target="_blank" rel="noopener">Yun-Chen Cheng</a>, ② <a href="https://arxiv.org/search/?query=au:"Tzu-Hung+Huang"&searchtype=author" target="_blank" rel="noopener">Tzu-Hung Huang</a>, ③ <a href="https://arxiv.org/search/?query=au:"Chih-Pin+Tan"&searchtype=author" target="_blank" rel="noopener">Chih-Pin Tan</a></div>
-      <div class="paper-summary">提出 score-aware training，将音频-文本对齐分数作为全管线直接监督信号，在有限数据下解耦架构贡献与资源优势。</div>
-      <div class="paper-meta"><span class="pcat">cs.LG</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2605.01790" target="_blank" rel="noopener">Shao: Scaling Acoustic Token Language Models Toward High-Fidelity Music Generation</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Jiafeng+Liu%22&searchtype=author" target="_blank" rel="noopener">Jiafeng Liu</a>, ② <a href="https://arxiv.org/search/?query=au:%22Yuanliang+Dong%22&searchtype=author" target="_blank" rel="noopener">Yuanliang Dong</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Hongjia+Liu%22&searchtype=author" target="_blank" rel="noopener">Hongjia Liu</a>, <a href="https://arxiv.org/search/?query=au:%22Yuqing+Cheng%22&searchtype=author" target="_blank" rel="noopener">Yuqing Cheng</a>, <a href="https://arxiv.org/search/?query=au:%22Zhancheng+Guo%22&searchtype=author" target="_blank" rel="noopener">Zhancheng Guo</a>, <a href="https://arxiv.org/search/?query=au:%22Huijing+Liang%22&searchtype=author" target="_blank" rel="noopener">Huijing Liang</a>, <a href="https://arxiv.org/search/?query=au:%22Wenbo+Zhan%22&searchtype=author" target="_blank" rel="noopener">Wenbo Zhan</a>, <a href="https://arxiv.org/search/?query=au:%22Yuming+Sun%22&searchtype=author" target="_blank" rel="noopener">Yuming Sun</a>, <a href="https://arxiv.org/search/?query=au:%22Xiaobing+Li%22&searchtype=author" target="_blank" rel="noopener">Xiaobing Li</a>, <a href="https://arxiv.org/search/?query=au:%22Feng+Yu%22&searchtype=author" target="_blank" rel="noopener">Feng Yu</a>, <a href="https://arxiv.org/search/?query=au:%22Maosong+Sun%22&searchtype=author" target="_blank" rel="noopener">Maosong Sun</a></div>
+      <div class="paper-summary">提出 64 层 RVQ（残差向量量化）声学表征和两阶段由粗到精生成框架。主流设计通常在不同表征空间分别处理结构和保真度（如先 semantic token 再 neural codec），本研究探索另一种思路：在统一的深层声学 token 层级内逐步建模两者。backbone 先生成整首曲目的粗粒度声学 token，super-resolution 模型在同一声学 token 空间内逐层细化——全曲尺度并行运行，固定 62 步推理。进一步引入 hybrid-attention training：对齐目标用因果注意力，层级细化用全注意力。关键发现：文本-歌词对齐可以在纯声学 token 语言建模中自发涌现，不需要单独的语义 token 阶段；从 backbone 初始化 super-resolution 模型显著改善收敛。对 TME：统一表征简化了工程复杂度，有利于模型维护和迭代。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -503,19 +502,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

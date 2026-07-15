@@ -428,21 +428,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-05-06-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.05852" target="_blank" rel="noopener">UniVoice: A Unified Model for Speech and Singing Voice Generation</a></div>
-      <div class="paper-authors">① <a href="https://awesomepapers.io/speech-audio/authors/junjie%20zheng" target="_blank" rel="noopener">Junjie Zheng</a>, ② <a href="https://arxiv.org/search/?query=au:"Huixin+Xue"&searchtype=author" target="_blank" rel="noopener">Huixin Xue</a>, ③ <a href="https://arxiv.org/search/?query=au:"Shihong+Ren"&searchtype=author" target="_blank" rel="noopener">Shihong Ren</a>, <a href="https://arxiv.org/search/?query=au:"Chaofan+Ding"&searchtype=author" target="_blank" rel="noopener">Chaofan Ding</a>, <a href="https://arxiv.org/search/?query=au:"Hao+Liu"&searchtype=author" target="_blank" rel="noopener">Hao Liu</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Zihao+Chen"&searchtype=author" target="_blank" rel="noopener">Zihao Chen</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">统一语音合成（TTS）与歌唱声音合成（SVS），前者依赖语言驱动的灵活韵律，后者需显式旋律控制与精确节奏对齐。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>语音合成</span><span>音乐生成</span></span><span>· 分类：语音合成 / 音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2607.10537" target="_blank" rel="noopener">Dance to Music Generation leveraging Pre-training with Unpaired data and Contrastive Alignment</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Ryota+Kimura%22&searchtype=author" target="_blank" rel="noopener">Ryota Kimura</a>, ② <a href="https://arxiv.org/search/?query=au:%22Sangheon+Park%22&searchtype=author" target="_blank" rel="noopener">Sangheon Park</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Natalia+Polouliakh%22&searchtype=author" target="_blank" rel="noopener">Natalia Polouliakh</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Taketo+Akama%22&searchtype=author" target="_blank" rel="noopener">Taketo Akama</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">舞蹈到音乐生成（Dance-to-Music）研究如何根据人体动作实时配乐，适用于编舞辅助和自动伴奏场景。核心挑战是高质量配对数据稀缺——精确同步的舞蹈-音乐对采集成本高昂且受版权限制。本方案结合无配对数据和有配对数据：预训练运动/音乐单模态编码器 → 节拍引导对比预训练对齐特征空间 → ControlNet 式条件模块注入预训练文生音频扩散模型。在 AIST++ 数据集上超越 SOTA 基线的舞蹈对齐质量。对 TME 意义：虚拟偶像/直播互动场景中「动作驱动配乐」是明确需求，跨模态对齐+小样本学习经验直接相关。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -504,19 +503,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

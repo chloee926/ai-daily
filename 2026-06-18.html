@@ -440,21 +440,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-06-18-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2607.01669" target="_blank" rel="noopener">UT-AISTimprt submission for ICME 2026 Grand Challenge on Academic Text-to-Music Generation</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Shunsuke+Yoshida"&searchtype=author" target="_blank" rel="noopener">Shunsuke Yoshida</a>, ② <a href="https://arxiv.org/search/?query=au:"Yu-Hua+Chen"&searchtype=author" target="_blank" rel="noopener">Yu-Hua Chen</a>, ③ <a href="https://arxiv.org/search/?query=au:"Satoru+Fukayama"&searchtype=author" target="_blank" rel="noopener">Satoru Fukayama</a></div>
-      <div class="paper-summary">ICME 2026 学术文生音乐挑战赛方案，研究低数据与小规模模型设定下的批量采样策略及其对生成质量的影响。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span><span>challenge</span></span><span>· 分类：音乐生成 / challenge</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2607.00309" target="_blank" rel="noopener">A Text-Steerable Instrument for Sketching Procedural Soundscapes via Language Models</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Prabal+Gupta%22&searchtype=author" target="_blank" rel="noopener">Prabal Gupta</a></div>
+      <div class="paper-summary">一个实时的音乐表演界面，将自然语言场景描述转化为演进的程序化音景（soundscape）。表演者输入提示词（如「午夜温暖爵士咖啡馆」），然后通过参数调节实时引导——降低亮度、切换节奏风格等——每次调整产生可预测的听觉变化而无需重新生成。与 GPU 密集型文本到音频系统不同，该工具生成人类可读的配置方案（非波形），支持细粒度控制。后端可选：亚秒级 CPU 嵌入检索 / LLM API / 270M 本地微调模型。核心创新是 live generator 架构——持续发声的同时在后台解析新指令，无缝交叉淡化，即使 LLM 响应需 5-12 秒听众也不会听到中断。这重新定义了文本到音乐为「可持续表演流」而非一次性生成。TME 视角：直播互动+游戏音频场景可直接应用。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -516,19 +515,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

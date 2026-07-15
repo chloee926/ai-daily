@@ -428,7 +428,7 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
@@ -436,13 +436,12 @@
     <article class="paper-card">
       <button class="star-btn" data-key="2026-04-03-p0" aria-label="关注这条">☆</button>
       <div class="paper-title"><a href="https://arxiv.org/abs/2606.12555" target="_blank" rel="noopener">AudioX-Turbo: A Unified Framework for Efficient Anything-to-Audio Generation</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Zeyue+Tian"&searchtype=author" target="_blank" rel="noopener">Zeyue Tian</a>, ② <a href="https://arxiv.org/search/?query=au:"Lei+Ke"&searchtype=author" target="_blank" rel="noopener">Lei Ke</a>, ③ <a href="https://arxiv.org/search/?query=au:"Zhaoyang+Liu"&searchtype=author" target="_blank" rel="noopener">Zhaoyang Liu</a>, <a href="https://ruibin-yuan.github.io/" target="_blank" rel="noopener">Ruibin Yuan</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">统一高效的多模态到音频生成框架，整合文本、视频、音频等条件，并通过蒸馏显著降低多步扩散采样的推理成本。</div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Zeyue+Tian%22&searchtype=author" target="_blank" rel="noopener">Zeyue Tian</a>, ② <a href="https://arxiv.org/search/?query=au:%22Lei+Ke%22&searchtype=author" target="_blank" rel="noopener">Lei Ke</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Zhaoyang+Liu%22&searchtype=author" target="_blank" rel="noopener">Zhaoyang Liu</a>, <a href="https://ruibin-yuan.github.io/" target="_blank" rel="noopener">Ruibin Yuan</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">AudioX-Turbo 是统一的 anything-to-audio 高效生成框架，整合文本/视频/音频等多模态条件信号。采用 teacher-student 范式：teacher AudioX-Base 基于 Multimodal Diffusion Transformer + Multimodal Adaptive Fusion 对齐多模态输入；student AudioX-Turbo 通过 Distribution Matching Distillation（适配 flow matching）从 teacher 蒸馏为少步生成，辅以 diffusion-based discriminator 保证质量。构建约 920 万样本的大规模高质量数据集 IF-caps-Pro。仅需 4 步采样，NFE 比多步基线减少约 25 倍，在文生音频/文生音乐上达 SOTA。对 TME：高效多模态音频生成在短视频 BGM、广告配音、游戏音效等场景有广泛商业化前景。</div>
       <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span><span>高效/端侧</span></span><span>· 分类：音乐生成 / 高效/端侧</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -504,19 +503,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

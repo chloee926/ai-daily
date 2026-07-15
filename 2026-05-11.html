@@ -428,21 +428,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-05-11-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2607.11117" target="_blank" rel="noopener">MusicMark: A Robust Generative Watermarking Framework for Music Generation</a></div>
-      <div class="paper-authors">① <a href="https://agi.korea.ac.kr/people" target="_blank" rel="noopener">Seohwan Yun</a>, ② <a href="https://agi.korea.ac.kr/people" target="_blank" rel="noopener">Jeeyoung Yun</a>, ③ <a href="https://agi.korea.ac.kr/people" target="_blank" rel="noopener">Yongjin Kim</a>, <a href="https://arxiv.org/search/?query=au:"Juyeon+Lee"&searchtype=author" target="_blank" rel="noopener">Juyeon Lee</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Sungwoong+Kim"&searchtype=author" target="_blank" rel="noopener">Sungwoong Kim</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">面向音乐生成的鲁棒生成式水印框架，解决语音水印方法难以适配音乐复杂结构与丰富声学纹理的问题，用于溯源与权属标注。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>检测/水印</span></span><span>· 分类：检测/水印</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2607.01669" target="_blank" rel="noopener">UT-AISTimprt submission for ICME 2026 Grand Challenge on Academic Text-to-Music Generation</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Shunsuke+Yoshida%22&searchtype=author" target="_blank" rel="noopener">Shunsuke Yoshida</a>, ② <a href="https://arxiv.org/search/?query=au:%22Yu-Hua+Chen%22&searchtype=author" target="_blank" rel="noopener">Yu-Hua Chen</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Satoru+Fukayama%22&searchtype=author" target="_blank" rel="noopener">Satoru Fukayama</a></div>
+      <div class="paper-summary">针对 ICME 2026 文本到音乐生成学术挑战赛的研究，聚焦低数据和小规模模型设置下的批次采样策略。训练数据按文本嵌入或音频嵌入聚类，相似样本归入同一 mini-batch 以减少梯度干扰。关键发现：基于文本嵌入的聚类在客观评估指标上表现更好；聚类的粒度数影响行为——中等数量的簇在客观指标上最优，更多簇则在主观听感上呈现更连贯的音乐结构。这项工作的实际价值在于证明了「数据组织方式」对音乐模型训练效果的影响不亚于模型架构本身。对 TME：当内部音乐数据有限时，智能的数据编排策略可以最大化训练效率。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span><span>challenge</span></span><span>· 分类：音乐生成 / challenge</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -504,19 +503,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

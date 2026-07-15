@@ -427,7 +427,7 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
@@ -435,13 +435,12 @@
     <article class="paper-card">
       <button class="star-btn" data-key="2026-04-16-p0" aria-label="关注这条">☆</button>
       <div class="paper-title"><a href="https://arxiv.org/abs/2606.13626" target="_blank" rel="noopener">Generative Modeling of Bach-Style Symbolic Music: A Comparative Study of Autoregressive, Latent-Variable, and Adversarial Approaches</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Dezhi+Yu"&searchtype=author" target="_blank" rel="noopener">Dezhi Yu</a>, ② <a href="https://arxiv.org/search/?query=au:"Kyuil+Lee"&searchtype=author" target="_blank" rel="noopener">Kyuil Lee</a>, ③ <a href="https://arxiv.org/search/?query=au:"Yongkang+Huang"&searchtype=author" target="_blank" rel="noopener">Yongkang Huang</a></div>
-      <div class="paper-summary">在共享 MIDI 语料上比较自回归 LSTM、潜变量（rVAE / VQ-VAE）与 GAN 三类模型生成巴赫风格钢琴音乐的能力与潜表示质量。</div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Dezhi+Yu%22&searchtype=author" target="_blank" rel="noopener">Dezhi Yu</a>, ② <a href="https://arxiv.org/search/?query=au:%22Kyuil+Lee%22&searchtype=author" target="_blank" rel="noopener">Kyuil Lee</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Yongkang+Huang%22&searchtype=author" target="_blank" rel="noopener">Yongkang Huang</a></div>
+      <div class="paper-summary">在共享 MIDI 语料库上系统性比较三类模型家族生成巴赫风格符号钢琴音乐的能力：自回归 LSTM（带注意力）、潜变量模型（rVAE / VQ-VAE）和生成对抗网络。评估维度包括多声部音符序列建模、有用潜表示学习和风格一致性作曲生成。实验发现：带注意力的自回归 LSTM 产生最连贯的音乐样本；向量量化缓解后验坍塌且输出比传统 rVAE 更结构化；GAN 方法捕捉局部音高模式但训练困难、泛化不可靠。研究揭示了自回归/潜变量/对抗范式在符号音乐生成中的相对优势和失效模式。对 TME 虽然偏学术，但对选型决策有参考价值——不同技术路线的 trade-off 清晰呈现。</div>
       <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>符号音乐</span></span><span>· 分类：符号音乐</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -503,19 +502,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

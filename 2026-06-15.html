@@ -428,21 +428,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-06-15-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2607.11117" target="_blank" rel="noopener">MusicMark: A Robust Generative Watermarking Framework for Music Generation</a></div>
-      <div class="paper-authors">① <a href="https://agi.korea.ac.kr/people" target="_blank" rel="noopener">Seohwan Yun</a>, ② <a href="https://agi.korea.ac.kr/people" target="_blank" rel="noopener">Jeeyoung Yun</a>, ③ <a href="https://agi.korea.ac.kr/people" target="_blank" rel="noopener">Yongjin Kim</a>, <a href="https://arxiv.org/search/?query=au:"Juyeon+Lee"&searchtype=author" target="_blank" rel="noopener">Juyeon Lee</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Sungwoong+Kim"&searchtype=author" target="_blank" rel="noopener">Sungwoong Kim</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">面向音乐生成的鲁棒生成式水印框架，解决语音水印方法难以适配音乐复杂结构与丰富声学纹理的问题，用于溯源与权属标注。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>检测/水印</span></span><span>· 分类：检测/水印</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2607.08526" target="_blank" rel="noopener">A Quantized Native Runtime for On-Device Semantic Audio Generation</a></div>
+      <div class="paper-authors">① <a href="https://matteospanio.github.io/" target="_blank" rel="noopener">Matteo Spanio</a>, ② <a href="https://arxiv.org/search/?query=au:%22Antonio+Rodà%22&searchtype=author" target="_blank" rel="noopener">Antonio Rodà</a></div>
+      <div class="paper-summary">aria 是一个无依赖的原生运行时（runtime），可在普通 GPU、纯 CPU 甚至树莓派 5 上运行 Stable Audio 3 完整的文生音乐管线，无需 Python 或任何深度学习框架。核心贡献是对量化策略的系统研究：8bit 精度在任何质量指标上均无感知损失且内存锐减、速度最快；4bit 精度可将 12 亿参数模型塞入 8GB 树莓派。此外暴露了 activation steering 接口——一种低成本控制生成内容的手段（如「sonic seasoning」风味调控）。启动速度比官方实现快约 7 倍。对 TME 的启示：端侧/嵌入式音乐生成正在变为现实，移动端音乐 App 和 IoT 音频设备需要这类轻量化部署能力。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span><span>高效/端侧</span></span><span>· 分类：音乐生成 / 高效/端侧</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -504,19 +503,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

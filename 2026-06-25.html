@@ -427,21 +427,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-06-25-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.13626" target="_blank" rel="noopener">Generative Modeling of Bach-Style Symbolic Music: A Comparative Study of Autoregressive, Latent-Variable, and Adversarial Approaches</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Dezhi+Yu"&searchtype=author" target="_blank" rel="noopener">Dezhi Yu</a>, ② <a href="https://arxiv.org/search/?query=au:"Kyuil+Lee"&searchtype=author" target="_blank" rel="noopener">Kyuil Lee</a>, ③ <a href="https://arxiv.org/search/?query=au:"Yongkang+Huang"&searchtype=author" target="_blank" rel="noopener">Yongkang Huang</a></div>
-      <div class="paper-summary">在共享 MIDI 语料上比较自回归 LSTM、潜变量（rVAE / VQ-VAE）与 GAN 三类模型生成巴赫风格钢琴音乐的能力与潜表示质量。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>符号音乐</span></span><span>· 分类：符号音乐</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.21670" target="_blank" rel="noopener">Improving Text-to-Music Generation with Human Preference Rewards</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Yonghyun+Kim%22&searchtype=author" target="_blank" rel="noopener">Yonghyun Kim</a>, ② <a href="https://arxiv.org/search/?query=au:%22Junwon+Lee%22&searchtype=author" target="_blank" rel="noopener">Junwon Lee</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Haiwen+Xia%22&searchtype=author" target="_blank" rel="noopener">Haiwen Xia</a>, <a href="https://arxiv.org/search/?query=au:%22Yinghao+Ma%22&searchtype=author" target="_blank" rel="noopener">Yinghao Ma</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Chris+Donahue%22&searchtype=author" target="_blank" rel="noopener">Chris Donahue</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">ICME 2026 ATTM 挑战赛效率赛道参赛方案。在官方 FAD-CLAP/CLAP score 之外引入 TuneJury 人类偏好奖励模型，同时作为训练条件和样本筛选标准。基于 120M 参数 FluxAudio-S骨干的五项工程决策：①训练时 reward conditioning 兼作推理 CFG 轴；②五种 score-conditioning 架构搜索；③top decile 专家迭代；④ CRPO 偏好微调；⑤推理后处理（联合 CFG+源分离+响度标准化）。分解实验揭示：训练时 reward conditioning 是有效的条件轴，专家迭代是主导贡献者，偏好微调只带来噪声级增益，推理时 score scalar 已饱和。对 TME：音乐模型训练的「投入产出比」分析很有参考价值——知道哪些改进真正值得投入算力。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -503,19 +502,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

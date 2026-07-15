@@ -427,21 +427,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-03-25-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2607.05902" target="_blank" rel="noopener">From Textural Counterpoint to Feature Encoding: A Multi-Dimensional Machine Representation Study of Haydn&#x27;s &quot;The Lark&quot;</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Yakun+Liu"&searchtype=author" target="_blank" rel="noopener">Yakun Liu</a>, ② <a href="https://arxiv.org/search/?query=au:"Zhiyu+Jin"&searchtype=author" target="_blank" rel="noopener">Zhiyu Jin</a>, ③ <a href="https://arxiv.org/search/?query=au:"Hai+Luan"&searchtype=author" target="_blank" rel="noopener">Hai Luan</a>, <a href="https://arxiv.org/search/?query=au:"Dong+Liu"&searchtype=author" target="_blank" rel="noopener">Dong Liu</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Xiaonan+Li"&searchtype=author" target="_blank" rel="noopener">Xiaonan Li</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">跨学科分析海顿《云雀》弦乐四重奏，探索室内乐中「角色分配与动态交互」逻辑，为深度音乐生成模型的多声部协作提供蓝图。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>符号音乐</span></span><span>· 分类：符号音乐</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2606.22708" target="_blank" rel="noopener">Libretto: Giving LLM Agents a Sense of Musical Structure</a></div>
+      <div class="paper-authors">Yichen Xu</div>
+      <div class="paper-summary">Libretto 是面向 LLM Agent 的符号音乐生成与修订框架。当前生成式音乐系统的音频输出难以检查、编辑和诊断其音乐结构。Libretto 使用 LLM 原生语法，显式定义起始时间槽、声部和乐句级组织，然后在节奏/和声/旋律/织体/曲式/变奏六个维度上做统计空间评估。同一组结构化维度支持检索、诊断、版权风险控制和迭代自我修订。适用场景：片段补全、参考引导的全曲生成、渐变变形和教育音乐生成。核心价值是将符号音乐从原始 token 序列转变为可度量、可编辑的对象。TME 招聘角度：LLM + 结构化音乐表示的交叉能力非常前沿，适合音乐信息检索和 AI 作曲工具岗位。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>语音合成</span><span>符号音乐</span></span><span>· 分类：语音合成 / 符号音乐</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -503,19 +502,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

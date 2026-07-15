@@ -416,21 +416,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-06-04-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.17006" target="_blank" rel="noopener">TuneJury: An Open Metric for Improving Music Generation Preference Alignment</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Yonghyun+Kim"&searchtype=author" target="_blank" rel="noopener">Yonghyun Kim</a>, ② <a href="https://arxiv.org/search/?query=au:"Junwon+Lee"&searchtype=author" target="_blank" rel="noopener">Junwon Lee</a>, ③ <a href="https://arxiv.org/search/?query=au:"Haiwen+Xia"&searchtype=author" target="_blank" rel="noopener">Haiwen Xia</a>, <a href="https://arxiv.org/search/?query=au:"Yinghao+Ma"&searchtype=author" target="_blank" rel="noopener">Yinghao Ma</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">开源的实例级成对奖励模型 TuneJury，从文本提示与音频片段预测音乐偏好分数，训练数据涵盖竞技式投票与专家美学评分。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>评估</span><span>音乐生成</span></span><span>· 分类：评估 / 音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2605.22717" target="_blank" rel="noopener">Live Music Diffusion Models: Efficient Fine-Tuning and Post-Training of Interactive Diffusion Music Generators</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Zachary+Novack%22&searchtype=author" target="_blank" rel="noopener">Zachary Novack</a>, ② <a href="https://arxiv.org/search/?query=au:%22Stephen+Brade%22&searchtype=author" target="_blank" rel="noopener">Stephen Brade</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Haven+Kim%22&searchtype=author" target="_blank" rel="noopener">Haven Kim</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">Live Music Diffusion Models (LMDMs) 将双向非流式音频扩散模型改造为交互式实时模型。SOTA 音乐模型多为离散自回归（计算成本极高），而扩散模型虽开源友好但天然不支持流式推理。本文识别出 block-wise outpainting 扩散流程中的关键低效环节，提出简单修改：通过 block-wise KV Caching 恢复并超越离散 LMM 的推理复杂度。独特优势是支持稳定的后训练对齐（ARC-Forcing 范式），无需显式 RL 或 reward model 即减少误差累积。应用于文本条件生成、草图音乐合成、即兴合奏（jamming）等场景。最终展示艺术家-AI 真实合作：LMDM 作为「生成延迟器」实时变换乐手即兴演奏，在消费级游戏笔记本本地运行。对 TME：音乐创作工具的「实时协作」体验是差异化竞争力。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>实时交互</span><span>音乐生成</span></span><span>· 分类：实时交互 / 音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -492,19 +491,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

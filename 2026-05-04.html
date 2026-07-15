@@ -429,21 +429,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-05-04-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2606.07397" target="_blank" rel="noopener">Audio-Oscar: A Multi-Agent System for Complex Audio Scene Generation, Orchestration, and Refinement</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Yifan+Duan"&searchtype=author" target="_blank" rel="noopener">Yifan Duan</a>, ② <a href="https://arxiv.org/search/?query=au:"Qixiang+Xu"&searchtype=author" target="_blank" rel="noopener">Qixiang Xu</a>, ③ <a href="https://arxiv.org/search/?query=au:"Hengtao+Wu"&searchtype=author" target="_blank" rel="noopener">Hengtao Wu</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">多智能体系统 Audio-Oscar 生成长篇可控音频场景，协调语音、音效、音乐、歌曲与时间结构及后期制作于一体。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>语音合成</span></span><span>· 分类：语音合成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2607.11124" target="_blank" rel="noopener">BeatEdit: Symbolic Music Generation as Explicit Editing</a></div>
+      <div class="paper-authors">① <a href="https://haoyu-gu.github.io/" target="_blank" rel="noopener">Haoyu Gu</a>, ② <a href="https://github.com/Lekai-Qian" target="_blank" rel="noopener">Lekai Qian</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Haowu+Zhou%22&searchtype=author" target="_blank" rel="noopener">Haowu Zhou</a>, <a href="https://arxiv.org/search/?query=au:%22Qi+Liu%22&searchtype=author" target="_blank" rel="noopener">Qi Liu</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Shuai+Wang%22&searchtype=author" target="_blank" rel="noopener">Shuai Wang</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary"> BeatEdit 是首个基于「显式编辑操作」的符号音乐生成框架，来自 Haoyu Gu 团队。传统符号音乐生成是从零输出完整序列，但真实创作本质是反复修改。BeatEdit 利用 BEAT 编码（以节拍网格为锚点的表示法）的结构特性，将生成重新定义为「对草稿的编辑」。提供三种互补机制：逐 token 纠错标注、迭代式伴奏编辑、先标后填的片段补全。三者共享同一编码和预训练骨干网络，推理单次 <100ms。实验表明在所有三项任务上均优于自回归和扩散方法。对招聘的启示：音乐 AI 正从「一次性生成」转向「可交互编辑」，具备音乐信息检索（MIR）+ 编辑界面设计经验的工程师会更受青睐。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>符号音乐</span></span><span>· 分类：符号音乐</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -505,19 +504,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;

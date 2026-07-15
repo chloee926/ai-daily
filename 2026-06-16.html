@@ -428,21 +428,20 @@
     </blockquote>
   </section>
 
-      <section class="section sec-paper">
+          <section class="section sec-paper">
     <div class="sec-head">
       <span class="sec-num sec-num-5">05</span>
       <h2 class="sec-title">🎵 今日 AI 论文 · 音乐 / 语音</h2>
     </div>
     <article class="paper-card">
       <button class="star-btn" data-key="2026-06-16-p0" aria-label="关注这条">☆</button>
-      <div class="paper-title"><a href="https://arxiv.org/abs/2607.10537" target="_blank" rel="noopener">Dance to Music Generation leveraging Pre-training with Unpaired data and Contrastive Alignment</a></div>
-      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:"Ryota+Kimura"&searchtype=author" target="_blank" rel="noopener">Ryota Kimura</a>, ② <a href="https://arxiv.org/search/?query=au:"Sangheon+Park"&searchtype=author" target="_blank" rel="noopener">Sangheon Park</a>, ③ <a href="https://arxiv.org/search/?query=au:"Natalia+Polouliakh"&searchtype=author" target="_blank" rel="noopener">Natalia Polouliakh</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:"Taketo+Akama"&searchtype=author" target="_blank" rel="noopener">Taketo Akama</a>, <span class="auth-etal">et al.</span></div>
-      <div class="paper-summary">利用人体关节位置作为动作表征，结合无配对数据预训练与对比对齐，实现舞蹈到音乐的生成，适用于编舞辅助与自动伴奏。</div>
-      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>音乐生成</span></span><span>· 分类：音乐生成</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
+      <div class="paper-title"><a href="https://arxiv.org/abs/2607.05902" target="_blank" rel="noopener">From Textural Counterpoint to Feature Encoding: A Multi-Dimensional Machine Representation Study of Haydn&#x27;s &quot;The Lark&quot;</a></div>
+      <div class="paper-authors">① <a href="https://arxiv.org/search/?query=au:%22Yakun+Liu%22&searchtype=author" target="_blank" rel="noopener">Yakun Liu</a>, ② <a href="https://arxiv.org/search/?query=au:%22Zhiyu+Jin%22&searchtype=author" target="_blank" rel="noopener">Zhiyu Jin</a>, ③ <a href="https://arxiv.org/search/?query=au:%22Hai+Luan%22&searchtype=author" target="_blank" rel="noopener">Hai Luan</a>, <a href="https://arxiv.org/search/?query=au:%22Dong+Liu%22&searchtype=author" target="_blank" rel="noopener">Dong Liu</a>, <span class="auth-etal">et al.</span><a href="https://arxiv.org/search/?query=au:%22Xiaonan+Li%22&searchtype=author" target="_blank" rel="noopener">Xiaonan Li</a>, <span class="auth-etal">et al.</span></div>
+      <div class="paper-summary">以海顿 D 大调弦乐四重奏《云雀》（Op.64 No.5）为案例，探索古典室内乐中的「角色分配与动态交互」逻辑，用于构建具有社会属性和人机协作意识的音乐生成系统。研究提出一条跨学科路径：「古典形态定性分析→电声定量测量→机器表征重建」。创新性地完全抛弃传统的机械量化网格，引入 Event-based Timestamps 记录微时序，将声学特征转化为独立的「角色感知编码」（Role-Aware Encoding）。这项工作连接了古典音乐学、DAW 工程和 AI 符号生成三个领域，为人机协作音乐系统建立了深刻的理论基础。对招聘而言：这种「音乐学+工程+AI」的交叉视角极其罕见，适合作为音乐 AI 团队的理论顾问方向。</div>
+      <div class="paper-meta"><span class="pcat">cs.SD</span><span class="ptags"><span>符号音乐</span></span><span>· 分类：符号音乐</span><a href="papers.html">查看音乐 AI 论文合集 →</a></div>
     </article>
   </section>
-
-  <div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
+<div class="watermark">TME 招聘 HR 出品 · ChloeCao</div>
 </div>
 
 <script>
@@ -504,19 +503,20 @@ document.addEventListener('click', function (e) {
   if (stars[k]) {
     delete stars[k];
   } else {
-    var card = btn.closest('.card, .new-term, .term-item');
-    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var card = btn.closest('.card, .new-term, .term-item, .paper-card');
+    var titleEl = card ? card.querySelector('h3, h4, .paper-title') : null;
     var title = titleEl ? titleEl.textContent.trim() : k;
-    var bodyEl = card ? card.querySelector('p') : null;
+    var bodyEl = card ? card.querySelector('p, .paper-summary') : null;
     var body = bodyEl ? bodyEl.textContent.trim() : '';
     var relEl = card ? card.querySelector('.rel') : null;
     var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
     var music = card ? !!card.querySelector('.music-badge') : false;
     stars[k] = { title: title, body: body, rel: rel, music: music };
   }
-  setStars(stars); refreshStarUI();
+  try { setStars(stars); } catch(e) {}
+  refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-});
+}););
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
