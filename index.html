@@ -6,111 +6,92 @@
   <title>每日AI简报 · 目录</title>
   <style>
     :root {
-      --bg: #0a0e1a;
-      --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
-      --surface: rgba(18, 24, 48, 0.92);
-      --surface-hover: rgba(24, 32, 60, 0.95);
-      --text: #e8edf8;
-      --text-secondary: #9aa8c7;
-      --accent-blue: #5b8def;
-      --accent-purple: #a78bfa;
-      --accent-green: #34d399;
-      --accent-amber: #fbbf24;
-      --border: rgba(255,255,255,0.06);
-      --shadow: 0 2px 12px rgba(0,0,0,0.12);
+      --bg: #f3efe6;
+      --paper: #fbf9f3;
+      --ink: #1b1813;
+      --ink-soft: #5b554b;
+      --ink-dim: #8a8275;
+      --rule: #1b1813;
+      --rule-soft: rgba(27,24,19,0.14);
+      --accent: #9e2b25;
+      --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+      --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    @media (prefers-color-scheme: light) {
+    @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #f0f2f7;
-        --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
-        --surface: rgba(255,255,255,0.85);
-        --surface-hover: rgba(255,255,255,0.95);
-        --text: #2d3748;
-        --text-secondary: #5a6878;
-        --border: rgba(0,0,0,0.06);
-        --shadow: 0 2px 12px rgba(0,0,0,0.06);
+        --bg: #16130e;
+        --paper: #1e1a14;
+        --ink: #ece5d8;
+        --ink-soft: #b3a994;
+        --ink-dim: #7d7461;
+        --rule: #ece5d8;
+        --rule-soft: rgba(236,229,216,0.14);
+        --accent: #e08a7a;
       }
     }
     [data-theme="light"] {
-      --bg: #f0f2f7;
-      --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
-      --surface: rgba(255,255,255,0.85);
-      --surface-hover: rgba(255,255,255,0.95);
-      --text: #2d3748;
-      --text-secondary: #5a6878;
-      --border: rgba(0,0,0,0.06);
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+      --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
     }
     [data-theme="dark"] {
-      --bg: #0a0e1a;
-      --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
-      --surface: rgba(18, 24, 48, 0.92);
-      --surface-hover: rgba(24, 32, 60, 0.95);
-      --text: #e8edf8;
-      --text-secondary: #9aa8c7;
-      --border: rgba(255,255,255,0.06);
-      --shadow: 0 2px 12px rgba(0,0,0,0.12);
+      --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+      --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
-      background: var(--bg-gradient);
-      color: var(--text);
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
       line-height: 1.6;
       min-height: 100vh;
       transition: background 0.3s, color 0.3s;
     }
-    .wrap { max-width: 680px; margin: 0 auto; padding: 24px 16px 60px; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 24px 16px 60px; }
 
-    .header { text-align: center; padding: 32px 20px 24px; }
-    .header h1 {
-      font-size: 28px; font-weight: 700; letter-spacing: 2px;
-      background: linear-gradient(135deg, #5b8def, #a78bfa);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .header .sub { font-size: 13px; color: var(--text-secondary); margin-top: 6px; letter-spacing: 1px; }
+    .header { text-align: center; padding: 40px 20px 16px; border-top: 3px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .header .kicker { font-family: var(--sans); font-size: 11px; letter-spacing: 5px; color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px; }
+    .header h1 { font-family: var(--serif); font-size: 32px; font-weight: 700; letter-spacing: 3px; color: var(--ink); }
+    .header .sub { font-size: 13px; color: var(--ink-soft); margin-top: 10px; letter-spacing: 1px; }
 
     .stats {
-      display: flex; justify-content: center; gap: 24px; margin: 16px 0 28px;
-      font-size: 13px; color: var(--text-secondary);
+      display: flex; justify-content: center; gap: 28px; margin: 18px 0 30px;
+      font-size: 13px; color: var(--ink-soft);
     }
-    .stats span b { color: var(--accent-blue); font-size: 18px; }
+    .stats span b { color: var(--accent); font-size: 18px; font-family: var(--serif); }
 
     .theme-toggle {
-      position: fixed; top: 16px; right: 16px; z-index: 1000;
-      background: var(--surface); border: 1px solid var(--border);
-      color: var(--text); padding: 6px 12px; border-radius: 20px;
-      font-size: 16px; cursor: pointer; backdrop-filter: blur(8px);
-      transition: all 0.2s;
+      position: fixed; top: 14px; right: 14px; z-index: 1000;
+      background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+      padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer; transition: all 0.2s;
     }
-    .theme-toggle:hover { opacity: 0.8; }
+    .theme-toggle:hover { background: var(--rule-soft); }
 
-    .month-group { margin-bottom: 28px; }
+    .month-group { margin-bottom: 30px; }
     .month-title {
-      font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;
-      padding-bottom: 6px; border-bottom: 1px solid var(--border);
+      font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--ink);
+      margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid var(--rule); letter-spacing: 1px;
     }
     .month-summary {
-      border-left: 3px solid var(--accent-purple);
-      background: linear-gradient(135deg, rgba(167,139,250,0.06), rgba(167,139,250,0.02));
-      border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;
-      font-size: 13px; color: var(--text-secondary); line-height: 1.7;
+      border-left: 3px solid var(--accent);
+      background: var(--paper);
+      border-radius: 2px; padding: 10px 14px; margin-bottom: 14px;
+      font-size: 13px; color: var(--ink-soft); line-height: 1.75;
     }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
     .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-      padding: 12px 8px; text-align: center; text-decoration: none;
-      box-shadow: var(--shadow);
-      transition: all 0.2s ease;
+      background: var(--paper); border: 1px solid var(--rule-soft); border-top: 2px solid var(--accent);
+      border-radius: 2px; padding: 12px 8px; text-align: center; text-decoration: none;
+      transition: background 0.2s;
     }
-    .card:hover { background: var(--surface-hover); border-color: rgba(91,141,239,0.3); transform: translateY(-1px); }
-    .card .date { font-size: 14px; font-weight: 600; color: var(--text); }
-    .card .weekday { font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
+    .card:hover { background: var(--rule-soft); }
+    .card .date { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--ink); }
+    .card .weekday { font-family: var(--sans); font-size: 10px; color: var(--ink-dim); margin-top: 3px; }
 
     .watermark {
-      text-align: center; color: rgba(255,255,255,0.12); font-size: 11px;
-      margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border);
+      text-align: center; color: var(--ink-dim); font-size: 11px;
+      margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--rule-soft); letter-spacing: 2px;
     }
   </style>
 </head>
@@ -128,10 +109,11 @@ function toggleTheme() {
   localStorage.setItem('ai-daily-theme', next);
 }
 </script>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌓</button>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色">◐</button>
 <div class="wrap">
   <div class="header">
-    <h1>每日AI简报</h1>
+    <div class="kicker">AI · 行业简报</div>
+    <h1>每日 AI 简报</h1>
     <div class="sub">AI 行业 · 每日精选 · HR 视角</div>
   </div>
 

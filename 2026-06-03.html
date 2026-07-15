@@ -2,247 +2,225 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>每日AI简报 | 2026-06-03</title>
 <style>
   :root {
-    /* Dark theme (default) */
-    --bg: #0a0e1a;
-    --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
-    --surface: rgba(18, 26, 50, 0.6);
-    --surface-hover: rgba(28, 40, 70, 0.7);
-    --text: #e0e6f0;
-    --text-secondary: #98a8c0;
-    --text-dim: #5a6880;
-    --heading: #fff;
-    --intro-bg: linear-gradient(135deg, rgba(30,50,100,0.4), rgba(20,35,70,0.3));
-    --intro-border: rgba(100,140,255,0.15);
-    --intro-text: #c0d0e8;
-    --nw-bg: linear-gradient(135deg, rgba(180,100,255,0.12), rgba(120,60,200,0.08));
-    --nw-border: rgba(180,130,255,0.25);
-    --nw-badge-bg: rgba(180,130,255,0.2);
-    --nw-badge-text: #c8a8ff;
-    --nw-heading: #d8b8ff;
-    --think-bg: linear-gradient(135deg, rgba(255,200,50,0.08), rgba(200,160,30,0.05));
-    --think-border: rgba(255,200,80,0.2);
-    --think-badge-bg: rgba(255,200,80,0.15);
-    --think-badge-text: #ffc844;
-    --think-text: #d0c8a0;
-    --tag-blue-bg: rgba(70,130,255,0.15); --tag-blue-text: #6ea8ff;
-    --tag-green-bg: rgba(70,200,130,0.15); --tag-green-text: #5ed49a;
-    --tag-red-bg: rgba(255,90,90,0.15); --tag-red-text: #ff7070;
-    --tag-orange-bg: rgba(255,160,50,0.15); --tag-orange-text: #ffa844;
-    --tag-purple-bg: rgba(180,130,255,0.15); --tag-purple-text: #c8a8ff;
-    --tag-teal-bg: rgba(50,200,200,0.15); --tag-teal-text: #50d0d0;
-    --border-color: rgba(100,140,255,0.1);
-    --border-hover: rgba(100,140,255,0.3);
-    --nav-bg: rgba(20,30,60,0.85);
-    --nav-border: rgba(100,140,255,0.3);
-    --nav-text: #8ab4ff;
-    --nav-hover-bg: rgba(40,60,120,0.9);
-    --nav-hover-text: #b0d0ff;
-    --link: #6b8fc0;
-    --link-hover: #8ab4ff;
-    --watermark: #2a3040;
-    --shadow: 0 2px 12px rgba(0,0,0,0.2);
+    /* ===== Light: 杂志纸白 ===== */
+    --bg: #f3efe6;
+    --paper: #fbf9f3;
+    --ink: #1b1813;
+    --ink-soft: #5b554b;
+    --ink-dim: #8a8275;
+    --rule: #1b1813;
+    --rule-soft: rgba(27,24,19,0.14);
+    --accent: #9e2b25;          /* 刊红 */
+    --c1: #9e2b25;              /* 01 新名词 红 */
+    --c2: #1f5c4d;              /* 02 议题一 墨绿 */
+    --c3: #2b4f8a;              /* 03 议题二 蓝 */
+    --c4: #b06a1e;              /* 04 思考 橙 */
+    --card-bg: #fbf9f3;
+    --card-border: rgba(27,24,19,0.16);
+    --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3;
+    --term-bg: rgba(158,43,37,0.05);
+    --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06);
+    --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3;
+    --nav-border: #1b1813;
+    --nav-text: #1b1813;
+    --link: #2b4f8a;
+    --watermark: #b3ab9c;
+    --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+    --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
   }
-
-  /* Light theme */
-  @media (prefers-color-scheme: light) {
+  @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #f0f2f7;
-      --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
-      --surface: rgba(255, 255, 255, 0.85);
-      --surface-hover: rgba(255, 255, 255, 0.95);
-      --text: #2d3748;
-      --text-secondary: #5a6878;
-      --text-dim: #8896a6;
-      --heading: #1a202c;
-      --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
-      --intro-border: rgba(66,103,178,0.15);
-      --intro-text: #3a4a60;
-      --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
-      --nw-border: rgba(140,100,220,0.2);
-      --nw-badge-bg: rgba(140,100,220,0.1);
-      --nw-badge-text: #7c4dff;
-      --nw-heading: #5b2eab;
-      --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
-      --think-border: rgba(200,170,50,0.2);
-      --think-badge-bg: rgba(200,170,50,0.1);
-      --think-badge-text: #b8860b;
-      --think-text: #5a4e30;
-      --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
-      --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
-      --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
-      --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
-      --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
-      --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
-      --border-color: rgba(0,0,0,0.06);
-      --border-hover: rgba(66,103,178,0.25);
-      --nav-bg: rgba(255,255,255,0.9);
-      --nav-border: rgba(66,103,178,0.2);
-      --nav-text: #4267b2;
-      --nav-hover-bg: rgba(240,242,247,0.95);
-      --nav-hover-text: #2d4a8a;
-      --link: #4267b2;
-      --link-hover: #2d4a8a;
-      --watermark: #c0c8d4;
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      /* ===== Dark: 暖炭黑 ===== */
+      --bg: #16130e;
+      --paper: #1e1a14;
+      --ink: #ece5d8;
+      --ink-soft: #b3a994;
+      --ink-dim: #7d7461;
+      --rule: #ece5d8;
+      --rule-soft: rgba(236,229,216,0.14);
+      --accent: #e08a7a;
+      --c1: #e08a7a;
+      --c2: #6fae9a;
+      --c3: #8aa9d6;
+      --c4: #d9a35e;
+      --card-bg: #1e1a14;
+      --card-border: rgba(236,229,216,0.18);
+      --card-hover: rgba(236,229,216,0.06);
+      --lead-bg: #1e1a14;
+      --term-bg: rgba(224,138,122,0.08);
+      --term-border: rgba(224,138,122,0.34);
+      --think-bg: rgba(217,163,94,0.08);
+      --think-border: rgba(217,163,94,0.34);
+      --nav-bg: #1e1a14;
+      --nav-border: #ece5d8;
+      --nav-text: #ece5d8;
+      --link: #8aa9d6;
+      --watermark: #5d564a;
     }
   }
-
-  /* Manual override */
-  [data-theme="dark"] { /* uses default dark vars */ }
   [data-theme="light"] {
-    --bg: #f0f2f7;
-    --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
-    --surface: rgba(255, 255, 255, 0.85);
-    --surface-hover: rgba(255, 255, 255, 0.95);
-    --text: #2d3748;
-    --text-secondary: #5a6878;
-    --text-dim: #8896a6;
-    --heading: #1a202c;
-    --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
-    --intro-border: rgba(66,103,178,0.15);
-    --intro-text: #3a4a60;
-    --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
-    --nw-border: rgba(140,100,220,0.2);
-    --nw-badge-bg: rgba(140,100,220,0.1);
-    --nw-badge-text: #7c4dff;
-    --nw-heading: #5b2eab;
-    --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
-    --think-border: rgba(200,170,50,0.2);
-    --think-badge-bg: rgba(200,170,50,0.1);
-    --think-badge-text: #b8860b;
-    --think-text: #5a4e30;
-    --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
-    --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
-    --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
-    --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
-    --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
-    --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
-    --border-color: rgba(0,0,0,0.06);
-    --border-hover: rgba(66,103,178,0.25);
-    --nav-bg: rgba(255,255,255,0.9);
-    --nav-border: rgba(66,103,178,0.2);
-    --nav-text: #4267b2;
-    --nav-hover-bg: rgba(240,242,247,0.95);
-    --nav-hover-text: #2d4a8a;
-    --link: #4267b2;
-    --link-hover: #2d4a8a;
-    --watermark: #c0c8d4;
-    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+    --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
+    --c1: #9e2b25; --c2: #1f5c4d; --c3: #2b4f8a; --c4: #b06a1e;
+    --card-bg: #fbf9f3; --card-border: rgba(27,24,19,0.16); --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3; --term-bg: rgba(158,43,37,0.05); --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06); --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3; --nav-border: #1b1813; --nav-text: #1b1813; --link: #2b4f8a; --watermark: #b3ab9c;
+  }
+  [data-theme="dark"] {
+    --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+    --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
+    --c1: #e08a7a; --c2: #6fae9a; --c3: #8aa9d6; --c4: #d9a35e;
+    --card-bg: #1e1a14; --card-border: rgba(236,229,216,0.18); --card-hover: rgba(236,229,216,0.06);
+    --lead-bg: #1e1a14; --term-bg: rgba(224,138,122,0.08); --term-border: rgba(224,138,122,0.34);
+    --think-bg: rgba(217,163,94,0.08); --think-border: rgba(217,163,94,0.34);
+    --nav-bg: #1e1a14; --nav-border: #ece5d8; --nav-text: #ece5d8; --link: #8aa9d6; --watermark: #5d564a;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    background: var(--bg-gradient);
-    color: var(--text);
-    line-height: 1.7;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
     transition: background 0.3s, color 0.3s;
   }
-
-  /* Theme toggle */
   .theme-toggle {
-    position: fixed; top: 16px; right: 16px; z-index: 1000;
-    background: var(--nav-bg); border: 1px solid var(--nav-border);
-    color: var(--nav-text); padding: 6px 12px; border-radius: 20px;
-    font-size: 16px; cursor: pointer; backdrop-filter: blur(8px);
-    transition: all 0.2s; line-height: 1;
+    position: fixed; top: 14px; right: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; line-height: 1;
   }
-  .theme-toggle:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
-
+  .theme-toggle:hover { background: var(--card-hover); }
   .back-nav {
-    position: fixed; top: 16px; left: 16px; z-index: 1000;
-    background: var(--nav-bg); border: 1px solid var(--nav-border);
-    color: var(--nav-text); padding: 6px 14px; border-radius: 20px;
-    font-size: 13px; text-decoration: none; backdrop-filter: blur(8px);
-    transition: all 0.2s;
+    position: fixed; top: 14px; left: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 12px; border-radius: 4px; font-size: 12px; text-decoration: none;
+    font-family: var(--sans); letter-spacing: 2px; transition: all 0.2s;
   }
-  .back-nav:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
-  @media (max-width: 600px) {
-    .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 12px auto 0; width: fit-content; }
-    .theme-toggle { top: auto; bottom: 20px; right: 16px; }
+  .back-nav:hover { background: var(--card-hover); }
+  @media (max-width: 640px) {
+    .back-nav { position: static; display: inline-block; margin: 16px 0 0 20px; }
+    .theme-toggle { top: auto; bottom: 18px; right: 14px; }
   }
 
-  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
-  .header {
-    text-align: center; padding: 48px 0 28px;
-    border-bottom: 1px solid var(--border-color); margin-bottom: 24px;
-  }
-  .header .date { font-size: 14px; color: var(--text-secondary); letter-spacing: 2px; }
-  .header h1 { font-size: 22px; color: var(--heading); margin: 8px 0 12px; font-weight: 700; }
-  .header .subtitle { font-size: 13px; color: var(--text-dim); }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px 50px; }
 
-  .intro {
-    background: var(--intro-bg);
-    border: 1px solid var(--intro-border); border-radius: 12px;
-    padding: 18px 20px; margin-bottom: 24px; font-size: 14px;
-    color: var(--intro-text); line-height: 1.8;
+  /* ===== Masthead 报头 ===== */
+  .masthead {
+    text-align: center;
+    padding: 46px 0 18px;
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 6px;
   }
+  .masthead .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 5px;
+    color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 34px;
+    color: var(--ink); letter-spacing: 3px; line-height: 1.15;
+  }
+  .masthead .meta {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+  .masthead .meta b { color: var(--accent); font-weight: 700; }
+
+  /* ===== 导读 lead ===== */
+  .lead {
+    font-family: var(--serif);
+    background: var(--lead-bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--rule);
+    padding: 18px 22px; margin: 22px 0 30px;
+    font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+
+  /* ===== 栏目 ===== */
+  .section { margin-bottom: 34px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    line-height: 1; color: var(--c2);
+  }
+  .sec-num-1 { color: var(--c1); }
+  .sec-num-2 { color: var(--c2); }
+  .sec-num-3 { color: var(--c3); }
+  .sec-num-4 { color: var(--c4); }
+  .sec-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  /* ===== 新名词词条 ===== */
   .new-term {
-    background: var(--nw-bg);
-    border: 1px solid var(--nw-border); border-radius: 12px;
-    padding: 18px 20px; margin-bottom: 24px;
+    background: var(--term-bg); border: 1px solid var(--term-border);
+    border-radius: 2px; padding: 16px 20px;
   }
-  .new-term .badge {
-    display: inline-block; background: var(--nw-badge-bg); color: var(--nw-badge-text);
-    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  .new-term h3 {
+    font-family: var(--serif); font-size: 18px; color: var(--c1); margin-bottom: 8px;
+    font-weight: 700;
   }
-  .new-term h3 { color: var(--nw-heading); font-size: 16px; margin-bottom: 6px; }
-  .new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+  .new-term p { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+  .term-item { padding: 10px 0; border-bottom: 1px solid var(--term-border); }
+  .term-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .term-item:first-child { padding-top: 0; }
+  .term-item h4 {
+    font-family: var(--serif); font-size: 16px; color: var(--c1); margin-bottom: 5px; font-weight: 700;
+  }
+  .term-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
 
-  .topic { margin-bottom: 24px; }
-  .topic-title {
-    font-size: 16px; font-weight: 700; color: var(--heading);
-    padding: 10px 0; border-bottom: 1px solid var(--border-color);
-    margin-bottom: 14px;
+  /* ===== 双栏卡片网格 ===== */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
   }
+  @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
   .card {
-    background: var(--surface); border: 1px solid var(--border-color);
-    border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
-    box-shadow: var(--shadow);
-    transition: border-color 0.2s, background 0.2s;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-top: 2px solid var(--c2); border-radius: 2px;
+    padding: 14px 16px; transition: background 0.2s;
   }
-  .card:hover { border-color: var(--border-hover); background: var(--surface-hover); }
-  .card .tag {
-    display: inline-block; font-size: 11px; padding: 1px 8px;
-    border-radius: 8px; margin-right: 6px; margin-bottom: 4px;
+  .card:hover { background: var(--card-hover); }
+  .card h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px; line-height: 1.5;
   }
-  .tag-blue { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
-  .tag-green { background: var(--tag-green-bg); color: var(--tag-green-text); }
-  .tag-red { background: var(--tag-red-bg); color: var(--tag-red-text); }
-  .tag-orange { background: var(--tag-orange-bg); color: var(--tag-orange-text); }
-  .tag-purple { background: var(--tag-purple-bg); color: var(--tag-purple-text); }
-  .tag-teal { background: var(--tag-teal-bg); color: var(--tag-teal-text); }
-  .card h4 { font-size: 14px; color: var(--text); margin: 6px 0 4px; font-weight: 600; }
-  .card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
-  .card .source { font-size: 11px; color: var(--text-dim); margin-top: 6px; }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
   .card .source a { color: var(--link); text-decoration: none; }
-  .card .source a:hover { color: var(--link-hover); text-decoration: underline; }
+  .card .source a:hover { text-decoration: underline; }
 
+  /* ===== 思考引用块 ===== */
   .thinking {
-    background: var(--think-bg);
-    border: 1px solid var(--think-border); border-radius: 12px;
-    padding: 18px 20px; margin-top: 24px;
+    background: var(--think-bg); border-left: 3px solid var(--c4);
+    border-radius: 2px; padding: 16px 20px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.95;
   }
-  .thinking .badge {
-    display: inline-block; background: var(--think-badge-bg); color: var(--think-badge-text);
-    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
-  }
-  .thinking p { font-size: 14px; color: var(--think-text); line-height: 1.9; }
+  .thinking p { font-style: italic; }
 
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
-    padding: 32px 0 8px; letter-spacing: 1px;
+    padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
   }
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌓</button>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
 <script>
 (function() {
   var saved = localStorage.getItem('ai-daily-theme');
@@ -257,55 +235,70 @@ function toggleTheme() {
 }
 </script>
 <div class="container">
-  <div class="header">
-    <div class="date">2026-06-03 · 星期三</div>
-    <h1>AI 每日简报</h1>
-    <div class="subtitle">3 分钟跟上 AI 行业最值得关注的产品、组织和人才动向</div>
-  </div>
+  <header class="masthead">
+    <div class="kicker">AI · 行业简报</div>
+    <h1>每日 AI 简报</h1>
+    <div class="meta">2026-06-03 · 星期三 · <b>第 41 期</b></div>
+  </header>
 
-  <div class="intro">OpenAI 举办"AI 上岗"发布会，一口气推出六款 Codex 角色插件，宣布 Codex 将并入 ChatGPT 成为"超级应用"；GitLab 同日宣布裁员 14% 以加速 AI 基础设施重构。一边是 AI 工具加速渗透白领岗位，一边是组织为承载 AI 工作负载而自我精简。</div>
+  
+    <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
+    </div>
+    <div class="new-term">
+      <h3>Codex 角色插件</h3>
+      <p>OpenAI 推出的面向特定岗位的 Codex 工作流扩展包，每款插件打包该角色所需的技能、指令、工作流程和外部应用调用。目前已发布数据分析、创意制作、销售、产品设计、股票投资、投资银行六款插件，共含 110 项技能、可关联 62 个外部应用。意味着 AI 不再是"通用助手"，而是按岗位定制的"数字员工"。</p>
+    </div>
+  </section>
 
-  <div class="new-term">
-    <div class="badge">🆕 AI新名词</div>
-    <h3>OpenAI 推出的面向特定岗位的 Codex 工作流扩展包</h3>
-    <p>，每款插件打包该角色所需的技能、指令、工作流程和外部应用调用。目前已发布数据分析、创意制作、销售、产品设计、股票投资、投资银行六款插件，共含 110 项技能、可关联 62 个外部应用。意味着 AI 不再是"通用助手"，而是按岗位定制的"数字员工"。</p>
-  </div>
+    <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">议题一 · AI 从聊天走向执行</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>OpenAI — "AI 上岗"发布会：Codex 推出六款岗位插件，企业营收占比将达 50%</h4>
+        <p>OpenAI 举行主题为"Intelligence at Work"的发布会，宣布 Codex 周活跃用户突破 500 万，其中 20% 非程序员。企业营收已占 OpenAI 整体 40%，预计年底达 50%。六款岗位插件让 Codex 从开发者工具升级为覆盖金融、设计、销售等多角色的企业平台，Codex 还将在未来几周并入 ChatGPT，面向 10 亿用户开放。</p>
+        <div class="source">来源：<a href="https://www.toutiao.com/article/7646875321316229659/" target="_blank">财联社</a></div>
+      </article>
+      <article class="card">
+        <h4>OpenAI — ChatGPT+Codex+Atlas 浏览器，构建 AI 超级应用</h4>
+        <p>OpenAI 产品负责人表示："你可能不会 7×24 小时工作，但你在云端的 Agent 会。"Codex 并入 ChatGPT 只是第一步，OpenAI 正在规划 Atlas 浏览器，形成"ChatGPT（对话）+Codex（执行）+Atlas（浏览）"三位一体的超级应用。这标志着 OpenAI 从聊天机器人公司向 AI 操作系统公司转型。</p>
+        <div class="source">来源：<a href="https://www.36kr.com/p/3837314291299464" target="_blank">36氪</a></div>
+      </article>
+    </div>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">议题二 · 组织为 AI 重构自身</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>GitLab — 裁员 14% 重构基础设施，应对百倍 AI 工作负载</h4>
+        <p>开发者平台 GitLab 宣布裁员约 350 人（14%），退出 22 个国家/地区，精简管理层级并将资源转向 AI 基础设施投资。CEO Bill Staples 指出，以机器规模运行的 AI 智能体正将传统基础设施逼入绝境，GitLab 已启动"Git 的代际重构"以支持 100 倍增长。尽管面临架构压力，Q1 营收仍达 2.64 亿美元，同比增长 23%。</p>
+        <div class="source">来源：<a href="https://www.chinaz.com/ainews/28635.shtml" target="_blank">AIbase</a></div>
+      </article>
+      <article class="card">
+        <h4>Uber — 人力部门裁员 23%，同时设置 AI 工具月消费上限</h4>
+        <p>Uber 裁减人力资源相关部门约 23% 岗位，新任总裁 Hazelbaker 称团队"复杂分散、职责重叠"。虽然公司强调与 AI 无关，但同期证实对员工使用 AI 工具（Claude Code、Cursor 等）实施每月 1500 美元的单人消费上限，因 2026 年 AI 预算在四个月内已耗尽。</p>
+        <div class="source">来源：<a href="https://finance.jrj.com.cn/2026/06/05060057341615.shtml" target="_blank">智通财经</a></div>
+      </article>
+    </div>
+  </section>
 
-  <div class="topic">
-    <div class="topic-title">📌 议题一 · AI 从聊天走向执行</div>
-    <div class="card">
-      
-      <h4>OpenAI — "AI 上岗"发布会：Codex 推出六款岗位插件，企业营收占比将达 50%</h4>
-      <p>OpenAI 举行主题为"Intelligence at Work"的发布会，宣布 Codex 周活跃用户突破 500 万，其中 20% 非程序员。企业营收已占 OpenAI 整体 40%，预计年底达 50%。六款岗位插件让 Codex 从开发者工具升级为覆盖金融、设计、销售等多角色的企业平台，Codex 还将在未来几周并入 ChatGPT，面向 10 亿用户开放。</p>
-      <div class="source">来源：来源：<a href="https://www.toutiao.com/article/7646875321316229659/" target="_blank">财联社</a></div>
+    <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">HR 视角的思考延展</h2>
     </div>
-    <div class="card">
-      
-      <h4>OpenAI — ChatGPT+Codex+Atlas 浏览器，构建 AI 超级应用</h4>
-      <p>OpenAI 产品负责人表示："你可能不会 7×24 小时工作，但你在云端的 Agent 会。"Codex 并入 ChatGPT 只是第一步，OpenAI 正在规划 Atlas 浏览器，形成"ChatGPT（对话）+Codex（执行）+Atlas（浏览）"三位一体的超级应用。这标志着 OpenAI 从聊天机器人公司向 AI 操作系统公司转型。</p>
-      <div class="source">来源：来源：<a href="https://www.36kr.com/p/3837314291299464" target="_blank">36氪</a></div>
-    </div>
-  </div>
-  <div class="topic">
-    <div class="topic-title">📌 议题二 · 组织为 AI 重构自身</div>
-    <div class="card">
-      
-      <h4>GitLab — 裁员 14% 重构基础设施，应对百倍 AI 工作负载</h4>
-      <p>开发者平台 GitLab 宣布裁员约 350 人（14%），退出 22 个国家/地区，精简管理层级并将资源转向 AI 基础设施投资。CEO Bill Staples 指出，以机器规模运行的 AI 智能体正将传统基础设施逼入绝境，GitLab 已启动"Git 的代际重构"以支持 100 倍增长。尽管面临架构压力，Q1 营收仍达 2.64 亿美元，同比增长 23%。</p>
-      <div class="source">来源：来源：<a href="https://www.chinaz.com/ainews/28635.shtml" target="_blank">AIbase</a></div>
-    </div>
-    <div class="card">
-      
-      <h4>Uber — 人力部门裁员 23%，同时设置 AI 工具月消费上限</h4>
-      <p>Uber 裁减人力资源相关部门约 23% 岗位，新任总裁 Hazelbaker 称团队"复杂分散、职责重叠"。虽然公司强调与 AI 无关，但同期证实对员工使用 AI 工具（Claude Code、Cursor 等）实施每月 1500 美元的单人消费上限，因 2026 年 AI 预算在四个月内已耗尽。</p>
-      <div class="source">来源：来源：<a href="https://finance.jrj.com.cn/2026/06/05060057341615.shtml" target="_blank">智通财经</a></div>
-    </div>
-  </div>
-
-  <div class="thinking">
-    <div class="badge">💡 每日思考题</div>
-    <p>OpenAI 说 Codex 的非程序员用户占 20%——当 AI 编程工具的用户不再是程序员时，"谁能使用 AI 工具"的门槛是由 IT 部门决定，还是由业务部门自己决定？Uber 给 AI 工具设了月度消费上限，你公司有没有类似的 AI 使用预算管控机制？</p>
-  </div>
+    <blockquote class="thinking">
+      <p>OpenAI 说 Codex 的非程序员用户占 20%——当 AI 编程工具的用户不再是程序员时，"谁能使用 AI 工具"的门槛是由 IT 部门决定，还是由业务部门自己决定？Uber 给 AI 工具设了月度消费上限，你公司有没有类似的 AI 使用预算管控机制？</p>
+    </blockquote>
+  </section>
 
 
   <div class="watermark">Made by ChloeCao</div>

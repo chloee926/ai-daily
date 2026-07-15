@@ -2,229 +2,225 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>每日AI简报 | 2026-06-18</title>
 <style>
   :root {
-    --bg: #0a0e1a;
-    --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
-    --surface: rgba(18, 26, 50, 0.6);
-    --surface-hover: rgba(28, 40, 70, 0.7);
-    --text: #e0e6f0;
-    --text-secondary: #98a8c0;
-    --text-dim: #5a6880;
-    --heading: #fff;
-    --intro-bg: linear-gradient(135deg, rgba(30,50,100,0.4), rgba(20,35,70,0.3));
-    --intro-border: rgba(100,140,255,0.15);
-    --intro-text: #c0d0e8;
-    --nw-bg: linear-gradient(135deg, rgba(180,100,255,0.12), rgba(120,60,200,0.08));
-    --nw-border: rgba(180,130,255,0.25);
-    --nw-badge-bg: rgba(180,130,255,0.2);
-    --nw-badge-text: #c8a8ff;
-    --nw-heading: #d8b8ff;
-    --think-bg: linear-gradient(135deg, rgba(255,200,50,0.08), rgba(200,160,30,0.05));
-    --think-border: rgba(255,200,80,0.2);
-    --think-badge-bg: rgba(255,200,80,0.15);
-    --think-badge-text: #ffc844;
-    --think-text: #d0c8a0;
-    --tag-blue-bg: rgba(70,130,255,0.15); --tag-blue-text: #6ea8ff;
-    --tag-green-bg: rgba(70,200,130,0.15); --tag-green-text: #5ed49a;
-    --tag-red-bg: rgba(255,90,90,0.15); --tag-red-text: #ff7070;
-    --tag-orange-bg: rgba(255,160,50,0.15); --tag-orange-text: #ffa844;
-    --tag-purple-bg: rgba(180,130,255,0.15); --tag-purple-text: #c8a8ff;
-    --tag-teal-bg: rgba(50,200,200,0.15); --tag-teal-text: #50d0d0;
-    --border-color: rgba(100,140,255,0.1);
-    --border-hover: rgba(100,140,255,0.3);
-    --nav-bg: rgba(20,30,60,0.85);
-    --nav-border: rgba(100,140,255,0.3);
-    --nav-text: #8ab4ff;
-    --nav-hover-bg: rgba(40,60,120,0.9);
-    --nav-hover-text: #b0d0ff;
-    --link: #6b8fc0;
-    --link-hover: #8ab4ff;
-    --watermark: #2a3040;
-    --shadow: 0 2px 12px rgba(0,0,0,0.2);
+    /* ===== Light: 杂志纸白 ===== */
+    --bg: #f3efe6;
+    --paper: #fbf9f3;
+    --ink: #1b1813;
+    --ink-soft: #5b554b;
+    --ink-dim: #8a8275;
+    --rule: #1b1813;
+    --rule-soft: rgba(27,24,19,0.14);
+    --accent: #9e2b25;          /* 刊红 */
+    --c1: #9e2b25;              /* 01 新名词 红 */
+    --c2: #1f5c4d;              /* 02 议题一 墨绿 */
+    --c3: #2b4f8a;              /* 03 议题二 蓝 */
+    --c4: #b06a1e;              /* 04 思考 橙 */
+    --card-bg: #fbf9f3;
+    --card-border: rgba(27,24,19,0.16);
+    --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3;
+    --term-bg: rgba(158,43,37,0.05);
+    --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06);
+    --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3;
+    --nav-border: #1b1813;
+    --nav-text: #1b1813;
+    --link: #2b4f8a;
+    --watermark: #b3ab9c;
+    --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+    --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
   }
-  @media (prefers-color-scheme: light) {
+  @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #f0f2f7;
-      --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
-      --surface: rgba(255, 255, 255, 0.85);
-      --surface-hover: rgba(255, 255, 255, 0.95);
-      --text: #2d3748;
-      --text-secondary: #5a6878;
-      --text-dim: #8896a6;
-      --heading: #1a202c;
-      --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
-      --intro-border: rgba(66,103,178,0.15);
-      --intro-text: #3a4a60;
-      --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
-      --nw-border: rgba(140,100,220,0.2);
-      --nw-badge-bg: rgba(140,100,220,0.1);
-      --nw-badge-text: #7c4dff;
-      --nw-heading: #5b2eab;
-      --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
-      --think-border: rgba(200,170,50,0.2);
-      --think-badge-bg: rgba(200,170,50,0.1);
-      --think-badge-text: #b8860b;
-      --think-text: #5a4e30;
-      --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
-      --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
-      --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
-      --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
-      --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
-      --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
-      --border-color: rgba(0,0,0,0.06);
-      --border-hover: rgba(66,103,178,0.25);
-      --nav-bg: rgba(255,255,255,0.9);
-      --nav-border: rgba(66,103,178,0.2);
-      --nav-text: #4267b2;
-      --nav-hover-bg: rgba(240,242,247,0.95);
-      --nav-hover-text: #2d4a8a;
-      --link: #4267b2;
-      --link-hover: #2d4a8a;
-      --watermark: #c0c8d4;
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      /* ===== Dark: 暖炭黑 ===== */
+      --bg: #16130e;
+      --paper: #1e1a14;
+      --ink: #ece5d8;
+      --ink-soft: #b3a994;
+      --ink-dim: #7d7461;
+      --rule: #ece5d8;
+      --rule-soft: rgba(236,229,216,0.14);
+      --accent: #e08a7a;
+      --c1: #e08a7a;
+      --c2: #6fae9a;
+      --c3: #8aa9d6;
+      --c4: #d9a35e;
+      --card-bg: #1e1a14;
+      --card-border: rgba(236,229,216,0.18);
+      --card-hover: rgba(236,229,216,0.06);
+      --lead-bg: #1e1a14;
+      --term-bg: rgba(224,138,122,0.08);
+      --term-border: rgba(224,138,122,0.34);
+      --think-bg: rgba(217,163,94,0.08);
+      --think-border: rgba(217,163,94,0.34);
+      --nav-bg: #1e1a14;
+      --nav-border: #ece5d8;
+      --nav-text: #ece5d8;
+      --link: #8aa9d6;
+      --watermark: #5d564a;
     }
   }
-  [data-theme="dark"] { }
   [data-theme="light"] {
-    --bg: #f0f2f7;
-    --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
-    --surface: rgba(255, 255, 255, 0.85);
-    --surface-hover: rgba(255, 255, 255, 0.95);
-    --text: #2d3748;
-    --text-secondary: #5a6878;
-    --text-dim: #8896a6;
-    --heading: #1a202c;
-    --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
-    --intro-border: rgba(66,103,178,0.15);
-    --intro-text: #3a4a60;
-    --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
-    --nw-border: rgba(140,100,220,0.2);
-    --nw-badge-bg: rgba(140,100,220,0.1);
-    --nw-badge-text: #7c4dff;
-    --nw-heading: #5b2eab;
-    --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
-    --think-border: rgba(200,170,50,0.2);
-    --think-badge-bg: rgba(200,170,50,0.1);
-    --think-badge-text: #b8860b;
-    --think-text: #5a4e30;
-    --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
-    --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
-    --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
-    --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
-    --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
-    --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
-    --border-color: rgba(0,0,0,0.06);
-    --border-hover: rgba(66,103,178,0.25);
-    --nav-bg: rgba(255,255,255,0.9);
-    --nav-border: rgba(66,103,178,0.2);
-    --nav-text: #4267b2;
-    --nav-hover-bg: rgba(240,242,247,0.95);
-    --nav-hover-text: #2d4a8a;
-    --link: #4267b2;
-    --link-hover: #2d4a8a;
-    --watermark: #c0c8d4;
-    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+    --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
+    --c1: #9e2b25; --c2: #1f5c4d; --c3: #2b4f8a; --c4: #b06a1e;
+    --card-bg: #fbf9f3; --card-border: rgba(27,24,19,0.16); --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3; --term-bg: rgba(158,43,37,0.05); --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06); --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3; --nav-border: #1b1813; --nav-text: #1b1813; --link: #2b4f8a; --watermark: #b3ab9c;
   }
+  [data-theme="dark"] {
+    --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+    --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
+    --c1: #e08a7a; --c2: #6fae9a; --c3: #8aa9d6; --c4: #d9a35e;
+    --card-bg: #1e1a14; --card-border: rgba(236,229,216,0.18); --card-hover: rgba(236,229,216,0.06);
+    --lead-bg: #1e1a14; --term-bg: rgba(224,138,122,0.08); --term-border: rgba(224,138,122,0.34);
+    --think-bg: rgba(217,163,94,0.08); --think-border: rgba(217,163,94,0.34);
+    --nav-bg: #1e1a14; --nav-border: #ece5d8; --nav-text: #ece5d8; --link: #8aa9d6; --watermark: #5d564a;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    background: var(--bg-gradient); color: var(--text); line-height: 1.7;
-    -webkit-font-smoothing: antialiased; transition: background 0.3s, color 0.3s;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
   }
   .theme-toggle {
-    position: fixed; top: 16px; right: 16px; z-index: 1000;
-    background: var(--nav-bg); border: 1px solid var(--nav-border);
-    color: var(--nav-text); padding: 6px 12px; border-radius: 20px;
-    font-size: 16px; cursor: pointer; backdrop-filter: blur(8px);
-    transition: all 0.2s; line-height: 1;
+    position: fixed; top: 14px; right: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; line-height: 1;
   }
-  .theme-toggle:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
+  .theme-toggle:hover { background: var(--card-hover); }
   .back-nav {
-    position: fixed; top: 16px; left: 16px; z-index: 1000;
-    background: var(--nav-bg); border: 1px solid var(--nav-border);
-    color: var(--nav-text); padding: 6px 14px; border-radius: 20px;
-    font-size: 13px; text-decoration: none; backdrop-filter: blur(8px);
-    transition: all 0.2s;
+    position: fixed; top: 14px; left: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 12px; border-radius: 4px; font-size: 12px; text-decoration: none;
+    font-family: var(--sans); letter-spacing: 2px; transition: all 0.2s;
   }
-  .back-nav:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
-  @media (max-width: 600px) {
-    .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 12px auto 0; width: fit-content; }
-    .theme-toggle { top: auto; bottom: 20px; right: 16px; }
+  .back-nav:hover { background: var(--card-hover); }
+  @media (max-width: 640px) {
+    .back-nav { position: static; display: inline-block; margin: 16px 0 0 20px; }
+    .theme-toggle { top: auto; bottom: 18px; right: 14px; }
   }
-  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
-  .header {
-    text-align: center; padding: 48px 0 28px;
-    border-bottom: 1px solid var(--border-color); margin-bottom: 24px;
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px 50px; }
+
+  /* ===== Masthead 报头 ===== */
+  .masthead {
+    text-align: center;
+    padding: 46px 0 18px;
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 6px;
   }
-  .header .date { font-size: 14px; color: var(--text-secondary); letter-spacing: 2px; }
-  .header h1 { font-size: 22px; color: var(--heading); margin: 8px 0 12px; font-weight: 700; }
-  .header .subtitle { font-size: 13px; color: var(--text-dim); }
-  .intro {
-    background: var(--intro-bg); border: 1px solid var(--intro-border);
-    border-radius: 12px; padding: 18px 20px; margin-bottom: 24px;
-    font-size: 14px; color: var(--intro-text); line-height: 1.8;
+  .masthead .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 5px;
+    color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px;
   }
-  .intro .top3 { margin-bottom: 12px; }
-  .intro .top3 li { margin-bottom: 4px; }
-  .intro .verdict { font-weight: 600; color: var(--heading); font-size: 13px; }
+  .masthead h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 34px;
+    color: var(--ink); letter-spacing: 3px; line-height: 1.15;
+  }
+  .masthead .meta {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+  .masthead .meta b { color: var(--accent); font-weight: 700; }
+
+  /* ===== 导读 lead ===== */
+  .lead {
+    font-family: var(--serif);
+    background: var(--lead-bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--rule);
+    padding: 18px 22px; margin: 22px 0 30px;
+    font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+
+  /* ===== 栏目 ===== */
+  .section { margin-bottom: 34px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    line-height: 1; color: var(--c2);
+  }
+  .sec-num-1 { color: var(--c1); }
+  .sec-num-2 { color: var(--c2); }
+  .sec-num-3 { color: var(--c3); }
+  .sec-num-4 { color: var(--c4); }
+  .sec-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  /* ===== 新名词词条 ===== */
   .new-term {
-    background: var(--nw-bg); border: 1px solid var(--nw-border);
-    border-radius: 12px; padding: 18px 20px; margin-bottom: 24px;
+    background: var(--term-bg); border: 1px solid var(--term-border);
+    border-radius: 2px; padding: 16px 20px;
   }
-  .new-term .badge {
-    display: inline-block; background: var(--nw-badge-bg); color: var(--nw-badge-text);
-    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  .new-term h3 {
+    font-family: var(--serif); font-size: 18px; color: var(--c1); margin-bottom: 8px;
+    font-weight: 700;
   }
-  .new-term h3 { color: var(--nw-heading); font-size: 16px; margin-bottom: 6px; }
-  .new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-  .topic { margin-bottom: 24px; }
-  .topic-title {
-    font-size: 16px; font-weight: 700; color: var(--heading);
-    padding: 10px 0; border-bottom: 1px solid var(--border-color); margin-bottom: 14px;
+  .new-term p { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+  .term-item { padding: 10px 0; border-bottom: 1px solid var(--term-border); }
+  .term-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .term-item:first-child { padding-top: 0; }
+  .term-item h4 {
+    font-family: var(--serif); font-size: 16px; color: var(--c1); margin-bottom: 5px; font-weight: 700;
   }
+  .term-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+
+  /* ===== 双栏卡片网格 ===== */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
   .card {
-    background: var(--surface); border: 1px solid var(--border-color);
-    border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
-    box-shadow: var(--shadow); transition: border-color 0.2s, background 0.2s;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-top: 2px solid var(--c2); border-radius: 2px;
+    padding: 14px 16px; transition: background 0.2s;
   }
-  .card:hover { border-color: var(--border-hover); background: var(--surface-hover); }
-  .card .tag {
-    display: inline-block; font-size: 11px; padding: 1px 8px;
-    border-radius: 8px; margin-right: 6px; margin-bottom: 4px;
+  .card:hover { background: var(--card-hover); }
+  .card h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px; line-height: 1.5;
   }
-  .tag-blue { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
-  .tag-green { background: var(--tag-green-bg); color: var(--tag-green-text); }
-  .tag-red { background: var(--tag-red-bg); color: var(--tag-red-text); }
-  .tag-orange { background: var(--tag-orange-bg); color: var(--tag-orange-text); }
-  .tag-purple { background: var(--tag-purple-bg); color: var(--tag-purple-text); }
-  .tag-teal { background: var(--tag-teal-bg); color: var(--tag-teal-text); }
-  .card h4 { font-size: 14px; color: var(--text); margin: 6px 0 4px; font-weight: 600; }
-  .card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
-  .card .source { font-size: 11px; color: var(--text-dim); margin-top: 6px; }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
   .card .source a { color: var(--link); text-decoration: none; }
-  .card .source a:hover { color: var(--link-hover); text-decoration: underline; }
+  .card .source a:hover { text-decoration: underline; }
+
+  /* ===== 思考引用块 ===== */
   .thinking {
-    background: var(--think-bg); border: 1px solid var(--think-border);
-    border-radius: 12px; padding: 18px 20px; margin-top: 24px;
+    background: var(--think-bg); border-left: 3px solid var(--c4);
+    border-radius: 2px; padding: 16px 20px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.95;
   }
-  .thinking .badge {
-    display: inline-block; background: var(--think-badge-bg); color: var(--think-badge-text);
-    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
-  }
-  .thinking h4 { font-size: 14px; color: var(--think-badge-text); margin: 10px 0 6px; }
-  .thinking p { font-size: 14px; color: var(--think-text); line-height: 1.9; }
+  .thinking p { font-style: italic; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
-    padding: 32px 0 8px; letter-spacing: 1px;
+    padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
   }
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌓</button>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
 <script>
 (function() {
   var saved = localStorage.getItem('ai-daily-theme');
@@ -239,122 +235,91 @@ function toggleTheme() {
 }
 </script>
 <div class="container">
-  <div class="header">
-    <div class="date">2026-06-18 · 星期四</div>
-    <h1>AI 每日简报</h1>
-    <div class="subtitle">3 分钟跟上 AI 行业最值得关注的产品、组织和人才动向</div>
-  </div>
+  <header class="masthead">
+    <div class="kicker">AI · 行业简报</div>
+    <h1>每日 AI 简报</h1>
+    <div class="meta">2026-06-18 · 星期四 · <b>第 52 期</b></div>
+  </header>
 
-  <div class="intro">
-    <div class="top3">
-      <strong>今日最重要的 3 点：</strong>
-      <ol>
-        <li>DeepSeek完成510亿元A轮融资，估值4000亿元，腾讯、宁德时代、京东等参投</li>
-        <li>Transformer核心作者Shazeer离开Google加入OpenAI，8位作者全部离开Google</li>
-        <li>三大运营商推出标准化Token套餐，AI模型调用进入"流量化"消费时代</li>
-      </ol>
+  
+    <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="verdict">总判断：AI行业资本、人才与基础设施三线并进——DeepSeek以510亿融资刷新国内AI初创纪录，产业资本与国家队全面押注基础模型；Shazeer从Google转投OpenAI，顶级AI人才流动加速竞争格局重塑；三大运营商推出Token套餐，预示AI算力正从企业专属走向大众消费品。</div>
-  </div>
-
-  <!-- 📘 新名词 -->
-  <div class="new-term">
-    <span class="badge">📘 AI新名词</span>
-    <h3>Token套餐（Token Package）</h3>
-    <p><strong>一句话解释：</strong>中国电信、中国移动、中国联通同步推出的面向个人与企业的标准化AI Token包，15元即可购买数百万Token，类似手机流量套餐的AI算力消费模式。</p>
-    <p><strong>为什么重要：</strong>标志着大模型调用从"技术开发者专属"正式进入"大众消费品"时代，AI算力资源的定价、包装和分发方式开始对标通信行业流量套餐模式，可能深刻改变AI应用的渗透路径和用户习惯。</p>
-    <p class="source">来源：<a href="https://www.toutiao.com/article/7652530292309246491" target="_blank">今日头条 - AI每日简报</a></p>
-  </div>
-
-  <!-- 🚀 议题一 -->
-  <div class="topic">
-    <div class="topic-title">🚀 AI产品 & 平台动态</div>
-
-    <div class="card">
-      <span class="tag tag-blue">AI算力</span><span class="tag tag-green">三大运营商</span>
-      <h4>三大运营商推出标准化Token套餐，15元即可购买数百万Token</h4>
-      <p>6月18日，中国电信、中国移动、中国联通同步上线面向个人与企业的AI Token包，15元即可购买数百万Token，标志着大模型调用正式进入"流量化"消费时代。三大运营商将自身在通信网络、用户规模和渠道覆盖上的优势延伸至AI算力分发，使AI模型调用门槛大幅降低，算力资源向大众市场全面开放。</p>
-      <p><strong>对TME的启发：</strong>运营商入局AI算力分发，意味着AI应用的获客渠道和商业模式可能出现新路径。对于内容平台而言，Token套餐可能催生"AI+内容"的订阅捆绑模式。</p>
-      <p class="source">来源：<a href="https://www.toutiao.com/article/7652530292309246491" target="_blank">今日头条</a></p>
+    <div class="new-term">
+      <h3>Token套餐（Token Package）</h3>
+      <p>一句话解释： 中国电信、中国移动、中国联通同步推出的面向个人与企业的标准化AI Token包，15元即可购买数百万Token，类似于手机流量套餐的AI算力消费模式。 为什么重要： 标志着大模型调用从"技术开发者专属"正式进入"大众消费品"时代，AI算力资源的定价、包装和分发方式开始对标通信行业流量套餐模式，可能深刻改变AI应用的渗透路径和用户习惯。</p>
     </div>
+  </section>
 
-    <div class="card">
-      <span class="tag tag-blue">AI办公</span><span class="tag tag-teal">月之暗面</span>
-      <h4>Kimi Work重磅更新：24小时目标模式+办公插件中心</h4>
-      <p>6月18日，月之暗面升级电脑端Kimi Work客户端，上线两大核心功能：可连续运行24小时的目标模式（Goal Mode），以及打通多款主流办公软件的插件中心。目标模式允许AI在用户设定目标后自主规划并持续执行任务。同时6月使用Work模式会员额度直接五折，大幅降低重度办公用户使用成本。</p>
-      <p><strong>对TME的启发：</strong>"24小时自主任务"模式标志着AI办公助手从"问答工具"向"自主执行者"转型。插件中心模式预示AI助手正成为连接各类办公工具的中枢层。</p>
-      <p class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100</a></p>
+    <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与流媒体</h2>
     </div>
-
-    <div class="card">
-      <span class="tag tag-purple">科学AI</span><span class="tag tag-orange">阿里</span>
-      <h4>阿里开源LOGOS科学大模型，1B参数性能超越微软7B系列</h4>
-      <p>6月18日，阿里ATH-Token Foundry联合中国人民大学高瓴人工智能学院开源统一科学大模型LOGOS。该模型仅10亿以内参数规模，在蛋白编辑、分子设计、材料生成等六大核心科研任务上全面超越微软8×7B的NatureLM模型，大幅降低科研人员AI使用门槛。证明在垂直科学领域，小参数+高质量训练策略可超越大参数通用模型。</p>
-      <p><strong>对TME的启发：</strong>"小模型超越大模型"的趋势在垂直领域持续验证。选择适合场景的专用小模型而非追求通用大模型，可能是更高效的AI落地策略。</p>
-      <p class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100</a></p>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>三大运营商推出标准化Token套餐，15元即可购买数百万Token</h4>
+        <p>摘要： 6月18日，中国电信、中国移动、中国联通同步上线面向个人与企业的AI Token包，15元即可购买数百万Token，标志着大模型调用正式进入"流量化"消费时代。三大运营商将自身在通信网络、用户规模和渠道覆盖上的优势延伸至AI算力分发，使AI模型调用门槛大幅降低，算力资源向大众市场全面开放。 为什么对 TME 重要： 运营商入局AI算力分发，意味着AI应用的获客渠道和商业模式可能出现新路径。对于内容平台而言，Token套餐可能催生"AI+内容"的订阅捆绑模式，值得关注运营商与内容平台的合作机会。</p>
+        <div class="source">来源：<a href="https://www.toutiao.com/article/7652530292309246491" target="_blank">今日头条 - AI每日简报 2026年6月18日</a></div>
+      </article>
+      <article class="card">
+        <h4>Kimi Work重磅更新：24小时目标模式+办公插件中心</h4>
+        <p>摘要： 6月18日，月之暗面升级电脑端Kimi Work客户端，上线两大核心功能：可连续运行24小时的目标模式（Goal Mode），以及打通多款主流办公软件的插件中心。目标模式允许AI在用户设定目标后自主规划并持续执行任务，插件中心则实现了与主流办公工具的深度集成。同时6月使用Work模式会员额度直接五折，大幅降低重度办公用户使用成本。 为什么对 TME 重要： "24小时自主任务"模式标志着AI办公助手从"问答工具"向"自主执行者"转型。插件中心模式预示AI助手正成为连接各类办公工具的中枢层，企业办公流程的AI化整合速度将加快。</p>
+        <div class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100 - 每日AI资讯 2026年6月18日</a></div>
+      </article>
+      <article class="card">
+        <h4>阿里开源LOGOS科学大模型，1B参数性能超越微软7B系列</h4>
+        <p>摘要： 6月18日，阿里ATH-Token Foundry联合中国人民大学高瓴人工智能学院开源统一科学大模型LOGOS。该模型仅10亿以内参数规模，在蛋白编辑、分子设计、材料生成等六大核心科研任务上全面超越微软8×7B的NatureLM模型，大幅降低科研人员AI使用门槛。此举证明在垂直科学领域，小参数+高质量训练策略可超越大参数通用模型。 为什么对 TME 重要： "小模型超越大模型"的趋势在垂直领域持续验证。对于有垂直场景需求的企业，选择适合场景的专用小模型而非追求通用大模型，可能是更高效的AI落地策略。</p>
+        <div class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100 - 每日AI资讯 2026年6月18日</a></div>
+      </article>
+      <article class="card">
+        <h4>Google NotebookLM测试个性化记忆与AI直写编辑双新功能</h4>
+        <p>摘要： 6月18日消息，谷歌正在科研AI工具NotebookLM内部测试两大升级功能：个人专属记忆系统（可记住用户偏好和历史交互）和内置AI笔记编辑能力（AI可直接在文档中撰写和编辑内容）。搭配上月Gemini 3.5底层架构升级，NotebookLM正从单纯文档阅读器转型为全流程科研智能工作台。 为什么对 TME 重要： AI工具从"信息检索"向"记忆+创作"一体化演进，个性化记忆能力将成为AI助手的核心差异化竞争力。企业级AI工具的选型需关注记忆系统的数据隐私和定制化能力。</p>
+        <div class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100 - 每日AI资讯 2026年6月18日</a></div>
+      </article>
     </div>
-
-    <div class="card">
-      <span class="tag tag-blue">科研工具</span><span class="tag tag-green">Google</span>
-      <h4>Google NotebookLM测试个性化记忆与AI直写编辑双新功能</h4>
-      <p>6月18日消息，谷歌正在科研AI工具NotebookLM内部测试两大升级功能：个人专属记忆系统（可记住用户偏好和历史交互）和内置AI笔记编辑能力（AI可直接在文档中撰写和编辑内容）。搭配上月Gemini 3.5底层架构升级，NotebookLM正从单纯文档阅读器转型为全流程科研智能工作台。</p>
-      <p><strong>对TME的启发：</strong>AI工具从"信息检索"向"记忆+创作"一体化演进，个性化记忆能力将成为AI助手的核心差异化竞争力。企业级AI工具的选型需关注记忆系统的数据隐私和定制化能力。</p>
-      <p class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100</a></p>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
     </div>
-  </div>
-
-  <!-- 👥 议题二 -->
-  <div class="topic">
-    <div class="topic-title">👥 AI公司组织 & 人才</div>
-
-    <div class="card">
-      <span class="tag tag-green">融资</span><span class="tag tag-red">DeepSeek</span>
-      <h4>DeepSeek完成510亿元A轮融资，估值约4000亿元</h4>
-      <p>6月17日，DeepSeek完成A轮融资，总额约510亿元人民币，投后估值约4000亿元。投资方包括创始人梁文锋（约200亿元）、腾讯（约100亿元）、宁德时代体系（约50亿元）、网易和京东（各约30亿元）、国家人工智能产业投资基金（约9.8亿元）。梁文锋要求外部投资者通过有限合伙企业间接注资，设五年锁定期，且除国家大基金外其余投资者不享有投票权。</p>
-      <p><strong>对招聘的启发：</strong>DeepSeek拉起"算力+能源+场景+政策"的产业同盟网络，宁德时代跨界投资预示"能源+AI"融合趋势。高估值创业公司对大厂AI人才的虹吸效应将持续加强。</p>
-      <p class="source">来源：<a href="https://finance.sina.com.cn/wm/2026-06-17/doc-inicttap5897130.shtml" target="_blank">新浪财经</a></p>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>DeepSeek完成510亿元A轮融资，估值约4000亿元</h4>
+        <p>摘要： 6月17日，企查查数据显示DeepSeek完成A轮融资，总额约510亿元人民币，投后估值约4000亿元。投资方阵容涵盖产业资本、互联网巨头与国家队：创始人梁文锋出资约200亿元为最大单一出资方，腾讯出资约100亿元，宁德时代体系出资约50亿元，网易、京东各约30亿元，国家人工智能产业投资基金出资约9.8亿元。梁文锋要求外部投资者通过有限合伙企业间接注资，设五年锁定期，且除国家大基金外其余投资者不享有投票权，旨在筛选长线投资者。 对招聘的启发： DeepSeek以510亿融资刷新国内AI初创纪录，且拉起"算力（腾讯）+能源（宁德时代）+场景（京东/网易）+政策（国家大基金）"的产业同盟网络。宁德时代跨界投资AI尤其值得关注，预示"能源+AI"的深度融合趋势。AI人才市场的竞争将进一步白热化，高估值创业公司对大厂AI人才的虹吸效应将持续加强。</p>
+        <div class="source">来源：<a href="https://finance.sina.com.cn/wm/2026-06-17/doc-inicttap5897130.shtml" target="_blank">新浪财经 - DeepSeek获510亿融资</a></div>
+      </article>
+      <article class="card">
+        <h4>Transformer核心作者Shazeer离开Google加入OpenAI</h4>
+        <p>摘要： 6月17日，Google DeepMind研究员、Gemini联席负责人Noam Shazeer正式宣布加入OpenAI，担任架构研究负责人。Shazeer是2017年《Attention Is All You Need》论文的核心作者之一，该论文提出的Transformer架构是整个生成式AI浪潮的技术基础。2024年Google以27亿美元收购其创业公司Character.AI将其召回，但仅22个月后他再次离开。至此，8位Transformer论文作者已全部离开Google。OpenAI CEO Altman表示"等了10年"。此举被业内评价为"今年最重要的AI人才流动"。 对招聘的启发： 8位Transformer作者全部离开Google，标志着Google在AI基础研究人才方面的持续流失。顶级AI人才的流动方向正成为行业竞争格局的风向标——从大厂转向更具AGI愿景和上市预期的平台。HR需关注：顶级技术人才的择业逻辑已从"平台+薪酬"转向"愿景+股权+技术自由度"。</p>
+        <div class="source">来源：<a href="https://36kr.com/p/3858117337633796" target="_blank">36氪 - 谷歌Gemini联席负责人被OpenAI挖了</a></div>
+      </article>
+      <article class="card">
+        <h4>钉钉组织架构全面调整，MuleRun并入打造全员Agent办公体系</h4>
+        <p>摘要： 6月18日，钉钉发布内部组织调整公告，新任CEO陈宇森主导团队重构，将内部AI创新项目MuleRun完整并入悟空事业部，由原MuleRun CTO束骏亮统一管理，全面推动企业协同软件进入全员智能体时代。此次调整是钉钉新CEO上任后的首次重大组织变革，标志着钉钉战略重心从传统协同办公向AI Agent驱动的工作模式转型。 对招聘的启发： 企业协同软件全面转向AI Agent架构，意味着传统SaaS团队的组织结构和人才需求将发生根本性变化。产品经理、研发工程师需具备AI Agent设计思维，HR应提前规划"Agent化"转型所需的人才结构和技术能力图谱。</p>
+        <div class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100 - 每日AI资讯 2026年6月18日</a></div>
+      </article>
+      <article class="card">
+        <h4>NVIDIA以超4亿美元收购企业预测AI公司Kumo AI</h4>
+        <p>摘要： NVIDIA收购企业预测AI公司Kumo AI，交易金额超4亿美元，旨在强化其在结构化企业数据预测分析领域的能力。Kumo AI的技术专长在于将图神经网络应用于企业关系型数据，提供预测性分析。该交易是NVIDIA 2024-2026年AI基础设施与企业软件收购潮的最新动作，标志着NVIDIA正从芯片供应商向全栈AI基础设施公司扩展。 对招聘的启发： NVIDIA持续通过并购补齐AI软件栈能力，从芯片到基础设施到企业应用的垂直整合趋势明显。AI基础设施领域的人才需求正从纯硬件/芯片向"硬件+软件+数据科学"的复合型转变。</p>
+        <div class="source">来源：<a href="https://www.toutiao.com/a7652645312196133402" target="_blank">今日头条 - 2026年6月18日AI行业热点新闻简报</a></div>
+      </article>
     </div>
+  </section>
 
-    <div class="card">
-      <span class="tag tag-red">人才流动</span><span class="tag tag-blue">OpenAI</span>
-      <h4>Transformer核心作者Shazeer离开Google加入OpenAI</h4>
-      <p>6月17日，Google DeepMind研究员、Gemini联席负责人Noam Shazeer正式宣布加入OpenAI，担任架构研究负责人。Shazeer是2017年《Attention Is All You Need》论文的核心作者之一。2024年Google以27亿美元收购其创业公司Character.AI将其召回，但仅22个月后再次离开。至此，8位Transformer论文作者已全部离开Google。Altman表示"等了10年"。</p>
-      <p><strong>对招聘的启发：</strong>8位Transformer作者全部离开Google，顶级AI人才的择业逻辑已从"平台+薪酬"转向"愿景+股权+技术自由度"。HR在AI人才保留策略上需从"薪酬包"思维转向"事业平台"思维。</p>
-      <p class="source">来源：<a href="https://36kr.com/p/3858117337633796" target="_blank">36氪</a></p>
+    <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">HR 视角的思考延展</h2>
     </div>
+    <blockquote class="thinking">
+      <p>### 今日关注点 DeepSeek以510亿元融资刷新国内AI初创纪录，且融资架构极为罕见——创始人自掏200亿、五年锁定期、外部投资者无投票权。这反映出顶级AI公司对资本的选择权日益增强，不再是"资本选公司"而是"公司选资本"。宁德时代50亿跨界参投尤其值得关注，"能源+AI"的融合可能催生新的产业生态。对HR而言，高估值AI创业公司对大厂人才的虹吸效应将持续加强，人才竞争正从"大厂vs大厂"全面升级为"大厂vs高估值创业+国家队"。 Shazeer从Google转投OpenAI，8位Transformer作者全部离开Google，是AI行业人才流动的标志性事件。Google花27亿美元召回Shazeer仅22个月就再次流失，说明在AGI竞赛中，单纯的薪酬和平台已不足以留住顶级人才——愿景、技术自由度和股权上升空间成为关键因素。HR在AI人才保留策略上需从"薪酬包"思维转向"事业平台"思维。 三大运营商推出Token套餐，AI算力进入"流量化"消费时代。这一变化的意义不仅在于降低了AI使用门槛，更在于可能催生全新的商业模式——"AI+通信"的捆绑销售、基于Token的增值服务等。对于企业HR而言，AI工具的采购和预算管理将面临"从订阅制到按量制"的范式转变。 ### 今日思考题 问题： 当AI算力从"企业专属"走向"大众消费"（如三大运营商Token套餐），企业HR在招聘AI相关岗位时，如何评估候选人是否具备"AI算力运营意识"——即既懂AI应用又懂成本优化的复合能力？ 解答思路： 1. 在面试中设置AI工具使用成本优化的场景题，考察候选人是否能识别不同模型和调用方式的性价比差异 2. 关注候选人是否具备从"效果导向"到"效果-成本双导向"的AI使用习惯，例如是否有Token消耗优化的实际经验 3. 在团队层面建立AI使用成本监控机制，将"AI算力效率"纳入技术团队的OKR或KPI，培养全员的成本意识</p>
+    </blockquote>
+  </section>
 
-    <div class="card">
-      <span class="tag tag-orange">组织调整</span><span class="tag tag-purple">钉钉</span>
-      <h4>钉钉组织架构全面调整，MuleRun并入打造全员Agent办公体系</h4>
-      <p>6月18日，钉钉发布内部组织调整公告，新任CEO陈宇森主导团队重构，将内部AI创新项目MuleRun完整并入悟空事业部，由原MuleRun CTO束骏亮统一管理，全面推动企业协同软件进入全员智能体时代。此次调整是钉钉新CEO上任后的首次重大组织变革，标志着钉钉战略重心从传统协同办公向AI Agent驱动的工作模式转型。</p>
-      <p><strong>对招聘的启发：</strong>企业协同软件全面转向AI Agent架构，传统SaaS团队的人才需求将发生根本性变化。产品经理、研发工程师需具备AI Agent设计思维，HR应提前规划"Agent化"转型所需的人才结构。</p>
-      <p class="source">来源：<a href="https://www.aitop100.cn/ai-daily-2026-06-18" target="_blank">AITOP100</a></p>
-    </div>
-
-    <div class="card">
-      <span class="tag tag-red">并购</span><span class="tag tag-green">NVIDIA</span>
-      <h4>NVIDIA以超4亿美元收购企业预测AI公司Kumo AI</h4>
-      <p>NVIDIA收购企业预测AI公司Kumo AI，交易金额超4亿美元，旨在强化其在结构化企业数据预测分析领域的能力。Kumo AI的技术专长在于将图神经网络应用于企业关系型数据，提供预测性分析。该交易是NVIDIA 2024-2026年AI基础设施与企业软件收购潮的最新动作，标志着NVIDIA正从芯片供应商向全栈AI基础设施公司扩展。</p>
-      <p><strong>对招聘的启发：</strong>NVIDIA持续通过并购补齐AI软件栈能力，AI基础设施领域的人才需求正从纯硬件向"硬件+软件+数据科学"的复合型转变。</p>
-      <p class="source">来源：<a href="https://www.toutiao.com/a7652645312196133402" target="_blank">今日头条</a></p>
-    </div>
-  </div>
-
-  <!-- 💡 思考延展 -->
-  <div class="thinking">
-    <span class="badge">💡 HR视角的思考延展</span>
-
-    <h4>今日关注点</h4>
-    <p>DeepSeek以510亿元融资刷新国内AI初创纪录，且融资架构极为罕见——创始人自掏200亿、五年锁定期、外部投资者无投票权。这反映出顶级AI公司对资本的选择权日益增强，不再是"资本选公司"而是"公司选资本"。宁德时代50亿跨界参投尤其值得关注，"能源+AI"的融合可能催生新的产业生态。对HR而言，高估值AI创业公司对大厂人才的虹吸效应将持续加强。</p>
-
-    <p>Shazeer从Google转投OpenAI，8位Transformer作者全部离开Google，是AI行业人才流动的标志性事件。Google花27亿美元召回Shazeer仅22个月就再次流失，说明在AGI竞赛中，单纯的薪酬和平台已不足以留住顶级人才——愿景、技术自由度和股权上升空间成为关键因素。HR在AI人才保留策略上需从"薪酬包"思维转向"事业平台"思维。</p>
-
-    <p>三大运营商推出Token套餐，AI算力进入"流量化"消费时代。这一变化可能催生全新的商业模式——"AI+通信"的捆绑销售、基于Token的增值服务等。对于企业HR而言，AI工具的采购和预算管理将面临"从订阅制到按量制"的范式转变。</p>
-
-    <h4>今日思考题</h4>
-    <p><strong>问题：</strong>当AI算力从"企业专属"走向"大众消费"（如三大运营商Token套餐），企业HR在招聘AI相关岗位时，如何评估候选人是否具备"AI算力运营意识"？</p>
-    <p><strong>解答思路：</strong><br>1. 在面试中设置AI工具使用成本优化的场景题，考察候选人是否能识别不同模型和调用方式的性价比差异<br>2. 关注候选人是否具备从"效果导向"到"效果-成本双导向"的AI使用习惯<br>3. 在团队层面建立AI使用成本监控机制，将"AI算力效率"纳入技术团队的OKR或KPI</p>
-  </div>
 
   <div class="watermark">Made by ChloeCao</div>
 </div>

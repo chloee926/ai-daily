@@ -2,247 +2,225 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>每日AI简报 | 2026-05-15</title>
 <style>
   :root {
-    /* Dark theme (default) */
-    --bg: #0a0e1a;
-    --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
-    --surface: rgba(18, 26, 50, 0.6);
-    --surface-hover: rgba(28, 40, 70, 0.7);
-    --text: #e0e6f0;
-    --text-secondary: #98a8c0;
-    --text-dim: #5a6880;
-    --heading: #fff;
-    --intro-bg: linear-gradient(135deg, rgba(30,50,100,0.4), rgba(20,35,70,0.3));
-    --intro-border: rgba(100,140,255,0.15);
-    --intro-text: #c0d0e8;
-    --nw-bg: linear-gradient(135deg, rgba(180,100,255,0.12), rgba(120,60,200,0.08));
-    --nw-border: rgba(180,130,255,0.25);
-    --nw-badge-bg: rgba(180,130,255,0.2);
-    --nw-badge-text: #c8a8ff;
-    --nw-heading: #d8b8ff;
-    --think-bg: linear-gradient(135deg, rgba(255,200,50,0.08), rgba(200,160,30,0.05));
-    --think-border: rgba(255,200,80,0.2);
-    --think-badge-bg: rgba(255,200,80,0.15);
-    --think-badge-text: #ffc844;
-    --think-text: #d0c8a0;
-    --tag-blue-bg: rgba(70,130,255,0.15); --tag-blue-text: #6ea8ff;
-    --tag-green-bg: rgba(70,200,130,0.15); --tag-green-text: #5ed49a;
-    --tag-red-bg: rgba(255,90,90,0.15); --tag-red-text: #ff7070;
-    --tag-orange-bg: rgba(255,160,50,0.15); --tag-orange-text: #ffa844;
-    --tag-purple-bg: rgba(180,130,255,0.15); --tag-purple-text: #c8a8ff;
-    --tag-teal-bg: rgba(50,200,200,0.15); --tag-teal-text: #50d0d0;
-    --border-color: rgba(100,140,255,0.1);
-    --border-hover: rgba(100,140,255,0.3);
-    --nav-bg: rgba(20,30,60,0.85);
-    --nav-border: rgba(100,140,255,0.3);
-    --nav-text: #8ab4ff;
-    --nav-hover-bg: rgba(40,60,120,0.9);
-    --nav-hover-text: #b0d0ff;
-    --link: #6b8fc0;
-    --link-hover: #8ab4ff;
-    --watermark: #2a3040;
-    --shadow: 0 2px 12px rgba(0,0,0,0.2);
+    /* ===== Light: 杂志纸白 ===== */
+    --bg: #f3efe6;
+    --paper: #fbf9f3;
+    --ink: #1b1813;
+    --ink-soft: #5b554b;
+    --ink-dim: #8a8275;
+    --rule: #1b1813;
+    --rule-soft: rgba(27,24,19,0.14);
+    --accent: #9e2b25;          /* 刊红 */
+    --c1: #9e2b25;              /* 01 新名词 红 */
+    --c2: #1f5c4d;              /* 02 议题一 墨绿 */
+    --c3: #2b4f8a;              /* 03 议题二 蓝 */
+    --c4: #b06a1e;              /* 04 思考 橙 */
+    --card-bg: #fbf9f3;
+    --card-border: rgba(27,24,19,0.16);
+    --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3;
+    --term-bg: rgba(158,43,37,0.05);
+    --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06);
+    --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3;
+    --nav-border: #1b1813;
+    --nav-text: #1b1813;
+    --link: #2b4f8a;
+    --watermark: #b3ab9c;
+    --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+    --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
   }
-
-  /* Light theme */
-  @media (prefers-color-scheme: light) {
+  @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #f0f2f7;
-      --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
-      --surface: rgba(255, 255, 255, 0.85);
-      --surface-hover: rgba(255, 255, 255, 0.95);
-      --text: #2d3748;
-      --text-secondary: #5a6878;
-      --text-dim: #8896a6;
-      --heading: #1a202c;
-      --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
-      --intro-border: rgba(66,103,178,0.15);
-      --intro-text: #3a4a60;
-      --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
-      --nw-border: rgba(140,100,220,0.2);
-      --nw-badge-bg: rgba(140,100,220,0.1);
-      --nw-badge-text: #7c4dff;
-      --nw-heading: #5b2eab;
-      --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
-      --think-border: rgba(200,170,50,0.2);
-      --think-badge-bg: rgba(200,170,50,0.1);
-      --think-badge-text: #b8860b;
-      --think-text: #5a4e30;
-      --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
-      --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
-      --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
-      --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
-      --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
-      --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
-      --border-color: rgba(0,0,0,0.06);
-      --border-hover: rgba(66,103,178,0.25);
-      --nav-bg: rgba(255,255,255,0.9);
-      --nav-border: rgba(66,103,178,0.2);
-      --nav-text: #4267b2;
-      --nav-hover-bg: rgba(240,242,247,0.95);
-      --nav-hover-text: #2d4a8a;
-      --link: #4267b2;
-      --link-hover: #2d4a8a;
-      --watermark: #c0c8d4;
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      /* ===== Dark: 暖炭黑 ===== */
+      --bg: #16130e;
+      --paper: #1e1a14;
+      --ink: #ece5d8;
+      --ink-soft: #b3a994;
+      --ink-dim: #7d7461;
+      --rule: #ece5d8;
+      --rule-soft: rgba(236,229,216,0.14);
+      --accent: #e08a7a;
+      --c1: #e08a7a;
+      --c2: #6fae9a;
+      --c3: #8aa9d6;
+      --c4: #d9a35e;
+      --card-bg: #1e1a14;
+      --card-border: rgba(236,229,216,0.18);
+      --card-hover: rgba(236,229,216,0.06);
+      --lead-bg: #1e1a14;
+      --term-bg: rgba(224,138,122,0.08);
+      --term-border: rgba(224,138,122,0.34);
+      --think-bg: rgba(217,163,94,0.08);
+      --think-border: rgba(217,163,94,0.34);
+      --nav-bg: #1e1a14;
+      --nav-border: #ece5d8;
+      --nav-text: #ece5d8;
+      --link: #8aa9d6;
+      --watermark: #5d564a;
     }
   }
-
-  /* Manual override */
-  [data-theme="dark"] { /* uses default dark vars */ }
   [data-theme="light"] {
-    --bg: #f0f2f7;
-    --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
-    --surface: rgba(255, 255, 255, 0.85);
-    --surface-hover: rgba(255, 255, 255, 0.95);
-    --text: #2d3748;
-    --text-secondary: #5a6878;
-    --text-dim: #8896a6;
-    --heading: #1a202c;
-    --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
-    --intro-border: rgba(66,103,178,0.15);
-    --intro-text: #3a4a60;
-    --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
-    --nw-border: rgba(140,100,220,0.2);
-    --nw-badge-bg: rgba(140,100,220,0.1);
-    --nw-badge-text: #7c4dff;
-    --nw-heading: #5b2eab;
-    --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
-    --think-border: rgba(200,170,50,0.2);
-    --think-badge-bg: rgba(200,170,50,0.1);
-    --think-badge-text: #b8860b;
-    --think-text: #5a4e30;
-    --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
-    --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
-    --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
-    --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
-    --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
-    --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
-    --border-color: rgba(0,0,0,0.06);
-    --border-hover: rgba(66,103,178,0.25);
-    --nav-bg: rgba(255,255,255,0.9);
-    --nav-border: rgba(66,103,178,0.2);
-    --nav-text: #4267b2;
-    --nav-hover-bg: rgba(240,242,247,0.95);
-    --nav-hover-text: #2d4a8a;
-    --link: #4267b2;
-    --link-hover: #2d4a8a;
-    --watermark: #c0c8d4;
-    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+    --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
+    --c1: #9e2b25; --c2: #1f5c4d; --c3: #2b4f8a; --c4: #b06a1e;
+    --card-bg: #fbf9f3; --card-border: rgba(27,24,19,0.16); --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3; --term-bg: rgba(158,43,37,0.05); --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06); --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3; --nav-border: #1b1813; --nav-text: #1b1813; --link: #2b4f8a; --watermark: #b3ab9c;
+  }
+  [data-theme="dark"] {
+    --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+    --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
+    --c1: #e08a7a; --c2: #6fae9a; --c3: #8aa9d6; --c4: #d9a35e;
+    --card-bg: #1e1a14; --card-border: rgba(236,229,216,0.18); --card-hover: rgba(236,229,216,0.06);
+    --lead-bg: #1e1a14; --term-bg: rgba(224,138,122,0.08); --term-border: rgba(224,138,122,0.34);
+    --think-bg: rgba(217,163,94,0.08); --think-border: rgba(217,163,94,0.34);
+    --nav-bg: #1e1a14; --nav-border: #ece5d8; --nav-text: #ece5d8; --link: #8aa9d6; --watermark: #5d564a;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    background: var(--bg-gradient);
-    color: var(--text);
-    line-height: 1.7;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
     transition: background 0.3s, color 0.3s;
   }
-
-  /* Theme toggle */
   .theme-toggle {
-    position: fixed; top: 16px; right: 16px; z-index: 1000;
-    background: var(--nav-bg); border: 1px solid var(--nav-border);
-    color: var(--nav-text); padding: 6px 12px; border-radius: 20px;
-    font-size: 16px; cursor: pointer; backdrop-filter: blur(8px);
-    transition: all 0.2s; line-height: 1;
+    position: fixed; top: 14px; right: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; line-height: 1;
   }
-  .theme-toggle:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
-
+  .theme-toggle:hover { background: var(--card-hover); }
   .back-nav {
-    position: fixed; top: 16px; left: 16px; z-index: 1000;
-    background: var(--nav-bg); border: 1px solid var(--nav-border);
-    color: var(--nav-text); padding: 6px 14px; border-radius: 20px;
-    font-size: 13px; text-decoration: none; backdrop-filter: blur(8px);
-    transition: all 0.2s;
+    position: fixed; top: 14px; left: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 12px; border-radius: 4px; font-size: 12px; text-decoration: none;
+    font-family: var(--sans); letter-spacing: 2px; transition: all 0.2s;
   }
-  .back-nav:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
-  @media (max-width: 600px) {
-    .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 12px auto 0; width: fit-content; }
-    .theme-toggle { top: auto; bottom: 20px; right: 16px; }
+  .back-nav:hover { background: var(--card-hover); }
+  @media (max-width: 640px) {
+    .back-nav { position: static; display: inline-block; margin: 16px 0 0 20px; }
+    .theme-toggle { top: auto; bottom: 18px; right: 14px; }
   }
 
-  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
-  .header {
-    text-align: center; padding: 48px 0 28px;
-    border-bottom: 1px solid var(--border-color); margin-bottom: 24px;
-  }
-  .header .date { font-size: 14px; color: var(--text-secondary); letter-spacing: 2px; }
-  .header h1 { font-size: 22px; color: var(--heading); margin: 8px 0 12px; font-weight: 700; }
-  .header .subtitle { font-size: 13px; color: var(--text-dim); }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px 50px; }
 
-  .intro {
-    background: var(--intro-bg);
-    border: 1px solid var(--intro-border); border-radius: 12px;
-    padding: 18px 20px; margin-bottom: 24px; font-size: 14px;
-    color: var(--intro-text); line-height: 1.8;
+  /* ===== Masthead 报头 ===== */
+  .masthead {
+    text-align: center;
+    padding: 46px 0 18px;
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 6px;
   }
+  .masthead .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 5px;
+    color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 34px;
+    color: var(--ink); letter-spacing: 3px; line-height: 1.15;
+  }
+  .masthead .meta {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+  .masthead .meta b { color: var(--accent); font-weight: 700; }
+
+  /* ===== 导读 lead ===== */
+  .lead {
+    font-family: var(--serif);
+    background: var(--lead-bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--rule);
+    padding: 18px 22px; margin: 22px 0 30px;
+    font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+
+  /* ===== 栏目 ===== */
+  .section { margin-bottom: 34px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    line-height: 1; color: var(--c2);
+  }
+  .sec-num-1 { color: var(--c1); }
+  .sec-num-2 { color: var(--c2); }
+  .sec-num-3 { color: var(--c3); }
+  .sec-num-4 { color: var(--c4); }
+  .sec-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  /* ===== 新名词词条 ===== */
   .new-term {
-    background: var(--nw-bg);
-    border: 1px solid var(--nw-border); border-radius: 12px;
-    padding: 18px 20px; margin-bottom: 24px;
+    background: var(--term-bg); border: 1px solid var(--term-border);
+    border-radius: 2px; padding: 16px 20px;
   }
-  .new-term .badge {
-    display: inline-block; background: var(--nw-badge-bg); color: var(--nw-badge-text);
-    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  .new-term h3 {
+    font-family: var(--serif); font-size: 18px; color: var(--c1); margin-bottom: 8px;
+    font-weight: 700;
   }
-  .new-term h3 { color: var(--nw-heading); font-size: 16px; margin-bottom: 6px; }
-  .new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+  .new-term p { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+  .term-item { padding: 10px 0; border-bottom: 1px solid var(--term-border); }
+  .term-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .term-item:first-child { padding-top: 0; }
+  .term-item h4 {
+    font-family: var(--serif); font-size: 16px; color: var(--c1); margin-bottom: 5px; font-weight: 700;
+  }
+  .term-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
 
-  .topic { margin-bottom: 24px; }
-  .topic-title {
-    font-size: 16px; font-weight: 700; color: var(--heading);
-    padding: 10px 0; border-bottom: 1px solid var(--border-color);
-    margin-bottom: 14px;
+  /* ===== 双栏卡片网格 ===== */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
   }
+  @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
   .card {
-    background: var(--surface); border: 1px solid var(--border-color);
-    border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
-    box-shadow: var(--shadow);
-    transition: border-color 0.2s, background 0.2s;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-top: 2px solid var(--c2); border-radius: 2px;
+    padding: 14px 16px; transition: background 0.2s;
   }
-  .card:hover { border-color: var(--border-hover); background: var(--surface-hover); }
-  .card .tag {
-    display: inline-block; font-size: 11px; padding: 1px 8px;
-    border-radius: 8px; margin-right: 6px; margin-bottom: 4px;
+  .card:hover { background: var(--card-hover); }
+  .card h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px; line-height: 1.5;
   }
-  .tag-blue { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
-  .tag-green { background: var(--tag-green-bg); color: var(--tag-green-text); }
-  .tag-red { background: var(--tag-red-bg); color: var(--tag-red-text); }
-  .tag-orange { background: var(--tag-orange-bg); color: var(--tag-orange-text); }
-  .tag-purple { background: var(--tag-purple-bg); color: var(--tag-purple-text); }
-  .tag-teal { background: var(--tag-teal-bg); color: var(--tag-teal-text); }
-  .card h4 { font-size: 14px; color: var(--text); margin: 6px 0 4px; font-weight: 600; }
-  .card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
-  .card .source { font-size: 11px; color: var(--text-dim); margin-top: 6px; }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
   .card .source a { color: var(--link); text-decoration: none; }
-  .card .source a:hover { color: var(--link-hover); text-decoration: underline; }
+  .card .source a:hover { text-decoration: underline; }
 
+  /* ===== 思考引用块 ===== */
   .thinking {
-    background: var(--think-bg);
-    border: 1px solid var(--think-border); border-radius: 12px;
-    padding: 18px 20px; margin-top: 24px;
+    background: var(--think-bg); border-left: 3px solid var(--c4);
+    border-radius: 2px; padding: 16px 20px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.95;
   }
-  .thinking .badge {
-    display: inline-block; background: var(--think-badge-bg); color: var(--think-badge-text);
-    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
-  }
-  .thinking p { font-size: 14px; color: var(--think-text); line-height: 1.9; }
+  .thinking p { font-style: italic; }
 
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
-    padding: 32px 0 8px; letter-spacing: 1px;
+    padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
   }
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌓</button>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
 <script>
 (function() {
   var saved = localStorage.getItem('ai-daily-theme');
@@ -257,16 +235,100 @@ function toggleTheme() {
 }
 </script>
 <div class="container">
-  <div class="header">
-    <div class="date">2026-05-15 · 星期五</div>
-    <h1>AI 每日简报</h1>
-    <div class="subtitle">3 分钟跟上 AI 行业最值得关注的产品、组织和人才动向</div>
-  </div>
+  <header class="masthead">
+    <div class="kicker">AI · 行业简报</div>
+    <h1>每日 AI 简报</h1>
+    <div class="meta">2026-05-15 · 星期五 · <b>第 28 期</b></div>
+  </header>
 
-  <div class="intro">🔗 日报已上线：https://chloee926.github.io/ai-daily/2026-05-15.html 今日导读：Anthropic 企业市场采用率首次超越 OpenAI（34.4% vs 32.3%），标志着 AI 行业从"ChatGPT 一家独大"正式进入双强格局；同日 OpenAI 被曝 Project Orion 于 5 月 14 日亮相，Google I/O 前夕发布 Gemini Intelligence 全面嵌入安卓生态——三大巨头在同一周密集交火，AI 竞争正从模型能力转向平台控制权。 🆕 今日AI新名词：Mixture of Agents (MoA) OpenAI Project Orion 采用的新架构，不再靠单一巨型模型处理所有问题，而是让多个专精子模型协作解题。好处是推理成本降 40%、上下文窗口拉到 1000 万 token——相当于一次性喂进一整个企业级代码库。 --- 📌 议题一 · AI 平台争夺战：三巨头同周交火 🔵 OpenAI — Project Orion 正式亮相，Mixture of Agents 架构推理成本降 40%，上下文窗口达 1000 万 token，定位为自主 Agent 系统基础。企业合作伙伴已在 Q1 获得早期访问权限，商业化正式启动。 &gt; 企微摘要：OpenAI发布Project Orion，采用多智能体协作架构，推理成本降40%，上下文窗口达1000万token，面向自主Agent场景。 🔵 Google — I/O 前夕发布 Gemini Intelligence，全面嵌入 Android 系统底层，推出 Googlebook 笔记本电脑（与惠普、戴尔、联想合作），Magic Pointer 鼠标实现语义理解交互。安卓系统被定义为"有史以来最大更新"。 &gt; 企微摘要：Google发布Gemini Intelligence嵌入安卓系统，推出Googlebook笔记本和Magic Pointer鼠标，打造AI硬件全家桶。 🔵 Anthropic — Claude 企业采用率首超 OpenAI（34.4% vs 32.3%），据 Ramp AI Index 覆盖 5 万+企业的数据显示。Claude Code 是核心增长引擎——全球 GitHub 公开提交中约 4% 由 Claude Code 撰写，一个月内翻倍。 &gt; 企微摘要：Anthropic企业市场采用率首超OpenAI，Claude Code成最快增长产品，全球4%的GitHub提交由其撰写。 💰 Anthropic — 与 PwC 达成战略合作，PwC 将培训 3 万名美国员工使用 Claude Code，并在全球 36.4 万员工中推广，双方成立 AI 卓越中心（CoE）。同月获黑石、高盛等 15 亿美元投资。 &gt; 企微摘要：Anthropic与PwC战略合作，PwC将培训3万员工使用Claude Code，并成立联合AI卓越中心。 🍎 苹果 — 据彭博报道，Apple 正探索将 AI 智能体整合至 App Store，下月 WWDC 将大力推进 AI 战略。同时 OpenAI 与 Apple 因平台控制权产生紧张关系，Apple 考虑允许用户自选 AI 模型。 &gt; 企微摘要：Apple探索将AI智能体整合至App Store，与OpenAI因平台控制权产生紧张关系，或允许用户自选AI模型。 --- 📌 议题二 · AI 对就业市场的深层冲击 📉 高盛报告 — AI 替代效应每月净减少约 1.6 万个美国岗位（替代 2.5 万 vs 增效回补 0.9 万）。软件工程和数据分析岗位面临"Q3 2026 自动化压力"。 &gt; 企微摘要：高盛数据显示AI每月净减少约1.6万美国岗位，软件工程和数据分析岗受冲击最大。 📈 脉脉报告 — 2026年1-4月中国 AI 岗位量同比增长 8.7 倍，具身智能赛道暴增 15 倍。北京和杭州 AI 岗位渗透率约 30%（每 10 个新岗位有 3 个是 AI 岗），近 4 成程序员绩效考核纳入 AI 能力。 &gt; 企微摘要：脉脉报告显示中国AI岗位量同比增8.7倍，具身智能岗位暴增15倍，北京杭州AI岗渗透率约30%。 💰 Cerebras — AI 芯片公司以每股 185 美元定价 IPO，拟募资超 55 亿美元，5 月 14 日在纳斯达克开始交易（代码 CBRS）。 &gt; 企微摘要：AI芯片公司Cerebras以185美元/股IPO定价，在纳斯达克上市，募资超55亿美元。 🔄 微软 — 确认在 OpenAI 合作项目上已投入超过 1000 亿美元，涵盖初始投资和基础设施成本。这是微软首次公开披露总投入规模。 &gt; 企微摘要：微软确认在OpenAI合作项目上已累计投入超1000亿美元，首次公开披露总投入规模。 🏛️ 阿里 — 企业级 Agent 平台"悟空"开始逐步规模化放量，面向企业自动化场景。 &gt; 企微摘要：阿里企业级Agent平台"悟空"开始规模化放量，面向企业自动化场景。 --- 💡 每日思考题 Anthropic 用 Claude Code 在一年内把企业市场份额从 8% 拉到 34.4%，核心策略是"先抓技术先锋（工程师），再扩散到业务决策者"—— 如果你是一家 AI 产品的 HR BP，面对这种"从技术口切入、自下而上渗透"的采购模式，你的招聘策略是应该优先补"能说服 CTO 的技术型销售"，还是"能让工程师主动传播的开发者布道师"？ 这两个岗位画像的差异，可能决定了你能不能在下一轮 AI 工具采购周期中抢到关键窗口。 --- **信息来源**： - [TechCrunch: Anthropic now has more business customers than OpenAI](https://techcrunch.com/2026/05/13/anthropic-now-has-more-business-customers-than-openai-according-to-ramp-data) - [VentureBeat: Anthropic finally beat OpenAI in business AI adoption](https://venturebeat.com/technology/anthropic-finally-beat-openai-in-business-ai-adoption-but-3-big-threats-could-erase-its-lead) - [StartupFortune: OpenAI Project Orion launch May 14](https://startupfortune.com/openai-is-preparing-to-launch-project-orion-on-may-14-and-the-ai-industry-is-bracing-for-impact/) - [澎湃新闻: Google发布Gemini Intelligence](https://www.thepaper.cn/newsDetail_forward_33174489) - [腾讯新闻AI早报 2026-05-15](https://new.qq.com/rain/a/20260515A02B1800) - [AJU Press: Big Tech's AI Power Struggle](https://www.ajupress.com/view/20260515091370792) - [The News: Anthropic overtakes OpenAI](https://www.thenews.com.pk/latest/1402567-anthropic-overtakes-openai-in-business-ai-adoption)</div>
+  
+    <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
+    </div>
+    <div class="new-term">
+      <h3>Mixture of Agents (MoA)</h3>
+      <p>OpenAI Project Orion 采用的新架构，不再靠单一巨型模型处理所有问题，而是让多个专精子模型协作解题。好处是推理成本降 40%、上下文窗口拉到 1000 万 token——相当于一次性喂进一整个企业级代码库。</p>
+    </div>
+  </section>
 
+    <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">议题一 · AI 平台争夺战：三巨头同周交火</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>OpenAI</h4>
+        <p>Project Orion 正式亮相，Mixture of Agents 架构推理成本降 40%，上下文窗口达 1000 万 token，定位为自主 Agent 系统基础。企业合作伙伴已在 Q1 获得早期访问权限，商业化正式启动。</p>
+        
+      </article>
+      <article class="card">
+        <h4>Google</h4>
+        <p>I/O 前夕发布 Gemini Intelligence，全面嵌入 Android 系统底层，推出 Googlebook 笔记本电脑（与惠普、戴尔、联想合作），Magic Pointer 鼠标实现语义理解交互。安卓系统被定义为"有史以来最大更新"。</p>
+        
+      </article>
+      <article class="card">
+        <h4>Anthropic</h4>
+        <p>Claude 企业采用率首超 OpenAI（34.4% vs 32.3%），据 Ramp AI Index 覆盖 5 万+企业的数据显示。Claude Code 是核心增长引擎——全球 GitHub 公开提交中约 4% 由 Claude Code 撰写，一个月内翻倍。</p>
+        
+      </article>
+      <article class="card">
+        <h4>Anthropic</h4>
+        <p>与 PwC 达成战略合作，PwC 将培训 3 万名美国员工使用 Claude Code，并在全球 36.4 万员工中推广，双方成立 AI 卓越中心（CoE）。同月获黑石、高盛等 15 亿美元投资。</p>
+        
+      </article>
+      <article class="card">
+        <h4>苹果</h4>
+        <p>据彭博报道，Apple 正探索将 AI 智能体整合至 App Store，下月 WWDC 将大力推进 AI 战略。同时 OpenAI 与 Apple 因平台控制权产生紧张关系，Apple 考虑允许用户自选 AI 模型。</p>
+        
+      </article>
+    </div>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">议题二 · AI 对就业市场的深层冲击</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>高盛报告</h4>
+        <p>AI 替代效应每月净减少约 1.6 万个美国岗位（替代 2.5 万 vs 增效回补 0.9 万）。软件工程和数据分析岗位面临"Q3 2026 自动化压力"。</p>
+        
+      </article>
+      <article class="card">
+        <h4>脉脉报告</h4>
+        <p>2026年1-4月中国 AI 岗位量同比增长 8.7 倍，具身智能赛道暴增 15 倍。北京和杭州 AI 岗位渗透率约 30%（每 10 个新岗位有 3 个是 AI 岗），近 4 成程序员绩效考核纳入 AI 能力。</p>
+        
+      </article>
+      <article class="card">
+        <h4>Cerebras</h4>
+        <p>AI 芯片公司以每股 185 美元定价 IPO，拟募资超 55 亿美元，5 月 14 日在纳斯达克开始交易（代码 CBRS）。</p>
+        
+      </article>
+      <article class="card">
+        <h4>微软</h4>
+        <p>确认在 OpenAI 合作项目上已投入超过 1000 亿美元，涵盖初始投资和基础设施成本。这是微软首次公开披露总投入规模。</p>
+        
+      </article>
+      <article class="card">
+        <h4>阿里</h4>
+        <p>企业级 Agent 平台"悟空"开始逐步规模化放量，面向企业自动化场景。</p>
+        
+      </article>
+    </div>
+  </section>
 
-
+    <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">HR 视角的思考延展</h2>
+    </div>
+    <blockquote class="thinking">
+      <p>Anthropic 用 Claude Code 在一年内把企业市场份额从 8% 拉到 34.4%，核心策略是"先抓技术先锋（工程师），再扩散到业务决策者"—— 如果你是一家 AI 产品的 HR BP，面对这种"从技术口切入、自下而上渗透"的采购模式，你的招聘策略是应该优先补"能说服 CTO 的技术型销售"，还是"能让工程师主动传播的开发者布道师"？ 这两个岗位画像的差异，可能决定了你能不能在下一轮 AI 工具采购周期中抢到关键窗口。 信息来源： - <a href="https://techcrunch.com/2026/05/13/anthropic-now-has-more-business-customers-than-openai-according-to-ramp-data" target="_blank">TechCrunch: Anthropic now has more business customers than OpenAI</a> - <a href="https://venturebeat.com/technology/anthropic-finally-beat-openai-in-business-ai-adoption-but-3-big-threats-could-erase-its-lead" target="_blank">VentureBeat: Anthropic finally beat OpenAI in business AI adoption</a> - <a href="https://startupfortune.com/openai-is-preparing-to-launch-project-orion-on-may-14-and-the-ai-industry-is-bracing-for-impact/" target="_blank">StartupFortune: OpenAI Project Orion launch May 14</a> - <a href="https://www.thepaper.cn/newsDetail_forward_33174489" target="_blank">澎湃新闻: Google发布Gemini Intelligence</a> - <a href="https://new.qq.com/rain/a/20260515A02B1800" target="_blank">腾讯新闻AI早报 2026-05-15</a> - <a href="https://www.ajupress.com/view/20260515091370792" target="_blank">AJU Press: Big Tech's AI Power Struggle</a> - <a href="https://www.thenews.com.pk/latest/1402567-anthropic-overtakes-openai-in-business-ai-adoption" target="_blank">The News: Anthropic overtakes OpenAI</a></p>
+    </blockquote>
+  </section>
 
 
   <div class="watermark">Made by ChloeCao</div>

@@ -5,156 +5,314 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>每日AI简报 | 2026-04-08</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0e17;color:#c8d6e5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.7;padding:20px;max-width:820px;margin:0 auto}
-.header{text-align:center;padding:40px 0 30px;border-bottom:1px solid rgba(99,179,237,.2)}
-.header h1{font-size:28px;color:#63b3ed;margin-bottom:8px;letter-spacing:2px}
-.header .date{color:#718096;font-size:15px}
-.summary{background:linear-gradient(135deg,rgba(99,179,237,.12),rgba(129,140,248,.10));border:1px solid rgba(99,179,237,.2);border-radius:12px;padding:24px;margin:28px 0}
-.summary h3{color:#63b3ed;margin-bottom:12px;font-size:16px}
-.summary ol{padding-left:20px;margin-bottom:14px}
-.summary ol li{margin-bottom:6px;font-size:14px}
-.summary .verdict{font-size:13px;color:#a0aec0;line-height:1.8;border-top:1px solid rgba(99,179,237,.15);padding-top:12px;margin-top:10px}
-.section{margin:36px 0}
-.section-title{display:flex;align-items:center;gap:10px;font-size:20px;color:#f6e05e;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(246,224,94,.15)}
-.card{background:rgba(26,32,44,.7);border:1px solid rgba(99,179,237,.12);border-radius:10px;padding:22px;margin-bottom:18px;transition:border-color .3s}
-.card:hover{border-color:rgba(99,179,237,.35)}
-.card h4{color:#e2e8f0;font-size:16px;margin-bottom:8px}
-.card .source{color:#718096;font-size:12px;margin-bottom:10px}
-.card .source a{color:#63b3ed;text-decoration:none}
-.card .source a:hover{text-decoration:underline}
-.card .body{font-size:14px;color:#a0aec0;margin-bottom:12px}
-.card .why{background:rgba(99,179,237,.06);border-left:3px solid #63b3ed;padding:10px 14px;font-size:13px;color:#90cdf4;border-radius:0 6px 6px 0;margin-top:10px}
-.new-term{background:linear-gradient(135deg,rgba(246,224,94,.08),rgba(237,137,54,.06));border:1px solid rgba(246,224,94,.15);border-radius:10px;padding:22px;margin-bottom:18px}
-.new-term h4{color:#f6e05e;font-size:16px;margin-bottom:6px}
-.new-term .explain{font-size:14px;color:#e2e8f0;margin-bottom:8px}
-.new-term .detail{font-size:13px;color:#a0aec0}
-.think{background:linear-gradient(135deg,rgba(72,187,120,.08),rgba(56,178,172,.06));border:1px solid rgba(72,187,120,.15);border-radius:10px;padding:22px;margin-bottom:18px}
-.think h4{color:#68d391;font-size:16px;margin-bottom:10px}
-.think .body{font-size:14px;color:#b2dfdb;line-height:1.9}
-.think .question{background:rgba(72,187,120,.08);border-left:3px solid #68d391;padding:12px 16px;border-radius:0 6px 6px 0;margin-top:16px}
-.think .question h5{color:#68d391;margin-bottom:8px;font-size:14px}
-.think .question ol{padding-left:18px;font-size:13px;color:#a0aec0}
-.think .question ol li{margin-bottom:4px}
-.footer{text-align:center;padding:30px 0;color:#4a5568;font-size:12px;border-top:1px solid rgba(99,179,237,.1);margin-top:40px}
-.footer .watermark{color:#2d3748;font-size:11px;margin-top:8px;letter-spacing:1px}
-@media(max-width:600px){body{padding:12px}.header h1{font-size:22px}.card{padding:16px}}
-.back-nav{position:fixed;top:16px;left:16px;z-index:100}
-.back-nav a{display:inline-flex;align-items:center;gap:6px;background:rgba(26,32,44,.85);border:1px solid rgba(99,179,237,.25);color:#63b3ed;text-decoration:none;padding:8px 16px;border-radius:8px;font-size:13px;backdrop-filter:blur(8px);transition:all .3s}
-.back-nav a:hover{border-color:rgba(99,179,237,.5);background:rgba(26,32,44,.95)}
-@media(max-width:600px){.back-nav{position:relative;top:0;left:0;text-align:center;margin-bottom:10px}}
+  :root {
+    /* ===== Light: 杂志纸白 ===== */
+    --bg: #f3efe6;
+    --paper: #fbf9f3;
+    --ink: #1b1813;
+    --ink-soft: #5b554b;
+    --ink-dim: #8a8275;
+    --rule: #1b1813;
+    --rule-soft: rgba(27,24,19,0.14);
+    --accent: #9e2b25;          /* 刊红 */
+    --c1: #9e2b25;              /* 01 新名词 红 */
+    --c2: #1f5c4d;              /* 02 议题一 墨绿 */
+    --c3: #2b4f8a;              /* 03 议题二 蓝 */
+    --c4: #b06a1e;              /* 04 思考 橙 */
+    --card-bg: #fbf9f3;
+    --card-border: rgba(27,24,19,0.16);
+    --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3;
+    --term-bg: rgba(158,43,37,0.05);
+    --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06);
+    --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3;
+    --nav-border: #1b1813;
+    --nav-text: #1b1813;
+    --link: #2b4f8a;
+    --watermark: #b3ab9c;
+    --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+    --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* ===== Dark: 暖炭黑 ===== */
+      --bg: #16130e;
+      --paper: #1e1a14;
+      --ink: #ece5d8;
+      --ink-soft: #b3a994;
+      --ink-dim: #7d7461;
+      --rule: #ece5d8;
+      --rule-soft: rgba(236,229,216,0.14);
+      --accent: #e08a7a;
+      --c1: #e08a7a;
+      --c2: #6fae9a;
+      --c3: #8aa9d6;
+      --c4: #d9a35e;
+      --card-bg: #1e1a14;
+      --card-border: rgba(236,229,216,0.18);
+      --card-hover: rgba(236,229,216,0.06);
+      --lead-bg: #1e1a14;
+      --term-bg: rgba(224,138,122,0.08);
+      --term-border: rgba(224,138,122,0.34);
+      --think-bg: rgba(217,163,94,0.08);
+      --think-border: rgba(217,163,94,0.34);
+      --nav-bg: #1e1a14;
+      --nav-border: #ece5d8;
+      --nav-text: #ece5d8;
+      --link: #8aa9d6;
+      --watermark: #5d564a;
+    }
+  }
+  [data-theme="light"] {
+    --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+    --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
+    --c1: #9e2b25; --c2: #1f5c4d; --c3: #2b4f8a; --c4: #b06a1e;
+    --card-bg: #fbf9f3; --card-border: rgba(27,24,19,0.16); --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3; --term-bg: rgba(158,43,37,0.05); --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06); --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3; --nav-border: #1b1813; --nav-text: #1b1813; --link: #2b4f8a; --watermark: #b3ab9c;
+  }
+  [data-theme="dark"] {
+    --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+    --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
+    --c1: #e08a7a; --c2: #6fae9a; --c3: #8aa9d6; --c4: #d9a35e;
+    --card-bg: #1e1a14; --card-border: rgba(236,229,216,0.18); --card-hover: rgba(236,229,216,0.06);
+    --lead-bg: #1e1a14; --term-bg: rgba(224,138,122,0.08); --term-border: rgba(224,138,122,0.34);
+    --think-bg: rgba(217,163,94,0.08); --think-border: rgba(217,163,94,0.34);
+    --nav-bg: #1e1a14; --nav-border: #ece5d8; --nav-text: #ece5d8; --link: #8aa9d6; --watermark: #5d564a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
+  }
+  .theme-toggle {
+    position: fixed; top: 14px; right: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; line-height: 1;
+  }
+  .theme-toggle:hover { background: var(--card-hover); }
+  .back-nav {
+    position: fixed; top: 14px; left: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 12px; border-radius: 4px; font-size: 12px; text-decoration: none;
+    font-family: var(--sans); letter-spacing: 2px; transition: all 0.2s;
+  }
+  .back-nav:hover { background: var(--card-hover); }
+  @media (max-width: 640px) {
+    .back-nav { position: static; display: inline-block; margin: 16px 0 0 20px; }
+    .theme-toggle { top: auto; bottom: 18px; right: 14px; }
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px 50px; }
+
+  /* ===== Masthead 报头 ===== */
+  .masthead {
+    text-align: center;
+    padding: 46px 0 18px;
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 6px;
+  }
+  .masthead .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 5px;
+    color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 34px;
+    color: var(--ink); letter-spacing: 3px; line-height: 1.15;
+  }
+  .masthead .meta {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+  .masthead .meta b { color: var(--accent); font-weight: 700; }
+
+  /* ===== 导读 lead ===== */
+  .lead {
+    font-family: var(--serif);
+    background: var(--lead-bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--rule);
+    padding: 18px 22px; margin: 22px 0 30px;
+    font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+
+  /* ===== 栏目 ===== */
+  .section { margin-bottom: 34px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    line-height: 1; color: var(--c2);
+  }
+  .sec-num-1 { color: var(--c1); }
+  .sec-num-2 { color: var(--c2); }
+  .sec-num-3 { color: var(--c3); }
+  .sec-num-4 { color: var(--c4); }
+  .sec-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  /* ===== 新名词词条 ===== */
+  .new-term {
+    background: var(--term-bg); border: 1px solid var(--term-border);
+    border-radius: 2px; padding: 16px 20px;
+  }
+  .new-term h3 {
+    font-family: var(--serif); font-size: 18px; color: var(--c1); margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .new-term p { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+  .term-item { padding: 10px 0; border-bottom: 1px solid var(--term-border); }
+  .term-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .term-item:first-child { padding-top: 0; }
+  .term-item h4 {
+    font-family: var(--serif); font-size: 16px; color: var(--c1); margin-bottom: 5px; font-weight: 700;
+  }
+  .term-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+
+  /* ===== 双栏卡片网格 ===== */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-top: 2px solid var(--c2); border-radius: 2px;
+    padding: 14px 16px; transition: background 0.2s;
+  }
+  .card:hover { background: var(--card-hover); }
+  .card h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px; line-height: 1.5;
+  }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
+  .card .source a { color: var(--link); text-decoration: none; }
+  .card .source a:hover { text-decoration: underline; }
+
+  /* ===== 思考引用块 ===== */
+  .thinking {
+    background: var(--think-bg); border-left: 3px solid var(--c4);
+    border-radius: 2px; padding: 16px 20px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+  .thinking p { font-style: italic; }
+
+  .watermark {
+    text-align: center; color: var(--watermark); font-size: 11px;
+    padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
+  }
 </style>
 </head>
 <body>
-<div class="back-nav"><a href="index.html">&#9664; &#x8FD4;&#x56DE;&#x76EE;&#x5F55;</a></div>
-<div class="header">
-<h1>每日AI简报</h1>
-<div class="date">2026年4月8日 星期三 | TME HR·AI情报站</div>
-</div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
+<script>
+(function() {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+</script>
+<div class="container">
+  <header class="masthead">
+    <div class="kicker">AI · 行业简报</div>
+    <h1>每日 AI 简报</h1>
+    <div class="meta">2026-04-08 · 星期三 · <b>第 1 期</b></div>
+  </header>
 
-<div class="summary">
-<h3>今日最重要的3点</h3>
-<ol>
-<li>OpenAI发布13页政策白皮书，提议征收"机器人税"、建立公共财富基金、试行四天工作制——AI巨头首次主动为自己引发的失业潮"开药方"</li>
-<li>Anthropic推出"Project Glasswing"，投入1亿美元联合苹果/微软/谷歌等12家巨头用未公开的Mythos模型猎杀零日漏洞——AI网络安全军备竞赛正式启动</li>
-<li>AI首次成为美国裁员头号原因：3月因AI裁员15,341人几乎等于2025全年；Oracle单次裁员3万人史上最大——"裁员换GPU"成为科技业标配操作</li>
-</ol>
-<div class="verdict"><strong>总判断：</strong>今天的三条信息拼出了一幅完整的"AI经济重塑"图景。OpenAI一边以8520亿估值融资1220亿美元，一边发白皮书呼吁对自动化劳动征税——这不是善心大发，而是在IPO前为自己搭建"政策安全垫"。Anthropic的Project Glasswing用一个"太危险不能公开发布"的模型来保护全球基础设施，既是技术实力的秀肌肉，也是对代码泄露事件的信任修复。而Challenger数据显示AI裁员单月超去年全年，Oracle裁3万人省出的800亿美元直接投AI数据中心——企业已经不再犹豫，"用人还是用AI"这道选择题的答案越来越明确。</div>
-</div>
+    <div class="lead">1. OpenAI发布13页政策白皮书，提议征收"机器人税"、建立公共财富基金、试行四天工作制——AI巨头首次主动为自己引发的失业潮"开药方" 2. Anthropic推出"Project Glasswing"，投入1亿美元联合苹果/微软/谷歌等12家巨头用未公开的Mythos模型猎杀零日漏洞——AI网络安全军备竞赛正式启动 3. AI首次成为美国裁员头号原因：3月因AI裁员15,341人，几乎等于2025全年；Oracle单次裁员3万人史上最大——"裁员换GPU"成为2026科技业标配操作 总判断： 今天的三条信息拼出了一幅完整的"AI经济重塑"图景。OpenAI一边以8520亿估值融资1220亿美元，一边发白皮书呼吁对自动化劳动征税——这不是善心大发，而是在IPO前为自己搭建"政策安全垫"：如果AI真的引发大规模失业，有政策对冲就不会被监管反噬。Anthropic的Project Glasswing用一个"太危险不能公开发布"的模型来保护全球基础设施，既是技术实力的秀肌肉，也是对几周前代码泄露事件的信任修复。而Challenger数据显示AI裁员单月超去年全年，Oracle裁3万人省出的800亿美元直接投AI数据中心——企业已经不再犹豫，"用人还是用AI"这道选择题的答案越来越明确。</div>
 
-<div class="section">
-<div class="section-title">📘 新名词解释</div>
+    <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
+    </div>
+    <div class="new-term">
+      <div class="term-item"><h4>机器人税（Robot Tax）</h4><p>OpenAI于4月6日发布的13页政策文件《智能时代的产业政策》中正式提出"机器人税"概念：当AI替代人类劳动力后，原本依附于工资的社会保障税、医疗保险税和住房援助税基将塌陷，因此需要对自动化劳动征税来填补缺口。具体方案包括将税基从工资税转向资本利得税和企业所得税，同时建立与AI利润挂钩的国家公共财富基金，让每位公民直接分享AI红利。配套提议还包括全薪32小时四天工作制——将AI带来的效率提升转化为"工人的空闲时间"而非"企业的利润率"。 为什么重要： 当AI公司自己主动提出"向AI征税"，说明它们已经预判到监管风暴即将来临。OpenAI此举更像是一次"先发制人"——在政府立法之前先抛出自己的版本，掌握规则制定的主动权。对HR而言，"机器人税"一旦落地，企业用AI替代人力的成本优势将被重新计算。</p></div>
+      <div class="term-item"><h4>Project Glasswing（玻璃翼计划）</h4><p>Anthropic于4月7日宣布的网络安全联盟计划，核心是将未公开发布的Claude Mythos Preview模型（内部代号Capybara）部署于网络安全防御。该模型已在所有主流操作系统、浏览器和关键软件中自主发现了数千个严重零日漏洞——包括OpenBSD中一个27年历史的远程崩溃漏洞、FFmpeg中一个经过500万次自动化测试未被发现的16年老漏洞。12家合作方包括AWS、苹果、微软、谷歌、CrowdStrike、英伟达、摩根大通等。Anthropic承诺1亿美元使用额度+400万美元开源安全捐赠。 为什么重要： "太危险不能公开发布"——这个定性本身就是一个里程碑，意味着AI能力已经强到需要像核技术一样"受控部署"。CrowdStrike CTO指出"漏洞从发现到被利用的时间窗口已从数月缩短至数分钟"，这是AI攻防双方能力同步飙升的信号。网络安全人才需求将迎来新一轮爆发。</p></div>
+    </div>
+  </section>
 
-<div class="new-term">
-<h4>机器人税（Robot Tax）</h4>
-<div class="explain">OpenAI于4月6日发布的13页政策文件中正式提出：当AI替代人类劳动力后，依附于工资的社保税基将塌陷，需对自动化劳动征税填补缺口。方案包括税基从工资税转向资本利得税、建立与AI利润挂钩的国家公共财富基金、试行全薪32小时四天工作制。</div>
-<div class="detail"><strong>来源：</strong><a href="https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/" style="color:#63b3ed">TechCrunch</a>、<a href="https://www.unite.ai/openai-proposes-robot-taxes-public-wealth-fund-and-four-day-work-week/" style="color:#63b3ed">Unite.AI</a><br><strong>为什么重要：</strong>当AI公司主动提出"向AI征税"，说明它们已预判到监管风暴即将来临。对HR而言，"机器人税"一旦落地，企业用AI替代人力的成本优势将被重新计算。</div>
-</div>
+    <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">议题一 · AI产品、平台与技术动态</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>OpenAI高管团队大洗牌——IPO前夕人事地震</h4>
+        <p>OpenAI在IPO关键节点遭遇密集人事变动：AGI部署CEO Fidji Simo因自身免疫疾病休病假，联合创始人Greg Brockman临时接管产品；COO Brad Lightcap转岗"特别项目"（负责与私募股权的合资企业），前Slack CEO Denise Dresser接手运营；CMO Kate Rouch也因健康原因离职。同时，CFO Sarah Friar被曝与Sam Altman在未来5年6000亿美元支出计划及IPO时间表上存在重大分歧。《纽约客》发布长篇调查质疑Altman可信度，OpenAI又以"数亿美元"收购科技播客TBPN试图控制舆论。</p>
+        <div class="source">来源：<a href="https://www.cnbc.com/2026/04/03/openai-fidji-simo-medical-leave-executive-changes.html" target="_blank">CNBC</a>、<a href="https://www.wired.com/story/openais-fidji-simo-is-taking-a-leave-of-absence/" target="_blank">Wired</a>、<a href="https://fortune.com/2026/04/07/openai-drama-sam-altman-ipo-anthropic-cybersecurity-risks-eye-on-ai/" target="_blank">Fortune</a> | 2026-04-03/07</div>
+      </article>
+      <article class="card">
+        <h4>Anthropic年化营收超300亿美元，反超OpenAI——AI商业格局翻转</h4>
+        <p>Anthropic宣布年化营收达300亿美元（3月单月激增58%），超过OpenAI今年2月报告的250亿美元。在企业级LLM API市场，Anthropic份额32%已超OpenAI的25%，其Claude Code更以54%份额主导开发者工具市场。同时，Anthropic以4亿美元收购生物科技公司Coefficient Bio进军医疗AI，并联合黑石集团和General Atlantic筹集10亿美元企业风投基金。与Google和Broadcom的算力合作预计从2027年起提供约3.5吉瓦算力。</p>
+        <div class="source">来源：<a href="https://fortune.com/2026/04/07/openai-drama-sam-altman-ipo-anthropic-cybersecurity-risks-eye-on-ai/" target="_blank">Fortune</a>、<a href="https://aiweekly.co/learning-ai/ai-business-news-openai-122b-round-anthropic-acquisition-oracle-layoffs-april-7-2026" target="_blank">AI Weekly</a> | 2026-04-07</div>
+      </article>
+      <article class="card">
+        <h4>美国AI三巨头联合反制中国模型"对抗性蒸馏"</h4>
+        <p>OpenAI、Anthropic和Google于4月7日宣布通过"前沿模型论坛"结盟，共享威胁情报以阻止中国AI公司通过"对抗性蒸馏"窃取模型能力。被指控的公司包括DeepSeek、Moonshot AI和MiniMax。仅Anthropic就记录了1600万次未授权交换，涉及约24,000个欺诈性账户。美国官员估计此做法每年使美国AI实验室损失数十亿美元。OpenAI已向美国众议院中国特别委员会提交了针对DeepSeek的备忘录，预计未来6-12个月将出现针对蒸馏技术的出口管制和诉讼。</p>
+        <div class="source">来源：<a href="https://www.roborhythms.com/openai-anthropic-google-fight-chinese-ai-copying-2026/" target="_blank">RoboRhythms</a> | 2026-04-08</div>
+      </article>
+    </div>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">议题二 · 组织、人才与治理变化</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>AI首次成为美国裁员头号原因，3月单月近乎去年全年</h4>
+        <p>根据Challenger, Gray & Christmas的最新报告，AI在3月首次成为美国裁员的头号原因，占所有裁员理由的25%（一个月前仅10%）。3月因AI裁员15,341人，几乎等于2025全年总和。科技行业2026年Q1裁员总数达52,050人，同比增长40%。裁员已蔓延至金融、物流、咨询、媒体、零售和制造业。Oracle执行了公司48年历史上最大规模裁员（约3万人），目的是节省800-1000亿美元现金投入AI数据中心建设。</p>
+        <div class="source">来源：<a href="https://aiweekly.co/learning-ai/ai-careers-news-ai-job-cuts-hit-record-oracle-layoffs-skills-demand-april-7-2026" target="_blank">AI Weekly</a> | 2026-04-07</div>
+      </article>
+      <article class="card">
+        <h4>AI技能溢价56%，但市场正在急剧分化</h4>
+        <p>与裁员同步的是AI技能需求爆发：Upwork报告显示AI技能工作需求同比增长109%，其中AI视频生成+329%、AI集成+178%、AI数据标注+154%。招聘计划环比增长157%至32,826个岗位，集中在AI工程、MLOps和数据基础设施。中层AI工程师底薪155K-200K美元，高级岗位总薪酬超300K美元，AI技能溢价达56%。MIT研究显示AI目前仅能在65%的文本任务上产出"勉强合格"工作，预计2029年覆盖80-95%但仍限于最低质量水平。</p>
+        <div class="source">来源：<a href="https://aiweekly.co/learning-ai/ai-careers-news-ai-job-cuts-hit-record-oracle-layoffs-skills-demand-april-7-2026" target="_blank">AI Weekly</a>、<a href="https://www.upwork.com/" target="_blank">Upwork 2026报告</a> | 2026-04-07</div>
+      </article>
+      <article class="card">
+        <h4>OpenAI提议四天工作制——AI公司首次正式为"就业冲击"开出药方</h4>
+        <p>OpenAI的13页政策白皮书不仅提了"机器人税"和"公共财富基金"，还有更具体的操作建议：政府应激励试行全薪32小时四天工作制，将AI效率红利转化为"工人的空闲时间"而非"企业利润率"；建立与经济数据挂钩的"自动触发安全网"，当AI失业指标触及阈值时自动增加救济；将AI接入视为基本权利，像识字率和电力一样覆盖学校、图书馆和欠发达社区。Sam Altman将当前比作1930年代新政时期，OpenAI将提供高达100万美元API积分资助相关研究。</p>
+        <div class="source">来源：<a href="https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/" target="_blank">TechCrunch</a>、<a href="https://www.unite.ai/openai-proposes-robot-taxes-public-wealth-fund-and-four-day-work-week/" target="_blank">Unite.AI</a> | 2026-04-06</div>
+      </article>
+    </div>
+  </section>
 
-<div class="new-term">
-<h4>Project Glasswing（玻璃翼计划）</h4>
-<div class="explain">Anthropic于4月7日宣布的网络安全联盟计划，核心是将未公开发布的Claude Mythos Preview模型部署于安全防御。该模型已自主发现数千个严重零日漏洞，包括OpenBSD中27年历史的远程崩溃漏洞、FFmpeg中经500万次测试未发现的16年老漏洞。合作方包括AWS、苹果、微软、谷歌等12家巨头。</div>
-<div class="detail"><strong>来源：</strong><a href="https://venturebeat.com/technology/anthropic-says-its-most-powerful-ai-cyber-model-is-too-dangerous-to-release" style="color:#63b3ed">VentureBeat</a>、<a href="https://fortune.com/2026/04/07/openai-drama-sam-altman-ipo-anthropic-cybersecurity-risks-eye-on-ai/" style="color:#63b3ed">Fortune</a><br><strong>为什么重要：</strong>"太危险不能公开发布"是一个里程碑——AI能力已强到需要像核技术一样"受控部署"。网络安全人才需求将迎来新一轮爆发。</div>
-</div>
-</div>
+    <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">HR 视角的思考延展</h2>
+    </div>
+    <blockquote class="thinking">
+      <p>### 今日关注点 今天的信息如果只看一条，看OpenAI的13页政策白皮书。不是因为它最实用——它毕竟是面向政策制定者的愿景文件。而是因为它标志着一个转折：制造AI的人开始公开承认AI会制造大规模失业，并且第一次给出了系统性的"解法"。当OpenAI说"把税基从工资转向资本"，本质上是在说——未来企业的价值创造将越来越少依赖人力，越来越多依赖AI资本。 第一， "机器人税"如果真的落地，HR的成本模型需要彻底重算。目前企业用AI替代人力的核心动力是"成本差"——AI工具月成本远低于人力成本。但"机器人税"的逻辑是把这个差距重新拉回来。HR需要开始建立"含AI税的替代成本模型"，而不是仅看当前AI工具的裸价格。 第二， Oracle裁3万人省800亿建AI中心——这是"裁员换GPU"最极端的样本。但更值得HR关注的是Atlassian式操作：裁1600人→招800名AI工程师。这意味着"净减员"可能只有一半，但岗位画像已经完全换血。HR需要帮管理层理解：裁员KPI不应只看"减了多少人"，更要看"新增岗位的AI能力密度提升了多少"。 第三， AI技能溢价56%且还在扩大——这个数字直接影响招聘策略和薪酬结构。在中国市场，上期提到的"算法工程师月薪2万=硅谷1/10"的缓冲期内，是抓紧内部员工AI技能升级的最佳窗口。一旦"机器人税"或类似政策在全球扩散，企业用AI替代人力的经济逻辑不会消失，只会更精打细算——届时，有AI技能的人被裁的概率远低于没有AI技能的人。 ### 今日思考题 当创造AI的公司主动提议"向AI征税"和"四天工作制"，这对HR意味着什么？是应该加速AI替代以抢在政策落地前最大化成本优势，还是应该提前布局"含AI税的人力成本模型"？ 1. 测算"机器人税场景"下的人力成本对比：在当前AI工具成本基础上叠加假定税率（参考OpenAI白皮书的框架），重新评估各岗位的AI替代经济性 2. 推动"四天工作制可行性评估"：在效率提升已有数据的团队中试算——如果用AI工具将5天产出压缩到4天，人均产出是否不降反升？这可能成为未来的招聘吸引力武器 3. 建立"AI技能溢价追踪表"：按岗位序列定期跟踪有/无AI技能员工的市场薪资差距（目前56%），当差距超过阈值时触发内部培训或招聘策略调整 *每日AI简报 | TME HR·AI情报站 | 2026-04-08* *以上信息仅供参考*</p>
+    </blockquote>
+  </section>
 
-<div class="section">
-<div class="section-title">🚀 议题一｜AI产品、平台与技术动态</div>
 
-<div class="card">
-<h4>1. OpenAI高管团队大洗牌——IPO前夕人事地震</h4>
-<div class="source">来源：<a href="https://www.cnbc.com/2026/04/03/openai-fidji-simo-medical-leave-executive-changes.html">CNBC</a>、<a href="https://www.wired.com/story/openais-fidji-simo-is-taking-a-leave-of-absence/">Wired</a>、<a href="https://fortune.com/2026/04/07/openai-drama-sam-altman-ipo-anthropic-cybersecurity-risks-eye-on-ai/">Fortune</a> | 2026-04-03/07</div>
-<div class="body">OpenAI在IPO关键节点遭遇密集人事变动：AGI部署CEO Fidji Simo因自身免疫疾病休病假，联合创始人Greg Brockman临时接管产品；COO Brad Lightcap转岗"特别项目"，前Slack CEO Denise Dresser接手运营；CMO Kate Rouch因健康原因离职。CFO Sarah Friar被曝与Altman在6000亿美元支出计划和IPO时间表上存在重大分歧。《纽约客》发布长篇调查质疑Altman可信度，OpenAI又以"数亿美元"收购科技播客TBPN试图控制舆论。</div>
-<div class="why">8520亿估值下C-suite三位高管同时缺位，加上CFO与CEO分歧曝光，对上市前投资者信心是直接打击。收购媒体更暴露了OpenAI对叙事控制的焦虑。</div>
-</div>
-
-<div class="card">
-<h4>2. Anthropic年化营收超300亿美元，反超OpenAI</h4>
-<div class="source">来源：<a href="https://fortune.com/2026/04/07/openai-drama-sam-altman-ipo-anthropic-cybersecurity-risks-eye-on-ai/">Fortune</a>、<a href="https://aiweekly.co/learning-ai/ai-business-news-openai-122b-round-anthropic-acquisition-oracle-layoffs-april-7-2026">AI Weekly</a> | 2026-04-07</div>
-<div class="body">Anthropic宣布年化营收达300亿美元（3月单月激增58%），超过OpenAI的250亿美元。企业级LLM API市场份额32%超OpenAI的25%，Claude Code以54%份额主导开发者工具。同时以4亿美元收购生物科技公司Coefficient Bio进军医疗AI，联合黑石集团筹集10亿美元企业风投基金。</div>
-<div class="why">Anthropic靠Claude Code切入开发者工具+企业API双赛道实现超车。OpenAI面临商业收入被超、高管不稳、IPO窗口收窄的三重压力。</div>
-</div>
-
-<div class="card">
-<h4>3. 美国AI三巨头联合反制中国模型"对抗性蒸馏"</h4>
-<div class="source">来源：<a href="https://www.roborhythms.com/openai-anthropic-google-fight-chinese-ai-copying-2026/">RoboRhythms</a> | 2026-04-08</div>
-<div class="body">OpenAI、Anthropic和Google通过"前沿模型论坛"结盟，共享威胁情报阻止DeepSeek、Moonshot AI和MiniMax通过对抗性蒸馏窃取模型能力。仅Anthropic就记录了1600万次未授权交换和24,000个欺诈账户。美国官员估计年损失数十亿美元。OpenAI已向众议院中国特别委员会提交了DeepSeek备忘录。</div>
-<div class="why">三大竞争对手史无前例联合共享情报——中国AI公司API访问和数据获取通道将进一步收窄，加速"算力脱钩"趋势。</div>
-</div>
-</div>
-
-<div class="section">
-<div class="section-title">👥 议题二｜组织、人才与治理变化</div>
-
-<div class="card">
-<h4>1. AI首次成为美国裁员头号原因，3月单月近乎去年全年</h4>
-<div class="source">来源：<a href="https://aiweekly.co/learning-ai/ai-careers-news-ai-job-cuts-hit-record-oracle-layoffs-skills-demand-april-7-2026">AI Weekly</a> | 2026-04-07</div>
-<div class="body">Challenger报告：AI在3月首次成为美国裁员首要原因，占比25%（上月仅10%）。单月因AI裁员15,341人，几乎等于2025全年。2026年Q1科技行业裁员52,050人，同比+40%。裁员已蔓延至金融、物流、咨询、媒体等行业。Oracle执行48年历史最大裁员（约3万人），节省800-1000亿美元现金投入AI数据中心。</div>
-<div class="why">Oracle的操作最具标志性：裁3万人→省800亿→建AI数据中心。这不是"人换AI"，而是"人的成本直接变成AI的投入"，转换之直接超出想象。</div>
-</div>
-
-<div class="card">
-<h4>2. AI技能溢价56%，裁员与招聘同时创纪录</h4>
-<div class="source">来源：<a href="https://aiweekly.co/learning-ai/ai-careers-news-ai-job-cuts-hit-record-oracle-layoffs-skills-demand-april-7-2026">AI Weekly</a>、Upwork 2026报告 | 2026-04-07</div>
-<div class="body">AI技能工作需求同比+109%，AI视频生成+329%、AI集成+178%、AI数据标注+154%。招聘计划环比+157%至32,826个岗位。中层AI工程师底薪155K-200K美元，高级总薪酬超300K美元，技能溢价56%。Atlassian典型操作：裁1600人→招800名AI工程师。MIT研究：AI目前仅在65%的文本任务上产出"勉强合格"工作。</div>
-<div class="why">"裁员+招聘同时创纪录"——岗位不是在消失，而是在剧烈换血。56%的技能溢价意味着会AI和不会AI的人薪资差距还在拉大。</div>
-</div>
-
-<div class="card">
-<h4>3. OpenAI提议四天工作制——首次正式为"就业冲击"开药方</h4>
-<div class="source">来源：<a href="https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/">TechCrunch</a>、<a href="https://www.unite.ai/openai-proposes-robot-taxes-public-wealth-fund-and-four-day-work-week/">Unite.AI</a> | 2026-04-06</div>
-<div class="body">OpenAI 13页白皮书建议：全薪32小时四天工作制，将AI效率红利转化为工人空闲时间；建立自动触发安全网，AI失业指标触及阈值时自动增加救济；将AI接入视为基本权利覆盖学校和欠发达社区。Altman将当前比作1930年代新政时期，将提供100万美元API积分资助相关研究。</div>
-<div class="why">四天工作制的本质是承认——即使AI没消灭你的工作，它也让你的大部分工作变得多余。对HR来说，这不再是福利噱头，而是需要认真评估的组织效率命题。</div>
-</div>
-</div>
-
-<div class="section">
-<div class="section-title">💡 思考延展｜HR视角</div>
-
-<div class="think">
-<h4>今日关注点</h4>
-<div class="body">
-<p>今天的信息如果只看一条，看OpenAI的13页政策白皮书。它标志着一个转折：制造AI的人开始公开承认AI会制造大规模失业，并第一次给出系统性"解法"。当OpenAI说"把税基从工资转向资本"，本质上是在说——未来企业价值创造将越来越少依赖人力，越来越多依赖AI资本。</p>
-<p style="margin-top:10px"><strong>第一，</strong>"机器人税"如果落地，HR的成本模型需要彻底重算。目前企业用AI替代人力的核心动力是"成本差"。但"机器人税"会把这个差距重新拉回来。HR需要建立"含AI税的替代成本模型"，而不是仅看AI工具裸价格。</p>
-<p style="margin-top:8px"><strong>第二，</strong>Oracle裁3万人省800亿建AI中心——"裁员换GPU"最极端的样本。但更值得关注的是Atlassian式操作：裁1600人→招800名AI工程师。HR需帮管理层理解：裁员KPI不应只看"减了多少人"，更要看"新增岗位的AI能力密度提升了多少"。</p>
-<p style="margin-top:8px"><strong>第三，</strong>AI技能溢价56%且在扩大。在中国市场"算法工程师月薪2万=硅谷1/10"的缓冲期内，是抓紧内部AI技能升级的最佳窗口。一旦"机器人税"类政策全球扩散，有AI技能的人被裁的概率远低于没有AI技能的人。</p>
-</div>
-<div class="question">
-<h5>今日思考题</h5>
-<p style="margin-bottom:8px;color:#68d391"><strong>当创造AI的公司主动提议"向AI征税"和"四天工作制"，这对HR意味着什么？是应该加速AI替代抢在政策落地前最大化成本优势，还是应该提前布局"含AI税的人力成本模型"？</strong></p>
-<ol>
-<li>测算"机器人税场景"下的人力成本对比：在AI工具成本上叠加假定税率，重新评估各岗位AI替代经济性</li>
-<li>推动"四天工作制可行性评估"：在效率提升已有数据的团队试算——5天产出压缩到4天，人均产出是否不降反升？</li>
-<li>建立"AI技能溢价追踪表"：按岗位序列跟踪有/无AI技能员工的市场薪资差距（目前56%），超阈值时触发培训或招聘策略调整</li>
-</ol>
-</div>
-</div>
-</div>
-
-<div class="footer">
-<p>每日AI简报 | TME HR·AI情报站 | 2026-04-08</p>
-<p style="margin-top:6px">以上信息仅供参考</p>
-<div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">Made by ChloeCao</div>
 </div>
 </body>
 </html>

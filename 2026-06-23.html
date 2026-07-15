@@ -2,229 +2,225 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>每日AI简报 | 2026-06-23</title>
 <style>
   :root {
-    --bg: #0a0e1a;
-    --bg-gradient: linear-gradient(165deg, #0a0e1a 0%, #0f1629 40%, #131b36 100%);
-    --surface: rgba(18, 26, 50, 0.6);
-    --surface-hover: rgba(28, 40, 70, 0.7);
-    --text: #e0e6f0;
-    --text-secondary: #98a8c0;
-    --text-dim: #5a6880;
-    --heading: #fff;
-    --intro-bg: linear-gradient(135deg, rgba(30,50,100,0.4), rgba(20,35,70,0.3));
-    --intro-border: rgba(100,140,255,0.15);
-    --intro-text: #c0d0e8;
-    --nw-bg: linear-gradient(135deg, rgba(180,100,255,0.12), rgba(120,60,200,0.08));
-    --nw-border: rgba(180,130,255,0.25);
-    --nw-badge-bg: rgba(180,130,255,0.2);
-    --nw-badge-text: #c8a8ff;
-    --nw-heading: #d8b8ff;
-    --think-bg: linear-gradient(135deg, rgba(255,200,50,0.08), rgba(200,160,30,0.05));
-    --think-border: rgba(255,200,80,0.2);
-    --think-badge-bg: rgba(255,200,80,0.15);
-    --think-badge-text: #ffc844;
-    --think-text: #d0c8a0;
-    --tag-blue-bg: rgba(70,130,255,0.15); --tag-blue-text: #6ea8ff;
-    --tag-green-bg: rgba(70,200,130,0.15); --tag-green-text: #5ed49a;
-    --tag-red-bg: rgba(255,90,90,0.15); --tag-red-text: #ff7070;
-    --tag-orange-bg: rgba(255,160,50,0.15); --tag-orange-text: #ffa844;
-    --tag-purple-bg: rgba(180,130,255,0.15); --tag-purple-text: #c8a8ff;
-    --tag-teal-bg: rgba(50,200,200,0.15); --tag-teal-text: #50d0d0;
-    --border-color: rgba(100,140,255,0.1);
-    --border-hover: rgba(100,140,255,0.3);
-    --nav-bg: rgba(20,30,60,0.85);
-    --nav-border: rgba(100,140,255,0.3);
-    --nav-text: #8ab4ff;
-    --nav-hover-bg: rgba(40,60,120,0.9);
-    --nav-hover-text: #b0d0ff;
-    --link: #6b8fc0;
-    --link-hover: #8ab4ff;
-    --watermark: #2a3040;
-    --shadow: 0 2px 12px rgba(0,0,0,0.2);
+    /* ===== Light: 杂志纸白 ===== */
+    --bg: #f3efe6;
+    --paper: #fbf9f3;
+    --ink: #1b1813;
+    --ink-soft: #5b554b;
+    --ink-dim: #8a8275;
+    --rule: #1b1813;
+    --rule-soft: rgba(27,24,19,0.14);
+    --accent: #9e2b25;          /* 刊红 */
+    --c1: #9e2b25;              /* 01 新名词 红 */
+    --c2: #1f5c4d;              /* 02 议题一 墨绿 */
+    --c3: #2b4f8a;              /* 03 议题二 蓝 */
+    --c4: #b06a1e;              /* 04 思考 橙 */
+    --card-bg: #fbf9f3;
+    --card-border: rgba(27,24,19,0.16);
+    --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3;
+    --term-bg: rgba(158,43,37,0.05);
+    --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06);
+    --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3;
+    --nav-border: #1b1813;
+    --nav-text: #1b1813;
+    --link: #2b4f8a;
+    --watermark: #b3ab9c;
+    --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+    --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
   }
-  @media (prefers-color-scheme: light) {
+  @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #f0f2f7;
-      --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
-      --surface: rgba(255, 255, 255, 0.85);
-      --surface-hover: rgba(255, 255, 255, 0.95);
-      --text: #2d3748;
-      --text-secondary: #5a6878;
-      --text-dim: #8896a6;
-      --heading: #1a202c;
-      --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
-      --intro-border: rgba(66,103,178,0.15);
-      --intro-text: #3a4a60;
-      --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
-      --nw-border: rgba(140,100,220,0.2);
-      --nw-badge-bg: rgba(140,100,220,0.1);
-      --nw-badge-text: #7c4dff;
-      --nw-heading: #5b2eab;
-      --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
-      --think-border: rgba(200,170,50,0.2);
-      --think-badge-bg: rgba(200,170,50,0.1);
-      --think-badge-text: #b8860b;
-      --think-text: #5a4e30;
-      --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
-      --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
-      --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
-      --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
-      --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
-      --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
-      --border-color: rgba(0,0,0,0.06);
-      --border-hover: rgba(66,103,178,0.25);
-      --nav-bg: rgba(255,255,255,0.9);
-      --nav-border: rgba(66,103,178,0.2);
-      --nav-text: #4267b2;
-      --nav-hover-bg: rgba(240,242,247,0.95);
-      --nav-hover-text: #2d4a8a;
-      --link: #4267b2;
-      --link-hover: #2d4a8a;
-      --watermark: #c0c8d4;
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      /* ===== Dark: 暖炭黑 ===== */
+      --bg: #16130e;
+      --paper: #1e1a14;
+      --ink: #ece5d8;
+      --ink-soft: #b3a994;
+      --ink-dim: #7d7461;
+      --rule: #ece5d8;
+      --rule-soft: rgba(236,229,216,0.14);
+      --accent: #e08a7a;
+      --c1: #e08a7a;
+      --c2: #6fae9a;
+      --c3: #8aa9d6;
+      --c4: #d9a35e;
+      --card-bg: #1e1a14;
+      --card-border: rgba(236,229,216,0.18);
+      --card-hover: rgba(236,229,216,0.06);
+      --lead-bg: #1e1a14;
+      --term-bg: rgba(224,138,122,0.08);
+      --term-border: rgba(224,138,122,0.34);
+      --think-bg: rgba(217,163,94,0.08);
+      --think-border: rgba(217,163,94,0.34);
+      --nav-bg: #1e1a14;
+      --nav-border: #ece5d8;
+      --nav-text: #ece5d8;
+      --link: #8aa9d6;
+      --watermark: #5d564a;
     }
   }
-  [data-theme="dark"] { }
   [data-theme="light"] {
-    --bg: #f0f2f7;
-    --bg-gradient: linear-gradient(165deg, #f0f2f7 0%, #e8ecf4 40%, #dfe4ef 100%);
-    --surface: rgba(255, 255, 255, 0.85);
-    --surface-hover: rgba(255, 255, 255, 0.95);
-    --text: #2d3748;
-    --text-secondary: #5a6878;
-    --text-dim: #8896a6;
-    --heading: #1a202c;
-    --intro-bg: linear-gradient(135deg, rgba(66,103,178,0.08), rgba(99,130,200,0.06));
-    --intro-border: rgba(66,103,178,0.15);
-    --intro-text: #3a4a60;
-    --nw-bg: linear-gradient(135deg, rgba(140,80,220,0.06), rgba(100,50,180,0.04));
-    --nw-border: rgba(140,100,220,0.2);
-    --nw-badge-bg: rgba(140,100,220,0.1);
-    --nw-badge-text: #7c4dff;
-    --nw-heading: #5b2eab;
-    --think-bg: linear-gradient(135deg, rgba(200,160,30,0.06), rgba(180,140,20,0.04));
-    --think-border: rgba(200,170,50,0.2);
-    --think-badge-bg: rgba(200,170,50,0.1);
-    --think-badge-text: #b8860b;
-    --think-text: #5a4e30;
-    --tag-blue-bg: rgba(50,100,220,0.08); --tag-blue-text: #2d6adf;
-    --tag-green-bg: rgba(40,160,100,0.08); --tag-green-text: #1d8a52;
-    --tag-red-bg: rgba(220,60,60,0.08); --tag-red-text: #d04040;
-    --tag-orange-bg: rgba(220,140,30,0.08); --tag-orange-text: #c07820;
-    --tag-purple-bg: rgba(130,80,220,0.08); --tag-purple-text: #7040c0;
-    --tag-teal-bg: rgba(30,160,160,0.08); --tag-teal-text: #2a9a9a;
-    --border-color: rgba(0,0,0,0.06);
-    --border-hover: rgba(66,103,178,0.25);
-    --nav-bg: rgba(255,255,255,0.9);
-    --nav-border: rgba(66,103,178,0.2);
-    --nav-text: #4267b2;
-    --nav-hover-bg: rgba(240,242,247,0.95);
-    --nav-hover-text: #2d4a8a;
-    --link: #4267b2;
-    --link-hover: #2d4a8a;
-    --watermark: #c0c8d4;
-    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+    --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
+    --c1: #9e2b25; --c2: #1f5c4d; --c3: #2b4f8a; --c4: #b06a1e;
+    --card-bg: #fbf9f3; --card-border: rgba(27,24,19,0.16); --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3; --term-bg: rgba(158,43,37,0.05); --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06); --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3; --nav-border: #1b1813; --nav-text: #1b1813; --link: #2b4f8a; --watermark: #b3ab9c;
   }
+  [data-theme="dark"] {
+    --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+    --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
+    --c1: #e08a7a; --c2: #6fae9a; --c3: #8aa9d6; --c4: #d9a35e;
+    --card-bg: #1e1a14; --card-border: rgba(236,229,216,0.18); --card-hover: rgba(236,229,216,0.06);
+    --lead-bg: #1e1a14; --term-bg: rgba(224,138,122,0.08); --term-border: rgba(224,138,122,0.34);
+    --think-bg: rgba(217,163,94,0.08); --think-border: rgba(217,163,94,0.34);
+    --nav-bg: #1e1a14; --nav-border: #ece5d8; --nav-text: #ece5d8; --link: #8aa9d6; --watermark: #5d564a;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    background: var(--bg-gradient); color: var(--text); line-height: 1.7;
-    -webkit-font-smoothing: antialiased; transition: background 0.3s, color 0.3s;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
   }
   .theme-toggle {
-    position: fixed; top: 16px; right: 16px; z-index: 1000;
-    background: var(--nav-bg); border: 1px solid var(--nav-border);
-    color: var(--nav-text); padding: 6px 12px; border-radius: 20px;
-    font-size: 16px; cursor: pointer; backdrop-filter: blur(8px);
-    transition: all 0.2s; line-height: 1;
+    position: fixed; top: 14px; right: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; line-height: 1;
   }
-  .theme-toggle:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
+  .theme-toggle:hover { background: var(--card-hover); }
   .back-nav {
-    position: fixed; top: 16px; left: 16px; z-index: 1000;
-    background: var(--nav-bg); border: 1px solid var(--nav-border);
-    color: var(--nav-text); padding: 6px 14px; border-radius: 20px;
-    font-size: 13px; text-decoration: none; backdrop-filter: blur(8px);
-    transition: all 0.2s;
+    position: fixed; top: 14px; left: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 12px; border-radius: 4px; font-size: 12px; text-decoration: none;
+    font-family: var(--sans); letter-spacing: 2px; transition: all 0.2s;
   }
-  .back-nav:hover { background: var(--nav-hover-bg); color: var(--nav-hover-text); }
-  @media (max-width: 600px) {
-    .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin: 12px auto 0; width: fit-content; }
-    .theme-toggle { top: auto; bottom: 20px; right: 16px; }
+  .back-nav:hover { background: var(--card-hover); }
+  @media (max-width: 640px) {
+    .back-nav { position: static; display: inline-block; margin: 16px 0 0 20px; }
+    .theme-toggle { top: auto; bottom: 18px; right: 14px; }
   }
-  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
-  .header {
-    text-align: center; padding: 48px 0 28px;
-    border-bottom: 1px solid var(--border-color); margin-bottom: 24px;
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px 50px; }
+
+  /* ===== Masthead 报头 ===== */
+  .masthead {
+    text-align: center;
+    padding: 46px 0 18px;
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 6px;
   }
-  .header .date { font-size: 14px; color: var(--text-secondary); letter-spacing: 2px; }
-  .header h1 { font-size: 22px; color: var(--heading); margin: 8px 0 12px; font-weight: 700; }
-  .header .subtitle { font-size: 13px; color: var(--text-dim); }
-  .intro {
-    background: var(--intro-bg); border: 1px solid var(--intro-border);
-    border-radius: 12px; padding: 18px 20px; margin-bottom: 24px;
-    font-size: 14px; color: var(--intro-text); line-height: 1.8;
+  .masthead .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 5px;
+    color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px;
   }
-  .intro .top3 { margin-bottom: 12px; }
-  .intro .top3 li { margin-bottom: 4px; }
-  .intro .verdict { font-weight: 600; color: var(--heading); font-size: 13px; }
+  .masthead h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 34px;
+    color: var(--ink); letter-spacing: 3px; line-height: 1.15;
+  }
+  .masthead .meta {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+  .masthead .meta b { color: var(--accent); font-weight: 700; }
+
+  /* ===== 导读 lead ===== */
+  .lead {
+    font-family: var(--serif);
+    background: var(--lead-bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--rule);
+    padding: 18px 22px; margin: 22px 0 30px;
+    font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+
+  /* ===== 栏目 ===== */
+  .section { margin-bottom: 34px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    line-height: 1; color: var(--c2);
+  }
+  .sec-num-1 { color: var(--c1); }
+  .sec-num-2 { color: var(--c2); }
+  .sec-num-3 { color: var(--c3); }
+  .sec-num-4 { color: var(--c4); }
+  .sec-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  /* ===== 新名词词条 ===== */
   .new-term {
-    background: var(--nw-bg); border: 1px solid var(--nw-border);
-    border-radius: 12px; padding: 18px 20px; margin-bottom: 24px;
+    background: var(--term-bg); border: 1px solid var(--term-border);
+    border-radius: 2px; padding: 16px 20px;
   }
-  .new-term .badge {
-    display: inline-block; background: var(--nw-badge-bg); color: var(--nw-badge-text);
-    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+  .new-term h3 {
+    font-family: var(--serif); font-size: 18px; color: var(--c1); margin-bottom: 8px;
+    font-weight: 700;
   }
-  .new-term h3 { color: var(--nw-heading); font-size: 16px; margin-bottom: 6px; }
-  .new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-  .topic { margin-bottom: 24px; }
-  .topic-title {
-    font-size: 16px; font-weight: 700; color: var(--heading);
-    padding: 10px 0; border-bottom: 1px solid var(--border-color); margin-bottom: 14px;
+  .new-term p { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+  .term-item { padding: 10px 0; border-bottom: 1px solid var(--term-border); }
+  .term-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .term-item:first-child { padding-top: 0; }
+  .term-item h4 {
+    font-family: var(--serif); font-size: 16px; color: var(--c1); margin-bottom: 5px; font-weight: 700;
   }
+  .term-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+
+  /* ===== 双栏卡片网格 ===== */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
   .card {
-    background: var(--surface); border: 1px solid var(--border-color);
-    border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
-    box-shadow: var(--shadow); transition: border-color 0.2s, background 0.2s;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-top: 2px solid var(--c2); border-radius: 2px;
+    padding: 14px 16px; transition: background 0.2s;
   }
-  .card:hover { border-color: var(--border-hover); background: var(--surface-hover); }
-  .card .tag {
-    display: inline-block; font-size: 11px; padding: 1px 8px;
-    border-radius: 8px; margin-right: 6px; margin-bottom: 4px;
+  .card:hover { background: var(--card-hover); }
+  .card h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px; line-height: 1.5;
   }
-  .tag-blue { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
-  .tag-green { background: var(--tag-green-bg); color: var(--tag-green-text); }
-  .tag-red { background: var(--tag-red-bg); color: var(--tag-red-text); }
-  .tag-orange { background: var(--tag-orange-bg); color: var(--tag-orange-text); }
-  .tag-purple { background: var(--tag-purple-bg); color: var(--tag-purple-text); }
-  .tag-teal { background: var(--tag-teal-bg); color: var(--tag-teal-text); }
-  .card h4 { font-size: 14px; color: var(--text); margin: 6px 0 4px; font-weight: 600; }
-  .card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
-  .card .source { font-size: 11px; color: var(--text-dim); margin-top: 6px; }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
   .card .source a { color: var(--link); text-decoration: none; }
-  .card .source a:hover { color: var(--link-hover); text-decoration: underline; }
+  .card .source a:hover { text-decoration: underline; }
+
+  /* ===== 思考引用块 ===== */
   .thinking {
-    background: var(--think-bg); border: 1px solid var(--think-border);
-    border-radius: 12px; padding: 18px 20px; margin-top: 24px;
+    background: var(--think-bg); border-left: 3px solid var(--c4);
+    border-radius: 2px; padding: 16px 20px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.95;
   }
-  .thinking .badge {
-    display: inline-block; background: var(--think-badge-bg); color: var(--think-badge-text);
-    padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
-  }
-  .thinking h4 { font-size: 14px; color: var(--think-badge-text); margin: 10px 0 6px; }
-  .thinking p { font-size: 14px; color: var(--think-text); line-height: 1.9; }
+  .thinking p { font-style: italic; }
+
   .watermark {
     text-align: center; color: var(--watermark); font-size: 11px;
-    padding: 32px 0 8px; letter-spacing: 1px;
+    padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
   }
 </style>
 </head>
 <body>
-<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">◀ 返回目录</a>
-<button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌓</button>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
 <script>
 (function() {
   var saved = localStorage.getItem('ai-daily-theme');
@@ -239,117 +235,86 @@ function toggleTheme() {
 }
 </script>
 <div class="container">
-  <div class="header">
-    <div class="date">2026-06-23 · 星期二</div>
-    <h1>AI 每日简报</h1>
-    <div class="subtitle">3 分钟跟上 AI 行业最值得关注的产品、组织和人才动向</div>
-  </div>
+  <header class="masthead">
+    <div class="kicker">AI · 行业简报</div>
+    <h1>每日 AI 简报</h1>
+    <div class="meta">2026-06-23 · 星期二 · <b>第 55 期</b></div>
+  </header>
 
-  <div class="intro">
-    <div class="top3">
-      <strong>今日最重要的 3 点：</strong>
-      <ol>
-        <li>谷歌三天连失两位AI灵魂人物（Transformer作者+诺奖得主），Alphabet单日暴跌7%</li>
-        <li>甲骨文年报披露AI驱动裁员2.1万人，"越赚越裁"成科技行业新常态</li>
-        <li>火山引擎FORCE大会发布豆包2.1 Pro，宣称跨越"生产级质变点"，成本较Claude Opus 4.6降80%</li>
-      </ol>
+  
+    <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
     </div>
-    <div class="verdict">总判断：AI人才争夺战进入"不可逆重组"阶段——谷歌作为Transformer的诞生地正在系统性失血，OpenAI和Anthropic成为顶尖人才的最终目的地。与此同时，AI对就业的冲击从预测变为现实：甲骨文首次在年报中明确承认"AI部署已导致员工人数减少"。当创造AI的人在流动，被AI替代的人在离开，HR需要同时应对这两端的结构性变化。</div>
-  </div>
-
-  <!-- 📘 新名词 -->
-  <div class="new-term">
-    <span class="badge">📘 AI新名词</span>
-    <h3>Token资本（Token Capital）</h3>
-    <p><strong>一句话解释：</strong>微软CEO纳德拉提出的新概念，指企业内部的AI能力储备——未来企业的核心资产不只是人力资本，还包括自主可控的AI推理能力（即"token产出能力"），两者共同构成组织的生产力基础。</p>
-    <p><strong>为什么重要：</strong>标志着企业资源观的范式转变——从"人头编制"到"人+AI双资本"。未来组织能力的衡量不再仅看HC数量，还要看其可调用的AI推理资源。对HR而言，人力规划需纳入AI能力预算的协同考量。</p>
-    <p class="source">来源：<a href="https://gu.qq.com/resources/shy/news/detail-v2/index.html?t=1#/index?_tentrees_trans=0&id=SN20260623151358a6b295ee" target="_blank">微软CEO纳德拉《华尔街日报》专访</a></p>
-  </div>
-
-  <!-- 🚀 议题一 -->
-  <div class="topic">
-    <div class="topic-title">🚀 AI产品竞赛加速：从"能写代码"到"能交付项目"</div>
-
-    <div class="card">
-      <span class="tag tag-blue">大模型</span><span class="tag tag-green">字节跳动</span>
-      <h4>火山引擎FORCE大会：豆包2.1 Pro发布，宣称跨越生产级质变点</h4>
-      <p>6月23日，火山引擎在北京举办2026夏季FORCE大会，正式发布豆包大模型2.1 Pro。该模型在Coding、Agent、VLM三大方向实现能力跃升，在TerminalBench 2.1、SWE-Pro等评测中进入全球第一梯队，多项表现优于Claude Opus 4.6。定价每百万Tokens输入6元、输出30元，缓存命中仅1.2元，综合成本较Claude Opus 4.6降低近80%。同步发布Seedance 2.5视频模型、Seedream 5.0 Pro图像模型、Seed-Audio 1.0音频模型。日均Token调用量已突破180万亿，MaaS市占49.5%。</p>
-      <p><strong>对TME的启发：</strong>豆包2.1 Pro的Coding和Agent能力对标Claude Opus 4.6但价格仅为1/5。字节系AI工具（TRAE、扣子）将率先接入，Seedance 2.5+Seed-Audio 1.0组合对音乐视频创作有直接应用价值。</p>
-      <p class="source">来源：<a href="https://new.qq.com/rain/a/20260623A06ECT00" target="_blank">凤凰网科技</a></p>
+    <div class="new-term">
+      <h3>Token资本（Token Capital）</h3>
+      <p>一句话解释： 微软CEO纳德拉提出的新概念，指企业内部的AI能力储备——未来企业的核心资产不只是人力资本，还包括自主可控的AI推理能力（即"token产出能力"），两者共同构成组织的生产力基础。 为什么重要： 这个概念标志着企业资源观的范式转变——从"人头编制"到"人+AI双资本"。未来组织能力的衡量不再仅看HC数量，还要看其可调用的AI推理资源。对HR而言，这意味着人力规划需要纳入AI能力预算的协同考量。</p>
     </div>
+  </section>
 
-    <div class="card">
-      <span class="tag tag-teal">网络安全</span><span class="tag tag-blue">OpenAI</span>
-      <h4>OpenAI扩展Daybreak安全计划，发布GPT-5.5-Cyber完整版</h4>
-      <p>6月22日，OpenAI扩展Daybreak网络安全计划：①GPT-5.5-Cyber完整版发布，CyberGym得分85.6%（超越Anthropic Mythos 5的83.8%）；②Codex Security升级，已扫描3万代码库3000万次提交，自动判定可修复问题突破50万项；③"Patch the Planet"开源漏洞修复行动上线；④Daybreak Cyber Partner Program首批合作机构含Accenture、Cisco、CrowdStrike、IBM等。</p>
-      <p><strong>对TME的启发：</strong>AI安全从"辅助发现漏洞"升级为"自动生成补丁并验证修复"的完整闭环，安全团队人才结构将从"密集工程师手动排查"转向"少量高级架构师+AI代理"。</p>
-      <p class="source">来源：<a href="https://finance.sina.com.cn/tech/roll/2026-06-23/doc-iniekknt9717166.shtml" target="_blank">机器之心Pro</a></p>
+    <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">议题一 · AI产品竞赛加速：从"能写代码"到"能交付项目"</h2>
     </div>
-
-    <div class="card">
-      <span class="tag tag-purple">内容版权</span><span class="tag tag-blue">OpenAI</span>
-      <h4>Getty Images与OpenAI达成正版图库合作，股价暴涨120%</h4>
-      <p>6月21日，Getty Images宣布与OpenAI签署多年期展示合作协议，正版授权图库内容将整合至ChatGPT搜索与内容发现功能。合作消息推动Getty Images盘前股价暴涨逾120%。CEO Craig Peters表示高质量授权内容让AI搜索更实用可信。双方未公布金额，也未披露图片是否用于训练模型。</p>
-      <p><strong>对TME的启发：</strong>正版内容与AI平台合作正在建立新商业模式。音乐版权行业可参考Getty路径——从"对抗AI侵权"转向"授权合作获取分成"。ChatGPT接入正版图库的逻辑同样适用于正版音乐。</p>
-      <p class="source">来源：<a href="https://newsroom.gettyimages.com/en" target="_blank">Getty Images官方新闻稿</a></p>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>火山引擎FORCE大会：豆包2.1 Pro发布，宣称跨越生产级质变点</h4>
+        <p>摘要： 6月23日，火山引擎在北京举办2026夏季FORCE原动力大会，正式发布豆包大模型2.1 Pro。该模型在Coding、Agent、VLM三大方向实现能力跃升，在TerminalBench 2.1、SWE-Pro等代码评测中进入全球第一梯队，多项评测优于Claude Opus 4.6。定价方面，每百万Tokens输入6元、输出30元，缓存命中仅1.2元，综合成本较Claude Opus 4.6降低近80%。同步发布Seedance 2.5视频生成模型、Seedream 5.0 Pro图像模型、Seed-Audio 1.0音频模型。截至6月，豆包大模型日均Token调用量突破180万亿，过去一年增长超10倍。火山引擎以49.5%市场份额位居中国MaaS服务市场第一。 为什么对 TME 重要： 豆包2.1 Pro的Coding和Agent能力已对标Claude Opus 4.6，但价格仅为其1/5。字节系AI工具（TRAE、扣子）将率先接入，TME技术团队在AI开发工具选型时多了一个高性价比选项。同时Seedance 2.5+Seed-Audio 1.0的组合对音乐视频创作有直接应用价值。</p>
+        <div class="source">来源：<a href="https://new.qq.com/rain/a/20260623A06ECT00" target="_blank">凤凰网科技 - 豆包大模型2.1 Pro发布</a></div>
+      </article>
+      <article class="card">
+        <h4>OpenAI扩展Daybreak安全计划，发布GPT-5.5-Cyber完整版</h4>
+        <p>摘要： 6月22日，OpenAI宣布扩展Daybreak网络安全计划，推出四项核心举措：①GPT-5.5-Cyber完整版发布，CyberGym得分85.6%（超越Anthropic Mythos 5的83.8%）；②Codex Security插件升级，已完成3万余代码库超3000万次提交扫描，自动判定可修复问题突破50万项；③"Patch the Planet"开源漏洞修复行动，联合Trail of Bits、HackerOne等发起；④Daybreak Cyber Partner Program，首批合作机构包括Accenture、Cisco、CrowdStrike、IBM、Palo Alto Networks等。该模型目前仅对通过认证的安全防御人员开放。 为什么对 TME 重要： AI网络安全从"辅助发现漏洞"升级为"自动生成补丁并验证修复"的完整闭环。Daybreak的"Codex Security→扫描→修复→验证"管线代表企业安全运维的新范式，安全团队的人才结构将从"大量安全工程师手动排查"转向"少量高级安全架构师+AI代理"。</p>
+        <div class="source">来源：<a href="https://finance.sina.com.cn/tech/roll/2026-06-23/doc-iniekknt9717166.shtml" target="_blank">机器之心 - OpenAI安全专用GPT-5.5-Cyber完全体</a></div>
+      </article>
+      <article class="card">
+        <h4>Getty Images与OpenAI达成正版图库合作，股价暴涨120%</h4>
+        <p>摘要： 6月21日，Getty Images宣布与OpenAI签署多年期展示合作协议，将正版授权图库内容整合至ChatGPT搜索与内容发现功能。合作消息推动Getty Images盘前股价暴涨逾120%。CEO Craig Peters表示："高质量、经授权的视觉内容让AI搜索更加实用可信。"双方未公布合作金额，也未披露Getty图片是否将用于训练模型。此前Getty已与英伟达共同开发生成式AI工具，仅基于正版图库训练并提供版权保障。 为什么对 TME 重要： 正版内容与AI平台的合作正在建立新的商业模式。音乐版权行业可参考Getty的路径——从"对抗AI侵权"转向"授权合作获取分成"。ChatGPT接入正版图库的逻辑，同样适用于正版音乐在AI生成内容中的呈现。</p>
+        <div class="source">来源：<a href="https://newsroom.gettyimages.com/en" target="_blank">Getty Images官方新闻稿</a></div>
+      </article>
+      <article class="card">
+        <h4>微软纳德拉呼吁打破AI巨头垄断，推"模型平权"路线</h4>
+        <p>摘要： 微软CEO纳德拉在《华尔街日报》专访中公开批评当前AI竞赛被少数公司主导的现状。他表示："你不能说所有白领工作都将消失、AI甚至可能成为武器，一边又动用一切资源建设数据中心。"纳德拉呼吁AI转向更便宜的模型、更强的用户控制权，并推出Copilot Cowork（支持多模型自由切换）和1美分/Credits按量计费模式。分析认为，微软此举源于其在前沿模型竞争中落后于OpenAI/Google/Anthropic的现实，转而押注"模型商品化+中立AI操作层"策略。 为什么对 TME 重要： 如果模型真的走向商品化，企业AI部署的决策权将从"选哪个模型"转向"建什么应用层"。这对企业AI战略团队的能力要求从"模型评测"升级为"场景定义+流程重构"，相关人才画像需更新。</p>
+        <div class="source">来源：<a href="https://new.qq.com/rain/a/20260622A05P8B00" target="_blank">微软CEO纳德拉《华尔街日报》专访</a></div>
+      </article>
     </div>
-
-    <div class="card">
-      <span class="tag tag-orange">行业格局</span><span class="tag tag-blue">Microsoft</span>
-      <h4>微软纳德拉呼吁打破AI巨头垄断，推"模型平权"路线</h4>
-      <p>微软CEO纳德拉在《华尔街日报》专访中公开批评AI竞赛被少数公司主导："你不能说所有白领工作都将消失，一边又动用一切资源建数据中心。"呼吁转向更便宜的模型、更强用户控制权，推出Copilot Cowork支持多模型切换和按量计费。分析认为微软此举源于前沿模型竞争中落后的现实，转而押注"模型商品化+中立AI操作层"。</p>
-      <p><strong>对TME的启发：</strong>如果模型走向商品化，企业AI部署决策将从"选哪个模型"转向"建什么应用层"，相关人才画像需从"模型评测"升级为"场景定义+流程重构"。</p>
-      <p class="source">来源：<a href="https://new.qq.com/rain/a/20260622A05P8B00" target="_blank">腾讯新闻</a></p>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">议题二 · AI人才大洗牌：谷歌失血、甲骨文减编、行业重组加速</h2>
     </div>
-  </div>
-
-  <!-- 👥 议题二 -->
-  <div class="topic">
-    <div class="topic-title">👥 AI人才大洗牌：谷歌失血、甲骨文减编、行业重组加速</div>
-
-    <div class="card">
-      <span class="tag tag-red">人才流失</span><span class="tag tag-orange">Google</span>
-      <h4>谷歌三天连失两位AI灵魂人物，Alphabet暴跌7%</h4>
-      <p>短短3天内，谷歌DeepMind两位顶级技术领军人物先后离职：①6月18日，Noam Shazeer（Transformer论文核心作者、Gemini联合负责人）加入OpenAI——2024年谷歌斥资27亿美元收购Character.AI将其召回，不足两年再次出走；②6月20日，John Jumper（AlphaFold核心领导者、2024年诺贝尔化学奖得主）加入Anthropic。至此，Transformer论文全部8位原作者均已离开谷歌。Alphabet周一暴跌7%，为近一年最大单日跌幅。</p>
-      <p><strong>对招聘的启发：</strong>谷歌的案例证明即便最有技术积淀的企业也无法仅靠高薪留住顶级人才。真正吸引这些人的是"对未来的定义权"——大厂HR需从"给多少钱"升级为"给多大的未来叙事空间"。</p>
-      <p class="source">来源：<a href="https://www.tmtpost.com/8034755.html" target="_blank">钛媒体</a></p>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>谷歌三天连失两位AI灵魂人物，Alphabet暴跌7%</h4>
+        <p>摘要： 短短3天内，谷歌DeepMind两位顶级技术领军人物先后离职：①6月18日，Noam Shazeer（Transformer论文核心作者、Gemini联合负责人、谷歌工程VP）宣布加入OpenAI——2024年谷歌曾斥资27亿美元收购Character.AI将其召回，回归不足两年再次出走；②6月20日，John Jumper（AlphaFold核心领导者、2024年诺贝尔化学奖得主、DeepMind工程院士）宣布加入Anthropic。至此，Transformer论文全部8位原作者均已离开谷歌。消息引发Alphabet周一暴跌7%，为近一年最大单日跌幅。D.A. Davidson分析师评价："这引发了对谷歌在AI前沿人才争夺战中地位的质疑。" 对招聘的启发： 谷歌的案例证明：即便是最有技术积淀的企业，也无法仅靠高薪和title留住顶级人才。真正吸引这些人的是"对未来的定义权"——Shazeer去OpenAI做架构前沿探索，Jumper去Anthropic做AI+科学交叉。大厂HR在设计AI人才保留方案时，需从"给多少钱"升级为"给多大的未来叙事空间"。</p>
+        <div class="source">来源：<a href="https://www.tmtpost.com/8034755.html" target="_blank">钛媒体 - 三天内连失两位传奇：谷歌的AI人才大坝正在决堤</a></div>
+      </article>
+      <article class="card">
+        <h4>甲骨文年报披露裁员2.1万人，明确"AI部署导致员工减少"</h4>
+        <p>摘要： 6月22日，甲骨文向SEC提交的年度报告披露：2026财年（截至5月31日）全球员工从16.2万人减至14.1万人，裁员2.1万人（降幅13%）。年报明确写道："公司在运营中采用及部署AI技术，已导致并可能继续导致员工人数减少。"遣散费及重组开支达18.4亿美元，是上一财年3.74亿美元的近5倍。值得注意的是，甲骨文并非业绩下滑——SaaS业务全年159亿美元（+11%），同时计划今年在AI基建投入500亿美元。这是首家在年报中明确将裁员归因于"AI部署"的科技巨头。 对招聘的启发： 甲骨文的"越赚越裁"是AI时代组织变革的标志性事件——业绩增长不再等于编制增长。年报中那句"AI部署已导致员工减少"将成为更多企业年报的标准措辞。HR需要做好准备：未来的编制规划逻辑将从"业务增长→加人"转变为"业务增长→先算AI能替代多少→剩余部分才加人"。实施、运维、咨询和基础支持岗位是第一波冲击区。</p>
+        <div class="source">来源：<a href="https://new.qq.com/rain/a/20260623A05FZX00" target="_blank">腾讯新闻 - 甲骨文裁员2.1万人</a></div>
+      </article>
+      <article class="card">
+        <h4>火山引擎日均Token 180万亿，中国MaaS市场份额近半</h4>
+        <p>摘要： 火山引擎在FORCE大会上披露最新运营数据：豆包大模型日均Token调用量突破180万亿，较发布时增长超1500倍，过去一年增长超10倍。IDC数据显示，火山引擎以49.5%的市场份额位居中国公有云MaaS服务市场第一。同时宣布豆包面向普通用户的日常基础功能（搜索问答、写作生图、语音视频对话等）将保持免费，并计划推出面向专业人群的"豆包专业版"办公任务模式，搭载2.1 Pro模型。 对招聘的启发： 字节系AI平台在中国MaaS市场的绝对领先地位（近50%份额），意味着大量企业将基于火山方舟构建AI应用。相关人才需求（方舟平台开发、扣子/TRAE生态）在招聘市场上的热度预计将持续上升。</p>
+        <div class="source">来源：<a href="https://kjy.china.com/shehui/13002708/20260623/49564946.html" target="_blank">中华网财经 - FORCE大会数据</a></div>
+      </article>
     </div>
+  </section>
 
-    <div class="card">
-      <span class="tag tag-red">裁员</span><span class="tag tag-orange">Oracle</span>
-      <h4>甲骨文年报披露裁员2.1万人，明确"AI部署导致员工减少"</h4>
-      <p>6月22日，甲骨文向SEC提交年报披露：2026财年全球员工从16.2万减至14.1万（-13%）。年报明确写道："公司在运营中采用及部署AI技术，已导致并可能继续导致员工人数减少。"遣散费达18.4亿美元（上年3.74亿美元的近5倍）。同期SaaS业务全年159亿美元（+11%），计划今年AI基建投入500亿美元。这是首家在年报中将裁员明确归因于"AI部署"的科技巨头。</p>
-      <p><strong>对招聘的启发：</strong>"越赚越裁"是AI时代组织变革的标志性事件。未来编制规划逻辑将从"业务增长→加人"转变为"业务增长→先算AI替代→剩余才加人"。实施、运维、咨询和基础支持岗位是第一波冲击区。</p>
-      <p class="source">来源：<a href="https://new.qq.com/rain/a/20260623A05FZX00" target="_blank">腾讯新闻</a></p>
+    <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">HR 视角的思考延展</h2>
     </div>
+    <blockquote class="thinking">
+      <p>### 今日关注点 今天三件事放在一起看，勾勒出AI时代组织变革的完整图景： 人才端： 谷歌三天连失两位AI灵魂人物，Transformer全部8位原作者离开谷歌——证明即便是AI技术的发源地，也无法留住最有野心的人才。真正的吸引力不是薪酬和title，而是"谁在定义下一代AI"的叙事权。 编制端： 甲骨文首次在年报中明确"AI部署已导致员工减少"——这不是传言或分析师推测，而是上市公司向SEC提交的法定披露。当"AI替代人力"从口头讨论变成财报措辞，HR对这个趋势的回应也需要从"关注"升级为"预案"。 能力端： 豆包2.1 Pro宣称跨越"生产级质变点"，模型从"能写代码"进化到"能交付项目"——这意味着AI不再只是辅助工具，而是开始具备独立完成任务的能力。当AI能自主调试、修复、交付，被影响的岗位范围将从"重复性工作"扩展到"需要判断力的中级技术工作"。 ### 今日思考题 甲骨文裁了2.1万人，但SaaS业务同比增长11%，股价不跌反涨——市场正在奖励"用AI替代人力"的企业。 假设你所在的公司明年年报中也写上了那句"AI部署已导致员工人数减少"： - 作为HR负责人，你是主动推动这个叙事（证明AI投入的ROI），还是被动接受这个结果？ - 如果是主动的，你会用什么指标向管理层证明"哪些岗位该缩、哪些该扩"？ - 如果是被动的，当这句话出现在年报里的那天，你还来得及做什么？ 你对这些问题的回答，决定了HR在AI时代是组织变革的架构师，还是执行通知的传声筒。</p>
+    </blockquote>
+  </section>
 
-    <div class="card">
-      <span class="tag tag-green">平台数据</span><span class="tag tag-green">字节跳动</span>
-      <h4>火山引擎日均Token 180万亿，中国MaaS市场份额近半</h4>
-      <p>火山引擎在FORCE大会披露：豆包大模型日均Token调用量突破180万亿，较发布时增长超1500倍，过去一年增长超10倍。IDC数据显示火山引擎以49.5%市场份额居中国MaaS第一。宣布豆包日常基础功能保持免费，计划推出搭载2.1 Pro的"豆包专业版"办公模式，覆盖软件开发、数据分析、流程自动化等。</p>
-      <p><strong>对招聘的启发：</strong>字节系AI平台在中国MaaS市场绝对领先（近50%份额），相关人才需求（方舟平台开发、扣子/TRAE生态）在招聘市场热度将持续上升。</p>
-      <p class="source">来源：<a href="https://kjy.china.com/shehui/13002708/20260623/49564946.html" target="_blank">中华网财经</a></p>
-    </div>
-  </div>
-
-  <!-- 💡 思考延展 -->
-  <div class="thinking">
-    <span class="badge">💡 HR视角的思考延展</span>
-
-    <h4>今日关注点</h4>
-    <p>今天三件事放在一起看，勾勒出AI时代组织变革的完整图景：</p>
-    <p><strong>人才端：</strong>谷歌三天连失两位AI灵魂人物，Transformer全部8位原作者离开谷歌——证明即便是AI技术的发源地，也无法留住最有野心的人才。真正的吸引力不是薪酬和title，而是"谁在定义下一代AI"的叙事权。</p>
-    <p><strong>编制端：</strong>甲骨文首次在年报中明确"AI部署已导致员工减少"——这不是传言或分析师推测，而是上市公司向SEC提交的法定披露。当"AI替代人力"从口头讨论变成财报措辞，HR的回应需从"关注"升级为"预案"。</p>
-    <p><strong>能力端：</strong>豆包2.1 Pro宣称跨越"生产级质变点"，模型从"能写代码"进化到"能交付项目"——AI不再只是辅助工具，开始具备独立完成任务的能力。被影响的岗位范围将从"重复性工作"扩展到"需要判断力的中级技术工作"。</p>
-
-    <h4>今日思考题</h4>
-    <p>甲骨文裁了2.1万人，但SaaS业务同比增长11%，股价不跌反涨——市场正在奖励"用AI替代人力"的企业。</p>
-    <p><strong>假设你所在的公司明年年报中也写上了那句"AI部署已导致员工人数减少"：</strong></p>
-    <p>· 作为HR负责人，你是主动推动这个叙事（证明AI投入的ROI），还是被动接受这个结果？</p>
-    <p>· 如果是主动的，你会用什么指标向管理层证明"哪些岗位该缩、哪些该扩"？</p>
-    <p>· 如果是被动的，当这句话出现在年报里的那天，你还来得及做什么？</p>
-    <p>你对这些问题的回答，决定了HR在AI时代是组织变革的架构师，还是执行通知的传声筒。</p>
-  </div>
 
   <div class="watermark">Made by ChloeCao</div>
 </div>

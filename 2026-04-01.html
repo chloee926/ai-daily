@@ -5,164 +5,318 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>每日AI简报 | 2026-04-01</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0e17;color:#c8d6e5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.7;padding:20px;max-width:820px;margin:0 auto}
-.header{text-align:center;padding:40px 0 30px;border-bottom:1px solid rgba(99,179,237,.2)}
-.header h1{font-size:28px;color:#63b3ed;margin-bottom:8px;letter-spacing:2px}
-.header .date{color:#718096;font-size:15px}
-.summary{background:linear-gradient(135deg,rgba(99,179,237,.12),rgba(129,140,248,.10));border:1px solid rgba(99,179,237,.2);border-radius:12px;padding:24px;margin:28px 0}
-.summary h3{color:#63b3ed;margin-bottom:12px;font-size:16px}
-.summary ol{padding-left:20px;margin-bottom:14px}
-.summary ol li{margin-bottom:6px;font-size:14px}
-.summary .verdict{font-size:13px;color:#a0aec0;line-height:1.8;border-top:1px solid rgba(99,179,237,.15);padding-top:12px;margin-top:10px}
-.section{margin:36px 0}
-.section-title{display:flex;align-items:center;gap:10px;font-size:20px;color:#f6e05e;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(246,224,94,.15)}
-.card{background:rgba(26,32,44,.7);border:1px solid rgba(99,179,237,.12);border-radius:10px;padding:22px;margin-bottom:18px;transition:border-color .3s}
-.card:hover{border-color:rgba(99,179,237,.35)}
-.card h4{color:#e2e8f0;font-size:16px;margin-bottom:8px}
-.card .source{color:#718096;font-size:12px;margin-bottom:10px}
-.card .source a{color:#63b3ed;text-decoration:none}
-.card .source a:hover{text-decoration:underline}
-.card .body{font-size:14px;color:#a0aec0;margin-bottom:12px}
-.card .why{background:rgba(99,179,237,.06);border-left:3px solid #63b3ed;padding:10px 14px;font-size:13px;color:#90cdf4;border-radius:0 6px 6px 0;margin-top:10px}
-.new-term{background:linear-gradient(135deg,rgba(246,224,94,.08),rgba(237,137,54,.06));border:1px solid rgba(246,224,94,.15);border-radius:10px;padding:22px;margin-bottom:18px}
-.new-term h4{color:#f6e05e;font-size:16px;margin-bottom:6px}
-.new-term .explain{font-size:14px;color:#e2e8f0;margin-bottom:8px}
-.new-term .detail{font-size:13px;color:#a0aec0}
-.think{background:linear-gradient(135deg,rgba(72,187,120,.08),rgba(56,178,172,.06));border:1px solid rgba(72,187,120,.15);border-radius:10px;padding:22px;margin-bottom:18px}
-.think h4{color:#68d391;font-size:16px;margin-bottom:10px}
-.think .body{font-size:14px;color:#b2dfdb;line-height:1.9}
-.think .question{background:rgba(72,187,120,.08);border-left:3px solid #68d391;padding:12px 16px;border-radius:0 6px 6px 0;margin-top:16px}
-.think .question h5{color:#68d391;margin-bottom:8px;font-size:14px}
-.think .question ol{padding-left:18px;font-size:13px;color:#a0aec0}
-.think .question ol li{margin-bottom:4px}
-.footer{text-align:center;padding:30px 0;color:#4a5568;font-size:12px;border-top:1px solid rgba(99,179,237,.1);margin-top:40px}
-.footer .watermark{color:#2d3748;font-size:11px;margin-top:8px;letter-spacing:1px}
-@media(max-width:600px){body{padding:12px}.header h1{font-size:22px}.card{padding:16px}}
-.back-nav{position:fixed;top:16px;left:16px;z-index:100}
-.back-nav a{display:inline-flex;align-items:center;gap:6px;background:rgba(26,32,44,.85);border:1px solid rgba(99,179,237,.25);color:#63b3ed;text-decoration:none;padding:8px 16px;border-radius:8px;font-size:13px;backdrop-filter:blur(8px);transition:all .3s}
-.back-nav a:hover{border-color:rgba(99,179,237,.5);background:rgba(26,32,44,.95)}
-@media(max-width:600px){.back-nav{position:relative;top:0;left:0;text-align:center;margin-bottom:10px}}
+  :root {
+    /* ===== Light: 杂志纸白 ===== */
+    --bg: #f3efe6;
+    --paper: #fbf9f3;
+    --ink: #1b1813;
+    --ink-soft: #5b554b;
+    --ink-dim: #8a8275;
+    --rule: #1b1813;
+    --rule-soft: rgba(27,24,19,0.14);
+    --accent: #9e2b25;          /* 刊红 */
+    --c1: #9e2b25;              /* 01 新名词 红 */
+    --c2: #1f5c4d;              /* 02 议题一 墨绿 */
+    --c3: #2b4f8a;              /* 03 议题二 蓝 */
+    --c4: #b06a1e;              /* 04 思考 橙 */
+    --card-bg: #fbf9f3;
+    --card-border: rgba(27,24,19,0.16);
+    --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3;
+    --term-bg: rgba(158,43,37,0.05);
+    --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06);
+    --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3;
+    --nav-border: #1b1813;
+    --nav-text: #1b1813;
+    --link: #2b4f8a;
+    --watermark: #b3ab9c;
+    --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+    --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* ===== Dark: 暖炭黑 ===== */
+      --bg: #16130e;
+      --paper: #1e1a14;
+      --ink: #ece5d8;
+      --ink-soft: #b3a994;
+      --ink-dim: #7d7461;
+      --rule: #ece5d8;
+      --rule-soft: rgba(236,229,216,0.14);
+      --accent: #e08a7a;
+      --c1: #e08a7a;
+      --c2: #6fae9a;
+      --c3: #8aa9d6;
+      --c4: #d9a35e;
+      --card-bg: #1e1a14;
+      --card-border: rgba(236,229,216,0.18);
+      --card-hover: rgba(236,229,216,0.06);
+      --lead-bg: #1e1a14;
+      --term-bg: rgba(224,138,122,0.08);
+      --term-border: rgba(224,138,122,0.34);
+      --think-bg: rgba(217,163,94,0.08);
+      --think-border: rgba(217,163,94,0.34);
+      --nav-bg: #1e1a14;
+      --nav-border: #ece5d8;
+      --nav-text: #ece5d8;
+      --link: #8aa9d6;
+      --watermark: #5d564a;
+    }
+  }
+  [data-theme="light"] {
+    --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+    --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
+    --c1: #9e2b25; --c2: #1f5c4d; --c3: #2b4f8a; --c4: #b06a1e;
+    --card-bg: #fbf9f3; --card-border: rgba(27,24,19,0.16); --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3; --term-bg: rgba(158,43,37,0.05); --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06); --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3; --nav-border: #1b1813; --nav-text: #1b1813; --link: #2b4f8a; --watermark: #b3ab9c;
+  }
+  [data-theme="dark"] {
+    --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+    --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
+    --c1: #e08a7a; --c2: #6fae9a; --c3: #8aa9d6; --c4: #d9a35e;
+    --card-bg: #1e1a14; --card-border: rgba(236,229,216,0.18); --card-hover: rgba(236,229,216,0.06);
+    --lead-bg: #1e1a14; --term-bg: rgba(224,138,122,0.08); --term-border: rgba(224,138,122,0.34);
+    --think-bg: rgba(217,163,94,0.08); --think-border: rgba(217,163,94,0.34);
+    --nav-bg: #1e1a14; --nav-border: #ece5d8; --nav-text: #ece5d8; --link: #8aa9d6; --watermark: #5d564a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
+  }
+  .theme-toggle {
+    position: fixed; top: 14px; right: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; line-height: 1;
+  }
+  .theme-toggle:hover { background: var(--card-hover); }
+  .back-nav {
+    position: fixed; top: 14px; left: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 12px; border-radius: 4px; font-size: 12px; text-decoration: none;
+    font-family: var(--sans); letter-spacing: 2px; transition: all 0.2s;
+  }
+  .back-nav:hover { background: var(--card-hover); }
+  @media (max-width: 640px) {
+    .back-nav { position: static; display: inline-block; margin: 16px 0 0 20px; }
+    .theme-toggle { top: auto; bottom: 18px; right: 14px; }
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px 50px; }
+
+  /* ===== Masthead 报头 ===== */
+  .masthead {
+    text-align: center;
+    padding: 46px 0 18px;
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 6px;
+  }
+  .masthead .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 5px;
+    color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 34px;
+    color: var(--ink); letter-spacing: 3px; line-height: 1.15;
+  }
+  .masthead .meta {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+  .masthead .meta b { color: var(--accent); font-weight: 700; }
+
+  /* ===== 导读 lead ===== */
+  .lead {
+    font-family: var(--serif);
+    background: var(--lead-bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--rule);
+    padding: 18px 22px; margin: 22px 0 30px;
+    font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+
+  /* ===== 栏目 ===== */
+  .section { margin-bottom: 34px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    line-height: 1; color: var(--c2);
+  }
+  .sec-num-1 { color: var(--c1); }
+  .sec-num-2 { color: var(--c2); }
+  .sec-num-3 { color: var(--c3); }
+  .sec-num-4 { color: var(--c4); }
+  .sec-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  /* ===== 新名词词条 ===== */
+  .new-term {
+    background: var(--term-bg); border: 1px solid var(--term-border);
+    border-radius: 2px; padding: 16px 20px;
+  }
+  .new-term h3 {
+    font-family: var(--serif); font-size: 18px; color: var(--c1); margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .new-term p { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+  .term-item { padding: 10px 0; border-bottom: 1px solid var(--term-border); }
+  .term-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .term-item:first-child { padding-top: 0; }
+  .term-item h4 {
+    font-family: var(--serif); font-size: 16px; color: var(--c1); margin-bottom: 5px; font-weight: 700;
+  }
+  .term-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+
+  /* ===== 双栏卡片网格 ===== */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-top: 2px solid var(--c2); border-radius: 2px;
+    padding: 14px 16px; transition: background 0.2s;
+  }
+  .card:hover { background: var(--card-hover); }
+  .card h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px; line-height: 1.5;
+  }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
+  .card .source a { color: var(--link); text-decoration: none; }
+  .card .source a:hover { text-decoration: underline; }
+
+  /* ===== 思考引用块 ===== */
+  .thinking {
+    background: var(--think-bg); border-left: 3px solid var(--c4);
+    border-radius: 2px; padding: 16px 20px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+  .thinking p { font-style: italic; }
+
+  .watermark {
+    text-align: center; color: var(--watermark); font-size: 11px;
+    padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
+  }
 </style>
 </head>
 <body>
-<div class="back-nav"><a href="index.html">&#9664; &#x8FD4;&#x56DE;&#x76EE;&#x5F55;</a></div>
-<div class="header">
-<h1>每日AI简报</h1>
-<div class="date">2026年4月1日 星期三 | TME HR·AI情报站</div>
-</div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色">◐</button>
+<script>
+(function() {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+</script>
+<div class="container">
+  <header class="masthead">
+    <div class="kicker">AI · 行业简报</div>
+    <h1>每日 AI 简报</h1>
+    <div class="meta">2026-04-01 · 星期三 · <b>第 6 期</b></div>
+  </header>
 
-<div class="summary">
-<h3>今日最重要的3点</h3>
-<ol>
-<li>全球云厂商10天内集体掀起AI算力涨价潮，阿里云最高涨34%、腾讯云部分产品涨400%，AI算力正式进入卖方市场</li>
-<li>Harness Engineering（驾驭工程）成为硅谷AI工程新范式——继Prompt Engineering之后，"如何驾驭AI可控运行"成为核心竞争力</li>
-<li>BOSS直聘2025年盈利26.9亿却净裁员804人，招聘平台用AI砍掉自家运营岗，"帮人找工作的平台先裁了自己人"成行业缩影</li>
-</ol>
-<div class="verdict"><strong>总判断：</strong>今天的信息拼在一起，呈现出AI产业从"烧钱扩张"转向"精细化运营"的分水岭。最直观的信号是云厂商集体涨价——持续多年的价格战戛然而止，中国日均Token调用量两年暴增千倍至140万亿，需求爆炸让"卖铲人"掌握了定价权。Harness Engineering的走红说明行业痛点已从"AI能不能干活"转向"AI干活怎么不翻车"。而BOSS直聘的案例则把"AI替代"的矛盾推向极致：一家靠帮人找工作赚钱的公司，自己先用AI裁掉了人。对HR而言，今天最重要的判断是——AI的成本不再是免费午餐，人的价值正在被重新定价。</div>
-</div>
+  
+    <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
+    </div>
+    <div class="new-term">
+      <div class="term-item"><h4>Harness Engineering（驾驭工程）</h4><p>一句话解释： 继Prompt Engineering（提示词工程）和Context Engineering（上下文工程）之后，2026年初硅谷兴起的AI工程化新范式，核心是为AI智能体构建架构约束、反馈闭环和全生命周期管理系统，让AI可控、可靠、安全地完成复杂工作。 为什么重要： OpenAI曾有3人团队借助Codex工具、用Vibe Coding模式5个月上线百万行代码的产品级项目。要支撑这种大规模AI编程，需要的不再是更好的提示词，而是"操作系统级"的治理体系。形象比喻：提示词工程是吆喝马跑，上下文工程是给马地图，驾驭工程是给马装马鞍、套缰绳、修围栏——防止AI乱跑或遇障无法自愈。</p></div>
+      <div class="term-item"><h4>算力通胀（AI Compute Inflation）</h4><p>一句话解释： 全球云厂商在10天内集体将AI算力及存储服务价格上调30%-400%，结束了持续多年的"降价抢客"时代，AI算力从买方市场转为卖方市场。 为什么重要： 中国日均Token调用量从2024年初的1000亿暴增至2026年3月的140万亿，两年增长超千倍。尽管Token单价曾降幅高达99%，但需求的指数级爆发远超价格下降速度。算力成本上涨将直接推高AI应用的运营门槛，对中小AI企业打击尤大。</p></div>
+    </div>
+  </section>
 
-<div class="section">
-<div class="section-title">📘 新名词解释</div>
+    <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">议题一 · 海内外 AI 产品、平台与技术动态</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>全球云厂商集体掀起AI算力涨价潮，"降价时代"终结</h4>
+        <p>摘要： 2026年3月，谷歌云、亚马逊云、腾讯云、阿里云、百度智能云在10天内相继发布调价公告。阿里云AI算力最高涨34%，4月18日生效；腾讯云部分核心产品涨幅最高达400%；行业整体AI算力与存储服务价格上调30%-50%。这与2025年4月"最高降幅60%"的价格战形成鲜明反转。根本原因是Token需求爆炸——国家数据局数据显示中国日均Token调用量已突破140万亿（2024年初仅1000亿），两年增长超千倍。GPU芯片供应链成本持续攀升，长期低价内卷模式不可持续，云厂商从"卖算力"转向"卖解决方案"。 为什么重要： 算力涨价直接抬高了AI应用的运营门槛，中小AI企业和初创者首当其冲。行业将加速"马太效应"——头部厂商优势扩大，中小云厂商生存空间受挤压。企业的AI投入ROI测算需要全面重估。</p>
+        <div class="source">来源：<a href="https://www.163.com/dy/article/KPBJ5QU805319LDA.html" target="_blank">Tech星球/网易</a>、<a href="https://www.36kr.com/p/3735284343963651" target="_blank">36氪</a>、<a href="https://www.aliyun.com/notice/118086" target="_blank">阿里云公告</a></div>
+      </article>
+      <article class="card">
+        <h4>阿里通义发布Qwen3.5-Omni：215项SOTA全模态大模型</h4>
+        <p>摘要： 3月30日，阿里通义实验室正式发布旗舰级原生全模态大模型Qwen3.5-Omni，在音视频分析、推理、对话及翻译测试中斩获215项SOTA（State-of-the-Art），全面超越Gemini-3.1 Pro。核心架构升级：Thinker升级为Hybrid-Attention MoE支持256K超长上下文，Talker引入ARIA技术解决语音漏字与误读问题。实用功能包括根据视频生成代码、语义打断、结构化Caption生成、113种语言个性化音色定制等。中国大模型市场已从"百模大战"进入头部厂商技术硬实力比拼阶段。 为什么重要： 全模态是大模型下半场的主赛道——谁能让文本、图片、音频、视频"一个模型全搞定"，谁就掌握了下一代AI应用的入口。Qwen3.5-Omni超越Gemini-3.1 Pro标志着中国大模型在全模态能力上进入全球第一梯队。</p>
+        <div class="source">来源：<a href="https://www.oschina.net/news/416053" target="_blank">开源中国</a>、<a href="https://www.sohu.com/a/1003166801_121123928" target="_blank">阿里云</a>、<a href="https://ai-bot.cn/qwen3-5-omni/" target="_blank">AI工具集</a></div>
+      </article>
+      <article class="card">
+        <h4>Harness Engineering席卷硅谷，AI治理成新竞争焦点</h4>
+        <p>摘要： 继Prompt Engineering和Context Engineering之后，Harness Engineering（驾驭工程）成为2026年AI工程化新范式。核心三要素：架构约束（为AI设定不可逾越的边界并自动检查）、反馈闭环（AI能自行运行-Debug-修复-性能调优的自愈循环）、全生命周期管理（从个人到组织级的上下文和记忆管理）。背景是OpenAI实践中3人团队用Codex在5个月内上线百万行代码，迫使行业思考"AI大规模编程怎么不翻车"。类比：提示词工程是"喊话模式"，上下文工程是"给地图"，驾驭工程是"装马鞍、套缰绳、修围栏"。 为什么重要： 当AI从个体工具升级为组织级生产力时，"治理"变得比"能力"更重要。驾驭工程代表了AI落地的下一个瓶颈——不是AI能不能干活，而是干活时怎么不出事。</p>
+        <div class="source">来源：<a href="https://cloud.tencent.com/developer/article/2646443" target="_blank">腾讯云开发者社区</a>、<a href="https://www.51cto.com/aigc/11211.html" target="_blank">51CTO</a>、<a href="https://life.china.com/2026-03/30/content_558664.html" target="_blank">中国网</a></div>
+      </article>
+      <article class="card">
+        <h4>爱诗科技发布PixVerse V6，AI视频从"生成画面"走向"构建世界"</h4>
+        <p>摘要： 爱诗科技"拍我AI闪电发布周"首日推出PixVerse V6，在人物真实感（皮肤纹理、毛孔、光影反射）、物理模拟（液体、布料、碰撞）和叙事连贯性（多镜头切换视觉统一）三个维度全面升级。支持子弹时间、FPV、延时摄影等专业特效，最长可生成15秒1080P视频。同日，美图发布Meitu CLI将核心影像能力标准化封装接入OpenClaw生态，采用"开箱即用、按量付费"模式。 为什么重要： AI视频生成正在从"能看"走向"能用"——当物理逻辑自洽、人物表情连贯时，商用门槛将大幅降低，短视频、广告、影视前期制作行业面临重塑。</p>
+        <div class="source">来源：<a href="https://ai-bot.cn/pixverse-v6/" target="_blank">AI工具集</a>、<a href="https://news.aibase.com/zh/daily/26709" target="_blank">AIbase</a></div>
+      </article>
+    </div>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">议题二 · 海内外组织、人才与治理变化</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card">
+        <h4>BOSS直聘盈利26.9亿却裁员804人：招聘平台先AI化了自己</h4>
+        <p>摘要： BOSS直聘2025年全年营收82.7亿元（+12.4%），净利润26.9亿元（+71.7%），经营利润翻倍增长。但同期净裁员804人（约14%），上半年净减945人为优化最猛阶段，下半年回补141人。裁员主要集中在运营岗——AI大模型语义识别能力升级后，大量基础审核、匹配、推荐工作被算法接管。一个招聘平台"帮别人找工作的人自己先丢了工作"的悖论，成为2026年AI职场最具讽刺意味的缩影。考虑到离职与招聘的动态平衡，实际优化人员或超1000人。 对招聘的启发： BOSS直聘案例揭示了一个深层趋势——AI对运营类岗位的替代已经不是"未来时"而是"过去式"。招聘平台自身的AI化进程，预示着所有依赖标准化操作的岗位都面临同样命运。HR需要重新审视哪些岗位属于"AI可完全接管"、哪些属于"AI增强人效"、哪些属于"AI无法替代"。</p>
+        <div class="source">来源：<a href="https://baijiahao.baidu.com/s?id=1860890397845506040" target="_blank">百家号</a>、<a href="https://www.topnews.cn/news/145CD2E442BA4471" target="_blank">顶端新闻</a>、<a href="https://finance.sina.com.cn/stock/zqgd/2026-03-18/doc-inhrmihm7439761.shtml" target="_blank">新浪财经</a></div>
+      </article>
+      <article class="card">
+        <h4>"第一批用AI的人，反被AI砸了饭碗"——会用AI也不安全</h4>
+        <p>摘要： 36氪深度文章指出，2026年一个深刻变化是"AI会淘汰不会用AI的人"这句话过时了——即便最先学会且最擅长使用AI的人，同样面临被淘汰。数据显示90%的公司以AI为由裁员，但只有2%是真正因AI提效后裁员，大多数企业是在纠正疫情期间过度招聘或追求"人机比"指标。大厂推动"全员Agent化"，要求员工拆解工作流以便AI接管，形成"不拥抱AI会被淘汰，拥抱AI又加速被替代"的双重困境。短剧行业、翻译、摄影等领域受冲击严重，多所高校已停招相关专业。 对招聘的启发： "AI素养"不再是护城河——当每个人都会用AI时，真正的竞争力回到了对业务本质的理解和决策能力上。HR在评估候选人时，需要区分"会用AI工具"和"能用AI创造不可替代的价值"。</p>
+        <div class="source">来源：<a href="https://www.36kr.com/p/3739350325329924" target="_blank">36氪/金错刀</a></div>
+      </article>
+      <article class="card">
+        <h4>国家数据局官方定名Token为"词元"，AI有了统一度量衡</h4>
+        <p>摘要： 国家数据局局长刘烈宏在中国发展高层论坛2026年年会上宣布，正式将AI术语Token定名为"词元"，定义为"大模型处理信息的最小信息单元，具有智能时代可计量、可定价、可交易的特征"。数据披露：中国日均词元调用量已突破140万亿（2024年初为1000亿，两年增长超千倍）。黄仁勋在GTC大会上指出，一个代理式任务的词元消耗量比传统聊天模式高出数个量级。词元正在成为智能时代的"度量衡"。 对招聘的启发： Token/词元成为AI产业的基础计量单位，类似于互联网时代的"流量"概念。HR在理解AI业务和招聘AI人才时，需要把"词元经济学"纳入基础认知框架——它决定了AI应用的成本结构和商业模式。</p>
+        <div class="source">来源：<a href="https://www.chinanews.com.cn/cj/2026/03-28/10594293.shtml" target="_blank">中新网</a>、<a href="https://www.nda.gov.cn/sjj/swdt/mtsy/0325/20260325113219152129329_pc.html" target="_blank">人民日报/国家数据局</a>、<a href="https://news.cctv.com/2026/03/24/ARTINY0xAAFWDeoS64CCAdJw260324.shtml" target="_blank">央视网</a></div>
+      </article>
+    </div>
+  </section>
 
-<div class="new-term">
-<h4>Harness Engineering（驾驭工程）</h4>
-<div class="explain">继Prompt Engineering和Context Engineering之后，2026年初硅谷兴起的AI工程化新范式，核心是为AI智能体构建架构约束、反馈闭环和全生命周期管理系统，让AI可控、可靠、安全地完成复杂工作。</div>
-<div class="detail"><strong>来源：</strong><a href="https://cloud.tencent.com/developer/article/2646443" style="color:#63b3ed">腾讯云开发者社区</a>、<a href="https://www.runoob.com/ai-agent/harness-engineering.html" style="color:#63b3ed">菜鸟教程</a>、<a href="https://life.china.com/2026-03/30/content_558664.html" style="color:#63b3ed">中国网</a><br><strong>为什么重要：</strong>OpenAI曾有3人团队用Codex工具5个月上线百万行代码。支撑大规模AI编程需要的不再是更好的提示词，而是"操作系统级"的治理体系。类比：提示词工程是吆喝马跑，上下文工程是给马地图，驾驭工程是装马鞍、套缰绳、修围栏——防止AI乱跑或遇障无法自愈。</div>
-</div>
+    <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">HR 视角的思考延展</h2>
+    </div>
+    <blockquote class="thinking">
+      <p>### 今日关注点 今天的新闻如果只看一条，看云厂商集体涨价。这不仅仅是IT部门的预算问题——它标志着AI从"免费午餐"时代进入"真金白银"时代，将深刻改变企业AI投入的决策逻辑和组织架构。 过去两年，低廉的AI算力成本让"全员AI化"看上去是一笔划算的买卖。但当阿里云涨价34%、腾讯云某些产品涨400%时，一个残酷的算术题摆上了管理层的桌面：如果用AI替代10个运营岗每年省200万人力成本，但算力账单从50万涨到200万，这笔账还划算吗？ BOSS直聘的案例恰好提供了"先行者样本"：盈利26.9亿（+71.7%），裁员804人（-14%），看上去是完美的AI转型故事。但细看会发现，它裁掉的主要是运营岗——也就是最容易被标准化、最适合AI接管的工种。问题是，当"容易被替代的"都替代完之后呢？下一步替代的成本和难度将呈指数级上升。 与此同时，Harness Engineering的走红揭示了另一个真相：AI规模化落地的瓶颈不是"AI能力不够"，而是"人类治理不足"。企业需要的不只是会用AI的人，而是能"驾驭"AI的人——能为AI设定边界、建立反馈机制、管理AI全生命周期的"AI治理师"。这类角色目前几乎没有成熟的人才供给。 ### 今日思考题 问题： 云厂商AI算力集体涨价30%-400%，同时BOSS直聘用AI裁掉14%的员工后利润暴涨71.7%——作为HR，如何帮企业在"算力成本上升"和"人力成本优化"之间找到最优平衡点？ 解答思路： 1. 建立"AI替代经济模型"：不要只算人力成本节省，要把算力成本、AI运维成本、质量兜底成本、员工转岗培训成本全部纳入ROI测算。BOSS直聘的成功是因为它的核心业务本身高度数字化，但大多数企业不具备这个条件 2. 实施"分层AI化"策略：将岗位分为三档——"AI完全接管"（如基础审核）、"AI辅助增效"（如招聘匹配）、"人类不可替代"（如客户关系、创新决策），优先对第一档实施AI替代，第二档投入AI工具提效，第三档反而要加大人才投入 3. 关注"AI治理师"这一新兴角色：Harness Engineering的兴起意味着企业需要能驾驭AI系统可靠运行的复合型人才。现在布局培养或招聘这类人才，是抢占下一个人才红利窗口</p>
+    </blockquote>
+  </section>
 
-<div class="new-term">
-<h4>算力通胀（AI Compute Inflation）</h4>
-<div class="explain">全球云厂商在10天内集体将AI算力及存储服务价格上调30%-400%，结束了持续多年的"降价抢客"时代，AI算力从买方市场转为卖方市场。</div>
-<div class="detail"><strong>来源：</strong><a href="https://www.163.com/dy/article/KPBJ5QU805319LDA.html" style="color:#63b3ed">Tech星球/网易</a>、<a href="https://www.36kr.com/p/3735284343963651" style="color:#63b3ed">36氪</a>、<a href="https://www.aliyun.com/notice/118086" style="color:#63b3ed">阿里云公告</a><br><strong>为什么重要：</strong>中国日均Token调用量从2024年初1000亿暴增至2026年3月140万亿，两年增长超千倍。尽管Token单价曾降幅达99%，但需求的指数级爆发远超价格下降速度。算力成本上涨将直接推高AI应用运营门槛。</div>
-</div>
-</div>
 
-<div class="section">
-<div class="section-title">🚀 议题一｜AI产品、平台与技术动态</div>
-
-<div class="card">
-<h4>1. 全球云厂商集体掀起AI算力涨价潮，"降价时代"终结</h4>
-<div class="source">来源：<a href="https://www.163.com/dy/article/KPBJ5QU805319LDA.html">Tech星球/网易</a>、<a href="https://www.36kr.com/p/3735284343963651">36氪</a>、<a href="https://www.aliyun.com/notice/118086">阿里云公告</a> | 2026-03/04</div>
-<div class="body">2026年3月，谷歌云、亚马逊云、腾讯云、阿里云、百度智能云在10天内相继发布调价公告。阿里云AI算力最高涨34%（4月18日生效），腾讯云部分核心产品涨幅最高达400%，行业整体上调30%-50%。与2025年4月"最高降幅60%"的价格战形成鲜明反转。根本原因：国家数据局数据显示中国日均Token调用量突破140万亿（2024年初仅1000亿），两年增长超千倍。GPU供应链成本攀升，长期低价内卷不可持续。</div>
-<div class="why">算力涨价直接抬高AI应用运营门槛，中小AI企业首当其冲。行业将加速"马太效应"——头部厂商优势扩大。企业AI投入ROI需全面重估。</div>
-</div>
-
-<div class="card">
-<h4>2. 阿里通义发布Qwen3.5-Omni：215项SOTA全模态大模型</h4>
-<div class="source">来源：<a href="https://www.oschina.net/news/416053">开源中国</a>、<a href="https://www.sohu.com/a/1003166801_121123928">阿里云</a>、<a href="https://ai-bot.cn/qwen3-5-omni/">AI工具集</a> | 2026-03-30</div>
-<div class="body">阿里通义实验室发布旗舰级原生全模态大模型Qwen3.5-Omni，在音视频分析、推理、对话及翻译测试中斩获215项SOTA，全面超越Gemini-3.1 Pro。核心升级：Thinker升级为Hybrid-Attention MoE支持256K超长上下文；Talker引入ARIA技术解决语音漏字误读。实用功能包括视频生成代码、语义打断、113种语言个性化音色定制。中国大模型已从"百模大战"进入头部硬实力比拼。</div>
-<div class="why">全模态是大模型下半场主赛道——谁能让文本、图片、音频、视频"一个模型全搞定"，谁就掌握下一代AI应用入口。Qwen3.5-Omni标志国产大模型全模态能力进入全球第一梯队。</div>
-</div>
-
-<div class="card">
-<h4>3. Harness Engineering席卷硅谷，AI治理成新竞争焦点</h4>
-<div class="source">来源：<a href="https://cloud.tencent.com/developer/article/2646443">腾讯云开发者社区</a>、<a href="https://www.51cto.com/aigc/11211.html">51CTO</a>、<a href="https://life.china.com/2026-03/30/content_558664.html">中国网</a> | 2026-03</div>
-<div class="body">继Prompt Engineering和Context Engineering之后，Harness Engineering（驾驭工程）成为2026年AI工程化新范式。三要素：架构约束（为AI设定边界并自动检查）、反馈闭环（AI自行运行-Debug-修复-性能调优的自愈循环）、全生命周期管理（组织级上下文和记忆管理）。背景：OpenAI实践中3人团队用Codex在5个月上线百万行代码，行业开始思考"大规模AI编程怎么不翻车"。</div>
-<div class="why">当AI从个体工具升级为组织级生产力，"治理"比"能力"更重要。驾驭工程代表AI落地下一瓶颈——不是AI能不能干，而是干活时怎么不出事。</div>
-</div>
-
-<div class="card">
-<h4>4. PixVerse V6发布，AI视频从"生成画面"走向"构建世界"</h4>
-<div class="source">来源：<a href="https://ai-bot.cn/pixverse-v6/">AI工具集</a>、<a href="https://news.aibase.com/zh/daily/26709">AIbase</a> | 2026-03-31</div>
-<div class="body">爱诗科技推出PixVerse V6，在人物真实感（皮肤纹理、毛孔、光影反射）、物理模拟（液体、布料、碰撞逻辑自洽）和叙事连贯性（多镜头切换视觉统一）三维度全面升级。支持子弹时间、FPV、延时摄影等专业特效，最长15秒1080P。同日美图发布Meitu CLI接入OpenClaw生态，"开箱即用、按量付费"。</div>
-<div class="why">AI视频正从"能看"走向"能用"——物理逻辑自洽+人物连贯后，商用门槛大幅降低，短视频、广告、影视前期制作面临重塑。</div>
-</div>
-</div>
-
-<div class="section">
-<div class="section-title">👥 议题二｜组织、人才与治理变化</div>
-
-<div class="card">
-<h4>1. BOSS直聘盈利26.9亿却裁员804人：招聘平台先AI化了自己</h4>
-<div class="source">来源：<a href="https://baijiahao.baidu.com/s?id=1860890397845506040">百家号</a>、<a href="https://www.topnews.cn/news/145CD2E442BA4471">顶端新闻</a>、<a href="https://finance.sina.com.cn/stock/zqgd/2026-03-18/doc-inhrmihm7439761.shtml">新浪财经</a> | 2026-03</div>
-<div class="body">BOSS直聘2025年营收82.7亿元（+12.4%），净利润26.9亿元（+71.7%），经营利润翻倍。同期净裁员804人（约14%），上半年净减945人，下半年回补141人。裁员主要集中在运营岗——AI大模型语义识别升级后，基础审核、匹配、推荐工作被算法接管。一个"帮别人找工作的人自己先丢了工作"的悖论，成为AI职场最具讽刺意味的缩影。</div>
-<div class="why">AI对运营类岗位的替代已是"过去式"。所有依赖标准化操作的岗位都面临同样命运。HR需重新审视岗位的"AI可替代度"分层。</div>
-</div>
-
-<div class="card">
-<h4>2. "第一批用AI的人，反被AI砸了饭碗"——会用AI也不安全</h4>
-<div class="source">来源：<a href="https://www.36kr.com/p/3739350325329924">36氪/金错刀</a> | 2026-03-26</div>
-<div class="body">36氪深度文章指出"AI淘汰不会用AI的人"这句话过时了——最先学会且最擅长使用AI的人同样面临淘汰。90%的公司以AI为由裁员，但只有2%是真因AI提效后裁员，多数是纠正过度招聘或追求"人机比"指标。大厂推"全员Agent化"，员工拆解工作流供AI接管，形成"不拥抱AI被淘汰，拥抱AI加速被替代"双重困境。短剧、翻译、摄影等领域受冲击严重，多所高校停招相关专业。</div>
-<div class="why">"AI素养"不再是护城河。当每个人都会用AI，真正竞争力回到对业务本质的理解和决策能力。HR评估候选人需区分"会用AI工具"和"能创造不可替代的价值"。</div>
-</div>
-
-<div class="card">
-<h4>3. 国家数据局定名Token为"词元"，AI有了统一度量衡</h4>
-<div class="source">来源：<a href="https://www.chinanews.com.cn/cj/2026/03-28/10594293.shtml">中新网</a>、<a href="https://www.nda.gov.cn/sjj/swdt/mtsy/0325/20260325113219152129329_pc.html">人民日报/国家数据局</a>、<a href="https://news.cctv.com/2026/03/24/ARTINY0xAAFWDeoS64CCAdJw260324.shtml">央视网</a> | 2026-03-24</div>
-<div class="body">国家数据局局长在中国发展高层论坛宣布，正式将Token定名为"词元"——大模型处理信息的最小信息单元，具有可计量、可定价、可交易特征。数据披露：中国日均词元调用量已突破140万亿（2024年初1000亿，两年增长超千倍）。黄仁勋指出代理式任务的词元消耗量比传统聊天高出数个量级。词元正成为智能时代的基础度量衡。</div>
-<div class="why">"词元经济学"正在形成——它决定AI应用的成本结构和商业模式。HR理解AI业务和招聘AI人才时，需将词元纳入基础认知框架。</div>
-</div>
-</div>
-
-<div class="section">
-<div class="section-title">💡 思考延展｜HR视角</div>
-
-<div class="think">
-<h4>今日关注点</h4>
-<div class="body">
-<p>今天的新闻如果只看一条，看云厂商集体涨价。这不仅仅是IT部门的预算问题——它标志着AI从"免费午餐"时代进入"真金白银"时代，将深刻改变企业AI投入的决策逻辑和组织架构。</p>
-<p style="margin-top:10px">过去两年，低廉的AI算力成本让"全员AI化"看上去很划算。但当阿里云涨34%、腾讯云某些产品涨400%时，一个残酷的算术题摆上桌面：<strong>如果用AI替代10个运营岗年省200万人力成本，但算力账单从50万涨到200万，这笔账还划算吗？</strong></p>
-<p style="margin-top:10px"><strong>第一，</strong>BOSS直聘案例是"先行者样本"——盈利+71.7%、裁员-14%，看似完美转型，但它裁的主要是最容易被标准化的运营岗。当"容易替代的"都替代完之后，下一步的难度和成本呈指数级上升。</p>
-<p style="margin-top:8px"><strong>第二，</strong>Harness Engineering的走红揭示了另一个真相：AI规模化落地的瓶颈不是"AI能力不够"，而是"人类治理不足"。企业需要的不只是会用AI的人，而是能"驾驭"AI的人——能为AI设定边界、建反馈机制、管理全生命周期的"AI治理师"。这类角色几乎没有成熟人才供给。</p>
-<p style="margin-top:8px"><strong>第三，</strong>36氪的"第一批用AI的人反被AI砸饭碗"文章点出了最扎心的现实：90%的公司以AI为由裁员，但只有2%是真因AI提效后裁员。大多数不过是借AI之名行"减肥"之实。HR要看清这个事实，避免成为"AI裁员叙事"的传声筒。</p>
-</div>
-<div class="question">
-<h5>今日思考题</h5>
-<p style="margin-bottom:8px;color:#68d391"><strong>云厂商AI算力集体涨价30%-400%，BOSS直聘用AI裁掉14%员工后利润暴涨71.7%——HR如何帮企业在"算力成本上升"和"人力成本优化"之间找到最优平衡点？</strong></p>
-<ol>
-<li>建立"AI替代经济模型"：不只算人力节省，要把算力成本、AI运维成本、质量兜底成本全部纳入ROI测算。BOSS直聘成功是因其业务高度数字化，大多数企业不具备这个条件</li>
-<li>实施"分层AI化"：岗位分三档——"AI完全接管"（基础审核）、"AI辅助增效"（招聘匹配）、"人类不可替代"（客户关系/创新决策），按优先级梯度推进</li>
-<li>布局"AI治理师"角色：Harness Engineering兴起意味着企业需要能驾驭AI系统可靠运行的复合型人才，现在培养或招聘是抢占下一个人才红利窗口</li>
-</ol>
-</div>
-</div>
-</div>
-
-<div class="footer">
-<p>每日AI简报 | TME HR·AI情报站 | 2026-04-01</p>
-<p style="margin-top:6px">以上信息仅供参考</p>
-<div class="watermark">Made by ChloeCao</div>
+  <div class="watermark">Made by ChloeCao</div>
 </div>
 </body>
 </html>
