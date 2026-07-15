@@ -541,7 +541,7 @@ document.addEventListener('click', function (e) {
   try { setStars(stars); } catch(e) {}
   refreshStarUI();
   btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-}););
+});
 
 document.addEventListener('click', function (e) {
   var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
