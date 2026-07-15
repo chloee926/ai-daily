@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日AI简报｜2026-07-15｜第71期</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card-bg: #161b22;
+  --card-border: #30363d;
+  --text: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --accent2: #7ee787;
+  --accent3: #d2a8ff;
+  --accent4: #ffa657;
+  --tag-bg: #1f2937;
+  --highlight: #1a2332;
+}
+[data-theme="light"] {
+  --bg: #f6f8fa;
+  --card-bg: #ffffff;
+  --card-border: #d0d7de;
+  --text: #1f2328;
+  --text-secondary: #656d76;
+  --accent: #0969da;
+  --accent2: #1a7f37;
+  --accent3: #8250df;
+  --accent4: #bf5700;
+  --tag-bg: #eef1f5;
+  --highlight: #f0f6ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 0;
+  min-height: 100vh;
+}
+.container { max-width: 720px; margin: 0 auto; padding: 20px 16px 60px; }
+.back-nav {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 100;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+}
+.back-nav:hover { background: var(--highlight); }
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.theme-toggle:hover { background: var(--highlight); }
+header {
+  text-align: center;
+  padding: 40px 0 30px;
+}
+header h1 {
+  font-size: 1.6em;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+header .meta {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+}
+.lead {
+  background: var(--highlight);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 28px;
+  font-size: 0.95em;
+}
+.lead strong { color: var(--accent); }
+.section { margin-bottom: 32px; }
+.section-title {
+  font-size: 1.15em;
+  font-weight: 700;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--card-border);
+  margin-bottom: 16px;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--accent); }
+.card h3 {
+  font-size: 1em;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card p { color: var(--text-secondary); font-size: 0.9em; margin-bottom: 6px; }
+.card ul { padding-left: 18px; margin-top: 8px; }
+.card li { color: var(--text-secondary); font-size: 0.88em; margin-bottom: 4px; }
+.card li strong { color: var(--text); }
+.tag {
+  display: inline-block;
+  background: var(--tag-bg);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.78em;
+  color: var(--accent);
+  font-weight: 500;
+}
+.new-word {
+  background: linear-gradient(135deg, #1a2332 0%, #1a1f2e 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 28px;
+}
+[data-theme="light"] .new-word {
+  background: linear-gradient(135deg, #f0f6ff 0%, #f5f0ff 100%);
+}
+.new-word h2 { font-size: 1.05em; margin-bottom: 10px; color: var(--accent); }
+.new-word p { font-size: 0.92em; color: var(--text-secondary); }
+.thinking {
+  background: linear-gradient(135deg, #1a2332 0%, #1f1a2e 100%);
+  border: 1px solid var(--accent3);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 10px;
+}
+[data-theme="light"] .thinking {
+  background: linear-gradient(135deg, #f0f6ff 0%, #faf5ff 100%);
+}
+.thinking h3 { color: var(--accent3); margin-bottom: 10px; font-size: 1em; }
+.thinking p { font-size: 0.92em; color: var(--text-secondary); line-height: 1.8; }
+.thinking .highlight-q { color: var(--text); font-weight: 600; font-size: 0.95em; }
+.watermark {
+  text-align: center;
+  padding: 40px 0 20px;
+  color: var(--text-secondary);
+  font-size: 0.8em;
+  opacity: 0.5;
+}
+@media (max-width: 600px) {
+  .back-nav { position: relative; top: 0; left: 0; display: block; text-align: center; margin-bottom: 10px; }
+  .theme-toggle { top: 10px; right: 10px; }
+  header { padding: 20px 0; }
+  header h1 { font-size: 1.3em; }
+  .container { padding: 12px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<a class="back-nav" href="https://chloee926.github.io/ai-daily/index.html">◀ 返回目录</a>
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题">🌓</button>
+<div class="container">
+<header>
+  <h1>每日AI简报｜2026-07-15</h1>
+  <p class="meta">星期二 · 第71期 · Made by ChloeCao</p>
+</header>
+
+<div class="lead">
+  <strong>今日导读</strong><br>
+  DeepSeek V4 今日正式全量上线，1.6万亿参数旗舰模型首创"峰谷分时定价"，让 API 算力第一次像水电一样按时段定价。同一天阿里发布实时语音大模型 Qwen-Audio-3.0-Realtime，Anthropic 对教育场景免费开放 Claude Pro——三家同时出手。人才端，Monzo 创始人放弃 YC 合伙人身份加入 Anthropic 当技术员工，阿里内部全面禁用 Claude 切换自研，人才争夺与技术脱钩正在同步加速。
+</div>
+
+<div class="new-word">
+  <h2>🆕 今日AI新名词：峰谷分时定价（Peak-Valley Compute Pricing）</h2>
+  <p>DeepSeek V4 正式版推出的行业首创 API 定价模式。工作日 9:00-12:00、14:00-18:00 为高峰时段，价格自动翻倍；夜间及周末价格直降 60%。算力正式进入"公用事业化"阶段——像水、电、网络带宽一样按供需动态定价。企业 IT 部门未来可能需要像管理能耗一样管理 AI 算力支出。</p>
+</div>
+
+<div class="section">
+  <div class="section-title">📌 议题一 · 三大模型同日交付：算力公用事业化加速</div>
+
+  <div class="card">
+    <h3>🔵 DeepSeek V4 — 正式全量上线</h3>
+    <p>旗舰版 V4 Pro：1.6万亿参数，推理仅激活490亿；轻量版 Flash：284B/13B。均支持100万 token 超长上下文。</p>
+    <ul>
+      <li><strong>峰谷定价</strong>：Pro 输出高峰 12元、低谷 6元/百万token；Flash 高峰 4元、低谷 2元</li>
+      <li><strong>缓存命中极低价</strong>：仅 0.025 元/百万token，鼓励优化缓存策略</li>
+      <li><strong>网页/App免费不变</strong>，峰谷仅针对API开发者</li>
+      <li><strong>原生适配昇腾算力</strong>，首个全面支持国产芯片栈的大模型</li>
+      <li>腾讯云 TokenHub 同步上线原厂直供</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🟢 阿里 Qwen-Audio-3.0-Realtime — 实时语音模型今日发布</h3>
+    <p>主打"毫秒级响应 + 不牺牲推理深度"，提供 Plus（推理强）和 Flash（速度快）两版本。</p>
+    <ul>
+      <li><strong>Agent工具调用</strong>：无需显式指令即可自动调用外部工具</li>
+      <li><strong>共情对话</strong>：动态调整语气、节奏，支持笑声/叹息等副语言信号</li>
+      <li><strong>双工交互</strong>：嘈杂环境不误打断，多人场景锁定主对话者</li>
+      <li>VoiceBench 得分 92.5（Plus 版），口语化仅降2分</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🟣 Anthropic — Claude 教师版免费 + Artifacts 多人协作</h3>
+    <p>向美国 K-12 教师免费开放 Claude Pro 一年，Stride 股价跌 5.6%。Artifacts 支持公开分享与多人编辑，Claude Cowork 移动端远程控制功能曝光。印度市场推本地化定价（Pro 月费 1999 卢比）。</p>
+  </div>
+
+  <div class="card">
+    <h3>🔷 腾讯混元 Hy3 — 登顶 OpenRouter 周度调用量第一</h3>
+    <p>7月6日正式发布，MoE 架构 295B/21B，256K 上下文。幻觉率从 12.5% 降至 5.4%。API 定价 1元输入/4元输出。今日腾讯港股盘中涨超 4%。</p>
+  </div>
+
+  <div class="card">
+    <h3>🟠 谷歌 TPU 战略转向 — 从内部工具到商用芯片</h3>
+    <p>与 Anthropic 达成 100 万颗 TPU 部署协议，成本比竞品低 30%。预计 2027 年年产量达 500 万块，被认为是英伟达 GPU 主导地位面临的最具结构性威胁。</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📌 议题二 · AI人才争夺战升级：从"抢人"到"脱钩"</div>
+
+  <div class="card">
+    <h3>👤 Monzo 创始人 Blomfield — 放弃 YC 加入 Anthropic</h3>
+    <p>7月13日宣布请假离开 Y Combinator，加入 Anthropic 算力团队担任 MTS（技术员工），与联合创始人 Tom Brown 共事。此前已有 Karpathy、诺奖得主 Jumper 等加入。Anthropic 估值达 9650 亿美元，传闻 10 月 IPO。</p>
+  </div>
+
+  <div class="card">
+    <h3>🔒 阿里内部全面禁用 Claude — 切换自研 Qoder</h3>
+    <p>因 Anthropic 控诉模型蒸馏并封禁账号，阿里 7 月 3 日通知全员卸载 Claude。被行业解读为"反向禁用"——外部围堵与技术自主化双重压力下的无奈之举。</p>
+  </div>
+
+  <div class="card">
+    <h3>📉 美国科技行业上半年裁员近14万人</h3>
+    <p>同比增 66%，AI 替代人力为主因。Cisco 加州裁员 471 人（同期营收创纪录 $15.8B），亿航智能确认基于"AI提效"裁减低绩效岗位。</p>
+  </div>
+
+  <div class="card">
+    <h3>🎬 PixVerse（爱诗科技）— C轮29.8亿元，阿里领投</h3>
+    <p>AI视频生成公司完成国内赛道最大融资，估值突破20亿美元。同步推出 PixVerse Game Engine，用户超1.5亿。</p>
+  </div>
+
+  <div class="card">
+    <h3>🏛️ WAIC 2026 — 7月17-20日上海开幕</h3>
+    <p>习近平将出席。展览面积首破10万㎡，1100+企业参展，300+全球首发产品，聚焦"模型落地到产业化"。</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">✍️ HR视角的启示 & 思考</div>
+  <div class="thinking">
+    <h3>💡 每日思考题</h3>
+    <p>今天有两个事件值得放在一起看：</p>
+    <p>Tom Blomfield 放弃 YC 合伙人这样的"顶流位置"，去 Anthropic 当一个技术员工——因为"算力是最重要的问题"。DeepSeek 把 API 按时段定价，本质是承认算力已成为"稀缺公共资源"。</p>
+    <p>当算力成为新的水电煤，人才的"岗位级别"不再是吸引力的核心——参与"最重要的问题"才是。</p>
+    <p class="highlight-q" style="margin-top: 14px;">作为 HR，你的组织里有没有"岗位级别很高但离核心问题很远"的角色？如果顶级人才愿意降级去做真正重要的事，你的组织结构能否容纳这种"反向流动"？</p>
+  </div>
+</div>
+
+<div class="watermark">Made by ChloeCao</div>
+</div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('ai-daily-theme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+</body>
+</html>
