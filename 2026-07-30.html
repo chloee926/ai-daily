@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 行业与人才日报 | 2026-07-30</title>
+<style>
+:root {
+  --bg: #f3efe6;
+  --text: #1a1a1a;
+  --text-secondary: #555;
+  --card-bg: #fff;
+  --card-border: #e0dcd4;
+  --accent: #c0392b;
+  --c1: #2980b9;
+  --c2: #27ae60;
+  --c3: #8e44ad;
+  --c4: #d35400;
+  --c5: #6c3483;
+  --nav-bg: rgba(243,239,230,0.95);
+  --tag-bg: #f0ece3;
+}
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --text: #e8e8e8;
+  --text-secondary: #aaa;
+  --card-bg: #222240;
+  --card-border: #333355;
+  --accent: #e74c3c;
+  --c1: #5dade2;
+  --c2: #58d68d;
+  --c3: #bb8fce;
+  --c4: #f39c12;
+  --c5: #a569bd;
+  --nav-bg: rgba(26,26,46,0.95);
+  --tag-bg: #2a2a4a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: "Songti SC", "Noto Serif SC", Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+.top-nav {
+  position: sticky; top:0; z-index:100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px;
+}
+.top-nav a { color: var(--text); text-decoration: none; opacity:0.7; transition:opacity .2s; }
+.top-nav a:hover { opacity:1; }
+.top-nav .nav-sep { opacity:0.3; }
+.theme-toggle {
+  margin-left: auto; cursor: pointer;
+  background: none; border: none; font-size: 18px;
+  color: var(--text); opacity: 0.6;
+}
+.theme-toggle:hover { opacity:1; }
+.container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+.kicker {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+h1 {
+  font-size: 28px; font-weight: 700; margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+.issue-meta {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 32px; padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent);
+}
+.lead {
+  font-size: 16px; line-height: 2;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--accent);
+  background: var(--tag-bg);
+  border-radius: 0 8px 8px 0;
+}
+.section { margin-bottom: 48px; }
+.sec-num {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  width: 28px; height: 28px; line-height: 28px;
+  text-align: center; border-radius: 50%;
+  color: #fff; margin-right: 10px;
+}
+.sec-num-0 { background: var(--accent); }
+.sec-num-1 { background: var(--c1); }
+.sec-num-2 { background: var(--c2); }
+.sec-num-3 { background: var(--c3); }
+.sec-num-4 { background: var(--c4); }
+.sec-num-5 { background: var(--c5); }
+.sec-title {
+  font-size: 18px; font-weight: 700;
+  display: inline; vertical-align: middle;
+}
+.cards { margin-top: 16px; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  transition: box-shadow .2s;
+}
+.card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.card-title {
+  font-size: 15px; font-weight: 700; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-title .emoji { font-size: 16px; }
+.card-body { font-size: 14px; color: var(--text-secondary); line-height: 1.9; }
+.card-body a { color: var(--c1); text-decoration: none; }
+.card-body a:hover { text-decoration: underline; }
+.rel-dot {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 6px; vertical-align: middle;
+}
+.rel-high { background: #e74c3c; }
+.rel-mid { background: #f1c40f; }
+.rel-low { background: #bbb; }
+.thinking {
+  background: var(--tag-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px 24px;
+  font-size: 15px;
+  line-height: 2;
+}
+.thinking strong { color: var(--accent); }
+.watermark {
+  text-align: center; padding: 40px 0 20px;
+  font-size: 12px; color: var(--text-secondary); opacity:0.5;
+}
+@media(max-width:600px){
+  h1 { font-size: 22px; }
+  .container { padding: 20px 16px 60px; }
+  .card { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+<nav class="top-nav">
+  <a href="index.html">◀ 目录</a>
+  <span class="nav-sep">|</span>
+  <a href="favorites.html">关注</a>
+  <span class="nav-sep">|</span>
+  <a href="lexicon.html">词典</a>
+  <span class="nav-sep">|</span>
+  <a href="board.html">看板</a>
+  <span class="nav-sep">|</span>
+  <a href="papers.html">论文</a>
+  <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">◐</button>
+</nav>
+
+<div class="container">
+  <p class="kicker">AI 行业事件 · 人才动态 · TME招聘</p>
+  <h1>AI 行业与人才日报</h1>
+  <p class="issue-meta">2026年7月30日 周三 · 第77期</p>
+
+  <div class="lead">
+    <strong>今日导读：</strong>谷歌拆散诺奖级 AlphaFold 团队、亚马逊关停 AGI Lab 砍掉多款 Nova 模型——两大科技巨头同周完成"聚焦前沿大模型、砍掉副线"的战略收缩。Monday.com 裁员 20% 明确为"AI 时代组织重构"，SaaS 行业正从"用 AI 做功能"转向"因 AI 重塑编制"。
+  </div>
+
+  <!-- 新名词 -->
+  <section class="section">
+    <span class="sec-num sec-num-0">00</span>
+    <span class="sec-title">🆕 今日AI新名词</span>
+    <div class="cards">
+      <div class="card">
+        <div class="card-title"><span class="emoji">📘</span> FMR（Frontier Model Research）</div>
+        <div class="card-body">亚马逊内部代号，指其全新旗舰基础模型研发项目。由 UC Berkeley 教授 Pieter Abbeel 领衔，目标是在 2026 秋季 re:Invent 大会推出能与 Anthropic Claude 正面竞争的自研前沿模型。FMR 的出现意味着亚马逊从"多模型并行"彻底转向"单一前沿模型突破"。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 议题一 -->
+  <section class="section">
+    <span class="sec-num sec-num-1">01</span>
+    <span class="sec-title">巨头 AI 战略大收缩</span>
+    <div class="cards">
+      <article class="card" id="card-deepmind-alphafold">
+        <div class="card-title">
+          <span class="rel-dot rel-high"></span>
+          <span class="emoji">🔄</span> 谷歌 DeepMind — 解散诺贝尔奖级 AlphaFold 团队
+        </div>
+        <div class="card-body">
+          研究人员分流至 Gemini 和 AI Agent 项目。诺奖得主 John Jumper 及核心成员 Jonas Adler、Alexander Pritzel 已加入 Anthropic；原始论文作者近四分之一离开公司。DeepMind 研究副总裁 Pushmeet Kohli 表示战略已从"逐一攻克单一科学问题"转向"打造 Gemini 驱动的通用科学 AI 系统"。<br><br>
+          <a href="https://www.ft.com/content/61b2953d-ee0d-45de-af6e-a9c1cf524b33" target="_blank">来源：Financial Times</a>
+        </div>
+      </article>
+
+      <article class="card" id="card-amazon-agi-lab">
+        <div class="card-title">
+          <span class="rel-dot rel-high"></span>
+          <span class="emoji">🔄</span> 亚马逊 — 关停 AGI Lab，Nova 旗舰模型降级
+        </div>
+        <div class="card-body">
+          关停 AGI Lab、裁减 AGI 部门员工，Nova Premier/Omni/Reel/Canvas 四款旗舰模型降级至"维持运行"（KTLO）。资源集中到 FMR 项目（Pieter Abbeel 领衔），新旗舰模型预计秋季 re:Invent 亮相。亚马逊同时是 Anthropic 最大金主（累计投资超 330 亿美元），自研模型追赶的正是战略伙伴。<br><br>
+          <a href="https://www.geekwire.com/2026/amazon-confirms-its-closing-key-ai-site-in-san-francisco-but-says-work-on-its-top-models-continues/" target="_blank">来源：GeekWire</a>
+        </div>
+      </article>
+
+      <article class="card" id="card-monday-layoff">
+        <div class="card-title">
+          <span class="rel-dot rel-high"></span>
+          <span class="emoji">📉</span> Monday.com — 裁员 20% 重构 AI 时代组织
+        </div>
+        <div class="card-body">
+          裁员约 620 人，向 SEC 披露重组计划，同日上调运营利润率指引 2 个百分点。CEO Zinman 称"为上一阶段构建的组织不再适配 AI 新时代"，将打造更扁平架构、更小自主团队。今年科技行业已有超 12 万人因 AI 相关原因被裁，78% 的裁员事件明确提及 AI 因素。此前该公司已用 AI 智能体替代了 100 名 SDR。<br><br>
+          <a href="https://techcrunch.com/2026/07/22/monday-com-lays-off-hundreds-to-focuses-on-ai" target="_blank">来源：TechCrunch</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 议题二 -->
+  <section class="section">
+    <span class="sec-num sec-num-2">02</span>
+    <span class="sec-title">AI 产品与平台动态</span>
+    <div class="cards">
+      <article class="card" id="card-google-lyria">
+        <div class="card-title">
+          <span class="rel-dot rel-mid"></span>
+          <span class="emoji">🎵</span> 谷歌 Lyria 3.5 — AI 音乐生成模型全面升级
+        </div>
+        <div class="card-body">
+          7月29日发布并集成至 Flow Music。四大升级：旋律结构更复杂自然、歌词生成 Prompt 理解力增强、AI 人声情绪表达与发音显著改善、节奏与时长精确控制（30秒-3分钟）。在 Suno/Udio/OpenAI 竞争中，谷歌强化"文本到完整歌曲"全链路。<br><br>
+          <a href="https://deepmind.google/blog/were-launching-lyria-35-in-google-flow-music-with-advances-across-musicality-lyrics-vocals-and-creative-control/" target="_blank">来源：Google DeepMind Blog</a>
+        </div>
+      </article>
+
+      <article class="card" id="card-xai-grok-build">
+        <div class="card-title">
+          <span class="rel-dot rel-mid"></span>
+          <span class="emoji">🔵</span> xAI Grok Build — 端到端编程模式上线
+        </div>
+        <div class="card-body">
+          用户可通过自然语言生成网站、应用和游戏，面向 SuperGrok Heavy 订阅用户（$300/月）开放早期测试。马斯克同日预告 Grok 4.6（1.5万亿参数，约8月7日）和 Grok 4.7（2.1万亿参数）将接连推出，保持激进迭代节奏。<br><br>
+          <a href="https://new.qq.com/rain/a/20260729A06MWC00" target="_blank">来源：快科技</a>
+        </div>
+      </article>
+
+      <article class="card" id="card-fish-audio">
+        <div class="card-title">
+          <span class="rel-dot rel-mid"></span>
+          <span class="emoji">💰</span> Fish Audio — 5200万美元种子轮，一年做到 2100 万 ARR
+        </div>
+        <div class="card-body">
+          Coreline Ventures 和今日资本领投。核心能力：5 秒音频克隆、83 种语言、15000+ 自然语言情绪控制。从开源项目 Fish Speech（GitHub 31000 星）起步，客户包括 HeyGen、LiveKit、Retell。正从 TTS 拓展至语音原生大模型和 Speech-to-Speech。<br><br>
+          <a href="https://www.prnewswire.com/news-releases/fish-audio-raises-52m-in-seed-funding-after-turning-passion-project-into-one-of-voice-ais-fastest-growing-companies-302836233.html" target="_blank">来源：PRNewswire</a>
+        </div>
+      </article>
+
+      <article class="card" id="card-gemini-spark">
+        <div class="card-title">
+          <span class="rel-dot rel-low"></span>
+          <span class="emoji">🔵</span> 谷歌 Gemini Spark — 全天候 AI 代理落地
+        </div>
+        <div class="card-body">
+          在中国香港推出个人 AI 代理，由 Gemini 3.6 Flash 驱动，可后台执行复杂任务。AI Ultra 订阅者已可使用，Pro 用户数周内开放。标志 Gemini 从对话助手向自主代理的产品化转型。<br><br>
+          <a href="https://view.inews.qq.com/a/20260729A07JK800" target="_blank">来源：财闻</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 思考 -->
+  <section class="section">
+    <span class="sec-num sec-num-3">03</span>
+    <span class="sec-title">招聘今日可行动</span>
+    <div class="thinking">
+      <strong>💡 今日思考题</strong><br><br>
+      亚马逊关停 AGI Lab 裁员、谷歌拆散诺奖团队——两家巨头的共同逻辑是"砍副线、集中资源冲前沿模型"。<br><br>
+      但裁掉的不是表现差的人，而是做出过世界级成果、只是方向不再匹配的人。John Jumper 拿了诺贝尔奖，照样被重新分配；AGI Lab 的前沿研究员被称为"最宝贵的技术人才"，照样被裁。<br><br>
+      <strong>如果你是 HR：当组织战略收缩时，如何向一个做出过顶级成果、但方向被砍的团队做裁员沟通？"你很优秀但我们不做这个了"这句话，怎么说才不变成组织信用的伤疤？</strong><br><br>
+      这不是裁差人的问题，是裁对人的问题——而后者的沟通难度和组织声誉风险，远大于前者。
+    </div>
+  </section>
+
+</div>
+
+<div class="watermark">TME招聘HR出品 · Made by ChloeCao</div>
+
+<script>
+function toggleTheme(){
+  const d=document.documentElement;
+  const t=d.getAttribute('data-theme')==='dark'?'light':'dark';
+  d.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+}
+(function(){
+  const s=localStorage.getItem('theme')||
+    (window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',s);
+})();
+</script>
+</body>
+</html>
