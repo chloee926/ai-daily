@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 行业与人才日报 | 2026-08-04</title>
+<style>
+:root {
+  --bg: #f3efe6;
+  --text: #1a1a1a;
+  --text-secondary: #555;
+  --card-bg: #fff;
+  --card-border: #e0dcd4;
+  --accent: #c0392b;
+  --c1: #2980b9;
+  --c2: #27ae60;
+  --c3: #8e44ad;
+  --c4: #d35400;
+  --c5: #6c3483;
+  --nav-bg: rgba(243,239,230,0.95);
+  --tag-bg: #f0ece3;
+}
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --text: #e8e8e8;
+  --text-secondary: #aaa;
+  --card-bg: #222240;
+  --card-border: #333355;
+  --accent: #e74c3c;
+  --c1: #5dade2;
+  --c2: #58d68d;
+  --c3: #bb8fce;
+  --c4: #f39c12;
+  --c5: #a569bd;
+  --nav-bg: rgba(26,26,46,0.95);
+  --tag-bg: #2a2a4a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: "Songti SC", "Noto Serif SC", Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+.top-nav {
+  position: sticky; top:0; z-index:100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px;
+}
+.top-nav a { color: var(--text); text-decoration: none; opacity:0.7; transition:opacity .2s; }
+.top-nav a:hover { opacity:1; }
+.top-nav .nav-sep { opacity:0.3; }
+.theme-toggle {
+  margin-left: auto; cursor: pointer;
+  background: none; border: none; font-size: 18px;
+  color: var(--text); opacity: 0.6;
+}
+.theme-toggle:hover { opacity:1; }
+.container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+.kicker {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+h1 {
+  font-size: 28px; font-weight: 700; margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+.issue-meta {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 32px; padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent);
+}
+.lead {
+  font-size: 16px; line-height: 2;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--accent);
+  background: var(--tag-bg);
+  border-radius: 0 8px 8px 0;
+}
+.section { margin-bottom: 48px; }
+.sec-num {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  width: 28px; height: 28px; line-height: 28px;
+  text-align: center; border-radius: 50%;
+  color: #fff; margin-right: 10px;
+}
+.sec-num-0 { background: var(--accent); }
+.sec-num-1 { background: var(--c1); }
+.sec-num-2 { background: var(--c2); }
+.sec-num-3 { background: var(--c3); }
+.sec-num-4 { background: var(--c4); }
+.sec-num-5 { background: var(--c5); }
+.sec-title {
+  font-size: 18px; font-weight: 700;
+  display: inline; vertical-align: middle;
+}
+.cards { margin-top: 16px; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  transition: box-shadow .2s;
+}
+.card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.card-title {
+  font-size: 15px; font-weight: 700; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-title .emoji { font-size: 16px; }
+.card-body { font-size: 14px; color: var(--text-secondary); line-height: 1.9; }
+.card-body a { color: var(--c1); text-decoration: none; }
+.card-body a:hover { text-decoration: underline; }
+.rel-dot {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 6px; vertical-align: middle;
+}
+.rel-high { background: #e74c3c; }
+.rel-mid { background: #f1c40f; }
+.rel-low { background: #bbb; }
+.thinking {
+  background: var(--tag-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px 24px;
+  font-size: 15px;
+  line-height: 2;
+}
+.thinking strong { color: var(--accent); }
+.watermark {
+  text-align: center; padding: 40px 0 20px;
+  font-size: 12px; color: var(--text-secondary); opacity:0.5;
+}
+@media(max-width:600px){
+  h1 { font-size: 22px; }
+  .container { padding: 20px 16px 60px; }
+  .card { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+<nav class="top-nav">
+  <a href="index.html">◀ 目录</a>
+  <span class="nav-sep">|</span>
+  <a href="favorites.html">关注</a>
+  <span class="nav-sep">|</span>
+  <a href="lexicon.html">词典</a>
+  <span class="nav-sep">|</span>
+  <a href="board.html">看板</a>
+  <span class="nav-sep">|</span>
+  <a href="papers.html">论文</a>
+  <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">◐</button>
+</nav>
+
+<div class="container">
+  <header class="masthead">
+    <div class="kicker">AI 行业事件 &middot; 人才动态&middot; TME 招聘</div>
+    <h1>AI 行业与人才日报</h1>
+    <div class="meta">2026-08-04 &middot; 星期一 &middot; <b>第 79 期</b></div>
+  </header>
+
+  <div class="music-note">🎵 <b>音乐AI看点</b>：Suno 在德国 GEMA 版权案败诉——首个欧洲 AI 音乐训练数据重大判决（7/31）</div>
+
+  <div class="lead">阿里发布2.4万亿参数Qwen3.8-Max + 千问办公三合一Agent、NVIDIA 50亿美元押注 Ilya 的 SSI、DeepSeek 获510亿人民币A轮（中国AI最大单笔融资）。与此同时，Meta/微软/ServiceNow 裁员潮加速，亚马逊78%裁减集中在中层管理L5-L7——AI Agent 正在系统性取代"信息汇总→决策传递→执行监督"的中层管理职能。</div>
+
+  <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
+    </div>
+    <div class="new-term" id="2026-08-04-nw-0">
+      <button class="star-btn" data-key="2026-08-04-nw-0" aria-label="关注这条">☆</button>
+      <h3>专有智能（Specialized Intelligence）</h3>
+      <p>由 Fireworks AI 在其 D 轮公告中正式提出。核心含义：企业不再"租用"通用大模型智能，而是基于自有数据、流程和客户场景，在开源模型上训练出专属于自己的 AI 能力。Fireworks 数据显示，其平台95% 的 token 处理量来自企业专有模型而非通用模型。趋势信号：AI 基础设施层竞争从"谁家模型最聪明"转向"谁能帮企业把自有知识变成可部署的专有智能"。</p>
+    </div>
+    <div class="new-term" id="2026-08-04-nw-1">
+      <button class="star-btn" data-key="2026-08-04-nw-1" aria-label="关注这条">☆</button>
+      <h3>AI 办公入口战（AI Workspace War）</h3>
+      <p>8月第一周，阿里（千问办公 QwenWork）、字节（飞书并入豆包）、腾讯（WorkBuddy 月活2097万）几乎同时发力AI 办公产品。这一轮竞争核心不再是"AI 助手"，而是成为企业工作流唯一入口——从文档、邮件到审批全流程由 AI Agent 接管。</p>
+    </div>
+  </section>
+
+  <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
+
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">议题一&middot; AI 产品&amp;平台动态：千问旗舰 + SSI + Fireworks 巨额融资</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-08-04-t0-0" data-rel="mid">
+        <button class="star-btn" data-key="2026-08-04-t0-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里发布 Qwen3.8-Max（2.4T参数）+ 千问办公（QwenWork）公测</h4>
+        <p>8/3 发布旗舰 MoE 模型 Qwen3.8-Max：2.4T 总参 / 95B 激活 / 1M 上下文 / 原生多模态。Arena 全球第五、中国文本模型第一（1668分，仅次 Opus 5）。亮点：从空文件夹自主编程16 天交付完整项目。同日推出 QwenWork 三合一办公 Agent，打通钉钉。API 价格仅为Opus 5 的 24%。权重下周开源。</p>
+      </article>
+      <article class="card" id="2026-08-04-t0-1" data-rel="low">
+        <button class="star-btn" data-key="2026-08-04-t0-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> NVIDIA × SSI 战略合作：50亿美元 + Vera Rubin 算力</h4>
+        <p>7/27 英伟达与Ilya Sutskever 的 Safe Superintelligence (SSI) 达成长期合作，投资约 50 亿美元，开放下一代 Vera Rubin 平台算力（提升一个数量级）。SSI 累计融资约 30 亿美元（估值 320 亿），专注安全超级智能，不发商业产品。英伟达"在获准接触 SSI 高度保密的核心研究后"做出这一决定。</p>
+      </article>
+      <article class="card" id="2026-08-04-t0-2" data-rel="low">
+        <button class="star-btn" data-key="2026-08-04-t0-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Fireworks AI：$15亿 D 轮 / $175亿估值 / ARR 破$10 亿</h4>
+        <p>7/16 完成 $15.05亿 Series D（Atreides/Index/TCV领投，NVIDIA跟投），估值 $175 亿（9 个月翻 4.4×）。ARR 突破 $10 亿（YoY 5×），日处理 40T+ token，95% 来自企业专有模型。客户含Uber/Shopify/Cursor/Harvey/GitLab。AI推理层有史以来最大融资。</p>
+      </article>
+      <article class="card" id="2026-08-04-t0-3" data-rel="mid">
+        <button class="star-btn" data-key="2026-08-04-t0-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> DeepSeek 完成510亿人民币A轮——中国AI最大单笔融资</h4>
+        <p>据企查查，杭州深度求索获 510 亿元 A 轮（估值 4000亿）。投资方：梁文锋~200亿、腾讯 ~100 亿、宁德时代 ~50 亿、网易/京东/IDG 各 ~30 亿、国家AI产业基金 ~9.8 亿。这笔融资规模在全球AI历史上仅次于 OpenAI。</p>
+      </article>
+      <article class="card" id="2026-08-04-t0-4" data-rel="mid" data-music="1">
+        <button class="star-btn" data-key="2026-08-04-t0-4" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span>🎵 Suno 在德国 GEMA 版权案败诉——首个欧洲AI音乐训练数据判决</h4>
+        <p>7/31 慕尼黑地方法院判决GEMA 胜诉：Suno 未经授权使用版权作品训练模型并在输出中复现，判令停止使用并披露收入/赔偿。同日 EU AI Act 第50条生效（强制AI内容标注）。Suno 将上诉。此前 Warner已和解，但 UMG/Sony 仍在诉讼中。对音乐AI创业公司影响重大。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">议题二 &middot; AI 公司组织&amp;人才：裁员加速 + 中层管理系统性替代</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-08-04-t1-0" data-rel="hi">
+        <button class="star-btn" data-key="2026-08-04-t1-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta 裁员 8000 + 调岗 7000；微软 4800（Xbox最重）</h4>
+        <p>Meta（8/1）裁减约 8000 岗位 + 7000 人转岗，集中于中层管理和非核心产品线。扎克伯格称"将人力集中到 AI 和 AR/VR 核心方向"。微软裁 4800 人（Xbox/游戏部门最重）。ServiceNow 裁 300 人（AI 自动化直接替代客服岗）。Intel湾区再裁 103。2026 年 AI 相关裁员累计破 9万人。</p>
+      </article>
+      <article class="card" id="2026-08-04-t1-1" data-rel="hi">
+        <button class="star-btn" data-key="2026-08-04-t1-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> AI 取代中层管理：亚马逊 78% 裁减集中在 L5-L7</h4>
+        <p>亚马逊最新组织调整中78% 裁减落在 L5-L7（项目经理、高级经理层）。字节飞书并入豆包，同步精简中层汇报层级。京东以"AI智能头盔"替代骑手调度中间层。结构性趋势：AI Agent 正在系统性替代"信息汇总→决策传递→执行监督"——中层管理的核心职能。</p>
+      </article>
+      <article class="card" id="2026-08-04-t1-2" data-rel="mid">
+        <button class="star-btn" data-key="2026-08-04-t1-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span>蚂蚁灵波启动15亿首轮融资：具身智能"一脑多机"</h4>
+        <p>8/3蚂蚁集团全资子公司蚂蚁灵波确认启动首轮融资（拟15亿元），聚焦具身智能"通用大脑"研发。已发布10+款LingBot 系列模型，基座模型 LingBot-VLA 2.0 适配 17 品牌 20+ 构型。GitHub Star 近3万（行业2.7倍）。预示：机器人+AI复合人才需求拐点临近。</p>
+      </article>
+      <article class="card" id="2026-08-04-t1-3" data-rel="low">
+        <button class="star-btn" data-key="2026-08-04-t1-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Vast（3D建模AI）考虑港股IPO，阿里百度已投</h4>
+        <p>中国 3D 建模 AI 公司 Vast（TripoStudio）正考虑赴港 IPO，与美银/中金合作。由 MiniMax 创始成员宋亚宸创立，估值达独角兽级别。技术已应用于网易《燕云十六声》实时3D形象生成。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">招聘今日可行动</h2>
+    </div>
+    <blockquote class="thinking">
+      <h3>💡 当AI办公入口战胜负已分，HR 该怎么重新定义岗位价值？</h3>
+      <p><b>1. 中层管理岗位的重新定义</b>：亚马逊 78% 裁员集中在 L5-L7，AI Agent 正接管"信息汇总、进度追踪、决策传递"等传统中层核心职能。招聘时需评估：这个岗位的核心产出，是否可以被Agent 替代？</p>
+      <p><b>2. "会用 AI"已不是加分项，而是基本要求</b>：当QwenWork 能自主跑16 天工程项目、WorkBuddy 月活 2097 万时，AI工具使用能力就像10 年前的 Excel——不会的人将逐渐出局。</p>
+      <p><b>3. 招聘策略调整</b>：关注具备"定义问题"而非"执行任务"能力的候选人。执行层Agent 越来越强，但判断"该解决什么问题"仍是人类独有价值。</p>
+    </blockquote>
+  </section>
+
+  <div class="watermark">TME 招聘 HR出品 &middot; ChloeCao</div>
+</div>
+<script>
+function toggleTheme(){
+  const d=document.documentElement;
+  const t=d.getAttribute('data-theme')==='dark'?'light':'dark';
+  d.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+}
+(function(){
+  const s=localStorage.getItem('theme')||
+    (window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',s);
+})();
+</script>
+</body>
+</html>
