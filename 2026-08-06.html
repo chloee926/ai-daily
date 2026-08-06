@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 行业与人才日报 | 2026-08-06</title>
+<style>
+:root {
+  --bg: #f3efe6;
+  --text: #1a1a1a;
+  --text-secondary: #555;
+  --card-bg: #fff;
+  --card-border: #e0dcd4;
+  --accent: #c0392b;
+  --c1: #2980b9;
+  --c2: #27ae60;
+  --c3: #8e44ad;
+  --c4: #d35400;
+  --c5: #6c3483;
+  --nav-bg: rgba(243,239,230,0.95);
+  --tag-bg: #f0ece3;
+}
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --text: #e8e8e8;
+  --text-secondary: #aaa;
+  --card-bg: #222240;
+  --card-border: #333355;
+  --accent: #e74c3c;
+  --c1: #5dade2;
+  --c2: #58d68d;
+  --c3: #bb8fce;
+  --c4: #f39c12;
+  --c5: #a569bd;
+  --nav-bg: rgba(26,26,46,0.95);
+  --tag-bg: #2a2a4a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: "Songti SC", "Noto Serif SC", Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+.top-nav {
+  position: sticky; top:0; z-index:100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px;
+}
+.top-nav a { color: var(--text); text-decoration: none; opacity:0.7; transition:opacity .2s; }
+.top-nav a:hover { opacity:1; }
+.top-nav .nav-sep { opacity:0.3; }
+.theme-toggle {
+  margin-left: auto; cursor: pointer;
+  background: none; border: none; font-size: 18px;
+  color: var(--text); opacity: 0.6;
+}
+.theme-toggle:hover { opacity:1; }
+.container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+.kicker {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+h1 {
+  font-size: 28px; font-weight: 700; margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+.issue-meta {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 32px; padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent);
+}
+.lead {
+  font-size: 16px; line-height: 2;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  padding: 16px 20px;
+border-left: 3px solid var(--accent);
+  background: var(--tag-bg);
+  border-radius: 0 8px 8px 0;
+}
+.section { margin-bottom: 48px; }
+.sec-head { display: flex; align-items: center; margin-bottom: 20px; }
+.sec-num {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  width: 28px; height: 28px; line-height: 28px;
+  text-align: center; border-radius: 50%;
+  color: #fff; margin-right: 10px;
+}
+.sec-num-0 { background: var(--accent); }
+.sec-num-1 { background: var(--c1); }
+.sec-num-2 { background: var(--c2); }
+.sec-num-3 { background: var(--c3); }
+.sec-num-4 { background: var(--c4); }
+.sec-num-5 { background: var(--c5); }
+.sec-title { font-size: 18px; font-weight: 700; }
+.cards-grid { display: grid; gap: 16px; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+}
+.card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.5; }
+.card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.rel { font-size: 12px; margin-right: 4px; }
+.star-btn {
+  position: absolute; top: 12px; right: 12px;
+  background: none; border: none; font-size: 18px;
+  cursor: pointer; color: var(--text-secondary); opacity: 0.5;
+}
+.star-btn:hover { opacity: 1; }
+.star-btn.starred { color: #f1c40f; opacity: 1; }
+.new-term {
+  background: var(--tag-bg);
+border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+.new-term h3 { font-size: 16px; color: var(--accent); margin-bottom: 8px; }
+.new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.sec-think { margin-bottom: 48px; }
+.thinking {
+  background: var(--tag-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 24px;
+  font-size: 15px; line-height: 2;
+}
+.thinking h3 { font-size: 16px; margin-bottom: 12px; color: var(--c4); }
+.thinking p { margin-bottom: 12px; color: var(--text-secondary); }
+.thinking p:last-child { margin-bottom: 0; }
+.watermark {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  opacity: 0.4;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+.filter-bar {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 24px; flex-wrap: wrap;
+}
+.filter-label { font-size: 12px; color: var(--text-secondary); margin-right: 4px; }
+.filter-chip {
+  font-size: 12px; padding: 4px 12px;
+  border-radius: 20px; border: 1px solid var(--card-border);
+  background: var(--card-bg); color: var(--text-secondary);
+  cursor: pointer; transition: all .2s;
+}
+.filter-chip.active, .filter-chip:hover {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+@media(max-width:600px){
+  .container { padding: 20px 16px 60px; }
+h1 { font-size: 22px; }
+  .card { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<nav class="top-nav">
+  <a href="index.html">目录</a>
+  <span class="nav-sep">|</span>
+<a href="favorites.html">我的关注</a>
+  <span class="nav-sep">|</span>
+  <a href="lexicon.html">词典</a>
+  <span class="nav-sep">|</span>
+  <a href="board.html">看板</a>
+  <span class="nav-sep">|</span>
+  <a href="papers.html">论文</a>
+  <button class="theme-toggle" onclick="toggleTheme()">◐</button>
+</nav>
+
+<div class="container">
+  <p class="kicker">AI 行业事件 · 人才动态 · TME招聘</p>
+  <h1>AI 行业与人才日报</h1>
+  <p class="issue-meta">2026-08-06 周三 ｜ 第80期</p>
+
+  <div class="lead">
+    谷歌经历史上最大规模AI人事震荡——诺奖得主Hassabis卸任DeepMind CEO转任Alphabet首席科学家，27年灵魂人物Jeff Dean带队出走创业，Gemini 4研发陷入延期困境。与此同时，xAI的Grok 4.6锁定明日发布，字节的SeedRealtime全双工模型上线豆包——前沿AI实验室正在同时经历"人才外溢"和"模型加速"的双重震荡。
+  </div>
+
+  <div class="new-term">
+    <h3>🆕 今日AI新名词：Discovery Loop</h3>
+    <p>Jeff Dean离开谷歌后创办的新公司，定位为"公益企业"（Public Benefit Corporation），专注用AI加速机器学习研究和科学发现的自动化。四位联合创始人均为谷歌AI元老级人物（Dean + Sanjay Ghemawat + Oriol Vinyals + Quoc Le），Alphabet作为创始投资方并提供云算力支持。继Ilya的SSI之后，又一个"顶级研究人才离开大厂、以使命驱动创业"的标志性案例。</p>
+  </div>
+
+  <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
+
+  <section class="section sec-topic">
+    <div class="sec-head">
+ <span class="sec-num sec-num-1">01</span>
+    <h2 class="sec-title">议题一 · 谷歌AI大洗牌与人才外溢</h2>
+    </div>
+    <div class="cards-grid">
+ <article class="card" id="2026-08-06-t0-0" data-rel="hi">
+     <button class="star-btn" data-key="2026-08-06-t0-0" aria-label="关注这条">☆</button>
+     <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Hassabis 卸任 DeepMind CEO，转任 Alphabet 首席科学家</h4>
+        <p>8/5 诺贝尔化学奖得主 Demis Hassabis 卸任 Google DeepMind CEO，转任董事长兼 Alphabet 首席科学家。他表示"AGI 近在咫尺"，将专注 AGI 战略与全球 AI 监管框架制定，并投入旗下药物发现公司 Isomorphic Labs。CTO Koray Kavukcuoglu 接任高级副总裁，负责 Gemini 模型研发与商业化，直接向 Pichai 汇报。消息公布后 Alphabet 股价跌超 4%。</p>
+      </article>
+      <article class="card" id="2026-08-06-t0-1" data-rel="hi">
+        <button class="star-btn" data-key="2026-08-06-t0-1" aria-label="关注这条">☆</button>
+  <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Jeff Dean 携三位 AI 元老离职创立 Discovery Loop</h4>
+   <p>在谷歌工作 27 年的 Jeff Dean 离职创业，带走 Sanjay Ghemawat（分布式系统共建者）、Oriol Vinyals（DeepMind 研究 VP / Gemini 联合负责人 / AlphaFold 贡献者）、Quoc Le（Google Brain 初代 / AutoML 先驱）。Discovery Loop 为公益企业，聚焦 AI for Science。Alphabet 提供创始投资与云服务合作。今夏谷歌第三波核心人才外流（6月 Shazeer→OpenAI，同期 Jumper→Anthropic）。</p>
+      </article>
+      <article class="card" id="2026-08-06-t0-2" data-rel="mid">
+  <button class="star-btn" data-key="2026-08-06-t0-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Gemini 3.5 Pro 延期数月，Q2 资本开支 449 亿美元现金流转负</h4>
+  <p>Gemini 3.5 Pro 原定 6 月发布至今未上线，Gemini 4 研发中但时间表不明。Alphabet Q2 财报：总营收 1198 亿美元（+24%），云业务 248 亿（+82%），但资本开支 449 亿创新高，自由现金流首次转负。全年资本支出上调至 1950-2050 亿美元。巨额投入与产品延期形成反差。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section sec-topic">
+    <div class="sec-head">
+    <span class="sec-num sec-num-2">02</span>
+   <h2 class="sec-title">议题二 · 前沿模型竞速：xAI、字节、SSI</h2>
+    </div>
+ <div class="cards-grid">
+      <article class="card" id="2026-08-06-t1-0" data-rel="mid">
+        <button class="star-btn" data-key="2026-08-06-t1-0" aria-label="关注这条">☆</button>
+   <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> xAI Grok 4.6 确认明日发布（1.5T 参数）</h4>
+        <p>马斯克在 SpaceX Q2 财报会确认 Grok 4.6 于 8/7 前后发布，1.5 万亿参数，重点升级 SFT 与 RL 后训练。xAI AI 业务季度营收 26 亿美元（同比 +247%）。Grok 4.7（2.1T）将在 3-4 周后接力。一个夏天连发三代前沿模型（4.5→4.6→4.7），发布节奏为业界最快。Colossus 集群已超 50 万 GPU。</p>
+      </article>
+ <article class="card" id="2026-08-06-t1-1" data-rel="low">
+  <button class="star-btn" data-key="2026-08-06-t1-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 字节 SeedRealtime 上线豆包：首个消费级原生全双工模型</h4>
+  <p>8/5 字节跳动发布 SeedRealtime 全双工音视频文本模型并上线豆包 App。不同于传统 ASR→LLM→TTS 级联架构，该模型原生融合音频、视频和文本在统一架构中，实现"看、听、说"同步进行。消费级产品中首个原生全双工多模态模型落地。</p>
+      </article>
+      <article class="card" id="2026-08-06-t1-2" data-rel="low">
+        <button class="star-btn" data-key="2026-08-06-t1-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> SSI 据传 8 月发布首个模型，320 亿美元估值首次"交作业"</h4>
+        <p>投资人 Gavin Baker 在播客中透露，Ilya Sutskever 的 Safe Superintelligence 将于 8 月发布首个模型。SSI 已融资约 30 亿美元、估值 320 亿（投资方含 a16z、红杉、Alphabet、NVIDIA），至今零产品、零论文、零营收。如果模型落地，将是"安全超级智能"路线的首次实质验证。</p>
+  </article>
+    </div>
+  </section>
+
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">议题三 · 大厂AI办公入口战升级</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-08-06-t2-0" data-rel="hi">
+        <button class="star-btn" data-key="2026-08-06-t2-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 飞书并入豆包完成整合，字节形成"火山+豆包+飞书"三层架构</h4>
+        <p>飞书产品团队与豆包产品团队完成整合，组建"新豆包产品团队"，由豆包负责人赵祺统一管理。飞书 GTM 体系与火山引擎合并为"创造力服务平台"。字节形成：火山引擎（底座算力）→ 豆包（模型 + 用户入口）→ 飞书（企业场景渠道）三层协同架构。</p>
+  </article>
+      <article class="card" id="2026-08-06-t2-1" data-rel="mid">
+      <button class="star-btn" data-key="2026-08-06-t2-1" aria-label="关注这条">☆</button>
+    <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里 Qwen3.8-Max 发布 + 千问办公公测，三产品整合为企业级平台</h4>
+     <p>Qwen3.8-Max 正式发布（2.4T 参数 / 95B 激活 / 1M 上下文），Arena 排名仅次于 Claude 系列。千问办公（QwenWork）由 QoderWork、MuleRun、悟空三款产品深度整合，92 年生的新任钉钉 CEO 陈宇森全面负责。定位为企业级 AI 生产力平台，短期不考核月活，权重下周开源。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+  <h2 class="sec-title">🎵 议题四 · 音乐AI版权与平台规则</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-08-06-t3-0" data-rel="mid" data-music="1">
+   <button class="star-btn" data-key="2026-08-06-t3-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span>🎵 Spotify 订阅用户破 3 亿，与 Merlin 签署 AI 翻唱授权</h4>
+        <p>Q2 财报：付费订阅首次突破 3 亿（+9%），月活 7.77 亿，营收 48 亿欧元。同日与独立音乐版权代理 Merlin 签署 AI"Fan-made"翻唱/混音工具授权协议（继 5 月与环球之后），基于"同意、署名、报酬"三原则，将 AI 二创功能扩展至独立厂牌。</p>
+      </article>
+      <article class="card" id="2026-08-06-t3-1" data-rel="low" data-music="1">
+        <button class="star-btn" data-key="2026-08-06-t3-1" aria-label="关注这条">☆</button>
+  <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span>🎵 三大唱片联合发布 AI 音乐打榜"准入制"</h4>
+   <p>8/1 环球/索尼/华纳联合发布新规：AI 音乐打榜须满足①人类在核心创作环节主导②AI 训练数据已获授权③无刷量嫌疑。比 RIAA 去年的"标签制"更严格，直接实行准入制。背景：每天超 12 万首 AI 生成歌曲涌入流媒体，峰值日 AI 占新上架 50% 以上。IFPI 表态支持"保护艺术尊严的第一道防火墙"。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-5">05</span>
+      <h2 class="sec-title">招聘今日可行动</h2>
+    </div>
+    <blockquote class="thinking">
+      <h3>💡 今日思考题</h3>
+      <p>谷歌今夏连续三波AI核心人才外流（Shazeer→OpenAI、Jumper→Anthropic、Dean+3人→创业），而同期Gemini旗舰模型延期、股价承压。</p>
+      <p>作为招聘HR，你怎么看这个现象的另一面：当行业顶尖人才密集从大厂"毕业"创业时，是该把他们的新公司列为潜在合作伙伴去谈（比如Discovery Loop的AI for Science方向），还是该趁机从谷歌挖被留下的"次核心"人才——那些没走但正在犹豫的L7/L8？</p>
+      <p><strong>你的判断取决于一个前提：顶尖人才外溢，到底是"大厂衰落"的信号，还是"行业扩张、新生态位出现"的信号？</strong></p>
+    </blockquote>
+  </section>
+
+  <div class="watermark">TME 招聘 HR出品 · ChloeCao</div>
+</div>
+<script>
+function toggleTheme(){
+  const d=document.documentElement;
+  const t=d.getAttribute('data-theme')==='dark'?'light':'dark';
+  d.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+}
+(function(){
+  const s=localStorage.getItem('theme')||
+    (window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',s);
+})();
+// Star functionality
+document.querySelectorAll('.star-btn').forEach(btn=>{
+  const key=btn.dataset.key;
+  const stored=JSON.parse(localStorage.getItem('star_'+key)||'null');
+  if(stored){btn.textContent='★';btn.classList.add('starred');}
+  btn.addEventListener('click',()=>{
+    const isStarred=btn.classList.toggle('starred');
+    btn.textContent=isStarred?'★':'☆';
+    if(isStarred){
+      const card=btn.closest('.card');
+      localStorage.setItem('star_'+key,JSON.stringify({
+        title:card.querySelector('h4').textContent,
+        body:card.querySelector('p').textContent.slice(0,80),
+     rel:card.dataset.rel||'',
+      music:card.dataset.music||''
+      }));
+    } else { localStorage.removeItem('star_'+key); }
+    updateStarCount();
+  });
+});
+function updateStarCount(){
+  let c=0;for(let i=0;i<localStorage.length;i++){if(localStorage.key(i).startsWith('star_'))c++;}
+  document.querySelectorAll('.star-count').forEach(el=>{el.textContent=c;});
+}
+// Filter
+document.querySelectorAll('.filter-chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+const f=chip.dataset.filter;
+    document.querySelectorAll('.card').forEach(card=>{
+   card.style.display=(f==='all'||card.dataset.rel===f)?'':'none';
+ });
+  });
+});
+</script>
+</body>
+</html>
