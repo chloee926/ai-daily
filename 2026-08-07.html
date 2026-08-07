@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 行业与人才日报 | 2026-08-07</title>
+<style>
+:root {
+  --bg: #f3efe6;
+  --text: #1a1a1a;
+  --text-secondary: #555;
+  --card-bg: #fff;
+  --card-border: #e0dcd4;
+  --accent: #c0392b;
+  --c1: #2980b9;
+  --c2: #27ae60;
+  --c3: #8e44ad;
+  --c4: #d35400;
+  --c5: #6c3483;
+  --nav-bg: rgba(243,239,230,0.95);
+  --tag-bg: #f0ece3;
+}
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --text: #e8e8e8;
+  --text-secondary: #aaa;
+  --card-bg: #222240;
+  --card-border: #333355;
+  --accent: #e74c3c;
+  --c1: #5dade2;
+  --c2: #58d68d;
+  --c3: #bb8fce;
+  --c4: #f39c12;
+  --c5: #a569bd;
+  --nav-bg: rgba(26,26,46,0.95);
+  --tag-bg: #2a2a4a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: "Songti SC", "Noto Serif SC", Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+.top-nav {
+  position: sticky; top:0; z-index:100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px;
+}
+.top-nav a { color: var(--text); text-decoration: none; opacity:0.7; transition:opacity .2s; }
+.top-nav a:hover { opacity:1; }
+.top-nav .nav-sep { opacity:0.3; }
+.theme-toggle {
+  margin-left: auto; cursor: pointer;
+  background: none; border: none; font-size: 18px;
+  color: var(--text); opacity: 0.6;
+}
+.theme-toggle:hover { opacity:1; }
+.container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+.kicker {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+h1 {
+  font-size: 28px; font-weight: 700; margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+.issue-meta {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 32px; padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent);
+}
+.lead {
+  font-size: 16px; line-height: 2;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--accent);
+  background: var(--tag-bg);
+  border-radius: 0 8px 8px 0;
+}
+.section { margin-bottom: 48px; }
+.sec-head { display: flex; align-items: center; margin-bottom: 20px; }
+.sec-num {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  width: 28px; height: 28px; line-height: 28px;
+  text-align: center; border-radius: 50%;
+  color: #fff; margin-right: 10px;
+}
+.sec-num-0 { background: var(--accent); }
+.sec-num-1 { background: var(--c1); }
+.sec-num-2 { background: var(--c2); }
+.sec-num-3 { background: var(--c3); }
+.sec-num-4 { background: var(--c4); }
+.sec-num-5 { background: var(--c5); }
+.sec-title { font-size: 18px; font-weight: 700; }
+.cards-grid { display: grid; gap: 16px; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+}
+.card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.5; }
+.card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.rel { font-size: 12px; margin-right: 4px; }
+.star-btn {
+  position: absolute; top: 12px; right: 12px;
+  background: none; border: none; font-size: 18px;
+  cursor: pointer; color: var(--text-secondary); opacity: 0.5;
+}
+.star-btn:hover { opacity: 1; }
+.star-btn.starred { color: #f1c40f; opacity: 1; }
+.new-term {
+  background: var(--tag-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+.new-term h3 { font-size: 16px; color: var(--accent); margin-bottom: 8px; }
+.new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.sec-think { margin-bottom: 48px; }
+.thinking {
+  background: var(--tag-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 24px;
+  font-size: 15px; line-height: 2;
+}
+.thinking h3 { font-size: 16px; margin-bottom: 12px; color: var(--c4); }
+.thinking p { margin-bottom: 12px; color: var(--text-secondary); }
+.thinking p:last-child { margin-bottom: 0; }
+.watermark {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  opacity: 0.4;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+.filter-bar {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 24px; flex-wrap: wrap;
+}
+.filter-label { font-size: 12px; color: var(--text-secondary); margin-right: 4px; }
+.filter-chip {
+  font-size: 12px; padding: 4px 12px;
+  border-radius: 20px; border: 1px solid var(--card-border);
+  background: var(--card-bg); color: var(--text-secondary);
+  cursor: pointer; transition: all .2s;
+}
+.filter-chip.active, .filter-chip:hover {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+@media(max-width:600px){
+  .container { padding: 20px 16px 60px; }
+  h1 { font-size: 22px; }
+  .card { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<nav class="top-nav">
+  <a href="index.html">目录</a>
+  <span class="nav-sep">|</span>
+  <a href="favorites.html">我的关注</a>
+  <span class="nav-sep">|</span>
+  <a href="lexicon.html">词典</a>
+  <span class="nav-sep">|</span>
+  <a href="board.html">看板</a>
+  <span class="nav-sep">|</span>
+  <a href="papers.html">论文</a>
+  <button class="theme-toggle" onclick="toggleTheme()">◐</button>
+</nav>
+
+<div class="container">
+  <p class="kicker">AI 行业事件 · 人才动态 · TME招聘</p>
+  <h1>AI 行业与人才日报</h1>
+  <p class="issue-meta">2026-08-07 周四 ｜ 第81期</p>
+
+  <div class="lead">
+    谷歌AI"大清洗"——Hassabis卸任DeepMind CEO、Jeff Dean带队出走创业，Alphabet单日蒸发1800亿美元；与此同时，马斯克宣布1190亿美元Terafab芯片超级工厂正式破土，字节张一鸣放话"宁可落后也不蒸馏"并讨论训练5万亿参数模型。AI竞争正从模型层向组织架构和基础设施层全面蔓延。
+  </div>
+
+  <div class="new-term">
+    <h3>🆕 今日AI新名词：Terafab</h3>
+    <p>马斯克联合SpaceX/Tesla在得州启动的超级AI芯片工厂，名字取自"Tera"(万亿)+Fab(晶圆厂)。目标年产1太瓦算力，初期投资168亿美元、总投资或超1190亿美元。不只做逻辑芯片，还将跨入存储领域，直接对标三星/SK海力士。全球首个由AI应用公司倒推建设的垂直整合芯片产线。</p>
+  </div>
+
+  <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
+
+  <!-- 议题一 -->
+  <div class="section">
+    <div class="sec-head"><span class="sec-num sec-num-1">01</span><span class="sec-title">AI巨头组织大震荡</span></div>
+    <div class="cards-grid">
+      <article class="card" data-rel="hi" id="20260807-google-deepmind">
+        <span class="rel">🔴</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔄谷歌DeepMind — Hassabis卸任CEO，Jeff Dean出走创业，市值蒸发1800亿美元</h4>
+        <p>诺贝尔奖得主Hassabis退出日常运营，转任DeepMind董事长兼Alphabet首席科学家；效力27年的传奇工程师Jeff Dean携Sanjay Ghemawat、Oriol Vinyals、Quoc Le四人离职，创办Discovery Loop攻ASI。新任掌舵者Kavukcuoglu从伦敦迁至山景城，编程团队负责人Borgeaud同步西迁——谷歌AI指挥链全面集中硅谷，结束三年两大洲分治。Gemini交付延期、人才外流加剧，竞争压力史无前例。</p>
+      </article>
+      <article class="card" data-rel="hi" id="20260807-bytedance-distillation">
+        <span class="rel">🔴</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔄 字节跳动 — 张一鸣"拒绝蒸馏"，讨论训练5万亿参数模型</h4>
+        <p>张一鸣在Seed内部会上罕见表态：即使模型落后也不用蒸馏技术换排名，要"延迟满足感"。梁汝波年中全员会坦承大语言模型与海外拉大差距，但坚持自研、"动作不变形"。据晚点报道，字节正讨论训练超5万亿参数模型（超Qwen3.8-Max和Kimi K3），由项亮主导。飞书产品团队并入豆包、销售并入火山引擎"创造力服务平台"。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260807-sequoia-anthropic">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>💰 红杉资本 — 100亿美元募资完成，追加Anthropic 25亿美元</h4>
+        <p>林君叡和帕特·格雷迪接手后首轮基金筹集100亿美元，已向LP返还超50亿美元。原讨论追加10亿，最终共识加码至25亿美元，持续重注Anthropic。</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- 议题二 -->
+  <div class="section">
+    <div class="sec-head"><span class="sec-num sec-num-2">02</span><span class="sec-title">芯片与基础设施军备升级</span></div>
+    <div class="cards-grid">
+      <article class="card" data-rel="low" id="20260807-terafab">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🛠️ 马斯克Terafab — 168亿美元初投，得州AI芯片超级工厂正式破土</h4>
+        <p>SpaceX+Tesla联建，英特尔代工合作，1亿平方英尺厂房、年产1太瓦算力。25%产能给Optimus机器人，75%给航天AI。配套自建天然气发电+储能。2nm工艺目标、首批芯片预计2027年底。马斯克称将成"地球上最大最有价值的建筑"。</p>
+      </article>
+      <article class="card" data-rel="hi" id="20260807-anthropic-chip">
+        <span class="rel">🔴</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵 Anthropic — 官宣自研Claude定制芯片，组建半导体团队</h4>
+        <p>首次公开确认为Claude设计专用AI芯片，招聘覆盖芯片架构、前端设计、验证、物理设计、晶圆制造与封装全流程，年薪32-48.5万美元（约216-327万元人民币）。仍维持多芯片策略，头部大模型厂商竞争正式延伸至底层硬件。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260807-nvidia-rubin">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>📉 英伟达 — 考虑下调Rubin Ultra显存，HBM供应紧张</h4>
+        <p>过去数周已测试至少三个版本，部分版本显存配置低于此前公布规格。AI算力需求持续高于先进封装与HBM产能供给，HBM短缺已开始影响下一代芯片设计。</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- 议题三 -->
+  <div class="section">
+    <div class="sec-head"><span class="sec-num sec-num-3">03</span><span class="sec-title">AI产品与商业化竞速</span></div>
+    <div class="cards-grid">
+      <article class="card" data-rel="mid" id="20260807-openai-free">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵 OpenAI — ChatGPT免费无限聊天，周活破10亿</h4>
+        <p>免费用户文字互动不再受限，默认模型升级为GPT-5.6Luna，新增"思考"按钮。同时提交31页动议驳回苹果商业机密诉讼，称其"从根子上就有问题"。S-1公开招股书预计8月中旬发布。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260807-meta-musecode">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵 Meta — 发布编程智能体Muse Code</h4>
+        <p>由Muse Spark1.2驱动，支持大型代码库全流程工程任务（分析→规划→编码→验证），异步后台+崩溃恢复。在Terminal-Bench2.1仅弱于Opus5(max)，正面对标Claude Code和OpenAI Codex。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260807-deepseek-price">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>💰 DeepSeek — API大幅涨价，日调用量登顶全球第一</h4>
+        <p>单日Token处理量达8万亿，V4-Flash正式版全球调用第一。此前刚推峰谷定价，现整体涨价或因两万张H系芯片训推共用算力紧张。高盛预计中国AI模型2026年底合计ARR达130亿美元。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260807-ali-wan3">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵阿里Wan3.0 — 视频模型公测，单次可生30秒</h4>
+        <p>支持连续运镜、一镜到底等复杂镜头语言与智能时长。视频生成进入30秒长度时代。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260807-unitree-ipo">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>📈 宇树科技 — 科创板IPO市值610亿，创始人身家超200亿</h4>
+        <p>发行价150.8元/股，人形机器人商业化里程碑。创始人王兴兴持股33.36%，身家达203.5亿元。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260807-minimax-hk">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>📈 MiniMax — 入港股通两日涨超30%，H3开源百家适配</h4>
+        <p>H3开放权重24小时内超百家合作伙伴完成适配，估值逻辑从模型收入转向开源生态。高盛看好中国AI模型商业化提速。</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- 思考题 -->
+  <div class="sec-think">
+    <div class="sec-head"><span class="sec-num sec-num-4">04</span><span class="sec-title">招聘今日可行动</span></div>
+    <div class="thinking">
+      <h3>💡 今日思考题</h3>
+      <p>谷歌Jeff Dean在公司干了27年，带走了三位核心同事创业攻ASI；字节张一鸣要团队"延迟满足感"、宁可落后也不走蒸馏捷径。</p>
+      <p>这两件事放在一起看，折射出一个HR视角的核心矛盾——当顶尖技术人才的个人野心（创业追逐AGI/ASI）和公司的长期主义路线（慢工出细活）发生冲突时，作为HR你怎么设计激励机制？</p>
+      <p>如果你的核心AI团队负责人说"我要走，去做更大的事"，你会拿什么挽留？如果挽留不住，你至少要确保什么？</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="watermark">TME招聘HR出品 · Made by ChloeCao</div>
+
+<script>
+function toggleTheme(){
+  const h=document.documentElement;
+  const t=h.getAttribute('data-theme')==='dark'?'':'dark';
+  h.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+}
+(function(){
+  const t=localStorage.getItem('theme');
+  if(t)document.documentElement.setAttribute('data-theme',t);
+  else if(window.matchMedia('(prefers-color-scheme:dark)').matches)
+    document.documentElement.setAttribute('data-theme','dark');
+})();
+function toggleStar(btn){
+  const card=btn.closest('.card');
+  const key=card.id;
+  let stars=JSON.parse(localStorage.getItem('stars')||'{}');
+  if(stars[key]){delete stars[key];btn.textContent='☆';btn.classList.remove('starred');}
+  else{stars[key]={title:card.querySelector('h4').textContent,body:card.querySelector('p').textContent,rel:card.dataset.rel};btn.textContent='★';btn.classList.add('starred');}
+  localStorage.setItem('stars',JSON.stringify(stars));
+  updateStarCount();
+}
+function updateStarCount(){
+  const c=Object.keys(JSON.parse(localStorage.getItem('stars')||'{}')).length;
+  const el=document.querySelector('.star-count');
+  if(el)el.textContent=c||'';
+}
+(function(){
+  const stars=JSON.parse(localStorage.getItem('stars')||'{}');
+  document.querySelectorAll('.card').forEach(card=>{
+    if(stars[card.id]){const b=card.querySelector('.star-btn');b.textContent='★';b.classList.add('starred');}
+  });
+  updateStarCount();
+  document.querySelectorAll('.filter-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      const f=chip.dataset.filter;
+      document.querySelectorAll('.card').forEach(card=>{
+        card.style.display=(f==='all'||card.dataset.rel===f)?'':'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
