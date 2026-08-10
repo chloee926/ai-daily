@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 行业与人才日报 | 2026-08-10</title>
+<style>
+:root {
+  --bg: #f3efe6;
+  --text: #1a1a1a;
+  --text-secondary: #555;
+  --card-bg: #fff;
+  --card-border: #e0dcd4;
+  --accent: #c0392b;
+  --c1: #2980b9;
+  --c2: #27ae60;
+  --c3: #8e44ad;
+  --c4: #d35400;
+  --c5: #6c3483;
+  --nav-bg: rgba(243,239,230,0.95);
+  --tag-bg: #f0ece3;
+}
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --text: #e8e8e8;
+  --text-secondary: #aaa;
+  --card-bg: #222240;
+  --card-border: #333355;
+  --accent: #e74c3c;
+  --c1: #5dade2;
+  --c2: #58d68d;
+  --c3: #bb8fce;
+  --c4: #f39c12;
+  --c5: #a569bd;
+  --nav-bg: rgba(26,26,46,0.95);
+  --tag-bg: #2a2a4a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: "Songti SC", "Noto Serif SC", Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+.top-nav {
+  position: sticky; top:0; z-index:100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px;
+}
+.top-nav a { color: var(--text); text-decoration: none; opacity:0.7; transition:opacity .2s; }
+.top-nav a:hover { opacity:1; }
+.top-nav .nav-sep { opacity:0.3; }
+.theme-toggle {
+  margin-left: auto; cursor: pointer;
+  background: none; border: none; font-size: 18px;
+  color: var(--text); opacity: 0.6;
+}
+.theme-toggle:hover { opacity:1; }
+.container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+.kicker {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+h1 {
+  font-size: 28px; font-weight: 700; margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+.issue-meta {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 32px; padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent);
+}
+.lead {
+  font-size: 16px; line-height: 2;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--accent);
+  background: var(--tag-bg);
+  border-radius: 0 8px 8px 0;
+}
+.section { margin-bottom: 48px; }
+.sec-head { display: flex; align-items: center; margin-bottom: 20px; }
+.sec-num {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  width: 28px; height: 28px; line-height: 28px;
+  text-align: center; border-radius: 50%;
+  color: #fff; margin-right: 10px;
+}
+.sec-num-0 { background: var(--accent); }
+.sec-num-1 { background: var(--c1); }
+.sec-num-2 { background: var(--c2); }
+.sec-num-3 { background: var(--c3); }
+.sec-num-4 { background: var(--c4); }
+.sec-num-5 { background: var(--c5); }
+.sec-title { font-size: 18px; font-weight: 700; }
+.cards-grid { display: grid; gap: 16px; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+}
+.card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.5; }
+.card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.rel { font-size: 12px; margin-right: 4px; }
+.star-btn {
+  position: absolute; top: 12px; right: 12px;
+  background: none; border: none; font-size: 18px;
+  cursor: pointer; color: var(--text-secondary); opacity: 0.5;
+}
+.star-btn:hover { opacity: 1; }
+.star-btn.starred { color: #f1c40f; opacity: 1; }
+.new-term {
+  background: var(--tag-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+.new-term h3 { font-size: 16px; color: var(--accent); margin-bottom: 8px; }
+.new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.sec-think { margin-bottom: 48px; }
+.thinking {
+  background: var(--tag-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 24px;
+  font-size: 15px; line-height: 2;
+}
+.thinking h3 { font-size: 16px; margin-bottom: 12px; color: var(--c4); }
+.thinking p { margin-bottom: 12px; color: var(--text-secondary); }
+.thinking p:last-child { margin-bottom: 0; }
+.watermark {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  opacity: 0.4;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+.filter-bar {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 24px; flex-wrap: wrap;
+}
+.filter-label { font-size: 12px; color: var(--text-secondary); margin-right: 4px; }
+.filter-chip {
+  font-size: 12px; padding: 4px 12px;
+  border-radius: 20px; border: 1px solid var(--card-border);
+  background: var(--card-bg); color: var(--text-secondary);
+  cursor: pointer; transition: all .2s;
+}
+.filter-chip.active, .filter-chip:hover {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+@media(max-width:600px){
+  .container { padding: 20px 16px 60px; }
+  h1 { font-size: 22px; }
+  .card { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<nav class="top-nav">
+  <a href="index.html">目录</a>
+  <span class="nav-sep">|</span>
+  <a href="favorites.html">我的关注</a>
+  <span class="nav-sep">|</span>
+  <a href="lexicon.html">词典</a>
+  <span class="nav-sep">|</span>
+  <a href="board.html">看板</a>
+  <span class="nav-sep">|</span>
+  <a href="papers.html">论文</a>
+  <button class="theme-toggle" onclick="toggleTheme()">&#9684;</button>
+</nav>
+
+<div class="container">
+  <p class="kicker">AI 行业事件 · 人才动态 · TME招聘</p>
+  <h1>AI 行业与人才日报</h1>
+  <p class="issue-meta">2026-08-10 周一｜ 第82期</p>
+
+  <div class="lead">
+    宇树科技今日正式在科创板启动申购，人形机器人赛道获A股"第一股"定价锚——609亿市值、DeepSeek战投锁定36个月；与此同时，千问开放平台正式上线，Apple智能×千问文档"上架即撤回"的反复，暴露出国行AI落地最后一步的微妙博弈。AI正在从模型层走向终端接入与资本定价的决战阶段。
+  </div>
+
+  <div class="new-term">
+    <h3>🆕 今日AI新名词：千问开放平台（Qwen Open Platform）</h3>
+    <p>阿里千问今天正式上线的"开放平台"——不是API接口，而是面向手机、PC、AI眼镜三类终端的服务接入层。开发者可以把自己的服务做成"智能体"嵌入千问，用户侧通过 @ 或角标直接唤起。本质上是千问从"大模型"走向"入口级操作系统"的第一步。</p>
+  </div>
+
+  <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
+
+  <!-- 议题一 -->
+  <div class="section">
+    <div class="sec-head"><span class="sec-num sec-num-1">01</span><span class="sec-title">AI产品& 平台大动作</span></div>
+    <div class="cards-grid">
+      <article class="card" data-rel="mid" id="20260810-qwen-platform">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵 千问开放平台正式上线 — 从模型走向生态入口</h4>
+        <p>阿里千问面向开发者开放手机/PC/AI眼镜三类终端接入，首批覆盖物流、房产等十余领域，顺丰、自如等合作伙伴已接入。用户可通过 @服务 或角标进入智能体完成从咨询到履约的闭环。千问3.8旗舰模型（2.4万亿参数、百万Token上下文）同步发布。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260810-apple-qwen">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🍎 Apple智能×千问"上架即撤"乌龙</h4>
+        <p>8月8日苹果中国官网出现《在Mac上配合Apple智能使用千问》文档，确认千问通过Siri和写作工具两个入口接入macOS 26.6+，但不到24小时即撤回。苹果客服回应"中国大陆尚未推出该功能"。国行Apple智能落地节奏仍存不确定性，但技术对接已完成、备案已通过。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260810-openai-free">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵 OpenAI取消免费版文字聊天限制</h4>
+        <p>GPT-5.6 Luna成为免费版默认模型，文字对话无上限，同步上线"Think"深度思考按钮。这是OpenAI史上最大规模免费化动作，目标是扩大用户基本盘以支撑广告和订阅增长。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260810-openai-atlas">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵 OpenAI关闭Atlas浏览器</h4>
+        <p>存在不到10个月的独立浏览器正式下线，相关能力合并入ChatGPT桌面应用。印证行业共识：独立AI入口难存活，嵌入已有生态才是正道。谷歌以Gemini替代Assistant、苹果将千问嵌入Siri，均是同一逻辑。</p>
+      </article>
+      <article class="card" data-rel="hi" id="20260810-claude-code">
+        <span class="rel">🔴</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🛠️ Claude Code8月14日默认启用自动模式</h4>
+        <p>Anthropic宣布Pro/Max/Team用户新会话默认进入Auto模式：不再逐步弹窗确认，改由分类器实时判断操作风险。内部千人测试显示自动模式拦截危险命令比率为89%，人工审核仅13.6%。使用自动模式的团队PR产出增加25%。Adobe、Nuro、Gusto等已在生产环境使用。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260810-google-assistant">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵谷歌9月4日停用Google Assistant</h4>
+        <p>安卓设备将全面切换至Gemini，不可回退。覆盖手机、平板、Wear OS手表、Android Auto。这标志着谷歌完成从传统语音助手到生成式AI助手的世代交替，原计划2025年底完成但延期一年。</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- 议题二 -->
+  <div class="section">
+    <div class="sec-head"><span class="sec-num sec-num-2">02</span><span class="sec-title">大厂组织与资本动向</span></div>
+    <div class="cards-grid">
+      <article class="card" data-rel="hi" id="20260810-unitree-ipo">
+        <span class="rel">🔴</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>💰宇树科技今日科创板申购 — A股"人形机器人第一股"</h4>
+        <p>发行价150.80元/股，市值约610亿元，募资61亿。战略配售阵容：社保基金、中石油昆仑资本、南方电网、天翼资本，以及DeepSeek（锁定36个月，获配1.41亿元）和腾讯。中一签预计盈利超20万元，中签率仅0.02%-0.03%。从受理到申购仅5个月，创年内最快IPO审核纪录。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260810-deepseek-price">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>💰 DeepSeek预告大幅涨价 — 国产大模型价格战结束</h4>
+        <p>8月6日公告"预计涨幅较大"，从"价格屠夫"转向可持续定价。V4-Flash单模型单平台日调用量达8万亿Token，超过OpenRouter全平台400+模型日均规模。Agent时代Token消耗是对话时代的数十倍，极低价格不可持续。三个月内从"永久降价"到"整体涨价"，定价逻辑彻底重构。</p>
+      </article>
+      <article class="card" data-rel="hi" id="20260810-bytedance-ai">
+        <span class="rel">🔴</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔄 字节跳动将AI升为"第一核心赛道"</h4>
+        <p>张一鸣罕见发声：坚持长期主义，拒绝蒸馏（内部已拒绝3次相关提议），将豆包确立为"新主干"。这不仅是技术投入升级，更是业务架构根本性重组——AI从支撑业务变为主航道。飞书产品并入豆包、销售并入火山引擎。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260810-learnvector">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>💰吴恩达LearnVector完成1亿美元A轮</h4>
+        <p>AI原生教育公司，主打AI驱动的个性化学习路径。创始人为斯坦福前教授、Coursera联合创始人吴恩达。AI+教育赛道获顶级创业者下场押注。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260810-visa-layoff">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>📉 Visa裁员2600人（全球员工7%）</h4>
+        <p>涉及VP级别员工（年薪约50万美元），同时宣布24亿美元收购生物识别公司BioCatch。裁员+大收购并行，典型的"砍人效+技术升级"双线操作。金融科技巨头的人才结构转型样本。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260810-cloudflare">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>📈 Cloudflare确认机器流量已超人类</h4>
+        <p>AI Agent流量同比增长7851%。互联网流量结构发生根本性变化，预示着由智能体驱动的交互新时代正在加速形成。对网络安全、架构设计和流量商业化的游戏规则都将改写。</p>
+      </article>
+      <article class="card" data-rel="hi" id="20260810-suno-hiring">
+        <span class="rel">🔴</span> <span style="font-size:12px;">🎵</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🎵 Suno大规模招聘PM — 音乐AI人才争夺升温</h4>
+        <p>AI音乐独角兽（估值54亿美元，月活7500万，ARR约3亿美元）在SF/LA/NYC/Boston多城招聘Senior PM，覆盖消费端创作和ML研究方向。实习生时薪$73.56（年化$15.3万），GPA门槛3.7。员工增速83% YoY。音乐AI赛道人才争夺白热化。</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- 思考题 -->
+  <div class="sec-think">
+    <div class="sec-head"><span class="sec-num sec-num-4">03</span><span class="sec-title">招聘今日可行动</span></div>
+    <div class="thinking">
+      <h3>💡 今日思考题</h3>
+      <p>宇树科技IPO战投名单里同时出现了DeepSeek（大模型）和腾讯（生态平台），锁定期长达36个月——这不是财务投资，是在押注"AI大脑+机器人身体"的融合。</p>
+      <p>如果你是TME的招聘负责人，看到"具身智能"赛道的人才需求正在从机械工程师扩展到大模型工程师、强化学习研究员、甚至内容交互设计师——你会主动去了解这个交叉领域的人才画像，还是等业务方提出明确的HC再响应？</p>
+      <p>在新兴赛道，HR比业务方早半步建立人才地图，就是组织能力的护城河。</p>
+    </div>
+  </div>
+
+  <div class="watermark">TME招聘HR出品 · Made by ChloeCao</div>
+</div>
+
+<script>
+function toggleTheme(){
+  var d=document.documentElement;
+  var t=d.getAttribute('data-theme')==='dark'?'':'dark';
+  d.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+}
+(function(){
+  var saved=localStorage.getItem('theme');
+  if(saved)document.documentElement.setAttribute('data-theme',saved);
+  else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)
+    document.documentElement.setAttribute('data-theme','dark');
+})();
+function toggleStar(btn){
+  var card=btn.closest('.card');
+  var key=card.id;
+  var stars=JSON.parse(localStorage.getItem('stars')||'{}');
+  if(stars[key]){delete stars[key];btn.textContent='\u2606';btn.classList.remove('starred');}
+  else{
+    stars[key]={title:card.querySelector('h4').textContent,body:card.querySelector('p').textContent,rel:card.dataset.rel||'',music:card.querySelector('[style]')?true:false};
+    btn.textContent='\u2605';btn.classList.add('starred');
+  }
+  localStorage.setItem('stars',JSON.stringify(stars));
+}
+(function(){
+  var stars=JSON.parse(localStorage.getItem('stars')||'{}');
+  document.querySelectorAll('.card').forEach(function(c){
+    if(stars[c.id]){var b=c.querySelector('.star-btn');if(b){b.textContent='\u2605';b.classList.add('starred');}}
+  });
+})();
+document.querySelectorAll('.filter-chip').forEach(function(chip){
+  chip.addEventListener('click',function(){
+    document.querySelectorAll('.filter-chip').forEach(function(c){c.classList.remove('active');});
+    this.classList.add('active');
+    var f=this.dataset.filter;
+    document.querySelectorAll('.card').forEach(function(card){
+      if(f==='all')card.style.display='';
+      else card.style.display=card.dataset.rel===f?'':'none';
+    });
+  });
+});
+</script>
+</body>
+</html>
