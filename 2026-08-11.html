@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 行业与人才日报 | 2026-08-11</title>
+<style>
+:root {
+  --bg: #f3efe6;
+  --text: #1a1a1a;
+  --text-secondary: #555;
+  --card-bg: #fff;
+  --card-border: #e0dcd4;
+  --accent: #c0392b;
+  --c1: #2980b9;
+  --c2: #27ae60;
+  --c3: #8e44ad;
+  --c4: #d35400;
+  --c5: #6c3483;
+  --nav-bg: rgba(243,239,230,0.95);
+  --tag-bg: #f0ece3;
+}
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --text: #e8e8e8;
+  --text-secondary: #aaa;
+  --card-bg: #222240;
+  --card-border: #333355;
+  --accent: #e74c3c;
+  --c1: #5dade2;
+  --c2: #58d68d;
+  --c3: #bb8fce;
+  --c4: #f39c12;
+  --c5: #a569bd;
+  --nav-bg: rgba(26,26,46,0.95);
+  --tag-bg: #2a2a4a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: "Songti SC", "Noto Serif SC", Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+.top-nav {
+  position: sticky; top:0; z-index:100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px;
+}
+.top-nav a { color: var(--text); text-decoration: none; opacity:0.7; transition:opacity .2s; }
+.top-nav a:hover { opacity:1; }
+.top-nav .nav-sep { opacity:0.3; }
+.theme-toggle {
+  margin-left: auto; cursor: pointer;
+  background: none; border: none; font-size: 18px;
+  color: var(--text); opacity: 0.6;
+}
+.theme-toggle:hover { opacity:1; }
+.container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+.kicker {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+h1 {
+  font-size: 28px; font-weight: 700; margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+.issue-meta {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 32px; padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent);
+}
+.lead {
+  font-size: 16px; line-height: 2;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--accent);
+  background: var(--tag-bg);
+  border-radius: 0 8px 8px 0;
+}
+.section { margin-bottom: 48px; }
+.sec-head { display: flex; align-items: center; margin-bottom: 20px; }
+.sec-num {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  width: 28px; height: 28px; line-height: 28px;
+  text-align: center; border-radius: 50%;
+  color: #fff; margin-right: 10px;
+}
+.sec-num-0 { background: var(--accent); }
+.sec-num-1 { background: var(--c1); }
+.sec-num-2 { background: var(--c2); }
+.sec-num-3 { background: var(--c3); }
+.sec-num-4 { background: var(--c4); }
+.sec-num-5 { background: var(--c5); }
+.sec-title { font-size: 18px; font-weight: 700; }
+.cards-grid { display: grid; gap: 16px; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+}
+.card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.5; }
+.card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.rel { font-size: 12px; margin-right: 4px; }
+.star-btn {
+  position: absolute; top: 12px; right: 12px;
+  background: none; border: none; font-size: 18px;
+  cursor: pointer; color: var(--text-secondary); opacity: 0.5;
+}
+.star-btn:hover { opacity: 1; }
+.star-btn.starred { color: #f1c40f; opacity: 1; }
+.new-term {
+  background: var(--tag-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.new-term h3 { font-size: 16px; color: var(--accent); margin-bottom: 8px; }
+.new-term p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.sec-think { margin-bottom: 48px; }
+.thinking {
+  background: var(--tag-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 24px;
+  font-size: 15px; line-height: 2;
+}
+.thinking h3 { font-size: 16px; margin-bottom: 12px; color: var(--c4); }
+.thinking p { margin-bottom: 12px; color: var(--text-secondary); }
+.thinking p:last-child { margin-bottom: 0; }
+.watermark {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  opacity: 0.4;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+.filter-bar {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 24px; flex-wrap: wrap;
+}
+.filter-label { font-size: 12px; color: var(--text-secondary); margin-right: 4px; }
+.filter-chip {
+  font-size: 12px; padding: 4px 12px;
+  border-radius: 20px; border: 1px solid var(--card-border);
+  background: var(--card-bg); color: var(--text-secondary);
+  cursor: pointer; transition: all .2s;
+}
+.filter-chip.active, .filter-chip:hover {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+@media(max-width:600px){
+  .container { padding: 20px 16px 60px; }
+  h1 { font-size: 22px; }
+  .card { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<nav class="top-nav">
+  <a href="index.html">目录</a>
+  <span class="nav-sep">|</span>
+  <a href="favorites.html">我的关注</a>
+  <span class="nav-sep">|</span>
+  <a href="lexicon.html">词典</a>
+  <span class="nav-sep">|</span>
+  <a href="board.html">看板</a>
+  <span class="nav-sep">|</span>
+  <a href="papers.html">论文</a>
+  <button class="theme-toggle" onclick="toggleTheme()">&#9684;</button>
+</nav>
+
+<div class="container">
+  <p class="kicker">AI 行业事件 · 人才动态 · TME招聘</p>
+  <h1>AI 行业与人才日报</h1>
+  <p class="issue-meta">2026-08-11 星期一｜ 第83期</p>
+
+  <div class="lead">
+    英伟达联手华尔街六巨头筹$5000亿AI基建融资，AI算力军备竞赛进入金融化新阶段；同一周内全球科技裁员已超20.5万人（54%明确归因AI），而LLM专家年薪$28万仍难招满——"冰火两重天"不再是隐喻。中国大模型八周五连发（DeepSeek-V4-Flash登顶全球调用量第一），开源生态正在重塑全球AI供给格局。对TME招聘而言，AI岗位结构性缺口与传统岗位结构性收缩并存，"选对赛道"已经是人才策略的核心命题。
+  </div>
+
+  <div class="new-term">
+    <h3>🆕 HarmonyMark</h3>
+    <p>Suno推出的音频水印系统，将不可感知的水印嵌入AI生成音乐中，用于标识AI合成内容的来源和版权归属。该技术对裁剪、转码等操作具有鲁棒性，是AI音乐版权治理的里程碑。</p>
+  </div>
+  <div class="new-term">
+    <h3>🆕 Docker Sandboxes</h3>
+    <p>Docker推出的microVM隔离执行环境，专为AI编程Agent设计。允许AI Agent在完全隔离的轻量虚拟机中执行代码，支持"YOLO模式"——Agent可自主安装依赖、运行任意命令，而不会影响宿主系统安全。</p>
+  </div>
+
+  <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
+
+  <!-- 议题一：产品&平台动态 -->
+  <div class="section">
+    <div class="sec-head"><span class="sec-num sec-num-1">01</span><span class="sec-title">AI产品&平台动态</span></div>
+    <div class="cards-grid">
+      <article class="card" data-rel="mid" id="20260811-nvidia-5000b">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>💰 英伟达联手华尔街六巨头筹$5000亿AI基建融资</h4>
+        <p>英伟达正与Apollo、黑石、贝莱德GIP、Brookfield、高盛和KKR合作，计划为AI数据中心基础设施筹集高达5000亿美元私人资本。此举旨在为全球AI算力扩张提供金融支撑，是迄今规模最大的AI基建融资计划，标志AI军备竞赛进入"金融化"新阶段。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260811-anthropic-fennec">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵 Anthropic Sonnet 5.5 "Fennec"泄露：200万Token上下文</h4>
+        <p>Anthropic未发布的Sonnet 5.5（代号Fennec）信息泄露，支持200万Token上下文窗口，性能逼近旗舰Fable 5但保持Sonnet级低价。Anthropic同时宣布取消Sonnet 5涨价计划，永久锁定低价策略。对标DeepSeek-V4-Flash的超长上下文+极低定价路线。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260811-openai-astra">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>⚠️ OpenAI暂停Astra模型部分研发</h4>
+        <p>OpenAI内部安全评估发现Astra模型触及"Critical"级别网络安全能力门槛，已暂停部分研发。同时推出GPT-5.6-Cyber，面向网安防御人员，限制更少以便执行安全研究任务。AI安全"红线"首次在产品层面落地执行。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260811-meta-glimmer">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵 Meta开源Muse Glimmer 30B：单卡运行本地Agent</h4>
+        <p>Meta以Apache 2.0协议开源Muse Glimmer 30B模型，可在单张消费级显卡运行，专为本地Agent场景设计，由Muse Spark 1.2蒸馏而来。大幅降低了AI Agent的本地部署门槛，开发者无需云端即可运行智能代理。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260811-docker-sandbox">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🛠️ Docker推出Sandboxes：AI Agent安全执行环境</h4>
+        <p>Docker正式发布Sandboxes产品，使用microVM技术为AI编程Agent提供完全隔离的执行环境。支持YOLO模式（Agent可自主安装依赖、运行命令），已支持Cursor、Windsurf等主流AI IDE。解决了"AI写的代码要不要让它自己跑"的核心信任问题。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260811-google-ads">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵 Google Gemini AI代理进入广告和分析平台</h4>
+        <p>Google在Ads和Analytics平台中引入Gemini AI代理功能（Ask Advisor），用户可通过对话方式进行广告优化和数据分析。AI Agent从"技术赛道"开始渗透到企业核心业务系统，是Google将Agent能力嵌入收入引擎的重要举措。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260811-minimax-h3">
+        <span class="rel">🟡</span> <span style="font-size:12px;">🎵</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🎵 MiniMax H3开源登顶Hugging Face热度榜</h4>
+        <p>MiniMax正式开源H3视频生成模型，上线三天即登顶Hugging Face热度榜首，在Design Arena的多图生视频、图生视频、视频编辑三项全部登顶。Stable Diffusion创始人公开致敬。可用于音乐MV和短视频创作场景。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260811-deepseek-v4">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>📈 DeepSeek-V4-Flash正式版登顶全球调用量第一</h4>
+        <p>DeepSeek-V4-Flash正式版上线后周调用量达8.83万亿Token（环比+570%），跃居全球第一。Agent能力大幅增强，单项任务成本仅为Anthropic旗舰模型的1/100。中国大模型调用量连续15周领跑全球，腾讯Hy3排名第二（8.05万亿Token）。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260811-seedance">
+        <span class="rel">⚪</span> <span style="font-size:12px;">🎵</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🎵 字节Seedance 2.5：30秒长视频生成+教育落地</h4>
+        <p>字节跳动发布Seedance 2.5，单次生成时长翻倍增至30秒并支持多轮延长，重点突破长叙事能力。已在教育（课文转教学视频）和工业制造场景落地。可用于音乐MV片段创作。</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- 议题二：组织&人才 -->
+  <div class="section">
+    <div class="sec-head"><span class="sec-num sec-num-2">02</span><span class="sec-title">AI公司组织&人才</span></div>
+    <div class="cards-grid">
+      <article class="card" data-rel="hi" id="20260811-kling-talent">
+        <span class="rel">🔴</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔄 可灵AI核心骨干离职：Pre-IPO对赌期人才流失</h4>
+        <p>快手旗下可灵AI核心技术骨干王猛、王鑫涛相继离职，可灵正处于Pre-IPO对赌业绩期，高强度工作节奏导致核心人才流失。凸显AI独角兽在上市冲刺阶段的人才保留挑战——对赌期≠人才稳定期。</p>
+      </article>
+      <article class="card" data-rel="hi" id="20260811-layoffs-205k">
+        <span class="rel">🔴</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>📉 2026科技裁员超20.5万人：54%明确归因AI</h4>
+        <p>截至8月10日，全球科技行业已记录322起裁员事件影响20.58万人（已超2025全年）。54%的事件明确将AI/自动化列为原因。受影响最大岗位：客服、内容审核、数据录入和QA。但同时AI/ML工程师缺口达63%，50万+岗位待填。</p>
+      </article>
+      <article class="card" data-rel="hi" id="20260811-zillow-google">
+        <span class="rel">🔴</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>📉 Zillow/Google/TikTok/Etsy同周裁员 vs LLM专家$28万难招</h4>
+        <p>Zillow裁500+人（7%）、TikTok纳什维尔关闭（250人）、Etsy裁220人（12%），同周LLM专家底薪$22-28万仍难招满。ML工程师岗位同比+59%，通用软工岗位-49%。同一行业的"冰火两重天"成为2026年招聘市场最显著特征。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260811-microsoft-maia">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🔵 微软Maia 300芯片：拟与台积电洽谈2027年交付30万枚+</h4>
+        <p>微软正与台积电洽谈自研AI芯片Maia 300量产计划，目标2027年交付超30万枚。旨在减少对英伟达依赖，是科技巨头自研AI芯片趋势的又一重要信号。芯片设计人才需求将持续攀升。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260811-humanoid-china">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🤖 中国人形机器人出货量占全球97%</h4>
+        <p>最新数据显示中国人形机器人出货量占全球97%，智元机器人占44%、宇树科技占31%，两家合计占全球3/4。中国在具身智能硬件领域已形成压倒性产业优势，相关人才需求将持续外溢。</p>
+      </article>
+      <article class="card" data-rel="low" id="20260811-sanders-pause">
+        <span class="rel">⚪</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>📜 伯尼·桑德斯致信六大AI实验室要求暂停开发</h4>
+        <p>美国参议员桑德斯致信OpenAI、Anthropic、Google DeepMind、Meta AI、xAI和Mistral，要求暂停开发超过当前最强模型能力的系统。美国政界对AI安全的施压持续升温，但实际约束力有限。</p>
+      </article>
+      <article class="card" data-rel="mid" id="20260811-chime-layoff">
+        <span class="rel">🟡</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>📉 Chime裁员150人：明确以"AI效率提升"为由</h4>
+        <p>美国数字银行Chime裁员约150人（10%），在财报前五天以"AI带来的效率提升"为直接理由。金融科技领域以AI为由裁员的最新案例，印证"AI裁员叙事"正从科技公司扩散到金融行业。</p>
+      </article>
+      <article class="card" data-rel="hi" id="20260811-suno-watermark">
+        <span class="rel">🔴</span> <span style="font-size:12px;">🎵</span>
+        <button class="star-btn" onclick="toggleStar(this)">☆</button>
+        <h4>🎵 Suno推出HarmonyMark音频水印系统</h4>
+        <p>AI音乐独角兽Suno正式发布HarmonyMark音频水印技术，将不可感知的水印嵌入AI生成音乐，用于标识来源和版权归属。这是AI生成内容版权治理的关键基建，对音乐平台的内容审核和版权管理有直接影响。</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- 思考题 -->
+  <div class="sec-think">
+    <div class="sec-head"><span class="sec-num sec-num-4">03</span><span class="sec-title">招聘今日可行动</span></div>
+    <div class="thinking">
+      <h3>💡 今日思考题</h3>
+      <p>当54%的科技裁员已明确归因AI，而AI/ML工程师缺口达63%——同一行业在同一周内"日均裁953人"和"$28万年薪招不到人"并存。</p>
+      <p>作为招聘HR，这意味着我们不能只做"需求响应者"（等业务方提HC），而是要主动做"结构转型顾问"：帮业务方看清哪些岗位将被AI取代、哪些新岗位正在诞生，提前建立新兴领域的人才地图。</p>
+      <p>今日可行动：盘一下你手上的JD，有多少还在描述"可被AI替代的职责"？有多少岗位可以加入"AI工具使用能力"作为加分项？转型从JD开始。</p>
+    </div>
+  </div>
+
+  <div class="watermark">TME招聘HR出品 · Made by ChloeCao</div>
+</div>
+
+<script>
+function toggleTheme(){
+  var d=document.documentElement;
+  var t=d.getAttribute('data-theme')==='dark'?'':'dark';
+  d.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+}
+(function(){
+  var saved=localStorage.getItem('theme');
+  if(saved)document.documentElement.setAttribute('data-theme',saved);
+  else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)
+    document.documentElement.setAttribute('data-theme','dark');
+})();
+function toggleStar(btn){
+  var card=btn.closest('.card');
+  var key=card.id;
+  var stars=JSON.parse(localStorage.getItem('stars')||'{}');
+  if(stars[key]){delete stars[key];btn.textContent='\u2606';btn.classList.remove('starred');}
+  else{
+    stars[key]={title:card.querySelector('h4').textContent,body:card.querySelector('p').textContent,rel:card.dataset.rel||'',music:card.querySelector('[style]')?true:false};
+    btn.textContent='\u2605';btn.classList.add('starred');
+  }
+  localStorage.setItem('stars',JSON.stringify(stars));
+}
+(function(){
+  var stars=JSON.parse(localStorage.getItem('stars')||'{}');
+  document.querySelectorAll('.card').forEach(function(c){
+    if(stars[c.id]){var b=c.querySelector('.star-btn');if(b){b.textContent='\u2605';b.classList.add('starred');}}
+  });
+})();
+document.querySelectorAll('.filter-chip').forEach(function(chip){
+  chip.addEventListener('click',function(){
+    document.querySelectorAll('.filter-chip').forEach(function(c){c.classList.remove('active');});
+    this.classList.add('active');
+    var f=this.dataset.filter;
+    document.querySelectorAll('.card').forEach(function(card){
+      if(f==='all')card.style.display='';
+      else card.style.display=card.dataset.rel===f?'':'none';
+    });
+  });
+});
+</script>
+</body>
+</html>
