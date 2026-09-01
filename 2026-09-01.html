@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日AI简报 | 2026-09-01</title>
+<style>
+  :root {
+    --bg: #f3efe6;
+    --paper: #fbf9f3;
+    --ink: #1b1813;
+    --ink-soft: #5b554b;
+    --ink-dim: #8a8275;
+    --rule: #1b1813;
+    --rule-soft: rgba(27,24,19,0.14);
+    --accent: #9e2b25;
+    --c1: #9e2b25;
+    --c2: #1f5c4d;
+    --c3: #2b4f8a;
+    --c4: #b06a1e;
+    --c5: #6b3fa0;
+    --card-bg: #fbf9f3;
+    --card-border: rgba(27,24,19,0.16);
+    --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3;
+    --term-bg: rgba(158,43,37,0.05);
+    --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06);
+    --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3;
+    --nav-border: #1b1813;
+    --nav-text: #1b1813;
+    --link: #2b4f8a;
+    --watermark: #b3ab9c;
+    --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+    --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16130e;
+      --paper: #1e1a14;
+      --ink: #ece5d8;
+      --ink-soft: #b3a994;
+      --ink-dim: #7d7461;
+      --rule: #ece5d8;
+      --rule-soft: rgba(236,229,216,0.14);
+      --accent: #e08a7a;
+      --c1: #e08a7a;
+      --c2: #6fae9a;
+      --c3: #8aa9d6;
+      --c4: #d9a35e;
+      --c5: #b89ae0;
+      --card-bg: #1e1a14;
+      --card-border: rgba(236,229,216,0.18);
+      --card-hover: rgba(236,229,216,0.06);
+      --lead-bg: #1e1a14;
+      --term-bg: rgba(224,138,122,0.08);
+      --term-border: rgba(224,138,122,0.34);
+      --think-bg: rgba(217,163,94,0.08);
+      --think-border: rgba(217,163,94,0.34);
+      --nav-bg: #1e1a14;
+      --nav-border: #ece5d8;
+      --nav-text: #ece5d8;
+      --link: #8aa9d6;
+      --watermark: #5d564a;
+    }
+  }
+  [data-theme="light"] {
+    --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+    --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
+    --c1: #9e2b25; --c2: #1f5c4d; --c3: #2b4f8a; --c4: #b06a1e; --c5: #6b3fa0;
+    --card-bg: #fbf9f3; --card-border: rgba(27,24,19,0.16); --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3; --term-bg: rgba(158,43,37,0.05); --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06); --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3; --nav-border: #1b1813; --nav-text: #1b1813; --link: #2b4f8a; --watermark: #b3ab9c;
+  }
+  [data-theme="dark"] {
+    --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+    --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
+    --c1: #e08a7a; --c2: #6fae9a; --c3: #8aa9d6; --c4: #d9a35e; --c5: #b89ae0;
+    --card-bg: #1e1a14; --card-border: rgba(236,229,216,0.18); --card-hover: rgba(236,229,216,0.06);
+    --lead-bg: #1e1a14; --term-bg: rgba(224,138,122,0.08); --term-border: rgba(224,138,122,0.34);
+    --think-bg: rgba(217,163,94,0.08); --think-border: rgba(217,163,94,0.34);
+    --nav-bg: #1e1a14; --nav-border: #ece5d8; --nav-text: #ece5d8; --link: #8aa9d6; --watermark: #5d564a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
+  }
+  .theme-toggle {
+    position: fixed; top: 14px; right: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; line-height: 1;
+  }
+  .theme-toggle:hover { background: var(--card-hover); }
+  .back-nav {
+    position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s;
+  }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+  @media (max-width: 640px) {
+    .back-nav { position: static; display: inline-block; margin: 16px 0 0 20px; }
+    .theme-toggle { top: auto; bottom: 18px; right: 14px; }
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px 50px; }
+
+  .masthead {
+    text-align: center;
+    padding: 46px 0 18px;
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 6px;
+  }
+  .masthead .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 5px;
+    color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 34px;
+    color: var(--ink); letter-spacing: 3px; line-height: 1.15;
+  }
+  .masthead .meta {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+  .masthead .meta b { color: var(--accent); font-weight: 700; }
+
+  .lead {
+    font-family: var(--serif);
+    background: var(--lead-bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--rule);
+    padding: 18px 22px; margin: 22px 0 30px;
+    font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+
+  .section { margin-bottom: 34px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    line-height: 1; color: var(--c2);
+  }
+  .sec-num-1 { color: var(--c1); }
+  .sec-num-2 { color: var(--c2); }
+  .sec-num-3 { color: var(--c3); }
+  .sec-num-4 { color: var(--c4); }
+  .sec-num-5 { color: var(--c5); }
+  .sec-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  .new-term {
+    background: var(--term-bg); border: 1px solid var(--term-border);
+    border-radius: 2px; padding: 16px 20px;
+  }
+  .new-term h3 {
+    font-family: var(--serif); font-size: 18px; color: var(--c1); margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .new-term p { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+  .term-item { padding: 10px 0; border-bottom: 1px solid var(--term-border); }
+  .term-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .term-item:first-child { padding-top: 0; }
+  .term-item h4 {
+    font-family: var(--serif); font-size: 16px; color: var(--c1); margin-bottom: 5px; font-weight: 700;
+  }
+  .term-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-top: 2px solid var(--c2); border-radius: 2px;
+    padding: 14px 16px; transition: background 0.2s;
+  }
+  .card:hover { background: var(--card-hover); }
+  .card.sec-t2 { border-top-color: var(--c3); }
+  .card.sec-t3 { border-top-color: var(--c5); }
+  .card h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px; line-height: 1.5; padding-right: 24px;
+  }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
+  .card .source a { color: var(--link); text-decoration: none; }
+  .card .source a:hover { text-decoration: underline; }
+
+  .thinking {
+    background: var(--think-bg); border-left: 3px solid var(--c4);
+    border-radius: 2px; padding: 16px 20px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+  .thinking h3 { font-size: 17px; font-weight: 700; color: var(--c4); margin-bottom: 12px; }
+  .thinking p { margin-bottom: 10px; }
+  .thinking ol, .thinking ul { margin-left: 20px; margin-bottom: 10px; }
+  .thinking li { margin-bottom: 6px; }
+
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .rel { font-size: 11px; margin-right: 2px; }
+
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+
+  .watermark {
+    text-align: center; color: var(--watermark); font-size: 11px;
+    padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
+  }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">&lsaquo; 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+  <a href="papers.html">论文</a>
+</nav>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">☀</button>
+<div class="container">
+  <header class="masthead">
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
+    <h1>AI 行业与人才日报</h1>
+    <div class="meta">2026-09-01 &middot; 星期二 &middot; <b>第 91 期</b></div>
+  </header>
+
+    <div class="music-note">🎵 <b>今日音乐 AI 看点</b>：Stability AI 完成 $7600 万 B 轮——UMG、Sony Music、Warner Music、EA 四巨头联合投资，三大唱片首次同时入股同一家 AI 公司，音乐 AI 从对抗走向共建</div>
+
+    <div class="lead">英伟达 129 亿美元收购 Hugging Face，一步锁定开源 AI 生态的模型分发权；苹果完成 CEO 权力交接，Tim Cook 转任董事长、John Ternus 接棒，AI 补位成首要任务；Oracle 传出再裁 2-3 万人、CrowdStrike 裁员 5%——"用 AI 提效"正在成为大厂裁员的标准叙事。与此同时，OpenAI 自研芯片 Jalapeño 公布首批跑分，头部模型厂商正在从"依赖英伟达"走向"自己造芯"。</div>
+
+    <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
+    </div>
+    <div class="new-term">
+      <div class="term-item">
+        <button class="star-btn" data-key="2026-09-01-nw-1" aria-label="关注这条">☆</button>
+        <h4>Jalapeño</h4>
+        <p>OpenAI 与博通联合打造的首款自研推理芯片，在 Hot Chips 大会上首次公布跑分。每瓦吞吐是英伟达 GB300 的 1.5-1.9 倍，DeepSeek R1 单用户生成速度约 700 token/s（GB300 为 169 token/s）。放弃统一 L2 缓存，采用计算核心与 HBM 一对一绑定架构。设计到流片仅 9 个月（行业常规 18-24 个月）。意义：打破"做模型必须依赖英伟达"的单向格局。</p>
+      </div>
+      <div class="term-item">
+        <button class="star-btn" data-key="2026-09-01-nw-2" aria-label="关注这条">☆</button>
+        <h4>Hatch</h4>
+        <p>Meta 即将发布的消费级 AI Agent 产品。与其他 Agent 不同的是，Hatch 能跨应用完成多步骤任务（比如帮你在一个 App 下单、在另一个 App 查物流），付费版最高 $200/月。可能是第一个面向普通消费者的"真 Agent"，而非企业工具。</p>
+      </div>
+    </div>
+  </section>
+
+    <section class="section sec-t1">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">AI 产品 &amp; 平台动态</h2>
+    </div>
+    <div class="filter-bar">
+      <span class="filter-label">关联度</span>
+      <span class="filter-chip active" data-filter="all">全部</span>
+      <span class="filter-chip" data-filter="hi">🔴 高</span>
+      <span class="filter-chip" data-filter="mid">🟡 中</span>
+      <span class="filter-chip" data-filter="low">⚪ 低</span>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-09-01-t1-1" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-01-t1-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 英伟达 $129 亿收购 Hugging Face</h4>
+        <p>约 80 倍市销率，锁定 300 万模型 + 1300 万开发者的开源 AI 生态入口。承诺 5 年投入 260 亿美元用于开源模型生态。本质不是买公司，而是锁定 AI 产业最核心的流通环节——模型分发权。预计 2027 上半年完成。</p>
+        <div class="source">来源：<a href="https://www.bloomberg.com/" target="_blank">彭博社</a> / <a href="https://techcrunch.com/" target="_blank">TechCrunch</a></div>
+      </article>
+      <article class="card" id="2026-09-01-t1-2" data-rel="low">
+        <button class="star-btn" data-key="2026-09-01-t1-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> OpenAI 自研芯片 Jalapeño 首批跑分</h4>
+        <p>与博通联合打造，Hot Chips 大会首发。每瓦吞吐超 GB300 1.5-1.9 倍，功耗 700W，B0 版已进入台积电 N3P 流片。OpenAI 从"模型→芯片→云→应用"全栈扩张，打破对英伟达的单一依赖。</p>
+        <div class="source">来源：<a href="https://www.reuters.com/" target="_blank">路透社</a> / <a href="https://www.hotchips.org/" target="_blank">Hot Chips</a></div>
+      </article>
+      <article class="card" id="2026-09-01-t1-3" data-rel="low">
+        <button class="star-btn" data-key="2026-09-01-t1-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic 统一 Claude 记忆系统</h4>
+        <p>打通 Chat 与 Cowork 跨会话连续记忆。Claude 在对话中动态识别和记录关键信息，不再依赖会话结束时的总结。全订阅层级默认启用。AI 助手从"单次工具"走向"持续协作伙伴"的关键一步。</p>
+        <div class="source">来源：<a href="https://www.anthropic.com/" target="_blank">Anthropic</a></div>
+      </article>
+      <article class="card" id="2026-09-01-t1-4" data-rel="low">
+        <button class="star-btn" data-key="2026-09-01-t1-4" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 腾讯混元 Hy4 preview 开源</h4>
+        <p>770B 总参 / 49B 激活 / 1M 上下文，Apache 2.0 协议。内部 163 名专家盲测 2.99 分超 GLM-5.3(2.92) 与 Kimi K3(2.94)。上线首日调用量"出奇猛增"，紧急扩容。API 定价：输入 6 元/输出 18 元每百万 Token。</p>
+        <div class="source">来源：<a href="https://hunyuan.tencent.com/" target="_blank">腾讯混元</a> / <a href="https://www.jiqizhixin.com/" target="_blank">机器之心</a></div>
+      </article>
+      <article class="card" id="2026-09-01-t1-5" data-rel="low">
+        <button class="star-btn" data-key="2026-09-01-t1-5" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> DeepSeek-V4-Flash-Vision-Exp 开源</h4>
+        <p>V4 系列首款原生视觉模型，305B 总参、仅激活 13B（激活率 4.6%），MIT 协议。DeepSWE 真实软件工程测试 59.3% 反超 Opus-4.8 登顶，ZeroBench 35 分亦超 Opus-4.8。</p>
+        <div class="source">来源：<a href="https://www.deepseek.com/" target="_blank">DeepSeek</a></div>
+      </article>
+      <article class="card" id="2026-09-01-t1-6" data-rel="hi">
+        <button class="star-btn" data-key="2026-09-01-t1-6" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 🎵 Stability AI $7600 万 B 轮，三大唱片+EA 联投</h4>
+        <p>UMG、Sony Music、Warner Music、EA 联合投资，总融资达 $2.32 亿。史上首次三大唱片同时投资同一家 AI 公司。从起诉侵权到直接入股，音乐行业对生成式 AI 的态度从对抗走向共建。Stable Audio 3.0 使用授权训练数据。</p>
+        <div class="source">来源：<a href="https://www.billboard.com/" target="_blank">Billboard</a> / <a href="https://techcrunch.com/" target="_blank">TechCrunch</a></div>
+      </article>
+      <article class="card" id="2026-09-01-t1-7" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-01-t1-7" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI 广告年化收入破 $10 亿</h4>
+        <p>ChatGPT 广告业务推出约 200 天，覆盖 40+ 国家，年化收入突破 $10 亿。同期设立 $4 亿独资创投基金投资早期 AI 企业。广告+VC 双线变现。</p>
+        <div class="source">来源：<a href="https://www.theinformation.com/" target="_blank">The Information</a></div>
+      </article>
+      <article class="card" id="2026-09-01-t1-8" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-01-t1-8" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Meta 消费级 Agent "Hatch" 即将发布</h4>
+        <p>跨应用多步骤任务代理，能替用户完成跨 App 的复杂操作。付费版最高 $200/月。可能是第一个面向普通消费者的"真 Agent"产品。</p>
+        <div class="source">来源：<a href="https://www.theverge.com/" target="_blank">The Verge</a></div>
+      </article>
+    </div>
+  </section>
+
+    <section class="section sec-t2">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">AI 公司组织 &amp; 人才</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card sec-t2" id="2026-09-01-t2-1" data-rel="hi">
+        <button class="star-btn" data-key="2026-09-01-t2-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 苹果换帅：Tim Cook 转任董事长，Ternus 接任 CEO</h4>
+        <p>苹果正式完成 CEO 权力交接：Tim Cook（65 岁）转任执行董事长，John Ternus（51 岁，原硬件工程 SVP）接任 CEO。Phil Schiller 同步退出运营角色。Ternus 接手最大挑战：Siri 智能化、设备端 AI 推理、Apple Intelligence 全面追赶。</p>
+        <div class="source">来源：<a href="https://www.bloomberg.com/" target="_blank">彭博社</a> / <a href="https://www.apple.com/" target="_blank">Apple</a></div>
+      </article>
+      <article class="card sec-t2" id="2026-09-01-t2-2" data-rel="hi">
+        <button class="star-btn" data-key="2026-09-01-t2-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Oracle 预计再裁 2-3 万人</h4>
+        <p>继 3 月裁员 21,000 人后，Oracle 预计 9/1 启动新一轮裁员。TD Cowen 估计再裁 20,000-30,000 人，为 $200 亿 AI 数据中心投资释放资金。"AI 投入→人员压缩"循环的典型案例。</p>
+        <div class="source">来源：<a href="https://www.bloomberg.com/" target="_blank">彭博社</a> / <a href="https://www.cowen.com/" target="_blank">TD Cowen</a></div>
+      </article>
+      <article class="card sec-t2" id="2026-09-01-t2-3" data-rel="hi">
+        <button class="star-btn" data-key="2026-09-01-t2-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> CrowdStrike 裁员 5%（约 500 人）</h4>
+        <p>CrowdStrike CEO 直接表态：裁员是因为 AI 驱动的效率提升让部分岗位不再必要。又一家明确将"AI 替代人力"写进裁员公告的科技公司。</p>
+        <div class="source">来源：<a href="https://www.reuters.com/" target="_blank">路透社</a></div>
+      </article>
+      <article class="card sec-t2" id="2026-09-01-t2-4" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-01-t2-4" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 腾讯撤销 AI Lab，空降首席 AI 科学家</h4>
+        <p>腾讯撤销运行十年的 AI Lab，空降姚顺雨任首席 AI 科学家，AI 战略从分散走向集中。自 2 月重建 AI 基础设施以来，混元平均每两个月迭代一个大版本。</p>
+        <div class="source">来源：<a href="https://www.latepost.com/" target="_blank">晚点</a> / <a href="https://www.jiqizhixin.com/" target="_blank">机器之心</a></div>
+      </article>
+      <article class="card sec-t2" id="2026-09-01-t2-5" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-01-t2-5" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 苹果指控 OpenAI 使用被盗商业秘密</h4>
+        <p>苹果称前工程师 Chang Liu 将机密资料用于 OpenAI 工作，并"实锤" OpenAI 存在证据销毁行为。诉讼将加剧大厂间人才流动敏感度和竞业管理力度。</p>
+        <div class="source">来源：<a href="https://www.reuters.com/" target="_blank">路透社</a> / <a href="https://www.theverge.com/" target="_blank">The Verge</a></div>
+      </article>
+      <article class="card sec-t2" id="2026-09-01-t2-6" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-01-t2-6" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 快手可灵获国家 AI 基金 14 亿元注资</h4>
+        <p>国家人工智能产业投资基金出资 14 亿元入股北京可灵，投后估值约 180 亿美元（约 1228 亿人民币），Q2 营收超 8.5 亿元。全球视频大模型赛道规模最大融资（30 亿美元）。</p>
+        <div class="source">来源：<a href="https://ir.kuaishou.com/" target="_blank">快手公告</a> / <a href="https://www.stcn.com/" target="_blank">科创板日报</a></div>
+      </article>
+      <article class="card sec-t2" id="2026-09-01-t2-7" data-rel="low">
+        <button class="star-btn" data-key="2026-09-01-t2-7" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 100+ 公司联名预警 AI 网络攻击</h4>
+        <p>OpenAI/Google/Microsoft/Anthropic 等签署联合声明预警 AI 驱动的网络攻击风险。Meta 和 Apple 未参与。AI 安全合规人才需求持续上升。</p>
+        <div class="source">来源：<a href="https://www.ft.com/" target="_blank">金融时报</a></div>
+      </article>
+    </div>
+  </section>
+
+    <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">招聘今日可行动</h2>
+    </div>
+    <blockquote class="thinking">
+      <h3>今日思考题：当"AI 提效"成为裁员标准叙事，HR 如何建立岗位替代与新增的判断框架？</h3>
+      <p>今天的信号组合值得深思：</p>
+      <ol>
+        <li><b>Oracle 半年内可能累计裁员 5 万人</b> — 3 月裁 2.1 万，9 月可能再裁 2-3 万，目的是为 $200 亿 AI 数据中心投资释放资金。"AI 投入→人员压缩"成为标准剧本。</li>
+        <li><b>CrowdStrike CEO 直说"AI 让岗位不再必要"</b> — 这不再是隐晦表达，而是写进公告的官方理由。HR 需要应对的不是"AI 会不会取代人"，而是"业务已经在用这个理由裁人"。</li>
+        <li><b>英伟达 $129 亿收 HF + OpenAI 自研芯片</b> — AI 供给端全速扩张，模型更便宜、更强、更易获取。这意味着"用 AI 替代人力"的技术门槛会持续降低。</li>
+        <li><b>苹果换帅、腾讯撤 AI Lab</b> — 头部公司在组织层面为 AI 腾位置，不是加人，而是换人、并人、集中人。</li>
+      </ol>
+      <p><b>如果你是一家科技公司的 HRBP，当业务部门以"AI 提效"为由提出编制缩减申请时，你会用什么框架来判断哪些岗位确实可以被 AI 替代、哪些岗位反而需要因 AI 而新增？</b></p>
+      <p><i>Made by ChloeCao | 数据采集时间 2026-09-01 11:00 CST</i></p>
+    </blockquote>
+  </section>
+
+  <div class="watermark">TME 招聘 HR 出品 &middot; ChloeCao</div>
+</div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
+</body>
+</html>
