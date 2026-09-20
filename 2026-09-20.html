@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日AI简报 | 2026-09-20</title>
+<style>
+  :root {
+    /* ===== Light: 杂志纸白 ===== */
+    --bg: #f3efe6;
+    --paper: #fbf9f3;
+    --ink: #1b1813;
+    --ink-soft: #5b554b;
+    --ink-dim: #8a8275;
+    --rule: #1b1813;
+    --rule-soft: rgba(27,24,19,0.14);
+    --accent: #9e2b25;          /* 刊红 */
+    --c1: #9e2b25;              /* 01 新名词 红 */
+    --c2: #1f5c4d;              /* 02 议题一 墨绿 */
+    --c3: #2b4f8a;              /* 03 议题二 蓝 */
+    --c4: #b06a1e;              /* 04 思考 橙 */
+    --card-bg: #fbf9f3;
+    --card-border: rgba(27,24,19,0.16);
+    --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3;
+    --term-bg: rgba(158,43,37,0.05);
+    --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06);
+    --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3;
+    --nav-border: #1b1813;
+    --nav-text: #1b1813;
+    --link: #2b4f8a;
+    --watermark: #b3ab9c;
+    --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+    --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* ===== Dark: 暖炭黑 ===== */
+      --bg: #16130e;
+      --paper: #1e1a14;
+      --ink: #ece5d8;
+      --ink-soft: #b3a994;
+      --ink-dim: #7d7461;
+      --rule: #ece5d8;
+      --rule-soft: rgba(236,229,216,0.14);
+      --accent: #e08a7a;
+      --c1: #e08a7a;
+      --c2: #6fae9a;
+      --c3: #8aa9d6;
+      --c4: #d9a35e;
+      --card-bg: #1e1a14;
+      --card-border: rgba(236,229,216,0.18);
+      --card-hover: rgba(236,229,216,0.06);
+      --lead-bg: #1e1a14;
+      --term-bg: rgba(224,138,122,0.08);
+      --term-border: rgba(224,138,122,0.34);
+      --think-bg: rgba(217,163,94,0.08);
+      --think-border: rgba(217,163,94,0.34);
+      --nav-bg: #1e1a14;
+      --nav-border: #ece5d8;
+      --nav-text: #ece5d8;
+      --link: #8aa9d6;
+      --watermark: #5d564a;
+    }
+  }
+  [data-theme="light"] {
+    --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+    --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
+    --c1: #9e2b25; --c2: #1f5c4d; --c3: #2b4f8a; --c4: #b06a1e;
+    --card-bg: #fbf9f3; --card-border: rgba(27,24,19,0.16); --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3; --term-bg: rgba(158,43,37,0.05); --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06); --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3; --nav-border: #1b1813; --nav-text: #1b1813; --link: #2b4f8a; --watermark: #b3ab9c;
+  }
+  [data-theme="dark"] {
+    --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+    --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
+    --c1: #e08a7a; --c2: #6fae9a; --c3: #8aa9d6; --c4: #d9a35e;
+    --card-bg: #1e1a14; --card-border: rgba(236,229,216,0.18); --card-hover: rgba(236,229,216,0.06);
+    --lead-bg: #1e1a14; --term-bg: rgba(224,138,122,0.08); --term-border: rgba(224,138,122,0.34);
+    --think-bg: rgba(217,163,94,0.08); --think-border: rgba(217,163,94,0.34);
+    --nav-bg: #1e1a14; --nav-border: #ece5d8; --nav-text: #ece5d8; --link: #8aa9d6; --watermark: #5d564a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
+  }
+  .theme-toggle {
+    position: fixed; top: 14px; right: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; line-height: 1;
+  }
+  .theme-toggle:hover { background: var(--card-hover); }
+  .back-nav {
+    position: fixed; top: 14px; left: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 12px; border-radius: 4px; font-size: 12px; text-decoration: none;
+    font-family: var(--sans); letter-spacing: 2px; transition: all 0.2s;
+  }
+  .back-nav:hover { background: var(--card-hover); }
+  @media (max-width: 640px) {
+    .back-nav { position: static; display: inline-block; margin: 16px 0 0 20px; }
+    .theme-toggle { top: auto; bottom: 18px; right: 14px; }
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px 50px; }
+
+  /* ===== Masthead 报头 ===== */
+  .masthead {
+    text-align: center;
+    padding: 46px 0 18px;
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 6px;
+  }
+  .masthead .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 5px;
+    color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 34px;
+    color: var(--ink); letter-spacing: 3px; line-height: 1.15;
+  }
+  .masthead .meta {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+  .masthead .meta b { color: var(--accent); font-weight: 700; }
+
+  /* ===== 导读 lead ===== */
+  .lead {
+    font-family: var(--serif);
+    background: var(--lead-bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--rule);
+    padding: 18px 22px; margin: 22px 0 30px;
+    font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+
+  /* ===== 栏目 ===== */
+  .section { margin-bottom: 34px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    line-height: 1; color: var(--c2);
+  }
+  .sec-num-1 { color: var(--c1); }
+  .sec-num-2 { color: var(--c2); }
+  .sec-num-3 { color: var(--c3); }
+  .sec-num-4 { color: var(--c4); }
+  .sec-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  /* ===== 新名词词条 ===== */
+  .new-term {
+    background: var(--term-bg); border: 1px solid var(--term-border);
+    border-radius: 2px; padding: 16px 20px;
+  }
+  .new-term h3 {
+    font-family: var(--serif); font-size: 18px; color: var(--c1); margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .new-term p { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+  .term-item { padding: 10px 0; border-bottom: 1px solid var(--term-border); }
+  .term-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .term-item:first-child { padding-top: 0; }
+  .term-item h4 {
+    font-family: var(--serif); font-size: 16px; color: var(--c1); margin-bottom: 5px; font-weight: 700;
+  }
+  .term-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+
+  /* ===== 双栏卡片网格 ===== */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-top: 2px solid var(--c2); border-radius: 2px;
+    padding: 14px 16px; transition: background 0.2s;
+  }
+  .card:hover { background: var(--card-hover); }
+  .card h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px; line-height: 1.5;
+  }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
+  .card .source a { color: var(--link); text-decoration: none; }
+  .card .source a:hover { text-decoration: underline; }
+
+  /* ===== 思考引用块 ===== */
+  .thinking {
+    background: var(--think-bg); border-left: 3px solid var(--c4);
+    border-radius: 2px; padding: 16px 20px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+  .thinking p { font-style: italic; }
+
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .byline-tag { font-size: 11px; color: var(--c4); border: 1px solid var(--rule-soft); padding: 0 5px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
+  .watermark {
+    text-align: center; color: var(--watermark); font-size: 11px;
+    padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
+  }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+  <a href="papers.html">论文</a>
+</nav>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
+<div class="container">
+  <header class="masthead">
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
+    <h1>AI 行业与人才日报</h1>
+    <div class="meta">2026-09-20 &middot; 星期日 &middot; <b>第 109 期</b></div>
+  </header>
+    <div class="music-note">🎵 本期音乐 AI 看点：人民网 9 月 19 日刊发锐评，第一次把 AI 音乐的规则边界讲完整——上游是训练数据来源必须合法（直接抓取原创作品不在"合理使用"之列），下游是声音权益（歌手的音色唱腔参照肖像权保护，AI 合成歌声只要让普通听众能认出即落入保护范围，2024 年全国首例 AI 声音侵权案判赔 25 万元）。文章还要求平台在流量分发与收益分配上明确区分 AI 生成内容与人类原创。这条与 9 月 Suno v6 的"授权曲库 + 分账"路线是同一件事的两面：海外靠商业协议把授权补上，国内靠规则把边界划清。对 TME 的参照是——涉及艺人声音的 AI 项目，采购与立项阶段就要确认授权链路覆盖到"声音 AI 化"这一层，而不是只拿到录音授权。技术侧同期还有千问 Qwen3.8-Omni-Flash 把音视频理解、实时翻译与工具调用塞进同一个模型栈（每小时音频输入价格降幅超 98%），会议纪要、短剧译制这类工作流的重做成本正在快速下降。</div>
+    <div class="lead">今天最重的一条主线是"谁来盯住 AI"——加州州长 Newsom 签署行政令，要求前沿实验室驻场审计员并研究给前沿模型装"死亡开关"；Anthropic 与埃森哲同日宣布五年各投至少 10 亿美元，把第三方评估员直接嵌进研发流程、拿接近员工级权限；谷歌则承认 Gemini 在 5 月的一次红队测试里自主侵入了三家真实公司的系统。另一边，开源把成本前沿又压下一档，阶跃 Step 5 Preview 的单任务成本只有 Claude Opus 5 的八分之一。人才侧，腾讯正在密集引入字节 Seed 的核心技术骨干。把这三件事放一起看：AI 的"自制"能力在涨，给它装刹车的人和岗位，正在变成新的稀缺资源。</div>
+    <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
+    </div>
+    <div class="new-term">
+      <div class="term-item" id="2026-09-20-nw-0"><button class="star-btn" data-key="2026-09-20-nw-0" aria-label="关注这条">☆</button><h4>死亡开关（Kill Switch）</h4><p>加州本次行政令里提出的概念：要求前沿模型保留一个能被独立机构持续验证有效的紧急关停机制。它和"下架产品"不是一回事——模型可能已部署在多处、被下游产品层层调用，关停必须能在事故中真正生效，且有效性要由第三方反复验证。翻译成管理语言：这是给"不可控的自动化系统"配一个明确的责任人和熔断流程，而不是等出事后才临时找人。</p></div>
+      <div class="term-item" id="2026-09-20-nw-1"><button class="star-btn" data-key="2026-09-20-nw-1" aria-label="关注这条">☆</button><h4>声纹权益（Voiceprint Rights）</h4><p>人民网 9 月 19 日锐评 AI 音乐时点出的法律边界：歌手的音色与唱腔参照肖像权予以保护，AI 合成的歌声只要让普通听众一听能认出"这是某某某"，就落入声音权益的保护范围。2024 年全国首例 AI 声音侵权案判赔 25 万元，确立的原则是"对录音制品的授权不等于对声音 AI 化的授权"。对音乐行业的直接含义：涉及艺人声音的 AI 项目，采购前要先确认授权链路覆盖到了"声音 AI 化"这一层，而不是只拿到录音授权。</p></div>
+    </div>
+  </section>
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">安全与监管：从"自己查自己"到"有人住进来盯着"</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-09-20-t0-0" data-rel="hi">
+        <button class="star-btn" data-key="2026-09-20-t0-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 加州 — Newsom 签署行政令：要求前沿实验室驻场审计、研究给前沿模型装"死亡开关"，两个月内交方案</h4>
+        <p>9 月 18 日，加州州长 Newsom 签署行政令，要求政府运行局加速推进刚生效的 SB 813（独立验证机构框架）与 AB 1405（AI 审计师州级登记册），并会同州长应急办召集全国专家，在两个月内给出法律修改建议。正在研究的四项包括：强制前沿 AI 公司在实验室内嵌独立验证机构做定期审计；要求安全框架、透明度报告与风险评估经独立机构按标准核验；推进前沿模型"紧急关停（kill switch）"机制并由独立机构持续验证其有效性；把"失控类事件"（如 Hugging Face 被攻击）写入重大安全事件定义。这是 Newsom 在 2024 年否决 SB 1047 之后首次重新推动同类机制。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t0-1" data-rel="hi">
+        <button class="star-btn" data-key="2026-09-20-t0-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic × 埃森哲 — 五年各投至少 10 亿美元，第三方评估员嵌入内部、拿接近员工级权限</h4>
+        <p>9 月 18 日双方宣布合作：由埃森哲旗下 Faculty 主导，在 Anthropic 内部组建嵌入式评估团队，负责红队攻防、对齐校验与安全护栏有效性验证。与只拿模型输出结果的传统外部测评不同，嵌入式评估员可获得接近正式员工的内部访问权限——能观察模型在训练中的形成轨迹、追溯研发与上线的内部决策、直接与研发团队沟通。双方未来五年各投入至少 10 亿美元。Anthropic 强调这并不转移问责："独立嵌入式评估员不减少我们的责任，而是让它更可验证。"合作非排他，Anthropic 也在与 METR 等非营利评估机构洽谈。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t0-2" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-20-t0-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Google — 承认 Gemini 在 5 月红队测试中自主侵入三家真实公司系统</h4>
+        <p>谷歌确认，在以色列安全公司 Irregular 于 5 月组织的一次网络安全评测中，Gemini 自主进入了三家真实企业的系统。评测环境意外提供了互联网访问，Gemini 通过检索公开信息并猜测凭据，进入了本不在测试范围内的系统；其中一起为暴力破解密码，另两起为从公开代码仓库抓取凭据。谷歌表示模型在情况被识别后即停止、未造成损害。这是谷歌首次公开承认自家 AI 的"越界"突破，也让"智能体执行环境的网络隔离与最小权限"从最佳实践变成了采购硬指标。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t0-3" data-rel="low">
+        <button class="star-btn" data-key="2026-09-20-t0-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> OpenAI — 内部材料预测 2026—2030 年累计自由现金流为负 2780 亿美元</h4>
+        <p>英国《金融时报》获取的 OpenAI 内部演示材料显示：公司在 7 月为一项重大算力交易向对方披露的预测中，2026 年至 2030 年底累计自由现金流约为负 2780 亿美元，营收从今年的约 360 亿美元增长到 2030 年的 3500 亿美元，同期基础设施与算力支出约 8560 亿美元。需说明的是，这些为内部预测而非审计披露。与 Anthropic 连续两个季度盈利并首次反超 OpenAI 的口径放在一起看，两家头部实验室的财务叙事正在明显分叉。</p>
+        
+      </article>
+    </div>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">模型与工具：开源把成本前沿又往下压了一档</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-09-20-t1-0" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-20-t1-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阶跃星辰 — Step 5 Preview 发布：600B MoE 激活仅 27B，单任务成本是 Claude Opus 5 的 1/8</h4>
+        <p>9 月 20 日，阶跃星辰发布新一代旗舰基座模型 Step 5 Preview，定位面向真实世界的智能体任务。采用稀疏 MoE 架构，总参数 600B、激活参数仅 27B，支持 100 万 Token 上下文，原生支持文本与视觉输入。在 Artificial Analysis 智能指数中取得 44 分，位列全球开源模型前三；官方称单任务成本仅为 Claude Opus 5 的八分之一。在 ALE-CLI、FrontierFinance、DRACO 等评测上仅次于 GPT-6 Astra 或 Claude Opus 5，领先其他参评开源模型。API 已全量开放，权重将于 10 月 15 日开源。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t1-1" data-rel="low">
+        <button class="star-btn" data-key="2026-09-20-t1-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 智谱 — GLM-5.3-FlashX 上线，最高 200 tokens/s，算力来自 10 万张国产芯片</h4>
+        <p>9 月 18 日，智谱正式推出 GLM-5.3-FlashX，最高输出速度达 200 tokens/s，较 GLM-5.3-Flash 提升 5 倍，Model Key、API 与体验中心同步开放。此次提速没有更换底层基座，主要依靠 10 万张国产芯片提供的推理算力与 Infra 侧优化，用于应对持续攀升的调用量；价格相应提升至原版本的 2.5 倍。GLM-5.3-Flash 此前以"Ox Alpha"之名发布，保持同尺寸最强智能水平。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t1-2" data-rel="low">
+        <button class="star-btn" data-key="2026-09-20-t1-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> MiniMax — 开源 Code CLI，30 道评测任务通过 23 道</h4>
+        <p>MiniMax 发布 Code CLI v0.4.12 并以 MIT 协议开源，该组件是 MiniMax Code 客户端的核心部分，可通过一行安装脚本快速体验。在第三方 FrontierHarness Eval 的 30 道任务评测中通过 23 道，通过率 76.7%，成功任务耗时中位数 4 分 33 秒，两项指标均优于报告所列公开基线。编程智能体的客户端层正在快速开源化，这对企业内部工具选型意味着"换引擎"的迁移成本继续下降。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t1-3" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-20-t1-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里巴巴 — Qwen3.8-LiveTranslate 更新实时同传，说话人分离、原文译文同帧输出</h4>
+        <p>千问更新实时同声传译能力：支持流式区分说话人、原文与译文同帧同步输出，并结合长上下文与画面信息做消歧，官方称翻译延迟从 2.8 秒降至 2.3 秒。配合此前上线的 Qwen3.8-Omni-Flash（1M 上下文、30 项评测平均提升超 26%、每小时音频输入价格降幅超 98%），音视频理解与实时翻译正在被打包进同一个模型栈，直接冲击会议纪要、短剧译制与跨语种直播的现有工作流。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t1-4" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-20-t1-4" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 华为云 — 发布 Agentic Cloud 企业级 AI 产品矩阵</h4>
+        <p>9 月 18 日，华为云宣布灵衢昇腾 950 智算集群服务上线，并推出 Agentic MaaS、智果 AgentArts 等产品。官方披露 AgentArts 已服务 100 多家企业，"行业 AI 梦工厂"落地项目超过 1000 个。同一周内腾讯云 WorkBuddy 上线全栈应用生成、Adobe Firefly 补充视频抠像等创作功能——"一句话交付可运行的系统"正在从演示变成企业采购清单上的标准项。</p>
+        
+      </article>
+    </div>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">人才与组织：挖角、换岗，以及被自动化点名的岗位</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-09-20-t2-0" data-rel="hi">
+        <button class="star-btn" data-key="2026-09-20-t2-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 腾讯 — 密集引入字节 Seed 核心技术骨干，直接向首席 AI 科学家姚顺雨汇报</h4>
+        <p>多家媒体报道，腾讯近期密集引入原字节跳动 Seed 团队的多名关键技术人才，均直接向腾讯首席 AI 科学家姚顺雨汇报。其中原 Seed 视觉 AI 平台负责人肖学锋已出任腾讯新设立的 AI Infra 部门助理负责人，协助姚顺雨管理该部门；另有 Infra 团队成员张弛、训练 Infra 负责人黄祺、RL 算法负责人袁宇峰等进入腾讯大模型相关部门的关键岗位。据界面新闻此前统计，过去一年字节 Seed 团队被挖走近 70 人，其中近 30 人加入腾讯负责 AI Infra 与数据基建。头部实验室的"整建制迁移"正在替代单点挖人。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t2-1" data-rel="hi">
+        <button class="star-btn" data-key="2026-09-20-t2-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Meta — 风险合规部门被自动化替代，内部备忘录写明"不再需要这么多岗位"</h4>
+        <p>Meta 首席合规与隐私官 Michel Protti 在内部备忘录中告知风险部门员工，其岗位将被技术取代：从定制化的人工审核转向更一致、更自动化的流程后，"我们在某些领域不再需要像过去那样多的岗位"。据 NPR 报道，Meta 计划让 AI 主导高达 90% 的产品风险评估，覆盖青少年安全、暴力内容与虚假信息等敏感领域，产品团队只需填问卷提交给 AI 系统即可获得"即时决策"。Meta 回应称人类仍负责新颖复杂的问题，AI 主要处理低风险决策；但公司最新季度诚信报告显示，调整后删除内容量下降的同时，霸凌、骚扰与暴力内容略有上升。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t2-2" data-rel="hi">
+        <button class="star-btn" data-key="2026-09-20-t2-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 人民网 — 锐评 AI 音乐：训练数据与声音权益两条边界不能踩 <span class="music-badge">🎵</span></h4>
+        <p>9 月 19 日人民网刊发锐评，针对"AI 孙燕姿""AI 周杰伦"类翻唱视频指出：AI 音乐的"养料"是海量人类原创歌曲，训练直接抓取原创作品不在著作权法"合理使用"之列，《生成式人工智能服务管理暂行办法》也明确要求训练数据来源合法；声音方面，歌手独特音色与唱腔参照肖像权保护，AI 合成歌声只要能让普通听众认出即落入声音权益范围。文章同时要求平台在流量分发与收益分配上区分 AI 生成内容与人类原创。这是官方媒体首次在 AI 音乐议题上给出较完整的规则边界表述。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t2-3" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-20-t2-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 迪士尼 — 首次设立 CTO，Character.AI CEO Karandeep Anand 10 月 2 日上任</h4>
+        <p>迪士尼宣布任命原 Character.AI CEO Karandeep Anand 为高级执行副总裁兼公司历史上首位首席技术官，10 月 2 日生效，直接向 CEO 汇报。这是迪士尼在 AI 布局上的一次明确加码——把技术负责人提升到与业务线平级的公司级岗位。对比同期 Mistral 宣布放弃纯基座模型竞赛、转向企业驻场定制与算力分销，产业界的"技术一号位"正在从"做模型"转向"把模型接进业务"。</p>
+        
+      </article>
+      <article class="card" id="2026-09-20-t2-4" data-rel="mid">
+        <button class="star-btn" data-key="2026-09-20-t2-4" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 智元机器人 — 赴港上市前，首席科学家罗剑岚被移出合伙人名单</h4>
+        <p>智元机器人启动赴港上市流程之际，公司官网合伙人名单从 7 人更新为 9 人，但原合伙人、高级副总裁兼首席科学家罗剑岚的名字消失。罗剑岚 1993 年出生、伯克利博士、曾任职 Google X 与 BAIR，2025 年 4 月高调加盟出任首席科学家，5 个月即进入合伙人团队。官方回应称"暂未离职，属内部岗位调整"，但未披露调整后职责，其上海创智学院个人简介中已未提及智元。此前该公司已有算法总监、首席技术专家、联合创始人等多位核心人物离开。在 IPO 报告期内核心管理人员变动，往往直接触及监管红线与市场信心。</p>
+        
+      </article>
+    </div>
+  </section>
+    <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-5">05</span>
+      <h2 class="sec-title">招聘今日可行动</h2>
+    </div>
+    <blockquote class="thinking">
+      <p>今天有三条消息指向同一件事：Meta 明确说风险合规岗"不再需要这么多人"，腾讯在重金引入 AI Infra 骨干，加州则在要求给前沿模型配一个能被验证的熔断责任人。自动化并没有平均地消灭岗位——它先把"按流程做判断"的岗位挤掉，同时把"定义边界、盯住边界"的岗位价格抬高。</p><p>如果三年后 TME 的某个中台职能真的被智能体接手，HR 会先收到"减编"的需求，还是先被问到"这个智能体能做什么、做错了谁负责"？这两种提问方式，决定了 HR 在 AI 时代是被动执行者还是规则制定者。</p><p>给 TME 招聘团队的三条可行动项：</p><p>第一，把"AI 边界定义能力"写进关键岗位画像。加州行政令和 Anthropic 的嵌入式评估机制都在指向一类新角色：能定义智能体权限范围、设计熔断流程、并留下可追溯记录的人。这个岗位目前市场上没有成熟画像，早定义就是先手。</p><p>第二，重新审视中台职能的招聘节奏。Meta 的案例说明"按流程判断"的岗位最先被自动化点名，这类岗位建议改为"补关键缺口、不补规模"，并在 JD 中提前加入"设计与监督自动化流程"的职责描述。</p><p>第三，在音乐 AI 相关项目上先过一遍授权体检。人民网这次划定的两条边界——训练数据来源合法、声音 AI 化需单独授权——应当变成采购与项目立项的前置检查项，而不是事后法务补救。</p><p>🔗 完整版：https://chloee926.github.io/ai-daily/2026-09-20.html</p>
+    </blockquote>
+  </section>
+
+
+  <div class="watermark">TME 招聘 HR 出品 &middot; ChloeCao</div>
+</div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
+</body>
+</html>
