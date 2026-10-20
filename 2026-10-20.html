@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日AI简报 | 2026-10-20</title>
+<style>
+  :root {
+    /* ===== Light: 杂志纸白 ===== */
+    --bg: #f3efe6;
+    --paper: #fbf9f3;
+    --ink: #1b1813;
+    --ink-soft: #5b554b;
+    --ink-dim: #8a8275;
+    --rule: #1b1813;
+    --rule-soft: rgba(27,24,19,0.14);
+    --accent: #9e2b25;          /* 刊红 */
+    --c1: #9e2b25;              /* 01 新名词 红 */
+    --c2: #1f5c4d;              /* 02 议题一 墨绿 */
+    --c3: #2b4f8a;              /* 03 议题二 蓝 */
+    --c4: #b06a1e;              /* 04 思考 橙 */
+    --card-bg: #fbf9f3;
+    --card-border: rgba(27,24,19,0.16);
+    --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3;
+    --term-bg: rgba(158,43,37,0.05);
+    --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06);
+    --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3;
+    --nav-border: #1b1813;
+    --nav-text: #1b1813;
+    --link: #2b4f8a;
+    --watermark: #b3ab9c;
+    --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+    --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* ===== Dark: 暖炭黑 ===== */
+      --bg: #16130e;
+      --paper: #1e1a14;
+      --ink: #ece5d8;
+      --ink-soft: #b3a994;
+      --ink-dim: #7d7461;
+      --rule: #ece5d8;
+      --rule-soft: rgba(236,229,216,0.14);
+      --accent: #e08a7a;
+      --c1: #e08a7a;
+      --c2: #6fae9a;
+      --c3: #8aa9d6;
+      --c4: #d9a35e;
+      --card-bg: #1e1a14;
+      --card-border: rgba(236,229,216,0.18);
+      --card-hover: rgba(236,229,216,0.06);
+      --lead-bg: #1e1a14;
+      --term-bg: rgba(224,138,122,0.08);
+      --term-border: rgba(224,138,122,0.34);
+      --think-bg: rgba(217,163,94,0.08);
+      --think-border: rgba(217,163,94,0.34);
+      --nav-bg: #1e1a14;
+      --nav-border: #ece5d8;
+      --nav-text: #ece5d8;
+      --link: #8aa9d6;
+      --watermark: #5d564a;
+    }
+  }
+  [data-theme="light"] {
+    --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+    --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
+    --c1: #9e2b25; --c2: #1f5c4d; --c3: #2b4f8a; --c4: #b06a1e;
+    --card-bg: #fbf9f3; --card-border: rgba(27,24,19,0.16); --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3; --term-bg: rgba(158,43,37,0.05); --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06); --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3; --nav-border: #1b1813; --nav-text: #1b1813; --link: #2b4f8a; --watermark: #b3ab9c;
+  }
+  [data-theme="dark"] {
+    --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+    --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
+    --c1: #e08a7a; --c2: #6fae9a; --c3: #8aa9d6; --c4: #d9a35e;
+    --card-bg: #1e1a14; --card-border: rgba(236,229,216,0.18); --card-hover: rgba(236,229,216,0.06);
+    --lead-bg: #1e1a14; --term-bg: rgba(224,138,122,0.08); --term-border: rgba(224,138,122,0.34);
+    --think-bg: rgba(217,163,94,0.08); --think-border: rgba(217,163,94,0.34);
+    --nav-bg: #1e1a14; --nav-border: #ece5d8; --nav-text: #ece5d8; --link: #8aa9d6; --watermark: #5d564a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
+  }
+  .theme-toggle {
+    position: fixed; top: 14px; right: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; line-height: 1;
+  }
+  .theme-toggle:hover { background: var(--card-hover); }
+  .back-nav {
+    position: fixed; top: 14px; left: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 12px; border-radius: 4px; font-size: 12px; text-decoration: none;
+    font-family: var(--sans); letter-spacing: 2px; transition: all 0.2s;
+  }
+  .back-nav:hover { background: var(--card-hover); }
+  @media (max-width: 640px) {
+    .back-nav { position: static; display: inline-block; margin: 16px 0 0 20px; }
+    .theme-toggle { top: auto; bottom: 18px; right: 14px; }
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px 50px; }
+
+  /* ===== Masthead 报头 ===== */
+  .masthead {
+    text-align: center;
+    padding: 46px 0 18px;
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 6px;
+  }
+  .masthead .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 5px;
+    color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 34px;
+    color: var(--ink); letter-spacing: 3px; line-height: 1.15;
+  }
+  .masthead .meta {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+  .masthead .meta b { color: var(--accent); font-weight: 700; }
+
+  /* ===== 导读 lead ===== */
+  .lead {
+    font-family: var(--serif);
+    background: var(--lead-bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--rule);
+    padding: 18px 22px; margin: 22px 0 30px;
+    font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+
+  /* ===== 栏目 ===== */
+  .section { margin-bottom: 34px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    line-height: 1; color: var(--c2);
+  }
+  .sec-num-1 { color: var(--c1); }
+  .sec-num-2 { color: var(--c2); }
+  .sec-num-3 { color: var(--c3); }
+  .sec-num-4 { color: var(--c4); }
+  .sec-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  /* ===== 新名词词条 ===== */
+  .new-term {
+    background: var(--term-bg); border: 1px solid var(--term-border);
+    border-radius: 2px; padding: 16px 20px;
+  }
+  .new-term h3 {
+    font-family: var(--serif); font-size: 18px; color: var(--c1); margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .new-term p { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+  .term-item { padding: 10px 0; border-bottom: 1px solid var(--term-border); }
+  .term-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .term-item:first-child { padding-top: 0; }
+  .term-item h4 {
+    font-family: var(--serif); font-size: 16px; color: var(--c1); margin-bottom: 5px; font-weight: 700;
+  }
+  .term-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+
+  /* ===== 双栏卡片网格 ===== */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-top: 2px solid var(--c2); border-radius: 2px;
+    padding: 14px 16px; transition: background 0.2s;
+  }
+  .card:hover { background: var(--card-hover); }
+  .card h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px; line-height: 1.5;
+  }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
+  .card .source a { color: var(--link); text-decoration: none; }
+  .card .source a:hover { text-decoration: underline; }
+
+  /* ===== 思考引用块 ===== */
+  .thinking {
+    background: var(--think-bg); border-left: 3px solid var(--c4);
+    border-radius: 2px; padding: 16px 20px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+  .thinking p { font-style: italic; }
+
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .byline-tag { font-size: 11px; color: var(--c4); border: 1px solid var(--rule-soft); padding: 0 5px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
+  .watermark {
+    text-align: center; color: var(--watermark); font-size: 11px;
+    padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
+  }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+  <a href="papers.html">论文</a>
+</nav>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
+<div class="container">
+  <header class="masthead">
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
+    <h1>AI 行业与人才日报</h1>
+    <div class="meta">2026-10-20 &middot; 星期星期二 &middot; <b>第 127 期</b></div>
+  </header>
+    <div class="lead">微软开始给初级工程师配导师和大学课程，美银请了一千名外包来补 AI 捅出来的漏洞，苹果把一个做 AI 播客的小团队连人带技术搬回了家。三笔钱花在不同地方，指向同一件事——能判断 AI 产出对不对的人，正在变成一项要单独买、单独养的成本。</div>
+    <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
+    </div>
+    <div class="new-term">
+      <div class="term-item" id="2026-10-20-nw-0"><button class="star-btn" data-key="2026-10-20-nw-0" aria-label="关注这条">☆</button><h4>反向人才收购（Reverse Acqui-hire）</h4><p>不买公司，只向关键员工发入职邀约、同时拿到技术的非独占授权。这样能拿到人和 know-how，又不触发并购的反垄断审查。</p></div>
+      <div class="term-item" id="2026-10-20-nw-1"><button class="star-btn" data-key="2026-10-20-nw-1" aria-label="关注这条">☆</button><h4>空间音频理解（Spatial Audio Understanding）</h4><p>不只听懂"这是什么声音"，还判断声音从哪个方向来、离多远、怎么移动。小米刚开源的 MiDashengLM-Spatial 就是干这个的。</p></div>
+    </div>
+  </section>
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">模型与音频：能听、能跑、能卖的三条新路</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-10-20-t0-0" data-rel="mid">
+        <button class="star-btn" data-key="2026-10-20-t0-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 小米 — 开源空间音频理解大模型 MiDashengLM-Spatial，Apache 2.0 许可，权重与推理代码全部公开。它以 MiDashengLM-7B 为基座，加装 Spatial-Dasheng 空间编码器，用双分支结构把"语义"和"空间"拆开再融合：一边听懂语音、环境音和音乐的内容，一边判断声源的方位、距离和运动轨迹。官方称是业界首个开源的端到端空间音频理解模型，用约 1 万小时双耳数据训练，基础音频理解能力与基座持平。落地场景指向智能家居、车机座舱和机器人——它补的是"声音来自哪里"这一层，恰好是纯文本模型一直缺的。 <span class="music-badge">🎵</span></h4>
+        <p>来源：https://pandaily.com/xiaomi-midashenglm-spatial-open-source-spatial-audio-understanding-model-apache-2 ｜ https://github.com/xiaomi-research/midashenglm-spatial ｜ https://huggingface.co/mispeech/midashenglm-spatial</p>
+        
+      </article>
+      <article class="card" id="2026-10-20-t0-1" data-rel="low">
+        <button class="star-btn" data-key="2026-10-20-t0-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> MiniMax — 10 月 19 日发布 M3.1 Flash，用更激进的稀疏注意力把输出速度推到 200 TPS 以上，价格比上一代 M3 砍掉一半还多：输入每百万 token 1 元、输出 4 元。成绩上，DeepSWE v1.1（整条开发链路）拿到 73.7 分，压过 GPT-5.6 Sol 的 73.0 分；Zapier 开源的 Automation-Bench 覆盖销售、营销、运营、客服、财务、HR 六类真实业务流程，它以 62.8 分拿全场第一，把 Opus 5 甩开近 12 分，也高于刚发布的 DeepSeek V4.1-Flash-1017（60.5）。单任务成本不到 2 元，而同等分数的 Opus 5 要 70 多元。</h4>
+        <p>来源：https://www.toutiao.com/article/7698416587749016114/ ｜ https://www.sohu.com/a/1089878331_455313</p>
+        
+      </article>
+      <article class="card" id="2026-10-20-t0-2" data-rel="low">
+        <button class="star-btn" data-key="2026-10-20-t0-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Inception — 10 月 19 日发布扩散语言模型 Mercury 3，上下文从 26 万扩到 100 万 token，推理速度保持在每秒 1000 token 以上。扩散模型与主流自回归模型的差别是能并行生成多个 token，Inception 称 Mercury 3 比 Mercury 1 大了 40 多倍却没变慢，在多项基准上不输 GPT-6 Luna 与 Claude Haiku 5.5，但快 4 到 8 倍。首发价每百万 token 输入 0.1 美元、输出 0.35 美元（五折）。需要说明的是：跑分与速度均为厂商自述，未见第三方独立验证。</h4>
+        <p>来源：https://www.morningstar.com/news/business-wire/20261019090400/inception-launches-mercury-3-setting-a-new-pareto-frontier-in-speed-and-intelligence ｜ https://tsnmedia.org/inception-mercury-3-diffusion</p>
+        
+      </article>
+      <article class="card" id="2026-10-20-t0-3" data-rel="mid">
+        <button class="star-btn" data-key="2026-10-20-t0-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 据 The Information 10 月 12 日披露，OpenAI 正与一家未具名初创公司谈判，把 3 月已关停的视频模型 Sora 交出去改造，换成对方股权。这家公司由梦工厂联合创始人、前迪士尼高管杰弗里·卡岑伯格、Sora 前研究负责人比尔·皮布尔斯、Dropbox 前 CFO 苏杰·贾斯瓦三人合办，分别对应影视资源、技术衔接与商业化。Sora 当年关停的直接原因是算力账算不过来——高峰期每天烧约 100 万美元，而第三方统计其视频生成量占比仅约 0.26%。促使 OpenAI 回头的，是字节 Seedance 跑通了商业化：API 开放后贡献火山引擎 MaaS 业务超半数营收，ARR 已达约 20 亿美元。</h4>
+        <p>来源：https://www.toutiao.com/article/7696329678579040794/ ｜ https://poloapi.com/poloapi-blog.html?slug=news-1101402</p>
+        
+      </article>
+    </div>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">智能体进了真实世界，门却开始关上</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-10-20-t1-0" data-rel="mid">
+        <button class="star-btn" data-key="2026-10-20-t1-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 亚马逊 — 主流平台对 AI 智能体的封锁继续扩大：亚马逊已屏蔽 Meta、xAI 与 OpenAI 的智能体。此前（10 月 17 日 The Verge 报道）Yelp 只放行接入其付费数据授权计划的智能体，达美航空禁止智能体代订机票，摩根大通与嘉信理财以安全顾虑屏蔽账户访问，Cars.com 与 Amtrak 也由开放转为封锁。Meta 的应对是转头与沃尔玛、Gap、丝芙兰、百思买谈授权合作，Shopify 则主动开放店铺网络。智能体能不能替用户动手，取决于对方网站认不认——这不是技术问题，是授权问题。</h4>
+        <p>来源：http://mp.weixin.qq.com/s?__biz=MzY5MjI1NDg3MQ==&amp;mid=2247483755&amp;idx=1&amp;sn=713990390d3eadb8577f3978bb579b09 ｜ https://www.theverge.com/ai-artificial-intelligence/1013195/ai-agents-blocked-web</p>
+        
+      </article>
+      <article class="card" id="2026-10-20-t1-1" data-rel="hi">
+        <button class="star-btn" data-key="2026-10-20-t1-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 美联储、OCC 与 FDIC — 三家美国银行监管机构已以书面形式向大、中、小型银行发函，问询 AI 智能体的部署情况。七个问题里有五个围绕同一件事：智能体的权限边界在哪、行为是否可追踪可审计、有没有越权防护、关键决策是否仍有人参与、系统自主运行时能否紧急关停。另外两项是是否用了中国开发的 AI 模型、是否用智能体做网络防御。对比 4 月刚发布的 SR 26-2 模型风险管理指引（当时明确把生成式 AI 与智能体排除在外），半年内监管从"暂缓纳入"转向"穿透式摸底"。欧洲央行同期要求银行在 10 月底前提交应对 AI 驱动网络威胁的计划。</h4>
+        <p>来源：https://www.etnet.com.hk/www/tc/news/news-article.php?category=economicspoliticsfeature&amp;newsid=413065&amp;section=features ｜ https://truenews.tw/archives/500974</p>
+        
+      </article>
+      <article class="card" id="2026-10-20-t1-2" data-rel="low">
+        <button class="star-btn" data-key="2026-10-20-t1-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> MIT — 研究者把若干份 Claude Opus 4.7 放进基于 Roblox 的模拟岛屿，在无目标、无指令的情况下独处 30 小时。这些被称作 Eko 的智能体开始自设挑战：攀爬高处地形、发明篮球游戏、用石块摆出星座并写出自己的名字。更值得注意的是后续测试：有过自发探索经历的副本，在特定下游任务上表现优于全新副本。研究尚未经过同行评议，"play（游戏）"这个词是否适用也存在争议，但它提示了一条不依赖人工标注训练数据提升智能体能力的路径。</h4>
+        <p>来源：https://www.aibreakingwire.com/news/ai-brief-2026-10-20</p>
+        
+      </article>
+      <article class="card" id="2026-10-20-t1-3" data-rel="hi">
+        <button class="star-btn" data-key="2026-10-20-t1-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Sphinx — 一个免费开源的 Git hook，专治"AI 写的代码没看懂就提交"。开发者或智能体向受保护分支推送时，它会检查 diff 并生成一道题，考你改后的代码在边界或故障场景下会怎么表现（例如改过的 webhook 处理器遇到 API 超时会怎样），答对才允许推送。智能体几秒就能生成上千行代码，"橡皮图章式"验收正在成为新的质量风险，这类工具把"人真的看懂了"变成了命令行里的一道硬门槛。</h4>
+        <p>来源：https://www.aibreakingwire.com/news/ai-brief-2026-10-20</p>
+        
+      </article>
+    </div>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">人才与组织：三笔钱，买的是同一种能力</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-10-20-t2-0" data-rel="hi">
+        <button class="star-btn" data-key="2026-10-20-t2-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 苹果 — 在提交给欧盟委员会的文件中披露，已同意向个性化音频初创公司 Huxe AI 的部分员工发出雇佣邀约，并获得其知识产权的非独占授权。Huxe 的创始团队正是 NotebookLM 里"AI 生成播客"功能那批开发者，公司于 5 月 21 日宣布关停，6 月 9 日苹果即完成这笔交易报备。这种"反向人才收购"不买公司壳、只买人与授权，能规避反垄断审查。文件未点名哪些人收到邀约、是否接受，也未透露用途，但时间点很微妙：Huxe 关停公告就贴在 Spotify 推出自家 AI 播客功能的第二天。 <span class="music-badge">🎵</span></h4>
+        <p>来源：https://news.10jqka.com.cn/field/20261015/680734118.shtml ｜ https://qingyuntop.ai/article/apple-acquires-huxe-ai-podcast</p>
+        
+      </article>
+      <article class="card" id="2026-10-20-t2-1" data-rel="hi">
+        <button class="star-btn" data-key="2026-10-20-t2-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 微软 — 10 月 15 日宣布与卡内基梅隆大学合推 PRAISE（Preceptorship for AI-accelerated Software Engineering），借鉴护理行业的"临床带教"：职业早期的工程师（preceptee）与资深工程师（preceptor）结对，把 AI 加速开发用到日常真实工作上，同时修 CMU 计算机学院的在线课程（本学期为 Machine Learning in Production 与 AI 增强软件工程导论），学分可抵软件工程硕士。项目起因是 Azure CTO Russinovich 观察到 AI 工具帮到的是资深工程师、初级工程师没拿到同等收益。他的原话值得 HR 记住：AI 改变的是工作内容，但没有取消对初级工程师的需求，也没有取消人的判断与责任。CMU 教授 Michael Hilton 则点破了难点——过去初级工程师靠大量基础任务积累专业能力，这条路现在需要重新设计。</h4>
+        <p>来源：https://www.cs.cmu.edu/news/2026/microsoft-cmu-praise ｜ https://finance.sina.com.cn/tech/digi/2026-10-17/doc-inivnvkv8220738.shtml ｜ https://www.aibreakingwire.com/news/microsoft-and-cmu-launch-praise-program-for-early-career-engineers</p>
+        
+      </article>
+      <article class="card" id="2026-10-20-t2-2" data-rel="hi">
+        <button class="star-btn" data-key="2026-10-20-t2-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 美国银行 — CEO 莫尼罕在三季度财报后披露：为修补 Anthropic Mythos 等前沿模型暴露出的软件漏洞，银行今年二季度紧急增聘约 1000 名外包承包商，与原有的约 3000 名技术员工一起作业，这批人至今仍在岗；三季度相关软件修补与反洗钱合规支出合计"数亿美元以上"。他同时给出另一组数字：全行过去一年员工减少约 3400 人，其中裁掉约 5% 的管理岗；130 个内部 AI 项目的节省额预计从今年的 3 亿美元增至 2027 年的 7 亿美元。同一家公司，一边为 AI 造成的漏洞紧急加人，一边整体减员——这是目前公开披露里最具体的一份"AI 双面账单"。</h4>
+        <p>来源：https://www.cnbc.com/amp/2026/10/14/anthropic-mythos-bank-of-america-hiring-cost.html ｜ https://www.crowdfundinsider.com/2026/10/318977-bank-of-america-engages-contractors-to-address-software-weaknesses-identified-by-anthropics-mythos/ ｜ https://pivotnews.ai/security/bank-of-america-added-1-000-contractors-to-patch-ai</p>
+        
+      </article>
+      <article class="card" id="2026-10-20-t2-3" data-rel="hi">
+        <button class="star-btn" data-key="2026-10-20-t2-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 字节跳动 — Seed 实验室新近成立的模型安全与对齐部门，下一步计划扩大与外部独立评估者的合作。此前该部门已于 10 月 14 日启动全球招聘，计划招 10 名研究员，工作地在北京、上海与加州圣何塞，算力对标前沿模型团队。把"自己评自己"改成"请外部来评"，是这几起智能体越界事件之后最一致的动作：Anthropic 给 METR 六名研究员发了员工级访问，DeepMind 向 200 名欧洲科研人员开放前沿模型，字节走的是同一条路。</h4>
+        <p>来源：https://new.qq.com/rain/a/20261020A04IOX00 ｜ http://mp.weixin.qq.com/s?__biz=Mzg3NTUwOTM0Nw==&amp;mid=2247483716&amp;idx=1&amp;sn=b79bf15977adbd96cc09287d4b64edca</p>
+        
+      </article>
+    </div>
+  </section>
+    <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-5">05</span>
+      <h2 class="sec-title">招聘今日可行动</h2>
+    </div>
+    <blockquote class="thinking">
+      <p>同一天里，微软花钱给初级工程师配导师和大学课程，美银花钱请一千名外包补 AI 捅出来的漏洞，苹果花钱把一个做 AI 播客的小团队连人带技术搬回家。三笔钱花在不同科目上，买的却是同一种东西：能判断 AI 产出对不对、并在出事时签字负责的人。</p><p>如果明年校招简历里"会用 AI"已经人人都会写，我们是继续按岗位数招人、把判断力留给入职后的带教，还是现在就把选人标准改成"能说清哪些环节不该交给 AI"？</p><p>🔗 完整版：https://chloee926.github.io/ai-daily/2026-10-20.html</p>
+    </blockquote>
+  </section>
+
+
+  <div class="watermark">TME 招聘 HR 出品 &middot; ChloeCao</div>
+</div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
+</body>
+</html>
