@@ -293,6 +293,9 @@
     text-align: center; color: var(--watermark); font-size: 11px;
     padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
   }
+  .card p a { color: var(--link); text-decoration: none; }
+  .card p a:hover { text-decoration: underline; }
+  .card p, .card h4 { overflow-wrap: anywhere; word-break: break-word; }
 </style>
 </head>
 <body>
@@ -333,37 +336,37 @@
       <article class="card" id="2026-11-09-t0-0" data-rel="hi">
         <button class="star-btn" data-key="2026-11-09-t0-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 阿里 Co-Design Bench — 同一个模型换个运行环境，成绩能差 19 分。11 月 9 日多家媒体集中解读阿里与多所亚洲高校的论文（10 月 26 日挂 arXiv）：从 26,314 场真实编码会话里去重出 37,463 条请求，专挑用户反复改口、追问或回滚过的难例，交由 2,331 条隐藏验收标准打分，一个 AI 裁判在浏览器里实测成品、另一个专查硬编码与摆拍。十款模型里 GPT-6 Astra 平均满足 69.9% 要求、但只有 26.4% 的任务全部达标，仓库级多文件改动仅 17.9%；Qwen3.8-27B 换 harness 后从 0.560 跳到 0.749，作者因此要求「模型与运行环境一起报」。GLM-5.2 烧掉近 6 倍 token 反而更差。对招聘最实用的一句：选工具要连环境一起测，招人要连验收能力一起看。</h4>
-        <p>来源：https://mlq.ai/news/alibabas-co-design-bench-the-best-coding-agent-fully-completes-only-264-of-real-user-requests/ ｜ https://aiincontext.com/articles/ai-coding-agents-fully-complete-only-26-4-percent-of-real-world-tasks ｜ https://www.the-decoder.com/</p>
+        <p>来源：<a href="https://mlq.ai/news/alibabas-co-design-bench-the-best-coding-agent-fully-completes-only-264-of-real-user-requests/" target="_blank" rel="noopener">mlq.ai</a> ｜ <a href="https://aiincontext.com/articles/ai-coding-agents-fully-complete-only-26-4-percent-of-real-world-tasks" target="_blank" rel="noopener">aiincontext.com</a> ｜ <a href="https://www.the-decoder.com/" target="_blank" rel="noopener">www.the-decoder.com</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t0-1" data-rel="mid">
         <button class="star-btn" data-key="2026-11-09-t0-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Mistral Large 4 — 1T 权重真正上架 Hugging Face，但转售推理要另签商业许可。10 月 13 日已报该模型发布，11 月 8 日落地的是可下载性与许可条款：Le Chonk 为 1 万亿总参数、约 500 亿激活的原生多模态 MoE，100 万 token 上下文，权重以 modified MIT 放出，transformers／vLLM／llama.cpp／NVIDIA NIM／Microsoft Foundry 首日支持，API 每百万输入 0.70 美元、输出 2.10 美元；在 AA Coding Agent Index 与 GLM-5.3 打平而少用 47% token。关键在例外——经营 Model-as-a-Service 的企业必须另签商业协议。对照 11 月 8 日日报里 Thinking Machines 594B「承诺 Apache 2.0 但权重未放出」，同叫「开放权重」，一个今天能搬进机房，一个只能排期等待。</h4>
-        <p>来源：https://aitoolsrecap.com/Blog/mistral-large-4-le-chonk-open-weights-2026 ｜ https://aitoolsrecap.com/Comparisons/mistral-large-4-vs-inkling-2-small-2026</p>
+        <p>来源：<a href="https://aitoolsrecap.com/Blog/mistral-large-4-le-chonk-open-weights-2026" target="_blank" rel="noopener">aitoolsrecap.com</a> ｜ <a href="https://aitoolsrecap.com/Comparisons/mistral-large-4-vs-inkling-2-small-2026" target="_blank" rel="noopener">aitoolsrecap.com</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t0-2" data-rel="hi">
         <button class="star-btn" data-key="2026-11-09-t0-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 腾讯 Agent 矩阵 — 补上数据底座与交付方法论。10 月 31 日已报 Buddy One 应用层，11 月 9 日雷锋网与 AI 日报集中披露的是数据层与工程层：TDSQL Nexa Lakebase、DataBuddy 组成数据底座，ADP AgentPortal 做企业统一门户，两天 40+ 场发布覆盖应用、数据、安全、工程四块，另有 ADP FDE 交付方法论与标准化场景包；深圳广电的 MediaBuddy、面向 APEC 注册媒体的 WorkBuddy for APEC 已落地。汤道生的判断是企业落地 Agent 的最大障碍不是模型不够强、而是「断点太多」，腾讯云副总裁刘毅称约 90% 企业尚未规模化采用 Agent。对 TME 的读法：Agent 岗位正从「会用」拆成数据治理、交付实施、安全边界三类，FDE 这类交付角色开始有标准化方法论可招。</h4>
-        <p>来源：https://app.myzaker.com/news/article.php?f=normal&amp;pk=6af091638e9f09729c5f9acc ｜ https://ai225.com/ai-daily</p>
+        <p>来源：<a href="https://app.myzaker.com/news/article.php?f=normal&amp;pk=6af091638e9f09729c5f9acc" target="_blank" rel="noopener">app.myzaker.com</a> ｜ <a href="https://ai225.com/ai-daily" target="_blank" rel="noopener">ai225.com</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t0-3" data-rel="mid">
         <button class="star-btn" data-key="2026-11-09-t0-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Cloudflare Auto Router — 模型路由开始按风险与复杂度自动分单。11 月 9 日公开的公测把模型设为 cloudflare/auto 后，由边缘 GPU 上的多头分类器按 14 类任务分配概率，再从复杂性、歧义性、风险、上下文依赖四维打分，效用公式是「预期质量减去自适应成本惩罚」，任务越难价格权重越低；同期 Buoyant 开源 vLLM 缓存感知路由 Kinference（Apache 2.0），让负载均衡知道哪份副本握着缓存。InfoQ 提醒一次误判可能换来人工修一小时，省下的调用费未必划算。路由从运维细节变成产品能力，也把「谁为自动选错模型负责」写进了平台岗位。</h4>
-        <p>来源：https://devpress.csdn.net/aibjcy/6af11c6640858c2d881952bb.html ｜ https://aitoolsrecap.com/Blog/ai-news-november-09-2026</p>
+        <p>来源：<a href="https://devpress.csdn.net/aibjcy/6af11c6640858c2d881952bb.html" target="_blank" rel="noopener">devpress.csdn.net</a> ｜ <a href="https://aitoolsrecap.com/Blog/ai-news-november-09-2026" target="_blank" rel="noopener">aitoolsrecap.com</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t0-4" data-rel="mid">
         <button class="star-btn" data-key="2026-11-09-t0-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Meta Muse — 智能体长出脸和声音，并有了独立协作空间。11 月 8 日起 Meta 向美国用户开放 Muse 的实时语音与动态虚拟形象，支持类似视频通话的对话、用户自建形象、数百种声音、可随时打断，覆盖手机／网页／Mac；同步上线 Spaces，在侧边栏里围绕特定主题独立开会话、由 Muse 持续推进目标。网友反馈打断后偶有重复内容。加上苹果被曝的代理式 Siri，个人智能体正从「打字问答」转向「常驻在场」——对应的是对话设计、形象合规与用户信任岗位，而不只是模型调优。</h4>
-        <p>来源：https://ai225.com/ai-daily ｜ https://devpress.csdn.net/aibjcy/6af11c6640858c2d881952bb.html</p>
+        <p>来源：<a href="https://ai225.com/ai-daily" target="_blank" rel="noopener">ai225.com</a> ｜ <a href="https://devpress.csdn.net/aibjcy/6af11c6640858c2d881952bb.html" target="_blank" rel="noopener">devpress.csdn.net</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t0-5" data-rel="low">
         <button class="star-btn" data-key="2026-11-09-t0-5" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 苹果代理式 Siri — 彭博称内部施压要把 Siri 改造成能直接干活的智能体。11 月 8 日《Power On》透露，CEO 正要求软件负责人加码 AI，内部探讨把 Siri 做成对标 Dots、Muse、Grok 的「派活式」助手，可能随 iOS 28 落地、指向 2027 年；报道明确没有功能清单与时间表，苹果未官宣。同一份通讯还涉及 Siri 工程副总裁的人事变动（见议题三）。把「未官宣」和「已排期」分开写，是这轮 AI 产品报道里最该保留的判断习惯。</h4>
-        <p>来源：https://www.bloomberg.com/news/newsletters/2026-11-08/apple-explores-turning-siri-ai-into-chatgpt-dots-like-agent-ios-28-shake-up ｜ https://aitoolsrecap.com/Blog/ai-news-november-09-2026</p>
+        <p>来源：<a href="https://www.bloomberg.com/news/newsletters/2026-11-08/apple-explores-turning-siri-ai-into-chatgpt-dots-like-agent-ios-28-shake-up" target="_blank" rel="noopener">www.bloomberg.com</a> ｜ <a href="https://aitoolsrecap.com/Blog/ai-news-november-09-2026" target="_blank" rel="noopener">aitoolsrecap.com</a></p>
         
       </article>
     </div>
@@ -377,31 +380,31 @@
       <article class="card" id="2026-11-09-t1-0" data-rel="mid">
         <button class="star-btn" data-key="2026-11-09-t1-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — 出资方名单比总额更值得看。11 月 6 日《纽约时报》DealBook、11 月 9 日华西与华尔街见闻早餐集中复盘：累计投入约 650 亿美元的软银本轮仅商讨投入数亿美元，Coatue 也在数亿美元级别，阿联酋投资者联合体预计成为最大出资方；融资目标从 300 亿砍到约 200 亿、投前估值从最高 1.5 万亿降至 1.25 万亿，110 亿首笔已到账（11 月 8 日已报）。CFO Sarah Friar 称数据中心投资计划不变、仍推进 2027 年上市。钱没有退场，只是从「谁都能跟」变成「谁来领投」。</h4>
-        <p>来源：https://m.hx168.com.cn/article/aa9173a2d0e795f5a50352c2cafc5331.html ｜ https://www.sohu.com/a/1098940944_130887</p>
+        <p>来源：<a href="https://m.hx168.com.cn/article/aa9173a2d0e795f5a50352c2cafc5331.html" target="_blank" rel="noopener">m.hx168.com.cn</a> ｜ <a href="https://www.sohu.com/a/1098940944_130887" target="_blank" rel="noopener">www.sohu.com</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t1-1" data-rel="low">
         <button class="star-btn" data-key="2026-11-09-t1-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic — 估值再降一档，本周能否启动路演成了问号。11 月 9 日彭博与多家财经媒体：潜在买方讨论区间从 1.4 万亿至 1.5 万亿进一步下修到 1.2 万亿至 1.3 万亿，部分低至 1.1 万亿（11 月 8 日已报询价下修），部分投资者质疑 11 月 9 日当周能否按期启动路演，正等待 S-1 里留空的 10 月营收数据。新增的硬数字是招股书披露前九个月营收同比增长约 1200% 至 332 亿美元，原计划募资最高 1000 亿；汇丰策略师称约 1 万亿可能是更舒适的定价。估值可以谈，财务披露的节奏不能拖。</h4>
-        <p>来源：https://www.163.com/dy/article/LB9GQ18L05567I2C.html ｜ https://m.hx168.com.cn/article/aa9173a2d0e795f5a50352c2cafc5331.html</p>
+        <p>来源：<a href="https://www.163.com/dy/article/LB9GQ18L05567I2C.html" target="_blank" rel="noopener">www.163.com</a> ｜ <a href="https://m.hx168.com.cn/article/aa9173a2d0e795f5a50352c2cafc5331.html" target="_blank" rel="noopener">m.hx168.com.cn</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t1-2" data-rel="mid">
         <button class="star-btn" data-key="2026-11-09-t1-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 算力自建与撤退 — 同一天里两笔方向相反的决定。11 月 9 日《金融时报》报道 Anthropic 签下 34 亿美元协议自建天然气发电设施为数据中心供电，报道未披露选址、装机与投运时间；同期微软被曝加强对「新云」合作方的审查并退出部分数据中心项目（对 Nscale 承诺最高 438 亿美元、Nebius 194 亿美元，IREN 得州项目出现布线故障与交付延迟，涉 50-100MW A100 合同），Crusoe 把问题重重的怀俄明数据中心项目卖给 Google。资本退烧不等于算力停摆，只是从「租」改成「自己建、自己挑」——能源、电力与项目交付岗位被推到了 AI 基建的关键路径上。</h4>
-        <p>来源：https://www.ft.com/content/41bf5c6a-9735-4f1a-a8e3-2bcccad58ba0 ｜ https://www.sohu.com/a/1098940944_130887 ｜ https://www.university-365.com/post/ai-news-monday-9-november-2026-nvidia-board-investigation-nvidia-china-chip-sales-ai-stocks-r</p>
+        <p>来源：<a href="https://www.ft.com/content/41bf5c6a-9735-4f1a-a8e3-2bcccad58ba0" target="_blank" rel="noopener">www.ft.com</a> ｜ <a href="https://www.sohu.com/a/1098940944_130887" target="_blank" rel="noopener">www.sohu.com</a> ｜ <a href="https://www.university-365.com/post/ai-news-monday-9-november-2026-nvidia-board-investigation-nvidia-china-chip-sales-ai-stocks-r" target="_blank" rel="noopener">www.university-365.com</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t1-3" data-rel="low">
         <button class="star-btn" data-key="2026-11-09-t1-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 台积电 — 被曝考虑应英伟达需求进军 3D DRAM 先进内存。11 月 9 日多家日报披露，项目由先进封装业务负责人牵头，形式包含新建工厂或收购改造现有产线，核心驱动来自英伟达的算力需求；同日美股 AI 概念股反弹、纳指涨超 1%、芯片股指涨超 4%、AMD 涨超 10%，但全周纳指仍累跌 3.37%。瓶颈从「有多少卡」继续往「卡之间怎么连、内存怎么堆」移动，供应链与先进封装的工程岗位比模型岗位更紧俏。</h4>
-        <p>来源：https://devpress.csdn.net/aibjcy/6af11c6640858c2d881952bb.html ｜ https://www.sohu.com/a/1098940944_130887</p>
+        <p>来源：<a href="https://devpress.csdn.net/aibjcy/6af11c6640858c2d881952bb.html" target="_blank" rel="noopener">devpress.csdn.net</a> ｜ <a href="https://www.sohu.com/a/1098940944_130887" target="_blank" rel="noopener">www.sohu.com</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t1-4" data-rel="hi">
         <button class="star-btn" data-key="2026-11-09-t1-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Spotify AI 混音 — 定价一曝光，听众先炸了。该工具 10 月 22 日已报（与环球、Believe 做需两道同意的 AI 混音），本期是《金融时报》10 月 30 日披露目标 2027 年初上线、Premium 每月加收 4 至 5 美元后，11 月 6 日起社交平台集中反弹：2017 年至今的老用户扬言退订、讨论转向 Tidal／Qobuz／Apple Music 迁移，有人直言「Spotify 和 Apple Music 的差距太大了」。已签约方为 UMG、Merlin、Believe、Kobalt，但艺人仍须逐个选择是否参与；Spotify 数据显示纯 AI 生成音乐占总消费不足 1%。对 TME 参考价值最高的是这条：AI 改编的定价颗粒度、艺人逐个 opt-in 的授权流程、以及用户接受度风险，正在变成内容合规、版权与产品运营岗位的具体职责。 <span class="music-badge">🎵</span></h4>
-        <p>来源：https://bitcomme.com/spotifys-ai-remix-tool-draws-backlash-from-listeners ｜ https://www.ai.jp.net/article/spotify-s-ai-remix-tool-could-let-you-reinvent-your-favorite-songs-6a48ba?lang=sc</p>
+        <p>来源：<a href="https://bitcomme.com/spotifys-ai-remix-tool-draws-backlash-from-listeners" target="_blank" rel="noopener">bitcomme.com</a> ｜ <a href="https://www.ai.jp.net/article/spotify-s-ai-remix-tool-could-let-you-reinvent-your-favorite-songs-6a48ba?lang=sc" target="_blank" rel="noopener">www.ai.jp.net</a></p>
         
       </article>
     </div>
@@ -415,31 +418,31 @@
       <article class="card" id="2026-11-09-t2-0" data-rel="hi">
         <button class="star-btn" data-key="2026-11-09-t2-0" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 高盛 — 把能执行代码的智能体收回给能复核它的人。11 月 9 日多家媒体集中复盘 10 月更新的内部指引（彭博 11 月 2 日首报）：Claude Code 与 GitHub 仅开放给约 1.2 万名工程师，全行约 4.7 万人中的交易员与银行家不再能用，此前他们用这些工具跟踪客户资金流、搭市场模型、写文案做图；工程＋量化＋交易复合的 strats 保留权限，内部对话式助手仍普遍可用。这逆转了 7 月 CIO Marco Argenti 对非技术岗「氛围编程」的公开支持，理由只写「生产力与风险管理」，未披露具体事故；高盛同时是 Anthropic IPO 主承销商之一。需标清边界：单一信源，未获高盛或 Anthropic 证实。对招聘最实用：这是把「谁能授权、谁复核、谁担责」写进岗位权限表的第一个大行样本。</h4>
-        <p>来源：https://www.developersdigest.tech/blog/goldman-sachs-claude-code-engineers-only-2026 ｜ https://ainewstodays.com/goldman-sachs-restricts-claude-code-to-engineers ｜ https://aidaily.fyi/en/t/microsoft</p>
+        <p>来源：<a href="https://www.developersdigest.tech/blog/goldman-sachs-claude-code-engineers-only-2026" target="_blank" rel="noopener">www.developersdigest.tech</a> ｜ <a href="https://ainewstodays.com/goldman-sachs-restricts-claude-code-to-engineers" target="_blank" rel="noopener">ainewstodays.com</a> ｜ <a href="https://aidaily.fyi/en/t/microsoft" target="_blank" rel="noopener">aidaily.fyi</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t2-1" data-rel="mid">
         <button class="star-btn" data-key="2026-11-09-t2-1" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 微软研究院 AI Frontiers — 负责人宣布小组结束并同期离职。11 月 8 至 9 日 John Langford 在博客与 Hacker News 讨论中确认：这个 2023 年 ChatGPT 发布后组建、约 50 人的前沿研究组已经结束，他本人也离开微软。小组做过 Autogen 编排框架与 Fara computer-use 智能体，另有 Next Latent、Dion3、Full Bandwidth Transformer 等方向；Langford 当初的判断是研究要更组织化才跑得过基线，解散原因未说明。一个由资深研究员亲手组建又亲手关掉的团队，是这轮竞赛里研究组织形态摇摆最具体的样本——前沿团队该按项目组、按能力线还是按产品线编，HR 得跟着业务节奏重画组织图。</h4>
-        <p>来源：https://hunch.net/?p=13764006 ｜ https://aidaily.fyi/en/t/microsoft</p>
+        <p>来源：<a href="https://hunch.net/?p=13764006" target="_blank" rel="noopener">hunch.net</a> ｜ <a href="https://aidaily.fyi/en/t/microsoft" target="_blank" rel="noopener">aidaily.fyi</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t2-2" data-rel="mid">
         <button class="star-btn" data-key="2026-11-09-t2-2" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 苹果 Siri 团队 — 新版 Siri 跳票两年后，工程负责人位置开始松动。11 月 8 日彭博《Power On》：曾主导 Vision Pro、现负责新版 Siri AI 的工程副总裁 Mike Rockwell 仍在认真考虑明年卸任甚至离开苹果；若成行，更多工作将交给去年从谷歌加入、负责加强 AI 业务的 Amar Subramanya，以及费德里吉的副手 Sebastian Marineau。古尔曼称费德里吉执掌软件工程十余年、并未建立明确继任安排。把「代理式 Siri 的产品压力」和「关键岗位无继任者」放一起看，是 AI 项目里最典型的组织风险：方向变了，汇报线和接班人没跟着变。</h4>
-        <p>来源：https://news.qq.com/rain/a/20261108A0CN4O00</p>
+        <p>来源：<a href="https://news.qq.com/rain/a/20261108A0CN4O00" target="_blank" rel="noopener">news.qq.com</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t2-3" data-rel="hi">
         <button class="star-btn" data-key="2026-11-09-t2-3" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 岗位能力侧 — 入门级岗位没消失，职责先换了。11 月 9 日一份跨市场汇总给出几条可对照的样本：财富管理平台 Range 让没有编码技能的规划师在 6 个月内搭出 24 个 AI 智能体；韩国中小企业联合会计划把入门级招聘提高 30%、明确寻找「AI 时代的实操型人才」；BMO 引入智能体做信用卡支持的案头准备，但报道未说明人工审批与监督如何安排；瑞士新闻编辑室的观察是 AI 采用跑在前面、生产力增益仍未被证实。共同点是活先被重新分配了，岗位名称和验收口径还没跟上——这正是 HR 该介入的空档。</h4>
-        <p>来源：https://pharma.intelligence-synthesis.com/en/ai-cocreation/news/2026-11-09.html</p>
+        <p>来源：<a href="https://pharma.intelligence-synthesis.com/en/ai-cocreation/news/2026-11-09.html" target="_blank" rel="noopener">pharma.intelligence-synthesis.com</a></p>
         
       </article>
       <article class="card" id="2026-11-09-t2-4" data-rel="hi">
         <button class="star-btn" data-key="2026-11-09-t2-4" aria-label="关注这条">☆</button>
         <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 艺人授权 — 音乐圈对 AI 的态度一周内公开分成两派，岗位跟着冒出来。11 月 6 日 Dr. Dre 在 Ice Cube 的播客里说只有「不够有创造力的人」才会对 AI 生气，并构想艺人靠 AI 版形象与声音收费、且有权审批用途；11 月 5 日 Machine Gun Kelly 回应粉丝「谁把 AI 带到我旁边就炒谁」；Ivors Academy CEO 称生成式 AI 是「重大问题」、未经许可使用创作者作品不可接受，Ivors Composer Awards 11 月 17 日回归。加上 11 月 8 日猫王版权方与 Eminem 出版商起诉 Suno，「谁有权让 AI 用我的声音、按什么价、谁审批」正在变成可招聘的具体职责——对音频业务，这比模型能力更早落到组织图上。 <span class="music-badge">🎵</span></h4>
-        <p>来源：https://www.aimusicpreneur.com/ai-music-news/can-ai-replace-great-big-sea-bob-hallett-suno-ai-music/</p>
+        <p>来源：<a href="https://www.aimusicpreneur.com/ai-music-news/can-ai-replace-great-big-sea-bob-hallett-suno-ai-music/" target="_blank" rel="noopener">www.aimusicpreneur.com</a></p>
         
       </article>
     </div>
