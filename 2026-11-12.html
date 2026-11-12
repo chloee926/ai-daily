@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日AI简报 | 2026-11-12</title>
+<style>
+  :root {
+    /* ===== Light: 杂志纸白 ===== */
+    --bg: #f3efe6;
+    --paper: #fbf9f3;
+    --ink: #1b1813;
+    --ink-soft: #5b554b;
+    --ink-dim: #8a8275;
+    --rule: #1b1813;
+    --rule-soft: rgba(27,24,19,0.14);
+    --accent: #9e2b25;          /* 刊红 */
+    --c1: #9e2b25;              /* 01 新名词 红 */
+    --c2: #1f5c4d;              /* 02 议题一 墨绿 */
+    --c3: #2b4f8a;              /* 03 议题二 蓝 */
+    --c4: #b06a1e;              /* 04 思考 橙 */
+    --card-bg: #fbf9f3;
+    --card-border: rgba(27,24,19,0.16);
+    --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3;
+    --term-bg: rgba(158,43,37,0.05);
+    --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06);
+    --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3;
+    --nav-border: #1b1813;
+    --nav-text: #1b1813;
+    --link: #2b4f8a;
+    --watermark: #b3ab9c;
+    --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+    --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* ===== Dark: 暖炭黑 ===== */
+      --bg: #16130e;
+      --paper: #1e1a14;
+      --ink: #ece5d8;
+      --ink-soft: #b3a994;
+      --ink-dim: #7d7461;
+      --rule: #ece5d8;
+      --rule-soft: rgba(236,229,216,0.14);
+      --accent: #e08a7a;
+      --c1: #e08a7a;
+      --c2: #6fae9a;
+      --c3: #8aa9d6;
+      --c4: #d9a35e;
+      --card-bg: #1e1a14;
+      --card-border: rgba(236,229,216,0.18);
+      --card-hover: rgba(236,229,216,0.06);
+      --lead-bg: #1e1a14;
+      --term-bg: rgba(224,138,122,0.08);
+      --term-border: rgba(224,138,122,0.34);
+      --think-bg: rgba(217,163,94,0.08);
+      --think-border: rgba(217,163,94,0.34);
+      --nav-bg: #1e1a14;
+      --nav-border: #ece5d8;
+      --nav-text: #ece5d8;
+      --link: #8aa9d6;
+      --watermark: #5d564a;
+    }
+  }
+  [data-theme="light"] {
+    --bg: #f3efe6; --paper: #fbf9f3; --ink: #1b1813; --ink-soft: #5b554b; --ink-dim: #8a8275;
+    --rule: #1b1813; --rule-soft: rgba(27,24,19,0.14); --accent: #9e2b25;
+    --c1: #9e2b25; --c2: #1f5c4d; --c3: #2b4f8a; --c4: #b06a1e;
+    --card-bg: #fbf9f3; --card-border: rgba(27,24,19,0.16); --card-hover: rgba(27,24,19,0.05);
+    --lead-bg: #fbf9f3; --term-bg: rgba(158,43,37,0.05); --term-border: rgba(158,43,37,0.32);
+    --think-bg: rgba(176,106,30,0.06); --think-border: rgba(176,106,30,0.38);
+    --nav-bg: #fbf9f3; --nav-border: #1b1813; --nav-text: #1b1813; --link: #2b4f8a; --watermark: #b3ab9c;
+  }
+  [data-theme="dark"] {
+    --bg: #16130e; --paper: #1e1a14; --ink: #ece5d8; --ink-soft: #b3a994; --ink-dim: #7d7461;
+    --rule: #ece5d8; --rule-soft: rgba(236,229,216,0.14); --accent: #e08a7a;
+    --c1: #e08a7a; --c2: #6fae9a; --c3: #8aa9d6; --c4: #d9a35e;
+    --card-bg: #1e1a14; --card-border: rgba(236,229,216,0.18); --card-hover: rgba(236,229,216,0.06);
+    --lead-bg: #1e1a14; --term-bg: rgba(224,138,122,0.08); --term-border: rgba(224,138,122,0.34);
+    --think-bg: rgba(217,163,94,0.08); --think-border: rgba(217,163,94,0.34);
+    --nav-bg: #1e1a14; --nav-border: #ece5d8; --nav-text: #ece5d8; --link: #8aa9d6; --watermark: #5d564a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
+  }
+  .theme-toggle {
+    position: fixed; top: 14px; right: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 11px; border-radius: 4px; font-size: 15px; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; line-height: 1;
+  }
+  .theme-toggle:hover { background: var(--card-hover); }
+  .back-nav {
+    position: fixed; top: 14px; left: 14px; z-index: 1000;
+    background: var(--nav-bg); border: 1px solid var(--nav-border); color: var(--nav-text);
+    padding: 5px 12px; border-radius: 4px; font-size: 12px; text-decoration: none;
+    font-family: var(--sans); letter-spacing: 2px; transition: all 0.2s;
+  }
+  .back-nav:hover { background: var(--card-hover); }
+  @media (max-width: 640px) {
+    .back-nav { position: static; display: inline-block; margin: 16px 0 0 20px; }
+    .theme-toggle { top: auto; bottom: 18px; right: 14px; }
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px 50px; }
+
+  /* ===== Masthead 报头 ===== */
+  .masthead {
+    text-align: center;
+    padding: 46px 0 18px;
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 6px;
+  }
+  .masthead .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 5px;
+    color: var(--ink-dim); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 34px;
+    color: var(--ink); letter-spacing: 3px; line-height: 1.15;
+  }
+  .masthead .meta {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+  .masthead .meta b { color: var(--accent); font-weight: 700; }
+
+  /* ===== 导读 lead ===== */
+  .lead {
+    font-family: var(--serif);
+    background: var(--lead-bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    border-left: 3px solid var(--rule);
+    padding: 18px 22px; margin: 22px 0 30px;
+    font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+
+  /* ===== 栏目 ===== */
+  .section { margin-bottom: 34px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    line-height: 1; color: var(--c2);
+  }
+  .sec-num-1 { color: var(--c1); }
+  .sec-num-2 { color: var(--c2); }
+  .sec-num-3 { color: var(--c3); }
+  .sec-num-4 { color: var(--c4); }
+  .sec-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  /* ===== 新名词词条 ===== */
+  .new-term {
+    background: var(--term-bg); border: 1px solid var(--term-border);
+    border-radius: 2px; padding: 16px 20px;
+  }
+  .new-term h3 {
+    font-family: var(--serif); font-size: 18px; color: var(--c1); margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .new-term p { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+  .term-item { padding: 10px 0; border-bottom: 1px solid var(--term-border); }
+  .term-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .term-item:first-child { padding-top: 0; }
+  .term-item h4 {
+    font-family: var(--serif); font-size: 16px; color: var(--c1); margin-bottom: 5px; font-weight: 700;
+  }
+  .term-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+
+  /* ===== 双栏卡片网格 ===== */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-top: 2px solid var(--c2); border-radius: 2px;
+    padding: 14px 16px; transition: background 0.2s;
+  }
+  .card:hover { background: var(--card-hover); }
+  .card h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px; line-height: 1.5;
+  }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .card .source { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
+  .card .source a { color: var(--link); text-decoration: none; }
+  .card .source a:hover { text-decoration: underline; }
+
+  /* ===== 思考引用块 ===== */
+  .thinking {
+    background: var(--think-bg); border-left: 3px solid var(--c4);
+    border-radius: 2px; padding: 16px 20px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.95;
+  }
+  .thinking p { font-style: italic; }
+
+  .music-note {
+    font-family: var(--sans); font-size: 13px;
+    background: rgba(176,106,30,0.08); border-left: 3px solid var(--c4);
+    padding: 10px 16px; margin: 20px 0 0; color: var(--ink); line-height: 1.7;
+  }
+  .music-note b { color: var(--c4); }
+  .music-note-empty { opacity: 0.65; }
+  .music-badge { font-size: 12px; }
+  .byline-tag { font-size: 11px; color: var(--c4); border: 1px solid var(--rule-soft); padding: 0 5px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .rel { font-size: 11px; margin-right: 2px; }
+
+  /* ===== 交互巧思 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 2000; transition: width .08s linear;
+  }
+  .card, .new-term, .term-item { position: relative; }
+  .card h4, .new-term h3, .term-item h4 { padding-right: 24px; }
+  .star-btn {
+    position: absolute; top: 7px; right: 7px; z-index: 3;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 16px; line-height: 1; color: var(--ink-dim);
+    padding: 2px 4px; transition: transform .15s, color .15s;
+  }
+  .star-btn:hover { color: var(--accent); transform: scale(1.18); }
+  .star-btn.on { color: var(--accent); }
+  .star-btn.pop { animation: starPop .35s ease; }
+  @keyframes starPop {
+    0% { transform: scale(1); } 40% { transform: scale(1.55); } 100% { transform: scale(1); }
+  }
+  .back-nav .star-count {
+    display: inline-block; min-width: 16px; margin-left: 4px; padding: 0 5px;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 10px; line-height: 16px; text-align: center; vertical-align: middle;
+  }
+  .back-nav::before {
+    content: '‹'; margin-right: 4px; display: inline-block; transition: transform .2s;
+  }
+  .back-nav:hover::before { transform: translateX(-3px); }
+  .theme-toggle { transition: background .2s, transform .45s ease; }
+  .theme-toggle:active { transform: scale(0.88); }
+  .filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .filter-label { font-size: 11px; color: var(--ink-dim); letter-spacing: 1px; margin-right: 2px; }
+  .filter-chip {
+    font-family: var(--sans); font-size: 12px; cursor: pointer; user-select: none;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--ink-soft);
+    padding: 4px 12px; border-radius: 999px; transition: all .18s;
+  }
+  .filter-chip:hover { background: var(--card-hover); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .card.dim { opacity: 0.26; pointer-events: none; filter: grayscale(0.7); }
+  @keyframes musicPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .music-note:not(.music-note-empty) b { animation: musicPulse 2.6s ease-in-out infinite; }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 10px 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav a {
+    color: var(--ink-soft); text-decoration: none; font-family: var(--sans);
+    font-size: 13px; padding: 4px 13px; border-radius: 999px; transition: all .18s;
+  }
+  .topnav a:hover { background: var(--rule-soft); color: var(--ink); }
+  .topnav a.active { background: var(--accent); color: #fff; }
+  .nav-star {
+    display: inline-block; min-width: 16px; text-align: center;
+    background: var(--accent); color: #fff; border-radius: 999px;
+    font-size: 11px; padding: 0 5px; margin-left: 2px;
+  }
+  .back-nav { position: fixed; top: 52px; left: 14px; z-index: 60;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; text-decoration: none;
+    font-family: var(--sans); transition: all .2s; }
+  .back-nav:hover { background: var(--rule-soft); transform: translateX(-3px); }
+
+  .watermark {
+    text-align: center; color: var(--watermark); font-size: 11px;
+    padding: 30px 0 8px; letter-spacing: 2px; font-family: var(--sans);
+  }
+  .card p a { color: var(--link); text-decoration: none; }
+  .card p a:hover { text-decoration: underline; }
+  .card p, .card h4 { overflow-wrap: anywhere; word-break: break-word; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<a href="https://chloee926.github.io/ai-daily/index.html" class="back-nav">‹ 目录</a>
+<nav class="topnav">
+  <a href="index.html">目录</a>
+  <a href="favorites.html">我的关注 <span class="nav-star" id="starCount">0</span></a>
+  <a href="lexicon.html">词典</a>
+  <a href="board.html">看板</a>
+  <a href="papers.html">论文</a>
+</nav>
+<button class="theme-toggle" onclick="toggleTheme()" title="切换深色 / 浅色" aria-label="切换主题">🌙</button>
+<div class="container">
+  <header class="masthead">
+    <div class="kicker">AI 行业事件 &middot; 人才动态 &middot; TME 招聘</div>
+    <h1>AI 行业与人才日报</h1>
+    <div class="meta">2026-11-12 &middot; 星期四 &middot; <b>第 145 期</b></div>
+  </header>
+    <div class="lead">今天最值得记的不是又一个模型发布，而是模型交出来的东西变了。谷歌 Gemini Decision 1 不再生成一段话，直接给预先列好的选项打分；Anthropic 把 Claude 塞进电子表格、白板和数据看板，阿里 Qwen4-Max 只先开预览，腾讯元宝搜索把公众号内容接进 AI 总结。判断被产品化成接口、工作台被 AI 接管，钱这一侧 Anthropic 路演首日机构订单就覆盖全部 8.25 亿股、OpenAI 单季营收破 100 亿美元却只有 33% 毛利率，人这一侧字节 AI 芯片负责人与达摩院 Rynn 负责人同日被曝流出。对招聘最实际的一句：当「做判断」变成可调用的 API，岗位说明书里哪些判断由机器打分、哪些必须留人签字，得先写清楚。</div>
+    <section class="section sec-nw">
+    <div class="sec-head">
+      <span class="sec-num sec-num-1">01</span>
+      <h2 class="sec-title">AI 新名词</h2>
+    </div>
+    <div class="new-term">
+      <div class="term-item" id="2026-11-12-nw-0"><button class="star-btn" data-key="2026-11-12-nw-0" aria-label="关注这条">☆</button><h4>判断接口（Decisions API）</h4><p>不给答案，给每个选项的概率。11 月 11 日谷歌上线 Gemini Decision 1，把判断做成可调用接口。调用方预先列好选项，模型一次前向计算返回各选项概率与置信度，输入每百万 Token 0.10 美元、输出不收费，一次最多可问 1000 个独立问题，入口在 AI Studio、OpenRouter 与 Vercel AI Gateway。官方给的例子是一张茶水间台面照片：同一次请求同时判断有没有未擦的液体、该采取哪种清理动作、脏乱程度属于哪一级，三个问题彼此隔离。对 HR 的读法：能被写死选项的判断，迟早会被做成接口，剩下的活是定义选项与复核分数。</p></div>
+      <div class="term-item" id="2026-11-12-nw-1"><button class="star-btn" data-key="2026-11-12-nw-1" aria-label="关注这条">☆</button><h4>Token 消费化</h4><p>算力从后台账走进直播间购物车。今年双 11，李佳琦、罗永浩直播间开卖词元套餐，千问办公月卡从 28 元降到 1 分钱、半小时售出近 10 万份。京东称双 11 售出超 5000 万件 AI 产品；与此同时低价「Token 中转站」背后的数据安全与发票口径仍存疑，AI 算力第一次以消费品形态进入大众账单。对 TME 最实用的一句：当员工自己就能买 Token，工具准入、费用报销与数据外发这三张表要一起重写，不能只发一个「可用 AI 清单」。</p></div>
+    </div>
+  </section>
+    <div class="filter-bar"><span class="filter-label">招聘关联度</span><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="hi">🔴 高</button><button class="filter-chip" data-filter="mid">🟡 中</button><button class="filter-chip" data-filter="low">⚪ 低</button></div>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-2">02</span>
+      <h2 class="sec-title">答案退场：判断、工作台和入口一起被重做</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-11-12-t0-0" data-rel="mid">
+        <button class="star-btn" data-key="2026-11-12-t0-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 谷歌 Gemini Decision 1 — 模型开始给概率，不再给一段生成文本。11 月 11 日谷歌上线 Decisions API 与配套决策模型 Gemini Decision 1：调用方把选项预先写好，模型在一次前向计算里对同一份材料返回各选项的概率、置信度与胜出项，输入可混合文字、图片、音频、视频和 PDF，共享材料与全部问题合计最多 262,144 Token，一次最多 1000 个独立问题，问题之间彼此隔离；官方端到端中位延迟 150 至 250 毫秒，测速上下文不超过 16K Token、每请求 1 至 100 个问题时延迟基本不变。定价按输入每百万 Token 0.10 美元、输出不收费，入口在 AI Studio、OpenRouter 与 Vercel AI Gateway，Google Cloud 支持仍待推出。官方明确提示置信度不等于结果正确。配套还有 AlphaGenome 2：预测 DNA 变异对特定细胞类型与状态的影响，TenK10K 免疫细胞数据集上因果变异识别率从 16% 升到 30%，非商业研究 API 已开放、商业为私密预览，且未获临床诊断验证。对招聘的读法：可枚举、可打分的判断正在被产品化，「定义什么算合格」比「自己做出判断」更值钱。</h4>
+        <p>来源：<a href="https://fav0.com/en/2026-11-12" target="_blank" rel="noopener">fav0.com</a> ｜ <a href="https://www.toutiao.com/a7707078662306153003" target="_blank" rel="noopener">www.toutiao.com</a> ｜ <a href="https://www.appliedai.media/" target="_blank" rel="noopener">www.appliedai.media</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t0-1" data-rel="mid">
+        <button class="star-btn" data-key="2026-11-12-t0-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 阿里 Qwen4-Max — 预览先上门，全系列仍未发。11 月 11 日阿里宣布新一代千问大模型 Qwen4 即将发布，Qwen4-Max 预览版已首发上线阿里 Token Plan，限时最低 1 折，千问办公、Qoder、千问 App、QwenStudio 同步接入；模型融合文本生成、图像与视频理解、深度思考，支持联网搜索、工具调用与结构化输出，重点面向编程、办公与复杂智能体任务，官方文档写明预览期至 11 月 25 日、暂不支持按量计费。需要说清的是：Qwen4 全系列仍处预告阶段，9 月日报里只记到「训练中」，今天第一次是能实际摸到预览，不能把预览开放读成全系列发布。同日阿里另开 Qwen Code 1.0 Preview，把 Qoder 与 Qwen Code 的编码 Agent 能力并进同一开源内核，支持会话恢复与非交互执行、原生包不再需要单独装 Node.js。对做招聘的人，这条的价值在节奏：模型按「先预览、再全量」分段放，岗位与技能盘点也该按版本批次更新，别等正式发布才动。</h4>
+        <p>来源：<a href="https://www.163.com/dy/article/LBHC276V051481US.html" target="_blank" rel="noopener">www.163.com</a> ｜ <a href="https://www.toutiao.com/a7707078662306153003" target="_blank" rel="noopener">www.toutiao.com</a> ｜ <a href="https://news.qq.com/rain/a/20261112A03TBB00" target="_blank" rel="noopener">news.qq.com</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t0-2" data-rel="hi">
+        <button class="star-btn" data-key="2026-11-12-t0-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> Anthropic Claude 办公三件套 — AI 从聊天框搬进工作表。11 月 10 日推出、11 月 11 至 12 日细节与市场反应集中披露：Claude Sheets 可与同事及 Claude 共同建表、整理数据、创建编辑公式并跨多表协作，每次 AI 修改都会标注、可导出 xlsx 与 CSV；Claude Whiteboards 把一句模糊计划整理成带时间线、负责人和日期的共享白板，会议复盘时按主题归类并起草每人行动项；Claude Data（原 Dashboards）可接 Snowflake、Salesforce、BigQuery 等生成看板、数据故事或解说视频，新增「认证查询」由数据团队统一关键指标口径、实时分享只允许运行被授权的查询。三项面向所有付费计划，Sheets 与 Whiteboards 为测试、Data 已正式上线，另预告 Claude Meetings。Anthropic 产品负责人 Nicholas Lin 承认 Sheets 体验仍「相当基础」、不以财务建模为目标。市场反应直接：微软股价当日盘中跌超 3.5%、收跌 2.2%，另有报道称微软已告知英国区 Microsoft 365 Copilot 租户 12 月 9 日起默认启用 Claude。对 HR 最该抄的是「认证查询」：口径统一加权限控制，正是 HR 数据看板最常漏掉的两件事。</h4>
+        <p>来源：<a href="https://www.163.com/dy/article/LBEICV560550B1DU.html" target="_blank" rel="noopener">www.163.com</a> ｜ <a href="https://www.163.com/dy/article/LBEI115M0511D2LM.html" target="_blank" rel="noopener">www.163.com</a> ｜ <a href="https://finance.sina.com.cn/stock/usstock/c/2026-11-11/doc-iniykehe9131124.shtml" target="_blank" rel="noopener">finance.sina.com.cn</a> ｜ <a href="https://www.tmtpost.com/8201799.html" target="_blank" rel="noopener">www.tmtpost.com</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t0-3" data-rel="hi">
+        <button class="star-btn" data-key="2026-11-12-t0-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 腾讯元宝搜索 — 公众号、视频号内容进 AI 总结，国内入口同日多处松动。11 月 11 日腾讯上线元宝搜索，普通用户可通过独立网站与新版 QQ 浏览器使用，支持公众号、视频号等内容的 AI 总结、追问与溯源。同日百度推出 ERNIE 5.5 Flash Preview、千帆 API 已上线，1M Token 上下文，权重计划 11 月 25 日前发布；DeepL 发布语音翻译模型 Aure，已用于 DeepL Voice 与语音 API，首发 8 种语言、暂不支持中文；谷歌开始向 Apple CarPlay 全球推送 Gemini，ChatGPT 桌面应用加入面向美国用户的 Finances 支出分析。把这几条放一起看：AI 入口正在从「一个聊天框」拆成搜索、浏览器、车载、桌面这些具体场所，谁握着内容与分发入口，谁就握着下一轮商业化位置。对 TME 的参考价值很直接——内容可被 AI 总结与追问之后，标注、溯源与授权就是内容合规岗要提前画好的线。</h4>
+        <p>来源：<a href="https://www.toutiao.com/a7707078662306153003" target="_blank" rel="noopener">www.toutiao.com</a> ｜ <a href="https://fav0.com/en/2026-11-12" target="_blank" rel="noopener">fav0.com</a> ｜ <a href="https://news.qq.com/rain/a/20261112A03TBB00" target="_blank" rel="noopener">news.qq.com</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t0-4" data-rel="low">
+        <button class="star-btn" data-key="2026-11-12-t0-4" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> 开源与工具集中放行 — 权重、编码 Agent 和托管渠道同日上新。Runway 开放机器人模型 Praxis-1 权重（27B、视频预训练、同时预测画面帧与机器人动作，权重／推理／微调代码均为 Apache 2.0，官方在 RoboLab-120 的 1200 个 episode 上报 46.2% 成功率、仅针对该基准）；aiXcoder 开源 4B 上下文压缩模型 aiXcompact-4B，单张 A100-40GB 可私有部署、面向编程 Agent 的历史上下文压缩；AWS Emulator 正式可用，CLI、SDK 与编码 Agent 可通过本地 HTTPS 端点测试 AWS API 交互，但不真实评估 IAM 权限、不能用于安全验证；JetBrains 随 IDE 2026.3 推出 Air，整合并行 Agent 会话、Git worktree 与代码审查。渠道侧腾讯确认混元 Hy4 上线 OpenRouter 与 Atlas Cloud API，MiniMax 称 H3 权重开源约 100 天已有 1472 个衍生模型、Hugging Face 下载超 1.48 亿次。对招聘的读法：模型能力越来越不是壁垒，「能不能私有部署、能不能审计、能不能复现」正在变成岗位要求里的硬条件。</h4>
+        <p>来源：<a href="https://fav0.com/en/2026-11-12" target="_blank" rel="noopener">fav0.com</a> ｜ <a href="https://www.toutiao.com/a7707078662306153003" target="_blank" rel="noopener">www.toutiao.com</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t0-5" data-rel="hi">
+        <button class="star-btn" data-key="2026-11-12-t0-5" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 语音侧同时降价与扩容 — 每分钟 8 美分，全双工和企业语音 Agent 同日到位。11 月 12 日 xAI 与 SpaceX 上线 Grok Voice 3.0 语音转语音 API，端到端低延迟、省去「语音转文字再转语音」的中间损耗，统一定价每分钟 0.08 美元、面向外部开发者与企业客户，这个价格已接近传统人工客服话务成本，智能硬件、车载语音与出海呼叫中心可以直接算账。同日 ElevenLabs 与英伟达宣布把 Nemotron 模型接入 ElevenAgents，企业与政府客户可用来构建定制语音 Agent；vLLM 提到 Fish Audio Live 3 支持全双工语音、可边说边听，团队表达了未来支持开源版本的意向。对 TME 最值得留意的是成本与授权两条线：实时语音从「能力演示」变成「按分钟采购」，音色与语音人格的授权、标注、可关停开关，就得跟着写进内容合规与供应商合同。 <span class="music-badge">🎵</span></h4>
+        <p>来源：<a href="https://www.163.com/dy/article/LBH538KN0556I485.html" target="_blank" rel="noopener">www.163.com</a> ｜ <a href="https://fav0.com/en/2026-11-12" target="_blank" rel="noopener">fav0.com</a> ｜ <a href="https://www.toutiao.com/a7707078662306153003" target="_blank" rel="noopener">www.toutiao.com</a></p>
+        
+      </article>
+    </div>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-3">03</span>
+      <h2 class="sec-title">钱在换账本：路演爆满，账单第一次被摊开</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-11-12-t1-0" data-rel="low">
+        <button class="star-btn" data-key="2026-11-12-t1-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-low" title="招聘关联度：low">⚪</span> Anthropic — 路演首日订单覆盖全部 8.25 亿股，估值或被上调。11 月 12 日多家媒体报道，11 月 10 日启动的 IPO 路演首日机构订单已覆盖全部 8.25 亿股，承销商正考虑把发行估值上调至至少 1.5 万亿美元，最终定价预计 11 月 18 日锁定、11 月 19 日以 ANT 登陆纳斯达克（发行价 70 至 78 美元、公开发行最高约 644 亿美元、合计融资最高约 904 亿美元，招股书条款 11 月 11 日日报已报，此处只记增量）。更硬的增量在采购承诺：过去一个月与微软、谷歌新增约 114 亿美元云服务采购，使两家累计支出承诺分别升至 492 亿与 1216 亿美元；同时披露与小型云商 Lambda 签订的 349 亿美元租赁协议存在被取消风险，因后者未按期建成数据中心。七位联合创始人本次合计套现约 17.5 亿至 18 亿美元、各约占其持股 1.5%。对 HR 的读法：连路演爆满的公司都在文件里写「算力合同可能取消」，编制规划里的算力与预算假设同样要留回落区间。</h4>
+        <p>来源：<a href="https://t.qianzhan.com/caijing/detail/261112-ec9b81a7.html" target="_blank" rel="noopener">t.qianzhan.com</a> ｜ <a href="https://www.tmtpost.com/8201799.html" target="_blank" rel="noopener">www.tmtpost.com</a> ｜ <a href="http://mp.weixin.qq.com/s?__biz=MzcwMDQ3NjMxMA==&amp;mid=2247483716&amp;idx=1&amp;sn=aeae972470d0318dc1395c137c2e1f9c" target="_blank" rel="noopener">mp.weixin.qq.com</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t1-1" data-rel="mid">
+        <button class="star-btn" data-key="2026-11-12-t1-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> OpenAI — Q3 营收首破 100 亿美元，毛利率只有 33%。11 月 12 日披露的季度数据：第三季度营收首次突破约 100 亿美元，环比增长近 50%（Q2 约 67 亿）、同比约 2.6 至 3 倍，年化收入运行率约 500 亿美元；企业业务收入环比翻倍，消费者与企业收入比首次到 50/50，单季净亏损约 109 亿美元。钛媒体给出的成本侧更值得看：毛利率仅 33%，远低于典型企业级 SaaS 的 75% 至 85%、也低于 Anthropic 的近 85%；推理成本从 2025 年 84 亿美元升至 2026 年 141 亿，现金消耗预计 2026 年约 270 亿、2027 年达 630 亿，呈「卖得越多、烧得越狠」。商业化侧同期数据：ChatGPT 广告自 2 月测试至 8 月底年化收入运行率达 10 亿美元，10 月 21 日已有超 10 万广告主在 89 国投放；截至 9 月 Alphabet 搜索业务收入 634 亿美元、占总收入 49.7%，首次跌破半数。统一 GAAP 口径后，投资者问的不再是 run rate，而是毛利率能不能上行、企业收入能不能在 50% 站住。对人才研究的用处：别用「营收翻倍」一句解释扩招，要看钱落在毛利还是落在算力账单。</h4>
+        <p>来源：<a href="https://www.tmtpost.com/8201799.html" target="_blank" rel="noopener">www.tmtpost.com</a> ｜ <a href="https://news.qq.com/rain/a/20261112A03TBB00" target="_blank" rel="noopener">news.qq.com</a> ｜ <a href="https://www.163.com/dy/article/LBH538KN0556I485.html" target="_blank" rel="noopener">www.163.com</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t1-2" data-rel="mid">
+        <button class="star-btn" data-key="2026-11-12-t1-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 资本在挑标的 — 台积电、英国主权基金、Stripe 同日出手。台积电董事会批准向 OpenAI 优先股投资最高 5 亿美元，并按 Anthropic 预期 IPO 价格购买 5 亿美元普通股；英国推理芯片公司 Fractile 完成 C 轮融资，中文源报 7.2 亿美元、路透口径为逾 5 亿英镑，英国主权 AI 基金与 British Business Bank 参投，CapitalG、Lightspeed、Redpoint 跟投，估值超 50 亿英镑，计划 2027 年推出首款商用芯片；全球最大模型 API 聚合平台 OpenRouter 正式并入 Stripe，据报道交易约 75 亿美元，指向企业 Token 路由与用量结算；国内沐曦股份与优必选合资的曦选创智完成 5 亿元天使轮，纪源资本、经纬创投联合领投，做机器人「大小脑一体」主控 SoC，计划 2027 年提供开发验证平台、2028 年出首款芯片。四笔钱分别落在模型公司、推理芯片、结算通道与机器人主控，不是同一条赛道。对做组织 Mapping 的人：钱进哪一段，哪一段才会长出新的人事与招聘体系。</h4>
+        <p>来源：<a href="https://www.toutiao.com/a7707078662306153003" target="_blank" rel="noopener">www.toutiao.com</a> ｜ <a href="https://www.appliedai.media/" target="_blank" rel="noopener">www.appliedai.media</a> ｜ <a href="https://www.163.com/dy/article/LBHC276V051481US.html" target="_blank" rel="noopener">www.163.com</a> ｜ <a href="https://t.qianzhan.com/caijing/detail/261112-ec9b81a7.html" target="_blank" rel="noopener">t.qianzhan.com</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t1-3" data-rel="hi">
+        <button class="star-btn" data-key="2026-11-12-t1-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 双 11 Token 消费化 — 算力从后台账走进直播间购物车。11 月 11 至 12 日多家媒体报道，今年双 11 里李佳琦、罗永浩等头部主播在直播间开卖词元套餐，千问办公月卡从 28 元降至 1 分钱、半小时售出近 10 万份，京东披露售出超 5000 万件 AI 产品；与此同时低价「Token 中转站」的数据安全存疑，灰色转售链路里的账号、发票与数据外发口径都没有明确规则。把它和 Anthropic 路演、OpenAI 毛利率放一起看更清楚：一边是万亿级公司把算力采购合同写进招股书，一边是个人用户用 1 分钱买到一个月 AI 办公额度，算力的采购主体正在从公司扩散到个人。对 TME 最实际的影响不在技术而在制度：员工自购 Token 之后，工具准入、费用报销与数据外发三张表要一起改，否则「公司规范」管不到个人账单。</h4>
+        <p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzcwMDQ3NjMxMA==&amp;mid=2247483716&amp;idx=1&amp;sn=aeae972470d0318dc1395c137c2e1f9c" target="_blank" rel="noopener">mp.weixin.qq.com</a> ｜ <a href="https://www.163.com/dy/article/LBH538KN0556I485.html" target="_blank" rel="noopener">www.163.com</a> ｜ <a href="https://news.qq.com/rain/a/20261112A03TBB00" target="_blank" rel="noopener">news.qq.com</a></p>
+        
+      </article>
+    </div>
+  </section>
+  <section class="section sec-topic">
+    <div class="sec-head">
+      <span class="sec-num sec-num-4">04</span>
+      <h2 class="sec-title">组织在换人：核心技术岗往外走，交接与继任被摆上台面</h2>
+    </div>
+    <div class="cards-grid">
+      <article class="card" id="2026-11-12-t2-0" data-rel="hi">
+        <button class="star-btn" data-key="2026-11-12-t2-0" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 字节跳动 — AI 芯片负责人施云峰被曝离职，团队处于交接期。11 月 12 日《晚点 LatePost》消息，字节跳动 AI 芯片与 DPU 团队负责人施云峰已提交离职申请、目前处于交接期。他曾任职联发科、美满电子与华芯通，2018 年加入字节，向火山引擎负责人杨震原汇报。报道称字节 AI 芯片团队自成立起选择对标谷歌 TPU 的专用芯片路线、采用纯 ASIC 架构，相关芯片今年已完成流片，但实际性能未达预期，目前正推进下一代产品研发。这条最有价值的不是「谁走了」，而是第一次把自研芯片团队的路线选择、流片结果与下一代进度摆到同一张纸上。对做人才研究的人：核心技术岗的流失往往跟着技术路线与交付结果走，Mapping 时该记的是团队在做什么、做到哪一步，而不只是花名册。</h4>
+        <p>来源：<a href="https://www.163.com/dy/article/LBHC276V051481US.html" target="_blank" rel="noopener">www.163.com</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t2-1" data-rel="hi">
+        <button class="star-btn" data-key="2026-11-12-t2-1" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 阿里达摩院 — Rynn 系列模型负责人李昕离职创业，方向是物理 AI 基础模型。11 月 12 日量子位 ROBO 消息，达摩院 Rynn 系列模型负责人李昕已离职并开始创业，加入睦灵科技 MolinX（今年 6 月成立，创始人为前达摩院具身平台负责人陈明修），公司聚焦物理 AI 基础模型的自进化，两人此前在多个模型项目中合作。李昕本科毕业于中山大学、2021 年获香港中文大学系统工程与工程管理学系博士学位，同年通过「阿里星顶尖人才计划」加入达摩院，研究方向从自然语言理解扩展到视频多模态再转向物理 AI；其担任通讯作者的 VCD 与共同通讯作者的 Inf-CLIP 分别入选 CVPR 2024 与 CVPR 2025 Highlight。与字节那条同一天出现，指向同一件事：顶尖模型人才正在从大厂研究院成建制流向早期公司，且常常是「负责人 + 前同事」的组队方式。对招聘的直接启发：留住这类人靠的不是单一薪酬包，是有没有可自主定义的研究方向。</h4>
+        <p>来源：<a href="https://m.10jqka.com.cn/20261112/c681729252.shtml" target="_blank" rel="noopener">m.10jqka.com.cn</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t2-2" data-rel="mid">
+        <button class="star-btn" data-key="2026-11-12-t2-2" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> Meta — 基础设施负责人进入交接，算力扩张期换将。11 月 12 日多家媒体确认，Meta 基础设施负责人兼工程联席负责人 Santosh Janardhan 将卸任，由 Dave Brown 接任；Janardhan 会参与交接并转任 Meta Compute 顾问，预计次年离开公司。放在本周上下文里看更清楚：Anthropic 刚追加约 114 亿美元云服务采购、CoreWeave 订单积压约 1325 亿美元、微软与谷歌都在重排 AI 电网与算力成本，基础设施条线的负责人此时换人，交接本身就是一项组织风险。对做组织架构 Mapping 的人，值得记的是「联席负责人 + 顾问过渡 + 次年离开」这套交接写法：它把关键岗的退出做成了有周期、有备份的动作，而不是一纸任免。</h4>
+        <p>来源：<a href="https://www.toutiao.com/a7707078662306153003" target="_blank" rel="noopener">www.toutiao.com</a> ｜ <a href="https://fav0.com/en/2026-11-12" target="_blank" rel="noopener">fav0.com</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t2-3" data-rel="hi">
+        <button class="star-btn" data-key="2026-11-12-t2-3" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-hi" title="招聘关联度：hi">🔴</span> 监管把「判断」也纳入备案 — 纽约州、法国、日本同日落子。纽约州 11 月 10 日公布安排、11 月 12 日集中报道：设在纽约州立大学宾汉姆顿分校的研究中心牵头 80 余名研究者，用 Empire AI 算力独立评估前沿系统；在纽约州经营且受 RAISE 法覆盖的大型前沿开发者须于 2027 年 1 月 1 日前登记、自 1 月起公开安全框架，所有受覆盖开发者须在严重安全事件后 72 小时内上报，违规最高罚款 300 万美元。法国一个专家委员会向总统提交 18 项建议，提出在设计阶段限制 AI 的「过度奉承迎合」与拟人化机制、消费级 AI 上市前做跨学科风险评估、从幼年阶段普及 AI 教育。日本公平交易委员会 11 月 11 日正式认定亚马逊日本整改计划：不得再用算法把售价高于其他平台同款最低价的卖家排除出「推荐报价」，机制持续 5 年、属行为矫正而非罚款。三地口径不同，但都在把「系统自动做出的判断」重新拉回可审计、可追责的轨道——这正是 HR 写 AI 使用规范时最该借的一句：自动判定不等于无需说明。</h4>
+        <p>来源：<a href="https://www.appliedai.media/" target="_blank" rel="noopener">www.appliedai.media</a> ｜ <a href="https://www.tmtpost.com/8201799.html" target="_blank" rel="noopener">www.tmtpost.com</a> ｜ <a href="http://mp.weixin.qq.com/s?__biz=MzcwMDQ3NjMxMA==&amp;mid=2247483716&amp;idx=1&amp;sn=aeae972470d0318dc1395c137c2e1f9c" target="_blank" rel="noopener">mp.weixin.qq.com</a></p>
+        
+      </article>
+      <article class="card" id="2026-11-12-t2-4" data-rel="mid">
+        <button class="star-btn" data-key="2026-11-12-t2-4" aria-label="关注这条">☆</button>
+        <h4><span class="rel rel-mid" title="招聘关联度：mid">🟡</span> 英伟达 — 关键人物风险第一次被折进评级与估值。11 月 11 日 Baird 把英伟达评级从「跑赢大盘」下调至「中性」、目标价由 500 美元下调 60% 至 200 美元，理由包括 2027 年数据中心需求可见性有限、供应约束、美国对华芯片出口限制以及 CEO 交接概率上升；公司 Q2 营收 962.2 亿美元、同比增 106%，数据中心 890 亿、同比增 117%，Q3 指引 1080 亿（正负 2%），Baird 预计 2027 年超大规模云厂 AI 资本开支增速或放缓至约 40%、并提示 10% 至 30% 提前订单有削减风险。11 月 12 日多家媒体报道董事会已召开内部会议讨论 CEO 去留并启动继任遴选、包括考虑过渡 CEO；治理层面被点出的结构问题是 11 名董事中未设董事会主席、多位独立董事自上世纪 90 年代任职，ISS 建议长期任职董事回避调查以增强公信力。股价两日累计跌约 9.5%，市场开始把「如果这个人明天不在」当作可定价风险。这里只记治理、评级与继任机制，未经相关方确认的撤换传闻不作事实写入。对 HR 最直白的一句：继任计划、关键岗备份与董事会结构不是人才盘点表里的附件，是能上估值表的风险项。</h4>
+        <p>来源：<a href="https://www.tmtpost.com/8201799.html" target="_blank" rel="noopener">www.tmtpost.com</a> ｜ <a href="https://finance.sina.com.cn/stock/t/2026-11-12/doc-iniymsin8595625.shtml" target="_blank" rel="noopener">finance.sina.com.cn</a> ｜ <a href="https://news.qq.com/rain/a/20261112A03QMQ00" target="_blank" rel="noopener">news.qq.com</a></p>
+        
+      </article>
+    </div>
+  </section>
+    <section class="section sec-think">
+    <div class="sec-head">
+      <span class="sec-num sec-num-5">05</span>
+      <h2 class="sec-title">招聘今日可行动</h2>
+    </div>
+    <blockquote class="thinking">
+      <p>今天三件事指向同一个动作：谷歌把「给选项打分」做成 API，Anthropic 把表格、白板和数据看板搬进 Claude，国内双 11 把 Token 摆进直播间。判断与工作台正在从人手里被拆成可采购的标准件，连实时语音都标到了每分钟 8 美分。另一侧，字节 AI 芯片负责人、达摩院 Rynn 负责人同日被曝离职创业，Meta 基建负责人进入交接，英伟达把「关键人物风险」折进了评级。机器接走的是可枚举的判断，人剩下的是定义选项、统一口径和签字担责。</p><p>明年和业务侧重写岗位说明书时，你会先把「哪些判断交给模型打分、哪些必须留人复核」列成清单，还是等第一起口径争议发生后再倒回来补？</p><p>🔗 完整版：https://chloee926.github.io/ai-daily/2026-11-12.html</p>
+    </blockquote>
+  </section>
+
+
+  <div class="watermark">TME 招聘 HR 出品 &middot; ChloeCao</div>
+</div>
+
+<script>
+(function () {
+  var saved = localStorage.getItem('ai-daily-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeGlyph();
+  refreshStarUI();
+})();
+
+function updateThemeGlyph() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = cur === 'dark' ? '🌙' : '☀';
+}
+
+function toggleTheme() {
+  var root = document.documentElement;
+  var cur = root.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  if (!cur) next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('ai-daily-theme', next);
+  updateThemeGlyph();
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) {
+    var d = (parseInt(btn.getAttribute('data-deg') || '0', 10) + 180);
+    btn.setAttribute('data-deg', d);
+    btn.style.transform = 'rotate(' + d + 'deg)';
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var h = document.documentElement;
+  var scrolled = h.scrollTop || document.body.scrollTop;
+  var height = h.scrollHeight - h.clientHeight;
+  var pct = height > 0 ? (scrolled / height) * 100 : 0;
+  var bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = pct + '%';
+}, { passive: true });
+
+var STAR_KEY = 'ai-daily-stars';
+function getStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY) || '{}'); } catch (e) { return {}; } }
+function setStars(o) { localStorage.setItem(STAR_KEY, JSON.stringify(o)); }
+function refreshStarUI() {
+  var stars = getStars(); var n = 0;
+  document.querySelectorAll('.star-btn').forEach(function (b) {
+    var k = b.getAttribute('data-key'); var on = !!stars[k];
+    b.textContent = on ? '★' : '☆'; b.classList.toggle('on', on); if (on) n++;
+  });
+  var c = document.getElementById('starCount'); if (c) c.textContent = n;
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.star-btn') : null;
+  if (!btn) return;
+  var k = btn.getAttribute('data-key'); var stars = getStars();
+  if (stars[k]) {
+    delete stars[k];
+  } else {
+    var card = btn.closest('.card, .new-term, .term-item');
+    var titleEl = card ? card.querySelector('h3, h4') : null;
+    var title = titleEl ? titleEl.textContent.trim() : k;
+    var bodyEl = card ? card.querySelector('p') : null;
+    var body = bodyEl ? bodyEl.textContent.trim() : '';
+    var relEl = card ? card.querySelector('.rel') : null;
+    var rel = relEl ? (relEl.getAttribute('title') || '').replace('招聘关联度：','') : 'low';
+    var music = card ? !!card.querySelector('.music-badge') : false;
+    stars[k] = { title: title, body: body, rel: rel, music: music };
+  }
+  setStars(stars); refreshStarUI();
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+});
+
+document.addEventListener('click', function (e) {
+  var chip = e.target.closest ? e.target.closest('.filter-chip') : null;
+  if (!chip) return;
+  var f = chip.getAttribute('data-filter');
+  document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+  document.querySelectorAll('.card[data-rel]').forEach(function (card) {
+    if (f === 'all' || card.getAttribute('data-rel') === f) card.classList.remove('dim');
+    else card.classList.add('dim');
+  });
+});
+</script>
+</body>
+</html>
